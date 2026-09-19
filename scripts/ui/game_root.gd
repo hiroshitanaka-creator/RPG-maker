@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -19,6 +19,11 @@ var _walk_frame: int = 0
 var _textures: Dictionary = {}
 var _last_move_ms: int = -1000
 var _purify_actor: String = ""
+var _risk_action: Dictionary = {}
+var _risk_return_mode: Mode = Mode.FIELD
+var _risk_preview: Array[Dictionary] = []
+var _confirmed_erosion_actors: Array[String] = []
+var _risk_bypass: bool = false
 
 
 func _ready() -> void:
@@ -85,6 +90,10 @@ func start_new_game(party_size: int = 4) -> void:
 		_notice = "ゲームを開始できません。" + "\n".join(game.errors)
 		_refresh()
 		return
+	_risk_action.clear()
+	_risk_preview.clear()
+	_confirmed_erosion_actors.clear()
+	_risk_bypass = false
 	if not ChapterOne.missing_art().is_empty():
 		mode = Mode.ASSETS_MISSING
 		_notice = "必要な素材が揃うと探索を開始できます。"
@@ -103,6 +112,7 @@ func automation_snapshot() -> Dictionary:
 	var saved := game.export_state()
 	var diagnostics := _diagnostics.messages()
 	var names := {Mode.MENU:"menu", Mode.FIELD:"field", Mode.DIALOGUE:"dialogue", Mode.BATTLE:"battle", Mode.PARTY:"party", Mode.COMPLETE:"complete", Mode.DEFEAT:"defeat", Mode.ASSETS_MISSING:"assets_missing"}
+	names[Mode.EROSION_CONFIRMATION] = "erosion_confirmation"
 	var result := {"mode": "error" if not diagnostics.is_empty() else names[mode],
 		"chapter1_cleared": diagnostics.is_empty() and saved.get("progress_flags", {}).get("chapter1_cleared", false)}
 	if not diagnostics.is_empty():
@@ -120,11 +130,17 @@ func automation_snapshot() -> Dictionary:
 		result["battle_input"] = {"ready": encounter.can_resolve(), "actor": "" if pending.is_empty() else pending[0].id, "enemy": "" if targets.is_empty() else targets[0].id}
 	elif mode == Mode.DIALOGUE:
 		result["line"] = _message_index
+	elif mode == Mode.EROSION_CONFIRMATION:
+		result["risk"] = _risk_preview.duplicate(true)
 	return result
 
 
 func submit_player_action(action: Dictionary) -> bool:
 	var kind: String = str(action.get("kind", ""))
+	if mode == Mode.EROSION_CONFIRMATION:
+		return _respond_to_erosion(kind)
+	if not _risk_bypass and _request_erosion_confirmation(action):
+		return true
 	var accepted := false
 	match mode:
 		Mode.FIELD:
@@ -163,6 +179,8 @@ func submit_player_action(action: Dictionary) -> bool:
 			elif kind == "field_battle":
 				var encounter := game.start_field_battle()
 				if encounter != null:
+					if not _risk_bypass:
+						_confirmed_erosion_actors.clear()
 					mode = Mode.BATTLE
 					_battle_log = ["周辺の魔物と戦う。勝利で現在の職業にJPが入る。"]
 					_actor = encounter.pending()[0].id
@@ -202,6 +220,52 @@ func submit_player_action(action: Dictionary) -> bool:
 	return accepted
 
 
+func _request_erosion_confirmation(action: Dictionary) -> bool:
+	var kind: String = action.get("kind", "")
+	var check_start := mode == Mode.FIELD and kind == "field_battle" and not game.field_battle_enemies().is_empty()
+	if mode == Mode.FIELD and kind == "interact":
+		var world := game.world_state()
+		var step := _step()
+		check_start = not game.is_returning_to_town() and step.get("kind") == "battle" and world["location"] == step.get("location") and world["player_cell"] == step.get("cell")
+	var check_round := mode == Mode.BATTLE and kind == "resolve_round" and game.current_battle().can_resolve()
+	if not check_start and not check_round:
+		return false
+	var risk: Array[Dictionary] = []
+	for entry in game.erosion_preview(check_round):
+		if entry["crosses_irreversible"] and (check_start or not entry["actor"] in _confirmed_erosion_actors):
+			risk.append(entry)
+	if risk.is_empty():
+		return false
+	_risk_action = action.duplicate(true)
+	_risk_preview = risk
+	_risk_return_mode = mode
+	mode = Mode.EROSION_CONFIRMATION
+	_refresh()
+	return true
+
+
+func _respond_to_erosion(kind: String) -> bool:
+	if kind not in ["cancel_erosion", "confirm_erosion"]:
+		return false
+	var pending := _risk_action.duplicate(true)
+	mode = _risk_return_mode
+	if kind == "confirm_erosion":
+		if mode == Mode.FIELD:
+			_confirmed_erosion_actors.clear()
+		for entry in _risk_preview:
+			if not entry["actor"] in _confirmed_erosion_actors:
+				_confirmed_erosion_actors.append(entry["actor"])
+	_risk_action.clear()
+	_risk_preview.clear()
+	if kind == "cancel_erosion":
+		_refresh()
+		return true
+	_risk_bypass = true
+	var accepted := submit_player_action(pending)
+	_risk_bypass = false
+	return accepted
+
+
 func _interact() -> bool:
 	var step := _step()
 	var world := game.world_state()
@@ -223,6 +287,8 @@ func _interact() -> bool:
 			var encounter := game.start_battle(step["enemies"], 20260919 + int(world["quest_step"]))
 			if encounter == null:
 				return false
+			if not _risk_bypass:
+				_confirmed_erosion_actors.clear()
 			mode = Mode.BATTLE
 			_battle_log = ["相手の特徴と残りHPを見て、行動を選ぼう。"]
 			_actor = encounter.pending()[0].id
@@ -269,7 +335,7 @@ func _battle_action(action: Dictionary) -> bool:
 			var after := game.export_state()
 			for i in range(after["party"].size()):
 				var actor: Dictionary = after["party"][i]
-				var job_id: String = actor["job_id"]
+				var job_id: String = before["party"][i]["job_id"]
 				var gain := int(actor["jp"].get(job_id, 0))-int(before["party"][i]["jp"].get(job_id, 0))
 				lines.append("%s: %sのJP +%d" % [actor["name"], game.jobs[job_id]["name"], gain])
 				if actor["mastered_jobs"].size() > before["party"][i]["mastered_jobs"].size():
@@ -279,6 +345,12 @@ func _battle_action(action: Dictionary) -> bool:
 						lines.append("%sが『%s』を習得。編成で装着すると使える。" % [actor["name"], game.abilities[ability_id]["name"]])
 				if actor["monster_form"] != before["party"][i]["monster_form"]:
 					lines.append("%sが魔物化した。能力と使用可能な技、装着枠が変化した。" % actor["name"])
+				var old_erosion := int(before["party"][i]["erosion"])
+				var new_erosion := int(actor["erosion"])
+				if old_erosion != new_erosion:
+					lines.append("%sの侵蝕 %d→%d（%s）" % [actor["name"], old_erosion, new_erosion, GameSession.erosion_stage(new_erosion)])
+				if actor["job_id"] != job_id:
+					lines.append("侵蝕90に達し、%sは%sへ移った。人間職へ戻ることと祠での解除はできない。" % [actor["name"], game.jobs[actor["job_id"]]["name"]])
 			if story_battle:
 				lines.append_array(_step().get("text", []))
 			_show_dialogue(lines, story_battle)
@@ -333,7 +405,7 @@ func _refresh() -> void:
 	if not saved.is_empty():
 		var values: Array[String] = []
 		for actor in saved["party"]:
-			values.append(str(actor["erosion"]))
+			values.append(str(game.current_erosion(actor["id"])))
 		header.add_child(_label("侵蝕 " + " / ".join(values), 10))
 	match mode:
 		Mode.MENU: _render_menu()
@@ -342,6 +414,7 @@ func _refresh() -> void:
 		Mode.DIALOGUE: _render_dialogue()
 		Mode.BATTLE: _render_battle()
 		Mode.PARTY: _render_party()
+		Mode.EROSION_CONFIRMATION: _render_erosion_confirmation()
 		Mode.COMPLETE: _render_complete()
 		Mode.DEFEAT:
 			_body.add_child(_label("全員が戦闘不能になった。", 16))
@@ -446,6 +519,9 @@ func _render_battle() -> void:
 	_action_button(tools, "選び直す", {"kind":"clear_actions"})
 	var resolve := _action_button(tools, "ターン実行", {"kind":"resolve_round"})
 	resolve.disabled = not encounter.can_resolve()
+	var forecast := _label(_erosion_forecast_text(), 10)
+	forecast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(forecast)
 	var stage := HBoxContainer.new()
 	_body.add_child(stage)
 	var foes := HBoxContainer.new()
@@ -483,6 +559,7 @@ func _render_battle() -> void:
 		for identifier in actor.equipped:
 			var definition: Dictionary = game.abilities[identifier]
 			var button := _button(commands, "%s %dMP" % [definition["name"], int(definition["cost"])], _choose_target.bind("ability", identifier))
+			button.tooltip_text = game.describe_ability(identifier)
 			button.disabled = encounter.targets_for(_actor, BattleAction.Kind.ABILITY, identifier).is_empty()
 		var potion := _button(commands, "回復薬", _choose_target.bind("potion", ""))
 		potion.disabled = encounter.targets_for(_actor, BattleAction.Kind.ITEM).is_empty()
@@ -561,6 +638,7 @@ func _render_party() -> void:
 		comparison.text = _job_preview_text(actor, identifier)
 		change.disabled = not game.preview_job(actor["id"], identifier)["allowed"])
 	_body.add_child(_label("魔物職はマスターで魔物化。侵蝕90以降は人間職へ戻れません。", 10))
+	_body.add_child(_label("侵蝕 %d（%s） / 30:兆候・60:人間JP半減・90:復帰不可" % [actor["erosion"], GameSession.erosion_stage(actor["erosion"])], 10))
 	_body.add_child(_label("JP %d/%d  %s / 装着 %d/%d" % [int(actor["jp"].get(actor["job_id"],0)), int(game.jobs[actor["job_id"]]["mastery_cost"]), "マスター" if actor["job_id"] in actor["mastered_jobs"] else "修練中", actor["equipped_abilities"].size(), game.slot_limit(actor["id"])], 11))
 	var slots := GridContainer.new()
 	slots.columns = 2
@@ -638,6 +716,30 @@ func _render_purify_confirmation() -> void:
 	_body.add_child(description)
 	_action_button(_body, "やめる", {"kind":"cancel_purify"})
 	_action_button(_body, "魔物の技を消去して解除", {"kind":"confirm_purify"})
+
+
+func _erosion_forecast_text() -> String:
+	var parts: Array[String] = []
+	for entry in game.erosion_preview(true):
+		if entry["after"] != entry["before"]:
+			parts.append("%s %d→%d %s" % [entry["name"], entry["before"], entry["after"], GameSession.erosion_stage(entry["after"])])
+	return "終了時の侵蝕見込み: " + ("変化なし" if parts.is_empty() else " / ".join(parts))
+
+
+func _render_erosion_confirmation() -> void:
+	_body.add_child(_label("侵蝕90を越える操作の確認", 15))
+	var text := "侵蝕90以上では、人間職への転職と祠での解除ができなくなります。\n"
+	for entry in _risk_preview:
+		text += "\n%s: %d→最大%d" % [entry["name"], entry["before"], entry["after"]]
+		if not str(entry["forced_job"]).is_empty():
+			text += " / 終了後は" + game.jobs[entry["forced_job"]]["name"]
+	text += "\n\n予約した技は実際に発動した回数だけ加算します。未マスターの職が、この確認だけでマスターになることはありません。"
+	var description := _label(text, 12)
+	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	description.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_body.add_child(description)
+	_action_button(_body, "やめる・選び直す", {"kind":"cancel_erosion"})
+	_action_button(_body, "条件を確認して進む", {"kind":"confirm_erosion"})
 
 
 func _render_complete() -> void:

@@ -1,6 +1,9 @@
 class_name GameSession
 extends RefCounted
 
+const MONSTER_BATTLE_EROSION := 3
+const MONSTER_SKILL_EROSION := 1
+
 var catalog: BattleCatalog
 var jobs: Dictionary = {}
 var abilities: Dictionary = {}
@@ -322,7 +325,71 @@ func describe_ability(ability_id: String) -> String:
 		"steal": detail = "相手1体につき1回、回復薬を盗む"
 	if int(ability["priority"]) > 0:
 		detail += "・優先行動"
+	if not monster_skill_origin(ability_id).is_empty():
+		detail += "・実使用で侵蝕+%d" % MONSTER_SKILL_EROSION
 	return "%s / %dMP / %s\n%s" % [ability["name"], ability["cost"], targets[ability["target"]], detail]
+
+
+func monster_skill_origin(ability_id: String) -> String:
+	for job in jobs.values():
+		if job["type"] == "human" and ability_id in job["abilities"]:
+			return ""
+	for job in jobs.values():
+		if job["type"] == "monster" and (ability_id in job["abilities"] or ability_id in job["monster_form"]["abilities"]):
+			return job["id"]
+	return ""
+
+
+static func erosion_stage(value: int) -> String:
+	if value >= 90:
+		return "不可逆"
+	if value >= 60:
+		return "変異"
+	if value >= 30:
+		return "兆候"
+	return "平常"
+
+
+func current_erosion(actor_id: String) -> int:
+	var actor := _member(actor_id)
+	if actor.is_empty():
+		return 0
+	var value := int(actor["erosion"])
+	if _battle != null:
+		for ability_id in _battle.successful_abilities(actor_id):
+			if not monster_skill_origin(ability_id).is_empty():
+				value += MONSTER_SKILL_EROSION
+	return mini(100, value)
+
+
+func erosion_preview(include_queued: bool = false) -> Array[Dictionary]:
+	var results: Array[Dictionary] = []
+	for actor in _state.get("party", []):
+		var before := int(actor["erosion"])
+		var battle_cost := MONSTER_BATTLE_EROSION if jobs[actor["job_id"]]["type"] == "monster" else 0
+		var after := mini(100, before + battle_cost)
+		var skill_count := 0
+		var forced_job := ""
+		var uses: Array[String] = []
+		if _battle != null:
+			uses = _battle.successful_abilities(actor["id"])
+			if include_queued and _battle.queued.has(actor["id"]):
+				var action: BattleAction = _battle.queued[actor["id"]]
+				if action.kind == BattleAction.Kind.ABILITY:
+					uses.append(action.ability_id)
+		for ability_id in uses:
+			var origin := monster_skill_origin(ability_id)
+			if origin.is_empty():
+				continue
+			var previous := after
+			after = mini(100, after + MONSTER_SKILL_EROSION)
+			skill_count += 1
+			if previous < 90 and after >= 90 and jobs[actor["job_id"]]["type"] == "human":
+				forced_job = origin
+		results.append({"actor":actor["id"], "name":actor["name"], "before":before, "after":after,
+			"battle_cost":battle_cost, "skill_uses":skill_count, "forced_job":forced_job,
+			"crosses_irreversible": before < 90 and after >= 90})
+	return results
 
 
 func _refresh_caps(actor: Dictionary) -> void:
@@ -457,13 +524,16 @@ func finish_battle() -> bool:
 		for identifier in _battle_enemy_ids:
 			reward += int(enemy_definitions[identifier]["jp"])
 	_state["inventory"]["potion"] = _battle.potions
+	var erosion_results := erosion_preview()
+	var member_index := 0
 	for actor in _state["party"]:
 		var combatant := _battle.actor_by_id(actor["id"])
 		actor["hp"] = combatant.hp
 		actor["mp"] = combatant.mp
 		var job: Dictionary = jobs[actor["job_id"]]
-		if job["type"] == "monster":
-			actor["erosion"] = mini(100, int(actor["erosion"]) + 3)
+		var erosion: Dictionary = erosion_results[member_index]
+		member_index += 1
+		actor["erosion"] = erosion["after"]
 		if actor["erosion"] >= 90:
 			actor["irreversible"] = true
 		if won:
@@ -484,8 +554,14 @@ func finish_battle() -> bool:
 					if job["type"] == "monster":
 						actor["monster_form"] = actor["job_id"]
 						_learn_form(actor, actor["job_id"])
-			_refresh_caps(actor)
-			_reconcile_slots(actor)
+		# JPは戦闘時の職へ与え、その後に90到達時の職業移行を反映する。
+		if not str(erosion["forced_job"]).is_empty():
+			actor["job_id"] = erosion["forced_job"]
+			if actor["job_id"] in actor["mastered_jobs"]:
+				actor["monster_form"] = actor["job_id"]
+				_learn_form(actor, actor["job_id"])
+		_refresh_caps(actor)
+		_reconcile_slots(actor)
 	_battle = null
 	_field_battle = false
 	return true

@@ -12,6 +12,7 @@ var queued: Dictionary[String, BattleAction] = {}
 var catalog: BattleCatalog
 var _rng := RandomNumberGenerator.new()
 var _events: Array[Dictionary] = []
+var _ability_uses: Dictionary = {}
 
 
 func _init(party: Array[Combatant], enemies: Array[Combatant], definitions: BattleCatalog, random_seed: int = 20260919) -> void:
@@ -239,6 +240,9 @@ func _execute(original: BattleAction) -> void:
 
 func _use_ability(actor: Combatant, target: Combatant, ability: Dictionary) -> void:
 	actor.mp -= int(ability["cost"])
+	if not _ability_uses.has(actor.id):
+		_ability_uses[actor.id] = []
+	_ability_uses[actor.id].append(ability["id"])
 	var title: String = ability["name"]
 	var power: int = int(ability["power"])
 	match ability["kind"]:
@@ -284,6 +288,12 @@ func snapshot() -> Dictionary:
 	for actor in actors:
 		members.append(actor.snapshot())
 	return {"round": round_number, "phase": phase, "potions": potions, "actors": members}
+
+
+func successful_abilities(actor_id: String) -> Array[String]:
+	var result: Array[String] = []
+	result.assign(_ability_uses.get(actor_id, []))
+	return result
 
 
 func _log(code: String, message: String, actor_id: String = "", target_id: String = "", amount: int = 0) -> void:

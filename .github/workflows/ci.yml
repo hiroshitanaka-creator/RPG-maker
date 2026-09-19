@@ -94,6 +94,15 @@ jobs:
             exit 1
           fi
 
+      - name: 侵蝕の加算と不可逆操作の確認を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_erosion_choices.gd 2>&1 | tee erosion.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" erosion.log; then
+            exit 1
+          fi
+
       - name: 検証後も保護ファイルが不変であることを確認
         if: always()
         run: python tools/check_frozen_files.py
@@ -106,6 +115,7 @@ jobs:
           path: |
             import.log
             progression.log
+            erosion.log
             docs/verification/scope-lock-current.json
             .tools/verification/current-*/*.log
           if-no-files-found: ignore
