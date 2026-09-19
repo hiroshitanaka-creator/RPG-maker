@@ -9,115 +9,291 @@
     {
       "path": "assets/characters/pc_01/walk.png",
       "kind": "character_walk",
-      "size": [96, 192],
-      "frame": [32, 48],
-      "grid": [3, 4],
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/characters/pc_01/battle.png",
       "kind": "character_battle",
-      "size": [144, 48],
-      "frame": [48, 48],
-      "grid": [3, 1],
+      "size": [
+        144,
+        48
+      ],
+      "frame": [
+        48,
+        48
+      ],
+      "grid": [
+        3,
+        1
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/characters/pc_01/battle_monster.png",
       "kind": "character_battle_monster",
-      "size": [144, 48],
-      "frame": [48, 48],
-      "grid": [3, 1],
+      "size": [
+        144,
+        48
+      ],
+      "frame": [
+        48,
+        48
+      ],
+      "grid": [
+        3,
+        1
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required",
+      "form_reference": "undead"
     },
     {
       "path": "assets/characters/pc_02/walk.png",
       "kind": "character_walk",
-      "size": [96, 192],
-      "frame": [32, 48],
-      "grid": [3, 4],
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/characters/pc_02/battle.png",
       "kind": "character_battle",
-      "size": [144, 48],
-      "frame": [48, 48],
-      "grid": [3, 1],
+      "size": [
+        144,
+        48
+      ],
+      "frame": [
+        48,
+        48
+      ],
+      "grid": [
+        3,
+        1
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/characters/pc_03/walk.png",
       "kind": "character_walk",
-      "size": [96, 192],
-      "frame": [32, 48],
-      "grid": [3, 4],
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/characters/pc_03/battle.png",
       "kind": "character_battle",
-      "size": [144, 48],
-      "frame": [48, 48],
-      "grid": [3, 1],
+      "size": [
+        144,
+        48
+      ],
+      "frame": [
+        48,
+        48
+      ],
+      "grid": [
+        3,
+        1
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/characters/pc_04/walk.png",
       "kind": "character_walk",
-      "size": [96, 192],
-      "frame": [32, 48],
-      "grid": [3, 4],
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/characters/pc_04/battle.png",
       "kind": "character_battle",
-      "size": [144, 48],
-      "frame": [48, 48],
-      "grid": [3, 1],
+      "size": [
+        144,
+        48
+      ],
+      "frame": [
+        48,
+        48
+      ],
+      "grid": [
+        3,
+        1
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/monsters/slime/idle.png",
       "kind": "monster_idle",
-      "size": [32, 32],
+      "size": [
+        32,
+        32
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/monsters/bat/idle.png",
       "kind": "monster_idle",
-      "size": [32, 32],
+      "size": [
+        32,
+        32
+      ],
       "max_colors": 16,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/tiles/field_outdoor.png",
       "kind": "tileset",
-      "size": [512, 512],
-      "frame": [32, 32],
-      "grid": [16, 16],
+      "size": [
+        512,
+        512
+      ],
+      "frame": [
+        32,
+        32
+      ],
+      "grid": [
+        16,
+        16
+      ],
       "max_colors": 64,
-      "status": "placeholder"
+      "status": "required"
     },
     {
       "path": "assets/tiles/dungeon_cave.png",
       "kind": "tileset",
-      "size": [512, 512],
-      "frame": [32, 32],
-      "grid": [16, 16],
+      "size": [
+        512,
+        512
+      ],
+      "frame": [
+        32,
+        32
+      ],
+      "grid": [
+        16,
+        16
+      ],
       "max_colors": 64,
-      "status": "placeholder"
+      "status": "required"
+    },
+    {
+      "path": "assets/characters/pc_01/portrait.png",
+      "kind": "portrait",
+      "size": [
+        64,
+        64
+      ],
+      "max_colors": 16,
+      "status": "required"
+    },
+    {
+      "path": "assets/characters/pc_02/portrait.png",
+      "kind": "portrait",
+      "size": [
+        64,
+        64
+      ],
+      "max_colors": 16,
+      "status": "required"
+    },
+    {
+      "path": "assets/characters/pc_03/portrait.png",
+      "kind": "portrait",
+      "size": [
+        64,
+        64
+      ],
+      "max_colors": 16,
+      "status": "required"
+    },
+    {
+      "path": "assets/characters/pc_04/portrait.png",
+      "kind": "portrait",
+      "size": [
+        64,
+        64
+      ],
+      "max_colors": 16,
+      "status": "required"
+    },
+    {
+      "path": "assets/monsters/shell_guard/idle.png",
+      "kind": "monster_idle",
+      "size": [
+        64,
+        64
+      ],
+      "max_colors": 16,
+      "status": "required"
+    },
+    {
+      "path": "assets/monsters/ember_wisp/idle.png",
+      "kind": "monster_idle",
+      "size": [
+        32,
+        32
+      ],
+      "max_colors": 16,
+      "status": "required"
+    },
+    {
+      "path": "assets/monsters/gate_beast/idle.png",
+      "kind": "monster_idle",
+      "size": [
+        64,
+        64
+      ],
+      "max_colors": 16,
+      "status": "required"
     }
   ]
 }

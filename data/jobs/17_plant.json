@@ -1,0 +1,42 @@
+{
+  "id": "plant",
+  "name": "植物系",
+  "type": "monster",
+  "category": "monster",
+  "playable": true,
+  "stat_growth": {
+    "hp": 3,
+    "defense": 1,
+    "resistance": 1
+  },
+  "abilities": [
+    "thorn",
+    "root_mend"
+  ],
+  "mastery_cost": 48,
+  "stats": {
+    "hp": 150,
+    "mp": 38,
+    "attack": 15,
+    "defense": 16,
+    "magic": 17,
+    "resistance": 15,
+    "speed": 4
+  },
+  "monster_form": {
+    "stat_modifiers": {
+      "hp": 30,
+      "resistance": 8
+    },
+    "abilities": [
+      "form_plant"
+    ],
+    "release": {
+      "event": "purification_shrine",
+      "max_erosion": 89,
+      "erosion_reduction": 30,
+      "forget_monster_abilities": true
+    }
+  },
+  "design_status": "未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。"
+}

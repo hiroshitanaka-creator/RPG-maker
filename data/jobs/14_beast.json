@@ -1,0 +1,42 @@
+{
+  "id": "beast",
+  "name": "獣系",
+  "type": "monster",
+  "category": "monster",
+  "playable": true,
+  "stat_growth": {
+    "hp": 3,
+    "defense": 1,
+    "resistance": 1
+  },
+  "abilities": [
+    "fang",
+    "breath"
+  ],
+  "mastery_cost": 36,
+  "stats": {
+    "hp": 145,
+    "mp": 22,
+    "attack": 25,
+    "defense": 10,
+    "magic": 5,
+    "resistance": 8,
+    "speed": 19
+  },
+  "monster_form": {
+    "stat_modifiers": {
+      "attack": 10,
+      "speed": 5
+    },
+    "abilities": [
+      "form_beast"
+    ],
+    "release": {
+      "event": "purification_shrine",
+      "max_erosion": 89,
+      "erosion_reduction": 30,
+      "forget_monster_abilities": true
+    }
+  },
+  "design_status": "未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。"
+}

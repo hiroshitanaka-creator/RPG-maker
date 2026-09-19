@@ -1,0 +1,42 @@
+{
+  "id": "spirit",
+  "name": "精霊系",
+  "type": "monster",
+  "category": "monster",
+  "playable": true,
+  "stat_growth": {
+    "hp": 3,
+    "defense": 1,
+    "resistance": 1
+  },
+  "abilities": [
+    "spirit_bolt",
+    "heal"
+  ],
+  "mastery_cost": 56,
+  "stats": {
+    "hp": 95,
+    "mp": 52,
+    "attack": 8,
+    "defense": 8,
+    "magic": 26,
+    "resistance": 24,
+    "speed": 15
+  },
+  "monster_form": {
+    "stat_modifiers": {
+      "magic": 10,
+      "resistance": 10
+    },
+    "abilities": [
+      "form_spirit"
+    ],
+    "release": {
+      "event": "purification_shrine",
+      "max_erosion": 89,
+      "erosion_reduction": 30,
+      "forget_monster_abilities": true
+    }
+  },
+  "design_status": "未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。"
+}

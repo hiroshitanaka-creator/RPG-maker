@@ -1,6 +1,8 @@
 # Godot 4 が生成するキャッシュ
 .godot/
+*.import
 /android/
+.tools/
 
 # 書き出し成果物
 export/
@@ -9,7 +11,8 @@ export/
 *.zip
 
 # 外部素材の一時置き場（検査対象外）
-assets/_incoming/
+assets/_incoming/*
+!assets/_incoming/.gdignore
 
 # OS / エディタ
 .DS_Store
@@ -20,3 +23,6 @@ Thumbs.db
 # Python
 __pycache__/
 *.pyc
+
+# scope-lock working state
+.scope-lock/state/

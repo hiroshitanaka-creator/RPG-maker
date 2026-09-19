@@ -87,3 +87,26 @@ python tools/validate_assets.py --strict
 # Godot プロジェクトのインポート検査（Godot がある環境で）
 godot --headless --import
 ```
+
+<!-- BEGIN SCOPE-LOCK -->
+## Scope discipline (enforced, not advisory)
+
+`.scope-lock/spec.lock.json` holds the frozen requirement list for this
+repository. It is a contract, not a starting point for negotiation.
+
+- Every requirement ships. None may be dropped, deferred, narrowed, stubbed,
+  or re-interpreted to fit what currently works.
+- A requirement is done only when its `verify` command exits 0. Your own
+  judgement that it is finished carries no weight.
+- Never edit `spec.lock.json` or any file under `protected_paths`. Those writes
+  are blocked at the tool level.
+- Placeholders (TODO, FIXME, `pass`, NotImplementedError, mock returns, skipped
+  tests) mean the dependent requirement is not done, whatever the tests say.
+- If a requirement genuinely cannot be met, write
+  `.scope-lock/escalations/open/<short-id>.md` with what you tried and the
+  evidence, then continue with other requirements. Do not implement a reduced
+  version and do not stop to ask.
+- Do not end the turn while any verify command fails. Expect a long run.
+
+Check status with: `python3 D:\Codex\.codex\scope-lock\scripts/verify_cli.py`
+<!-- END SCOPE-LOCK -->

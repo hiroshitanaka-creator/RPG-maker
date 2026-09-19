@@ -1,0 +1,199 @@
+{
+  "recorded_at": "2026-09-19T04:33:20.291129+00:00",
+  "kind": "pre_implementation_baseline",
+  "test_sha256": {
+    "test/support/game_test.gd": "5a85d19d1f0496e8071e70c77519efdd1d7741558ee5a6925b0d8da00a27d577",
+    "test/support/gut_gate.gd": "83d03acd52192b43d5fcb8f2654eb4378f96d0e10a18f47f0bf61e4918852bac",
+    "test/unit/test_ability_slots.gd": "7cc7e3768bcc7b1023c2259799f56b6a505dcfbfabfb024a16b6b16453815aa3",
+    "test/unit/test_battle_loop.gd": "8ca674ea671f39cae542ad370a881ff3f0cd6e6b92b2bc98698ede6c03935a38",
+    "test/unit/test_job_change.gd": "8bee5e5d532f1aa106dc0f102c8dc353debeaf17e429896ef1a7fbc10dd75495",
+    "test/unit/test_job_data.gd": "d44e30cff048d634e315c4785b03d8bf7e9fb86c7282b0e440f3b8fe02074786",
+    "test/unit/test_monster_form.gd": "c6d66d4278c0b8382efb665ce267576fdc8559a232b2bf9fae247ca40bd915bc",
+    "test/unit/test_save_roundtrip.gd": "03102af3eead761907f5514817f1b369ab55f0be381c13c3636b90aa7b4b6e03",
+    "test/unit/test_startup.gd": "21d01ab3117064e960eab7e0d2b1ea2164e214a38b5e8bbdd6f7bf3084ee78cc"
+  },
+  "smoke_sha256": "e0198c54a44f159e07f36a7bd5a3d493a243c1c1ae572e1823f2227e76da5853",
+  "results": [
+    {
+      "id": "R-01",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+      "exit_code": 1,
+      "status": "FAIL",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 2,
+        "failed_assertions": 2,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": [
+        "[Failed]:  data/jobsに実データが必要です。",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  data/jobsに実データが必要です。",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist."
+      ]
+    },
+    {
+      "id": "R-02",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_change.gd -gexit",
+      "exit_code": 1,
+      "status": "FAIL",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 2,
+        "failed_assertions": 2,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": [
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist."
+      ]
+    },
+    {
+      "id": "R-03",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+      "exit_code": 1,
+      "status": "FAIL",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 8,
+        "failed_assertions": 1,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": [
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist."
+      ]
+    },
+    {
+      "id": "R-04",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+      "exit_code": 1,
+      "status": "FAIL",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 1,
+        "failed_assertions": 1,
+        "invalid": false,
+        "pending": 0,
+        "tests": 1
+      },
+      "failure_messages": [
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist."
+      ]
+    },
+    {
+      "id": "R-05",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+      "exit_code": 1,
+      "status": "FAIL",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 6,
+        "failed_assertions": 3,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": [
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist."
+      ]
+    },
+    {
+      "id": "R-06",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+      "exit_code": 1,
+      "status": "FAIL",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 2,
+        "failed_assertions": 2,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": [
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist."
+      ]
+    },
+    {
+      "id": "R-07",
+      "verify": "godot --headless --path . --script res://tools/smoke_chapter1.gd",
+      "exit_code": 1,
+      "status": "FAIL",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": null,
+      "failure_messages": [
+        "CHAPTER1_FAIL: 実ゲームの開始・状態参照・通常操作の入口が未実装です。"
+      ]
+    },
+    {
+      "id": "R-08",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+      "exit_code": 1,
+      "status": "FAIL",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 30,
+        "failed_assertions": 11,
+        "invalid": false,
+        "pending": 0,
+        "tests": 12
+      },
+      "failure_messages": [
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  data/jobsに実データが必要です。",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  data/jobsに実データが必要です。",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist.",
+        "[Failed]:  expected [res://scripts/game/game_session.gd] to exist."
+      ]
+    }
+  ]
+}

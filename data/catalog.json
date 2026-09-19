@@ -1,0 +1,568 @@
+{
+  "schema_version": 1,
+  "jobs_directory": "res://data/jobs",
+  "abilities": [
+    {
+      "id": "power_strike",
+      "name": "強打",
+      "kind": "physical",
+      "power": 150,
+      "cost": 3,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "強打 / MP 3 / physical"
+    },
+    {
+      "id": "firm_guard",
+      "name": "堅守",
+      "kind": "guard",
+      "power": 25,
+      "cost": 3,
+      "target": "self",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "堅守 / MP 3 / guard"
+    },
+    {
+      "id": "double_strike",
+      "name": "連撃",
+      "kind": "physical",
+      "power": 80,
+      "cost": 5,
+      "target": "enemy",
+      "hits": 2,
+      "priority": 0,
+      "element": "none",
+      "description": "連撃 / MP 5 / physical"
+    },
+    {
+      "id": "breath",
+      "name": "息を整える",
+      "kind": "heal",
+      "power": 12,
+      "cost": 2,
+      "target": "self",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "息を整える / MP 2 / heal"
+    },
+    {
+      "id": "heal",
+      "name": "治癒",
+      "kind": "heal",
+      "power": 24,
+      "cost": 4,
+      "target": "ally",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "治癒 / MP 4 / heal"
+    },
+    {
+      "id": "revive",
+      "name": "蘇生",
+      "kind": "revive",
+      "power": 25,
+      "cost": 8,
+      "target": "fallen_ally",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "蘇生 / MP 8 / revive"
+    },
+    {
+      "id": "fire",
+      "name": "火球",
+      "kind": "magic",
+      "power": 24,
+      "cost": 4,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "fire",
+      "description": "火球 / MP 4 / magic"
+    },
+    {
+      "id": "ice",
+      "name": "氷弾",
+      "kind": "magic",
+      "power": 18,
+      "cost": 3,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "ice",
+      "description": "氷弾 / MP 3 / magic"
+    },
+    {
+      "id": "steal",
+      "name": "盗む",
+      "kind": "steal",
+      "power": 0,
+      "cost": 0,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "盗む / MP 0 / steal"
+    },
+    {
+      "id": "quick_slash",
+      "name": "先制斬り",
+      "kind": "physical",
+      "power": 80,
+      "cost": 3,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 1,
+      "element": "none",
+      "description": "先制斬り / MP 3 / physical"
+    },
+    {
+      "id": "quick_shot",
+      "name": "速射",
+      "kind": "physical",
+      "power": 95,
+      "cost": 3,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 1,
+      "element": "none",
+      "description": "速射 / MP 3 / physical"
+    },
+    {
+      "id": "ice_arrow",
+      "name": "氷矢",
+      "kind": "magic",
+      "power": 22,
+      "cost": 4,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "ice",
+      "description": "氷矢 / MP 4 / magic"
+    },
+    {
+      "id": "salve",
+      "name": "癒しの調合",
+      "kind": "heal",
+      "power": 38,
+      "cost": 5,
+      "target": "ally",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "癒しの調合 / MP 5 / heal"
+    },
+    {
+      "id": "sound_wave",
+      "name": "響きの波",
+      "kind": "magic",
+      "power": 26,
+      "cost": 4,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "響きの波 / MP 4 / magic"
+    },
+    {
+      "id": "soothing_song",
+      "name": "安らぎの歌",
+      "kind": "heal",
+      "power": 28,
+      "cost": 4,
+      "target": "ally",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "安らぎの歌 / MP 4 / heal"
+    },
+    {
+      "id": "shield_strike",
+      "name": "盾打ち",
+      "kind": "physical",
+      "power": 140,
+      "cost": 3,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "盾打ち / MP 3 / physical"
+    },
+    {
+      "id": "holy_light",
+      "name": "光輪",
+      "kind": "magic",
+      "power": 34,
+      "cost": 6,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "光輪 / MP 6 / magic"
+    },
+    {
+      "id": "curse_bolt",
+      "name": "呪弾",
+      "kind": "magic",
+      "power": 30,
+      "cost": 5,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "呪弾 / MP 5 / magic"
+    },
+    {
+      "id": "acid",
+      "name": "酸液",
+      "kind": "magic",
+      "power": 20,
+      "cost": 3,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "酸液 / MP 3 / magic"
+    },
+    {
+      "id": "slime_mend",
+      "name": "再生",
+      "kind": "heal",
+      "power": 24,
+      "cost": 3,
+      "target": "self",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "再生 / MP 3 / heal"
+    },
+    {
+      "id": "fang",
+      "name": "牙",
+      "kind": "physical",
+      "power": 145,
+      "cost": 3,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "牙 / MP 3 / physical"
+    },
+    {
+      "id": "grave_bolt",
+      "name": "冥火",
+      "kind": "magic",
+      "power": 30,
+      "cost": 5,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "冥火 / MP 5 / magic"
+    },
+    {
+      "id": "undead_mend",
+      "name": "死気回復",
+      "kind": "heal",
+      "power": 20,
+      "cost": 3,
+      "target": "self",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "死気回復 / MP 3 / heal"
+    },
+    {
+      "id": "wind_blade",
+      "name": "風刃",
+      "kind": "magic",
+      "power": 23,
+      "cost": 3,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "風刃 / MP 3 / magic"
+    },
+    {
+      "id": "thorn",
+      "name": "棘打ち",
+      "kind": "physical",
+      "power": 135,
+      "cost": 3,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "棘打ち / MP 3 / physical"
+    },
+    {
+      "id": "root_mend",
+      "name": "根の再生",
+      "kind": "heal",
+      "power": 35,
+      "cost": 4,
+      "target": "self",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "根の再生 / MP 4 / heal"
+    },
+    {
+      "id": "shell_bash",
+      "name": "殻打ち",
+      "kind": "physical",
+      "power": 145,
+      "cost": 4,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "殻打ち / MP 4 / physical"
+    },
+    {
+      "id": "spirit_bolt",
+      "name": "霊光",
+      "kind": "magic",
+      "power": 30,
+      "cost": 4,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "霊光 / MP 4 / magic"
+    },
+    {
+      "id": "flame_breath",
+      "name": "炎の息",
+      "kind": "magic",
+      "power": 34,
+      "cost": 6,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "fire",
+      "description": "炎の息 / MP 6 / magic"
+    },
+    {
+      "id": "form_slime",
+      "name": "スライムの奥義",
+      "kind": "magic",
+      "power": 42,
+      "cost": 7,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "ice",
+      "description": "スライムの奥義 / MP 7 / magic"
+    },
+    {
+      "id": "form_beast",
+      "name": "獣の奥義",
+      "kind": "physical",
+      "power": 175,
+      "cost": 7,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "獣の奥義 / MP 7 / physical"
+    },
+    {
+      "id": "form_undead",
+      "name": "不死の奥義",
+      "kind": "magic",
+      "power": 42,
+      "cost": 7,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "不死の奥義 / MP 7 / magic"
+    },
+    {
+      "id": "form_bird",
+      "name": "鳥の奥義",
+      "kind": "physical",
+      "power": 175,
+      "cost": 7,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "鳥の奥義 / MP 7 / physical"
+    },
+    {
+      "id": "form_plant",
+      "name": "植物の奥義",
+      "kind": "magic",
+      "power": 42,
+      "cost": 7,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "植物の奥義 / MP 7 / magic"
+    },
+    {
+      "id": "form_shell",
+      "name": "甲殻の奥義",
+      "kind": "physical",
+      "power": 175,
+      "cost": 7,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "甲殻の奥義 / MP 7 / physical"
+    },
+    {
+      "id": "form_spirit",
+      "name": "精霊の奥義",
+      "kind": "magic",
+      "power": 42,
+      "cost": 7,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "ice",
+      "description": "精霊の奥義 / MP 7 / magic"
+    },
+    {
+      "id": "form_dragon",
+      "name": "竜の奥義",
+      "kind": "magic",
+      "power": 42,
+      "cost": 7,
+      "target": "enemy",
+      "hits": 1,
+      "priority": 0,
+      "element": "fire",
+      "description": "竜の奥義 / MP 7 / magic"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "slime",
+      "name": "水路スライム",
+      "stats": {
+        "hp": 60,
+        "mp": 0,
+        "attack": 10,
+        "defense": 6,
+        "magic": 0,
+        "resistance": 5,
+        "speed": 5
+      },
+      "abilities": [],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 10
+    },
+    {
+      "id": "bat",
+      "name": "洞窟コウモリ",
+      "stats": {
+        "hp": 75,
+        "mp": 0,
+        "attack": 13,
+        "defense": 4,
+        "magic": 0,
+        "resistance": 8,
+        "speed": 21
+      },
+      "abilities": [],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 12
+    },
+    {
+      "id": "shell_guard",
+      "name": "硬殻の番兵",
+      "stats": {
+        "hp": 150,
+        "mp": 0,
+        "attack": 18,
+        "defense": 28,
+        "magic": 0,
+        "resistance": 4,
+        "speed": 4
+      },
+      "abilities": [],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 16
+    },
+    {
+      "id": "ember_wisp",
+      "name": "残り火の精",
+      "stats": {
+        "hp": 110,
+        "mp": 16,
+        "attack": 8,
+        "defense": 7,
+        "magic": 16,
+        "resistance": 20,
+        "speed": 12
+      },
+      "abilities": [
+        "fire"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 16
+    },
+    {
+      "id": "gate_beast",
+      "name": "水門の荒獣",
+      "stats": {
+        "hp": 320,
+        "mp": 0,
+        "attack": 30,
+        "defense": 16,
+        "magic": 0,
+        "resistance": 12,
+        "speed": 13
+      },
+      "abilities": [],
+      "weaknesses": [],
+      "jp": 24
+    }
+  ],
+  "encounters": [
+    {
+      "id": "waterway",
+      "name": "水路",
+      "enemies": [
+        "slime",
+        "bat"
+      ]
+    },
+    {
+      "id": "cave",
+      "name": "地下通路",
+      "enemies": [
+        "shell_guard",
+        "ember_wisp"
+      ]
+    },
+    {
+      "id": "gate",
+      "name": "水門",
+      "enemies": [
+        "gate_beast"
+      ]
+    }
+  ],
+  "design_status": "v1用の調整値。ゲーム全体の所要時間や最終バランスを検証済みとはしない。"
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "purpose": "戦闘と編成の検証用仮数値。本編の習得・JP・侵蝕・物量の代替ではない。",
+  "jobs": [
+    {"id":"warrior","name":"戦士","category":"human","playable":true,"stats":{"hp":140,"mp":18,"attack":20,"defense":14,"magic":5,"resistance":8,"speed":8},"abilities":["power_strike","firm_guard"]},
+    {"id":"martial_artist","name":"武闘家","category":"human","playable":true,"stats":{"hp":120,"mp":20,"attack":22,"defense":8,"magic":6,"resistance":7,"speed":14},"abilities":["double_strike","breath"]},
+    {"id":"priest","name":"僧侶","category":"human","playable":true,"stats":{"hp":100,"mp":38,"attack":10,"defense":9,"magic":18,"resistance":16,"speed":10},"abilities":["heal","revive"]},
+    {"id":"mage","name":"魔法使い","category":"human","playable":true,"stats":{"hp":85,"mp":42,"attack":8,"defense":6,"magic":24,"resistance":15,"speed":11},"abilities":["fire","ice"]},
+    {"id":"thief","name":"盗賊","category":"human","playable":true,"stats":{"hp":105,"mp":24,"attack":15,"defense":9,"magic":8,"resistance":8,"speed":20},"abilities":["steal","quick_slash"]},
+    {"id":"slime","name":"スライム系","category":"monster","playable":false},
+    {"id":"beast","name":"獣系","category":"monster","playable":false},
+    {"id":"undead","name":"不死系","category":"monster","playable":false},
+    {"id":"advanced_a","name":"上級職A","category":"advanced","playable":false},
+    {"id":"advanced_b","name":"上級職B","category":"advanced","playable":false},
+    {"id":"advanced_c","name":"上級職C","category":"advanced","playable":false},
+    {"id":"advanced_d","name":"上級職D","category":"advanced","playable":false}
+  ],
+  "abilities": [
+    {"id":"power_strike","name":"強打","kind":"physical","target":"enemy","cost":3,"power":150,"hits":1,"priority":0,"element":"none","description":"物理150%。守りの薄い相手に。"},
+    {"id":"firm_guard","name":"堅守","kind":"guard","target":"self","cost":3,"power":25,"hits":1,"priority":0,"element":"none","description":"このターンの被ダメージを25%にする。"},
+    {"id":"double_strike","name":"連撃","kind":"physical","target":"enemy","cost":5,"power":80,"hits":2,"priority":0,"element":"none","description":"同じ相手に物理80%を2回。"},
+    {"id":"breath","name":"息を整える","kind":"heal","target":"self","cost":2,"power":12,"hits":1,"priority":0,"element":"none","description":"自分のHPを回復。"},
+    {"id":"heal","name":"治癒","kind":"heal","target":"ally","cost":4,"power":24,"hits":1,"priority":0,"element":"none","description":"生存している味方1人のHPを回復。"},
+    {"id":"revive","name":"蘇生","kind":"revive","target":"fallen_ally","cost":8,"power":25,"hits":1,"priority":0,"element":"none","description":"戦闘不能の味方を最大HPの25%で復帰。"},
+    {"id":"fire","name":"火球","kind":"magic","target":"enemy","cost":4,"power":24,"hits":1,"priority":0,"element":"fire","description":"炎の魔法。弱点なら1.5倍。"},
+    {"id":"ice","name":"氷弾","kind":"magic","target":"enemy","cost":3,"power":18,"hits":1,"priority":0,"element":"ice","description":"氷の魔法。弱点なら1.5倍。"},
+    {"id":"steal","name":"盗む","kind":"steal","target":"enemy","cost":0,"power":0,"hits":1,"priority":0,"element":"none","description":"敵1体から1回だけ回復薬を得る。"},
+    {"id":"quick_slash","name":"先制斬り","kind":"physical","target":"enemy","cost":3,"power":80,"hits":1,"priority":1,"element":"none","description":"威力80%。通常行動より先に動く。"}
+  ],
+  "enemies": [
+    {"id":"training_slime","name":"模擬スライム","stats":{"hp":90,"mp":0,"attack":13,"defense":10,"magic":0,"resistance":5,"speed":5},"abilities":[],"weaknesses":["fire"]},
+    {"id":"training_bat","name":"模擬コウモリ","stats":{"hp":65,"mp":0,"attack":13,"defense":4,"magic":0,"resistance":8,"speed":21},"abilities":[],"weaknesses":["ice"]},
+    {"id":"training_guard","name":"模擬敵・重装","stats":{"hp":150,"mp":0,"attack":18,"defense":32,"magic":0,"resistance":4,"speed":4},"abilities":[],"weaknesses":["ice"]},
+    {"id":"training_caster","name":"模擬敵・術師","stats":{"hp":110,"mp":16,"attack":8,"defense":7,"magic":16,"resistance":20,"speed":12},"abilities":["fire"],"weaknesses":[]},
+    {"id":"training_brute","name":"模擬敵・強敵","stats":{"hp":360,"mp":0,"attack":38,"defense":20,"magic":0,"resistance":14,"speed":13},"abilities":[],"weaknesses":[]}
+  ],
+  "encounters": [
+    {"id":"basics","name":"基本の2体","enemies":["training_slime","training_bat"]},
+    {"id":"armor","name":"重装と術師","enemies":["training_guard","training_caster"]},
+    {"id":"pressure","name":"強敵への備え","enemies":["training_brute","training_bat","training_caster"]}
+  ]
+}

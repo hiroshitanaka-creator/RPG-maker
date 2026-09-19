@@ -7,6 +7,10 @@ on:
 
 env:
   GODOT_VERSION: 4.7.2-stable
+  GODOT_LINUX_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
+
+permissions:
+  contents: read
 
 jobs:
   assets:
@@ -26,10 +30,18 @@ jobs:
         run: python tools/validate_assets.py --strict
 
   godot-import:
-    name: Godot インポート検査
+    name: Godot・凍結受入テスト
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 凍結ファイルのハッシュを確認
+        run: python tools/check_frozen_files.py
 
       - name: Godot プロジェクトの有無を確認
         id: check
@@ -48,6 +60,7 @@ jobs:
           # https://github.com/godotengine/godot-builds/releases
           URL="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
           curl -fL -o godot.zip "$URL"
+          echo "${GODOT_LINUX_SHA256}  godot.zip" | sha256sum --check
           unzip -q godot.zip
           mv Godot_v${GODOT_VERSION}_linux.x86_64 godot
           chmod +x godot
@@ -58,17 +71,30 @@ jobs:
         run: |
           set -o pipefail
           # インポートは初回に時間がかかるため上限を設ける
-          timeout 600 ./godot --headless --import 2>&1 | tee import.log || true
-          if grep -E "SCRIPT ERROR|ERROR:|Parse Error" import.log; then
+          timeout 600 ./godot --headless --import 2>&1 | tee import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" import.log; then
             echo "::error::Godot のインポートでエラーが出ました。上のログを確認してください。"
             exit 1
           fi
           echo "インポートは正常に完了しました。"
+
+      - name: R-01からR-08のverifyを実行
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          export PATH="$PWD:$PATH"
+          python tools/run_locked_checks.py
+
+      - name: 検証後も保護ファイルが不変であることを確認
+        if: always()
+        run: python tools/check_frozen_files.py
 
       - name: ログを保存
         if: always() && steps.check.outputs.exists == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: godot-import-log
-          path: import.log
+          path: |
+            import.log
+            docs/verification/scope-lock-current.json
+            .tools/verification/current-*/*.log
           if-no-files-found: ignore

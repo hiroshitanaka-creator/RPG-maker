@@ -1,0 +1,42 @@
+{
+  "id": "bird",
+  "name": "鳥系",
+  "type": "monster",
+  "category": "monster",
+  "playable": true,
+  "stat_growth": {
+    "hp": 3,
+    "defense": 1,
+    "resistance": 1
+  },
+  "abilities": [
+    "wind_blade",
+    "quick_slash"
+  ],
+  "mastery_cost": 44,
+  "stats": {
+    "hp": 105,
+    "mp": 30,
+    "attack": 17,
+    "defense": 8,
+    "magic": 15,
+    "resistance": 9,
+    "speed": 25
+  },
+  "monster_form": {
+    "stat_modifiers": {
+      "speed": 10,
+      "attack": 5
+    },
+    "abilities": [
+      "form_bird"
+    ],
+    "release": {
+      "event": "purification_shrine",
+      "max_erosion": 89,
+      "erosion_reduction": 30,
+      "forget_monster_abilities": true
+    }
+  },
+  "design_status": "未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。"
+}

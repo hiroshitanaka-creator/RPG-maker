@@ -1,0 +1,88 @@
+{
+  "recorded_at": "2026-09-19T04:22:29.330761+00:00",
+  "kind": "pre_implementation_baseline",
+  "results": [
+    {
+      "id": "R-01",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": false,
+      "parser_failed": true,
+      "timed_out": false,
+      "failure_messages": []
+    },
+    {
+      "id": "R-02",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_change.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": false,
+      "parser_failed": true,
+      "timed_out": false,
+      "failure_messages": []
+    },
+    {
+      "id": "R-03",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": false,
+      "parser_failed": true,
+      "timed_out": false,
+      "failure_messages": []
+    },
+    {
+      "id": "R-04",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": false,
+      "parser_failed": true,
+      "timed_out": false,
+      "failure_messages": []
+    },
+    {
+      "id": "R-05",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": false,
+      "parser_failed": true,
+      "timed_out": false,
+      "failure_messages": []
+    },
+    {
+      "id": "R-06",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": false,
+      "parser_failed": true,
+      "timed_out": false,
+      "failure_messages": []
+    },
+    {
+      "id": "R-07",
+      "verify": "godot --headless --path . --script res://tools/smoke_chapter1.gd",
+      "exit_code": 1,
+      "status": "FAIL",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "failure_messages": [
+        "CHAPTER1_FAIL: 実ゲームの開始・状態参照・通常操作の入口が未実装です。"
+      ]
+    },
+    {
+      "id": "R-08",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": false,
+      "parser_failed": true,
+      "timed_out": false,
+      "failure_messages": []
+    }
+  ]
+}

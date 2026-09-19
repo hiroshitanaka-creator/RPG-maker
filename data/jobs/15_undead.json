@@ -1,0 +1,42 @@
+{
+  "id": "undead",
+  "name": "不死系",
+  "type": "monster",
+  "category": "monster",
+  "playable": true,
+  "stat_growth": {
+    "hp": 3,
+    "defense": 1,
+    "resistance": 1
+  },
+  "abilities": [
+    "grave_bolt",
+    "undead_mend"
+  ],
+  "mastery_cost": 40,
+  "stats": {
+    "hp": 135,
+    "mp": 40,
+    "attack": 17,
+    "defense": 13,
+    "magic": 20,
+    "resistance": 17,
+    "speed": 7
+  },
+  "monster_form": {
+    "stat_modifiers": {
+      "hp": 20,
+      "magic": 8
+    },
+    "abilities": [
+      "form_undead"
+    ],
+    "release": {
+      "event": "purification_shrine",
+      "max_erosion": 89,
+      "erosion_reduction": 30,
+      "forget_monster_abilities": true
+    }
+  },
+  "design_status": "未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。"
+}

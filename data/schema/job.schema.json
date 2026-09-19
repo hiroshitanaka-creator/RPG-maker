@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RPG-maker v1 職業",
+  "type": "object",
+  "required": ["id", "name", "type", "stat_growth", "abilities", "mastery_cost"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "type": {"enum": ["human", "monster"]},
+    "stat_growth": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "abilities": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "mastery_cost": {"type": "integer", "minimum": 1}
+  },
+  "additionalProperties": true
+}
