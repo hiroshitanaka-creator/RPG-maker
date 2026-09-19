@@ -1,0 +1,352 @@
+{
+  "battle_ui": {
+    "outside": [
+      {
+        "class": "RichTextLabel",
+        "height": 24.0,
+        "text": "相手の特徴と残りHPを見て、行動を選ぼう。",
+        "width": 500.0,
+        "x": 6.0,
+        "y": 271.0
+      }
+    ],
+    "viewport": [
+      512.0,
+      288.0
+    ]
+  },
+  "battle_ui_four_slots": {
+    "outside": [
+      {
+        "class": "RichTextLabel",
+        "height": 24.0,
+        "text": "相手の特徴と残りHPを見て、行動を選ぼう。",
+        "width": 500.0,
+        "x": 6.0,
+        "y": 271.0
+      }
+    ],
+    "viewport": [
+      512.0,
+      288.0
+    ]
+  },
+  "erosion_without_monster_form": {
+    "0": {
+      "battle": "res://assets/characters/pc_01/battle.png",
+      "jobs": [
+        "warrior",
+        "martial_artist",
+        "priest",
+        "mage",
+        "thief",
+        "hunter",
+        "apothecary",
+        "bard",
+        "knight",
+        "sage",
+        "swordsman",
+        "shaman",
+        "slime",
+        "beast",
+        "undead",
+        "bird",
+        "plant",
+        "shell",
+        "spirit",
+        "dragon"
+      ],
+      "stage": "平常",
+      "walk": "res://assets/characters/pc_01/walk.png"
+    },
+    "29": {
+      "battle": "res://assets/characters/pc_01/battle.png",
+      "jobs": [
+        "warrior",
+        "martial_artist",
+        "priest",
+        "mage",
+        "thief",
+        "hunter",
+        "apothecary",
+        "bard",
+        "knight",
+        "sage",
+        "swordsman",
+        "shaman",
+        "slime",
+        "beast",
+        "undead",
+        "bird",
+        "plant",
+        "shell",
+        "spirit",
+        "dragon"
+      ],
+      "stage": "平常",
+      "walk": "res://assets/characters/pc_01/walk.png"
+    },
+    "30": {
+      "battle": "res://assets/characters/pc_01/battle.png",
+      "jobs": [
+        "warrior",
+        "martial_artist",
+        "priest",
+        "mage",
+        "thief",
+        "hunter",
+        "apothecary",
+        "bard",
+        "knight",
+        "sage",
+        "swordsman",
+        "shaman",
+        "slime",
+        "beast",
+        "undead",
+        "bird",
+        "plant",
+        "shell",
+        "spirit",
+        "dragon"
+      ],
+      "stage": "兆候",
+      "walk": "res://assets/characters/pc_01/walk.png"
+    },
+    "59": {
+      "battle": "res://assets/characters/pc_01/battle.png",
+      "jobs": [
+        "warrior",
+        "martial_artist",
+        "priest",
+        "mage",
+        "thief",
+        "hunter",
+        "apothecary",
+        "bard",
+        "knight",
+        "sage",
+        "swordsman",
+        "shaman",
+        "slime",
+        "beast",
+        "undead",
+        "bird",
+        "plant",
+        "shell",
+        "spirit",
+        "dragon"
+      ],
+      "stage": "兆候",
+      "walk": "res://assets/characters/pc_01/walk.png"
+    },
+    "60": {
+      "battle": "res://assets/characters/pc_01/battle.png",
+      "jobs": [
+        "warrior",
+        "martial_artist",
+        "priest",
+        "mage",
+        "thief",
+        "hunter",
+        "apothecary",
+        "bard",
+        "knight",
+        "sage",
+        "swordsman",
+        "shaman",
+        "slime",
+        "beast",
+        "undead",
+        "bird",
+        "plant",
+        "shell",
+        "spirit",
+        "dragon"
+      ],
+      "stage": "変異",
+      "walk": "res://assets/characters/pc_01/walk.png"
+    },
+    "89": {
+      "battle": "res://assets/characters/pc_01/battle.png",
+      "jobs": [
+        "warrior",
+        "martial_artist",
+        "priest",
+        "mage",
+        "thief",
+        "hunter",
+        "apothecary",
+        "bard",
+        "knight",
+        "sage",
+        "swordsman",
+        "shaman",
+        "slime",
+        "beast",
+        "undead",
+        "bird",
+        "plant",
+        "shell",
+        "spirit",
+        "dragon"
+      ],
+      "stage": "変異",
+      "walk": "res://assets/characters/pc_01/walk.png"
+    }
+  },
+  "human_report_at_runtime_user_path": false,
+  "initially_changeable_jobs": [
+    "warrior",
+    "martial_artist",
+    "priest",
+    "mage",
+    "thief",
+    "hunter",
+    "apothecary",
+    "bard",
+    "knight",
+    "sage",
+    "swordsman",
+    "shaman",
+    "slime",
+    "beast",
+    "undead",
+    "bird",
+    "plant",
+    "shell",
+    "spirit",
+    "dragon"
+  ],
+  "manual_reload_metrics": {
+    "after_reload_elapsed_ms": 50,
+    "before_reload_elapsed_ms": 122,
+    "events_after": 0,
+    "events_before": 1,
+    "saved_elapsed_ms": 50
+  },
+  "mastery_without_job_specific_actions": {
+    "beast": {
+      "actions": "attack_only",
+      "after": {
+        "attack": 35,
+        "defense": 11,
+        "hp": 148,
+        "magic": 5,
+        "mp": 22,
+        "resistance": 9,
+        "speed": 24
+      },
+      "before": {
+        "attack": 25,
+        "defense": 10,
+        "hp": 145,
+        "magic": 5,
+        "mp": 22,
+        "resistance": 8,
+        "speed": 19
+      },
+      "form": "beast",
+      "jp_fixture": "mastery_cost_minus_one",
+      "learned": [
+        "fang",
+        "breath",
+        "form_beast"
+      ],
+      "mastered": true
+    },
+    "priest": {
+      "actions": "attack_only",
+      "after": {
+        "attack": 11,
+        "defense": 9,
+        "hp": 107,
+        "magic": 19,
+        "mp": 40,
+        "resistance": 16,
+        "speed": 10
+      },
+      "before": {
+        "attack": 10,
+        "defense": 9,
+        "hp": 105,
+        "magic": 18,
+        "mp": 40,
+        "resistance": 16,
+        "speed": 10
+      },
+      "form": "",
+      "jp_fixture": "mastery_cost_minus_one",
+      "learned": [
+        "heal",
+        "revive"
+      ],
+      "mastered": true
+    },
+    "thief": {
+      "actions": "attack_only",
+      "after": {
+        "attack": 17,
+        "defense": 9,
+        "hp": 112,
+        "magic": 9,
+        "mp": 26,
+        "resistance": 8,
+        "speed": 21
+      },
+      "before": {
+        "attack": 16,
+        "defense": 9,
+        "hp": 110,
+        "magic": 8,
+        "mp": 26,
+        "resistance": 8,
+        "speed": 21
+      },
+      "form": "",
+      "jp_fixture": "mastery_cost_minus_one",
+      "learned": [
+        "steal",
+        "quick_slash"
+      ],
+      "mastered": true
+    },
+    "warrior": {
+      "actions": "attack_only",
+      "after": {
+        "attack": 21,
+        "defense": 14,
+        "hp": 142,
+        "magic": 6,
+        "mp": 24,
+        "resistance": 8,
+        "speed": 8
+      },
+      "before": {
+        "attack": 20,
+        "defense": 14,
+        "hp": 140,
+        "magic": 5,
+        "mp": 24,
+        "resistance": 8,
+        "speed": 8
+      },
+      "form": "",
+      "jp_fixture": "mastery_cost_minus_one",
+      "learned": [
+        "power_strike",
+        "firm_guard"
+      ],
+      "mastered": true
+    }
+  },
+  "meaning": "観測に成功したことと企画要件を満たしたことは別。人間の試遊は行っていない。",
+  "probe_errors": [],
+  "review_ui": {
+    "outside": [],
+    "viewport": [
+      512.0,
+      288.0
+    ]
+  }
+}

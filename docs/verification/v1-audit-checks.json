@@ -1,0 +1,175 @@
+{
+  "kind": "whole_project_audit_evidence",
+  "recorded_at": "2026-09-19T20:44:47.999Z",
+  "audited_commit": "30f3d3b75c0a28cdb3a3205da3ce9804798d3cbe",
+  "runtime_changes": false,
+  "baseline_ci": {
+    "id": 35448990909,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "30f3d3b75c0a28cdb3a3205da3ce9804798d3cbe",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/35448990909"
+  },
+  "frozen": {
+    "command": "python D:/Codex/.codex/scope-lock/scripts/verify_cli.py",
+    "exit_code": 0,
+    "pass": [
+      "R-01",
+      "R-02",
+      "R-03",
+      "R-04",
+      "R-05",
+      "R-06",
+      "R-07",
+      "R-08"
+    ],
+    "fail": [],
+    "unverifiable": [],
+    "open_escalations": [],
+    "max_continuations": 40,
+    "continuations_used": null
+  },
+  "checks": [
+    {
+      "command": "python tools/check_frozen_files.py",
+      "exit_code": 0,
+      "matched": 21,
+      "total": 21
+    },
+    {
+      "command": "python tools/validate_assets.py --strict",
+      "exit_code": 0,
+      "assets": 100
+    },
+    {
+      "command": "godot --headless --import",
+      "exit_code": 0,
+      "error_warning_matches": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_progression_paths.gd",
+      "exit_code": 0,
+      "error_warning_matches": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_erosion_choices.gd",
+      "exit_code": 0,
+      "error_warning_matches": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_enemy_encounters.gd",
+      "exit_code": 0,
+      "error_warning_matches": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_exploration_devices.gd",
+      "exit_code": 0,
+      "error_warning_matches": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_party_playtest.gd",
+      "exit_code": 0,
+      "error_warning_matches": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_battle_recovery.gd",
+      "exit_code": 0,
+      "error_warning_matches": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_campaign_boundaries.gd",
+      "exit_code": 0,
+      "error_warning_matches": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_campaign_content.gd -- --automated-playtest",
+      "exit_code": 0,
+      "error_warning_matches": 0,
+      "party": 4,
+      "moved": 1675,
+      "rounds": 143,
+      "clues": 8,
+      "visits": [
+        "reply",
+        "teaching"
+      ],
+      "automated_elapsed_seconds": 287.218
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_campaign_content.gd -- --three-member-party --teaching-first --automated-playtest",
+      "exit_code": 0,
+      "error_warning_matches": 0,
+      "party": 3,
+      "moved": 1675,
+      "rounds": 231,
+      "clues": 8,
+      "visits": [
+        "teaching",
+        "reply"
+      ],
+      "automated_elapsed_seconds": 289.034
+    },
+    {
+      "command": "python tools/audit_v1_inventory.py",
+      "exit_code": 0,
+      "meaning": "数量とSHAの採取。企画の合格判定ではない。"
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/audit_v1_runtime.gd",
+      "exit_code": 0,
+      "meaning": "監査観測。A項目の合格判定ではない。"
+    },
+    {
+      "command": "godot --path . --rendering-method gl_compatibility --script res://tools/audit_v1_runtime.gd -- --capture",
+      "exit_code": 0,
+      "probe_errors": 0,
+      "stderr_empty": true,
+      "meaning": "最終の監査観測と実画面。",
+      "visually_inspected": [
+        "screens/audit_battle_three_enemies.png",
+        "screens/audit_battle_four_slots.png",
+        "screens/audit_review.png"
+      ]
+    }
+  ],
+  "confirmed_observations": {
+    "all_jobs_initially_changeable": 20,
+    "appearance_changes_at_erosion_30_without_mastery": false,
+    "unlocked_jobs_change_at_erosion_60": false,
+    "mastery_requires_job_specific_actions": false,
+    "manual_load_rewinds_metrics": true,
+    "manual_load_elapsed_ms": [
+      50,
+      122,
+      50
+    ],
+    "manual_load_event_counts": [
+      1,
+      0
+    ],
+    "measurement_hash_covers_only_expansion": true,
+    "battle_log_bottom_pixels": 295,
+    "viewport_height_pixels": 288
+  },
+  "not_run": [
+    "人間の新規開始からの完走と評価",
+    "元設計の寄り道最大・情報最小の全条件を同時に満たす一本の経路",
+    "全職・全装着組合せの網羅",
+    "停電・強制終了",
+    "他機種の長時間実描画",
+    "外部CVE照会",
+    "Godot・GUT本体の内部監査"
+  ],
+  "unresolved_findings": [
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "A06",
+    "A07",
+    "A08",
+    "A09"
+  ],
+  "v1_acceptance": "NOT_VERIFIED"
+}

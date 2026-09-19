@@ -1,0 +1,402 @@
+{
+  "kind": "inventory_only_not_acceptance",
+  "observed_head": "30f3d3b75c0a28cdb3a3205da3ce9804798d3cbe",
+  "jobs": {
+    "count": 20,
+    "types": {
+      "human": 12,
+      "monster": 8
+    },
+    "categories": {
+      "human": 12,
+      "monster": 8
+    }
+  },
+  "abilities": {
+    "count": 37,
+    "kinds": {
+      "physical": 11,
+      "guard": 1,
+      "heal": 7,
+      "revive": 1,
+      "magic": 16,
+      "steal": 1
+    }
+  },
+  "enemies": {
+    "count": 30,
+    "used_sprite_ids": [
+      "bat",
+      "bone_bat",
+      "bone_wolf",
+      "chimera_boss",
+      "crystal_slime",
+      "ember_wisp",
+      "flame_slime",
+      "gate_beast",
+      "ghost_bat",
+      "glacier_turtle",
+      "lava_turtle",
+      "magma_wolf",
+      "shadow_wolf",
+      "shell_guard",
+      "slime",
+      "stone_slime",
+      "wet_beast",
+      "wind_wolf",
+      "winged_beast"
+    ]
+  },
+  "assets": {
+    "count": 100,
+    "by_kind": {
+      "character_walk": 36,
+      "character_battle": 4,
+      "character_battle_monster": 32,
+      "monster_idle": 22,
+      "tileset": 2,
+      "portrait": 4
+    },
+    "by_status": {
+      "required": 97,
+      "optional": 3
+    },
+    "missing": []
+  },
+  "actor_visuals": {
+    "pc_01": {
+      "walk": "assets/characters/pc_01/walk.png",
+      "battle": "assets/characters/pc_01/battle.png",
+      "forms": [
+        "beast",
+        "bird",
+        "dragon",
+        "plant",
+        "shell",
+        "slime",
+        "spirit",
+        "undead"
+      ]
+    },
+    "pc_02": {
+      "walk": "assets/characters/pc_02/walk.png",
+      "battle": "assets/characters/pc_02/battle.png",
+      "forms": [
+        "beast",
+        "bird",
+        "dragon",
+        "plant",
+        "shell",
+        "slime",
+        "spirit",
+        "undead"
+      ]
+    },
+    "pc_03": {
+      "walk": "assets/characters/pc_03/walk.png",
+      "battle": "assets/characters/pc_03/battle.png",
+      "forms": [
+        "beast",
+        "bird",
+        "dragon",
+        "plant",
+        "shell",
+        "slime",
+        "spirit",
+        "undead"
+      ]
+    },
+    "pc_04": {
+      "walk": "assets/characters/pc_04/walk.png",
+      "battle": "assets/characters/pc_04/battle.png",
+      "forms": [
+        "beast",
+        "bird",
+        "dragon",
+        "plant",
+        "shell",
+        "slime",
+        "spirit",
+        "undead"
+      ]
+    }
+  },
+  "story": {
+    "chapters": 6,
+    "clues": [
+      {
+        "id": "R01",
+        "dependencies": [],
+        "seed_events": [
+          "seed_guard"
+        ],
+        "resolve_events": [
+          "identity"
+        ]
+      },
+      {
+        "id": "R02",
+        "dependencies": [
+          "R01"
+        ],
+        "seed_events": [
+          "identity"
+        ],
+        "resolve_events": [
+          "choice"
+        ]
+      },
+      {
+        "id": "R03",
+        "dependencies": [
+          "R02"
+        ],
+        "seed_events": [
+          "choice"
+        ],
+        "resolve_events": [
+          "operation"
+        ]
+      },
+      {
+        "id": "R04",
+        "dependencies": [],
+        "seed_events": [
+          "seed_R04"
+        ],
+        "resolve_events": [
+          "lesson"
+        ]
+      },
+      {
+        "id": "R05",
+        "dependencies": [
+          "R04"
+        ],
+        "seed_events": [
+          "lesson"
+        ],
+        "resolve_events": [
+          "reply"
+        ]
+      },
+      {
+        "id": "R06",
+        "dependencies": [
+          "R05",
+          "R03"
+        ],
+        "seed_events": [
+          "reply"
+        ],
+        "resolve_events": [
+          "handover"
+        ]
+      },
+      {
+        "id": "R07",
+        "dependencies": [
+          "R01"
+        ],
+        "seed_events": [
+          "seed_guard"
+        ],
+        "resolve_events": [
+          "board"
+        ]
+      },
+      {
+        "id": "R08",
+        "dependencies": [
+          "R04"
+        ],
+        "seed_events": [
+          "lesson"
+        ],
+        "resolve_events": [
+          "teaching"
+        ]
+      }
+    ],
+    "events": 10,
+    "reactions": {
+      "identity": "archive",
+      "lesson": "school",
+      "teaching": "teaching"
+    }
+  },
+  "expansion": {
+    "circuits": 5,
+    "sections": 25,
+    "distinct_layouts": 5,
+    "steps": 125,
+    "kinds": {
+      "dialogue": 25,
+      "battle": 50,
+      "challenge": 25,
+      "section_travel": 20,
+      "circuit_complete": 5
+    }
+  },
+  "exploration_sites": {
+    "device": 5,
+    "cache": 5
+  },
+  "measurement_fingerprint_scope": [
+    "data/campaign_content_v1.json"
+  ],
+  "audit_runtime_fingerprint": "14b8bfe5f46d339d41ed19c50133d75208ba151deec2059e892bacafe861bdb5",
+  "runtime_file_sha256": {
+    "assets/characters/pc_01/battle.png": "bb3cefb788c993d7dabf5ee76d1141d9b0cee184935fa112b77f39b26db681f6",
+    "assets/characters/pc_01/battle_monster.png": "b8bd1b7ebac3d742dd8a59b97e6a5d728c4f9bc486a323a187b07b9d409cffdd",
+    "assets/characters/pc_01/forms/beast/battle.png": "cd45f7a24e00544fa259a2108f5ae41e03991c987023f63787b2620d35d3c74a",
+    "assets/characters/pc_01/forms/beast/walk.png": "782cbce9a72efad951777793854026c7ca9da5842a194d8b1d4a93610afed8fb",
+    "assets/characters/pc_01/forms/bird/battle.png": "a6cae6889ae33537ad63ea2c2b8622430ea68123f5082435b92138b4f04be00c",
+    "assets/characters/pc_01/forms/bird/walk.png": "1837731d82d503fe9d3c3a09c7bab678998b817d3d8b35ce8a0f6b0efb9dd33c",
+    "assets/characters/pc_01/forms/dragon/battle.png": "4631850dde178dd173ec45015f56f1a4034fb2c5c883d8ad8bd6534871bc00f4",
+    "assets/characters/pc_01/forms/dragon/walk.png": "20fd347f1d9917eb38c616d492bc69fc5ed37df10d5d77c8f14e1cd41c59ca81",
+    "assets/characters/pc_01/forms/plant/battle.png": "37c5172d8102289f27862f4adc3d4f84b783ffe38858cff8696cd79d00d61774",
+    "assets/characters/pc_01/forms/plant/walk.png": "bdf84671409dc873078623952d3766197eebc7595814fc47e2caf2faaf3a52f2",
+    "assets/characters/pc_01/forms/shell/battle.png": "fade356c2f53b5134554a0b2775df26fe77804e00d9eb7717a2da9505c20ad78",
+    "assets/characters/pc_01/forms/shell/walk.png": "79894aefcbbd71356c932de521e30e8ee1b736a637ef953a33bb1b6e7ae33122",
+    "assets/characters/pc_01/forms/slime/battle.png": "00efb4398908ad68c013881b2092e10479dbe6a0745d08b44365206bb68e8644",
+    "assets/characters/pc_01/forms/slime/walk.png": "ee251a648d14186aa88544a71fabc328aabef98118ff223af408c6939d821ef9",
+    "assets/characters/pc_01/forms/spirit/battle.png": "1498b566ab0b5b2bb7b1b48109f03a23b019e0a1b2fb86adcaedd736551537e6",
+    "assets/characters/pc_01/forms/spirit/walk.png": "705bd2253b61537384b5e15abe76384ee0adaf0a129fd898f0b4d1e6f447cc80",
+    "assets/characters/pc_01/forms/undead/walk.png": "b8772d4cf024bc646f44ce163fa7703fbce9e1ab0d12c3a78acfed4e56f6f429",
+    "assets/characters/pc_01/portrait.png": "cce48e3512f678955ac747b777ff03ee8c0b05b3faf36a768f37e1f5a0cd7d78",
+    "assets/characters/pc_01/walk.png": "cc1647dae08c76926fc027438ebb605d6c357edb7f5d83091050eb79b56588bc",
+    "assets/characters/pc_02/battle.png": "6027dfed4451b53aceea7a0073bddc6a6c9a353937ec21aba8ab5550fcb7c7fb",
+    "assets/characters/pc_02/forms/beast/battle.png": "f161c6e701865cb11540d62a16b90e6a932ae1b058b6cd0e99e9ea0ab50dbb36",
+    "assets/characters/pc_02/forms/beast/walk.png": "f21744f88219e66b413a53dc87c7534be1dfe008b4fbb3f736991b907a511b95",
+    "assets/characters/pc_02/forms/bird/battle.png": "7ef295a4ae292364cc32f42ff621e0e34fe5dacaca39f162496e872c0303670a",
+    "assets/characters/pc_02/forms/bird/walk.png": "4c170c7b7462bd3b7091e7ccaaf2e5a7ea73d1247e26db8ca8c30814d35f300e",
+    "assets/characters/pc_02/forms/dragon/battle.png": "4b8c6f111cbb7711d46df98fc9b5d54d0a4f453d3928030b7c53f71c79e81ce1",
+    "assets/characters/pc_02/forms/dragon/walk.png": "f22540ff5d678da5e22b3973a33e78658605e672abf2b09469bbf6576835929a",
+    "assets/characters/pc_02/forms/plant/battle.png": "deae5523e7812001b9a8703f0fcc1ca6f5e8d2463ddde0789374ba2122a0ef0b",
+    "assets/characters/pc_02/forms/plant/walk.png": "e2ec79fe832cf0237966e5eee55db032349fd67895bcc4e6108c1f37fc2f3c96",
+    "assets/characters/pc_02/forms/shell/battle.png": "4b45ac96f88c1634413a244014b90cf94a849d0a6297a943f8a6a92d0ec38e1c",
+    "assets/characters/pc_02/forms/shell/walk.png": "fcf28dc1b4e321a97597412c6caa999c2e77dbe2c39071cc95f3e96b26318e4c",
+    "assets/characters/pc_02/forms/slime/battle.png": "102b33579d1be9fec3f1b70d6f46ab84df8be0c5a44663cacc1f7649feb3ed0c",
+    "assets/characters/pc_02/forms/slime/walk.png": "78265581821e5156aaeb896ba635c7ff9fd58ae0bfde4045a356f40a0882f1c4",
+    "assets/characters/pc_02/forms/spirit/battle.png": "dbfdd6c2d6d422bb9e95c27be2eba2c09a057d3ace462065809be053ee7e6df2",
+    "assets/characters/pc_02/forms/spirit/walk.png": "7c7d1130c6fd67cd9b21bc2e2720dead6fbe3a924e8298aa8d28fb8b1251cd2d",
+    "assets/characters/pc_02/forms/undead/battle.png": "9600c7a5205acdfe91319c831d21b7fec1de7912544d258729e4f91754388623",
+    "assets/characters/pc_02/forms/undead/walk.png": "389efd2615f840e89645efc2adb823378aa4c58ca267fd919ccdd29348d2bf08",
+    "assets/characters/pc_02/portrait.png": "ec6e68296e6d9295d2cc0db75c7428f099b2f98928cbedb72e0b79d1031e2b95",
+    "assets/characters/pc_02/walk.png": "5fd97d96957556f7a3f30fb059664d2d9420b9242cccc81306d831bbd0fa524a",
+    "assets/characters/pc_03/battle.png": "788140a95dd57dbe1854e42ff34ff1bb12017a4cfc5e39cafb1613b7bdca9336",
+    "assets/characters/pc_03/forms/beast/battle.png": "c8a6daf63f7be995694d539625894df4dc30e1f39e4e78db87e7f0fdf19c1403",
+    "assets/characters/pc_03/forms/beast/walk.png": "8e074979d480618007cdb9baef4a37a7de52c4fee528af9acbfc534e2ab809ee",
+    "assets/characters/pc_03/forms/bird/battle.png": "74be89221dfbd5d2bacc4554242e54ee9260a4b346b668b5c445e69ddf87bfc4",
+    "assets/characters/pc_03/forms/bird/walk.png": "37f9429efe9cfb56a4e66c8dce65af01b059e2e408b03011f5f18cf66dd15ccb",
+    "assets/characters/pc_03/forms/dragon/battle.png": "0ef00c70008d6bd9df0ffda762d844c54b6588a830de6b618dee6381ba2971db",
+    "assets/characters/pc_03/forms/dragon/walk.png": "c532904aeaa6731fd2cf8ba92b991f7aac95ae4f72a8169f93bc1e18ffaf7321",
+    "assets/characters/pc_03/forms/plant/battle.png": "976ccfbc841af91c185f5db2a655d5de13a35408833ae0a8e37ad34063840583",
+    "assets/characters/pc_03/forms/plant/walk.png": "bf2a6624b87e6411ff52d1e3f9fd87f73fe6902bcaf92da28d54b737458d81b7",
+    "assets/characters/pc_03/forms/shell/battle.png": "fc08b45a03c419b54676be570ec189c21a453a079b0b75f82ad4d29348c6a1ca",
+    "assets/characters/pc_03/forms/shell/walk.png": "ac4e31e6c9f3b8c07da062205d324228e3d82ba1a97af00f426733e5ec7fc4ce",
+    "assets/characters/pc_03/forms/slime/battle.png": "80ea8dc150ca9a9f9a4f84e6e4dfd14d5810675a4fffd2004a58e81c7bec6cd8",
+    "assets/characters/pc_03/forms/slime/walk.png": "35d9d68fb9920c076f7f70888d3e5bb2dbccdfe1a32f88810237d39d30872fb8",
+    "assets/characters/pc_03/forms/spirit/battle.png": "861a4cd06c4cbb6d0cde9a8a751a4f92e218972cc604a19272361e57143bc336",
+    "assets/characters/pc_03/forms/spirit/walk.png": "241659b3af201eaa252a3d79bc9c35661fc284b2cdf8ed3c0a08ff6acb403ebb",
+    "assets/characters/pc_03/forms/undead/battle.png": "7426c6b1a2875148f821d28b5c0007b236385f8d0f796e6f5a90c1d3e722a9fe",
+    "assets/characters/pc_03/forms/undead/walk.png": "25824adf0d4d7d6185f39997339197eb20a673ba007580861eeafe4f798bffc6",
+    "assets/characters/pc_03/portrait.png": "41c045a8cf9906172874119cefb3edd0cf487a96249a40eeddf875433b9152ca",
+    "assets/characters/pc_03/walk.png": "345920dc4aff5e9f876d6a6272d41c3439f6aa91d6af52bf5f24fbb63a312328",
+    "assets/characters/pc_04/battle.png": "82a8805ddd9d2c692167336e29a429a0e65e2b14ceb2dfa73a46d7d829abafa5",
+    "assets/characters/pc_04/forms/beast/battle.png": "8e319fd1b7f147d0ba1de7d53a37bacea537b1264c5d785b63670a286645d0d1",
+    "assets/characters/pc_04/forms/beast/walk.png": "519955922f0823fe31a0b4c78812fda726c91b20596f383a83e7b213f0e29ecc",
+    "assets/characters/pc_04/forms/bird/battle.png": "fdd70d9e5d81f0fe50dd9415fe5ca2a6e09416742d8f983311c1faef48e46045",
+    "assets/characters/pc_04/forms/bird/walk.png": "7362dcc22cd091b0bccfa1e19b057bbd5968178d36186593e4b0d85bda6bedce",
+    "assets/characters/pc_04/forms/dragon/battle.png": "bbb81121877ca708cf3786ae2a6c4a742bc0af66cc7f8732b1538f1dc1553ebe",
+    "assets/characters/pc_04/forms/dragon/walk.png": "9de18145b83b6b65a759884d697681a439006d823838c856fd69e9b7afbd1079",
+    "assets/characters/pc_04/forms/plant/battle.png": "f88a455f55c988769893788ee4b9a13d68d70ad81aa973ae229e6bf4c2c8e03d",
+    "assets/characters/pc_04/forms/plant/walk.png": "d12c16cbdd9a5fb11fcd772687ccb258a0435dbb40c16b2617d8434a328ba717",
+    "assets/characters/pc_04/forms/shell/battle.png": "56b9f92052a55a48516549f2a314f64f689db51fba824db55053ade1879d9711",
+    "assets/characters/pc_04/forms/shell/walk.png": "b026aac33a9fd14ceac3ee1d1e1411f6bb23a187af7fa5f2521328941691037d",
+    "assets/characters/pc_04/forms/slime/battle.png": "7a0e5ce1c88628a4688ccbe53d103f51c6dd5fa60e829725bca09092453da48e",
+    "assets/characters/pc_04/forms/slime/walk.png": "b2bb95b9af6c04948a4cce853f4decc229f8b4594ab7f623cae98252e25174b7",
+    "assets/characters/pc_04/forms/spirit/battle.png": "982e9ce57dc7fa3c3f2da97926ddc144d56ede41c66c0823e426d4b2914b5882",
+    "assets/characters/pc_04/forms/spirit/walk.png": "dc347f966f225bb267fd2d960d93580e04b3d9b0162f49c781c8eab9eebb0505",
+    "assets/characters/pc_04/forms/undead/battle.png": "e347afbc009e4954b2ec681ee33edd76b79e7b41ff52f9821b154c621ef7404e",
+    "assets/characters/pc_04/forms/undead/walk.png": "67f69adf36c41be06dc4a77cc490074e6bd68dea218163450a81f249320fde01",
+    "assets/characters/pc_04/portrait.png": "36d327694a63f9be517614e7885b3f1a040aded8753a972c637639610b53f8ad",
+    "assets/characters/pc_04/walk.png": "9545aac2ec48d89cb9e25d2512126dd2554c67449d52e0858d88ad608c1febb2",
+    "assets/monsters/bat/idle.png": "1ceb671b3bb2c2a36ec1761d6d790254921fd3a9b7d9e9e87e889335fa25ac8e",
+    "assets/monsters/bone_bat/idle.png": "1788d284651090f44b0e56f7a022ee7a0d677cf559f9a218808ef58b52633fa8",
+    "assets/monsters/bone_wolf/idle.png": "f3fbe91d0b866be246be904c10f76c12e376ad2b3d88694eb43ecc7b1591975b",
+    "assets/monsters/chimera_boss/idle.png": "532a5f3c5a9241fe5b9bae11d54af95f9dfed2b339fb5707dc76f97e80ae2148",
+    "assets/monsters/crystal_slime/idle.png": "13e3e9d688550092b417eea16c24e8e557039f30df0a0c3b81bc499f51cf5c92",
+    "assets/monsters/ember_wisp/idle.png": "9c7d7de312efd7ce55465e5706bd9aff44845d7d32d33fc3d9f4010ace9b6529",
+    "assets/monsters/flame_slime/idle.png": "f54cc149fd8e7ce1e3245e67730356618db109559a76cc308672122247f2bd9d",
+    "assets/monsters/gate_beast/idle.png": "00ab821e2146189df635d1da4d196d79c47cd6a9d5b8b14f79b168bc42b20e19",
+    "assets/monsters/ghost_bat/idle.png": "cf88bd61dbb06594a63b52c00704c6b5de2c2ac3603205e68b422f099ef06413",
+    "assets/monsters/glacier_turtle/idle.png": "8acd4eb853a102c693b4aa4fb57593b37d155d9c0bd1b1544135d38ca011cb65",
+    "assets/monsters/lava_turtle/idle.png": "3c8f623d66c55d8f6fec0dfa28b44170eb9bee2f4557e22bd26a8196bd0f3d68",
+    "assets/monsters/magma_wolf/idle.png": "9c8554761a4d1bfcb187c5e2476fd096bdb959ad442f93b78892c77c21cf7b4a",
+    "assets/monsters/shadow_wolf/idle.png": "b15c24c4c9c9555e4a0e9eb6fc3813ef94cc8e7e66736b22e517282c93457693",
+    "assets/monsters/shell_guard/idle.png": "fb9985f926c660975edaec158c9cc9a519a78543aaa7f318801e9a64f1172f3d",
+    "assets/monsters/slime/idle.png": "dd0f1a93e5bb8f21e660615f602d0d5c319ea0c4e2160c8ea219b489f75e0ddc",
+    "assets/monsters/stone_slime/idle.png": "1bb035fb0ecfc06bae44978f2ecc3de094be4511ddb986a7b61524c9daf95a9a",
+    "assets/monsters/storm_wolf/idle.png": "6aae940ecd1703d779233ad92d7bc1157f38d65409abeefa66e880246ae7341f",
+    "assets/monsters/underworld_boss/idle.png": "4c5158cf05f386225cea0376a8cd16693e793520798332e1ad5b14c97ad8efe6",
+    "assets/monsters/wet_beast/idle.png": "0e65dcd68327338d3e5ab992dc1166ccdeac6bdad271ecb8df8a47010220d0ac",
+    "assets/monsters/wind_wolf/idle.png": "565ad355fb81f6264315660b9713f980b52c637744ad1a95137dd54d87ad8f1b",
+    "assets/monsters/winged_beast/idle.png": "ba0435428cb0ace2ff1d353850ca8d8592441009df74babd75280b829b3342ed",
+    "assets/monsters/zombie_wolf/idle.png": "400367046b8720cbf639de1905814a81dd51cd46c7e5c000e7f95529f0208cac",
+    "assets/palette/base.gpl": "9fb433a6406d27aaf250755133b8f2fb8d8c740de568c0fc3c9a04f01dd741af",
+    "assets/registry.json": "b7cd4eb8a809b8fe772ddbc8dff3bd0c572a1303161064be132d84082b2cc1a8",
+    "assets/tiles/dungeon_cave.png": "29b3db5fc127409e4bec2a62bc73aeaad70b1d5df48b81f352a66adb460a41f9",
+    "assets/tiles/field_outdoor.png": "6fd8bfc6039c4a6b19c6080aa9b02c24c1d2756821e11aa0982a319c43ccb478",
+    "data/battle_lab.json": "1160b199081151095576e0bb7c627d7277983b0fbeb1d817e312cb6fe2b360db",
+    "data/campaign_content_v1.json": "bc5aba1a06966c70fecd85b7e734ab9dde01d4c5dff83d5107594ca2b973b444",
+    "data/catalog.json": "da9fe775226651a890ea0f0b97839e63ae709ef05b7a7bfde375c6ce070c64a2",
+    "data/character_visuals.json": "0480faeeb1452c357466322d998655e95853b06308900a4a14fe7f8a85107f81",
+    "data/exploration_v1.json": "4339c6aca52f72e3d290227874d0c39113325edea99ec54540938d9d83dbf6b0",
+    "data/jobs/01_warrior.json": "5c52915b1b1ae5ec892bdc0aae2f0dbc0859626c80ff2b010d1a2fceb7f1b461",
+    "data/jobs/02_martial_artist.json": "24bb47d74d23ce00acf2dd825d6ca12f8972e2708c6ff4f3728b9579b9f4ccf7",
+    "data/jobs/03_priest.json": "b296027dfec960b357f7fd485ebf68da70307f467ad58ac1ce49d26e18e1bba9",
+    "data/jobs/04_mage.json": "8141c9d410bc485f9884f9c82a1ea7237edc702c55828bb3377be8e2b61fcf02",
+    "data/jobs/05_thief.json": "d66a632763f5d447018ca1a41a0d12792b6bc799dc4d1455cbf5de7acd39662b",
+    "data/jobs/06_hunter.json": "765bdd5ce6a4aa3838f10ae6d3d20dc9cd6fa49cec3db74519606573ac980fbf",
+    "data/jobs/07_apothecary.json": "f4ebef7476337c084b398480d451e0b080a16de6e6a2b6627298dbdc51c7a867",
+    "data/jobs/08_bard.json": "0d386ce11e0c78f2db0b33fa9cfa24ec03988f63e407eedc08f58c3e2ccf4bc3",
+    "data/jobs/09_knight.json": "981b0faaec31fc78830109d8923ea19eccc56551a18fa8e5c7b39c2e443f9d57",
+    "data/jobs/10_sage.json": "ff45817a330dbfa035d27f25162e216720c244b0bee20dac33d11bcea693fd63",
+    "data/jobs/11_swordsman.json": "1f69732265190508dd0a536cc6cd4fb42314d4ad1a7ac61752d470662fb642f0",
+    "data/jobs/12_shaman.json": "57a9649da2524f1a65f40de932ba3374b8fcd076d86beab1d157fdccc9d6076e",
+    "data/jobs/13_slime.json": "913934567d17c0f8814342609f685762c1971bc794df46ac6432405119029165",
+    "data/jobs/14_beast.json": "6be5f5d2e232dbacde903404a943db5bb33be626fb416bec0e34056f09e9a68a",
+    "data/jobs/15_undead.json": "c91534602ef58dddbffce13aaaf5ccf6b59856eacc97071fc2b459b8efe9574f",
+    "data/jobs/16_bird.json": "18e04670b067f1fd139e7d1b338d9d3d060ce2efe977ff1409afd641ad9ca6b9",
+    "data/jobs/17_plant.json": "b0814a2bde7cc82cd026b76a2d54c986a4148469ff55f2ce7df0b5d31c49c63c",
+    "data/jobs/18_shell.json": "a9a7c4f41d18aae564eeac80c5a009c5675e166d1e06ea337da1058b525ba471",
+    "data/jobs/19_spirit.json": "3d5f384ea8bf126b2ed841cf5bee1b0a758c92c000cc272c29ede2e7ac7dba8d",
+    "data/jobs/20_dragon.json": "bedd5f252e71e3bbf78b36107127ab882f67e2f87a9fa0f565d1dceb14f2974f",
+    "data/schema/job.schema.json": "8934633ff44111c3b265417133da4f1cd213f7c76999197a9df62369fd458004",
+    "data/story_v1.json": "bf6637ea59c236ea59f5cab5b909d64b1e2a7f44546a047c1ab2e2e5af95d5dd",
+    "project.godot": "56b09d8a81f12d640b02082daa24b2b0113051e8e537de0ed0069d3b0a62422a",
+    "scenes/battle_lab.tscn": "20202604136c846341810763b83317536760694b304d6a96446ce4d0391b4310",
+    "scenes/main.tscn": "bf15d74fdf0b639365cc7185f6e5d90843c58a13956e69538f22818d8b8e7d96",
+    "scripts/combat/battle_action.gd": "6e9f2935de5adaf4e18c00b1b7a5b4ec12934ae24af731c9be2bae8bcff5253f",
+    "scripts/combat/battle_catalog.gd": "a0e28b620a888b8e2ea30c6d88d20f54882a3f297deb3b8631560faae5554deb",
+    "scripts/combat/battle_math.gd": "ac9bcf770e5a79fd703efb2e4f8c17eef04a79203ade3fe60a28cd4aa606373d",
+    "scripts/combat/battle_state.gd": "0f4f4ff064514159a062d5ed5da23e08891df75f2efb485a860bb5efb6c56e28",
+    "scripts/combat/combatant.gd": "165573cf5270073bd2a38a05a85966140bd5240574cedcd2a0e7d54eb86f08f2",
+    "scripts/combat/loadout.gd": "70109e7b05158676303b33a71a9a6b915269b6f3db549e674011ed12c0d9018b",
+    "scripts/game/character_visuals.gd": "f392ae1781d58673aeeee4684c2a22d7a301ca4af5222d5aeef754612a7fa7a8",
+    "scripts/game/game_session.gd": "6a8e7c71e6948bec798aa6e155e6a48f967893d39dec71fe52ceeab924760e15",
+    "scripts/game/play_session_metrics.gd": "81f7c7c920cf24662747a745224e609c1e3ea6c44b6db18da36e1a2e194c897a",
+    "scripts/game/runtime_diagnostics.gd": "e9f41fbae317bc6c5174544082e2788e822f0e50308c62549e9c1ed2feb99ecc",
+    "scripts/ui/battle_lab.gd": "5db27f79448afa5319034cf8c7f20eee8d6418774bc6b72619bf417aff9ea2de",
+    "scripts/ui/game_root.gd": "eea27036d459791c0bdca23c6f1376d3ce5b53f950ac97c99b0cd9386201039d",
+    "scripts/world/campaign_content.gd": "d9b8a1246939283adc9d35a5680d848e41430471b88b869b705bbfde10f3780e",
+    "scripts/world/chapter_one.gd": "71f45f38c8f890d417cbf22520fb2e1e8b39d4184912367d42b6d003dfc047fc",
+    "scripts/world/exploration_sites.gd": "53596b2c1a1490f6a8d9b6856a1b232e0aedbcec5c2e1084216f4bf4863993b6",
+    "scripts/world/story_campaign.gd": "47b1c1f3433080fe0d7f8d9867263a3b436f6b70ee3749eb3fe2fa067b717148",
+    "scripts/world/world_view.gd": "2068e81028c0be8d2402cfbcc1ed87063b3e192680ae5ced21926b96fedd73c4"
+  },
+  "human_playtest": "NOT_RUN",
+  "note": "不足0や件数の一致を、体験の品質・5〜6時間・元企画全項目の達成とは扱わない。"
+}
