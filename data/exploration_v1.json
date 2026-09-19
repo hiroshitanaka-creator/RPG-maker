@@ -7,7 +7,7 @@
     {"id":"cave_cache","location":"cave","cell":[18,6],"kind":"cache","name":"回廊の補給箱","text":"固着扉を動かすと補給箱の留め金も外れる。","requires":"cave_door","potions":2},
     {"id":"school_shutter","location":"school","cell":[14,10],"kind":"device","name":"教習所の仕切り","text":"跳ね戻るばねを先制斬りで切るか、氷弾で止める。中央の仕切りと備蓄の錠を開けられる。","abilities":["quick_slash","ice"],"opens":[[14,11]]},
     {"id":"school_cache","location":"school","cell":[14,13],"kind":"cache","name":"教習所の備蓄箱","text":"仕切りの操作盤につながる備蓄箱だ。","requires":"school_shutter","potions":3},
-    {"id":"records_door","location":"records","cell":[17,7],"kind":"device","name":"坑道の感応扉","text":"響きの波を鳴らすか、聖なる光を照らすと開く検査用の扉。奥の備蓄の封も同時に解ける。","abilities":["sound_wave","holy_light"],"opens":[[18,7]]},
+    {"id":"records_door","location":"records","cell":[17,7],"kind":"device","name":"坑道の感応扉","text":"響きの波を鳴らすか、光輪で照らすと開く検査用の扉。奥の備蓄の封も同時に解ける。","abilities":["sound_wave","holy_light"],"opens":[[18,7]]},
     {"id":"records_cache","location":"records","cell":[20,7],"kind":"cache","name":"坑道の備蓄箱","text":"感応扉の鍵と共通の封がある。","requires":"records_door","potions":3},
     {"id":"gate_bridge","location":"gate","cell":[20,9],"kind":"device","name":"水門の保守橋","text":"流れを堅守で受け止めるか、氷弾で留め具を固定する。保守橋を渡し、工具箱の錠を外せる。","abilities":["firm_guard","ice"],"opens":[[20,8]]},
     {"id":"gate_cache","location":"gate","cell":[20,6],"kind":"cache","name":"水門の工具箱","text":"保守橋を固定した作業員のための備えだ。","requires":"gate_bridge","potions":3}
