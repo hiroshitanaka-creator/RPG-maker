@@ -11,6 +11,7 @@ var _state: Dictionary = {}
 var _battle: BattleState
 var _battle_enemy_ids: Array[String] = []
 var _claimed: bool = true
+var _field_battle: bool = false
 
 
 func _init() -> void:
@@ -50,9 +51,11 @@ func new_game(party_size: int = 4) -> bool:
 		})
 	_state = {"format_version": 1, "party": party, "inventory": {"potion": 3},
 		"progress_flags": {"chapter1_cleared": false, "midgame_slots": false},
+		"field_battles": 0, "return_point": {},
 		"world": {"location": "town", "player_cell": [2, 4], "quest_step": 0}}
 	_battle = null
 	_claimed = true
+	_field_battle = false
 	return true
 
 
@@ -68,12 +71,15 @@ func _member(actor_id: String) -> Dictionary:
 
 
 func import_state(value: Dictionary) -> bool:
+	if _battle != null:
+		return false
 	var normalized: Variant = _normalize_numbers(value)
 	if not _valid_state(normalized):
 		return false
 	_state = normalized.duplicate(true)
 	_battle = null
 	_claimed = true
+	_field_battle = false
 	return true
 
 
@@ -83,6 +89,19 @@ func _valid_state(value: Dictionary) -> bool:
 	var party: Array = value["party"]
 	if party.size() < 3 or party.size() > 4 or not value.get("inventory") is Dictionary or not value.get("progress_flags") is Dictionary or not value.get("world") is Dictionary:
 		return false
+	if not _valid_world(value["world"]):
+		return false
+	for identifier in value["progress_flags"]:
+		if not identifier is String or not value["progress_flags"][identifier] is bool:
+			return false
+	if not value.get("field_battles", 0) is int or int(value.get("field_battles", 0)) < 0:
+		return false
+	var return_point: Variant = value.get("return_point", {})
+	if not return_point is Dictionary:
+		return false
+	if not return_point.is_empty():
+		if not _valid_world(return_point) or return_point["location"] == "town" or value["world"]["location"] != "town" or return_point["quest_step"] != value["world"]["quest_step"]:
+			return false
 	if not value["inventory"].get("potion") is int or value["inventory"]["potion"] < 0:
 		return false
 	var ids: Array[String] = []
@@ -138,6 +157,17 @@ func _valid_state(value: Dictionary) -> bool:
 		if not Loadout.validate(available, equipped_ids, slots).is_empty():
 			return false
 	return true
+
+
+static func _valid_world(world: Dictionary) -> bool:
+	if not world.has_all(["location", "player_cell", "quest_step"]):
+		return false
+	if not world["location"] is String or not ChapterOne.TITLES.has(world["location"]):
+		return false
+	if not world["quest_step"] is int or world["quest_step"] < 0 or world["quest_step"] > ChapterOne.STEPS.size():
+		return false
+	var cell: Variant = world["player_cell"]
+	return cell is Array and cell.size() == 2 and cell[0] is int and cell[1] is int and ChapterOne.is_walkable(world["location"], Vector2i(cell[0],cell[1]))
 
 
 static func _normalize_numbers(value: Variant) -> Variant:
@@ -264,6 +294,37 @@ func base_effective_stats(actor_id: String) -> Dictionary:
 	return {} if actor.is_empty() else _compute_stats(actor, false)
 
 
+func preview_job(actor_id: String, job_id: String) -> Dictionary:
+	var actor := _member(actor_id)
+	if actor.is_empty() or not jobs.has(job_id):
+		return {}
+	var candidate := actor.duplicate(true)
+	candidate["job_id"] = job_id
+	if jobs[job_id]["type"] == "monster" and job_id in candidate["mastered_jobs"]:
+		candidate["monster_form"] = job_id
+	return {"allowed": _battle == null and not (actor["irreversible"] and jobs[job_id]["type"] == "human"),
+		"stats": _compute_stats(candidate, true), "monster_form": candidate["monster_form"],
+		"jp": int(actor["jp"].get(job_id,0)), "mastery_cost": int(jobs[job_id]["mastery_cost"])}
+
+
+func describe_ability(ability_id: String) -> String:
+	if not abilities.has(ability_id):
+		return ""
+	var ability: Dictionary = abilities[ability_id]
+	var targets := {"enemy":"敵1体", "ally":"味方1人", "self":"自分", "fallen_ally":"戦闘不能の味方1人"}
+	var detail := ""
+	match ability["kind"]:
+		"physical": detail = "物理攻撃%d%% × %d回" % [ability["power"], ability["hits"]]
+		"magic": detail = "%s魔法・威力%d" % [{"none":"無属性", "fire":"炎属性", "ice":"氷属性"}[ability["element"]], ability["power"]]
+		"heal": detail = "HP回復・回復量は%d＋魔力×2" % ability["power"]
+		"revive": detail = "最大HPの%d%%で蘇生" % ability["power"]
+		"guard": detail = "このターンの被ダメージを%d%%に抑える" % ability["power"]
+		"steal": detail = "相手1体につき1回、回復薬を盗む"
+	if int(ability["priority"]) > 0:
+		detail += "・優先行動"
+	return "%s / %dMP / %s\n%s" % [ability["name"], ability["cost"], targets[ability["target"]], detail]
+
+
 func _refresh_caps(actor: Dictionary) -> void:
 	var current := _compute_stats(actor, true)
 	for pair in [["hp", "max_hp"], ["mp", "max_mp"]]:
@@ -348,13 +409,48 @@ func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
 	_battle.potions = int(_state["inventory"]["potion"])
 	_battle_enemy_ids.assign(enemy_ids)
 	_claimed = false
+	_field_battle = false
 	return _battle
+
+
+func field_battle_enemies() -> Array:
+	var world := world_state()
+	if world.is_empty() or _state["progress_flags"].get("chapter1_cleared", false):
+		return []
+	var encounters: Array = []
+	if world["location"] == "waterway" and world["quest_step"] >= 3:
+		encounters = [["slime"], ["bat"]]
+	elif world["location"] == "cave" and world["quest_step"] >= 7:
+		encounters = [["shell_guard"], ["ember_wisp"]]
+	if encounters.is_empty():
+		return []
+	return encounters[int(_state.get("field_battles", 0)) % encounters.size()].duplicate()
+
+
+func start_field_battle() -> BattleState:
+	var enemies := field_battle_enemies()
+	if enemies.is_empty():
+		return null
+	var encounter := start_battle(enemies, 20260919 + int(_state.get("field_battles", 0)))
+	if encounter != null:
+		_field_battle = true
+	return encounter
+
+
+func current_enemy_ids() -> Array[String]:
+	return _battle_enemy_ids.duplicate()
+
+
+func is_field_battle() -> bool:
+	return _battle != null and _field_battle
 
 
 func finish_battle() -> bool:
 	if _battle == null or _claimed or not _battle.phase in [BattleState.Phase.VICTORY, BattleState.Phase.DEFEAT]:
 		return false
 	_claimed = true
+	if _field_battle:
+		_state["field_battles"] = int(_state.get("field_battles", 0)) + 1
 	var won: bool = _battle.phase == BattleState.Phase.VICTORY
 	var reward := 0
 	if won:
@@ -391,6 +487,7 @@ func finish_battle() -> bool:
 			_refresh_caps(actor)
 			_reconcile_slots(actor)
 	_battle = null
+	_field_battle = false
 	return true
 
 
@@ -407,8 +504,32 @@ func world_state() -> Dictionary:
 	return _state.get("world", {}).duplicate(true)
 
 
+func is_returning_to_town() -> bool:
+	return not _state.get("return_point", {}).is_empty()
+
+
+func return_to_town() -> bool:
+	if _state.is_empty() or _battle != null or is_returning_to_town() or _state["world"]["location"] == "town" or _state["progress_flags"].get("chapter1_cleared", false):
+		return false
+	var previous := world_state()
+	if not set_world("town", [5,4], previous["quest_step"]):
+		return false
+	_state["return_point"] = previous
+	return true
+
+
+func resume_exploration() -> bool:
+	if _battle != null or not is_returning_to_town():
+		return false
+	var previous: Dictionary = _state["return_point"]
+	if not set_world(previous["location"], previous["player_cell"], previous["quest_step"]):
+		return false
+	_state["return_point"] = {}
+	return true
+
+
 func set_world(location: String, cell: Array, quest_step: int) -> bool:
-	if _battle != null or not ChapterOne.TITLES.has(location) or cell.size() != 2:
+	if _state.is_empty() or _battle != null or not ChapterOne.TITLES.has(location) or cell.size() != 2:
 		return false
 	if not ChapterOne.is_walkable(location, Vector2i(int(cell[0]), int(cell[1]))) or quest_step < 0 or quest_step > ChapterOne.STEPS.size():
 		return false

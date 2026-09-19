@@ -18,6 +18,7 @@ var _facing: int = 0
 var _walk_frame: int = 0
 var _textures: Dictionary = {}
 var _last_move_ms: int = -1000
+var _purify_actor: String = ""
 
 
 func _ready() -> void:
@@ -110,7 +111,7 @@ func automation_snapshot() -> Dictionary:
 	if mode == Mode.FIELD:
 		var world := game.world_state()
 		result["player_cell"] = world["player_cell"]
-		result["objective_cell"] = _step().get("cell", world["player_cell"])
+		result["objective_cell"] = [5,4] if game.is_returning_to_town() else _step().get("cell", world["player_cell"])
 		result["walkable_cells"] = ChapterOne.walkable_cells(world["location"])
 	elif mode == Mode.BATTLE:
 		var encounter := game.current_battle()
@@ -153,6 +154,21 @@ func submit_player_action(action: Dictionary) -> bool:
 			elif kind == "rest" and game.world_state()["location"] == "town":
 				accepted = game.rest()
 				_notice = "宿でHPとMPを回復しました。"
+			elif kind == "return_to_town":
+				accepted = game.return_to_town()
+				_notice = "町へ帰還しました。休息・転職・祠での解除後、探索位置へ戻れます。" if accepted else "今は帰還できません。"
+			elif kind == "resume_exploration":
+				accepted = game.resume_exploration()
+				_notice = "帰還前の探索位置へ戻りました。" if accepted else "戻る探索位置がありません。"
+			elif kind == "field_battle":
+				var encounter := game.start_field_battle()
+				if encounter != null:
+					mode = Mode.BATTLE
+					_battle_log = ["周辺の魔物と戦う。勝利で現在の職業にJPが入る。"]
+					_actor = encounter.pending()[0].id
+					_target_action.clear()
+					_notice = ""
+					accepted = true
 		Mode.DIALOGUE:
 			if kind == "confirm":
 				_message_index += 1
@@ -165,8 +181,18 @@ func submit_player_action(action: Dictionary) -> bool:
 			accepted = _battle_action(action)
 		Mode.PARTY:
 			if kind == "back":
+				_purify_actor = ""
 				mode = Mode.FIELD
 				accepted = true
+			elif kind == "request_purify":
+				accepted = _request_purify(str(action.get("actor", "")))
+			elif kind == "cancel_purify" and not _purify_actor.is_empty():
+				_purify_actor = ""
+				accepted = true
+			elif kind == "confirm_purify" and not _purify_actor.is_empty():
+				accepted = game.world_state()["location"] == "town" and game.release_monster_form(_purify_actor, "purification_shrine")
+				_notice = "魔物の技を手放し、姿を戻しました。" if accepted else "解除条件を満たしていません。"
+				_purify_actor = ""
 		Mode.COMPLETE:
 			if kind == "save":
 				accepted = game.save_game("user://save_v1.json")
@@ -179,6 +205,9 @@ func submit_player_action(action: Dictionary) -> bool:
 func _interact() -> bool:
 	var step := _step()
 	var world := game.world_state()
+	if game.is_returning_to_town():
+		_show_dialogue(["町で休息と編成を整えられる。『探索へ戻る』で帰還前の位置へ戻ろう。"], false)
+		return true
 	if step.is_empty() or world["location"] != step["location"] or world["player_cell"] != step["cell"]:
 		_notice = "黄色の印へ移動して調べてください。"
 		_refresh()
@@ -228,6 +257,7 @@ func _battle_action(action: Dictionary) -> bool:
 	if kind == "resolve_round":
 		if not encounter.can_resolve():
 			return false
+		var story_battle := not game.is_field_battle()
 		var events := encounter.resolve_round()
 		for event in events:
 			_battle_log.append(event["message"])
@@ -244,10 +274,14 @@ func _battle_action(action: Dictionary) -> bool:
 				lines.append("%s: %sのJP +%d" % [actor["name"], game.jobs[job_id]["name"], gain])
 				if actor["mastered_jobs"].size() > before["party"][i]["mastered_jobs"].size():
 					lines.append("%sが%sをマスター。" % [actor["name"], game.jobs[job_id]["name"]])
+				for ability_id in actor["learned_abilities"]:
+					if not ability_id in before["party"][i]["learned_abilities"]:
+						lines.append("%sが『%s』を習得。編成で装着すると使える。" % [actor["name"], game.abilities[ability_id]["name"]])
 				if actor["monster_form"] != before["party"][i]["monster_form"]:
 					lines.append("%sが魔物化した。能力と使用可能な技、装着枠が変化した。" % actor["name"])
-			lines.append_array(_step().get("text", []))
-			_show_dialogue(lines, true)
+			if story_battle:
+				lines.append_array(_step().get("text", []))
+			_show_dialogue(lines, story_battle)
 		elif encounter.phase == BattleState.Phase.DEFEAT:
 			game.finish_battle()
 			mode = Mode.DEFEAT
@@ -352,11 +386,12 @@ func _render_missing() -> void:
 
 func _render_field() -> void:
 	var world := game.world_state()
-	_body.add_child(_label("%s  /  %s" % [ChapterOne.TITLES[world["location"]], _step().get("objective", "町を歩く")], 11))
+	var objective: String = "休息・編成後、探索へ戻る" if game.is_returning_to_town() else _step().get("objective", "町を歩く")
+	_body.add_child(_label("%s  /  %s" % [ChapterOne.TITLES[world["location"]], objective], 11))
 	var map := WorldView.new()
 	map.location = world["location"]
 	map.player_cell = Vector2i(int(world["player_cell"][0]), int(world["player_cell"][1]))
-	var goal: Array = _step().get("cell", world["player_cell"])
+	var goal: Array = [5,4] if game.is_returning_to_town() else _step().get("cell", world["player_cell"])
 	map.objective = Vector2i(int(goal[0]), int(goal[1]))
 	map.facing = _facing
 	map.walk_frame = _walk_frame
@@ -371,6 +406,12 @@ func _render_field() -> void:
 	_action_button(row, "セーブ", {"kind":"save"})
 	if world["location"] == "town":
 		_action_button(row, "宿で休む", {"kind":"rest"})
+		if game.is_returning_to_town():
+			_action_button(row, "探索へ戻る", {"kind":"resume_exploration"})
+	else:
+		_action_button(row, "町へ帰還", {"kind":"return_to_town"})
+	if not game.field_battle_enemies().is_empty():
+		_action_button(row, "周辺で戦う", {"kind":"field_battle"})
 	_button(row, "メニュー", _to_menu)
 
 
@@ -410,7 +451,7 @@ func _render_battle() -> void:
 	var foes := HBoxContainer.new()
 	foes.custom_minimum_size.x = 215
 	stage.add_child(foes)
-	var definitions: Array = _step().get("enemies", [])
+	var definitions: Array = game.current_enemy_ids()
 	var index := 0
 	for actor in encounter.actors:
 		if actor.team != Combatant.Team.ENEMY:
@@ -478,6 +519,9 @@ func _choose_target(kind: String, ability_id: String) -> void:
 
 
 func _render_party() -> void:
+	if not _purify_actor.is_empty():
+		_render_purify_confirmation()
+		return
 	var outer := _body
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -505,17 +549,25 @@ func _render_party() -> void:
 		if identifier == actor["job_id"]:
 			jobs.select(jobs.item_count-1)
 	job_row.add_child(jobs)
-	_button(job_row, "この職に転職", func() -> void:
+	var change := _button(job_row, "この職に転職", func() -> void:
 		var identifier: String = jobs.get_item_metadata(jobs.selected)
 		_notice = "転職しました。装着済みの技は持ち越します。" if game.change_job(actor["id"], identifier) else "今はその職業へ変更できません。"
 		_refresh())
+	var comparison := _label(_job_preview_text(actor, actor["job_id"]), 10)
+	comparison.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(comparison)
+	jobs.item_selected.connect(func(index: int) -> void:
+		var identifier: String = jobs.get_item_metadata(index)
+		comparison.text = _job_preview_text(actor, identifier)
+		change.disabled = not game.preview_job(actor["id"], identifier)["allowed"])
 	_body.add_child(_label("魔物職はマスターで魔物化。侵蝕90以降は人間職へ戻れません。", 10))
 	_body.add_child(_label("JP %d/%d  %s / 装着 %d/%d" % [int(actor["jp"].get(actor["job_id"],0)), int(game.jobs[actor["job_id"]]["mastery_cost"]), "マスター" if actor["job_id"] in actor["mastered_jobs"] else "修練中", actor["equipped_abilities"].size(), game.slot_limit(actor["id"])], 11))
 	var slots := GridContainer.new()
 	slots.columns = 2
 	_body.add_child(slots)
 	for identifier in actor["equipped_abilities"]:
-		_button(slots, game.abilities[identifier]["name"] + "を外す", _unequip.bind(actor["id"], identifier))
+		var remove := _button(slots, game.abilities[identifier]["name"] + "を外す", _unequip.bind(actor["id"], identifier))
+		remove.tooltip_text = game.describe_ability(identifier)
 	var skills := OptionButton.new()
 	for identifier in game.available_abilities(actor["id"]):
 		if not identifier in actor["equipped_abilities"]:
@@ -530,14 +582,38 @@ func _render_party() -> void:
 			_notice = "装着しました。" if game.equip_ability(actor["id"], skills.get_item_metadata(skills.selected)) else "装着枠または習得状態を確認してください。"
 			_refresh())
 	equip.disabled = skills.item_count == 0
+	var skill_details := _label("習得した技をここで装着できます。" if skills.item_count == 0 else game.describe_ability(skills.get_item_metadata(skills.selected)), 10)
+	skill_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(skill_details)
+	skills.item_selected.connect(func(index: int) -> void:
+		skill_details.text = game.describe_ability(skills.get_item_metadata(index)))
 	var current := game.effective_stats(actor["id"])
 	_body.add_child(_label("HP%d/%d MP%d/%d\n攻撃%d 防御%d 魔力%d 魔防%d 速さ%d" % [actor["hp"],actor["max_hp"],actor["mp"],actor["max_mp"],current["attack"],current["defense"],current["magic"],current["resistance"],current["speed"]], 11))
 	if not str(actor["monster_form"]).is_empty():
 		_body.add_child(_label("魔物化: " + game.jobs[actor["monster_form"]]["name"], 11))
-		var release := _button(_body, "町の祠で解除（魔物の技を全消去）", _purify.bind(actor["id"]))
+		var release := _action_button(_body, "町の祠で解除（魔物の技を全消去）", {"kind":"request_purify", "actor":actor["id"]})
 		release.disabled = game.world_state()["location"] != "town" or actor["irreversible"]
 	_body = outer
 	_action_button(_body, "探索へ戻る", {"kind":"back"})
+
+
+func _job_preview_text(actor: Dictionary, job_id: String) -> String:
+	var preview := game.preview_job(actor["id"], job_id)
+	var current := game.effective_stats(actor["id"])
+	var next: Dictionary = preview["stats"]
+	var text := "転職後の比較: HP%d→%d MP%d→%d\n攻撃%d→%d 防御%d→%d 魔力%d→%d 魔防%d→%d 速さ%d→%d" % [current["hp"],next["hp"],current["mp"],next["mp"],current["attack"],next["attack"],current["defense"],next["defense"],current["magic"],next["magic"],current["resistance"],next["resistance"],current["speed"],next["speed"]]
+	var definitions: Array = game.jobs[job_id]["abilities"]
+	for index in range(definitions.size()):
+		var ability_id: String = definitions[index]
+		var required := ceili(float(preview["mastery_cost"])/2.0) if index == 0 else int(preview["mastery_cost"])
+		var remaining := maxi(0, required-int(preview["jp"]))
+		var progress := "次の勝利で再習得" if remaining == 0 else "あと%dJPで習得" % remaining
+		text += "\n%s: %s" % [game.abilities[ability_id]["name"], "習得済み" if ability_id in actor["learned_abilities"] else progress]
+	if not str(preview["monster_form"]).is_empty():
+		text += "\n転職後も魔物化: " + game.jobs[preview["monster_form"]]["name"]
+	if not preview["allowed"]:
+		text += "\n今はこの職業へ転職できません。"
+	return text
 
 
 func _unequip(actor_id: String, identifier: String) -> void:
@@ -545,9 +621,23 @@ func _unequip(actor_id: String, identifier: String) -> void:
 	_refresh()
 
 
-func _purify(actor_id: String) -> void:
-	_notice = "魔物の技を手放し、姿を戻しました。" if game.release_monster_form(actor_id, "purification_shrine") else "解除条件を満たしていません。"
-	_refresh()
+func _request_purify(actor_id: String) -> bool:
+	if game.world_state()["location"] != "town":
+		return false
+	for actor in game.export_state()["party"]:
+		if actor["id"] == actor_id and not str(actor["monster_form"]).is_empty() and not actor["irreversible"]:
+			_purify_actor = actor_id
+			return true
+	return false
+
+
+func _render_purify_confirmation() -> void:
+	_body.add_child(_label("魔物の技を手放して姿を戻しますか？", 14))
+	var description := _label("習得済みの魔物専用アビリティをすべて消去し、侵蝕度を30下げます。\n人間職でも習得できる技と、マスター済みの成長は残ります。", 12)
+	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(description)
+	_action_button(_body, "やめる", {"kind":"cancel_purify"})
+	_action_button(_body, "魔物の技を消去して解除", {"kind":"confirm_purify"})
 
 
 func _render_complete() -> void:

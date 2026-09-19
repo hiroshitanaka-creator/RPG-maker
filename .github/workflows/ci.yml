@@ -84,6 +84,16 @@ jobs:
           export PATH="$PWD:$PATH"
           python tools/run_locked_checks.py
 
+      - name: 帰還・任意戦闘・解除確認の操作検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_progression_paths.gd 2>&1 | tee progression.log
+          timeout 180 ./godot --headless --path . --script res://tools/check_progression_paths.gd -- --three-member-party 2>&1 | tee -a progression.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" progression.log; then
+            exit 1
+          fi
+
       - name: 検証後も保護ファイルが不変であることを確認
         if: always()
         run: python tools/check_frozen_files.py
@@ -95,6 +105,7 @@ jobs:
           name: godot-import-log
           path: |
             import.log
+            progression.log
             docs/verification/scope-lock-current.json
             .tools/verification/current-*/*.log
           if-no-files-found: ignore
