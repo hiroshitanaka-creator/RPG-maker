@@ -113,6 +113,16 @@ jobs:
           fi
           test "$(grep -c '^ENCOUNTER_PASS:' encounters.log)" -eq 1
 
+      - name: 探索設備・補給箱・開通した近道の保存を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_exploration_devices.gd 2>&1 | tee exploration.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" exploration.log; then
+            exit 1
+          fi
+          test "$(grep -c '^EXPLORATION_PASS:' exploration.log)" -eq 1
+
       - name: v1物語の二つの再訪順と結末を検査
         if: steps.check.outputs.exists == 'true'
         run: |
@@ -138,6 +148,7 @@ jobs:
             progression.log
             erosion.log
             encounters.log
+            exploration.log
             story.log
             docs/verification/scope-lock-current.json
             .tools/verification/current-*/*.log

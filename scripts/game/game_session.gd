@@ -26,6 +26,7 @@ func _init() -> void:
 	enemy_definitions = catalog.enemies
 	errors.assign(catalog.errors)
 	errors.append_array(StoryCampaign.audit())
+	errors.append_array(ExplorationSites.audit(abilities,jobs))
 	if enemy_definitions.size() != 30:
 		errors.append("v1の敵データは30種類です。")
 	for index in range(StoryCampaign.total_steps()):
@@ -117,12 +118,14 @@ func _valid_state(value: Dictionary) -> bool:
 	var party: Array = value["party"]
 	if party.size() < 3 or party.size() > 4 or not value.get("inventory") is Dictionary or not value.get("progress_flags") is Dictionary or not value.get("world") is Dictionary:
 		return false
-	if not _valid_world(value["world"]):
+	if not _valid_world(value["world"],value["progress_flags"]):
 		return false
 	for identifier in value["progress_flags"]:
 		if not identifier is String or not value["progress_flags"][identifier] is bool:
 			return false
 	if not StoryCampaign.validate_flags(value["progress_flags"]):
+		return false
+	if not ExplorationSites.valid_flags(value["progress_flags"]):
 		return false
 	if value["progress_flags"].get("story_v1_cleared", false) and not StoryCampaign.all_resolved(value["progress_flags"]):
 		return false
@@ -138,7 +141,7 @@ func _valid_state(value: Dictionary) -> bool:
 	if not return_point is Dictionary:
 		return false
 	if not return_point.is_empty():
-		if not _valid_world(return_point) or return_point["location"] == "town" or value["world"]["location"] != "town" or return_point["quest_step"] != value["world"]["quest_step"]:
+		if not _valid_world(return_point,value["progress_flags"]) or return_point["location"] == "town" or value["world"]["location"] != "town" or return_point["quest_step"] != value["world"]["quest_step"]:
 			return false
 	var active_world: Dictionary = value["world"] if return_point.is_empty() else return_point
 	var active_step := StoryCampaign.step(active_world["quest_step"],task)
@@ -220,7 +223,7 @@ func _valid_state(value: Dictionary) -> bool:
 	return true
 
 
-static func _valid_world(world: Dictionary) -> bool:
+static func _valid_world(world: Dictionary, flags: Dictionary = {}) -> bool:
 	if not world.has_all(["location", "player_cell", "quest_step"]):
 		return false
 	if not world["location"] is String or not ChapterOne.TITLES.has(world["location"]):
@@ -228,7 +231,7 @@ static func _valid_world(world: Dictionary) -> bool:
 	if not world["quest_step"] is int or world["quest_step"] < 0 or world["quest_step"] > StoryCampaign.total_steps():
 		return false
 	var cell: Variant = world["player_cell"]
-	return cell is Array and cell.size() == 2 and cell[0] is int and cell[1] is int and ChapterOne.is_walkable(world["location"], Vector2i(cell[0],cell[1]))
+	return cell is Array and cell.size() == 2 and cell[0] is int and cell[1] is int and ExplorationSites.is_walkable(world["location"], Vector2i(cell[0],cell[1]),flags)
 
 
 static func _normalize_numbers(value: Variant) -> Variant:
@@ -701,7 +704,7 @@ func resume_exploration() -> bool:
 func set_world(location: String, cell: Array, quest_step: int) -> bool:
 	if _state.is_empty() or _battle != null or not ChapterOne.TITLES.has(location) or cell.size() != 2:
 		return false
-	if not ChapterOne.is_walkable(location, Vector2i(int(cell[0]), int(cell[1]))) or quest_step < 0 or quest_step > StoryCampaign.total_steps():
+	if not ExplorationSites.is_walkable(location, Vector2i(int(cell[0]), int(cell[1])),_state["progress_flags"]) or quest_step < 0 or quest_step > StoryCampaign.total_steps():
 		return false
 	_state["world"] = {"location": location, "player_cell": [int(cell[0]), int(cell[1])], "quest_step": quest_step}
 	return true
@@ -709,6 +712,64 @@ func set_world(location: String, cell: Array, quest_step: int) -> bool:
 
 func current_story_step() -> Dictionary:
 	return StoryCampaign.step(int(world_state().get("quest_step",0)), _state.get("story_task", {}))
+
+
+func world_walkable_cells() -> Array:
+	var location: String = world_state().get("location","")
+	var result := ChapterOne.walkable_cells(location)
+	for site in exploration_sites():
+		if site["kind"] == "device" and site["complete"]:
+			for cell in site["opens"]:
+				if not cell in result:
+					result.append(cell)
+	return result
+
+
+func exploration_sites() -> Array[Dictionary]:
+	return ExplorationSites.in_location(world_state().get("location",""),_state.get("progress_flags",{}))
+
+
+func exploration_at_player() -> Dictionary:
+	for site in exploration_sites():
+		if site["cell"] == world_state()["player_cell"]:
+			return site
+	return {}
+
+
+func exploration_options() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var site := exploration_at_player()
+	if _battle != null or site.is_empty() or site["complete"]:
+		return result
+	if site["kind"] == "cache":
+		result.append({"actor":"","ability":"","label":"回復薬%d個を受け取る" % site["potions"],"allowed":bool(_state["progress_flags"].get("exploration_"+site["requires"],false))})
+		return result
+	for actor in _state["party"]:
+		for skill in site["abilities"]:
+			var cost := int(abilities[skill]["cost"])
+			result.append({"actor":actor["id"],"ability":skill,"label":"%s・%s（%dMP）" % [actor["name"],abilities[skill]["name"],cost],
+				"allowed":actor["hp"] > 0 and skill in actor["equipped_abilities"] and skill in _available(actor) and actor["mp"] >= cost})
+	return result
+
+
+func use_exploration_site(actor_id: String = "", ability_id: String = "") -> bool:
+	var site := exploration_at_player()
+	for option in exploration_options():
+		if not option["allowed"] or option["actor"] != actor_id or option["ability"] != ability_id:
+			continue
+		var candidate := _state.duplicate(true)
+		if site["kind"] == "cache":
+			candidate["inventory"]["potion"] += int(site["potions"])
+		else:
+			for actor in candidate["party"]:
+				if actor["id"] == actor_id:
+					actor["mp"] -= int(abilities[ability_id]["cost"])
+		candidate["progress_flags"]["exploration_"+site["id"]] = true
+		if not _valid_state(candidate):
+			return false
+		_state = candidate
+		return true
+	return false
 
 
 func journal_entries() -> Array[Dictionary]:

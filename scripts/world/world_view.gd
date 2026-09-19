@@ -8,6 +8,8 @@ var player_cell := Vector2i(2,4)
 var objective := Vector2i(5,4)
 var facing: int = 0
 var walk_frame: int = 0
+var progress_flags: Dictionary = {}
+var sites: Array[Dictionary] = []
 var _tiles: Texture2D
 var _walker: Texture2D
 var _camera := Vector2i.ZERO
@@ -33,8 +35,16 @@ func _draw() -> void:
 	for y in range(rows+1):
 		for x in range(columns+1):
 			var cell := _camera + Vector2i(x,y)
-			var index := 0 if ChapterOne.is_walkable(location, cell) else (2 if location == "waterway" else 1)
+			var index := 0 if ExplorationSites.is_walkable(location, cell,progress_flags) else (2 if location == "waterway" else 1)
 			draw_texture_rect_region(_tiles, Rect2(x*32,y*32,32,32), Rect2(index*32,0,32,32))
+	for site in sites:
+		var marker_cell := (Vector2i(site["cell"][0],site["cell"][1])-_camera)*32
+		var color := Color("71b7e8") if site["kind"] == "device" else Color("7dcc9b")
+		if site["complete"]:
+			color = Color("697b84")
+		draw_rect(Rect2(marker_cell.x+5,marker_cell.y+5,22,22),color,false,2.0)
+		if site["kind"] == "cache":
+			draw_line(Vector2(marker_cell.x+5,marker_cell.y+13),Vector2(marker_cell.x+27,marker_cell.y+13),color,2.0)
 	var marker := (objective-_camera)*32
 	if objective != player_cell:
 		draw_texture_rect_region(_tiles, Rect2(marker.x,marker.y,32,32), Rect2(4*32,0,32,32))

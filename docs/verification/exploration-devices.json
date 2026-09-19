@@ -1,0 +1,83 @@
+{
+  "recorded_date": "2026-09-19",
+  "godot_version": "4.7.2.stable.official.ed1daf0bf",
+  "baseline": {
+    "exit_code": 1,
+    "message": "既存ダンジョンの仕掛け・補給箱・開通保存が未接続です。"
+  },
+  "additional_checks": {
+    "exploration-final.log": [
+      "EXPLORATION_PASS: 5設備・5補給箱・装着/MP判定・通常移動・近道保存・重複防止を検証"
+    ],
+    "exploration-native.log": [
+      "EXPLORATION_PASS: 5設備・5補給箱・装着/MP判定・通常移動・近道保存・重複防止を検証"
+    ],
+    "story-exploration-3.log": [
+      "STORY_PASS: party=3 moved=700 rounds=81 clues=8 visits=teaching,reply"
+    ],
+    "story-exploration-4.log": [
+      "STORY_PASS: party=4 moved=700 rounds=51 clues=8 visits=reply,teaching"
+    ],
+    "encounters-exploration.log": [
+      "ENCOUNTER_PASS: 敵30種・回復/防御/蘇生・予定の再現性・連戦保存を検証"
+    ],
+    "progression-exploration-3.log": [
+      "PROGRESSION_PASS: party=3 通常移動・帰還保存・任意戦闘・魔物化・取消と解除を通過"
+    ],
+    "progression-exploration-4.log": [
+      "PROGRESSION_PASS: party=4 通常移動・帰還保存・任意戦闘・魔物化・取消と解除を通過"
+    ],
+    "erosion-exploration.log": [
+      "EROSION_PASS: 専用技実使用・60/90境界・確認取消・不可逆保存を検証"
+    ]
+  },
+  "native_stderr_empty": true,
+  "import_errors_or_warnings": false,
+  "assets_unchanged": {
+    "assets/_incoming/.gdignore": true,
+    "assets/characters/pc_01/battle.png": true,
+    "assets/characters/pc_01/battle_monster.png": true,
+    "assets/characters/pc_01/portrait.png": true,
+    "assets/characters/pc_01/walk.png": true,
+    "assets/characters/pc_02/battle.png": true,
+    "assets/characters/pc_02/portrait.png": true,
+    "assets/characters/pc_02/walk.png": true,
+    "assets/characters/pc_03/battle.png": true,
+    "assets/characters/pc_03/portrait.png": true,
+    "assets/characters/pc_03/walk.png": true,
+    "assets/characters/pc_04/battle.png": true,
+    "assets/characters/pc_04/portrait.png": true,
+    "assets/characters/pc_04/walk.png": true,
+    "assets/monsters/bat/idle.png": true,
+    "assets/monsters/bone_bat/idle.png": true,
+    "assets/monsters/bone_wolf/idle.png": true,
+    "assets/monsters/chimera_boss/idle.png": true,
+    "assets/monsters/crystal_slime/idle.png": true,
+    "assets/monsters/ember_wisp/idle.png": true,
+    "assets/monsters/flame_slime/idle.png": true,
+    "assets/monsters/gate_beast/idle.png": true,
+    "assets/monsters/ghost_bat/idle.png": true,
+    "assets/monsters/glacier_turtle/idle.png": true,
+    "assets/monsters/lava_turtle/idle.png": true,
+    "assets/monsters/magma_wolf/idle.png": true,
+    "assets/monsters/shadow_wolf/idle.png": true,
+    "assets/monsters/shell_guard/idle.png": true,
+    "assets/monsters/slime/idle.png": true,
+    "assets/monsters/stone_slime/idle.png": true,
+    "assets/monsters/storm_wolf/idle.png": true,
+    "assets/monsters/underworld_boss/idle.png": true,
+    "assets/monsters/wet_beast/idle.png": true,
+    "assets/monsters/wind_wolf/idle.png": true,
+    "assets/monsters/winged_beast/idle.png": true,
+    "assets/monsters/zombie_wolf/idle.png": true,
+    "assets/palette/base.gpl": true,
+    "assets/registry.json": true,
+    "assets/tiles/dungeon_cave.png": true,
+    "assets/tiles/field_outdoor.png": true
+  },
+  "not_run": [
+    "人間による通しプレイ",
+    "5〜6時間の実測",
+    "探索報酬の難易度評価"
+  ]
+}

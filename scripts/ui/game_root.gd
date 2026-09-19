@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -127,6 +127,7 @@ func automation_snapshot() -> Dictionary:
 	names[Mode.JOURNAL] = "journal"
 	names[Mode.VISITS] = "visits"
 	names[Mode.GATE] = "gate"
+	names[Mode.EXPLORATION] = "exploration"
 	var result := {"mode": "error" if not diagnostics.is_empty() else names[mode],
 		"chapter1_cleared": diagnostics.is_empty() and saved.get("progress_flags", {}).get("chapter1_cleared", false)}
 	result["story_complete"] = diagnostics.is_empty() and game.story_complete()
@@ -140,7 +141,8 @@ func automation_snapshot() -> Dictionary:
 		var world := game.world_state()
 		result["player_cell"] = world["player_cell"]
 		result["objective_cell"] = [5,4] if game.is_returning_to_town() else _step().get("cell", world["player_cell"])
-		result["walkable_cells"] = ChapterOne.walkable_cells(world["location"])
+		result["walkable_cells"] = game.world_walkable_cells()
+		result["exploration_sites"] = game.exploration_sites()
 	elif mode == Mode.BATTLE:
 		var encounter := game.current_battle()
 		var pending := encounter.pending()
@@ -290,6 +292,18 @@ func submit_player_action(action: Dictionary) -> bool:
 			elif kind == "back":
 				mode = Mode.FIELD
 				accepted = true
+		Mode.EXPLORATION:
+			if kind == "back":
+				mode = Mode.FIELD
+				accepted = true
+			elif kind == "party":
+				_party_return = Mode.EXPLORATION
+				mode = Mode.PARTY
+				accepted = true
+			elif kind == "use_site":
+				accepted = game.use_exploration_site(str(action.get("actor","")),str(action.get("ability","")))
+				if accepted:
+					_notice = "補給を受け取りました。" if game.exploration_at_player()["kind"] == "cache" else "近道と補給箱が開きました。開通状態はセーブに残ります。"
 	if accepted:
 		_refresh()
 	return accepted
@@ -344,6 +358,10 @@ func _respond_to_erosion(kind: String) -> bool:
 func _interact() -> bool:
 	var step := _step()
 	var world := game.world_state()
+	if not game.exploration_at_player().is_empty():
+		mode = Mode.EXPLORATION
+		_notice = ""
+		return true
 	if game.is_returning_to_town():
 		_show_dialogue(["町で休息と編成を整えられる。『探索へ戻る』で帰還前の位置へ戻ろう。"], false)
 		return true
@@ -515,6 +533,7 @@ func _refresh() -> void:
 		Mode.JOURNAL: _render_journal()
 		Mode.VISITS: _render_visits()
 		Mode.GATE: _render_gate()
+		Mode.EXPLORATION: _render_exploration()
 		Mode.EROSION_CONFIRMATION: _render_erosion_confirmation()
 		Mode.COMPLETE: _render_complete()
 		Mode.DEFEAT:
@@ -573,10 +592,14 @@ func _render_field() -> void:
 	map.objective = Vector2i(int(goal[0]), int(goal[1]))
 	map.facing = _facing
 	map.walk_frame = _walk_frame
+	map.progress_flags = game.export_state()["progress_flags"]
+	map.sites = game.exploration_sites()
 	map.custom_minimum_size = Vector2(480, 160)
 	map.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	map.cell_clicked.connect(_map_clicked)
 	_body.add_child(map)
+	if not map.sites.is_empty():
+		_body.add_child(_label("青い枠: 設備 / 緑の箱: 補給 / 灰色: 利用済み。上に立って調べる。",9))
 	var row := HBoxContainer.new()
 	_body.add_child(row)
 	_action_button(row, "調べる", {"kind":"interact"})
@@ -600,6 +623,42 @@ func _map_clicked(cell: Vector2i) -> void:
 		submit_player_action({"kind":"interact"})
 	else:
 		submit_player_action({"kind":"move", "dx":cell.x-int(current[0]), "dy":cell.y-int(current[1])})
+
+
+func _render_exploration() -> void:
+	var site := game.exploration_at_player()
+	_body.add_child(_label(site["name"],16))
+	var description := _label(site["text"],12)
+	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(description)
+	if site["complete"]:
+		_body.add_child(_label("受取済みです。" if site["kind"] == "cache" else "開通済みです。通路と補給箱を利用できます。",12))
+	elif site["kind"] == "device":
+		var names: Array[String] = []
+		for identifier in site["abilities"]:
+			names.append(game.abilities[identifier]["name"])
+		_body.add_child(_label("必要な技: "+" または ".join(names),12))
+		_body.add_child(_label("生存・技の装着・必要MPを満たす仲間を選んでください。",11))
+	else:
+		var required := ExplorationSites.by_id(site["requires"])
+		_body.add_child(_label("解錠条件: "+required["name"]+"の開通",12))
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_body.add_child(scroll)
+	var choices := VBoxContainer.new()
+	choices.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(choices)
+	for option in game.exploration_options():
+		var label: String = option["label"]
+		if not option["allowed"]:
+			label += "・条件不足"
+		var button := _action_button(choices,label,{"kind":"use_site","actor":option["actor"],"ability":option["ability"]})
+		button.disabled = not option["allowed"]
+	var row := HBoxContainer.new()
+	_body.add_child(row)
+	_action_button(row,"編成・装着を見直す",{"kind":"party"})
+	_action_button(row,"探索へ戻る",{"kind":"back"})
 
 
 func _render_dialogue() -> void:
