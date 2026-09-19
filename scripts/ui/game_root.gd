@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -24,6 +24,13 @@ var _risk_return_mode: Mode = Mode.FIELD
 var _risk_preview: Array[Dictionary] = []
 var _confirmed_erosion_actors: Array[String] = []
 var _risk_bypass: bool = false
+var _dialogue_return: Mode = Mode.FIELD
+var _dialogue_past: bool = false
+var _dialogue_summary: Array = []
+var _party_return: Mode = Mode.FIELD
+var _gate_team: Array = []
+var _journal_return: Mode = Mode.FIELD
+var _journal_index: int = 0
 
 
 func _ready() -> void:
@@ -94,6 +101,10 @@ func start_new_game(party_size: int = 4) -> void:
 	_risk_preview.clear()
 	_confirmed_erosion_actors.clear()
 	_risk_bypass = false
+	_gate_team = []
+	_journal_index = 0
+	_party_return = Mode.FIELD
+	_journal_return = Mode.FIELD
 	if not ChapterOne.missing_art().is_empty():
 		mode = Mode.ASSETS_MISSING
 		_notice = "必要な素材が揃うと探索を開始できます。"
@@ -105,7 +116,7 @@ func start_new_game(party_size: int = 4) -> void:
 
 
 func _step() -> Dictionary:
-	return ChapterOne.step(int(game.world_state().get("quest_step", 0)))
+	return game.current_story_step()
 
 
 func automation_snapshot() -> Dictionary:
@@ -113,8 +124,14 @@ func automation_snapshot() -> Dictionary:
 	var diagnostics := _diagnostics.messages()
 	var names := {Mode.MENU:"menu", Mode.FIELD:"field", Mode.DIALOGUE:"dialogue", Mode.BATTLE:"battle", Mode.PARTY:"party", Mode.COMPLETE:"complete", Mode.DEFEAT:"defeat", Mode.ASSETS_MISSING:"assets_missing"}
 	names[Mode.EROSION_CONFIRMATION] = "erosion_confirmation"
+	names[Mode.JOURNAL] = "journal"
+	names[Mode.VISITS] = "visits"
+	names[Mode.GATE] = "gate"
 	var result := {"mode": "error" if not diagnostics.is_empty() else names[mode],
 		"chapter1_cleared": diagnostics.is_empty() and saved.get("progress_flags", {}).get("chapter1_cleared", false)}
+	result["story_complete"] = diagnostics.is_empty() and game.story_complete()
+	result["quest_step"] = game.world_state().get("quest_step",0)
+	result["chapter"] = int(_step().get("chapter",6 if game.story_complete() else 1))
 	if not diagnostics.is_empty():
 		result["errors"] = diagnostics
 		return result
@@ -162,12 +179,17 @@ func submit_player_action(action: Dictionary) -> bool:
 			elif kind == "interact":
 				accepted = _interact()
 			elif kind == "party":
+				_party_return = Mode.FIELD
 				mode = Mode.PARTY
+				accepted = true
+			elif kind == "journal":
+				_journal_return = Mode.FIELD
+				mode = Mode.JOURNAL
 				accepted = true
 			elif kind == "save":
 				accepted = game.save_game("user://save_v1.json")
 				_notice = "保存しました。" if accepted else "今は保存できません。"
-			elif kind == "rest" and game.world_state()["location"] == "town":
+			elif kind == "rest" and game.world_state()["location"] in ChapterOne.TOWNS:
 				accepted = game.rest()
 				_notice = "宿でHPとMPを回復しました。"
 			elif kind == "return_to_town":
@@ -188,19 +210,24 @@ func submit_player_action(action: Dictionary) -> bool:
 					_notice = ""
 					accepted = true
 		Mode.DIALOGUE:
-			if kind == "confirm":
+			if kind == "summary" and not _dialogue_summary.is_empty():
+				_messages.assign(_dialogue_summary)
+				_dialogue_summary = []
+				_message_index = 0
+				accepted = true
+			elif kind == "confirm":
 				_message_index += 1
 				accepted = true
 				if _message_index >= _messages.size():
 					if _advance_after_dialogue:
 						_advance_step()
-					mode = Mode.FIELD
+					mode = _dialogue_return
 		Mode.BATTLE:
 			accepted = _battle_action(action)
 		Mode.PARTY:
 			if kind == "back":
 				_purify_actor = ""
-				mode = Mode.FIELD
+				mode = _party_return
 				accepted = true
 			elif kind == "request_purify":
 				accepted = _request_purify(str(action.get("actor", "")))
@@ -215,6 +242,53 @@ func submit_player_action(action: Dictionary) -> bool:
 			if kind == "save":
 				accepted = game.save_game("user://save_v1.json")
 				_notice = "保存しました。" if accepted else "保存できませんでした。"
+			elif kind == "continue_story":
+				accepted = game.continue_story()
+				if accepted:
+					mode = Mode.FIELD
+					_notice = "町の記録室で、番人の来歴を確かめよう。"
+					_show_dialogue(["通路の入口で振り返る。番人の首の札に、水番の符号が見えた。町の勤務記録で確かめよう。"],false)
+			elif kind == "journal":
+				_journal_return = Mode.COMPLETE
+				mode = Mode.JOURNAL
+				accepted = true
+		Mode.JOURNAL:
+			if kind == "back":
+				mode = _journal_return
+				accepted = true
+			elif kind == "replay":
+				for record in game.replayable_records():
+					if record["id"] == action.get("event"):
+						_show_dialogue(record["text"],false,Mode.JOURNAL,true)
+						accepted = true
+		Mode.VISITS:
+			if kind == "visit_task":
+				accepted = game.start_revisit_task(str(action.get("task", "")))
+				if accepted:
+					mode = Mode.FIELD
+			elif kind == "back":
+				mode = Mode.FIELD
+				accepted = true
+		Mode.GATE:
+			if kind == "gate_team":
+				_gate_team = action.get("team",[]).duplicate()
+				accepted = true
+			elif kind == "operate_gate":
+				_gate_team = action.get("team",_gate_team).duplicate()
+				var reasons := game.gate_requirements(_gate_team)
+				if reasons.is_empty():
+					_show_dialogue(game.story_lines(),true)
+					accepted = true
+				else:
+					_notice = "担当・装着・生存・MPを確認してください。"
+					_refresh()
+			elif kind == "party":
+				_party_return = Mode.GATE
+				mode = Mode.PARTY
+				accepted = true
+			elif kind == "back":
+				mode = Mode.FIELD
+				accepted = true
 	if accepted:
 		_refresh()
 	return accepted
@@ -278,11 +352,15 @@ func _interact() -> bool:
 		return false
 	match step["kind"]:
 		"dialogue":
+			var lines := game.story_lines(step)
+			if lines.is_empty():
+				_notice = "先に手帳の手掛かりと記録を確かめてください。"
+				return false
 			if step.get("rest", false):
 				game.rest()
-			_show_dialogue(step["text"], true)
+			_show_dialogue(lines, true, Mode.FIELD, StoryCampaign.event(step.get("event", "")).get("past", false))
 		"travel":
-			return game.set_world(step["destination"], step["spawn"], int(world["quest_step"])+1)
+			return game.advance_story_step()
 		"battle":
 			var encounter := game.start_battle(step["enemies"], 20260919 + int(world["quest_step"]))
 			if encounter == null:
@@ -294,26 +372,39 @@ func _interact() -> bool:
 			_actor = encounter.pending()[0].id
 			_target_action.clear()
 		"complete":
-			game.set_progress_flag("chapter1_cleared")
-			game.set_world(world["location"], world["player_cell"], ChapterOne.STEPS.size())
+			if not game.advance_story_step():
+				return false
 			mode = Mode.COMPLETE
+		"story_complete":
+			if not game.advance_story_step():
+				_notice = "回収していない手掛かりが残っています。"
+				return false
+			mode = Mode.COMPLETE
+		"choice":
+			if game.advance_story_step():
+				return true
+			mode = Mode.VISITS
+		"gate":
+			if _gate_team.is_empty():
+				for actor in game.export_state()["party"]:
+					if _gate_team.size() < 3 and actor["hp"] > 0:
+						_gate_team.append(actor["id"])
+			mode = Mode.GATE
 	return true
 
 
 func _advance_step() -> void:
-	var step := _step()
-	if step.has("flag"):
-		game.set_progress_flag(step["flag"])
-	for identifier in step.get("flags", []):
-		game.set_progress_flag(identifier)
-	var world := game.world_state()
-	game.set_world(world["location"], world["player_cell"], int(world["quest_step"])+1)
+	if not game.advance_story_step(_gate_team):
+		_notice = "進行条件がそろっていません。手帳と装着を確認してください。"
 
 
-func _show_dialogue(lines: Array, advance: bool) -> void:
+func _show_dialogue(lines: Array, advance: bool, return_mode: Mode = Mode.FIELD, past: bool = false) -> void:
 	_messages.assign(lines)
 	_message_index = 0
 	_advance_after_dialogue = advance
+	_dialogue_return = return_mode
+	_dialogue_past = past
+	_dialogue_summary = StoryCampaign.event(_step().get("event", "")).get("summary", []).duplicate() if advance else []
 	mode = Mode.DIALOGUE
 
 
@@ -414,6 +505,9 @@ func _refresh() -> void:
 		Mode.DIALOGUE: _render_dialogue()
 		Mode.BATTLE: _render_battle()
 		Mode.PARTY: _render_party()
+		Mode.JOURNAL: _render_journal()
+		Mode.VISITS: _render_visits()
+		Mode.GATE: _render_gate()
 		Mode.EROSION_CONFIRMATION: _render_erosion_confirmation()
 		Mode.COMPLETE: _render_complete()
 		Mode.DEFEAT:
@@ -441,7 +535,7 @@ func _render_menu() -> void:
 
 
 func _resume_current() -> void:
-	mode = Mode.COMPLETE if game.export_state()["progress_flags"].get("chapter1_cleared", false) else Mode.FIELD
+	mode = Mode.COMPLETE if game.chapter_one_pause() or game.story_complete() else Mode.FIELD
 	if not ChapterOne.missing_art().is_empty():
 		mode = Mode.ASSETS_MISSING
 	_notice = ""
@@ -460,7 +554,9 @@ func _render_missing() -> void:
 func _render_field() -> void:
 	var world := game.world_state()
 	var objective: String = "休息・編成後、探索へ戻る" if game.is_returning_to_town() else _step().get("objective", "町を歩く")
-	_body.add_child(_label("%s  /  %s" % [ChapterOne.TITLES[world["location"]], objective], 11))
+	var heading := _label("第%d章 %s / %s" % [int(_step().get("chapter",1)), ChapterOne.TITLES[world["location"]], objective], 11)
+	heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(heading)
 	var map := WorldView.new()
 	map.location = world["location"]
 	map.player_cell = Vector2i(int(world["player_cell"][0]), int(world["player_cell"][1]))
@@ -476,8 +572,9 @@ func _render_field() -> void:
 	_body.add_child(row)
 	_action_button(row, "調べる", {"kind":"interact"})
 	_action_button(row, "編成", {"kind":"party"})
+	_action_button(row, "手帳", {"kind":"journal"})
 	_action_button(row, "セーブ", {"kind":"save"})
-	if world["location"] == "town":
+	if world["location"] in ChapterOne.TOWNS:
 		_action_button(row, "宿で休む", {"kind":"rest"})
 		if game.is_returning_to_town():
 			_action_button(row, "探索へ戻る", {"kind":"resume_exploration"})
@@ -497,16 +594,21 @@ func _map_clicked(cell: Vector2i) -> void:
 
 
 func _render_dialogue() -> void:
-	var row := HBoxContainer.new()
-	_body.add_child(row)
-	for i in range(game.export_state()["party"].size()):
-		var face := _picture("res://assets/characters/pc_%02d/portrait.png" % (i+1), Vector2(64,64))
-		row.add_child(face)
+	if _dialogue_past:
+		_body.add_child(_label("現在の記録室" if _messages[_message_index].begins_with("【現在】") else "前の大水の記録", 13))
+	else:
+		var row := HBoxContainer.new()
+		_body.add_child(row)
+		for i in range(game.export_state()["party"].size()):
+			var face := _picture("res://assets/characters/pc_%02d/portrait.png" % (i+1), Vector2(64,64))
+			row.add_child(face)
 	var message := _label(_messages[_message_index], 14)
 	message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	message.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_body.add_child(message)
 	_action_button(_body, "次へ  Enter", {"kind":"confirm"})
+	if not _dialogue_summary.is_empty():
+		_action_button(_body, "要約へ", {"kind":"summary"})
 
 
 func _render_battle() -> void:
@@ -743,10 +845,97 @@ func _render_erosion_confirmation() -> void:
 
 
 func _render_complete() -> void:
-	_body.add_child(_label("第1章  閉じた道  クリア", 17))
-	_body.add_child(_label("番人はもう一度、板を二度打った。\nその音の意味は、まだ分からない。", 14))
+	if game.story_complete():
+		_body.add_child(_label("開ける役目  おわり", 17))
+		_body.add_child(_label("水門が開き、番人は町へ戻った。\n二打の合図は、これからも受け継がれていく。", 14))
+		var state := game.export_state()
+		var team: Array = state.get("gate_team",[])
+		var duties: Array[String] = []
+		var witnesses: Array[String] = ["番人"]
+		for actor in state["party"]:
+			if actor["id"] in team:
+				var station: String = ["上流","中央","下流"][team.find(actor["id"])]
+				duties.append(station + ": " + actor["name"])
+			else:
+				witnesses.append(actor["name"])
+		_body.add_child(_label("引継ぎ帳  " + " / ".join(duties) + "\n見届け: " + "、".join(witnesses),11))
+	else:
+		_body.add_child(_label("第1章  閉じた道  クリア", 17))
+		_body.add_child(_label("番人はもう一度、板を二度打った。\nその音の意味は、まだ分からない。", 14))
+		_action_button(_body, "物語を続ける", {"kind":"continue_story"})
+	_action_button(_body, "手帳を読み返す", {"kind":"journal"})
 	_action_button(_body, "冒険の記録を保存", {"kind":"save"})
 	_button(_body, "タイトルへ", _to_menu)
+
+
+func _render_journal() -> void:
+	var entries := game.journal_entries()
+	_body.add_child(_label("旅の手帳  %d / 8件" % entries.size(),15))
+	if entries.is_empty():
+		_body.add_child(_label("見聞きした手掛かりが、ここへ記録されます。",12))
+	else:
+		_journal_index = clampi(_journal_index,0,entries.size()-1)
+		var selector := OptionButton.new()
+		for entry in entries:
+			selector.add_item("%s %s（%s）" % [entry["id"],entry["title"],"回収済み" if entry["stage"] == 2 else "調査中"])
+		selector.select(_journal_index)
+		selector.item_selected.connect(func(index: int) -> void: _journal_index=index; _refresh())
+		_body.add_child(selector)
+		var entry: Dictionary = entries[_journal_index]
+		var text := "見たこと\n%s\n\nその時の見立て\n%s" % [entry["observation"],entry["first"]]
+		if entry.has("resolved"):
+			text += "\n\n分かったこと\n" + entry["resolved"]
+		if entry.has("loadout"):
+			text += "\n\n" + entry["loadout"]
+		var body := RichTextLabel.new()
+		body.text = text
+		body.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		body.add_theme_font_size_override("normal_font_size",12)
+		_body.add_child(body)
+	var row := HBoxContainer.new()
+	_body.add_child(row)
+	var titles := {"identity":"来歴の記録", "choice":"閉めた日の記録", "board":"打ち板の記録"}
+	for record in game.replayable_records():
+		_action_button(row,titles[record["id"]],{"kind":"replay","event":record["id"]})
+	_action_button(_body,"戻る",{"kind":"back"})
+
+
+func _render_visits() -> void:
+	_body.add_child(_label("先に確かめる場所を選ぶ",15))
+	_body.add_child(_label("町の教習と、水門の番人への応答。\nどちらを先に進めても、もう一方は後から確かめられます。",12))
+	var flags: Dictionary = game.export_state()["progress_flags"]
+	var lesson := _action_button(_body,"町で教習を再開する",{"kind":"visit_task","task":"teaching"})
+	lesson.disabled = StoryCampaign.stage(flags,"R08") == 2
+	var reply := _action_button(_body,"水門で番人に応答する",{"kind":"visit_task","task":"reply"})
+	reply.disabled = StoryCampaign.stage(flags,"R05") == 2
+	_action_button(_body,"町の探索へ戻る",{"kind":"back"})
+
+
+func _render_gate() -> void:
+	_body.add_child(_label("三つの操作台の担当",15))
+	_body.add_child(_label("三人に堅守と響きの波を装着し、一人%dMPを使います。" % game.gate_mp_cost(),11))
+	var row := HBoxContainer.new()
+	_body.add_child(row)
+	for actor in game.export_state()["party"]:
+		var check := CheckBox.new()
+		check.text = actor["name"]
+		check.button_pressed = actor["id"] in _gate_team
+		check.toggled.connect(func(selected: bool) -> void:
+			if selected and not actor["id"] in _gate_team:
+				_gate_team.append(actor["id"])
+			elif not selected:
+				_gate_team.erase(actor["id"])
+			_refresh())
+		row.add_child(check)
+	var reasons := game.gate_requirements(_gate_team)
+	var detail := RichTextLabel.new()
+	detail.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	detail.text = "準備がそろっています。" if reasons.is_empty() else "\n".join(reasons)
+	_body.add_child(detail)
+	_action_button(_body,"編成・装着を変える",{"kind":"party"})
+	var operate := _action_button(_body,"三人で水門を動かす",{"kind":"operate_gate"})
+	operate.disabled = not reasons.is_empty()
+	_action_button(_body,"探索へ戻る",{"kind":"back"})
 
 
 func _load_save() -> void:
@@ -754,7 +943,9 @@ func _load_save() -> void:
 		_notice = "読み込めるセーブがありません。"
 		_refresh()
 		return
-	mode = Mode.COMPLETE if game.export_state()["progress_flags"].get("chapter1_cleared", false) else Mode.FIELD
+	_gate_team = []
+	_party_return = Mode.FIELD
+	mode = Mode.COMPLETE if game.chapter_one_pause() or game.story_complete() else Mode.FIELD
 	if not ChapterOne.missing_art().is_empty():
 		mode = Mode.ASSETS_MISSING
 	_notice = "冒険の記録を読み込みました。"

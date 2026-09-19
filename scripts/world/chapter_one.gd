@@ -4,7 +4,8 @@ extends RefCounted
 const WIDTH := 32
 const HEIGHT := 18
 const TILE_SIZE := 32
-const TITLES := {"town": "段の町", "waterway": "旧水路", "cave": "地下回廊", "gate": "分け水門"}
+const TITLES := {"town": "段の町", "waterway": "旧水路", "cave": "地下回廊", "gate": "分け水門", "garden":"干し庭", "harbor":"河岸の町", "school":"旧教習所", "records":"記録坑道"}
+const TOWNS := ["town", "garden", "harbor"]
 const REQUIRED_ART := [
 	"res://assets/palette/base.gpl",
 	"res://assets/characters/pc_01/walk.png",
@@ -34,7 +35,7 @@ const STEPS := [
 	{"location":"town", "cell":[5,4], "kind":"dialogue", "objective":"町で修理札を確認する", "rest":true, "text":["町の掲示に修理札の図がある。届け先は北東の分け水門だ。", "出発前に全員のHPとMPを回復した。現在の職と、持ち越す技を選び直せる。"]},
 	{"location":"town", "cell":[29,2], "kind":"travel", "objective":"町の北東から分け水門へ", "destination":"gate", "spawn":[1,14]},
 	{"location":"gate", "cell":[19,10], "kind":"battle", "objective":"水門の荒獣を退ける", "enemies":["gate_beast"], "text":["荒獣が退き、門の奥へ進めるようになった。"]},
-	{"location":"gate", "cell":[27,4], "kind":"dialogue", "objective":"門の番人と打ち板を調べる", "text":["魔物の姿の番人が、板を二度打った。こちらの音を待っているようだ。", "板の低い位置に、二つずつ並ぶ傷がある。", "番人は修理札を確かめ、閉じた道の横にある細い通路を示した。"], "flags":["clue_R01_seeded","clue_R07_seeded"]},
+	{"location":"gate", "cell":[27,4], "kind":"dialogue", "objective":"門の番人と打ち板を調べる", "text":["魔物の姿の番人が、板を二度打った。こちらの音を待っているようだ。", "番人の首の札には、水番の符号が刻まれている。", "板の低い位置に、二つずつ並ぶ傷がある。", "番人は修理札を確かめ、閉じた道の横にある細い通路を示した。"], "flags":["clue_R01_seeded","clue_R07_seeded"]},
 	{"location":"gate", "cell":[30,4], "kind":"complete", "objective":"番人が示した通路へ進む"}
 ]
 
@@ -60,6 +61,18 @@ static func is_walkable(location: String, cell: Vector2i) -> bool:
 				return false
 		"gate":
 			if cell.y == 8 and cell.x >= 6 and cell.x <= 25 and cell.x != 12:
+				return false
+		"garden":
+			if cell.y in [5,13] and cell.x >= 8 and cell.x <= 24 and cell.x not in [15,22]:
+				return false
+		"harbor":
+			if cell.x in [10,21] and cell.y >= 4 and cell.y <= 15 and cell.y not in [7,12]:
+				return false
+		"school":
+			if cell.y in [6,11] and cell.x >= 5 and cell.x <= 26 and cell.x not in [10,19]:
+				return false
+		"records":
+			if cell.x in [9,18,25] and cell.y not in [4,10,14]:
 				return false
 	return true
 

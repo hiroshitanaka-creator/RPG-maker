@@ -16,7 +16,7 @@ var _camera := Vector2i.ZERO
 func _ready() -> void:
 	clip_contents = true
 	mouse_filter = Control.MOUSE_FILTER_STOP
-	var tile_path := "res://assets/tiles/field_outdoor.png" if location in ["town", "waterway"] else "res://assets/tiles/dungeon_cave.png"
+	var tile_path := "res://assets/tiles/field_outdoor.png" if location in ChapterOne.TOWNS or location == "waterway" else "res://assets/tiles/dungeon_cave.png"
 	if ResourceLoader.exists(tile_path):
 		_tiles = load(tile_path)
 	if ResourceLoader.exists("res://assets/characters/pc_01/walk.png"):

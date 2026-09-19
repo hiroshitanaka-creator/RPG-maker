@@ -103,6 +103,17 @@ jobs:
             exit 1
           fi
 
+      - name: v1物語の二つの再訪順と結末を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 300 ./godot --headless --path . --script res://tools/check_story_campaign.gd 2>&1 | tee story.log
+          timeout 300 ./godot --headless --path . --script res://tools/check_story_campaign.gd -- --three-member-party --teaching-first 2>&1 | tee -a story.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" story.log; then
+            exit 1
+          fi
+          test "$(grep -c '^STORY_PASS:' story.log)" -eq 2
+
       - name: 検証後も保護ファイルが不変であることを確認
         if: always()
         run: python tools/check_frozen_files.py
@@ -116,6 +127,7 @@ jobs:
             import.log
             progression.log
             erosion.log
+            story.log
             docs/verification/scope-lock-current.json
             .tools/verification/current-*/*.log
           if-no-files-found: ignore

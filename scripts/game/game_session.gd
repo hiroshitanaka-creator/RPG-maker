@@ -15,6 +15,7 @@ var _battle: BattleState
 var _battle_enemy_ids: Array[String] = []
 var _claimed: bool = true
 var _field_battle: bool = false
+var _story_victory_step: int = -1
 
 
 func _init() -> void:
@@ -23,6 +24,16 @@ func _init() -> void:
 	abilities = catalog.abilities
 	enemy_definitions = catalog.enemies
 	errors.assign(catalog.errors)
+	errors.append_array(StoryCampaign.audit())
+	var keeper_learned: Array[String] = []
+	keeper_learned.assign(StoryCampaign.data().get("keeper_learned",[]))
+	var keeper_equipped: Array[String] = []
+	keeper_equipped.assign(StoryCampaign.data().get("keeper_loadout",[]))
+	for identifier in keeper_learned:
+		if not abilities.has(identifier):
+			errors.append("番人の習得記録に未知の技があります。")
+	if not Loadout.validate(keeper_learned,keeper_equipped,Loadout.capacity(false,true)).is_empty():
+		errors.append("番人の装着記録が当時の三枠と一致しません。")
 	var humans := 0
 	var monsters := 0
 	for definition in jobs.values():
@@ -59,6 +70,7 @@ func new_game(party_size: int = 4) -> bool:
 	_battle = null
 	_claimed = true
 	_field_battle = false
+	_story_victory_step = -1
 	return true
 
 
@@ -83,6 +95,7 @@ func import_state(value: Dictionary) -> bool:
 	_battle = null
 	_claimed = true
 	_field_battle = false
+	_story_victory_step = -1
 	return true
 
 
@@ -97,6 +110,16 @@ func _valid_state(value: Dictionary) -> bool:
 	for identifier in value["progress_flags"]:
 		if not identifier is String or not value["progress_flags"][identifier] is bool:
 			return false
+	if not StoryCampaign.validate_flags(value["progress_flags"]):
+		return false
+	if value["progress_flags"].get("story_v1_cleared", false) and not StoryCampaign.all_resolved(value["progress_flags"]):
+		return false
+	var task: Variant = value.get("story_task", {})
+	if not task is Dictionary:
+		return false
+	if not task.is_empty():
+		if not task.get("id") is String or not task.get("step") is int or StoryCampaign.step(value["world"]["quest_step"]).get("kind") != "choice" or StoryCampaign.step(value["world"]["quest_step"], task).is_empty():
+			return false
 	if not value.get("field_battles", 0) is int or int(value.get("field_battles", 0)) < 0:
 		return false
 	var return_point: Variant = value.get("return_point", {})
@@ -105,6 +128,10 @@ func _valid_state(value: Dictionary) -> bool:
 	if not return_point.is_empty():
 		if not _valid_world(return_point) or return_point["location"] == "town" or value["world"]["location"] != "town" or return_point["quest_step"] != value["world"]["quest_step"]:
 			return false
+	var active_world: Dictionary = value["world"] if return_point.is_empty() else return_point
+	var active_step := StoryCampaign.step(active_world["quest_step"],task)
+	if not active_step.is_empty() and active_world["location"] != active_step["location"]:
+		return false
 	if not value["inventory"].get("potion") is int or value["inventory"]["potion"] < 0:
 		return false
 	var ids: Array[String] = []
@@ -159,6 +186,17 @@ func _valid_state(value: Dictionary) -> bool:
 		var slots := Loadout.capacity(bool(value["progress_flags"].get("midgame_slots", false)), not form.is_empty())
 		if not Loadout.validate(available, equipped_ids, slots).is_empty():
 			return false
+	var team: Variant = value.get("gate_team", [])
+	if not team is Array:
+		return false
+	if not team.is_empty() or StoryCampaign.stage(value["progress_flags"],"R03") == 2:
+		if team.size() != 3:
+			return false
+		var assigned: Array = []
+		for identifier in team:
+			if not identifier is String or not identifier in ids or identifier in assigned:
+				return false
+			assigned.append(identifier)
 	return true
 
 
@@ -167,7 +205,7 @@ static func _valid_world(world: Dictionary) -> bool:
 		return false
 	if not world["location"] is String or not ChapterOne.TITLES.has(world["location"]):
 		return false
-	if not world["quest_step"] is int or world["quest_step"] < 0 or world["quest_step"] > ChapterOne.STEPS.size():
+	if not world["quest_step"] is int or world["quest_step"] < 0 or world["quest_step"] > StoryCampaign.total_steps():
 		return false
 	var cell: Variant = world["player_cell"]
 	return cell is Array and cell.size() == 2 and cell[0] is int and cell[1] is int and ChapterOne.is_walkable(world["location"], Vector2i(cell[0],cell[1]))
@@ -482,12 +520,14 @@ func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
 
 func field_battle_enemies() -> Array:
 	var world := world_state()
-	if world.is_empty() or _state["progress_flags"].get("chapter1_cleared", false):
+	if world.is_empty() or story_complete():
 		return []
 	var encounters: Array = []
 	if world["location"] == "waterway" and world["quest_step"] >= 3:
 		encounters = [["slime"], ["bat"]]
 	elif world["location"] == "cave" and world["quest_step"] >= 7:
+		encounters = [["shell_guard"], ["ember_wisp"]]
+	elif world["location"] in ["school", "records"]:
 		encounters = [["shell_guard"], ["ember_wisp"]]
 	if encounters.is_empty():
 		return []
@@ -519,6 +559,8 @@ func finish_battle() -> bool:
 	if _field_battle:
 		_state["field_battles"] = int(_state.get("field_battles", 0)) + 1
 	var won: bool = _battle.phase == BattleState.Phase.VICTORY
+	if won and not _field_battle:
+		_story_victory_step = int(_state["world"]["quest_step"])
 	var reward := 0
 	if won:
 		for identifier in _battle_enemy_ids:
@@ -585,7 +627,7 @@ func is_returning_to_town() -> bool:
 
 
 func return_to_town() -> bool:
-	if _state.is_empty() or _battle != null or is_returning_to_town() or _state["world"]["location"] == "town" or _state["progress_flags"].get("chapter1_cleared", false):
+	if _state.is_empty() or _battle != null or is_returning_to_town() or _state["world"]["location"] in ChapterOne.TOWNS or story_complete():
 		return false
 	var previous := world_state()
 	if not set_world("town", [5,4], previous["quest_step"]):
@@ -607,9 +649,173 @@ func resume_exploration() -> bool:
 func set_world(location: String, cell: Array, quest_step: int) -> bool:
 	if _state.is_empty() or _battle != null or not ChapterOne.TITLES.has(location) or cell.size() != 2:
 		return false
-	if not ChapterOne.is_walkable(location, Vector2i(int(cell[0]), int(cell[1]))) or quest_step < 0 or quest_step > ChapterOne.STEPS.size():
+	if not ChapterOne.is_walkable(location, Vector2i(int(cell[0]), int(cell[1]))) or quest_step < 0 or quest_step > StoryCampaign.total_steps():
 		return false
 	_state["world"] = {"location": location, "player_cell": [int(cell[0]), int(cell[1])], "quest_step": quest_step}
+	return true
+
+
+func current_story_step() -> Dictionary:
+	return StoryCampaign.step(int(world_state().get("quest_step",0)), _state.get("story_task", {}))
+
+
+func journal_entries() -> Array[Dictionary]:
+	var entries := StoryCampaign.journal(_state.get("progress_flags", {}))
+	for entry in entries:
+		if entry["id"] == "R05":
+			var chosen: Array[String] = []
+			var unused: Array[String] = []
+			for identifier in StoryCampaign.data()["keeper_learned"]:
+				if identifier in StoryCampaign.data()["keeper_loadout"]:
+					chosen.append(describe_ability(identifier))
+				else:
+					unused.append(abilities[identifier]["name"])
+			entry["loadout"] = "当時の装着 %d枠\n%s\n習得済み・未装着: %s" % [Loadout.capacity(false,true),"\n".join(chosen),"、".join(unused)]
+	return entries
+
+
+func story_complete() -> bool:
+	return _state.get("progress_flags", {}).get("story_v1_cleared", false)
+
+
+func story_audit() -> Array[String]:
+	return StoryCampaign.audit()
+
+
+func chapter_one_pause() -> bool:
+	var flags: Dictionary = _state.get("progress_flags", {})
+	return flags.get("chapter1_cleared", false) and not flags.get("chapter1_continued", false)
+
+
+func continue_story() -> bool:
+	if _battle != null or not chapter_one_pause() or int(world_state().get("quest_step",0)) != ChapterOne.STEPS.size():
+		return false
+	_state["progress_flags"]["chapter1_continued"] = true
+	return true
+
+
+func story_lines(entry: Dictionary = {}) -> Array:
+	if entry.is_empty():
+		entry = current_story_step()
+	var definition := StoryCampaign.event(entry.get("event", ""))
+	if not definition.is_empty() and StoryCampaign.apply_event(_state["progress_flags"],entry["event"]).is_empty():
+		return []
+	var lines: Array = definition.get("text", []).duplicate()
+	if lines.is_empty():
+		lines = entry.get("text", []).duplicate()
+	if definition.has("reaction"):
+		var changed := false
+		for actor in _state["party"]:
+			changed = changed or int(actor["erosion"]) >= 30 or not str(actor["monster_form"]).is_empty()
+		var reactions := {"archive":["記録係は、旅人の通行札を確かめて記録を開いた。","記録係は変わり始めた身体を見て一度手を止めたが、同じ通行札を確かめて記録を開いた。"],"school":["教習係は、今使える枠と習得済みの技を順に確認した。","教習係は身体の変化より先に、使える枠と覚えた技を確認した。"],"teaching":["町の人は、旅をした仲間に教習の手伝いを頼んだ。","町の人は、身体の変化した仲間にも同じ役目を頼んだ。『覚えた手順を次の人へ教えてほしい』。"]}
+		lines.push_front("【現在】" + reactions[definition["reaction"]][1 if changed else 0])
+	return lines
+
+
+func replayable_records() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for identifier in StoryCampaign.data()["events"]:
+		var definition := StoryCampaign.event(identifier)
+		if definition.get("past",false) and _state["progress_flags"].get("story_event_"+identifier,false):
+			result.append({"id":identifier,"text":definition["text"].duplicate()})
+	return result
+
+
+func start_revisit_task(identifier: String) -> bool:
+	var entry := current_story_step()
+	if _battle != null or is_returning_to_town() or entry.get("kind") != "choice" or world_state()["location"] != entry["location"] or world_state()["player_cell"] != entry["cell"]:
+		return false
+	if identifier not in ["teaching","reply"]:
+		return false
+	var clue_id := "R08" if identifier == "teaching" else "R05"
+	if StoryCampaign.stage(_state["progress_flags"],clue_id) == 2:
+		return false
+	_state["story_task"] = {"id":identifier,"step":0}
+	return true
+
+
+func gate_requirements(team: Array) -> Array[String]:
+	var reasons: Array[String] = []
+	var entry := current_story_step()
+	if entry.get("kind") != "gate" or world_state()["location"] != entry.get("location") or world_state()["player_cell"] != entry.get("cell") or is_returning_to_town():
+		return ["三つの操作台がある地点へ進んでください。"]
+	if StoryCampaign.apply_event(_state["progress_flags"],"operation").is_empty():
+		reasons.append("町の教習と番人への応答を先に確かめてください。")
+	if team.size() != 3:
+		reasons.append("担当する仲間を三人選んでください。")
+	var seen: Array = []
+	for identifier in team:
+		var actor := _member(str(identifier))
+		if actor.is_empty() or identifier in seen:
+			reasons.append("同じ仲間を二つの操作台へ配置できません。")
+			continue
+		seen.append(identifier)
+		if actor["hp"] <= 0:
+			reasons.append(actor["name"] + "は戦闘不能です。")
+		for ability_id in ["firm_guard","sound_wave"]:
+			if not ability_id in _available(actor) or not ability_id in actor["equipped_abilities"]:
+				reasons.append(actor["name"] + "に" + abilities[ability_id]["name"] + "の装着が必要です。")
+		if actor["mp"] < gate_mp_cost():
+			reasons.append(actor["name"] + "のMPが足りません。")
+	return reasons
+
+
+func gate_mp_cost() -> int:
+	return int(abilities["firm_guard"]["cost"]) + int(abilities["sound_wave"]["cost"])
+
+
+func advance_story_step(team: Array = []) -> bool:
+	if _battle != null or _state.is_empty() or is_returning_to_town():
+		return false
+	var entry := current_story_step()
+	var world := world_state()
+	if entry.is_empty() or world["location"] != entry["location"] or world["player_cell"] != entry["cell"]:
+		return false
+	if entry["kind"] == "battle" and _story_victory_step != int(world["quest_step"]):
+		return false
+	if entry["kind"] == "choice" and (StoryCampaign.stage(_state["progress_flags"],"R05") != 2 or StoryCampaign.stage(_state["progress_flags"],"R08") != 2):
+		return false
+	if entry["kind"] == "gate" and (not gate_requirements(team).is_empty() or _state["progress_flags"].get("story_event_operation",false)):
+		return false
+	if entry["kind"] == "story_complete" and not StoryCampaign.all_resolved(_state["progress_flags"]):
+		return false
+	var candidate := _state.duplicate(true)
+	if entry.has("event"):
+		var flags := StoryCampaign.apply_event(candidate["progress_flags"],entry["event"])
+		if flags.is_empty():
+			return false
+		candidate["progress_flags"] = flags
+		if StoryCampaign.event(entry["event"]).get("training",false):
+			for actor in candidate["party"]:
+				for ability_id in ["firm_guard","sound_wave"]:
+					if not ability_id in actor["learned_abilities"]:
+						actor["learned_abilities"].append(ability_id)
+	if entry.has("flag"):
+		candidate["progress_flags"][entry["flag"]] = true
+	for identifier in entry.get("flags",[]):
+		candidate["progress_flags"][identifier] = true
+	if entry["kind"] == "gate":
+		candidate["gate_team"] = team.duplicate()
+		for actor in candidate["party"]:
+			if actor["id"] in team:
+				actor["mp"] -= gate_mp_cost()
+	if entry["kind"] == "complete":
+		candidate["progress_flags"]["chapter1_cleared"] = true
+	if entry["kind"] == "story_complete":
+		candidate["progress_flags"]["story_v1_cleared"] = true
+	if entry["kind"] == "travel":
+		candidate["world"]["location"] = entry["destination"]
+		candidate["world"]["player_cell"] = entry["spawn"].duplicate()
+	var task: Dictionary = candidate.get("story_task", {})
+	if not task.is_empty():
+		task["step"] += 1
+		candidate["story_task"] = {} if task["step"] >= StoryCampaign.data()["branches"][task["id"]].size() else task
+	else:
+		candidate["world"]["quest_step"] += 1
+	if not _valid_state(candidate):
+		return false
+	_state = candidate
+	_story_victory_step = -1
 	return true
 
 
