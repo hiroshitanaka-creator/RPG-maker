@@ -1,3 +1,4 @@
+param([switch]$HumanPlaytest)
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
@@ -17,4 +18,6 @@ if ($LASTEXITCODE -ne 0 -or ($importLog -join "`n") -match '(?m)^(SCRIPT ERROR|E
     throw 'インポート検査に失敗したため起動しません。'
 }
 # このスクリプトは利用者が操作するゲーム画面を開く。
-Start-Process -FilePath $windowEngine -ArgumentList @('--path', ('"' + $repoRoot + '"')) -WorkingDirectory $repoRoot -WindowStyle Normal
+$gameArguments = @('--path', ('"' + $repoRoot + '"'))
+if ($HumanPlaytest) { $gameArguments += @('--', '--human-playtest') }
+Start-Process -FilePath $windowEngine -ArgumentList $gameArguments -WorkingDirectory $repoRoot -WindowStyle Normal

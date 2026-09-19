@@ -9,6 +9,7 @@ var jobs: Dictionary = {}
 var abilities: Dictionary = {}
 var enemy_definitions: Dictionary = {}
 var errors: Array[String] = []
+var play_metrics := PlaySessionMetrics.new()
 
 var _state: Dictionary = {}
 var _battle: BattleState
@@ -17,6 +18,7 @@ var _claimed: bool = true
 var _field_battle: bool = false
 var _story_wave_step: int = -1
 var _story_wave_number: int = 0
+var _expedition_battle_stage: int = -1
 
 
 func _init() -> void:
@@ -27,6 +29,7 @@ func _init() -> void:
 	errors.assign(catalog.errors)
 	errors.append_array(StoryCampaign.audit())
 	errors.append_array(ExplorationSites.audit(abilities,jobs))
+	errors.append_array(CampaignContent.audit(enemy_definitions))
 	if enemy_definitions.size() != 30:
 		errors.append("v1の敵データは30種類です。")
 	for index in range(StoryCampaign.total_steps()):
@@ -76,14 +79,16 @@ func new_game(party_size: int = 4) -> bool:
 			"hp": int(job["stats"]["hp"]), "max_hp": int(job["stats"]["hp"]),
 			"mp": int(job["stats"]["mp"]), "max_mp": int(job["stats"]["mp"])
 		})
-	_state = {"format_version": 1, "party": party, "inventory": {"potion": 3},
+	play_metrics = PlaySessionMetrics.new()
+	_state = {"format_version": 1, "party": party, "leader_id":"pc_01", "inventory": {"potion": 3},
 		"progress_flags": {"chapter1_cleared": false, "midgame_slots": false},
-		"field_battles": 0, "return_point": {}, "story_battle": {},
+		"field_battles": 0, "return_point": {}, "story_battle": {}, "content_revision":1, "expedition":{},
 		"world": {"location": "town", "player_cell": [2, 4], "quest_step": 0}}
 	_battle = null
 	_claimed = true
 	_field_battle = false
 	_story_wave_step = -1
+	_expedition_battle_stage = -1
 	return true
 
 
@@ -109,6 +114,7 @@ func import_state(value: Dictionary) -> bool:
 	_claimed = true
 	_field_battle = false
 	_story_wave_step = -1
+	_expedition_battle_stage = -1
 	return true
 
 
@@ -126,6 +132,8 @@ func _valid_state(value: Dictionary) -> bool:
 	if not StoryCampaign.validate_flags(value["progress_flags"]):
 		return false
 	if not ExplorationSites.valid_flags(value["progress_flags"]):
+		return false
+	if not CampaignContent.valid_state(value):
 		return false
 	if value["progress_flags"].get("story_v1_cleared", false) and not StoryCampaign.all_resolved(value["progress_flags"]):
 		return false
@@ -145,12 +153,16 @@ func _valid_state(value: Dictionary) -> bool:
 			return false
 	var active_world: Dictionary = value["world"] if return_point.is_empty() else return_point
 	var active_step := StoryCampaign.step(active_world["quest_step"],task)
+	if not value.get("expedition",{}).is_empty():
+		active_step = CampaignContent.step(value["expedition"])
 	if not active_step.is_empty() and active_world["location"] != active_step["location"]:
 		return false
 	var progress: Variant = value.get("story_battle",{})
 	if not progress is Dictionary:
 		return false
 	if not progress.is_empty():
+		if not value.get("expedition",{}).is_empty():
+			return false
 		if not progress.get("step") is int or not progress.get("cleared") is int or progress["step"] != active_world["quest_step"] or active_step.get("kind") != "battle":
 			return false
 		if progress["cleared"] < 0 or progress["cleared"] > StoryCampaign.battle_waves(active_step).size():
@@ -209,6 +221,8 @@ func _valid_state(value: Dictionary) -> bool:
 		var slots := Loadout.capacity(bool(value["progress_flags"].get("midgame_slots", false)), not form.is_empty())
 		if not Loadout.validate(available, equipped_ids, slots).is_empty():
 			return false
+	if value.has("leader_id") and (not value["leader_id"] is String or not value["leader_id"] in ids):
+		return false
 	var team: Variant = value.get("gate_team", [])
 	if not team is Array:
 		return false
@@ -231,6 +245,9 @@ static func _valid_world(world: Dictionary, flags: Dictionary = {}) -> bool:
 	if not world["quest_step"] is int or world["quest_step"] < 0 or world["quest_step"] > StoryCampaign.total_steps():
 		return false
 	var cell: Variant = world["player_cell"]
+	if not str(world.get("section","")).is_empty():
+		var section := CampaignContent.section(str(world["section"]))
+		return section.get("location") == world["location"] and cell is Array and cell.size() == 2 and cell[0] is int and cell[1] is int and CampaignContent.is_walkable(world["section"],Vector2i(cell[0],cell[1]))
 	return cell is Array and cell.size() == 2 and cell[0] is int and cell[1] is int and ExplorationSites.is_walkable(world["location"], Vector2i(cell[0],cell[1]),flags)
 
 
@@ -256,6 +273,7 @@ func change_job(actor_id: String, job_id: String) -> bool:
 	var actor := _member(actor_id)
 	if actor.is_empty() or (actor["irreversible"] and jobs[job_id]["type"] == "human"):
 		return false
+	var previous_job: String = actor["job_id"]
 	actor["job_id"] = job_id
 	if jobs[job_id]["type"] == "human":
 		actor["last_human_job"] = job_id
@@ -264,6 +282,7 @@ func change_job(actor_id: String, job_id: String) -> bool:
 		_learn_form(actor, job_id)
 	_refresh_caps(actor)
 	_reconcile_slots(actor)
+	play_metrics.record_event("job_changed",{"actor":actor_id,"from":previous_job,"to":job_id})
 	return true
 
 
@@ -312,6 +331,7 @@ func equip_ability(actor_id: String, ability_id: String) -> bool:
 	if not Loadout.validate(_available(actor), candidate, slot_limit(actor_id)).is_empty():
 		return false
 	actor["equipped_abilities"] = candidate
+	play_metrics.record_event("ability_equipped",{"actor":actor_id,"ability":ability_id})
 	return true
 
 
@@ -322,6 +342,7 @@ func unequip_ability(actor_id: String, ability_id: String) -> bool:
 	if actor.is_empty() or not ability_id in actor["equipped_abilities"]:
 		return false
 	actor["equipped_abilities"].erase(ability_id)
+	play_metrics.record_event("ability_unequipped",{"actor":actor_id,"ability":ability_id})
 	return true
 
 
@@ -540,10 +561,13 @@ func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
 	_claimed = false
 	_field_battle = false
 	_story_wave_step = -1
+	_expedition_battle_stage = -1
 	return _battle
 
 
 func story_wave_index() -> int:
+	if not _state.get("expedition",{}).is_empty():
+		return int(_state["expedition"]["wave"])
 	var progress: Dictionary = _state.get("story_battle",{})
 	return int(progress.get("cleared",0)) if progress.get("step") == world_state().get("quest_step") else 0
 
@@ -569,6 +593,8 @@ func start_story_battle() -> BattleState:
 	if encounter != null:
 		_story_wave_step = int(world["quest_step"])
 		_story_wave_number = next
+		if not _state.get("expedition",{}).is_empty():
+			_expedition_battle_stage = int(_state["expedition"]["stage"])
 	return encounter
 
 
@@ -576,6 +602,8 @@ func field_battle_enemies() -> Array:
 	var world := world_state()
 	if world.is_empty() or story_complete():
 		return []
+	if not _state.get("expedition",{}).is_empty():
+		return [["slime"],["bat"]][int(_state.get("field_battles",0))%2]
 	var encounters: Array = []
 	if world["location"] == "waterway" and world["quest_step"] >= 3:
 		encounters = [["slime"], ["bat"]]
@@ -613,7 +641,9 @@ func finish_battle() -> bool:
 	if _field_battle:
 		_state["field_battles"] = int(_state.get("field_battles", 0)) + 1
 	var won: bool = _battle.phase == BattleState.Phase.VICTORY
-	if won and _story_wave_step >= 0:
+	if won and _expedition_battle_stage >= 0:
+		_state["expedition"]["wave"] = _story_wave_number+1
+	elif won and _story_wave_step >= 0:
 		_state["story_battle"] = {"step":_story_wave_step,"cleared":_story_wave_number+1}
 	var reward := 0
 	if won:
@@ -621,6 +651,7 @@ func finish_battle() -> bool:
 			reward += int(enemy_definitions[identifier]["jp"])
 	_state["inventory"]["potion"] = _battle.potions
 	var erosion_results := erosion_preview()
+	var battle_result := {"enemies":_battle_enemy_ids.duplicate(),"victory":won,"rounds":_battle.round_number,"jp":reward,"erosion":erosion_results.duplicate(true),"remaining":_battle.snapshot()["actors"]}
 	var member_index := 0
 	for actor in _state["party"]:
 		var combatant := _battle.actor_by_id(actor["id"])
@@ -658,9 +689,11 @@ func finish_battle() -> bool:
 				_learn_form(actor, actor["job_id"])
 		_refresh_caps(actor)
 		_reconcile_slots(actor)
+	play_metrics.record_event("battle_finished",battle_result)
 	_battle = null
 	_field_battle = false
 	_story_wave_step = -1
+	_expedition_battle_stage = -1
 	return true
 
 
@@ -695,26 +728,100 @@ func resume_exploration() -> bool:
 	if _battle != null or not is_returning_to_town():
 		return false
 	var previous: Dictionary = _state["return_point"]
-	if not set_world(previous["location"], previous["player_cell"], previous["quest_step"]):
+	if not set_world(previous["location"], previous["player_cell"], previous["quest_step"],previous.get("section","")):
 		return false
 	_state["return_point"] = {}
 	return true
 
 
-func set_world(location: String, cell: Array, quest_step: int) -> bool:
+func set_world(location: String, cell: Array, quest_step: int, section: String = "") -> bool:
 	if _state.is_empty() or _battle != null or not ChapterOne.TITLES.has(location) or cell.size() != 2:
 		return false
-	if not ExplorationSites.is_walkable(location, Vector2i(int(cell[0]), int(cell[1])),_state["progress_flags"]) or quest_step < 0 or quest_step > StoryCampaign.total_steps():
+	var position := Vector2i(int(cell[0]),int(cell[1]))
+	var walkable: bool = ExplorationSites.is_walkable(location,position,_state["progress_flags"]) if section.is_empty() else CampaignContent.section(section).get("location") == location and CampaignContent.is_walkable(section,position)
+	if not walkable or quest_step < 0 or quest_step > StoryCampaign.total_steps():
 		return false
 	_state["world"] = {"location": location, "player_cell": [int(cell[0]), int(cell[1])], "quest_step": quest_step}
+	if not section.is_empty():
+		_state["world"]["section"] = section
 	return true
 
 
 func current_story_step() -> Dictionary:
-	return StoryCampaign.step(int(world_state().get("quest_step",0)), _state.get("story_task", {}))
+	if not _state.get("expedition",{}).is_empty():
+		return CampaignContent.step(_state["expedition"])
+	var base := StoryCampaign.step(int(world_state().get("quest_step",0)), _state.get("story_task", {}))
+	if not _state.is_empty():
+		var pending := CampaignContent.pending(_state)
+		if not pending.is_empty():
+			base["kind"] = "expedition"
+			base["expedition_id"] = pending["id"]
+			base["objective"] = pending["title"]+"へ進む"
+	return base
+
+
+func begin_expedition(identifier: String) -> bool:
+	var pending := CampaignContent.pending(_state)
+	var entry := current_story_step()
+	if _battle != null or pending.get("id") != identifier or world_state().get("player_cell") != entry.get("cell"):
+		return false
+	var candidate := _state.duplicate(true)
+	candidate["expedition"] = {"id":identifier,"stage":0,"wave":0,"origin":world_state(),"solved":[]}
+	var room: Dictionary = pending["sections"][0]
+	candidate["world"] = {"location":room["location"],"player_cell":room["spawn"].duplicate(),"section":room["id"],"quest_step":pending["trigger_step"]}
+	if not _valid_state(candidate):
+		return false
+	_state = candidate
+	play_metrics.mark("circuits_started")
+	return true
+
+
+func answer_challenge(option: int) -> bool:
+	var entry := current_story_step()
+	if _battle != null or is_returning_to_town() or entry.get("kind") != "challenge" or world_state()["player_cell"] != entry["cell"] or option not in range(entry["options"].size()):
+		return false
+	play_metrics.mark("challenge_attempts")
+	play_metrics.record_event("challenge_answer",{"id":entry["id"],"option":option,"correct":option == entry["answer"]})
+	if option != entry["answer"]:
+		play_metrics.mark("challenge_mistakes")
+		return false
+	return _advance_expedition(true)
+
+
+func _advance_expedition(challenge_answered: bool = false) -> bool:
+	var entry := current_story_step()
+	if _battle != null or is_returning_to_town() or world_state()["player_cell"] != entry["cell"]:
+		return false
+	if entry["kind"] == "challenge" and not challenge_answered:
+		return false
+	if entry["kind"] == "battle" and not story_battle_cleared():
+		return false
+	var candidate := _state.duplicate(true)
+	var expedition: Dictionary = candidate["expedition"]
+	if entry["kind"] == "circuit_complete":
+		candidate["progress_flags"]["circuit_"+expedition["id"]+"_cleared"] = true
+		candidate["world"] = expedition["origin"].duplicate(true)
+		candidate["expedition"] = {}
+	else:
+		if entry["kind"] == "challenge":
+			expedition["solved"].append(entry["id"])
+			candidate["inventory"]["potion"] += int(entry["reward_potions"])
+		expedition["stage"] += 1
+		expedition["wave"] = 0
+		if entry["kind"] == "section_travel":
+			candidate["world"]["section"] = entry["destination"]
+			candidate["world"]["player_cell"] = entry["spawn"].duplicate()
+	if not _valid_state(candidate):
+		return false
+	_state = candidate
+	if entry["kind"] == "circuit_complete":
+		play_metrics.mark("circuits_completed")
+	return true
 
 
 func world_walkable_cells() -> Array:
+	if not str(world_state().get("section","")).is_empty():
+		return CampaignContent.walkable_cells(world_state()["section"])
 	var location: String = world_state().get("location","")
 	var result := ChapterOne.walkable_cells(location)
 	for site in exploration_sites():
@@ -726,6 +833,8 @@ func world_walkable_cells() -> Array:
 
 
 func exploration_sites() -> Array[Dictionary]:
+	if not str(world_state().get("section","")).is_empty():
+		return []
 	return ExplorationSites.in_location(world_state().get("location",""),_state.get("progress_flags",{}))
 
 
@@ -878,6 +987,8 @@ func gate_mp_cost() -> int:
 
 
 func advance_story_step(team: Array = []) -> bool:
+	if not _state.get("expedition",{}).is_empty():
+		return _advance_expedition()
 	if _battle != null or _state.is_empty() or is_returning_to_town():
 		return false
 	var entry := current_story_step()
@@ -942,6 +1053,37 @@ func current_battle() -> BattleState:
 	return _battle
 
 
+func set_party_leader(actor_id: String) -> bool:
+	if _battle != null or _member(actor_id).is_empty():
+		return false
+	_state["leader_id"] = actor_id
+	return true
+
+
+func walking_party() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var members: Array = _state.get("party",[])
+	if members.is_empty():
+		return result
+	var leader: String = _state.get("leader_id",members[0]["id"])
+	result.append(_member(leader).duplicate(true))
+	for member in members:
+		if member["id"] != leader:
+			result.append(member.duplicate(true))
+	return result
+
+
+func save_playtest_report(path: String = "user://playtest-report.json") -> bool:
+	if not path.begins_with("user://") or ".." in path:
+		return false
+	play_metrics.completed = story_complete()
+	var cleared: Array[String] = []
+	for circuit in CampaignContent.data()["circuits"]:
+		if _state.get("progress_flags",{}).get("circuit_"+circuit["id"]+"_cleared",false):
+			cleared.append(circuit["id"])
+	return play_metrics.export_report(path,{"engine":Engine.get_version_info()["string"],"world":world_state(),"party_size":_state.get("party",[]).size(),"content_revision":_state.get("content_revision",0),"circuits_completed":cleared,"content_sha256":CampaignContent.content_hash()})
+
+
 func save_game(path: String) -> bool:
 	if _battle != null or not path.begins_with("user://") or ".." in path or not _valid_state(_state):
 		return false
@@ -949,7 +1091,10 @@ func save_game(path: String) -> bool:
 	var file := FileAccess.open(temporary, FileAccess.WRITE)
 	if file == null:
 		return false
-	file.store_string(JSON.stringify(_state, "\t"))
+	var document := _state.duplicate(true)
+	# 計測は進行状態と分離し、読むだけで進行状態の比較が変化しないようにする。
+	document["_play_session"] = play_metrics.snapshot()
+	file.store_string(JSON.stringify(document, "\t"))
 	file.close()
 	return DirAccess.rename_absolute(temporary, path) == OK
 
@@ -960,4 +1105,13 @@ func load_game(path: String) -> bool:
 	var document := JSON.new()
 	if document.parse(FileAccess.get_file_as_string(path)) != OK or not document.data is Dictionary:
 		return false
-	return import_state(document.data)
+	var candidate: Dictionary = document.data.duplicate(true)
+	var metrics := PlaySessionMetrics.new()
+	var raw_metrics: Variant = candidate.get("_play_session",{})
+	if not raw_metrics is Dictionary or not metrics.restore(raw_metrics):
+		return false
+	candidate.erase("_play_session")
+	if not import_state(candidate):
+		return false
+	play_metrics = metrics
+	return true

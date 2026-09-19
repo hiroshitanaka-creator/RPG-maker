@@ -32,7 +32,7 @@ jobs:
   godot-import:
     name: Godot・凍結受入テスト
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -123,12 +123,27 @@ jobs:
           fi
           test "$(grep -c '^EXPLORATION_PASS:' exploration.log)" -eq 1
 
+      - name: 人物表示・魔物化外見・試遊記録の検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_party_playtest.gd 2>&1 | tee party-playtest.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" party-playtest.log; then
+            exit 1
+          fi
+          test "$(grep -c '^PARTY_PLAYTEST_PASS:' party-playtest.log)" -eq 1
+
       - name: v1物語の二つの再訪順と結末を検査
         if: steps.check.outputs.exists == 'true'
         run: |
           set -o pipefail
-          timeout 300 ./godot --headless --path . --script res://tools/check_story_campaign.gd 2>&1 | tee story.log
-          timeout 300 ./godot --headless --path . --script res://tools/check_story_campaign.gd -- --three-member-party --teaching-first 2>&1 | tee -a story.log
+          timeout 180 ./godot --headless --path . --script res://tools/check_campaign_boundaries.gd 2>&1 | tee content-boundaries.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" content-boundaries.log; then
+            exit 1
+          fi
+          test "$(grep -c '^CONTENT_BOUNDARY_PASS:' content-boundaries.log)" -eq 1
+          timeout 600 ./godot --headless --path . --script res://tools/check_campaign_content.gd -- --automated-playtest 2>&1 | tee story.log
+          timeout 600 ./godot --headless --path . --script res://tools/check_campaign_content.gd -- --three-member-party --teaching-first --automated-playtest 2>&1 | tee -a story.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" story.log; then
             exit 1
           fi
@@ -149,6 +164,8 @@ jobs:
             erosion.log
             encounters.log
             exploration.log
+            party-playtest.log
+            content-boundaries.log
             story.log
             docs/verification/scope-lock-current.json
             .tools/verification/current-*/*.log

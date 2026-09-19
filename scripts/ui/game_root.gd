@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -31,6 +31,14 @@ var _party_return: Mode = Mode.FIELD
 var _gate_team: Array = []
 var _journal_return: Mode = Mode.FIELD
 var _journal_index: int = 0
+var _trail: Array[Dictionary] = []
+var _trail_location: String = ""
+var _replay: Array[Dictionary] = []
+var _replay_index: int = 0
+var _replay_timer: float = 0.0
+var _replay_party: Array = []
+var _replay_enemies: Array = []
+var _review_return: Mode = Mode.MENU
 
 
 func _ready() -> void:
@@ -60,17 +68,36 @@ func _ready() -> void:
 	_refresh()
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if game != null and not game.export_state().is_empty():
+		game.play_metrics.update_clock(str(Mode.keys()[mode]).to_lower(),int(_step().get("chapter",6)),get_window().has_focus())
+		game.play_metrics.completed = game.story_complete()
+	if not _replay.is_empty():
+		_replay_timer -= delta
+		if _replay_timer <= 0:
+			_replay_index += 1
+			_replay_timer = 0.35
+			if _replay_index >= _replay.size():
+				_replay.clear()
+			_refresh()
 	if mode == Mode.FIELD and _walk_frame != 0 and Time.get_ticks_msec()-_last_move_ms > 180:
 		_walk_frame = 0
 		_refresh()
 
 
 func _exit_tree() -> void:
+	if game != null and not game.export_state().is_empty() and game.play_metrics.source != "unclassified":
+		game.save_playtest_report("user://playtest-"+game.play_metrics.source+"-latest.json")
 	OS.remove_logger(_diagnostics)
 
 
 func _input(event: InputEvent) -> void:
+	if (event is InputEventKey or event is InputEventMouseButton) and event.pressed and game != null:
+		game.play_metrics.touch()
+	if not _replay.is_empty() and event is InputEventKey and event.pressed and event.keycode in [KEY_ENTER,KEY_SPACE,KEY_E]:
+		submit_player_action({"kind":"skip_presentation"})
+		get_viewport().set_input_as_handled()
+		return
 	if not event is InputEventKey or not event.pressed:
 		return
 	if mode == Mode.DIALOGUE and event.keycode in [KEY_ENTER, KEY_SPACE, KEY_E]:
@@ -93,11 +120,21 @@ func _input(event: InputEvent) -> void:
 
 
 func start_new_game(party_size: int = 4) -> void:
+	var previous_source: String = game.play_metrics.source
 	if not game.new_game(party_size):
 		_notice = "ゲームを開始できません。" + "\n".join(game.errors)
 		_refresh()
 		return
 	_risk_action.clear()
+	_trail.clear()
+	_replay.clear()
+	_trail_location = ""
+	if "--human-playtest" in OS.get_cmdline_user_args():
+		game.play_metrics.set_source("human")
+	elif "--automated-playtest" in OS.get_cmdline_user_args():
+		game.play_metrics.set_source("automated")
+	elif previous_source in ["human","automated"]:
+		game.play_metrics.set_source(previous_source)
 	_risk_preview.clear()
 	_confirmed_erosion_actors.clear()
 	_risk_bypass = false
@@ -128,12 +165,15 @@ func automation_snapshot() -> Dictionary:
 	names[Mode.VISITS] = "visits"
 	names[Mode.GATE] = "gate"
 	names[Mode.EXPLORATION] = "exploration"
+	names[Mode.REVIEW] = "review"
+	names[Mode.CHALLENGE] = "challenge"
 	var result := {"mode": "error" if not diagnostics.is_empty() else names[mode],
 		"chapter1_cleared": diagnostics.is_empty() and saved.get("progress_flags", {}).get("chapter1_cleared", false)}
 	result["story_complete"] = diagnostics.is_empty() and game.story_complete()
 	result["quest_step"] = game.world_state().get("quest_step",0)
 	result["chapter"] = int(_step().get("chapter",6 if game.story_complete() else 1))
 	result["battle_wave"] = game.story_wave_index()
+	result["section"] = game.world_state().get("section","")
 	if not diagnostics.is_empty():
 		result["errors"] = diagnostics
 		return result
@@ -157,6 +197,17 @@ func automation_snapshot() -> Dictionary:
 
 func submit_player_action(action: Dictionary) -> bool:
 	var kind: String = str(action.get("kind", ""))
+	game.play_metrics.touch()
+	if not _replay.is_empty():
+		_replay.clear()
+		if kind == "skip_presentation":
+			_refresh()
+			return true
+	if kind == "review" and mode in [Mode.MENU,Mode.FIELD,Mode.COMPLETE]:
+		_review_return = mode
+		mode = Mode.REVIEW
+		_refresh()
+		return true
 	if mode == Mode.EROSION_CONFIRMATION:
 		return _respond_to_erosion(kind)
 	if not _risk_bypass and _request_erosion_confirmation(action):
@@ -173,8 +224,16 @@ func submit_player_action(action: Dictionary) -> bool:
 					return false
 				var world := game.world_state()
 				var next := Vector2i(int(world["player_cell"][0])+dx, int(world["player_cell"][1])+dy)
-				accepted = game.set_world(world["location"], [next.x,next.y], world["quest_step"])
+				accepted = game.set_world(world["location"], [next.x,next.y], world["quest_step"],world.get("section",""))
 				if accepted:
+					var trail_key: String = world["location"]+":"+str(world.get("section",""))
+					if _trail_location != trail_key:
+						_trail.clear()
+					_trail_location = trail_key
+					_trail.push_front({"cell":world["player_cell"].duplicate(),"facing":_facing})
+					if _trail.size() > 3:
+						_trail.pop_back()
+					game.play_metrics.mark("moved_cells")
 					_last_move_ms = Time.get_ticks_msec()
 					_facing = 1 if dx < 0 else (2 if dx > 0 else (3 if dy < 0 else 0))
 					_walk_frame = (_walk_frame+1) % 4
@@ -232,6 +291,10 @@ func submit_player_action(action: Dictionary) -> bool:
 				_purify_actor = ""
 				mode = _party_return
 				accepted = true
+			elif kind == "set_leader":
+				accepted = game.set_party_leader(str(action.get("actor","")))
+				if accepted:
+					_trail.clear()
 			elif kind == "request_purify":
 				accepted = _request_purify(str(action.get("actor", "")))
 			elif kind == "cancel_purify" and not _purify_actor.is_empty():
@@ -303,7 +366,32 @@ func submit_player_action(action: Dictionary) -> bool:
 			elif kind == "use_site":
 				accepted = game.use_exploration_site(str(action.get("actor","")),str(action.get("ability","")))
 				if accepted:
+					game.play_metrics.mark("exploration_rewards" if game.exploration_at_player()["kind"] == "cache" else "devices_opened")
 					_notice = "補給を受け取りました。" if game.exploration_at_player()["kind"] == "cache" else "近道と補給箱が開きました。開通状態はセーブに残ります。"
+		Mode.REVIEW:
+			if kind == "back":
+				mode = _review_return
+				accepted = true
+			elif kind == "set_playtest_source":
+				accepted = game.play_metrics.set_source(str(action.get("source","")))
+			elif kind == "submit_review":
+				accepted = game.play_metrics.add_review(int(action.get("exploration",0)),int(action.get("reward",0)),int(action.get("difficulty",0)),str(action.get("note","")))
+				_notice = "回答を記録しました。セーブまたはJSON保存で残せます。" if accepted else "人間の試遊を選び、3項目の評価を選択してください。"
+			elif kind == "export_playtest":
+				accepted = game.save_playtest_report()
+				_notice = "試遊記録を保存しました: "+ProjectSettings.globalize_path("user://playtest-report.json") if accepted else "試遊記録を保存できませんでした。"
+		Mode.CHALLENGE:
+			if kind == "back":
+				mode = Mode.FIELD
+				accepted = true
+			elif kind == "challenge_answer":
+				var entry := _step()
+				if game.answer_challenge(int(action.get("option",-1))):
+					_notice = ""
+					_show_dialogue([entry["resolution"],"備蓄から回復薬%d個を受け取った。" % entry["reward_potions"]],false)
+				else:
+					_notice = "記録に書かれた条件と照らして、もう一度選べます。"
+				accepted = true
 	if accepted:
 		_refresh()
 	return accepted
@@ -370,6 +458,12 @@ func _interact() -> bool:
 		_refresh()
 		return false
 	match step["kind"]:
+		"expedition":
+			return game.begin_expedition(step["expedition_id"])
+		"section_travel", "circuit_complete":
+			return game.advance_story_step()
+		"challenge":
+			mode = Mode.CHALLENGE
 		"dialogue":
 			var lines := game.story_lines(step)
 			if lines.is_empty():
@@ -437,11 +531,20 @@ func _battle_action(action: Dictionary) -> bool:
 		if not encounter.can_resolve():
 			return false
 		var story_battle := not game.is_field_battle()
+		_replay_party = game.export_state()["party"].duplicate(true)
+		_replay_enemies = game.current_enemy_ids().duplicate()
 		var events := encounter.resolve_round()
+		game.play_metrics.mark("battle_rounds")
+		_replay.clear()
+		_replay_index = 0
+		_replay_timer = 0.35
 		for event in events:
 			_battle_log.append(event["message"])
+			if event["code"] in ["damage","heal","guard","revive","steal","fallen"]:
+				_replay.append(event.duplicate(true))
 		_target_action.clear()
 		if encounter.phase == BattleState.Phase.VICTORY:
+			game.play_metrics.mark("battles_won")
 			var before := game.export_state()
 			game.finish_battle()
 			var lines: Array = ["勝利！"]
@@ -471,6 +574,7 @@ func _battle_action(action: Dictionary) -> bool:
 					lines.append("%d/%d戦を終えた。帰還・編成・保存を済ませてから、同じ地点で次の敵へ進める。" % [game.story_wave_index(),game.story_wave_count()])
 			_show_dialogue(lines, story_battle and game.story_battle_cleared())
 		elif encounter.phase == BattleState.Phase.DEFEAT:
+			game.play_metrics.mark("battles_lost")
 			game.finish_battle()
 			mode = Mode.DEFEAT
 		else:
@@ -534,6 +638,8 @@ func _refresh() -> void:
 		Mode.VISITS: _render_visits()
 		Mode.GATE: _render_gate()
 		Mode.EXPLORATION: _render_exploration()
+		Mode.REVIEW: _render_review()
+		Mode.CHALLENGE: _render_challenge()
 		Mode.EROSION_CONFIRMATION: _render_erosion_confirmation()
 		Mode.COMPLETE: _render_complete()
 		Mode.DEFEAT:
@@ -541,7 +647,11 @@ func _refresh() -> void:
 			_button(_body, "セーブから再開", _load_save)
 			_button(_body, "タイトルへ", _to_menu)
 	if not _notice.is_empty():
-		_body.add_child(_label(_notice, 10))
+		var notice := _label(_notice,10)
+		notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_body.add_child(notice)
+	if not _replay.is_empty():
+		_render_presentation()
 
 
 func _render_menu() -> void:
@@ -552,6 +662,7 @@ func _render_menu() -> void:
 	_button(_body, "新しくはじめる（4人）", start_new_game.bind(4))
 	_button(_body, "新しくはじめる（3人）", start_new_game.bind(3))
 	_button(_body, "セーブから再開", _load_save)
+	_action_button(_body,"試遊の記録と評価",{"kind":"review"})
 	_button(_body, "終了", func() -> void: get_tree().quit())
 	if not game.errors.is_empty():
 		_body.add_child(_label("\n".join(game.errors), 10))
@@ -582,11 +693,15 @@ func _render_field() -> void:
 	var objective: String = "休息・編成後、探索へ戻る" if game.is_returning_to_town() else _step().get("objective", "町を歩く")
 	if not game.is_returning_to_town() and game.story_wave_count() > 1:
 		objective += "（%d/%d戦終了）" % [game.story_wave_index(),game.story_wave_count()]
-	var heading := _label("第%d章 %s / %s" % [int(_step().get("chapter",1)), ChapterOne.TITLES[world["location"]], objective], 11)
+	var place: String = ChapterOne.TITLES[world["location"]]
+	if not str(world.get("section","")).is_empty():
+		place += "・"+CampaignContent.section(world["section"])["title"]
+	var heading := _label("第%d章 %s / %s" % [int(_step().get("chapter",1)),place,objective], 11)
 	heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(heading)
 	var map := WorldView.new()
 	map.location = world["location"]
+	map.section_id = world.get("section","")
 	map.player_cell = Vector2i(int(world["player_cell"][0]), int(world["player_cell"][1]))
 	var goal: Array = [5,4] if game.is_returning_to_town() else _step().get("cell", world["player_cell"])
 	map.objective = Vector2i(int(goal[0]), int(goal[1]))
@@ -594,6 +709,9 @@ func _render_field() -> void:
 	map.walk_frame = _walk_frame
 	map.progress_flags = game.export_state()["progress_flags"]
 	map.sites = game.exploration_sites()
+	map.members = game.walking_party()
+	if _trail_location == world["location"]+":"+str(world.get("section","")):
+		map.trail = _trail.duplicate(true)
 	map.custom_minimum_size = Vector2(480, 160)
 	map.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	map.cell_clicked.connect(_map_clicked)
@@ -605,6 +723,7 @@ func _render_field() -> void:
 	_action_button(row, "調べる", {"kind":"interact"})
 	_action_button(row, "編成", {"kind":"party"})
 	_action_button(row, "手帳", {"kind":"journal"})
+	_action_button(row,"記録",{"kind":"review"})
 	_action_button(row, "セーブ", {"kind":"save"})
 	if world["location"] in ChapterOne.TOWNS:
 		_action_button(row, "宿で休む", {"kind":"rest"})
@@ -725,7 +844,14 @@ func _render_battle() -> void:
 	for actor in encounter.actors:
 		if actor.team != Combatant.Team.PARTY:
 			continue
-		var button := _button(allies, "%s%s HP%d\nMP%d/%d" % [actor.display_name, " ✓" if encounter.queued.has(actor.id) else "", actor.hp, actor.mp, actor.max_mp], _select_actor.bind(actor.id))
+		var card := HBoxContainer.new()
+		allies.add_child(card)
+		var member: Dictionary = {}
+		for candidate in game.export_state()["party"]:
+			if candidate["id"] == actor.id:
+				member = candidate
+		card.add_child(_actor_picture(member,"battle",0,Vector2(48,48)))
+		var button := _button(card, "%s%s\nHP%d\nMP%d/%d" % [actor.display_name, " ✓" if encounter.queued.has(actor.id) else "", actor.hp, actor.mp, actor.max_mp], _select_actor.bind(actor.id))
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.disabled = not actor.is_alive()
 	if not _actor.is_empty():
@@ -796,6 +922,7 @@ func _render_party() -> void:
 	selector.select(_party_index)
 	selector.item_selected.connect(func(index: int) -> void: _party_index = index; _refresh())
 	_body.add_child(selector)
+	_action_button(_body,"この仲間を先頭にする",{"kind":"set_leader","actor":actor["id"]})
 	var job_row := HBoxContainer.new()
 	_body.add_child(job_row)
 	var jobs := OptionButton.new()
@@ -1022,6 +1149,9 @@ func _load_save() -> void:
 		_refresh()
 		return
 	_gate_team = []
+	_trail.clear()
+	_replay.clear()
+	game.play_metrics.mark("loads")
 	_party_return = Mode.FIELD
 	mode = Mode.COMPLETE if game.chapter_one_pause() or game.story_complete() else Mode.FIELD
 	if not ChapterOne.missing_art().is_empty():
@@ -1031,6 +1161,7 @@ func _load_save() -> void:
 
 
 func _to_menu() -> void:
+	_replay.clear()
 	mode = Mode.MENU
 	_notice = ""
 	_refresh()
@@ -1046,6 +1177,110 @@ func _picture(path: String, dimensions: Vector2) -> TextureRect:
 	if _textures.has(path):
 		picture.texture = _textures[path]
 	return picture
+
+
+func _actor_picture(actor: Dictionary, kind: String, frame: int, dimensions: Vector2) -> Control:
+	var visual := CharacterVisuals.appearance(actor,kind,frame)
+	if not visual["available"]:
+		var missing := _label("外見\n未取込",8)
+		missing.custom_minimum_size = dimensions
+		return missing
+	var picture := _picture(visual["path"],dimensions)
+	var region := AtlasTexture.new()
+	region.atlas = picture.texture
+	region.region = visual["region"]
+	picture.texture = region
+	return picture
+
+
+func presentation_snapshot() -> Dictionary:
+	if _replay.is_empty():
+		return {"active":false}
+	var event: Dictionary = _replay[_replay_index]
+	var frames: Dictionary = {}
+	for actor in _replay_party:
+		frames[actor["id"]] = 2 if event["target"] == actor["id"] and event["code"] in ["damage","fallen"] else (1 if event["actor"] == actor["id"] and event["code"] in ["damage","heal","revive","steal"] else 0)
+	return {"active":true,"index":_replay_index,"frames":frames,"event":event.duplicate(true)}
+
+
+func _render_presentation() -> void:
+	var shade := PanelContainer.new()
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	add_child(shade)
+	var box := StyleBoxFlat.new()
+	box.bg_color = Color("0a101a")
+	for side in ["left","right","top","bottom"]:
+		box.set("content_margin_"+side,8)
+	shade.add_theme_stylebox_override("panel",box)
+	var column := VBoxContainer.new()
+	shade.add_child(column)
+	var event: Dictionary = _replay[_replay_index]
+	var banner := _label(event["message"],13)
+	banner.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	column.add_child(banner)
+	var arena := HBoxContainer.new()
+	arena.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	column.add_child(arena)
+	var enemies := VBoxContainer.new()
+	enemies.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	arena.add_child(enemies)
+	for identifier in _replay_enemies:
+		var definition: Dictionary = game.enemy_definitions[identifier]
+		enemies.add_child(_picture("res://assets/monsters/%s/idle.png" % definition.get("sprite_id",identifier),Vector2(64,64)))
+	var party := VBoxContainer.new()
+	arena.add_child(party)
+	var display := presentation_snapshot()
+	for actor in _replay_party:
+		var row := HBoxContainer.new()
+		party.add_child(row)
+		row.add_child(_actor_picture(actor,"battle",display["frames"][actor["id"]],Vector2(48,48)))
+		for state in event["snapshot"]["actors"]:
+			if state["id"] == actor["id"]:
+				row.add_child(_label("%s  HP %d/%d\nMP %d/%d" % [actor["name"],state["hp"],state["max_hp"],state["mp"],state["max_mp"]],10))
+	_action_button(column,"表示をスキップ  Enter",{"kind":"skip_presentation"})
+
+
+func _render_review() -> void:
+	var metrics: Dictionary = game.play_metrics.snapshot()
+	_body.add_child(_label("試遊の記録と評価",16))
+	_body.add_child(_label("経過 %.1f分 / 操作中 %.1f分 / 無操作 %.1f分 / 休止 %.1f分" % [metrics["elapsed_ms"]/60000.0,metrics["active_ms"]/60000.0,metrics["idle_ms"]/60000.0,metrics["pause_ms"]/60000.0],10))
+	_body.add_child(_label("記録区分: "+{"unclassified":"未指定","human":"人間の試遊・自己申告","automated":"自動操作"}[metrics["source"]],10))
+	_action_button(_body,"人間の試遊として記録する",{"kind":"set_playtest_source","source":"human"})
+	var row := HBoxContainer.new()
+	_body.add_child(row)
+	var ratings: Array[OptionButton] = []
+	for title in ["探索の分かりやすさ","報酬の満足度","難易度"]:
+		var choice := OptionButton.new()
+		choice.add_item(title)
+		for value in range(1,6):
+			choice.add_item(str(value))
+		row.add_child(choice)
+		ratings.append(choice)
+	_body.add_child(_label("探索・報酬: 1=低い、5=高い / 難易度: 1=易しい、5=難しい",9))
+	var note := TextEdit.new()
+	note.placeholder_text = "迷った場所、報酬が足りない場面、難しすぎた敵など"
+	note.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_body.add_child(note)
+	var buttons := HBoxContainer.new()
+	_body.add_child(buttons)
+	_button(buttons,"回答を記録",func() -> void: submit_player_action({"kind":"submit_review","exploration":ratings[0].selected,"reward":ratings[1].selected,"difficulty":ratings[2].selected,"note":note.text}))
+	_action_button(buttons,"JSONへ保存",{"kind":"export_playtest"})
+	_action_button(buttons,"戻る",{"kind":"back"})
+
+
+func _render_challenge() -> void:
+	var task := _step()
+	var question := _label(task["question"],14)
+	question.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(question)
+	var record := RichTextLabel.new()
+	record.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	record.text = task["record"]
+	record.add_theme_font_size_override("normal_font_size",11)
+	_body.add_child(record)
+	for index in range(task["options"].size()):
+		_action_button(_body,task["options"][index],{"kind":"challenge_answer","option":index})
+	_action_button(_body,"探索へ戻る",{"kind":"back"})
 
 
 static func _label(value: String, font_size: int) -> Label:

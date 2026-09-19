@@ -1,0 +1,55 @@
+{
+  "recorded_date": "2026-09-19",
+  "godot_version": "4.7.2.stable.official.ed1daf0bf",
+  "additional_checks": {
+    "final-check_party_playtest.log": [
+      "PARTY_PLAYTEST_PASS: 4人歩行・先頭保存・32魔物外見・実戦闘の攻撃/被弾・計測/評価/保存を検証"
+    ],
+    "final-check_campaign_boundaries.log": [
+      "CONTENT_BOUNDARY_PASS: 全25区画の到達性・戦闘前提・誤答・一度だけの報酬・途中帰還保存・従来保存を検証"
+    ],
+    "final-check_enemy_encounters.log": [
+      "ENCOUNTER_PASS: 敵30種・回復/防御/蘇生・予定の再現性・連戦保存を検証"
+    ],
+    "final-check_exploration_devices.log": [
+      "EXPLORATION_PASS: 5設備・5補給箱・装着/MP判定・通常移動・近道保存・重複防止を検証"
+    ],
+    "final-check_progression_paths.log": [
+      "PROGRESSION_PASS: party=4 通常移動・帰還保存・任意戦闘・魔物化・取消と解除を通過"
+    ],
+    "final-check_erosion_choices.log": [
+      "EROSION_PASS: 専用技実使用・60/90境界・確認取消・不可逆保存を検証"
+    ],
+    "final-progression3.log": [
+      "PROGRESSION_PASS: party=3 通常移動・帰還保存・任意戦闘・魔物化・取消と解除を通過"
+    ],
+    "content-final-3.log": [
+      "STORY_PASS: party=3 moved=1675 rounds=231 clues=8 visits=teaching,reply",
+      "AUTOMATED_ELAPSED_SECONDS: 287.087"
+    ],
+    "content-final-4.log": [
+      "STORY_PASS: party=4 moved=1675 rounds=143 clues=8 visits=reply,teaching",
+      "AUTOMATED_ELAPSED_SECONDS: 284.634"
+    ],
+    "party-playtest-native.log": [
+      "PARTY_PLAYTEST_PASS: 4人歩行・先頭保存・32魔物外見・実戦闘の攻撃/被弾・計測/評価/保存を検証"
+    ],
+    "campaign-native.log": [
+      "CAMPAIGN_PREVIEW_PASS: 区画・記録・課題・報酬の実描画を保存"
+    ]
+  },
+  "new_form_sheets": 63,
+  "form_combinations": 32,
+  "asset_registry_images": 100,
+  "content": {
+    "sections": 25,
+    "challenges": 25,
+    "additional_battles": 50,
+    "total_battles": 70,
+    "planning_minutes": 330,
+    "planning_is_measurement": false
+  },
+  "human_playtest": "NOT_RUN",
+  "duration_acceptance": "NOT_VERIFIED",
+  "software_checks_are_not_human_acceptance": true
+}

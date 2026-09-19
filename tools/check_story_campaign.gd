@@ -23,6 +23,7 @@ func _run() -> void:
 	await process_frame
 	var party_size := 3 if "--three-member-party" in OS.get_cmdline_user_args() else 4
 	main.start_new_game(party_size)
+	main.game.play_metrics.set_source("automated")
 	if not main.game.has_method("journal_entries") or not main.game.has_method("story_complete"):
 		_fail("v1本編の回収台帳・手帳・結末への進行が未接続です。")
 		return
@@ -68,6 +69,10 @@ func _run() -> void:
 					return
 			gate_before = {}
 		if state.get("story_complete",false):
+			if int(main.game.export_state().get("content_revision",0)) == 1:
+				for circuit in CampaignContent.data()["circuits"]:
+					if not _check(main.game.export_state()["progress_flags"].get("circuit_"+circuit["id"]+"_cleared",false),"追加5ダンジョンの点検をすべて完了する"):
+						return
 			var entries: Array = main.game.journal_entries()
 			if not _check(entries.size() == 8, "手帳8件を維持する"):
 				return
@@ -102,6 +107,9 @@ func _run() -> void:
 			if not _check(main.automation_snapshot().get("mode") == "journal" and main.game.export_state() == unchanged, "再閲覧は手帳へ戻り報酬やフラグを重複変更しない"):
 				return
 			print("STORY_PASS: party=%d moved=%d rounds=%d clues=8 visits=%s" % [party_size,moved,rounds,",".join(visits)])
+			if not _check(main.game.save_playtest_report("user://qa_story_route_%d.json" % party_size),"自動操作の実測を人間の試遊とは別に保存する"):
+				return
+			print("AUTOMATED_ELAPSED_SECONDS: %.3f" % (main.game.play_metrics.elapsed_ms/1000.0))
 			quit(0)
 			return
 		var serial := JSON.stringify(state)
@@ -113,6 +121,8 @@ func _run() -> void:
 		var entry: Dictionary = main.game.current_story_step()
 		var key := str(state.get("quest_step",0)) + ":" + str(entry.get("id","")) + ":wave" + str(state.get("battle_wave",0))
 		match state.get("mode", ""):
+			"challenge":
+				main.submit_player_action({"kind":"challenge_answer","option":entry["answer"]})
 			"complete":
 				var legacy: Dictionary = main.game.export_state()
 				for identifier in legacy["progress_flags"].keys():

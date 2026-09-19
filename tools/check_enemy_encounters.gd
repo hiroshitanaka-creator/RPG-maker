@@ -102,6 +102,8 @@ func _check_waves() -> void:
 	var game: Variant = GameSession.new()
 	game.new_game(4)
 	game.set_world("waterway",[17,12],19)
+	# 連戦の保存単体検査は、水路点検を完了した有効な前提状態から始める。
+	game.set_progress_flag("circuit_waterway_cleared")
 	_check(game.story_wave_count() == 3 and game.story_wave_index() == 0, "既存の進行番号で3戦の編成を読み込む")
 	var old: Dictionary = game.export_state()
 	var old_flags: Dictionary = old["progress_flags"]
@@ -163,6 +165,7 @@ func _check_ui() -> void:
 	await process_frame
 	main.start_new_game(4)
 	main.game.set_world("waterway",[17,12],19)
+	main.game.set_progress_flag("circuit_waterway_cleared")
 	_check(main.submit_player_action({"kind":"interact"}), "通常操作から追加の編成と画像を使う戦闘へ入る")
 	_check(main.automation_snapshot().get("mode") == "battle", "戦闘画面でエラーを出さない")
 	if "--capture" in OS.get_cmdline_user_args():
