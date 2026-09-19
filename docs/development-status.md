@@ -47,6 +47,8 @@ verify未定義の要件は0件。初期状態では8件すべてのverifyを実
 
 [ESCALATION-R-07](../.scope-lock/escalations/open/ESCALATION-R-07.md)は、依頼者の画像生成許可、素材登録、同一verifyのPASSにより解消した。旧本文を履歴として残し、冒頭に解決を追記している。要件の削減・テスト改変はない。未解決の受入要件エスカレーション0件、verify未定義0件。
 
-ローカルpre-commitはR-07がFAILだった段階で実際にcommitを止めた。今回は全8件PASSを確認してから通常のフックを通して保存する。初回の凍結契約登録には、依頼者の明示的な凍結入力に基づく`SCOPE_LOCK_AMEND=1`を使用する。これはverifyの失敗を回避する設定ではない。GitHub CIの結果はpush後の実際の実行に基づき記録する。
+ローカルpre-commitはR-07がFAILだった段階で実際にcommitを止めた。その後、全8件PASSで通常フックを通過し、コミット`7a4e6fe1c5499e250dfbaa82d9f17cb7578a52f5`をmainへpushした。初回の凍結契約登録には、依頼者の明示的な凍結入力に基づく`SCOPE_LOCK_AMEND=1`を使用した。verify失敗の回避は行っていない。
+
+この実装コミットに対する[GitHub CI #35427505827](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/35427505827)はsuccess。Linuxで素材検査、Godot取得・インポート、全8verify、検証前後の保護ハッシュ照合を通過した。[CI結果の記録](verification/ci-7a4e6fe.json)に対象コミットと各stepの結果を保存した。この追記以降の履歴については、対応するコミットのCI実行を参照する。
 
 予算設定は継続40回、同じ失敗の停滞3回。`.scope-lock/state/compact_digest.md`は存在するが、継続・停滞の使用回数を示す記録はなく、使用回数は不明。アプリ側のHook信頼状態は未確認で、確認済みのローカルpre-commitとは区別する。
