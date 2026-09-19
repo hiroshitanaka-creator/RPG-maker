@@ -1,0 +1,123 @@
+{
+  "spec_version": 1,
+  "_note": "docs/asset-spec.md の規約に従う。ID は仮。確定したら一括で置換し、以後変更しない。status: required=必須 / placeholder=予定・未作成 / optional=任意",
+  "defaults": {
+    "palette": "assets/palette/base.gpl",
+    "max_colors": 64
+  },
+  "assets": [
+    {
+      "path": "assets/characters/pc_01/walk.png",
+      "kind": "character_walk",
+      "size": [96, 192],
+      "frame": [32, 48],
+      "grid": [3, 4],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/characters/pc_01/battle.png",
+      "kind": "character_battle",
+      "size": [144, 48],
+      "frame": [48, 48],
+      "grid": [3, 1],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/characters/pc_01/battle_monster.png",
+      "kind": "character_battle_monster",
+      "size": [144, 48],
+      "frame": [48, 48],
+      "grid": [3, 1],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/characters/pc_02/walk.png",
+      "kind": "character_walk",
+      "size": [96, 192],
+      "frame": [32, 48],
+      "grid": [3, 4],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/characters/pc_02/battle.png",
+      "kind": "character_battle",
+      "size": [144, 48],
+      "frame": [48, 48],
+      "grid": [3, 1],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/characters/pc_03/walk.png",
+      "kind": "character_walk",
+      "size": [96, 192],
+      "frame": [32, 48],
+      "grid": [3, 4],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/characters/pc_03/battle.png",
+      "kind": "character_battle",
+      "size": [144, 48],
+      "frame": [48, 48],
+      "grid": [3, 1],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/characters/pc_04/walk.png",
+      "kind": "character_walk",
+      "size": [96, 192],
+      "frame": [32, 48],
+      "grid": [3, 4],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/characters/pc_04/battle.png",
+      "kind": "character_battle",
+      "size": [144, 48],
+      "frame": [48, 48],
+      "grid": [3, 1],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/monsters/slime/idle.png",
+      "kind": "monster_idle",
+      "size": [32, 32],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/monsters/bat/idle.png",
+      "kind": "monster_idle",
+      "size": [32, 32],
+      "max_colors": 16,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/tiles/field_outdoor.png",
+      "kind": "tileset",
+      "size": [512, 512],
+      "frame": [32, 32],
+      "grid": [16, 16],
+      "max_colors": 64,
+      "status": "placeholder"
+    },
+    {
+      "path": "assets/tiles/dungeon_cave.png",
+      "kind": "tileset",
+      "size": [512, 512],
+      "frame": [32, 32],
+      "grid": [16, 16],
+      "max_colors": 64,
+      "status": "placeholder"
+    }
+  ]
+}
