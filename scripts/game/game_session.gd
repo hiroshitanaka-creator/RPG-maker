@@ -532,7 +532,7 @@ func release_monster_form(actor_id: String, event: String) -> bool:
 
 
 func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
-	if _state.is_empty() or _battle != null or enemy_ids.is_empty() or enemy_ids.size() > 4:
+	if _state.is_empty() or party_defeated() or _battle != null or enemy_ids.is_empty() or enemy_ids.size() > 4:
 		return null
 	for identifier in enemy_ids:
 		if not enemy_definitions.has(identifier):
@@ -563,6 +563,15 @@ func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
 	_story_wave_step = -1
 	_expedition_battle_stage = -1
 	return _battle
+
+
+func party_defeated() -> bool:
+	if _state.is_empty():
+		return false
+	for actor in _state["party"]:
+		if actor["hp"] > 0:
+			return false
+	return true
 
 
 func story_wave_index() -> int:
@@ -1095,7 +1104,12 @@ func save_game(path: String) -> bool:
 	# 計測は進行状態と分離し、読むだけで進行状態の比較が変化しないようにする。
 	document["_play_session"] = play_metrics.snapshot()
 	file.store_string(JSON.stringify(document, "\t"))
+	file.flush()
+	var written := file.get_error() == OK
 	file.close()
+	if not written:
+		DirAccess.remove_absolute(temporary)
+		return false
 	return DirAccess.rename_absolute(temporary, path) == OK
 
 

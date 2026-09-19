@@ -20,4 +20,12 @@ if ($LASTEXITCODE -ne 0 -or ($importLog -join "`n") -match '(?m)^(SCRIPT ERROR|E
 # このスクリプトは利用者が操作するゲーム画面を開く。
 $gameArguments = @('--path', ('"' + $repoRoot + '"'))
 if ($HumanPlaytest) { $gameArguments += @('--', '--human-playtest') }
-Start-Process -FilePath $windowEngine -ArgumentList $gameArguments -WorkingDirectory $repoRoot -WindowStyle Normal
+# 同じPowerShellで自動検査した後でも、通常の冒険の保存先を使う。
+$qaSavePrefix = $env:RPG_QA_SAVE_PREFIX
+try {
+    $env:RPG_QA_SAVE_PREFIX = $null
+    Start-Process -FilePath $windowEngine -ArgumentList $gameArguments -WorkingDirectory $repoRoot -WindowStyle Normal
+}
+finally {
+    $env:RPG_QA_SAVE_PREFIX = $qaSavePrefix
+}

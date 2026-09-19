@@ -1,0 +1,76 @@
+{
+  "kind": "software_verification",
+  "recorded_at": "2026-09-19T14:29:08.731Z",
+  "change": "戦闘前の自動保存と全滅復帰",
+  "baseline": {
+    "command": "godot --headless --path . --script res://tools/check_battle_recovery.gd",
+    "exit_code": 1,
+    "result": "RECOVERY_FAIL: 全滅から戦闘前へ戻る入口が存在する"
+  },
+  "results": [
+    {
+      "command": "godot --headless --path . --script res://tools/check_battle_recovery.gd",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "godot --path . --rendering-method gl_compatibility --script res://tools/check_battle_recovery.gd -- --capture",
+      "status": "PASS",
+      "completion_marker": "RECOVERY_PASS",
+      "stderr_empty": true,
+      "screens_visually_inspected": [
+        "screens/defeat_recovery.png",
+        "screens/recovery_title.png"
+      ]
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_erosion_choices.gd",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_party_playtest.gd",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_campaign_boundaries.gd",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_enemy_encounters.gd",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "python tools/run_locked_checks.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "requirements": [
+        "R-01",
+        "R-02",
+        "R-03",
+        "R-04",
+        "R-05",
+        "R-06",
+        "R-07",
+        "R-08"
+      ]
+    },
+    {
+      "command": "python tools/check_frozen_files.py",
+      "exit_code": 0,
+      "matched": 21,
+      "total": 21
+    },
+    {
+      "command": "python tools/validate_assets.py --strict",
+      "exit_code": 0,
+      "assets": 100
+    }
+  ],
+  "human_playtest": "NOT_RUN",
+  "five_to_six_hours": "NOT_VERIFIED",
+  "power_loss_test": "NOT_RUN"
+}

@@ -33,6 +33,8 @@ jobs:
     name: Godot・凍結受入テスト
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      RPG_QA_SAVE_PREFIX: ci
     steps:
       - uses: actions/checkout@v4
 
@@ -133,6 +135,16 @@ jobs:
           fi
           test "$(grep -c '^PARTY_PLAYTEST_PASS:' party-playtest.log)" -eq 1
 
+      - name: 戦闘前の自動保存と全滅からの復帰を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_battle_recovery.gd 2>&1 | tee recovery.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" recovery.log; then
+            exit 1
+          fi
+          test "$(grep -c '^RECOVERY_PASS:' recovery.log)" -eq 1
+
       - name: v1物語の二つの再訪順と結末を検査
         if: steps.check.outputs.exists == 'true'
         run: |
@@ -165,6 +177,7 @@ jobs:
             encounters.log
             exploration.log
             party-playtest.log
+            recovery.log
             content-boundaries.log
             story.log
             docs/verification/scope-lock-current.json

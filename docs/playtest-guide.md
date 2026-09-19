@@ -25,9 +25,12 @@
 Windowsの保存場所は通常、`%APPDATA%\Godot\app_userdata\RPG-maker\`。
 
 - `save_v1.json`: ゲーム進行と計測・回答。
+- `battle_checkpoint_v1.json`: 直近の戦闘開始前の進行と計測。手動セーブとは別。
 - `playtest-report.json`: 「JSONへ保存」で書いた記録。
 - `playtest-human-latest.json`: 人間の試遊として記録した終了時の最新記録。
 - `playtest-automated-latest.json`: 自動操作の記録。人間の試遊へ合算しない。
+
+全滅時は「戦闘前へ戻る」で再挑戦できる。HP・MP・薬・侵蝕などの進行は戦闘前へ戻すが、全滅と経過時間は保持する。再起動後はタイトルの「自動保存した戦闘前から再開」を使う。自動保存は戦闘開始前の1件なので、勝利後の移動・会話・課題の区切りでは手動セーブも行う。[復帰の詳細](battle-recovery-v1.md)を参照する。
 
 ## 時間の定義
 

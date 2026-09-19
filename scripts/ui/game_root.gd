@@ -39,10 +39,19 @@ var _replay_timer: float = 0.0
 var _replay_party: Array = []
 var _replay_enemies: Array = []
 var _review_return: Mode = Mode.MENU
+var save_path: String = "user://save_v1.json"
+var checkpoint_path: String = "user://battle_checkpoint_v1.json"
+var _checkpoint: Dictionary = {}
+var _checkpoint_error: String = ""
 
 
 func _ready() -> void:
 	Engine.max_fps = 60
+	# 自動検査は通常の冒険の保存領域から分離する。ゲームの挙動は共通。
+	var qa_prefix := OS.get_environment("RPG_QA_SAVE_PREFIX")
+	if not qa_prefix.is_empty() and qa_prefix.is_valid_filename():
+		save_path = "user://qa_" + qa_prefix + "_save.json"
+		checkpoint_path = "user://qa_" + qa_prefix + "_checkpoint.json"
 	OS.add_logger(_diagnostics)
 	game = GameSession.new()
 	var font := SystemFont.new()
@@ -86,6 +95,8 @@ func _process(delta: float) -> void:
 
 
 func _exit_tree() -> void:
+	if game != null and game.party_defeated() and recovery_available():
+		_persist_checkpoint()
 	if game != null and not game.export_state().is_empty() and game.play_metrics.source != "unclassified":
 		game.save_playtest_report("user://playtest-"+game.play_metrics.source+"-latest.json")
 	OS.remove_logger(_diagnostics)
@@ -126,6 +137,8 @@ func start_new_game(party_size: int = 4) -> void:
 		_refresh()
 		return
 	_risk_action.clear()
+	_checkpoint.clear()
+	_checkpoint_error = ""
 	_trail.clear()
 	_replay.clear()
 	_trail_location = ""
@@ -208,6 +221,10 @@ func submit_player_action(action: Dictionary) -> bool:
 		mode = Mode.REVIEW
 		_refresh()
 		return true
+	if kind == "retry_battle" and mode == Mode.DEFEAT:
+		return _retry_battle()
+	if kind == "load_checkpoint" and mode in [Mode.MENU,Mode.DEFEAT]:
+		return _load_checkpoint()
 	if mode == Mode.EROSION_CONFIRMATION:
 		return _respond_to_erosion(kind)
 	if not _risk_bypass and _request_erosion_confirmation(action):
@@ -249,7 +266,7 @@ func submit_player_action(action: Dictionary) -> bool:
 				mode = Mode.JOURNAL
 				accepted = true
 			elif kind == "save":
-				accepted = game.save_game("user://save_v1.json")
+				accepted = game.save_game(save_path)
 				_notice = "保存しました。" if accepted else "今は保存できません。"
 			elif kind == "rest" and game.world_state()["location"] in ChapterOne.TOWNS:
 				accepted = game.rest()
@@ -261,7 +278,7 @@ func submit_player_action(action: Dictionary) -> bool:
 				accepted = game.resume_exploration()
 				_notice = "帰還前の探索位置へ戻りました。" if accepted else "戻る探索位置がありません。"
 			elif kind == "field_battle":
-				var encounter := game.start_field_battle()
+				var encounter := _start_encounter(false)
 				if encounter != null:
 					if not _risk_bypass:
 						_confirmed_erosion_actors.clear()
@@ -306,7 +323,7 @@ func submit_player_action(action: Dictionary) -> bool:
 				_purify_actor = ""
 		Mode.COMPLETE:
 			if kind == "save":
-				accepted = game.save_game("user://save_v1.json")
+				accepted = game.save_game(save_path)
 				_notice = "保存しました。" if accepted else "保存できませんでした。"
 			elif kind == "continue_story":
 				accepted = game.continue_story()
@@ -478,7 +495,7 @@ func _interact() -> bool:
 			if game.story_battle_cleared():
 				_show_dialogue(step.get("text",["この場所の魔物は退けた。先へ進もう。"]),true)
 				return true
-			var encounter := game.start_story_battle()
+			var encounter := _start_encounter(true)
 			if encounter == null:
 				return false
 			if not _risk_bypass:
@@ -576,6 +593,8 @@ func _battle_action(action: Dictionary) -> bool:
 		elif encounter.phase == BattleState.Phase.DEFEAT:
 			game.play_metrics.mark("battles_lost")
 			game.finish_battle()
+			# 再起動後も敗北・消費時間を失わず、進行だけ戦闘前から再開できる。
+			_persist_checkpoint()
 			mode = Mode.DEFEAT
 		else:
 			_actor = encounter.pending()[0].id
@@ -644,12 +663,21 @@ func _refresh() -> void:
 		Mode.COMPLETE: _render_complete()
 		Mode.DEFEAT:
 			_body.add_child(_label("全員が戦闘不能になった。", 16))
-			_button(_body, "セーブから再開", _load_save)
+			var retry := _action_button(_body,"戦闘前へ戻る",{"kind":"retry_battle"})
+			retry.disabled = not recovery_available()
+			var help := _label("戦闘前のHP・MP・薬・装着・侵蝕へ戻ります。\n戻った後は編成や町への帰還を選べます。\n試遊の全滅回数と経過時間は残ります。",11)
+			help.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			_body.add_child(help)
+			_button(_body, "手動セーブから再開", _load_save)
 			_button(_body, "タイトルへ", _to_menu)
 	if not _notice.is_empty():
 		var notice := _label(_notice,10)
 		notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		_body.add_child(notice)
+	if not _checkpoint_error.is_empty():
+		var warning := _label(_checkpoint_error,10)
+		warning.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_body.add_child(warning)
 	if not _replay.is_empty():
 		_render_presentation()
 
@@ -661,7 +689,10 @@ func _render_menu() -> void:
 		_button(_body, "現在の冒険に戻る", _resume_current)
 	_button(_body, "新しくはじめる（4人）", start_new_game.bind(4))
 	_button(_body, "新しくはじめる（3人）", start_new_game.bind(3))
-	_button(_body, "セーブから再開", _load_save)
+	_button(_body, "手動セーブから再開", _load_save)
+	var checkpoint := _action_button(_body,"自動保存した戦闘前から再開",{"kind":"load_checkpoint"})
+	checkpoint.disabled = not FileAccess.file_exists(checkpoint_path)
+	checkpoint.tooltip_text = "直近の戦闘開始時の位置と編成へ戻ります。手動セーブとは別の記録です。"
 	_action_button(_body,"試遊の記録と評価",{"kind":"review"})
 	_button(_body, "終了", func() -> void: get_tree().quit())
 	if not game.errors.is_empty():
@@ -673,6 +704,8 @@ func _render_menu() -> void:
 
 func _resume_current() -> void:
 	mode = Mode.COMPLETE if game.chapter_one_pause() or game.story_complete() else Mode.FIELD
+	if game.party_defeated():
+		mode = Mode.DEFEAT
 	if not ChapterOne.missing_art().is_empty():
 		mode = Mode.ASSETS_MISSING
 	_notice = ""
@@ -1144,19 +1177,94 @@ func _render_gate() -> void:
 
 
 func _load_save() -> void:
-	if not game.load_game("user://save_v1.json"):
+	if not game.load_game(save_path):
 		_notice = "読み込めるセーブがありません。"
 		_refresh()
 		return
+	_checkpoint.clear()
+	_checkpoint_error = ""
 	_gate_team = []
 	_trail.clear()
 	_replay.clear()
 	game.play_metrics.mark("loads")
 	_party_return = Mode.FIELD
 	mode = Mode.COMPLETE if game.chapter_one_pause() or game.story_complete() else Mode.FIELD
+	if game.party_defeated():
+		mode = Mode.DEFEAT
 	if not ChapterOne.missing_art().is_empty():
 		mode = Mode.ASSETS_MISSING
 	_notice = "冒険の記録を読み込みました。"
+	_refresh()
+
+
+func _start_encounter(story_battle: bool) -> BattleState:
+	var before := game.export_state()
+	var encounter := game.start_story_battle() if story_battle else game.start_field_battle()
+	if encounter != null:
+		_checkpoint = before
+		_persist_checkpoint()
+	return encounter
+
+
+func recovery_available() -> bool:
+	return not _checkpoint.is_empty()
+
+
+func _persist_checkpoint() -> bool:
+	if _checkpoint.is_empty():
+		return false
+	# 別セッションに進行だけを複製し、戦闘中の本体や手動保存を変更しない。
+	var saved := GameSession.new()
+	if not saved.import_state(_checkpoint):
+		_checkpoint_error = "戦闘前の記録が不正です。手動セーブを確認してください。"
+		return false
+	saved.play_metrics = game.play_metrics
+	var written := saved.save_game(checkpoint_path)
+	_checkpoint_error = "" if written else "自動保存できませんでした。起動中は戦闘前へ戻れますが、終了前に手動保存してください。"
+	return written
+
+
+func _retry_battle() -> bool:
+	if not recovery_available() or not game.import_state(_checkpoint):
+		return false
+	# 読み直すのは進行だけ。失敗した試行の計測と回答は巻き戻さない。
+	game.play_metrics.mark("battle_retries")
+	game.play_metrics.record_event("battle_retry",{"world":game.world_state()})
+	_persist_checkpoint()
+	_reset_after_recovery()
+	return true
+
+
+func _load_checkpoint() -> bool:
+	# 起動中の同じ敗北からなら、現在までの計測を優先する。
+	if game.party_defeated() and recovery_available():
+		return _retry_battle()
+	var candidate := GameSession.new()
+	if not candidate.load_game(checkpoint_path) or candidate.party_defeated():
+		_notice = "読み込める自動保存がありません。現在の冒険はそのままです。"
+		_refresh()
+		return false
+	game = candidate
+	_checkpoint_error = ""
+	_checkpoint = game.export_state()
+	game.play_metrics.mark("checkpoint_loads")
+	game.play_metrics.record_event("checkpoint_load",{"world":game.world_state()})
+	_reset_after_recovery()
+	return true
+
+
+func _reset_after_recovery() -> void:
+	_gate_team = []
+	_trail.clear()
+	_replay.clear()
+	_target_action.clear()
+	_confirmed_erosion_actors.clear()
+	_risk_action.clear()
+	_risk_preview.clear()
+	_risk_bypass = false
+	_party_return = Mode.FIELD
+	mode = Mode.FIELD
+	_notice = "戦闘前へ戻りました。編成や帰還で立て直してから挑戦できます。"
 	_refresh()
 
 
