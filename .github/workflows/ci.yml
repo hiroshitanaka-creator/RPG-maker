@@ -103,6 +103,16 @@ jobs:
             exit 1
           fi
 
+      - name: 敵の行動予定と連戦の保存を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_enemy_encounters.gd 2>&1 | tee encounters.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" encounters.log; then
+            exit 1
+          fi
+          test "$(grep -c '^ENCOUNTER_PASS:' encounters.log)" -eq 1
+
       - name: v1物語の二つの再訪順と結末を検査
         if: steps.check.outputs.exists == 'true'
         run: |
@@ -127,6 +137,7 @@ jobs:
             import.log
             progression.log
             erosion.log
+            encounters.log
             story.log
             docs/verification/scope-lock-current.json
             .tools/verification/current-*/*.log

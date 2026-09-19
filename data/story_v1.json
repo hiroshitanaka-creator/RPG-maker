@@ -356,11 +356,24 @@
       "kind": "battle",
       "objective": "水路の魔物を退ける",
       "enemies": [
-        "slime",
-        "bat"
+        "mire_slime",
+        "frost_slime"
       ],
       "text": [
         "周囲の道が開けた。手帳と編成を確かめて先へ進もう。"
+      ],
+      "waves": [
+        [
+          "mire_slime",
+          "frost_slime"
+        ],
+        [
+          "ward_slime",
+          "balm_slime"
+        ],
+        [
+          "elder_slime"
+        ]
       ]
     },
     {
@@ -422,10 +435,24 @@
       "kind": "battle",
       "objective": "教習所の通路を確保する",
       "enemies": [
-        "shell_guard"
+        "frost_bat",
+        "rending_bat"
       ],
       "text": [
         "周囲の道が開けた。手帳と編成を確かめて先へ進もう。"
+      ],
+      "waves": [
+        [
+          "frost_bat",
+          "rending_bat"
+        ],
+        [
+          "echo_bat",
+          "vigilant_bat"
+        ],
+        [
+          "night_bat"
+        ]
       ]
     },
     {
@@ -500,11 +527,24 @@
       "kind": "battle",
       "objective": "記録盤への道を確保する",
       "enemies": [
-        "ember_wisp",
-        "bat"
+        "iron_shell",
+        "tide_shell"
       ],
       "text": [
         "周囲の道が開けた。手帳と編成を確かめて先へ進もう。"
+      ],
+      "waves": [
+        [
+          "iron_shell",
+          "tide_shell"
+        ],
+        [
+          "ward_shell",
+          "spike_shell"
+        ],
+        [
+          "ancient_shell"
+        ]
       ]
     },
     {
@@ -618,11 +658,24 @@
       "kind": "battle",
       "objective": "操作台への道を確保する",
       "enemies": [
-        "shell_guard",
-        "bat"
+        "racing_wisp",
+        "cinder_wisp"
       ],
       "text": [
         "周囲の道が開けた。手帳と編成を確かめて先へ進もう。"
+      ],
+      "waves": [
+        [
+          "racing_wisp",
+          "cinder_wisp"
+        ],
+        [
+          "lamp_wisp",
+          "ash_wisp"
+        ],
+        [
+          "core_wisp"
+        ]
       ]
     },
     {
@@ -652,10 +705,24 @@
       "kind": "battle",
       "objective": "水門の奥の荒獣を退ける",
       "enemies": [
-        "gate_beast"
+        "river_beast",
+        "watch_beast"
       ],
       "text": [
         "周囲の道が開けた。手帳と編成を確かめて先へ進もう。"
+      ],
+      "waves": [
+        [
+          "river_beast",
+          "watch_beast"
+        ],
+        [
+          "swift_beast",
+          "mending_beast"
+        ],
+        [
+          "flood_beast"
+        ]
       ]
     },
     {

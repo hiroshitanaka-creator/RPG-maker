@@ -21,6 +21,7 @@ var loot_available: bool = true
 var learned: Array[String] = []
 var equipped: Array[String] = []
 var weaknesses: Array[String] = []
+var tactics: Dictionary = {"profile":"legacy","focus":"random","heal_below":65,"guard_every":2}
 
 
 func _init(actor_id: String, actor_name: String, actor_team: Team, stats: Dictionary) -> void:

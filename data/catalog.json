@@ -451,6 +451,9 @@
     {
       "id": "slime",
       "name": "水路スライム",
+      "sprite_id": "slime",
+      "family": "slime",
+      "role": "接近型",
       "stats": {
         "hp": 60,
         "mp": 0,
@@ -464,11 +467,21 @@
       "weaknesses": [
         "fire"
       ],
-      "jp": 10
+      "jp": 10,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
     },
     {
       "id": "bat",
       "name": "洞窟コウモリ",
+      "sprite_id": "bat",
+      "family": "bat",
+      "role": "接近型",
       "stats": {
         "hp": 75,
         "mp": 0,
@@ -482,11 +495,21 @@
       "weaknesses": [
         "ice"
       ],
-      "jp": 12
+      "jp": 12,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
     },
     {
       "id": "shell_guard",
       "name": "硬殻の番兵",
+      "sprite_id": "shell_guard",
+      "family": "shell_guard",
+      "role": "接近型",
       "stats": {
         "hp": 150,
         "mp": 0,
@@ -500,11 +523,21 @@
       "weaknesses": [
         "ice"
       ],
-      "jp": 16
+      "jp": 16,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
     },
     {
       "id": "ember_wisp",
       "name": "残り火の精",
+      "sprite_id": "ember_wisp",
+      "family": "ember_wisp",
+      "role": "魔法型",
       "stats": {
         "hp": 110,
         "mp": 16,
@@ -520,11 +553,21 @@
       "weaknesses": [
         "ice"
       ],
-      "jp": 16
+      "jp": 16,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
     },
     {
       "id": "gate_beast",
       "name": "水門の荒獣",
+      "sprite_id": "gate_beast",
+      "family": "gate_beast",
+      "role": "接近型",
       "stats": {
         "hp": 320,
         "mp": 0,
@@ -536,7 +579,776 @@
       },
       "abilities": [],
       "weaknesses": [],
-      "jp": 24
+      "jp": 24,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "mire_slime",
+      "name": "再生スライム",
+      "sprite_id": "slime",
+      "family": "slime",
+      "role": "自己回復型",
+      "stats": {
+        "hp": 95,
+        "mp": 9,
+        "attack": 11,
+        "defense": 8,
+        "magic": 8,
+        "resistance": 7,
+        "speed": 7
+      },
+      "abilities": [
+        "slime_mend"
+      ],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 12,
+      "tactics": {
+        "profile": "mixed",
+        "focus": "random",
+        "heal_below": 50,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "frost_slime",
+      "name": "冷晶スライム",
+      "sprite_id": "crystal_slime",
+      "family": "slime",
+      "role": "氷魔法型",
+      "stats": {
+        "hp": 90,
+        "mp": 12,
+        "attack": 8,
+        "defense": 7,
+        "magic": 12,
+        "resistance": 12,
+        "speed": 8
+      },
+      "abilities": [
+        "ice"
+      ],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 12,
+      "tactics": {
+        "profile": "caster",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "ward_slime",
+      "name": "岩殻スライム",
+      "sprite_id": "stone_slime",
+      "family": "slime",
+      "role": "防御交替型",
+      "stats": {
+        "hp": 140,
+        "mp": 9,
+        "attack": 12,
+        "defense": 16,
+        "magic": 6,
+        "resistance": 9,
+        "speed": 5
+      },
+      "abilities": [
+        "firm_guard",
+        "acid"
+      ],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 14,
+      "tactics": {
+        "profile": "guardian",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "balm_slime",
+      "name": "癒しのスライム",
+      "sprite_id": "slime",
+      "family": "slime",
+      "role": "仲間回復型",
+      "stats": {
+        "hp": 105,
+        "mp": 16,
+        "attack": 7,
+        "defense": 7,
+        "magic": 10,
+        "resistance": 12,
+        "speed": 18
+      },
+      "abilities": [
+        "heal"
+      ],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 14,
+      "tactics": {
+        "profile": "healer",
+        "focus": "random",
+        "heal_below": 75,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "elder_slime",
+      "name": "熔体スライム",
+      "sprite_id": "flame_slime",
+      "family": "slime",
+      "role": "魔法・再生型",
+      "stats": {
+        "hp": 170,
+        "mp": 18,
+        "attack": 16,
+        "defense": 12,
+        "magic": 14,
+        "resistance": 14,
+        "speed": 10
+      },
+      "abilities": [
+        "fire",
+        "slime_mend"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 18,
+      "tactics": {
+        "profile": "mixed",
+        "focus": "random",
+        "heal_below": 50,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "frost_bat",
+      "name": "幽翼コウモリ",
+      "sprite_id": "ghost_bat",
+      "family": "bat",
+      "role": "氷魔法型",
+      "stats": {
+        "hp": 100,
+        "mp": 12,
+        "attack": 12,
+        "defense": 6,
+        "magic": 12,
+        "resistance": 10,
+        "speed": 22
+      },
+      "abilities": [
+        "ice"
+      ],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 14,
+      "tactics": {
+        "profile": "caster",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "rending_bat",
+      "name": "骨翼コウモリ",
+      "sprite_id": "bone_bat",
+      "family": "bat",
+      "role": "連撃型",
+      "stats": {
+        "hp": 110,
+        "mp": 10,
+        "attack": 16,
+        "defense": 5,
+        "magic": 5,
+        "resistance": 9,
+        "speed": 20
+      },
+      "abilities": [
+        "double_strike"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 14,
+      "tactics": {
+        "profile": "raider",
+        "focus": "lowest_hp",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "echo_bat",
+      "name": "響きコウモリ",
+      "sprite_id": "bat",
+      "family": "bat",
+      "role": "仲間回復型",
+      "stats": {
+        "hp": 105,
+        "mp": 16,
+        "attack": 10,
+        "defense": 7,
+        "magic": 12,
+        "resistance": 13,
+        "speed": 19
+      },
+      "abilities": [
+        "soothing_song"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 16,
+      "tactics": {
+        "profile": "healer",
+        "focus": "random",
+        "heal_below": 75,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "vigilant_bat",
+      "name": "見張りコウモリ",
+      "sprite_id": "bat",
+      "family": "bat",
+      "role": "防御・先制型",
+      "stats": {
+        "hp": 120,
+        "mp": 12,
+        "attack": 15,
+        "defense": 10,
+        "magic": 6,
+        "resistance": 10,
+        "speed": 18
+      },
+      "abilities": [
+        "firm_guard",
+        "quick_slash"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 16,
+      "tactics": {
+        "profile": "guardian",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "night_bat",
+      "name": "夜渡りコウモリ",
+      "sprite_id": "bat",
+      "family": "bat",
+      "role": "魔法・速攻型",
+      "stats": {
+        "hp": 160,
+        "mp": 18,
+        "attack": 19,
+        "defense": 8,
+        "magic": 15,
+        "resistance": 14,
+        "speed": 25
+      },
+      "abilities": [
+        "spirit_bolt",
+        "quick_slash"
+      ],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 20,
+      "tactics": {
+        "profile": "caster",
+        "focus": "highest_magic",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "iron_shell",
+      "name": "鉄殻の番兵",
+      "sprite_id": "shell_guard",
+      "family": "shell_guard",
+      "role": "重装防御型",
+      "stats": {
+        "hp": 160,
+        "mp": 9,
+        "attack": 18,
+        "defense": 28,
+        "magic": 5,
+        "resistance": 5,
+        "speed": 4
+      },
+      "abilities": [
+        "firm_guard"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 18,
+      "tactics": {
+        "profile": "guardian",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "tide_shell",
+      "name": "氷殻の番兵",
+      "sprite_id": "glacier_turtle",
+      "family": "shell_guard",
+      "role": "氷魔法型",
+      "stats": {
+        "hp": 140,
+        "mp": 12,
+        "attack": 13,
+        "defense": 20,
+        "magic": 13,
+        "resistance": 9,
+        "speed": 7
+      },
+      "abilities": [
+        "ice"
+      ],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 18,
+      "tactics": {
+        "profile": "caster",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "ward_shell",
+      "name": "補修の番兵",
+      "sprite_id": "shell_guard",
+      "family": "shell_guard",
+      "role": "仲間回復型",
+      "stats": {
+        "hp": 150,
+        "mp": 12,
+        "attack": 10,
+        "defense": 20,
+        "magic": 11,
+        "resistance": 10,
+        "speed": 17
+      },
+      "abilities": [
+        "heal"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 20,
+      "tactics": {
+        "profile": "healer",
+        "focus": "random",
+        "heal_below": 75,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "spike_shell",
+      "name": "熔殻の番兵",
+      "sprite_id": "lava_turtle",
+      "family": "shell_guard",
+      "role": "強打・炎魔法型",
+      "stats": {
+        "hp": 165,
+        "mp": 12,
+        "attack": 20,
+        "defense": 24,
+        "magic": 13,
+        "resistance": 7,
+        "speed": 6
+      },
+      "abilities": [
+        "shield_strike",
+        "fire"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 20,
+      "tactics": {
+        "profile": "caster",
+        "focus": "lowest_hp",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "ancient_shell",
+      "name": "古殻の番兵",
+      "sprite_id": "shell_guard",
+      "family": "shell_guard",
+      "role": "重装強打型",
+      "stats": {
+        "hp": 230,
+        "mp": 18,
+        "attack": 23,
+        "defense": 29,
+        "magic": 8,
+        "resistance": 8,
+        "speed": 5
+      },
+      "abilities": [
+        "shell_bash",
+        "firm_guard"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 24,
+      "tactics": {
+        "profile": "guardian",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "racing_wisp",
+      "name": "火走りの精",
+      "sprite_id": "ember_wisp",
+      "family": "ember_wisp",
+      "role": "魔法・先制型",
+      "stats": {
+        "hp": 120,
+        "mp": 15,
+        "attack": 15,
+        "defense": 8,
+        "magic": 16,
+        "resistance": 16,
+        "speed": 22
+      },
+      "abilities": [
+        "quick_slash",
+        "fire"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 18,
+      "tactics": {
+        "profile": "caster",
+        "focus": "lowest_hp",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "cinder_wisp",
+      "name": "火守りの精",
+      "sprite_id": "ember_wisp",
+      "family": "ember_wisp",
+      "role": "防御・魔法型",
+      "stats": {
+        "hp": 140,
+        "mp": 15,
+        "attack": 9,
+        "defense": 12,
+        "magic": 15,
+        "resistance": 20,
+        "speed": 12
+      },
+      "abilities": [
+        "firm_guard",
+        "fire"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 18,
+      "tactics": {
+        "profile": "guardian",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "lamp_wisp",
+      "name": "灯火の精",
+      "sprite_id": "ember_wisp",
+      "family": "ember_wisp",
+      "role": "回復・魔法型",
+      "stats": {
+        "hp": 130,
+        "mp": 20,
+        "attack": 8,
+        "defense": 8,
+        "magic": 14,
+        "resistance": 18,
+        "speed": 19
+      },
+      "abilities": [
+        "heal",
+        "fire"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 20,
+      "tactics": {
+        "profile": "healer",
+        "focus": "random",
+        "heal_below": 75,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+    },
+    {
+      "id": "ash_wisp",
+      "name": "灰還りの骸獣",
+      "sprite_id": "bone_wolf",
+      "family": "ember_wisp",
+      "role": "蘇生型",
+      "stats": {
+        "hp": 140,
+        "mp": 16,
+        "attack": 8,
+        "defense": 9,
+        "magic": 15,
+        "resistance": 18,
+        "speed": 16
+      },
+      "abilities": [
+        "revive",
+        "curse_bolt"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 22,
+      "tactics": {
+        "profile": "reviver",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "core_wisp",
+      "name": "炉心の魔狼",
+      "sprite_id": "magma_wolf",
+      "family": "ember_wisp",
+      "role": "高威力魔法型",
+      "stats": {
+        "hp": 200,
+        "mp": 24,
+        "attack": 10,
+        "defense": 10,
+        "magic": 21,
+        "resistance": 22,
+        "speed": 14
+      },
+      "abilities": [
+        "flame_breath",
+        "fire"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 26,
+      "tactics": {
+        "profile": "caster",
+        "focus": "highest_magic",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "river_beast",
+      "name": "川辺の荒獣",
+      "sprite_id": "wet_beast",
+      "family": "gate_beast",
+      "role": "牙の強打型",
+      "stats": {
+        "hp": 230,
+        "mp": 12,
+        "attack": 24,
+        "defense": 14,
+        "magic": 5,
+        "resistance": 10,
+        "speed": 12
+      },
+      "abilities": [
+        "fang"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 22,
+      "tactics": {
+        "profile": "raider",
+        "focus": "lowest_hp",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "watch_beast",
+      "name": "守門の翼獣",
+      "sprite_id": "winged_beast",
+      "family": "gate_beast",
+      "role": "防御・強打型",
+      "stats": {
+        "hp": 260,
+        "mp": 15,
+        "attack": 25,
+        "defense": 18,
+        "magic": 6,
+        "resistance": 10,
+        "speed": 9
+      },
+      "abilities": [
+        "firm_guard",
+        "power_strike"
+      ],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 24,
+      "tactics": {
+        "profile": "guardian",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "swift_beast",
+      "name": "疾風の荒獣",
+      "sprite_id": "wind_wolf",
+      "family": "gate_beast",
+      "role": "先制型",
+      "stats": {
+        "hp": 220,
+        "mp": 15,
+        "attack": 24,
+        "defense": 12,
+        "magic": 8,
+        "resistance": 12,
+        "speed": 24
+      },
+      "abilities": [
+        "quick_slash"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 24,
+      "tactics": {
+        "profile": "raider",
+        "focus": "highest_magic",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "mending_beast",
+      "name": "影毛の荒獣",
+      "sprite_id": "shadow_wolf",
+      "family": "gate_beast",
+      "role": "自己回復・強打型",
+      "stats": {
+        "hp": 300,
+        "mp": 12,
+        "attack": 27,
+        "defense": 16,
+        "magic": 10,
+        "resistance": 12,
+        "speed": 10
+      },
+      "abilities": [
+        "breath",
+        "fang"
+      ],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 26,
+      "tactics": {
+        "profile": "mixed",
+        "focus": "random",
+        "heal_below": 50,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+    },
+    {
+      "id": "flood_beast",
+      "name": "溶岩の大荒獣",
+      "sprite_id": "chimera_boss",
+      "family": "gate_beast",
+      "role": "強打・炎の息型",
+      "stats": {
+        "hp": 440,
+        "mp": 20,
+        "attack": 30,
+        "defense": 18,
+        "magic": 18,
+        "resistance": 14,
+        "speed": 13
+      },
+      "abilities": [
+        "power_strike",
+        "flame_breath"
+      ],
+      "weaknesses": [],
+      "jp": 32,
+      "tactics": {
+        "profile": "caster",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
     }
   ],
   "encounters": [

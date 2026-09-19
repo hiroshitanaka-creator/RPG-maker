@@ -111,7 +111,7 @@ func _run() -> void:
 			_fail("進行停止: " + serial)
 			return
 		var entry: Dictionary = main.game.current_story_step()
-		var key := str(state.get("quest_step",0)) + ":" + str(entry.get("id",""))
+		var key := str(state.get("quest_step",0)) + ":" + str(entry.get("id","")) + ":wave" + str(state.get("battle_wave",0))
 		match state.get("mode", ""):
 			"complete":
 				var legacy: Dictionary = main.game.export_state()
@@ -238,6 +238,11 @@ func _choose_battle_action(main: Node, input: Dictionary) -> void:
 	var actor := encounter.actor_by_id(str(input["actor"]))
 	if actor == null:
 		return
+	# 公開された行動予定から、自分の回復より先に致死量を受ける時は防御する。
+	# 固定の勝利判定は変えず、通常画面で選べる入力だけを使う。
+	if _incoming_before_action(encounter,actor) >= actor.hp:
+		main.submit_player_action({"kind":"guard","actor":actor.id})
+		return
 	for identifier in actor.equipped:
 		var ability: Dictionary = main.game.abilities[identifier]
 		if actor.mp < int(ability["cost"]):
@@ -257,6 +262,23 @@ func _choose_battle_action(main: Node, input: Dictionary) -> void:
 			main.submit_player_action({"kind":"ability","actor":actor.id,"target":input["enemy"],"ability":identifier})
 			return
 	main.submit_player_action({"kind":"attack","actor":actor.id,"target":input["enemy"]})
+
+
+func _incoming_before_action(encounter: BattleState, actor: Combatant) -> int:
+	var damage := 0
+	for intent in encounter.enemy_intents():
+		if intent["target"] != actor.id:
+			continue
+		var enemy := encounter.actor_by_id(intent["actor"])
+		var ability: Dictionary = encounter.catalog.abilities.get(intent["ability"],{})
+		if int(ability.get("priority",0)) <= 0 and (enemy.speed < actor.speed or (enemy.speed == actor.speed and enemy.id > actor.id)):
+			continue
+		match ability.get("kind","physical"):
+			"physical":
+				damage += BattleMath.physical(enemy.attack,actor.defense,int(ability.get("power",100)),1.0) * int(ability.get("hits",1))
+			"magic":
+				damage += BattleMath.magical(enemy.magic,actor.resistance,int(ability["power"]),str(ability["element"]) in actor.weaknesses,1.0)
+	return damage
 
 
 func _capture(main: Node, name: String) -> void:

@@ -46,6 +46,12 @@ static func event(identifier: String) -> Dictionary:
 	return data().get("events", {}).get(identifier, {}).duplicate(true)
 
 
+static func battle_waves(entry: Dictionary) -> Array:
+	if entry.get("kind") != "battle":
+		return []
+	return entry.get("waves",[entry.get("enemies",[])]).duplicate(true)
+
+
 static func stage(flags: Dictionary, identifier: String) -> int:
 	if flags.get("clue_" + identifier + "_resolved", false):
 		return 2

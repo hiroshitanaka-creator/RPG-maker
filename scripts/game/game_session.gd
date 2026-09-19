@@ -15,7 +15,8 @@ var _battle: BattleState
 var _battle_enemy_ids: Array[String] = []
 var _claimed: bool = true
 var _field_battle: bool = false
-var _story_victory_step: int = -1
+var _story_wave_step: int = -1
+var _story_wave_number: int = 0
 
 
 func _init() -> void:
@@ -25,6 +26,17 @@ func _init() -> void:
 	enemy_definitions = catalog.enemies
 	errors.assign(catalog.errors)
 	errors.append_array(StoryCampaign.audit())
+	if enemy_definitions.size() != 30:
+		errors.append("v1の敵データは30種類です。")
+	for index in range(StoryCampaign.total_steps()):
+		var step := StoryCampaign.step(index)
+		for wave in StoryCampaign.battle_waves(step):
+			if not wave is Array or wave.is_empty() or wave.size() > 3:
+				errors.append("本編の敵編成は1〜3体です。")
+				continue
+			for identifier in wave:
+				if not enemy_definitions.has(identifier):
+					errors.append("本編の敵編成に未知の敵があります。")
 	var keeper_learned: Array[String] = []
 	keeper_learned.assign(StoryCampaign.data().get("keeper_learned",[]))
 	var keeper_equipped: Array[String] = []
@@ -65,12 +77,12 @@ func new_game(party_size: int = 4) -> bool:
 		})
 	_state = {"format_version": 1, "party": party, "inventory": {"potion": 3},
 		"progress_flags": {"chapter1_cleared": false, "midgame_slots": false},
-		"field_battles": 0, "return_point": {},
+		"field_battles": 0, "return_point": {}, "story_battle": {},
 		"world": {"location": "town", "player_cell": [2, 4], "quest_step": 0}}
 	_battle = null
 	_claimed = true
 	_field_battle = false
-	_story_victory_step = -1
+	_story_wave_step = -1
 	return true
 
 
@@ -95,7 +107,7 @@ func import_state(value: Dictionary) -> bool:
 	_battle = null
 	_claimed = true
 	_field_battle = false
-	_story_victory_step = -1
+	_story_wave_step = -1
 	return true
 
 
@@ -132,6 +144,14 @@ func _valid_state(value: Dictionary) -> bool:
 	var active_step := StoryCampaign.step(active_world["quest_step"],task)
 	if not active_step.is_empty() and active_world["location"] != active_step["location"]:
 		return false
+	var progress: Variant = value.get("story_battle",{})
+	if not progress is Dictionary:
+		return false
+	if not progress.is_empty():
+		if not progress.get("step") is int or not progress.get("cleared") is int or progress["step"] != active_world["quest_step"] or active_step.get("kind") != "battle":
+			return false
+		if progress["cleared"] < 0 or progress["cleared"] > StoryCampaign.battle_waves(active_step).size():
+			return false
 	if not value["inventory"].get("potion") is int or value["inventory"]["potion"] < 0:
 		return false
 	var ids: Array[String] = []
@@ -509,13 +529,44 @@ func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
 		actor.learned.assign(definition["abilities"])
 		actor.equipped.assign(definition["abilities"])
 		actor.weaknesses.assign(definition["weaknesses"])
+		actor.tactics = definition.get("tactics",actor.tactics).duplicate(true)
 		foes.append(actor)
 	_battle = BattleState.new(party, foes, catalog, random_seed)
 	_battle.potions = int(_state["inventory"]["potion"])
 	_battle_enemy_ids.assign(enemy_ids)
 	_claimed = false
 	_field_battle = false
+	_story_wave_step = -1
 	return _battle
+
+
+func story_wave_index() -> int:
+	var progress: Dictionary = _state.get("story_battle",{})
+	return int(progress.get("cleared",0)) if progress.get("step") == world_state().get("quest_step") else 0
+
+
+func story_wave_count() -> int:
+	return StoryCampaign.battle_waves(current_story_step()).size()
+
+
+func story_battle_cleared() -> bool:
+	return story_wave_count() > 0 and story_wave_index() == story_wave_count()
+
+
+func start_story_battle() -> BattleState:
+	var entry := current_story_step()
+	var world := world_state()
+	if _battle != null or is_returning_to_town() or entry.get("kind") != "battle" or world["location"] != entry["location"] or world["player_cell"] != entry["cell"]:
+		return null
+	var waves := StoryCampaign.battle_waves(entry)
+	var next := story_wave_index()
+	if next >= waves.size():
+		return null
+	var encounter := start_battle(waves[next],20260919+int(world["quest_step"])+next*1000)
+	if encounter != null:
+		_story_wave_step = int(world["quest_step"])
+		_story_wave_number = next
+	return encounter
 
 
 func field_battle_enemies() -> Array:
@@ -559,8 +610,8 @@ func finish_battle() -> bool:
 	if _field_battle:
 		_state["field_battles"] = int(_state.get("field_battles", 0)) + 1
 	var won: bool = _battle.phase == BattleState.Phase.VICTORY
-	if won and not _field_battle:
-		_story_victory_step = int(_state["world"]["quest_step"])
+	if won and _story_wave_step >= 0:
+		_state["story_battle"] = {"step":_story_wave_step,"cleared":_story_wave_number+1}
 	var reward := 0
 	if won:
 		for identifier in _battle_enemy_ids:
@@ -606,6 +657,7 @@ func finish_battle() -> bool:
 		_reconcile_slots(actor)
 	_battle = null
 	_field_battle = false
+	_story_wave_step = -1
 	return true
 
 
@@ -771,7 +823,7 @@ func advance_story_step(team: Array = []) -> bool:
 	var world := world_state()
 	if entry.is_empty() or world["location"] != entry["location"] or world["player_cell"] != entry["cell"]:
 		return false
-	if entry["kind"] == "battle" and _story_victory_step != int(world["quest_step"]):
+	if entry["kind"] == "battle" and not story_battle_cleared():
 		return false
 	if entry["kind"] == "choice" and (StoryCampaign.stage(_state["progress_flags"],"R05") != 2 or StoryCampaign.stage(_state["progress_flags"],"R08") != 2):
 		return false
@@ -780,6 +832,8 @@ func advance_story_step(team: Array = []) -> bool:
 	if entry["kind"] == "story_complete" and not StoryCampaign.all_resolved(_state["progress_flags"]):
 		return false
 	var candidate := _state.duplicate(true)
+	if entry["kind"] == "battle":
+		candidate["story_battle"] = {}
 	if entry.has("event"):
 		var flags := StoryCampaign.apply_event(candidate["progress_flags"],entry["event"])
 		if flags.is_empty():
@@ -815,7 +869,6 @@ func advance_story_step(team: Array = []) -> bool:
 	if not _valid_state(candidate):
 		return false
 	_state = candidate
-	_story_victory_step = -1
 	return true
 
 

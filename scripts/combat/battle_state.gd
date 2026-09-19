@@ -13,6 +13,8 @@ var catalog: BattleCatalog
 var _rng := RandomNumberGenerator.new()
 var _events: Array[Dictionary] = []
 var _ability_uses: Dictionary = {}
+var _enemy_plan: Array[BattleAction] = []
+var _enemy_plan_round: int = 0
 
 
 func _init(party: Array[Combatant], enemies: Array[Combatant], definitions: BattleCatalog, random_seed: int = 20260919) -> void:
@@ -92,19 +94,11 @@ func resolve_round() -> Array[Dictionary]:
 		last_error = "生存している仲間全員の行動を選んでください。"
 		return _events
 	last_error = ""
+	_prepare_enemy_plan()
 	phase = Phase.RESOLVING
 	var actions: Array[BattleAction] = []
 	actions.assign(queued.values())
-	for enemy in living(Combatant.Team.ENEMY):
-		var choices := living(Combatant.Team.PARTY)
-		var target := choices[_rng.randi_range(0, choices.size() - 1)]
-		var action := BattleAction.strike(enemy.id, target.id)
-		for ability_id in enemy.equipped:
-			var definition: Dictionary = catalog.abilities[ability_id]
-			if definition["kind"] in ["physical", "magic"] and enemy.mp >= int(definition["cost"]):
-				action = BattleAction.skill(enemy.id, target.id, ability_id)
-				break
-		actions.append(action)
+	actions.append_array(_enemy_plan)
 	for actor in actors:
 		actor.guard_rate = 1.0
 	_log("round_start", "第%dターン" % round_number)
@@ -119,6 +113,8 @@ func resolve_round() -> Array[Dictionary]:
 		_execute(action)
 		_update_outcome()
 	queued.clear()
+	_enemy_plan_round = 0
+	_enemy_plan.clear()
 	for actor in actors:
 		actor.guard_rate = 1.0
 	if phase == Phase.RESOLVING:
@@ -130,6 +126,72 @@ func resolve_round() -> Array[Dictionary]:
 	elif phase == Phase.DEFEAT:
 		_log("defeat", "全員が戦闘不能になりました。編成を見直せます。")
 	return _events
+
+
+func enemy_intents() -> Array[Dictionary]:
+	if phase != Phase.INPUT:
+		return []
+	_prepare_enemy_plan()
+	var result: Array[Dictionary] = []
+	for action in _enemy_plan:
+		var actor := actor_by_id(action.actor_id)
+		var target := actor_by_id(action.target_id)
+		result.append({"actor":actor.id,"name":actor.display_name,"target":target.id,
+			"target_name":target.display_name,"ability":action.ability_id,
+			"action":"攻撃" if action.kind == BattleAction.Kind.ATTACK else str(catalog.abilities[action.ability_id]["name"])})
+	return result
+
+
+func _prepare_enemy_plan() -> void:
+	if _enemy_plan_round == round_number or living(Combatant.Team.PARTY).is_empty():
+		return
+	_enemy_plan.clear()
+	for enemy in living(Combatant.Team.ENEMY):
+		_enemy_plan.append(_choose_enemy_action(enemy))
+	_enemy_plan_round = round_number
+
+
+func _choose_enemy_action(enemy: Combatant) -> BattleAction:
+	var profile: String = enemy.tactics["profile"]
+	if profile in ["healer","reviver","mixed"]:
+		for kind in ["revive","heal"]:
+			for identifier in enemy.equipped:
+				var definition: Dictionary = catalog.abilities[identifier]
+				if definition["kind"] != kind or enemy.mp < int(definition["cost"]):
+					continue
+				var targets := targets_for(enemy.id,BattleAction.Kind.ABILITY,identifier)
+				targets.sort_custom(func(a: Combatant,b: Combatant) -> bool:
+					var left := a.hp * b.max_hp
+					var right := b.hp * a.max_hp
+					return a.id < b.id if left == right else left < right)
+				for target in targets:
+					if kind == "revive" or target.hp * 100 <= target.max_hp * int(enemy.tactics["heal_below"]):
+						return BattleAction.skill(enemy.id,target.id,identifier)
+	if profile == "guardian" and (round_number-1) % int(enemy.tactics["guard_every"]) == 0:
+		for identifier in enemy.equipped:
+			var definition: Dictionary = catalog.abilities[identifier]
+			if definition["kind"] == "guard" and enemy.mp >= int(definition["cost"]):
+				return BattleAction.skill(enemy.id,enemy.id,identifier)
+	var opponents := living(Combatant.Team.PARTY)
+	var target: Combatant
+	match enemy.tactics["focus"]:
+		"lowest_hp":
+			opponents.sort_custom(func(a: Combatant,b: Combatant) -> bool: return a.id < b.id if a.hp == b.hp else a.hp < b.hp)
+			target = opponents[0]
+		"highest_magic":
+			opponents.sort_custom(func(a: Combatant,b: Combatant) -> bool: return a.id < b.id if a.magic == b.magic else a.magic > b.magic)
+			target = opponents[0]
+		_:
+			target = opponents[_rng.randi_range(0,opponents.size()-1)]
+	var offensive: Array[String] = []
+	for identifier in enemy.equipped:
+		var definition: Dictionary = catalog.abilities[identifier]
+		if definition["kind"] in ["physical","magic"] and enemy.mp >= int(definition["cost"]):
+			offensive.append(identifier)
+	if not offensive.is_empty():
+		var index := (round_number-1) % offensive.size() if profile == "caster" else 0
+		return BattleAction.skill(enemy.id,target.id,offensive[index])
+	return BattleAction.strike(enemy.id,target.id)
 
 
 func _before(a: BattleAction, b: BattleAction) -> bool:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from enemy_roster import make_enemies
 
 ROOT = Path(__file__).resolve().parent.parent
 STAT_NAMES = ('hp', 'mp', 'attack', 'defense', 'magic', 'resistance', 'speed')
@@ -96,13 +97,7 @@ def main() -> None:
                                        'release': {'event': 'purification_shrine', 'max_erosion': 89, 'erosion_reduction': 30, 'forget_monster_abilities': True}},
                       'design_status': '未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。'}
         write_json(ROOT / 'data/jobs' / f'{index:02d}_{identifier}.json', definition)
-    enemies = [
-        {'id':'slime', 'name':'水路スライム', 'stats':stats((60,0,10,6,0,5,5)), 'abilities':[], 'weaknesses':['fire'], 'jp':10},
-        {'id':'bat', 'name':'洞窟コウモリ', 'stats':stats((75,0,13,4,0,8,21)), 'abilities':[], 'weaknesses':['ice'], 'jp':12},
-        {'id':'shell_guard', 'name':'硬殻の番兵', 'stats':stats((150,0,18,28,0,4,4)), 'abilities':[], 'weaknesses':['ice'], 'jp':16},
-        {'id':'ember_wisp', 'name':'残り火の精', 'stats':stats((110,16,8,7,16,20,12)), 'abilities':['fire'], 'weaknesses':['ice'], 'jp':16},
-        {'id':'gate_beast', 'name':'水門の荒獣', 'stats':stats((320,0,30,16,0,12,13)), 'abilities':[], 'weaknesses':[], 'jp':24},
-    ]
+    enemies = make_enemies(stats)
     write_json(ROOT / 'data/catalog.json', {
         'schema_version': 1, 'jobs_directory': 'res://data/jobs', 'abilities': abilities, 'enemies': enemies,
         'encounters': [{'id':'waterway', 'name':'水路', 'enemies':['slime','bat']},
@@ -110,7 +105,7 @@ def main() -> None:
                        {'id':'gate', 'name':'水門', 'enemies':['gate_beast']}],
         'design_status':'v1用の調整値。ゲーム全体の所要時間や最終バランスを検証済みとはしない。',
     })
-    print('人間職12、モンスター職8、技%d、敵5のデータを生成しました。' % len(abilities))
+    print('人間職12、モンスター職8、技%d、敵%dのデータを生成しました。' % (len(abilities),len(enemies)))
 
 
 if __name__ == '__main__':

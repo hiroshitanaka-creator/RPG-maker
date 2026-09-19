@@ -4,6 +4,7 @@ extends RefCounted
 const STAT_KEYS := ["hp", "mp", "attack", "defense", "magic", "resistance", "speed"]
 const EFFECTS := ["physical", "magic", "heal", "revive", "guard", "steal"]
 const TARGETS := ["enemy", "ally", "self", "fallen_ally"]
+const AI_PROFILES := ["legacy","caster","guardian","healer","raider","reviver","mixed"]
 
 var errors: Array[String] = []
 var jobs: Dictionary = {}
@@ -49,6 +50,12 @@ func _load_document(document: Dictionary) -> void:
 	abilities = _index(document["abilities"], "技")
 	enemies = _index(document["enemies"], "敵")
 	encounters = _index(document["encounters"], "対戦")
+	var monster_images: Array[String] = []
+	var registry: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://assets/registry.json"))
+	if registry is Dictionary:
+		for entry in registry.get("assets",[]):
+			if entry.get("kind") == "monster_idle":
+				monster_images.append("res://" + str(entry["path"]))
 	for ability_id in abilities:
 		var entry: Dictionary = abilities[ability_id]
 		if not entry.get("kind") in EFFECTS or not entry.get("target") in TARGETS:
@@ -79,6 +86,16 @@ func _load_document(document: Dictionary) -> void:
 		var enemy: Dictionary = enemies[enemy_id]
 		_validate_stats(enemy.get("stats"), enemy_id)
 		_validate_references(enemy.get("abilities"), abilities, enemy_id)
+		if enemy.has("sprite_id"):
+			var sprite_path := "res://assets/monsters/%s/idle.png" % enemy["sprite_id"]
+			if not sprite_path in monster_images or not FileAccess.file_exists(sprite_path):
+				errors.append("敵の画像参照が不正です: " + enemy_id)
+		if enemy.has("tactics"):
+			var behavior: Variant = enemy["tactics"]
+			if not behavior is Dictionary:
+				errors.append("敵の行動規則がありません: " + enemy_id)
+			elif not behavior.get("profile") in AI_PROFILES or not behavior.get("focus") in ["random","lowest_hp","highest_magic"] or not _is_integer(behavior.get("heal_below"),1) or int(behavior.get("heal_below",0)) > 100 or not _is_integer(behavior.get("guard_every"),2):
+				errors.append("敵の行動規則が不正です: " + enemy_id)
 		if not enemy.get("weaknesses") is Array:
 			errors.append("弱点の一覧がありません: " + enemy_id)
 		else:
@@ -181,5 +198,6 @@ func make_enemies(encounter_id: String) -> Array[Combatant]:
 		actor.learned.assign(entry["abilities"])
 		actor.equipped.assign(entry["abilities"])
 		actor.weaknesses.assign(entry["weaknesses"])
+		actor.tactics = entry.get("tactics",actor.tactics).duplicate(true)
 		result.append(actor)
 	return result

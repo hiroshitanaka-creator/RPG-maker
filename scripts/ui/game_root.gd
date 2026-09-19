@@ -132,6 +132,7 @@ func automation_snapshot() -> Dictionary:
 	result["story_complete"] = diagnostics.is_empty() and game.story_complete()
 	result["quest_step"] = game.world_state().get("quest_step",0)
 	result["chapter"] = int(_step().get("chapter",6 if game.story_complete() else 1))
+	result["battle_wave"] = game.story_wave_index()
 	if not diagnostics.is_empty():
 		result["errors"] = diagnostics
 		return result
@@ -300,7 +301,7 @@ func _request_erosion_confirmation(action: Dictionary) -> bool:
 	if mode == Mode.FIELD and kind == "interact":
 		var world := game.world_state()
 		var step := _step()
-		check_start = not game.is_returning_to_town() and step.get("kind") == "battle" and world["location"] == step.get("location") and world["player_cell"] == step.get("cell")
+		check_start = not game.is_returning_to_town() and step.get("kind") == "battle" and not game.story_battle_cleared() and world["location"] == step.get("location") and world["player_cell"] == step.get("cell")
 	var check_round := mode == Mode.BATTLE and kind == "resolve_round" and game.current_battle().can_resolve()
 	if not check_start and not check_round:
 		return false
@@ -362,7 +363,10 @@ func _interact() -> bool:
 		"travel":
 			return game.advance_story_step()
 		"battle":
-			var encounter := game.start_battle(step["enemies"], 20260919 + int(world["quest_step"]))
+			if game.story_battle_cleared():
+				_show_dialogue(step.get("text",["この場所の魔物は退けた。先へ進もう。"]),true)
+				return true
+			var encounter := game.start_story_battle()
 			if encounter == null:
 				return false
 			if not _risk_bypass:
@@ -443,8 +447,11 @@ func _battle_action(action: Dictionary) -> bool:
 				if actor["job_id"] != job_id:
 					lines.append("侵蝕90に達し、%sは%sへ移った。人間職へ戻ることと祠での解除はできない。" % [actor["name"], game.jobs[actor["job_id"]]["name"]])
 			if story_battle:
-				lines.append_array(_step().get("text", []))
-			_show_dialogue(lines, story_battle)
+				if game.story_battle_cleared():
+					lines.append_array(_step().get("text", []))
+				else:
+					lines.append("%d/%d戦を終えた。帰還・編成・保存を済ませてから、同じ地点で次の敵へ進める。" % [game.story_wave_index(),game.story_wave_count()])
+			_show_dialogue(lines, story_battle and game.story_battle_cleared())
 		elif encounter.phase == BattleState.Phase.DEFEAT:
 			game.finish_battle()
 			mode = Mode.DEFEAT
@@ -554,6 +561,8 @@ func _render_missing() -> void:
 func _render_field() -> void:
 	var world := game.world_state()
 	var objective: String = "休息・編成後、探索へ戻る" if game.is_returning_to_town() else _step().get("objective", "町を歩く")
+	if not game.is_returning_to_town() and game.story_wave_count() > 1:
+		objective += "（%d/%d戦終了）" % [game.story_wave_index(),game.story_wave_count()]
 	var heading := _label("第%d章 %s / %s" % [int(_step().get("chapter",1)), ChapterOne.TITLES[world["location"]], objective], 11)
 	heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(heading)
@@ -630,14 +639,24 @@ func _render_battle() -> void:
 	foes.custom_minimum_size.x = 215
 	stage.add_child(foes)
 	var definitions: Array = game.current_enemy_ids()
+	var intents: Dictionary = {}
+	for intent in encounter.enemy_intents():
+		intents[intent["actor"]] = intent
 	var index := 0
 	for actor in encounter.actors:
 		if actor.team != Combatant.Team.ENEMY:
 			continue
 		var card := VBoxContainer.new()
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		card.add_child(_picture("res://assets/monsters/%s/idle.png" % definitions[index], Vector2(64,64)))
+		var definition: Dictionary = game.enemy_definitions[definitions[index]]
+		card.add_child(_picture("res://assets/monsters/%s/idle.png" % definition.get("sprite_id",definitions[index]), Vector2(64,64)))
 		card.add_child(_label("%s\nHP%d/%d" % [actor.display_name, actor.hp, actor.max_hp], 10))
+		if intents.has(actor.id):
+			var intent: Dictionary = intents[actor.id]
+			var description := _label("予定: %s→%s" % [intent["action"],intent["target_name"]],9)
+			description.custom_minimum_size.x = 70
+			description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			card.add_child(description)
 		foes.add_child(card)
 		index += 1
 	var allies := GridContainer.new()
