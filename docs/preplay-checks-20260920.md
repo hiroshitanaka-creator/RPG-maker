@@ -42,6 +42,8 @@ Windowsでは先に`. ./tools/prepare_scope_env.ps1`を実行し、通常のセ�
 
 CIへ目標尺の集計、headless画面・案内、帰還、通常戦のみの回帰検査を追加した。Windows実描画の所要時間はCIのLinux headless時間で代用しない。CI成功はAC-01・T07・60時間内容量の達成を意味しない。
 
+Windowsの`prepare_scope_env.ps1`にも修正を加えた。Bash用の拡張子なし`python3`がPowerShellで選ばれ、Pythonの検査を実行できない場合があったため、このPowerShellプロセス内ではPython実体への別名を設定する。起動の確認文字列も検査して、Pythonが動いていない状態では準備完了にしない。BashのGitフック用shimは維持する。今回のR-01〜R-08は、Python実体による実行で全8件PASSを確認した。
+
 ## 残作業と依存関係
 
 | 残作業 | 着手条件・現在の不足 |

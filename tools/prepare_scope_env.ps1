@@ -20,6 +20,13 @@ $cmdShim = '@echo off' + "`r`n" + '@"%~dp0..\godot\4.7.2\Godot_v4.7.2-stable_win
 $shellShim = '#!/usr/bin/env bash' + "`n" + 'exec "' + $pythonPath.Replace('\', '/') + '" "$@"' + "`n"
 [System.IO.File]::WriteAllText((Join-Path $binPath 'python3'), $shellShim, $utf8)
 $env:PATH = $binPath + ';' + (Split-Path -Parent $pythonPath) + ';' + $env:PATH
+# 拡張子なしのBash用python3をPowerShellが直接起動しないよう、実体を明示する。
+# GitフックのBashには従来のシェル用shimを残す。
+Set-Alias -Name python3 -Value $pythonPath -Scope Local
 $env:PYTHONUTF8 = '1'
 $env:PYTHONDONTWRITEBYTECODE = '1'
+$pythonProbe = & $pythonPath -c 'print("RPG_PYTHON_READY")'
+if ($LASTEXITCODE -ne 0 -or $pythonProbe -ne 'RPG_PYTHON_READY') {
+    throw 'Pythonの起動を確認できないため、検証を開始しません。'
+}
 Write-Output 'このプロセスのPATHにgodotとPythonを設定しました。検証コマンドの内容は変更していません。'
