@@ -871,7 +871,7 @@ func _render_journeys() -> void:
 
 func _render_dialogue() -> void:
 	if _dialogue_past:
-		_body.add_child(_label("現在の記録室" if _messages[_message_index].begins_with("【現在】") else "前の大水の記録", 13))
+		_body.add_child(_label("現在の記録室" if _messages[_message_index].begins_with("【現在】") else "過去の記録", 13))
 	else:
 		var row := HBoxContainer.new()
 		_body.add_child(row)

@@ -26,31 +26,31 @@
     "save_differences": 0
   },
   "content_work": {
-    "catalog_scripts": 16,
+    "catalog_scripts": 20,
     "catalog_target_scripts": 80,
     "arc_outlines": 20,
     "compiled_room_definitions": 80,
     "runtime_enabled": false,
     "gameplay_connected": true,
     "structural_verify": "FAIL: 80件の冒険が未完成",
-    "remaining_scripts": 64,
-    "connection_verify": "制作済み4連作それぞれ16経路・96戦。保存復帰と選択結果を検査。全体通しとは区別する。",
-    "authored_room_count": 16,
-    "clues": 10,
-    "clue_verify": "PASS: 設置・回収・依存・既読境界10件。手帳の回収前後を3人/4人で表示検査"
+    "remaining_scripts": 60,
+    "connection_verify": "制作済み5連作の部分経路を検査。今回のw_seedsは16経路・96戦・保存復帰・手帳一致PASS。全体通しとは区別する。",
+    "authored_room_count": 20,
+    "clues": 12,
+    "clue_verify": "PASS: 設置・回収・依存・既読境界12件。第3章の入口、手帳の回収前後、過去を3人/4人で74画面検査"
   },
   "ci": {
-    "commit": "2d578677b96ed5ad6d97fc5fe2129de35dec8274",
-    "run_id": 35502602489,
+    "commit": "fde04ba661d30e5da1b88b7be6f0ee9deac2cf3b",
+    "run_id": 35503624505,
     "status": "SUCCESS",
-    "note": "今回の追加2連作を含む変更のCIは次のコミットで確認する。",
-    "pending_commit": "fde04ba661d30e5da1b88b7be6f0ee9deac2cf3b",
-    "pending_run_id": 35503624505
+    "pending_commit": "0594e4d000e8daea5ff533b15e5d148770503ace",
+    "pending_run_id": 35504325046,
+    "note": "20話までの今回の変更は次のコミットのCIで確認する。"
   },
   "next_actions": [
-    "新規10件の回収台帳と手帳の変更をcommit/pushしCIを確認する",
-    "残る16連作64話と固有の探索・装置・育成判断を制作する",
-    "次の章の連作を検査できる入口条件へ通し検査を拡張する",
+    "20話までの変更をcommit/pushしCIを確認する",
+    "第3章の残る連作c_statues・s_dummy・s_gardenを制作し、回収台帳を接続する",
+    "固有の探索・装置・育成判断を実装する",
     "全80話の通常操作・分岐・保存容量と時間を検査する"
   ],
   "previous_goal_turn": "PROGRESS: 長編の本番接続、2連作8話、分岐・通路・保存・UIを検査してcommit/push"

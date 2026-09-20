@@ -52,6 +52,24 @@ func _run()->void:
 			while main.mode==main.Mode.DIALOGUE:check(main.submit_player_action({"kind":"confirm"}),"会話を閉じる")
 			check(main.mode==main.Mode.FIELD,"選択後の探索へ戻る")
 	for size in [3,4]:
+		var visited: Dictionary={19:true}
+		for mission in LongCampaign.data().get("missions",[]):
+			var chapter_index: int=mission["trigger_step"]
+			if visited.has(chapter_index):continue
+			visited[chapter_index]=true
+			main.start_new_game(size)
+			var scene_state: Dictionary=main.game.export_state()
+			var entry:=StoryCampaign.step(chapter_index)
+			scene_state["progress_flags"].merge({"chapter1_cleared":true,"long_campaign_started":true},true)
+			for circuit in CampaignContent.data()["circuits"]:
+				if circuit["trigger_step"]==chapter_index:scene_state["progress_flags"]["circuit_"+circuit["id"]+"_cleared"]=true
+			scene_state["world"]={"location":entry["location"],"player_cell":entry["cell"],"quest_step":chapter_index}
+			check(main.game.import_state(scene_state),"後の章の依頼入口も有効な状態である")
+			main.mode=main.Mode.FIELD;main._refresh()
+			check(main.submit_player_action({"kind":"interact"}) and main.mode==main.Mode.JOURNEYS,"後の章でも通常操作で依頼一覧へ入る")
+			await _layout(main,"journey_board_at_%d_%d" % [chapter_index,size])
+			check(main.submit_player_action({"kind":"begin_journey","id":mission["id"]}),"対象章の依頼を選んで現地へ入れる")
+			await _layout(main,"journey_entry_at_%d_%d" % [chapter_index,size])
 		for clue in LongCampaign.data().get("clues",[]):
 			for after in [false,true]:
 				main.start_new_game(size)
@@ -69,6 +87,19 @@ func _run()->void:
 				main._refresh()
 				await _layout(main,"journey_journal_%s_%d_%s" % [clue["id"],size,str(after)])
 				check(main.submit_player_action({"kind":"back"}) and main.mode==main.Mode.FIELD,"手帳を閉じて探索へ戻れる")
+		for mission in LongCampaign.data().get("missions",[]):
+			for step in mission["steps"]:
+				if not step.get("past",false):continue
+				main.start_new_game(size)
+				var state:=_journal_fixture(main.game.export_state(),{"mission":mission["id"],"step":step["id"]},false)
+				check(main.game.import_state(state),"過去の会話の直前へ有効な状態を置く")
+				main.mode=main.Mode.FIELD;main._refresh()
+				check(main.submit_player_action({"kind":"interact"}),"過去の会話を通常操作で開く")
+				var generic_heading:=false
+				for child in main._body.get_children():
+					if child is Label and child.text=="過去の記録":generic_heading=true
+				check(generic_heading,"過去の時期を、本文にない特定の災害へ固定しない")
+				await _layout(main,"journey_past_%s_%d" % [mission["id"],size])
 	main.queue_free()
 	await process_frame
 	LongCampaign._source["enabled"]=was_enabled

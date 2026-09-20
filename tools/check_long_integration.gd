@@ -44,6 +44,16 @@ func _run()->void:
 			entry=game.current_story_step()
 			if not _walk(game,entry["cell"]):break
 			check(game.advance_story_step(),"本編の通常移動で入口へ進む")
+			var first_mission:=LongCampaign.mission(arc_id+"_1")
+			if not first_mission.is_empty() and first_mission["trigger_step"]!=19:
+				# 後章の連作も、その章の入口状態から接続を検査する。全章通しとは区別する。
+				var routed: Dictionary=game.export_state()
+				var base:=StoryCampaign.step(first_mission["trigger_step"])
+				routed["world"]={"location":base["location"],"player_cell":base["cell"],"quest_step":first_mission["trigger_step"]}
+				for circuit in CampaignContent.data()["circuits"]:
+					if circuit["trigger_step"]==first_mission["trigger_step"]:
+						routed["progress_flags"]["circuit_"+circuit["id"]+"_cleared"]=true
+				if not check(game.import_state(routed),"対象章の入口状態を読み込む"):break
 			for number in range(1,5):
 				var id: String=arc_id+"_"+str(number)
 				entry=game.current_story_step()
