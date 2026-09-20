@@ -57,7 +57,7 @@ def collect() -> dict:
         "audit_runtime_fingerprint": fingerprint,
         "runtime_file_sha256": hashes,
         "human_playtest": "NOT_RUN",
-        "note": "不足0や件数の一致を、体験の品質・5〜6時間・元企画全項目の達成とは扱わない。"
+        "note": "不足0や件数の一致を、体験の品質・60時間・元企画全項目の達成とは扱わない。"
     }
 
 

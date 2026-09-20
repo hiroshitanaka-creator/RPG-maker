@@ -163,8 +163,10 @@ func report(context: Dictionary = {}) -> Dictionary:
 	var play_ms := active_ms+idle_ms
 	value["foreground_play_ms"] = play_ms
 	value["idle_review_required"] = idle_ms > 0
-	value["target_play_minutes"] = [300,360]
-	value["target_duration_observed"] = source == "human" and not source_changed and completed and context.get("history_complete",false) and not context.get("mixed_builds",true) and context.get("content_revision",0) == 1 and context.get("circuits_completed",[]).size() == 5 and play_ms >= 300*60000 and play_ms <= 360*60000
+	var target := DurationTarget.definition()
+	value["target_play_minutes"] = [int(target.get("min_minutes",0)),int(target.get("max_minutes",0))]
+	value["duration_target"] = target.duplicate(true)
+	value["target_duration_observed"] = source == "human" and not source_changed and completed and context.get("history_complete",false) and not context.get("mixed_builds",true) and context.get("content_revision",0) == 1 and context.get("circuits_completed",[]).size() == 5 and DurationTarget.matches(context) and DurationTarget.includes(play_ms)
 	value["human_review_received"] = source == "human" and not answers.is_empty()
 	value["human_identity_verified"] = false
 	value["acceptance_status"] = "UNREVIEWED"

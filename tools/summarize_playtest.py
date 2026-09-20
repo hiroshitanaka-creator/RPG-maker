@@ -22,15 +22,18 @@ def summarize(record: dict) -> dict:
     history=record.get('measurement_scope')=='whole_trial' and record.get('history_complete') is True
     single_build=record.get('builds')==[expected['id']] and game.get('mixed_builds') is False
     full=bool(record.get('completed')) and set(record.get('game',{}).get('circuits_completed',[]))=={'waterway','cave','school','records','gate'}
+    target=json.loads((ROOT/'data/duration_target_v1.json').read_text(encoding='utf-8'))
+    target_current=game.get('duration_target_id')==target['id'] and record.get('duration_target')==target
     return {
-        'status':'REQUIRES_HUMAN_REVIEW' if human and full and current and history and single_build and answers else 'NOT_ACCEPTED',
+        'status':'REQUIRES_HUMAN_REVIEW' if human and full and current and history and single_build and target_current and answers else 'NOT_ACCEPTED',
         'source':record.get('source','unknown'),'current_content':current,'full_route_recorded':full,
         'history_complete':history,'single_build':single_build,'trial_id':record.get('trial_id'),
         'build_id':game.get('build_id'),'expected_build_id':expected['id'],
         'elapsed_minutes':round(record.get('elapsed_ms',0)/60000,3),'active_minutes':round(active,3),
         'idle_minutes':round(record.get('idle_ms',0)/60000,3),'pause_minutes':round(record.get('pause_ms',0)/60000,3),
         'foreground_play_minutes':round(playing,3),'idle_review_required':record.get('idle_ms',0)>0,
-        'duration_candidate':human and full and current and history and single_build and 300<=playing<=360,
+        'duration_candidate':human and full and current and history and single_build and target_current and target['min_minutes']<=playing<=target['max_minutes'],
+        'duration_target':target,'current_duration_target':target_current,
         'human_review_answer_count':len(answers) if human else 0,
         'battles':len(battles),'defeats':sum(not b.get('victory',False) for b in battles),
         'battle_rounds':sum(b.get('rounds',0) for b in battles),'events':dict(kinds),

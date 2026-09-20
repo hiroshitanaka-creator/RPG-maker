@@ -1164,7 +1164,7 @@ func recording_context() -> Dictionary:
 		if _state.get("progress_flags",{}).get("circuit_"+circuit["id"]+"_cleared",false):
 			cleared.append(circuit["id"])
 	var build := BuildIdentity.current()
-	return {"engine":build["engine"],"build_id":build["id"],"build_identity_version":build["version"],"world":world_state(),"party_size":_state.get("party",[]).size(),"content_revision":_state.get("content_revision",0),"circuits_completed":cleared,"content_sha256":CampaignContent.content_hash()}
+	return {"engine":build["engine"],"build_id":build["id"],"build_identity_version":build["version"],"world":world_state(),"party_size":_state.get("party",[]).size(),"content_revision":_state.get("content_revision",0),"circuits_completed":cleared,"content_sha256":CampaignContent.content_hash(),"duration_target_id":DurationTarget.definition().get("id","")}
 
 
 func enable_recording(directory: String) -> bool:

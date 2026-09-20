@@ -73,7 +73,7 @@ def main():
             if i<4:steps.append(step('section_travel',[29,14],objective='次の区画へ進む',destination=f'{location}_{i+2}',spawn=[2,4]))
             else:steps.append(step('circuit_complete',[29,14],objective='点検結果を持って本線へ戻る'))
         circuits.append({'id':location,'trigger_step':triggers[location],'chapter':chapters[location],'title':{'waterway':'水路の流量点検','cave':'回廊の運搬路復旧','school':'職業教習の実地課題','records':'勤務記録の照合','gate':'水門の分担準備'}[location],'sections':sections,'steps':steps})
-    output={'revision':1,'design_status':'既存6章・5ダンジョンの内容拡充案。時間は設計予算で、実測済みではない。','target_minutes':[300,360],
+    output={'revision':1,'design_status':'60時間目標への変更前に作った基礎内容。下記の330分配分は旧設計予算であり、現在の目標や実測達成を示さない。現在の目標はduration_target_v1.jsonを参照。','historical_target_minutes':[300,360],
             'chapter_budget_minutes':[25,85,55,60,20,85],
             'budget_assumptions':{'battles':175,'reading':40,'navigation_and_challenges':70,'build_and_recovery':45},'circuits':circuits}
     (ROOT/'data/campaign_content_v1.json').write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')

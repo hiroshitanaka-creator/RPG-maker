@@ -81,7 +81,7 @@ func _check_metrics(game: GameSession) -> void:
 	check(restored.play_metrics.snapshot() == game.play_metrics.snapshot() and restored.export_state() == before,"計測と進行の両方が往復で一致する")
 	check(game.save_playtest_report("user://qa_metrics_report.json"),"試遊レポートを出力する")
 	var report: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("user://qa_metrics_report.json"))
-	check(report["source"] == "automated" and not report["target_duration_observed"] and not report["human_review_received"],"自動試験を5〜6時間達成や人間評価に数えない")
+	check(report["source"] == "automated" and not report["target_duration_observed"] and not report["human_review_received"],"自動試験を60時間達成や人間評価に数えない")
 	var original := restored.export_state()
 	var bad := original.duplicate(true)
 	bad["_play_session"] = game.play_metrics.snapshot()
