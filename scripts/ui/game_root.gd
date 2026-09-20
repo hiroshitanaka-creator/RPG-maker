@@ -865,6 +865,7 @@ func _render_battle() -> void:
 	var tools := HBoxContainer.new()
 	_body.add_child(tools)
 	var caption := _label("第%dターン / 回復薬 %d" % [encounter.round_number, encounter.potions], 11)
+	if not _actor.is_empty():caption.text+=" / "+encounter.actor_by_id(_actor).display_name+"の行動"
 	caption.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	tools.add_child(caption)
 	_action_button(tools, "選び直す", {"kind":"clear_actions"})
@@ -881,6 +882,8 @@ func _render_battle() -> void:
 	stage.add_child(foes)
 	var definitions: Array = game.current_enemy_ids()
 	var intents: Dictionary = {}
+	var predictions:=VBoxContainer.new()
+	predictions.add_theme_constant_override("separation",0)
 	for intent in encounter.enemy_intents():
 		intents[intent["actor"]] = intent
 	var index := 0
@@ -899,7 +902,7 @@ func _render_battle() -> void:
 			var target_name: String = intent["target_name"]
 			if str(intent["target"]).begins_with("enemy_"):
 				target_name = "敵"+str(int(str(intent["target"]).trim_prefix("enemy_")))
-			var description := _label("%s→%s" % [intent["action"],target_name],9)
+			var description := _label("敵%d %s→%s" % [index+1,intent["action"],target_name],9)
 			description.tooltip_text = "次の行動予定: %s→%s" % [intent["action"],intent["target_name"]]
 			if int(intent.get("reaction_power",0))>0 or int(intent.get("chorus_guard",100))<100:
 				var shield:=int(intent["guard_percent"])
@@ -907,13 +910,13 @@ func _render_battle() -> void:
 				var guarded:=encounter.forecast_damage(intent["target"],true,-1,false,actor.id)
 				var kind: String=game.abilities.get(intent["ability"],{}).get("kind","physical")
 				if kind in ["physical","magic"]:
-					description.text+="\n被%d 防%d\n技%d 敵被%d%%" % [expected,guarded,encounter.reaction_count(),shield]
+					description.text+=" / 被%d 防%d / 技%d 敵被%d%%" % [expected,guarded,encounter.reaction_count(),shield]
 					if expected>=encounter.actor_by_id(intent["target"]).hp:description.add_theme_color_override("font_color",Color("eea38b"))
-				else:description.text+="\n反応:技%d 敵被%d%%" % [encounter.reaction_count(),shield]
+				else:description.text+=" / 反応:技%d 敵被%d%%" % [encounter.reaction_count(),shield]
 				description.tooltip_text+="\n被は対象が受ける被害の予測、防は通常の防御を選んだ場合です。敵被は敵が受ける割合で、20%なら80%軽減です。攻撃技の予約人数で反応が強まり、3人以上で共鳴防御。通常攻撃・回復・蘇生・防御は数えません。選び直すと予告も戻ります。"
-			description.custom_minimum_size.x = 70
+			description.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 			description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-			card.add_child(description)
+			predictions.add_child(description)
 		foes.add_child(card)
 		index += 1
 	var allies := GridContainer.new()
@@ -933,8 +936,8 @@ func _render_battle() -> void:
 		var button := _button(card, "%s HP%d\n%sMP%d/%d" % [actor.display_name,actor.hp,"✓ " if encounter.queued.has(actor.id) else "",actor.mp,actor.max_mp], _select_actor.bind(actor.id))
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.disabled = not actor.is_alive()
+	_body.add_child(predictions)
 	if not _actor.is_empty():
-		_body.add_child(_label("%sの行動" % encounter.actor_by_id(_actor).display_name, 10))
 		var commands := GridContainer.new()
 		commands.columns = 4
 		_body.add_child(commands)
