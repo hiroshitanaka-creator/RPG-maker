@@ -42,8 +42,8 @@ def make_enemies(stats):
         enemy("core_wisp", "炉心の精", "ember_wisp", (200,24,10,10,21,22,14), ["flame_breath","fire"], ["ice"],26,"caster","高威力魔法型","highest_magic"),
         enemy("river_beast", "川辺の荒獣", "gate_beast", (230,12,24,14,5,10,12), ["fang"], ["ice"],22,"raider","牙の強打型","lowest_hp"),
         enemy("watch_beast", "守門の荒獣", "gate_beast", (260,15,25,18,6,10,9), ["firm_guard","power_strike"], ["fire"],24,"guardian","防御・強打型"),
-        enemy("swift_beast", "駆ける荒獣", "gate_beast", (220,15,24,12,8,12,24), ["quick_slash"], ["ice"],24,"raider","先制型","highest_magic"),
-        enemy("mending_beast", "息継ぎの荒獣", "gate_beast", (300,12,27,16,10,12,10), ["breath","fang"], ["ice"],26,"mixed","自己回復・強打型",heal_below=50),
+        enemy("swift_beast", "駆ける荒獣", "gate_beast", (220,15,20,12,8,12,24), ["quick_slash"], ["ice"],24,"raider","先制型","highest_magic"),
+        enemy("mending_beast", "息継ぎの荒獣", "gate_beast", (300,12,23,16,10,12,10), ["breath","fang"], ["ice"],26,"mixed","自己回復・強打型",heal_below=50),
         enemy("flood_beast", "激流の荒獣", "gate_beast", (440,20,30,18,18,14,13), ["power_strike","sound_wave"], [],32,"caster","強打・音波型"),
     ]
     # 利用者が追加提供した画像を、行動と見た目が合う敵へ割り当てる。

@@ -11,6 +11,7 @@ var jobs: Dictionary = {}
 var abilities: Dictionary = {}
 var enemies: Dictionary = {}
 var encounters: Dictionary = {}
+var potion_healing: int = 50
 
 
 func _init(path: String = "res://data/catalog.json") -> void:
@@ -40,6 +41,10 @@ func _init(path: String = "res://data/catalog.json") -> void:
 
 
 func _load_document(document: Dictionary) -> void:
+	if not _is_integer(document.get("potion_healing",50),1):
+		errors.append("回復薬の回復量が不正です。")
+		return
+	potion_healing = int(document.get("potion_healing",50))
 	if document.get("schema_version") != 1:
 		errors.append("戦闘データのschema_versionが未対応です。")
 	for collection_name in ["jobs", "abilities", "enemies", "encounters"]:

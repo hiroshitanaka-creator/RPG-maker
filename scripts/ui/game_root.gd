@@ -935,6 +935,7 @@ func _render_battle() -> void:
 			button.tooltip_text = game.describe_ability(identifier)
 			button.disabled = encounter.targets_for(_actor, BattleAction.Kind.ABILITY, identifier).is_empty()
 		var potion := _button(commands, "回復薬", _choose_target.bind("potion", ""))
+		potion.tooltip_text = "HPを%d回復します。MP回復・蘇生の効果はありません。" % game.catalog.potion_healing
 		potion.disabled = encounter.targets_for(_actor, BattleAction.Kind.ITEM).is_empty()
 	if not _target_action.is_empty():
 		var row := HBoxContainer.new()
@@ -1125,8 +1126,9 @@ func _render_erosion_confirmation() -> void:
 		if not str(entry["forced_job"]).is_empty():
 			text += " / 終了後は" + game.jobs[entry["forced_job"]]["name"]
 	text += "\n\n予約した技は実際に発動した回数だけ加算します。未マスターの職が、この確認だけでマスターになることはありません。"
-	var description := _label(text, 12)
-	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	var description := RichTextLabel.new()
+	description.text = text
+	description.add_theme_font_size_override("normal_font_size",12)
 	description.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_body.add_child(description)
 	_action_button(_body, "やめる・選び直す", {"kind":"cancel_erosion"})

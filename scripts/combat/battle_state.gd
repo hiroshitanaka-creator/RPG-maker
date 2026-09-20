@@ -294,7 +294,7 @@ func _execute(original: BattleAction) -> void:
 			_hit(actor, target, BattleMath.physical(actor.attack, target.defense, 100, target.guard_rate), "攻撃")
 		BattleAction.Kind.ITEM:
 			potions -= 1
-			var amount := target.heal(50)
+			var amount := target.heal(catalog.potion_healing)
 			_log("heal", "%sの回復薬: %sのHPが%d回復。" % [actor.display_name, target.display_name, amount], actor.id, target.id, amount)
 		BattleAction.Kind.ABILITY:
 			_use_ability(actor, target, catalog.abilities[action.ability_id])
