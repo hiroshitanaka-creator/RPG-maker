@@ -182,7 +182,7 @@ static func write_json(path: String, value: Dictionary) -> bool:
 	var file := FileAccess.open(temporary,FileAccess.WRITE)
 	if file == null:
 		return false
-	file.store_string(JSON.stringify(value,"  "))
+	file.store_string(JSON.stringify(value,"  ",true,true))
 	file.flush()
 	var written := file.get_error() == OK
 	file.close()

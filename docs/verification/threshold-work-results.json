@@ -1,6 +1,6 @@
 {
   "kind": "provisional_threshold_work",
-  "recorded_at": "2026-09-20T02:57:18.8797873Z",
+  "recorded_at": "2026-09-20T03:21:59.1373340Z",
   "threshold_proposals": "docs/provisional-thresholds-v1.md",
   "subjective_queue": "PLAYTEST_QUEUE.md",
   "provisional_inputs": true,
@@ -16,7 +16,7 @@
     "build": {
       "engine": "4.7.2-stable (official) [ed1daf0bf]",
       "files": 163,
-      "id": "46790a800066e13807ac94cb5cf81d175c850b3d54726053f278b3a3d66bf919",
+      "id": "3cfe90ac06facf841a5cd5530cbeeabace2a50244532164891768752f03639d0",
       "version": 1
     }
   },
@@ -39,7 +39,14 @@
     "comparison_mutations": 7,
     "legacy_and_invalid_metadata_checked": true,
     "root_cause": "JSON往復で装着と戦闘履歴の配列要素型が失われた",
-    "fix": "保存型の補助情報を検証して復元。比較前に保存元を変換しない。"
+    "fix": "保存型の補助情報を検証して復元。JSONを完全精度で書き出し、型と小数値を維持。比較前に保存元を変換しない。",
+    "precision_values": [
+      "1.0",
+      "1.5",
+      "1.0 / 3.0",
+      "0.0000000123456789012345"
+    ],
+    "precision_regression": "既定精度では1/3の値不一致を再現。完全精度の修正後は同じ検査でPASS。"
   },
   "other_checks": {
     "frozen_files_matching": 21,

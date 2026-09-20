@@ -1233,7 +1233,7 @@ func save_game(path: String, record_id: String = "") -> bool:
 		DirAccess.remove_absolute(temporary)
 		return false
 	document["_saved_value_types"] = saved_types
-	file.store_string(JSON.stringify(document, "\t"))
+	file.store_string(JSON.stringify(document, "\t", true, true))
 	file.flush()
 	var written := file.get_error() == OK
 	file.close()

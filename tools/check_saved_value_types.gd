@@ -20,7 +20,7 @@ func _initialize() -> void:
 		check(battle.phase == BattleState.Phase.VICTORY and game.finish_battle(),"実戦闘の履歴と装着配列を作る")
 		if "power_strike" in game.available_abilities("pc_01"):break
 	check(game.equip_ability("pc_01","power_strike"),"実戦闘で習得した技を装着して保存する")
-	var float_values: Array[float] = [1.0,1.5]
+	var float_values: Array[float] = [1.0,1.5,1.0/3.0,0.0000000123456789012345]
 	game.play_metrics.record_event("typed_save_fixture",{"integer":1,"float":1.0,"values":float_values})
 	var before := {"state":game.export_state(),"metrics":game.play_metrics.snapshot()}
 	var path := "user://qa_saved_value_types.json"
