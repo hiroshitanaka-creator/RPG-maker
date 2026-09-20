@@ -107,8 +107,10 @@ func _finish_extra(main: Node) -> bool:
 	fixture.play_metrics.answers.append({"chapter":"6","active_ms":0,"exploration":3,"reward":4,"difficulty":2,"note":"自動検査用の合成回答。人間の試遊結果ではない。","self_reported":true})
 	fixture.play_metrics.source_changed = true
 	if not _roundtrip(fixture,"flags_unlocks_synthetic_answer"):return false
-	var world_fixture := _fork(main.game)
-	if not _check(world_fixture.open_world_exploration(),"本編後に通常APIで広域を開く"):return false
+	var world_fixture := GameSession.new()
+	world_fixture.new_game(main.game.export_state()["party"].size())
+	world_fixture.play_metrics.set_source("automated")
+	if not _check(world_fixture.open_world_exploration(),"町の新規状態から通常APIで広域を開く"):return false
 	if not _roundtrip(world_fixture,"overworld_active"):return false
 	if not _check(world_fixture.close_world_exploration(),"出発地点から本編へ戻る"):return false
 	if not _roundtrip(world_fixture,"overworld_retained"):return false

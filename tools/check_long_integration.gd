@@ -81,13 +81,13 @@ func _run()->void:
 							for line in response["variants"][1-option]:check(line not in lines,"選ばなかった結果を混ぜない")
 					if not _walk(game,entry["cell"]):break
 					if entry["kind"]=="battle":
-						# 局所検査は一職マスターの固定入力。通常の帰還・補給を使い、後章の育成経路は新規完走検査で扱う。
+						# 局所検査は一職マスターから開始。通常の補給と公開された敵情報を使う。
 						check(game.return_to_town() and game.rest() and game.resume_exploration(),"部分経路の戦闘前に通常の帰還・補給で再開")
 						var fight: BattleState=game.start_story_battle()
 						if not check(fight!=null,"実際の戦闘を開始する"):break
 						for turn in range(60):
 							if fight.phase!=BattleState.Phase.INPUT:break
-							for actor in fight.pending():check(fight.queue_action(_action(fight,actor)).is_empty(),"技を通常の入力で予約する")
+							for actor in fight.pending():check(fight.queue_action(_branch_action(fight,actor)).is_empty(),"技を通常の入力で予約する")
 							for change in Counterplay.adjustments(fight):check(fight.queue_action(change).is_empty(),"予告に対処する")
 							fight.resolve_round()
 						if fight.phase!=BattleState.Phase.VICTORY:
@@ -185,3 +185,12 @@ func _check_hashes()->Dictionary:
 	for path in ["tools/check_long_integration.gd","tools/check_battle_acceptance.gd","tools/counterplay_policy.gd","tools/save_state_comparison.gd","tools/long_play_driver.gd"]:
 		result[path]=FileAccess.get_sha256("res://"+path)
 	return result
+
+func _branch_action(fight: BattleState, actor: Combatant) -> BattleAction:
+	var action := _action(fight,actor)
+	# 複数敵では公開HPが低い相手から数を減らす。固定勝率測定の方針は変更しない。
+	if action.kind==BattleAction.Kind.ATTACK or (action.kind==BattleAction.Kind.ABILITY and fight.catalog.abilities[action.ability_id]["kind"] in ["physical","magic"]):
+		var targets := fight.living(Combatant.Team.ENEMY)
+		targets.sort_custom(func(a: Combatant,b: Combatant) -> bool: return a.id<b.id if a.hp==b.hp else a.hp<b.hp)
+		action.target_id = targets[0].id
+	return action

@@ -117,7 +117,7 @@ func _check_walking_and_battle(main: Node) -> void:
 	var loaded := GameSession.new()
 	check(loaded.load_game("user://qa_party_leader.json") and loaded.walking_party()[0]["id"] == "pc_04","ロード後も選んだ先頭が残る")
 	for move in range(5):
-		await create_timer(0.16).timeout
+		await _wait_wall_time(160)
 		check(main.submit_player_action({"kind":"move","dx":1,"dy":0}),"通常の歩行操作で進む")
 	check(main._trail.size() == 3,"後続3人へ実際に通ったマスを渡す")
 	await _capture(main,"party_walk")
