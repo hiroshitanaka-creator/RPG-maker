@@ -1,0 +1,1708 @@
+{
+  "version": 1,
+  "status": "phase_1_proposal",
+  "runtime_connected": false,
+  "authority": {
+    "approved": "依頼者がPhase 0のA方針とPhase 1への進行を承認。256×256、地方3〜4、町村10〜12、ダンジョン14〜18、小拠点20〜25、徒歩・船・飛行が目標。",
+    "proposed": "具体的な4地方・49拠点、新規名称・物語上の役割・推奨レベル・進行順・移動秒数・解放イベントは設計者の提案。既存ID・名称は保持。",
+    "unverified": "Phase 2の状態探索、Phase 3の地形、Phase 4の実移動、実行時接続、60時間実測は未実施。"
+  },
+  "start_node": "town",
+  "completion_node": "summit_archive",
+  "semantics": {
+    "progression_index": "初訪問の推奨順。再訪・帰還は逆順を許す。",
+    "recommended_level": "戦闘調整前の提案値。進行順で非減少、実行時の入場制限には使わない。",
+    "node_required_transport": "最低限必要な移動解放段階。所有済みの徒歩・船は飛行後も失わない。",
+    "edge_required_transport": "その接続を通るための移動手段。始点と終点の解放条件も満たす。",
+    "unlock_flags": "配列内の全フラグがtrueなら解放。空配列は条件なし。未設定フラグはfalse。",
+    "one_way": "falseは両方向に同じ移動手段・条件・想定秒数で通れることを示す。",
+    "expected_travel_seconds": "経路を通常速度で移動する秒数の提案。戦闘・会話・メニュー時間は含めない。地形未生成のため実測値ではない。",
+    "flag_grant": "producer_nodeのtriggerを完了し、requiresを全て満たすとtrue。消費・falseへの遷移なし。実イベントの実装完了を意味しない。",
+    "legacy_connections": "既存の始点・終点関係を保持。既存のquest_step・再訪イベントをこのグラフに置き換えたとは扱わない。",
+    "completion": "構造検証用の終点。既存の結末を移動・置換する決定ではない。"
+  },
+  "regions": [
+    {
+      "id": "riverlands",
+      "name": "段丘流域",
+      "story_role": "既存8拠点を含む出発地方。職業と再訪の基礎を保持。",
+      "origin": "proposed"
+    },
+    {
+      "id": "brine_reaches",
+      "name": "潮路沿岸",
+      "story_role": "船で訪問する沿岸地方。離れた土地の証言を比較。",
+      "origin": "proposed"
+    },
+    {
+      "id": "mist_basin",
+      "name": "霧の湖盆",
+      "story_role": "船の別航路で訪問する湖盆。飛行の準備を行う。",
+      "origin": "proposed"
+    },
+    {
+      "id": "sky_ridge",
+      "name": "風上山地",
+      "story_role": "飛行で解放する高地。同じ世界内の地方であり追加大陸ではない。",
+      "origin": "proposed"
+    }
+  ],
+  "transports": [
+    {
+      "id": "walk",
+      "stage": 0,
+      "name": "徒歩",
+      "unlock_flags": [],
+      "retains": [],
+      "recovery_rule": "常時利用可能。拠点で補給と装着の組み直しを行える。"
+    },
+    {
+      "id": "ship",
+      "stage": 1,
+      "name": "船",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "retains": [
+        "walk"
+      ],
+      "recovery_rule": "接続の端点で乗降可能とする提案。燃料・船体損失・船の置き去り状態は導入しない。"
+    },
+    {
+      "id": "flight",
+      "stage": 2,
+      "name": "飛行",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "retains": [
+        "walk",
+        "ship"
+      ],
+      "recovery_rule": "接続の端点で離着陸可能とする提案。燃料・機体損失・取り逃がし状態は導入しない。"
+    }
+  ],
+  "flags": [
+    {
+      "id": "world_causeway_open",
+      "initial": false,
+      "persistent": true,
+      "consumable": false,
+      "producer_node": "gate",
+      "trigger": "初回の通路整備を完了する",
+      "requires": []
+    },
+    {
+      "id": "world_ship_unlocked",
+      "initial": false,
+      "persistent": true,
+      "consumable": false,
+      "producer_node": "shipyard",
+      "trigger": "船の整備と出航説明を完了する",
+      "requires": [
+        "world_causeway_open"
+      ]
+    },
+    {
+      "id": "world_flight_unlocked",
+      "initial": false,
+      "persistent": true,
+      "consumable": false,
+      "producer_node": "wind_observatory",
+      "trigger": "風路の確認と飛行説明を完了する",
+      "requires": [
+        "world_ship_unlocked"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "town",
+      "name": "段の町",
+      "type": "town",
+      "region": "riverlands",
+      "recommended_level": 1,
+      "progression_index": 1,
+      "required_transport": "walk",
+      "unlock_flags": [],
+      "story_role": "既存の出発拠点。転職と装着を試し、再訪時に仲間の役割を組み直す。",
+      "origin": "existing",
+      "visit_policy": "recommended",
+      "legacy_location": "town"
+    },
+    {
+      "id": "river_watch",
+      "name": "川見の詰所",
+      "type": "outpost",
+      "region": "riverlands",
+      "recommended_level": 2,
+      "progression_index": 2,
+      "required_transport": "walk",
+      "unlock_flags": [],
+      "story_role": "水位の記録から旧水路へ進む理由を知り、最初の寄り道で補給を得る。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "waterway",
+      "name": "旧水路",
+      "type": "dungeon",
+      "region": "riverlands",
+      "recommended_level": 3,
+      "progression_index": 3,
+      "required_transport": "walk",
+      "unlock_flags": [],
+      "story_role": "既存の水路探索と設備による近道を保持し、魔物アビリティの使い道を示す。",
+      "origin": "existing",
+      "visit_policy": "recommended",
+      "legacy_location": "waterway"
+    },
+    {
+      "id": "reed_camp",
+      "name": "葦原の野営地",
+      "type": "outpost",
+      "region": "riverlands",
+      "recommended_level": 4,
+      "progression_index": 4,
+      "required_transport": "walk",
+      "unlock_flags": [],
+      "story_role": "水路で消耗した一行の補給先。拾った記録を地元の証言と照合する。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "cave",
+      "name": "地下回廊",
+      "type": "dungeon",
+      "region": "riverlands",
+      "recommended_level": 5,
+      "progression_index": 5,
+      "required_transport": "walk",
+      "unlock_flags": [],
+      "story_role": "既存の地下探索を保持し、装着した技で通路を開く経験を次の訪問へつなぐ。",
+      "origin": "existing",
+      "visit_policy": "recommended",
+      "legacy_location": "cave"
+    },
+    {
+      "id": "stone_shelter",
+      "name": "石段の避難小屋",
+      "type": "outpost",
+      "region": "riverlands",
+      "recommended_level": 6,
+      "progression_index": 6,
+      "required_transport": "walk",
+      "unlock_flags": [],
+      "story_role": "回廊で得た古い道順を読み返し、分け水門への進路を確認する。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "gate",
+      "name": "分け水門",
+      "type": "dungeon",
+      "region": "riverlands",
+      "recommended_level": 7,
+      "progression_index": 7,
+      "required_transport": "walk",
+      "unlock_flags": [],
+      "story_role": "既存の初訪問と終盤の再訪を保持する。広域案では初回の通路整備が内陸側への道を開く。",
+      "origin": "existing",
+      "visit_policy": "recommended",
+      "legacy_location": "gate"
+    },
+    {
+      "id": "garden",
+      "name": "干し庭",
+      "type": "town",
+      "region": "riverlands",
+      "recommended_level": 8,
+      "progression_index": 8,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "既存の町と聞き取りを保持し、最初に覚えた職業を変える理由を与える。",
+      "origin": "existing",
+      "visit_policy": "recommended",
+      "legacy_location": "garden"
+    },
+    {
+      "id": "herb_station",
+      "name": "薬草の中継所",
+      "type": "outpost",
+      "region": "riverlands",
+      "recommended_level": 9,
+      "progression_index": 9,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "僧侶に回復を任せる構成と道具を持ち込む構成を比べる補給地点。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "school",
+      "name": "旧教習所",
+      "type": "dungeon",
+      "region": "riverlands",
+      "recommended_level": 10,
+      "progression_index": 10,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "既存の職業・習得・装着の教習と三つ目の装着枠の物語を保持する。",
+      "origin": "existing",
+      "visit_policy": "recommended",
+      "legacy_location": "school"
+    },
+    {
+      "id": "springford",
+      "name": "湧水の村",
+      "type": "town",
+      "region": "riverlands",
+      "recommended_level": 11,
+      "progression_index": 11,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "村の仕事から戦士と盗賊の役割の違いを知り、既存職の組合せを試す準備をする。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "causeway_cave",
+      "name": "堤道の洞穴",
+      "type": "dungeon",
+      "region": "riverlands",
+      "recommended_level": 12,
+      "progression_index": 12,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "水門の記録と現地の傷跡を照合し、守りと状態異常の装着を使い分ける。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "records",
+      "name": "記録坑道",
+      "type": "dungeon",
+      "region": "riverlands",
+      "recommended_level": 13,
+      "progression_index": 13,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "既存の記録探索を保持し、前の土地の台詞を読み替える情報を返す。",
+      "origin": "existing",
+      "visit_policy": "recommended",
+      "legacy_location": "records"
+    },
+    {
+      "id": "harbor",
+      "name": "河岸の町",
+      "type": "town",
+      "region": "riverlands",
+      "recommended_level": 14,
+      "progression_index": 14,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "既存の町を保持する。船の整備と出航後の補給を相談する拠点を兼ねる提案。",
+      "origin": "existing",
+      "visit_policy": "recommended",
+      "legacy_location": "harbor"
+    },
+    {
+      "id": "toll_post",
+      "name": "旧渡しの関所",
+      "type": "outpost",
+      "region": "riverlands",
+      "recommended_level": 15,
+      "progression_index": 15,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "残された渡し札を記録坑道の記述と比較し、寄り道の結果を町へ持ち帰る。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "levee_vault",
+      "name": "堤下の保管庫",
+      "type": "dungeon",
+      "region": "riverlands",
+      "recommended_level": 16,
+      "progression_index": 16,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "流失した整備品を探す。人間職と魔物職のどちらの構成でも船の準備を終えられる。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "shipyard",
+      "name": "河岸の船修理場",
+      "type": "outpost",
+      "region": "riverlands",
+      "recommended_level": 17,
+      "progression_index": 17,
+      "required_transport": "walk",
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "story_role": "船の整備手順を完了して船を解放する。特定職のマスターや魔物化を必須にしない。",
+      "origin": "proposed",
+      "visit_policy": "transport_unlock",
+      "legacy_location": null
+    },
+    {
+      "id": "brine_port",
+      "name": "潮路の港町",
+      "type": "town",
+      "region": "brine_reaches",
+      "recommended_level": 18,
+      "progression_index": 18,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "船で初めて訪れる港。帰航と補給の選択肢を確保し、新しい土地の証言を集める。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "tide_beacon",
+      "name": "干潮の灯標",
+      "type": "outpost",
+      "region": "brine_reaches",
+      "recommended_level": 19,
+      "progression_index": 19,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "航路上の分岐を示す記録と補給を得る。船を得た効果を短い寄り道で確かめる。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "salt_mine",
+      "name": "塩層坑",
+      "type": "dungeon",
+      "region": "brine_reaches",
+      "recommended_level": 20,
+      "progression_index": 20,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "坑道の搬出記録を調べ、打撃と魔法の装着の違いが現れる敵の組合せに対応する。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "nettle_hamlet",
+      "name": "網干しの村",
+      "type": "town",
+      "region": "brine_reaches",
+      "recommended_level": 21,
+      "progression_index": 21,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "港で聞いた話を作業者の証言と比較する。次の航海に向けて職業を組み直す。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "reef_shrine",
+      "name": "礁間の祠",
+      "type": "outpost",
+      "region": "brine_reaches",
+      "recommended_level": 22,
+      "progression_index": 22,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "海に残る標識を読み、旧水路の記録を再訪時に読み直す手掛かりを得る。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "drowned_store",
+      "name": "沈み倉",
+      "type": "dungeon",
+      "region": "brine_reaches",
+      "recommended_level": 23,
+      "progression_index": 23,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "水没した引継ぎ品を回収する。回復役と攻撃役の装着配分を問う探索。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "breakwater_ruins",
+      "name": "防波堤跡",
+      "type": "dungeon",
+      "region": "brine_reaches",
+      "recommended_level": 24,
+      "progression_index": 24,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "海側の記録をまとめて内陸の記録との食い違いを確かめる。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "sailors_rest",
+      "name": "船乗りの休息所",
+      "type": "outpost",
+      "region": "brine_reaches",
+      "recommended_level": 25,
+      "progression_index": 25,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "二つの航路をつなぐ休息地点。探索成果を補給へ交換して長い往復の負担を減らす。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "mist_market",
+      "name": "霧の市",
+      "type": "town",
+      "region": "mist_basin",
+      "recommended_level": 26,
+      "progression_index": 26,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "水路でつながる別地方の入口。河岸へ帰る航路と地方内の仕事を案内する。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "lock_station",
+      "name": "湖口の水番所",
+      "type": "outpost",
+      "region": "mist_basin",
+      "recommended_level": 27,
+      "progression_index": 27,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "分け水門と異なる管理記録を読み、同じ設備の使われ方の違いを知る。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "reed_library",
+      "name": "葦紙の書庫",
+      "type": "dungeon",
+      "region": "mist_basin",
+      "recommended_level": 28,
+      "progression_index": 28,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "魔物職の記録を照合し、能力を得る選択と解除の代償を再確認する。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "kiln_village",
+      "name": "窯場の村",
+      "type": "town",
+      "region": "mist_basin",
+      "recommended_level": 29,
+      "progression_index": 29,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "道具を修理する仕事を通して戦闘で担う役割を見直し、次の探索へ補給する。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "marsh_camp",
+      "name": "沼縁の観測営地",
+      "type": "outpost",
+      "region": "mist_basin",
+      "recommended_level": 30,
+      "progression_index": 30,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "獣系の状態異常と不死系への対処を観察し、戦闘前に装着を変える手掛かりを得る。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "bell_quarry",
+      "name": "鳴石の採掘場",
+      "type": "dungeon",
+      "region": "mist_basin",
+      "recommended_level": 31,
+      "progression_index": 31,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "高地へ届く設備の部材を調査する。過去の教習を別の敵編成で使う。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "windbreak_town",
+      "name": "風除けの町",
+      "type": "town",
+      "region": "mist_basin",
+      "recommended_level": 32,
+      "progression_index": 32,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "飛行に備えた拠点。姿や職業にかかわらず出発準備を進められる。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "wind_observatory",
+      "name": "風見の観測所",
+      "type": "outpost",
+      "region": "mist_basin",
+      "recommended_level": 33,
+      "progression_index": 33,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "風路の確認を完了して飛行を解放する。船も保持し、既存地方へ戻れる。",
+      "origin": "proposed",
+      "visit_policy": "transport_unlock",
+      "legacy_location": null
+    },
+    {
+      "id": "ridgehearth",
+      "name": "稜線の宿場町",
+      "type": "town",
+      "region": "sky_ridge",
+      "recommended_level": 34,
+      "progression_index": 34,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "飛行で初めて訪れる高地の補給先。低地へ戻る経路を案内する。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "cloud_landing",
+      "name": "雲間の着陸場",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 35,
+      "progression_index": 35,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "飛行後の短い寄り道。高地の標識と低地の記録を結び付ける。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "cloud_forge",
+      "name": "雲上の鍛造跡",
+      "type": "dungeon",
+      "region": "sky_ridge",
+      "recommended_level": 36,
+      "progression_index": 36,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "習得済みの技を装着し直し、限られた枠で連戦への備えを変える。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "signal_hut",
+      "name": "尾根の信号小屋",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 37,
+      "progression_index": 37,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "離れた町同士の伝達記録を読み、以前の台詞の解釈を更新する。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "survey_post",
+      "name": "稜線の測候所",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 38,
+      "progression_index": 38,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "別の高地への道標を得る。飛行で見つけた場所を再訪する理由を用意する。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "high_camp",
+      "name": "高原の野営地",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 39,
+      "progression_index": 39,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "次の遺跡の敵の特徴を聞き、魔物化を選ぶ場合と選ばない場合の装着を整える。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "wind_tomb",
+      "name": "風鳴りの墓所",
+      "type": "dungeon",
+      "region": "sky_ridge",
+      "recommended_level": 40,
+      "progression_index": 40,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "不死系の記録を過去の証言と照合する。解除可能性を隠さず選択の意味を問う。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "standing_stone",
+      "name": "風標石の広場",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 41,
+      "progression_index": 41,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "高地の印と低地の印の対応を確かめ、町への再訪で聞き取りを進める。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "highfield",
+      "name": "空畑の村",
+      "type": "town",
+      "region": "sky_ridge",
+      "recommended_level": 42,
+      "progression_index": 42,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "終盤の補給と役割分担の見直しを行う町。前の地方への帰路を確保する。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "ridge_well",
+      "name": "尾根の共同井戸",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 43,
+      "progression_index": 43,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "補給品を分ける仕事から仲間四人の担当を再確認する。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "wayfarer_refuge",
+      "name": "旅人の避難所",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 44,
+      "progression_index": 44,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "異なる道を選んだ旅人の記録を読み、見逃した任意拠点の所在を知る。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "aerie_ruins",
+      "name": "高巣の遺構",
+      "type": "dungeon",
+      "region": "sky_ridge",
+      "recommended_level": 45,
+      "progression_index": 45,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "獣系の観察を含む手掛かりを使い、敵の行動に合わせた装着を試す。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    },
+    {
+      "id": "summit_marker",
+      "name": "頂への道標",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 45,
+      "progression_index": 46,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "離れた土地で得た証言を照合し、最終探索の目的を確認する。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "snow_shelter",
+      "name": "雪待ちの小屋",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 45,
+      "progression_index": 47,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "最終探索前の補給先。以前の土地へ戻って習得や装着をやり直せる。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "echo_platform",
+      "name": "こだまの観測台",
+      "type": "outpost",
+      "region": "sky_ridge",
+      "recommended_level": 45,
+      "progression_index": 48,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "最終探索の直前に過去の記録を読み返す。解答を先に表示せず問いを整理する。",
+      "origin": "proposed",
+      "visit_policy": "optional",
+      "legacy_location": null
+    },
+    {
+      "id": "summit_archive",
+      "name": "頂の記録庫",
+      "type": "dungeon",
+      "region": "sky_ridge",
+      "recommended_level": 45,
+      "progression_index": 49,
+      "required_transport": "flight",
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "story_role": "広域案の終点。既存六章案の終盤へ戻す情報をまとめる。結末の置換は未決定。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "route_town_waterway",
+      "from": "town",
+      "to": "waterway",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [],
+      "roles": [
+        "recommended_route",
+        "legacy_story_connection"
+      ]
+    },
+    {
+      "id": "route_waterway_cave",
+      "from": "waterway",
+      "to": "cave",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [],
+      "roles": [
+        "recommended_route",
+        "legacy_story_connection"
+      ]
+    },
+    {
+      "id": "route_cave_gate",
+      "from": "cave",
+      "to": "gate",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_gate_garden",
+      "from": "gate",
+      "to": "garden",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_garden_school",
+      "from": "garden",
+      "to": "school",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "recommended_route",
+        "legacy_story_connection"
+      ]
+    },
+    {
+      "id": "route_school_springford",
+      "from": "school",
+      "to": "springford",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_springford_causeway_cave",
+      "from": "springford",
+      "to": "causeway_cave",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_causeway_cave_records",
+      "from": "causeway_cave",
+      "to": "records",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_records_harbor",
+      "from": "records",
+      "to": "harbor",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "recommended_route",
+        "legacy_story_connection"
+      ]
+    },
+    {
+      "id": "route_harbor_levee_vault",
+      "from": "harbor",
+      "to": "levee_vault",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_levee_vault_brine_port",
+      "from": "levee_vault",
+      "to": "brine_port",
+      "required_transport": "ship",
+      "expected_travel_seconds": 40,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_brine_port_salt_mine",
+      "from": "brine_port",
+      "to": "salt_mine",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_salt_mine_nettle_hamlet",
+      "from": "salt_mine",
+      "to": "nettle_hamlet",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_nettle_hamlet_drowned_store",
+      "from": "nettle_hamlet",
+      "to": "drowned_store",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_drowned_store_breakwater_ruins",
+      "from": "drowned_store",
+      "to": "breakwater_ruins",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_breakwater_ruins_mist_market",
+      "from": "breakwater_ruins",
+      "to": "mist_market",
+      "required_transport": "ship",
+      "expected_travel_seconds": 40,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_mist_market_reed_library",
+      "from": "mist_market",
+      "to": "reed_library",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_reed_library_kiln_village",
+      "from": "reed_library",
+      "to": "kiln_village",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_kiln_village_bell_quarry",
+      "from": "kiln_village",
+      "to": "bell_quarry",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_bell_quarry_windbreak_town",
+      "from": "bell_quarry",
+      "to": "windbreak_town",
+      "required_transport": "walk",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_windbreak_town_ridgehearth",
+      "from": "windbreak_town",
+      "to": "ridgehearth",
+      "required_transport": "flight",
+      "expected_travel_seconds": 40,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_ridgehearth_cloud_forge",
+      "from": "ridgehearth",
+      "to": "cloud_forge",
+      "required_transport": "flight",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_cloud_forge_wind_tomb",
+      "from": "cloud_forge",
+      "to": "wind_tomb",
+      "required_transport": "flight",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_wind_tomb_highfield",
+      "from": "wind_tomb",
+      "to": "highfield",
+      "required_transport": "flight",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_highfield_aerie_ruins",
+      "from": "highfield",
+      "to": "aerie_ruins",
+      "required_transport": "flight",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_aerie_ruins_summit_archive",
+      "from": "aerie_ruins",
+      "to": "summit_archive",
+      "required_transport": "flight",
+      "expected_travel_seconds": 28,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "recommended_route"
+      ]
+    },
+    {
+      "id": "route_town_river_watch",
+      "from": "town",
+      "to": "river_watch",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_waterway_reed_camp",
+      "from": "waterway",
+      "to": "reed_camp",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_cave_stone_shelter",
+      "from": "cave",
+      "to": "stone_shelter",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_garden_herb_station",
+      "from": "garden",
+      "to": "herb_station",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_harbor_toll_post",
+      "from": "harbor",
+      "to": "toll_post",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_levee_vault_shipyard",
+      "from": "levee_vault",
+      "to": "shipyard",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "transport_preparation"
+      ]
+    },
+    {
+      "id": "route_brine_port_tide_beacon",
+      "from": "brine_port",
+      "to": "tide_beacon",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_nettle_hamlet_reef_shrine",
+      "from": "nettle_hamlet",
+      "to": "reef_shrine",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_breakwater_ruins_sailors_rest",
+      "from": "breakwater_ruins",
+      "to": "sailors_rest",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_mist_market_lock_station",
+      "from": "mist_market",
+      "to": "lock_station",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_kiln_village_marsh_camp",
+      "from": "kiln_village",
+      "to": "marsh_camp",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_windbreak_town_wind_observatory",
+      "from": "windbreak_town",
+      "to": "wind_observatory",
+      "required_transport": "walk",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "transport_preparation"
+      ]
+    },
+    {
+      "id": "route_ridgehearth_cloud_landing",
+      "from": "ridgehearth",
+      "to": "cloud_landing",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_cloud_forge_signal_hut",
+      "from": "cloud_forge",
+      "to": "signal_hut",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_cloud_forge_survey_post",
+      "from": "cloud_forge",
+      "to": "survey_post",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_cloud_forge_high_camp",
+      "from": "cloud_forge",
+      "to": "high_camp",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_wind_tomb_standing_stone",
+      "from": "wind_tomb",
+      "to": "standing_stone",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_highfield_ridge_well",
+      "from": "highfield",
+      "to": "ridge_well",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_highfield_wayfarer_refuge",
+      "from": "highfield",
+      "to": "wayfarer_refuge",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_aerie_ruins_summit_marker",
+      "from": "aerie_ruins",
+      "to": "summit_marker",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_aerie_ruins_snow_shelter",
+      "from": "aerie_ruins",
+      "to": "snow_shelter",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_aerie_ruins_echo_platform",
+      "from": "aerie_ruins",
+      "to": "echo_platform",
+      "required_transport": "flight",
+      "expected_travel_seconds": 12,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "optional_detour"
+      ]
+    },
+    {
+      "id": "route_cave_town",
+      "from": "cave",
+      "to": "town",
+      "required_transport": "walk",
+      "expected_travel_seconds": 24,
+      "one_way": false,
+      "unlock_flags": [],
+      "roles": [
+        "legacy_story_connection"
+      ]
+    },
+    {
+      "id": "route_town_gate",
+      "from": "town",
+      "to": "gate",
+      "required_transport": "walk",
+      "expected_travel_seconds": 24,
+      "one_way": false,
+      "unlock_flags": [],
+      "roles": [
+        "legacy_story_connection"
+      ]
+    },
+    {
+      "id": "route_waterway_garden",
+      "from": "waterway",
+      "to": "garden",
+      "required_transport": "walk",
+      "expected_travel_seconds": 24,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "legacy_story_connection"
+      ]
+    },
+    {
+      "id": "route_garden_records",
+      "from": "garden",
+      "to": "records",
+      "required_transport": "walk",
+      "expected_travel_seconds": 24,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "legacy_story_connection"
+      ]
+    },
+    {
+      "id": "route_harbor_town",
+      "from": "harbor",
+      "to": "town",
+      "required_transport": "walk",
+      "expected_travel_seconds": 24,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "legacy_story_connection"
+      ]
+    },
+    {
+      "id": "route_springford_harbor",
+      "from": "springford",
+      "to": "harbor",
+      "required_transport": "walk",
+      "expected_travel_seconds": 32,
+      "one_way": false,
+      "unlock_flags": [
+        "world_causeway_open"
+      ],
+      "roles": [
+        "return_shortcut"
+      ]
+    },
+    {
+      "id": "route_brine_port_breakwater_ruins",
+      "from": "brine_port",
+      "to": "breakwater_ruins",
+      "required_transport": "walk",
+      "expected_travel_seconds": 32,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "return_shortcut"
+      ]
+    },
+    {
+      "id": "route_nettle_hamlet_mist_market",
+      "from": "nettle_hamlet",
+      "to": "mist_market",
+      "required_transport": "ship",
+      "expected_travel_seconds": 32,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "return_shortcut"
+      ]
+    },
+    {
+      "id": "route_mist_market_windbreak_town",
+      "from": "mist_market",
+      "to": "windbreak_town",
+      "required_transport": "walk",
+      "expected_travel_seconds": 32,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "return_shortcut"
+      ]
+    },
+    {
+      "id": "route_ridgehearth_highfield",
+      "from": "ridgehearth",
+      "to": "highfield",
+      "required_transport": "flight",
+      "expected_travel_seconds": 32,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "return_shortcut"
+      ]
+    },
+    {
+      "id": "route_highfield_summit_archive",
+      "from": "highfield",
+      "to": "summit_archive",
+      "required_transport": "flight",
+      "expected_travel_seconds": 32,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "return_shortcut"
+      ]
+    }
+  ]
+}

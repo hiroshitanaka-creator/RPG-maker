@@ -34,6 +34,12 @@ jobs:
           chmod +x godot
           ./godot --headless --import 2>&1 | tee preplay-import.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" preplay-import.log; then exit 1; fi
+      - name: ワールド構造のPhase 1定義を検査
+        run: |
+          set -o pipefail
+          ./godot --headless --path . --script res://tools/check_map_graph_definition.gd 2>&1 | tee map-graph-definition.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" map-graph-definition.log; then exit 1; fi
+          test "$(grep -c '^MAP_GRAPH_DEFINITION_PASS:' map-graph-definition.log)" -eq 1
       - name: 60時間の目標判定境界・全画面・案内・帰還を検査
         run: |
           set -o pipefail
