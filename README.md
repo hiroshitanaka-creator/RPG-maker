@@ -2,7 +2,7 @@
 
 職業・アビリティ装着・魔物化を中心にした、1周5〜6時間のオリジナルRPG企画。
 
-現在の受入基準は[scope-lock契約](.scope-lock/spec.lock.json)。Godot 4.7.2-stable / GDScript、人間職12種＋モンスター職8種、3〜4人パーティで実装している。v1の完成や5〜6時間の実測を確認済みとはしていない。
+現在の受入基準は[scope-lock契約](.scope-lock/spec.lock.json)と、依頼者が追加した[勝率・終了ターン・保存一致の3条件](docs/additional-acceptance-v1.md)。追加3条件は文書登録済み・未検証で、凍結verifyへの登録は未実施。Godot 4.7.2-stable / GDScript、人間職12種＋モンスター職8種、3〜4人パーティで実装している。v1の完成や5〜6時間の実測を確認済みとはしていない。
 
 [企画全体の残作業監査](docs/v1-whole-project-audit.md)で、完走記録以外の未実装・仕様整理・計測・画面上の残件も確認した。現在の作業一覧は[残作業](docs/remaining-v1-work.md)を参照する。凍結8要件のPASSだけで企画全体の完成とは判断しない。
 
