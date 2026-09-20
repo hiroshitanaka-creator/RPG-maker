@@ -16,6 +16,8 @@ var events: Array[Dictionary] = []
 var completed: bool = false
 var source_changed: bool = false
 var _clock_ms: int = -1
+var observer: PlaySessionMetrics
+var clock_closed: bool = false
 
 
 func touch() -> void:
@@ -35,23 +37,43 @@ func update_clock(mode: String, current_chapter: int, focused: bool) -> void:
 		chapters[chapter] = {"active_ms":0,"elapsed_ms":0}
 	if completed:
 		return
+	var bucket := "active_ms"
+	if not focused or mode in ["menu","paused","complete","review"]:
+		bucket = "pause_ms"
+	elif now-last_input_ms > IDLE_MS:
+		bucket = "idle_ms"
+	_accept_delta(delta,chapter,bucket)
+	if observer != null:
+		observer._accept_delta(delta,chapter,bucket)
+
+
+func _accept_delta(delta: int, current_chapter: String, bucket: String) -> void:
+	if clock_closed:
+		return
+	chapter = current_chapter
+	if not chapters.has(chapter):
+		chapters[chapter] = {"active_ms":0,"elapsed_ms":0}
 	elapsed_ms += delta
 	chapters[chapter]["elapsed_ms"] += delta
-	if not focused or mode in ["menu","paused","complete","review"]:
-		pause_ms += delta
-	elif now-last_input_ms > IDLE_MS:
-		idle_ms += delta
-	else:
-		active_ms += delta
-		chapters[chapter]["active_ms"] += delta
+	match bucket:
+		"pause_ms": pause_ms += delta
+		"idle_ms": idle_ms += delta
+		_:
+			active_ms += delta
+			chapters[chapter]["active_ms"] += delta
 
 
 func mark(name: String, amount: int = 1) -> void:
 	counters[name] = int(counters.get(name,0))+amount
+	if observer != null:
+		observer.mark(name,amount)
 
 
 func record_event(kind: String, details: Dictionary) -> void:
 	events.append({"kind":kind,"chapter":chapter,"elapsed_ms":elapsed_ms,"details":details.duplicate(true)})
+	if observer != null:
+		observer.chapter = chapter
+		observer.record_event(kind,details)
 
 
 func set_source(value: String) -> bool:
@@ -60,6 +82,8 @@ func set_source(value: String) -> bool:
 	if source != "unclassified" and source != value:
 		source_changed = true
 	source = value
+	if observer != null:
+		observer.set_source(value)
 	return true
 
 
@@ -67,6 +91,9 @@ func add_review(exploration: int, reward: int, difficulty: int, note: String) ->
 	if source != "human" or exploration not in range(1,6) or reward not in range(1,6) or difficulty not in range(1,6):
 		return false
 	answers.append({"chapter":chapter,"active_ms":active_ms,"exploration":exploration,"reward":reward,"difficulty":difficulty,"note":note.left(2000),"self_reported":true})
+	if observer != null:
+		observer.chapter = chapter
+		observer.add_review(exploration,reward,difficulty,note)
 	return true
 
 
@@ -131,23 +158,38 @@ func restore(value: Dictionary) -> bool:
 	return true
 
 
-func export_report(path: String, context: Dictionary = {}) -> bool:
-	var file := FileAccess.open(path,FileAccess.WRITE)
-	if file == null:
-		return false
+func report(context: Dictionary = {}) -> Dictionary:
 	var value := snapshot()
 	var play_ms := active_ms+idle_ms
 	value["foreground_play_ms"] = play_ms
 	value["idle_review_required"] = idle_ms > 0
 	value["target_play_minutes"] = [300,360]
-	value["target_duration_observed"] = source == "human" and not source_changed and completed and context.get("content_revision",0) == 1 and context.get("circuits_completed",[]).size() == 5 and play_ms >= 300*60000 and play_ms <= 360*60000
+	value["target_duration_observed"] = source == "human" and not source_changed and completed and context.get("history_complete",false) and not context.get("mixed_builds",true) and context.get("content_revision",0) == 1 and context.get("circuits_completed",[]).size() == 5 and play_ms >= 300*60000 and play_ms <= 360*60000
 	value["human_review_received"] = source == "human" and not answers.is_empty()
 	value["human_identity_verified"] = false
 	value["acceptance_status"] = "UNREVIEWED"
 	value["recorded_at"] = Time.get_datetime_string_from_system(true)
 	value["game"] = context.duplicate(true)
+	return value
+
+
+func export_report(path: String, context: Dictionary = {}) -> bool:
+	return write_json(path,report(context))
+
+
+static func write_json(path: String, value: Dictionary) -> bool:
+	var temporary := path+".tmp"
+	var file := FileAccess.open(temporary,FileAccess.WRITE)
+	if file == null:
+		return false
 	file.store_string(JSON.stringify(value,"  "))
-	return file.get_error() == OK
+	file.flush()
+	var written := file.get_error() == OK
+	file.close()
+	if not written:
+		DirAccess.remove_absolute(temporary)
+		return false
+	return DirAccess.rename_absolute(temporary,path) == OK
 
 
 static func _integers(value: Variant) -> Variant:

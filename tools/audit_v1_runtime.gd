@@ -24,7 +24,12 @@ func _run() -> void:
 		require(game.import_state(initial),"転職検査の初期状態を戻せる")
 		if game.change_job("pc_01",identifier):
 			allowed.append(identifier)
-	facts["initially_changeable_jobs"] = allowed
+	facts["programmatic_job_application"] = allowed
+	var player_allowed: Array[String] = []
+	for identifier in game.jobs:
+		game.import_state(initial)
+		if game.choose_job("pc_01",identifier):player_allowed.append(identifier)
+	facts["initial_player_selectable_jobs"] = player_allowed
 	require(game.import_state(initial),"侵蝕の比較用状態を戻せる")
 	var stages: Dictionary = {}
 	for erosion in [0,29,30,59,60,89]:
@@ -34,7 +39,7 @@ func _run() -> void:
 		var actor: Dictionary = game.export_state()["party"][0]
 		var jobs: Array[String] = []
 		for identifier in game.jobs:
-			if game.preview_job("pc_01",identifier)["allowed"]:
+			if game.job_unlocked("pc_01",identifier) and game.preview_job("pc_01",identifier)["allowed"]:
 				jobs.append(identifier)
 		stages[str(erosion)] = {"walk":CharacterVisuals.appearance(actor,"walk")["path"],"battle":CharacterVisuals.appearance(actor,"battle")["path"],"jobs":jobs,"stage":GameSession.erosion_stage(erosion)}
 	facts["erosion_without_monster_form"] = stages
@@ -55,7 +60,7 @@ func _run() -> void:
 	await _observe_ui()
 	facts["probe_errors"] = errors
 	facts["meaning"] = "観測に成功したことと企画要件を満たしたことは別。人間の試遊は行っていない。"
-	var destination := "res://docs/verification/v1-audit-runtime.json"
+	var destination := "res://docs/verification/v1-audit-runtime-latest.json"
 	var file := FileAccess.open(destination,FileAccess.WRITE)
 	if file == null:
 		printerr("AUDIT_PROBE_ERROR: 記録を書き込めません")
@@ -89,6 +94,7 @@ func _wait_real(milliseconds: int) -> void:
 
 func _observe_reload_metrics() -> void:
 	var game := GameSession.new()
+	game.enable_recording("user://qa_audit_trials_"+str(Time.get_ticks_usec()))
 	game.new_game(4)
 	game.play_metrics.set_source("automated")
 	game.play_metrics.update_clock("field",1,true)
@@ -100,9 +106,12 @@ func _observe_reload_metrics() -> void:
 	game.play_metrics.update_clock("field",1,true)
 	game.play_metrics.record_event("audit_attempt",{"synthetic_observation":true})
 	var before := game.play_metrics.snapshot()
+	var whole_before := game.playtest_document()
 	require(game.load_game("user://qa_whole_audit_metrics.json"),"監査用セーブを読み直せる")
 	var after := game.play_metrics.snapshot()
 	facts["manual_reload_metrics"] = {"saved_elapsed_ms":saved["elapsed_ms"],"before_reload_elapsed_ms":before["elapsed_ms"],"after_reload_elapsed_ms":after["elapsed_ms"],"events_before":before["events"].size(),"events_after":after["events"].size()}
+	facts["whole_trial_reload_metrics"] = {"before":whole_before["elapsed_ms"],"after":game.playtest_document()["elapsed_ms"],"history_complete":game.playtest_document()["history_complete"]}
+	game.close_recording()
 
 
 func _observe_ui() -> void:

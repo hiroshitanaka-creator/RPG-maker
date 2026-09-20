@@ -10,6 +10,8 @@ var abilities: Dictionary = {}
 var enemy_definitions: Dictionary = {}
 var errors: Array[String] = []
 var play_metrics := PlaySessionMetrics.new()
+var _archive: PlaythroughArchive
+var job_progression: Dictionary = {}
 
 var _state: Dictionary = {}
 var _battle: BattleState
@@ -26,6 +28,7 @@ func _init() -> void:
 	jobs = catalog.jobs
 	abilities = catalog.abilities
 	enemy_definitions = catalog.enemies
+	job_progression = JSON.parse_string(FileAccess.get_file_as_string("res://data/job_progression_v1.json"))
 	errors.assign(catalog.errors)
 	errors.append_array(StoryCampaign.audit())
 	errors.append_array(ExplorationSites.audit(abilities,jobs))
@@ -67,14 +70,19 @@ func _init() -> void:
 func new_game(party_size: int = 4) -> bool:
 	if not errors.is_empty() or party_size < 3 or party_size > 4:
 		return false
+	if _archive != null and not _state.is_empty():
+		_archive.lifetime.record_event("trial_closed",{"reason":"new_game"})
+		close_recording()
 	var starts := ["warrior", "martial_artist", "priest", "mage"]
+	var cast: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/cast_v1.json"))
 	var party: Array = []
 	for i in range(party_size):
 		var job: Dictionary = jobs[starts[i]]
 		party.append({
-			"id": "pc_%02d" % (i + 1), "name": "仲間%d" % (i + 1),
+			"id": "pc_%02d" % (i + 1), "name": cast["actors"]["pc_%02d" % (i+1)]["name"],
 			"job_id": starts[i], "last_human_job": starts[i], "jp": {},
 			"mastered_jobs": [], "learned_abilities": [], "equipped_abilities": [],
+			"unlocked_jobs": [],
 			"monster_form": "", "erosion": 0, "irreversible": false,
 			"hp": int(job["stats"]["hp"]), "max_hp": int(job["stats"]["hp"]),
 			"mp": int(job["stats"]["mp"]), "max_mp": int(job["stats"]["mp"])
@@ -89,6 +97,9 @@ func new_game(party_size: int = 4) -> bool:
 	_field_battle = false
 	_story_wave_step = -1
 	_expedition_battle_stage = -1
+	if _archive != null:
+		_archive.start(play_metrics)
+		flush_recording()
 	return true
 
 
@@ -184,6 +195,13 @@ func _valid_state(value: Dictionary) -> bool:
 			return false
 		if not actor["jp"] is Dictionary:
 			return false
+		if not actor.get("unlocked_jobs",[]) is Array:
+			return false
+		var unlocked: Array = []
+		for identifier in actor.get("unlocked_jobs",[]):
+			if not identifier is String or not job_progression["advanced"].has(identifier) or identifier in unlocked:
+				return false
+			unlocked.append(identifier)
 		for job_id in actor["jp"]:
 			if not jobs.has(job_id) or not actor["jp"][job_id] is int or actor["jp"][job_id] < 0:
 				return false
@@ -268,6 +286,7 @@ static func _normalize_numbers(value: Variant) -> Variant:
 
 
 func change_job(actor_id: String, job_id: String) -> bool:
+	# 状態適用の基礎API。通常の職業選択はchoose_jobで解放条件も確認する。
 	if _battle != null or not jobs.has(job_id):
 		return false
 	var actor := _member(actor_id)
@@ -284,6 +303,42 @@ func change_job(actor_id: String, job_id: String) -> bool:
 	_reconcile_slots(actor)
 	play_metrics.record_event("job_changed",{"actor":actor_id,"from":previous_job,"to":job_id})
 	return true
+
+
+func job_unlocked(actor_id: String, job_id: String) -> bool:
+	var actor := _member(actor_id)
+	if actor.is_empty() or not jobs.has(job_id):
+		return false
+	# 過去の保存で既に使った職は取り上げない。
+	if actor["job_id"] == job_id or int(actor["jp"].get(job_id,0)) > 0 or job_id in actor["mastered_jobs"] or job_id in actor.get("unlocked_jobs",[]):
+		return true
+	var rule: Dictionary = job_progression["advanced"].get(job_id,{})
+	if rule.is_empty():
+		return true
+	for required in rule["masters"]:
+		if required not in actor["mastered_jobs"]:
+			return false
+	return int(actor["erosion"]) >= int(rule["erosion"])
+
+
+func choose_job(actor_id: String, job_id: String) -> bool:
+	if not job_unlocked(actor_id,job_id) or not change_job(actor_id,job_id):
+		return false
+	_grant_job_unlocks(_member(actor_id))
+	return true
+
+
+func _grant_job_unlocks(actor: Dictionary) -> void:
+	for identifier in job_progression["advanced"]:
+		var rule: Dictionary = job_progression["advanced"][identifier]
+		var met: bool = int(actor["erosion"]) >= int(rule["erosion"])
+		for required in rule["masters"]:
+			met = met and required in actor["mastered_jobs"]
+		if met and identifier not in actor.get("unlocked_jobs",[]):
+			if not actor.has("unlocked_jobs"):
+				actor["unlocked_jobs"] = []
+			actor["unlocked_jobs"].append(identifier)
+			play_metrics.record_event("job_unlocked",{"actor":actor["id"],"job":identifier})
 
 
 func slot_limit(actor_id: String) -> int:
@@ -372,6 +427,24 @@ func _compute_stats(actor: Dictionary, include_form: bool) -> Dictionary:
 func effective_stats(actor_id: String) -> Dictionary:
 	var actor := _member(actor_id)
 	return {} if actor.is_empty() else _compute_stats(actor, true)
+
+
+func mastery_trait(job_id: String) -> Dictionary:
+	if not jobs.has(job_id):
+		return {}
+	var growth: Dictionary = jobs[job_id]["stat_growth"]
+	var names := {"hp":"HP","mp":"MP","attack":"攻撃","defense":"防御","magic":"魔力","resistance":"魔防","speed":"速さ"}
+	var effects: Array[String] = []
+	for stat in growth:
+		effects.append(str(names[stat])+" +"+str(int(growth[stat])))
+	return {"id":"mastery_"+job_id,"name":str(jobs[job_id]["name"])+"の鍛錬","description":" / ".join(effects),"stat_growth":growth.duplicate(true)}
+
+
+func mastery_traits(actor_id: String) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for identifier in _member(actor_id).get("mastered_jobs",[]):
+		result.append(mastery_trait(identifier))
+	return result
 
 
 func base_effective_stats(actor_id: String) -> Dictionary:
@@ -503,11 +576,12 @@ func release_monster_form(actor_id: String, event: String) -> bool:
 	if _battle != null:
 		return false
 	var actor := _member(actor_id)
-	if actor.is_empty() or str(actor["monster_form"]).is_empty():
+	if actor.is_empty() or (str(actor["monster_form"]).is_empty() and int(actor["erosion"]) == 0):
 		return false
-	var release: Dictionary = jobs[actor["monster_form"]]["monster_form"]["release"]
+	var release: Dictionary = {"event":"purification_shrine","max_erosion":89,"erosion_reduction":30,"forget_monster_abilities":true} if str(actor["monster_form"]).is_empty() else jobs[actor["monster_form"]]["monster_form"]["release"]
 	if event != release["event"] or actor["irreversible"] or int(actor["erosion"]) > int(release["max_erosion"]):
 		return false
+	_grant_job_unlocks(actor)
 	var monster_skills: Array[String] = _form_abilities()
 	var human_skills: Array[String] = []
 	for job in jobs.values():
@@ -698,6 +772,7 @@ func finish_battle() -> bool:
 				_learn_form(actor, actor["job_id"])
 		_refresh_caps(actor)
 		_reconcile_slots(actor)
+		_grant_job_unlocks(actor)
 	play_metrics.record_event("battle_finished",battle_result)
 	_battle = null
 	_field_battle = false
@@ -1082,20 +1157,66 @@ func walking_party() -> Array[Dictionary]:
 	return result
 
 
-func save_playtest_report(path: String = "user://playtest-report.json") -> bool:
-	if not path.begins_with("user://") or ".." in path:
-		return false
+func recording_context() -> Dictionary:
 	play_metrics.completed = story_complete()
 	var cleared: Array[String] = []
 	for circuit in CampaignContent.data()["circuits"]:
 		if _state.get("progress_flags",{}).get("circuit_"+circuit["id"]+"_cleared",false):
 			cleared.append(circuit["id"])
-	return play_metrics.export_report(path,{"engine":Engine.get_version_info()["string"],"world":world_state(),"party_size":_state.get("party",[]).size(),"content_revision":_state.get("content_revision",0),"circuits_completed":cleared,"content_sha256":CampaignContent.content_hash()})
+	var build := BuildIdentity.current()
+	return {"engine":build["engine"],"build_id":build["id"],"build_identity_version":build["version"],"world":world_state(),"party_size":_state.get("party",[]).size(),"content_revision":_state.get("content_revision",0),"circuits_completed":cleared,"content_sha256":CampaignContent.content_hash()}
 
 
-func save_game(path: String) -> bool:
+func enable_recording(directory: String) -> bool:
+	if not directory.begins_with("user://") or ".." in directory or _archive != null:
+		return false
+	_archive = PlaythroughArchive.new(directory)
+	if not _state.is_empty():
+		_archive.start(play_metrics,false)
+	return true
+
+
+func playthrough_id() -> String:
+	return "" if _archive == null else _archive.identifier
+
+
+func recording_issue() -> String:
+	return "" if _archive == null else _archive.issue
+
+
+func flush_recording(periodic: bool = false) -> bool:
+	return true if _archive == null else _archive.flush(play_metrics,recording_context(),periodic)
+
+
+func close_recording() -> bool:
+	if _archive != null:
+		_archive.run_open = false
+	return flush_recording()
+
+
+func playtest_document() -> Dictionary:
+	var context := recording_context()
+	if _archive != null and not _archive.identifier.is_empty():
+		return _archive.document(play_metrics,context)
+	var result := play_metrics.report(context)
+	result["measurement_scope"] = "progress_only"
+	result["history_complete"] = false
+	return result
+
+
+func save_playtest_report(path: String = "user://playtest-report.json") -> bool:
+	if not path.begins_with("user://") or ".." in path:
+		return false
+	flush_recording()
+	return PlaySessionMetrics.write_json(path,playtest_document())
+
+
+func save_game(path: String, record_id: String = "") -> bool:
 	if _battle != null or not path.begins_with("user://") or ".." in path or not _valid_state(_state):
 		return false
+	if not record_id.is_empty() and not PlaythroughArchive.valid_id(record_id):
+		return false
+	flush_recording()
 	var temporary := path + ".tmp"
 	var file := FileAccess.open(temporary, FileAccess.WRITE)
 	if file == null:
@@ -1103,6 +1224,9 @@ func save_game(path: String) -> bool:
 	var document := _state.duplicate(true)
 	# 計測は進行状態と分離し、読むだけで進行状態の比較が変化しないようにする。
 	document["_play_session"] = play_metrics.snapshot()
+	var identifier := playthrough_id() if record_id.is_empty() else record_id
+	if not identifier.is_empty():
+		document["_trial_id"] = identifier
 	file.store_string(JSON.stringify(document, "\t"))
 	file.flush()
 	var written := file.get_error() == OK
@@ -1125,7 +1249,20 @@ func load_game(path: String) -> bool:
 	if not raw_metrics is Dictionary or not metrics.restore(raw_metrics):
 		return false
 	candidate.erase("_play_session")
+	var record_id: Variant = candidate.get("_trial_id","")
+	if not record_id is String or (not record_id.is_empty() and not PlaythroughArchive.valid_id(record_id)):
+		return false
+	candidate.erase("_trial_id")
+	if not _valid_state(_normalize_numbers(candidate)):
+		return false
+	if _archive != null and _archive.identifier != record_id:
+		close_recording()
+	else:
+		flush_recording()
 	if not import_state(candidate):
 		return false
 	play_metrics = metrics
+	if _archive != null:
+		_archive.resume(record_id,play_metrics)
+		flush_recording()
 	return true

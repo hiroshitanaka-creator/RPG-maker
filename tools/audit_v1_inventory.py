@@ -6,6 +6,7 @@ import json
 import subprocess
 from collections import Counter
 from pathlib import Path
+from build_identity import identity, EXPECTED_ENGINE
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -52,7 +53,7 @@ def collect() -> dict:
         "story": {"chapters": len(story["chapters"]), "clues": clues, "events": len(story["events"]), "reactions": {key: value["reaction"] for key, value in story["events"].items() if "reaction" in value}},
         "expansion": {"circuits": len(content["circuits"]), "sections": len(sections), "distinct_layouts": len({json.dumps(section["layout"]) for section in sections}), "steps": len(steps), "kinds": dict(kinds)},
         "exploration_sites": dict(Counter(site["kind"] for site in read("data/exploration_v1.json")["sites"])),
-        "measurement_fingerprint_scope": ["data/campaign_content_v1.json"],
+        "current_build_identity": identity(EXPECTED_ENGINE),
         "audit_runtime_fingerprint": fingerprint,
         "runtime_file_sha256": hashes,
         "human_playtest": "NOT_RUN",
@@ -62,7 +63,7 @@ def collect() -> dict:
 
 def main() -> None:
     result = collect()
-    output = ROOT / "docs/verification/v1-audit-inventory.json"
+    output = ROOT / "docs/verification/v1-audit-inventory-latest.json"
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({key: value for key, value in result.items() if key not in {"runtime_file_sha256", "actor_visuals", "story"}}, ensure_ascii=False, indent=2))
 

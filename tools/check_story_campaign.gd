@@ -4,6 +4,25 @@ var _failed: bool = false
 var _captured: Dictionary = {}
 
 
+func _frame_budget() -> int:
+	return MAX_STEPS
+
+func _detour(_main: Node, _state: Dictionary, _entry: Dictionary) -> bool:
+	return false
+
+func _extra_mode(_main: Node, _state: Dictionary) -> bool:
+	return false
+
+func _finish_extra(_main: Node) -> bool:
+	return true
+
+func _legacy_probe() -> bool:
+	return true
+
+func _optional_views() -> bool:
+	return true
+
+
 func _check(condition: bool, message: String) -> bool:
 	if not condition:
 		_failed = true
@@ -55,7 +74,7 @@ func _run() -> void:
 	var rounds := 0
 	var old_serial := ""
 	var stalled := 0
-	for frame in range(MAX_STEPS):
+	for frame in range(_frame_budget()):
 		await process_frame
 		var state: Dictionary = main.automation_snapshot()
 		if _failed:
@@ -94,6 +113,8 @@ func _run() -> void:
 				return
 			if not _check(visits.size() == 2, "第5章の両方の再訪を実行する"):
 				return
+			if not _finish_extra(main):
+				return
 			await _capture(main,"ending")
 			main.submit_player_action({"kind":"journal"})
 			await _capture(main,"journal_complete")
@@ -131,7 +152,8 @@ func _run() -> void:
 				var restored := GameSession.new()
 				if not _check(restored.import_state(legacy) and restored.chapter_one_pause() and restored.journal_entries().size() == 3, "従来の第1章クリア保存から三つの既知情報を保って再開する"):
 					return
-				main.game.import_state(restored.export_state())
+				if _legacy_probe():
+					main.game.import_state(restored.export_state())
 				if not _check(main.submit_player_action({"kind":"continue_story"}), "第1章クリア後に本編を継続できる"):
 					return
 			"field":
@@ -143,7 +165,8 @@ func _run() -> void:
 					var restored := GameSession.new()
 					if not _check(main.game.save_game(path) and restored.load_game(path) and restored.export_state() == before, "章をまたいだセーブ往復が一致する"):
 						return
-					main.game.import_state(restored.export_state())
+					if not _check(main.game.load_game(path),"実際のセーブ読込で章を再開する"):
+						return
 					main._resume_current()
 					if before["progress_flags"].get("story_event_lesson",false):
 						for actor in before["party"]:
@@ -152,14 +175,16 @@ func _run() -> void:
 								return
 					print("STORY_PROGRESS: chapter=%d step=%s" % [chapter,key])
 				if chapter >= 2 and not _captured.has("journal_first") and StoryCampaign.stage(main.game.export_state()["progress_flags"],"R01") == 2:
-					main.submit_player_action({"kind":"journal"})
+					if _optional_views():
+						main.submit_player_action({"kind":"journal"})
 					var journal: Array = main.game.journal_entries()
 					for item in journal:
 						if item["id"] == "R02" and not _check(not item.has("resolved"), "次の疑問の答えを先に表示しない"):
 							return
 					await _capture(main,"journal_first")
 					_captured["journal_first"] = true
-					main.submit_player_action({"kind":"back"})
+					if _optional_views():
+						main.submit_player_action({"kind":"back"})
 				if entry.get("kind") == "battle" and not prepared.has(key):
 					prepared[key] = true
 					if main.game.world_state()["location"] not in ChapterOne.TOWNS:
@@ -169,6 +194,8 @@ func _run() -> void:
 						if not _check(main.submit_player_action({"kind":"resume_exploration"}), "戦闘地点への探索を再開する"):
 							return
 					_prepare_loadout(main)
+				if _detour(main,state,entry):
+					continue
 				var here: Array = state["player_cell"]
 				var goal: Array = state["objective_cell"]
 				if here == goal:
@@ -230,6 +257,8 @@ func _run() -> void:
 				if not _check(main.submit_player_action({"kind":"operate_gate","team":team}), "現在の三人の装着で水門操作へ進む"):
 					return
 			_:
+				if _extra_mode(main,state):
+					continue
 				_fail("未知の状態: " + serial)
 				return
 	_fail("最大操作数までに本編の結末へ到達しませんでした。")

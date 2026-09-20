@@ -1,0 +1,134 @@
+{
+  "kind": "nonhuman_v1_local_verification",
+  "recorded_at": "2026-09-20T00:34:02.372Z",
+  "scope": "人間の試遊・本人情報・凍結契約改訂を代行せず、実装可能な残件を対応",
+  "completed_software": [
+    "A02の有限な最悪ケース経路",
+    "A03の4人分の兆候と戦闘台詞",
+    "A04の通常選択・解放保持・噂と図鑑",
+    "A05の常時特性と祠",
+    "A06の独立試遊履歴と再起動",
+    "A07の実行版全体の識別",
+    "A08の最大構成での画面収まり",
+    "A09の人物案・対象環境・108素材来歴"
+  ],
+  "checks": [
+    {
+      "command": "python tools/run_locked_checks.py",
+      "exit_code": 0,
+      "passed": [
+        "R-01",
+        "R-02",
+        "R-03",
+        "R-04",
+        "R-05",
+        "R-06",
+        "R-07",
+        "R-08"
+      ]
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_v1_finish.gd",
+      "exit_code": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_progression_paths.gd",
+      "exit_code": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_erosion_choices.gd",
+      "exit_code": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_enemy_encounters.gd",
+      "exit_code": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_exploration_devices.gd",
+      "exit_code": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_party_playtest.gd",
+      "exit_code": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_battle_recovery.gd",
+      "exit_code": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_campaign_boundaries.gd",
+      "exit_code": 0
+    },
+    {
+      "command": "python tools/check_build_identity.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python tools/check_record_restart.py --godot .tools/godot/4.7.2/Godot_v4.7.2-stable_win64.exe",
+      "exit_code": 0,
+      "scope": "検査用の子プロセスのみを強制終了し、別プロセスで履歴を復旧"
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_campaign_content.gd -- --automated-playtest",
+      "exit_code": 0,
+      "party": 4,
+      "moved": 1675,
+      "rounds": 143,
+      "clues": 8,
+      "automated_elapsed_seconds": 282.772
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_worst_case.gd -- --three-member-party --teaching-first --automated-playtest",
+      "exit_code": 0,
+      "party": 3,
+      "regions": 40,
+      "sections": 25,
+      "optional_sites": 10,
+      "optional_battles": 30,
+      "detour_moves": 1632,
+      "other_moves": 2679,
+      "rounds": 260,
+      "clues": 8,
+      "automated_elapsed_seconds": 715.676
+    },
+    {
+      "command": "godot --path . --rendering-method gl_compatibility --script res://tools/check_v1_finish.gd -- --capture",
+      "exit_code": 0,
+      "stderr_empty": true,
+      "visually_inspected": [
+        "finished_battle_layout.png",
+        "finished_job_lore.png",
+        "finished_erosion_walk.png",
+        "finished_erosion_battle.png"
+      ]
+    },
+    {
+      "command": "python tools/validate_assets.py --strict",
+      "exit_code": 0,
+      "assets": 108,
+      "original_images_and_palette_unchanged": true
+    },
+    {
+      "command": "python tools/check_frozen_files.py",
+      "exit_code": 0,
+      "matched": 21,
+      "total": 21
+    }
+  ],
+  "locked_verify_undefined": 0,
+  "open_escalations": [
+    "ESCALATION-R02-R04-JOB-ACTIONS"
+  ],
+  "not_implemented": [
+    "盗み10回・蘇生5回・状態異常20回等の追加マスター条件。凍結したJPマスターの検査と衝突し判断待ち"
+  ],
+  "not_verified": [
+    "人間の5〜6時間の完走",
+    "探索・報酬・難易度・物語の人間評価",
+    "提供画像の外部利用条件",
+    "停電・ストレージ故障そのもの"
+  ],
+  "human_playtest": "NOT_RUN",
+  "v1_complete": false,
+  "ci": "当該コミットに対するGitHub Actionsの結果を参照。ローカルのPASSからCI成功を推測しない。"
+}

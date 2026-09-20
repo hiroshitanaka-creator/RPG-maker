@@ -2,30 +2,35 @@
 from __future__ import annotations
 import argparse
 from collections import Counter
-import hashlib
 import json
 from pathlib import Path
+from build_identity import identity, EXPECTED_ENGINE
 
 ROOT=Path(__file__).resolve().parent.parent
 
 
 def summarize(record: dict) -> dict:
-    expected=hashlib.sha256((ROOT/'data/campaign_content_v1.json').read_bytes()).hexdigest()
+    expected=identity(EXPECTED_ENGINE,ROOT)
     kinds=Counter(e.get('kind','') for e in record.get('events',[]))
     battles=[e['details'] for e in record.get('events',[]) if e.get('kind')=='battle_finished']
     answers=record.get('answers',[])
     active=record.get('active_ms',0)/60000
     playing=(record.get('active_ms',0)+record.get('idle_ms',0))/60000
     human=record.get('source')=='human' and not record.get('source_changed',False)
-    current=record.get('game',{}).get('content_sha256')==expected and record.get('game',{}).get('content_revision')==1
+    game=record.get('game',{})
+    current=game.get('build_id')==expected['id'] and game.get('engine')==EXPECTED_ENGINE and game.get('build_identity_version')==1 and game.get('content_revision')==1
+    history=record.get('measurement_scope')=='whole_trial' and record.get('history_complete') is True
+    single_build=record.get('builds')==[expected['id']] and game.get('mixed_builds') is False
     full=bool(record.get('completed')) and set(record.get('game',{}).get('circuits_completed',[]))=={'waterway','cave','school','records','gate'}
     return {
-        'status':'REQUIRES_HUMAN_REVIEW' if human and full and current and answers else 'NOT_ACCEPTED',
+        'status':'REQUIRES_HUMAN_REVIEW' if human and full and current and history and single_build and answers else 'NOT_ACCEPTED',
         'source':record.get('source','unknown'),'current_content':current,'full_route_recorded':full,
+        'history_complete':history,'single_build':single_build,'trial_id':record.get('trial_id'),
+        'build_id':game.get('build_id'),'expected_build_id':expected['id'],
         'elapsed_minutes':round(record.get('elapsed_ms',0)/60000,3),'active_minutes':round(active,3),
         'idle_minutes':round(record.get('idle_ms',0)/60000,3),'pause_minutes':round(record.get('pause_ms',0)/60000,3),
         'foreground_play_minutes':round(playing,3),'idle_review_required':record.get('idle_ms',0)>0,
-        'duration_candidate':human and full and current and 300<=playing<=360,
+        'duration_candidate':human and full and current and history and single_build and 300<=playing<=360,
         'human_review_answer_count':len(answers) if human else 0,
         'battles':len(battles),'defeats':sum(not b.get('victory',False) for b in battles),
         'battle_rounds':sum(b.get('rounds',0) for b in battles),'events':dict(kinds),

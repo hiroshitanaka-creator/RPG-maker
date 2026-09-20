@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -54,6 +54,7 @@ func _ready() -> void:
 		checkpoint_path = "user://qa_" + qa_prefix + "_checkpoint.json"
 	OS.add_logger(_diagnostics)
 	game = GameSession.new()
+	game.enable_recording("user://playthroughs" if qa_prefix.is_empty() else "user://qa_playthroughs/"+qa_prefix)
 	var font := SystemFont.new()
 	font.font_names = PackedStringArray(["Yu Gothic UI", "Meiryo", "Noto Sans CJK JP", "sans-serif"])
 	var ui_theme := Theme.new()
@@ -81,6 +82,7 @@ func _process(delta: float) -> void:
 	if game != null and not game.export_state().is_empty():
 		game.play_metrics.update_clock(str(Mode.keys()[mode]).to_lower(),int(_step().get("chapter",6)),get_window().has_focus())
 		game.play_metrics.completed = game.story_complete()
+		game.flush_recording(true)
 	if not _replay.is_empty():
 		_replay_timer -= delta
 		if _replay_timer <= 0:
@@ -95,10 +97,14 @@ func _process(delta: float) -> void:
 
 
 func _exit_tree() -> void:
+	if game != null:
+		game.flush_recording()
 	if game != null and game.party_defeated() and recovery_available():
 		_persist_checkpoint()
 	if game != null and not game.export_state().is_empty() and game.play_metrics.source != "unclassified":
 		game.save_playtest_report("user://playtest-"+game.play_metrics.source+"-latest.json")
+	if game != null:
+		game.close_recording()
 	OS.remove_logger(_diagnostics)
 
 
@@ -180,6 +186,7 @@ func automation_snapshot() -> Dictionary:
 	names[Mode.EXPLORATION] = "exploration"
 	names[Mode.REVIEW] = "review"
 	names[Mode.CHALLENGE] = "challenge"
+	names[Mode.JOB_LORE] = "job_lore"
 	var result := {"mode": "error" if not diagnostics.is_empty() else names[mode],
 		"chapter1_cleared": diagnostics.is_empty() and saved.get("progress_flags", {}).get("chapter1_cleared", false)}
 	result["story_complete"] = diagnostics.is_empty() and game.story_complete()
@@ -284,6 +291,7 @@ func submit_player_action(action: Dictionary) -> bool:
 						_confirmed_erosion_actors.clear()
 					mode = Mode.BATTLE
 					_battle_log = ["周辺の魔物と戦う。勝利で現在の職業にJPが入る。"]
+					_add_erosion_lines()
 					_actor = encounter.pending()[0].id
 					_target_action.clear()
 					_notice = ""
@@ -307,6 +315,13 @@ func submit_player_action(action: Dictionary) -> bool:
 			if kind == "back":
 				_purify_actor = ""
 				mode = _party_return
+				accepted = true
+			elif kind == "choose_job":
+				accepted = game.choose_job(str(action.get("actor","")),str(action.get("job","")))
+				_notice = "転職しました。装着済みの技は持ち越します。" if accepted else "その職はまだ選べません。町の噂と魔物図鑑で手掛かりを探せます。"
+				_refresh()
+			elif kind == "job_lore":
+				mode = Mode.JOB_LORE
 				accepted = true
 			elif kind == "set_leader":
 				accepted = game.set_party_leader(str(action.get("actor","")))
@@ -344,6 +359,10 @@ func submit_player_action(action: Dictionary) -> bool:
 					if record["id"] == action.get("event"):
 						_show_dialogue(record["text"],false,Mode.JOURNAL,true)
 						accepted = true
+		Mode.JOB_LORE:
+			if kind == "back":
+				mode = Mode.PARTY
+				accepted = true
 		Mode.VISITS:
 			if kind == "visit_task":
 				accepted = game.start_revisit_task(str(action.get("task", "")))
@@ -502,6 +521,7 @@ func _interact() -> bool:
 				_confirmed_erosion_actors.clear()
 			mode = Mode.BATTLE
 			_battle_log = ["相手の特徴と残りHPを見て、行動を選ぼう。"]
+			_add_erosion_lines()
 			_actor = encounter.pending()[0].id
 			_target_action.clear()
 		"complete":
@@ -538,6 +558,12 @@ func _show_dialogue(lines: Array, advance: bool, return_mode: Mode = Mode.FIELD,
 	_dialogue_return = return_mode
 	_dialogue_past = past
 	_dialogue_summary = StoryCampaign.event(_step().get("event", "")).get("summary", []).duplicate() if advance else []
+	if advance and _dialogue_summary.is_empty():
+		var short_lines: Array[String] = []
+		for line in lines:
+			var sentences := str(line).split("。",false)
+			short_lines.append(str(line) if str(line).length() <= 120 or sentences.size() <= 2 else sentences[0]+"。"+sentences[-1]+"。")
+		_dialogue_summary = ["\n".join(short_lines)]
 	mode = Mode.DIALOGUE
 
 
@@ -659,6 +685,7 @@ func _refresh() -> void:
 		Mode.EXPLORATION: _render_exploration()
 		Mode.REVIEW: _render_review()
 		Mode.CHALLENGE: _render_challenge()
+		Mode.JOB_LORE: _render_job_lore()
 		Mode.EROSION_CONFIRMATION: _render_erosion_confirmation()
 		Mode.COMPLETE: _render_complete()
 		Mode.DEFEAT:
@@ -670,11 +697,11 @@ func _refresh() -> void:
 			_body.add_child(help)
 			_button(_body, "手動セーブから再開", _load_save)
 			_button(_body, "タイトルへ", _to_menu)
-	if not _notice.is_empty():
+	if not _notice.is_empty() and mode != Mode.BATTLE:
 		var notice := _label(_notice,10)
 		notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		_body.add_child(notice)
-	if not _checkpoint_error.is_empty():
+	if not _checkpoint_error.is_empty() and mode != Mode.BATTLE:
 		var warning := _label(_checkpoint_error,10)
 		warning.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		_body.add_child(warning)
@@ -822,8 +849,9 @@ func _render_dialogue() -> void:
 		for i in range(game.export_state()["party"].size()):
 			var face := _picture("res://assets/characters/pc_%02d/portrait.png" % (i+1), Vector2(64,64))
 			row.add_child(face)
-	var message := _label(_messages[_message_index], 14)
-	message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	var message := RichTextLabel.new()
+	message.text = _messages[_message_index]
+	message.add_theme_font_size_override("normal_font_size",14)
 	message.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_body.add_child(message)
 	_action_button(_body, "次へ  Enter", {"kind":"confirm"})
@@ -842,12 +870,13 @@ func _render_battle() -> void:
 	var resolve := _action_button(tools, "ターン実行", {"kind":"resolve_round"})
 	resolve.disabled = not encounter.can_resolve()
 	var forecast := _label(_erosion_forecast_text(), 10)
+	forecast.tooltip_text = "戦闘終了時の侵蝕見込み。予約した技がすべて発動した場合の値。"
 	forecast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(forecast)
 	var stage := HBoxContainer.new()
 	_body.add_child(stage)
 	var foes := HBoxContainer.new()
-	foes.custom_minimum_size.x = 215
+	foes.custom_minimum_size.x = 252
 	stage.add_child(foes)
 	var definitions: Array = game.current_enemy_ids()
 	var intents: Dictionary = {}
@@ -861,10 +890,14 @@ func _render_battle() -> void:
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var definition: Dictionary = game.enemy_definitions[definitions[index]]
 		card.add_child(_picture("res://assets/monsters/%s/idle.png" % definition.get("sprite_id",definitions[index]), Vector2(64,64)))
-		card.add_child(_label("%s\nHP%d/%d" % [actor.display_name, actor.hp, actor.max_hp], 10))
+		card.add_child(_label("%s\n敵%d HP%d/%d" % [actor.display_name,index+1,actor.hp,actor.max_hp],10))
 		if intents.has(actor.id):
 			var intent: Dictionary = intents[actor.id]
-			var description := _label("予定: %s→%s" % [intent["action"],intent["target_name"]],9)
+			var target_name: String = intent["target_name"]
+			if str(intent["target"]).begins_with("enemy_"):
+				target_name = "敵"+str(int(str(intent["target"]).trim_prefix("enemy_")))
+			var description := _label("%s→%s" % [intent["action"],target_name],9)
+			description.tooltip_text = "次の行動予定: %s→%s" % [intent["action"],intent["target_name"]]
 			description.custom_minimum_size.x = 70
 			description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			card.add_child(description)
@@ -916,6 +949,9 @@ func _render_battle() -> void:
 	log.scroll_following = true
 	log.add_theme_font_size_override("normal_font_size", 10)
 	log.text = "\n".join(_battle_log.slice(maxi(0,_battle_log.size()-60)))
+	for message in [_notice,_checkpoint_error]:
+		if not message.is_empty():
+			log.text += "\n"+message
 	_body.add_child(log)
 
 
@@ -961,25 +997,29 @@ func _render_party() -> void:
 	var jobs := OptionButton.new()
 	jobs.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	for identifier in game.jobs:
-		jobs.add_item(game.jobs[identifier]["name"])
+		jobs.add_item(game.jobs[identifier]["name"]+("（未解放）" if not game.job_unlocked(actor["id"],identifier) else ""))
 		jobs.set_item_metadata(jobs.item_count-1, identifier)
 		if identifier == actor["job_id"]:
 			jobs.select(jobs.item_count-1)
 	job_row.add_child(jobs)
 	var change := _button(job_row, "この職に転職", func() -> void:
 		var identifier: String = jobs.get_item_metadata(jobs.selected)
-		_notice = "転職しました。装着済みの技は持ち越します。" if game.change_job(actor["id"], identifier) else "今はその職業へ変更できません。"
-		_refresh())
+		submit_player_action({"kind":"choose_job","actor":actor["id"],"job":identifier}))
 	var comparison := _label(_job_preview_text(actor, actor["job_id"]), 10)
 	comparison.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(comparison)
 	jobs.item_selected.connect(func(index: int) -> void:
 		var identifier: String = jobs.get_item_metadata(index)
 		comparison.text = _job_preview_text(actor, identifier)
-		change.disabled = not game.preview_job(actor["id"], identifier)["allowed"])
+		change.disabled = not game.preview_job(actor["id"], identifier)["allowed"] or not game.job_unlocked(actor["id"],identifier))
+	_action_button(_body,"町の噂・魔物図鑑",{"kind":"job_lore"})
 	_body.add_child(_label("魔物職はマスターで魔物化。侵蝕90以降は人間職へ戻れません。", 10))
 	_body.add_child(_label("侵蝕 %d（%s） / 30:兆候・60:人間JP半減・90:復帰不可" % [actor["erosion"], GameSession.erosion_stage(actor["erosion"])], 10))
 	_body.add_child(_label("JP %d/%d  %s / 装着 %d/%d" % [int(actor["jp"].get(actor["job_id"],0)), int(game.jobs[actor["job_id"]]["mastery_cost"]), "マスター" if actor["job_id"] in actor["mastered_jobs"] else "修練中", actor["equipped_abilities"].size(), game.slot_limit(actor["id"])], 11))
+	for trait_entry in game.mastery_traits(actor["id"]):
+		var trait_label := _label(trait_entry["name"]+": "+trait_entry["description"]+"（常時・枠不要）",10)
+		trait_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_body.add_child(trait_label)
 	var slots := GridContainer.new()
 	slots.columns = 2
 	_body.add_child(slots)
@@ -1007,9 +1047,10 @@ func _render_party() -> void:
 		skill_details.text = game.describe_ability(skills.get_item_metadata(index)))
 	var current := game.effective_stats(actor["id"])
 	_body.add_child(_label("HP%d/%d MP%d/%d\n攻撃%d 防御%d 魔力%d 魔防%d 速さ%d" % [actor["hp"],actor["max_hp"],actor["mp"],actor["max_mp"],current["attack"],current["defense"],current["magic"],current["resistance"],current["speed"]], 11))
-	if not str(actor["monster_form"]).is_empty():
-		_body.add_child(_label("魔物化: " + game.jobs[actor["monster_form"]]["name"], 11))
-		var release := _action_button(_body, "町の祠で解除（魔物の技を全消去）", {"kind":"request_purify", "actor":actor["id"]})
+	if not str(actor["monster_form"]).is_empty() or int(actor["erosion"]) > 0:
+		if not str(actor["monster_form"]).is_empty():
+			_body.add_child(_label("魔物化: " + game.jobs[actor["monster_form"]]["name"], 11))
+		var release := _action_button(_body, "町の祠で清める（魔物専用技を全消去）", {"kind":"request_purify", "actor":actor["id"]})
 		release.disabled = game.world_state()["location"] != "town" or actor["irreversible"]
 	_body = outer
 	_action_button(_body, "探索へ戻る", {"kind":"back"})
@@ -1021,6 +1062,7 @@ func _job_preview_text(actor: Dictionary, job_id: String) -> String:
 	var next: Dictionary = preview["stats"]
 	var text := "転職後の比較: HP%d→%d MP%d→%d\n攻撃%d→%d 防御%d→%d 魔力%d→%d 魔防%d→%d 速さ%d→%d" % [current["hp"],next["hp"],current["mp"],next["mp"],current["attack"],next["attack"],current["defense"],next["defense"],current["magic"],next["magic"],current["resistance"],next["resistance"],current["speed"],next["speed"]]
 	var definitions: Array = game.jobs[job_id]["abilities"]
+	text += "\nマスター特性: "+game.mastery_trait(job_id)["description"]+"（転職後も常時）"
 	for index in range(definitions.size()):
 		var ability_id: String = definitions[index]
 		var required := ceili(float(preview["mastery_cost"])/2.0) if index == 0 else int(preview["mastery_cost"])
@@ -1043,19 +1085,19 @@ func _request_purify(actor_id: String) -> bool:
 	if game.world_state()["location"] != "town":
 		return false
 	for actor in game.export_state()["party"]:
-		if actor["id"] == actor_id and not str(actor["monster_form"]).is_empty() and not actor["irreversible"]:
+		if actor["id"] == actor_id and (not str(actor["monster_form"]).is_empty() or int(actor["erosion"]) > 0) and not actor["irreversible"]:
 			_purify_actor = actor_id
 			return true
 	return false
 
 
 func _render_purify_confirmation() -> void:
-	_body.add_child(_label("魔物の技を手放して姿を戻しますか？", 14))
+	_body.add_child(_label("魔物専用の技を手放し、侵蝕を下げますか？", 14))
 	var description := _label("習得済みの魔物専用アビリティをすべて消去し、侵蝕度を30下げます。\n人間職でも習得できる技と、マスター済みの成長は残ります。", 12)
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(description)
 	_action_button(_body, "やめる", {"kind":"cancel_purify"})
-	_action_button(_body, "魔物の技を消去して解除", {"kind":"confirm_purify"})
+	_action_button(_body, "専用技を消去して清める", {"kind":"confirm_purify"})
 
 
 func _erosion_forecast_text() -> String:
@@ -1063,7 +1105,7 @@ func _erosion_forecast_text() -> String:
 	for entry in game.erosion_preview(true):
 		if entry["after"] != entry["before"]:
 			parts.append("%s %d→%d %s" % [entry["name"], entry["before"], entry["after"], GameSession.erosion_stage(entry["after"])])
-	return "終了時の侵蝕見込み: " + ("変化なし" if parts.is_empty() else " / ".join(parts))
+	return "侵蝕予測: " + ("変化なし" if parts.is_empty() else " / ".join(parts))
 
 
 func _render_erosion_confirmation() -> void:
@@ -1201,9 +1243,17 @@ func _start_encounter(story_battle: bool) -> BattleState:
 	var before := game.export_state()
 	var encounter := game.start_story_battle() if story_battle else game.start_field_battle()
 	if encounter != null:
+		_notice = ""
 		_checkpoint = before
 		_persist_checkpoint()
 	return encounter
+
+
+func _add_erosion_lines() -> void:
+	for actor in game.export_state()["party"]:
+		var line := CharacterVisuals.battle_line(actor)
+		if not line.is_empty():
+			_battle_log.append(line)
 
 
 func recovery_available() -> bool:
@@ -1219,7 +1269,8 @@ func _persist_checkpoint() -> bool:
 		_checkpoint_error = "戦闘前の記録が不正です。手動セーブを確認してください。"
 		return false
 	saved.play_metrics = game.play_metrics
-	var written := saved.save_game(checkpoint_path)
+	game.flush_recording()
+	var written := saved.save_game(checkpoint_path,game.playthrough_id())
 	_checkpoint_error = "" if written else "自動保存できませんでした。起動中は戦闘前へ戻れますが、終了前に手動保存してください。"
 	return written
 
@@ -1244,7 +1295,8 @@ func _load_checkpoint() -> bool:
 		_notice = "読み込める自動保存がありません。現在の冒険はそのままです。"
 		_refresh()
 		return false
-	game = candidate
+	if not game.load_game(checkpoint_path):
+		return false
 	_checkpoint_error = ""
 	_checkpoint = game.export_state()
 	game.play_metrics.mark("checkpoint_loads")
@@ -1349,10 +1401,14 @@ func _render_presentation() -> void:
 
 
 func _render_review() -> void:
-	var metrics: Dictionary = game.play_metrics.snapshot()
+	var metrics: Dictionary = game.playtest_document()
 	_body.add_child(_label("試遊の記録と評価",16))
 	_body.add_child(_label("経過 %.1f分 / 操作中 %.1f分 / 無操作 %.1f分 / 休止 %.1f分" % [metrics["elapsed_ms"]/60000.0,metrics["active_ms"]/60000.0,metrics["idle_ms"]/60000.0,metrics["pause_ms"]/60000.0],10))
 	_body.add_child(_label("記録区分: "+{"unclassified":"未指定","human":"人間の試遊・自己申告","automated":"自動操作"}[metrics["source"]],10))
+	if not game.recording_issue().is_empty():
+		var issue := _label(game.recording_issue(),10)
+		issue.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_body.add_child(issue)
 	_action_button(_body,"人間の試遊として記録する",{"kind":"set_playtest_source","source":"human"})
 	var row := HBoxContainer.new()
 	_body.add_child(row)
@@ -1389,6 +1445,25 @@ func _render_challenge() -> void:
 	for index in range(task["options"].size()):
 		_action_button(_body,task["options"][index],{"kind":"challenge_answer","option":index})
 	_action_button(_body,"探索へ戻る",{"kind":"back"})
+
+
+func _render_job_lore() -> void:
+	var in_town: bool = game.world_state()["location"] in ChapterOne.TOWNS
+	_body.add_child(_label("町の噂と魔物図鑑" if in_town else "魔物図鑑の覚え書き",16))
+	var text := RichTextLabel.new()
+	text.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	text.add_theme_font_size_override("normal_font_size",12)
+	var lines: Array[String] = []
+	for identifier in game.job_progression["advanced"]:
+		var record: Dictionary = game.job_progression["advanced"][identifier]
+		lines.append(str(game.jobs[identifier]["name"]))
+		if in_town:
+			lines.append("町の噂: "+str(record["rumor"]))
+		lines.append("図鑑: "+str(record["bestiary"]))
+		lines.append("")
+	text.text = "\n".join(lines)
+	_body.add_child(text)
+	_action_button(_body,"編成へ戻る",{"kind":"back"})
 
 
 static func _label(value: String, font_size: int) -> Label:

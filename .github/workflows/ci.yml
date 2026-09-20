@@ -161,6 +161,16 @@ jobs:
           fi
           test "$(grep -c '^STORY_PASS:' story.log)" -eq 2
 
+      - name: 試遊履歴・版識別・上級職・兆候・画面の検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_v1_finish.gd 2>&1 | tee v1-finish.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" v1-finish.log; then exit 1; fi
+          test "$(grep -c '^V1_FINISH_PASS:' v1-finish.log)" -eq 1
+          python tools/check_build_identity.py
+          python tools/check_record_restart.py --godot ./godot
+
       - name: 検証後も保護ファイルが不変であることを確認
         if: always()
         run: python tools/check_frozen_files.py
@@ -180,6 +190,52 @@ jobs:
             recovery.log
             content-boundaries.log
             story.log
+            v1-finish.log
+            docs/verification/nonhuman-v1-checks.json
             docs/verification/scope-lock-current.json
             .tools/verification/current-*/*.log
           if-no-files-found: ignore
+
+  worst-case:
+    name: 最悪ケースの全章通し検査
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      RPG_QA_SAVE_PREFIX: ci-worst-case
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 固定版Godotを取得
+        run: |
+          curl -fL -o godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  godot.zip" | sha256sum --check
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot
+          chmod +x godot
+      - name: インポートと保護ファイルの確認
+        run: |
+          set -o pipefail
+          python tools/check_frozen_files.py
+          ./godot --headless --import 2>&1 | tee worst-import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" worst-import.log; then exit 1; fi
+      - name: 回り道・任意戦闘・要約・全員人間・保存復帰で結末まで進む
+        run: |
+          set -o pipefail
+          timeout 1800 ./godot --headless --path . --script res://tools/check_worst_case.gd -- --three-member-party --teaching-first --automated-playtest 2>&1 | tee worst-case.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" worst-case.log; then exit 1; fi
+          test "$(grep -c '^WORST_CASE_PASS:' worst-case.log)" -eq 1
+          test "$(grep -c '^STORY_PASS:' worst-case.log)" -eq 1
+      - name: 検査後の保護ファイルを照合
+        if: always()
+        run: python tools/check_frozen_files.py
+      - name: 最悪ケースのログを保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: worst-case-log
+          path: |
+            worst-import.log
+            worst-case.log
+            docs/verification/worst-case-current.json
