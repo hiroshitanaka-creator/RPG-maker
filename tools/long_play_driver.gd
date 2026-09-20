@@ -87,11 +87,13 @@ func prepare(game: GameSession, train_jobs: bool) -> void:
 	var index := 0
 	for actor in game.export_state()["party"]:
 		if train_jobs and actor["job_id"] in actor["mastered_jobs"]:
+			var next_job: String = base_jobs[index]
 			for offset in range(base_jobs.size()):
 				var job: String = base_jobs[(index+offset)%base_jobs.size()]
 				if job not in actor["mastered_jobs"]:
-					game.choose_job(actor["id"],job)
+					next_job = job
 					break
+			if actor["job_id"] != next_job:check(game.choose_job(actor["id"],next_job),"修練の次の職か、戦闘の担当職を選ぶ")
 		var available: Array = game.available_abilities(actor["id"])
 		var desired: Array = ["heal","revive","firm_guard"] if index == 2 else ["fire","power_strike","double_strike"]
 		var target: Array = []

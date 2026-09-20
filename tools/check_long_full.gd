@@ -10,6 +10,10 @@ func _run() -> void:
 	var reverse_order := "--reverse" in OS.get_cmdline_user_args()
 	var option := 1 if reverse_order else 0
 	var label := "%d_%s" % [size,"reverse" if reverse_order else "forward"]
+	var resume_path := ""
+	for argument in OS.get_cmdline_user_args():
+		if argument.begins_with("--resume-qa="):resume_path = argument.trim_prefix("--resume-qa=")
+	if not resume_path.is_empty():label += "_resume_diagnostic"
 	var driver = Driver.new()
 	var build := BuildIdentity.current()
 	var check_hashes := _check_hashes()
@@ -23,6 +27,13 @@ func _run() -> void:
 	var missions := 0
 	var checkpoints := 0
 	var world_detour := false
+	if not resume_path.is_empty():
+		driver.check(resume_path.begins_with("user://qa_long_full_") and game.load_game(resume_path),"実際の検査で保存した状態からの診断再開")
+		for mission in LongCampaign.data()["missions"]:
+			if game.export_state()["progress_flags"].get(LongCampaign.cleared_flag(mission["id"]),false):missions+=1
+			for activity in mission["activities"]:
+				if game.export_state()["progress_flags"].get(LongCampaign.activity_flag(activity["id"],"done"),false):driver.activities+=1
+		world_detour = true
 	var seen_chapters: Dictionary = {}
 	for iteration in range(5000):
 		if not driver.errors.is_empty() or game.story_complete():break
@@ -54,11 +65,12 @@ func _run() -> void:
 			"battle":
 				driver.prepare(game,true)
 				# 現地の休息だけでは不足する時、通常の帰還操作で準備し直せる。
-				if not game.current_story_step().has("section"):
-					if game.world_state()["location"] not in ChapterOne.TOWNS:
-						driver.check(game.return_to_town() and game.rest() and game.resume_exploration(),"本編戦闘前の通常帰還")
-					else:game.rest()
+				if game.world_state()["location"] not in ChapterOne.TOWNS:
+					driver.check(game.return_to_town() and game.rest() and game.resume_exploration(),"戦闘前に担当職とMPを通常の帰還・休息で整える")
+				else:game.rest()
 				while not game.story_battle_cleared():
+					if game.story_wave_index()>0:
+						driver.check(game.return_to_town() and game.rest() and game.resume_exploration(),"連戦の既得勝利を保持して補給")
 					if not driver.battle(game):break
 				if not driver.errors.is_empty():break
 				driver.check(game.advance_story_step(),"実際の勝利後に進む")
@@ -110,6 +122,7 @@ func _run() -> void:
 		if iteration%20==0:await process_frame
 	driver.check(game.story_complete() and missions==80 and LongCampaign.all_cleared(game.export_state()["progress_flags"]),"全80話を経て本編の結末へ到達")
 	driver.check(driver.activities==80,"全80話の現地操作を完了")
+	if resume_path.is_empty():driver.check(driver.battles==550,"既存70戦と長編480戦を全て通常計算で勝利")
 	driver.check(game.journal_entries().size()==54,"既存8件と長編46件を保持")
 	for entry in game.journal_entries():driver.check(entry["stage"]==2,"未回収を残さない")
 	driver.check(game.recording_context()["long_campaign_complete"],"記録にも実際の完走を渡す")
@@ -120,6 +133,7 @@ func _run() -> void:
 	driver.check(_check_hashes()==check_hashes,"検査中に検査コードを変更していない")
 	var report := {"status":"PASS" if driver.errors.is_empty() else "FAIL","failures":driver.errors,"party":size,"order":label,"missions":missions,"activities":driver.activities,"battles":driver.battles,"rounds":driver.rounds,"moved":driver.moved,"save_roundtrips":driver.saves,"save_max_bytes":driver.save_bytes,"save_max_ms":driver.max_save_ms,"load_max_ms":driver.max_load_ms,"elapsed_seconds":(Time.get_ticks_msec()-started)/1000.0,"build":build,"source":"new_game_normal_api_no_progress_or_stat_injection","human_duration":"NOT_RUN"}
 	report["check_sha256"] = check_hashes
+	if not resume_path.is_empty():report["source"] = "saved_real_run_diagnostic_not_new_game_proof"
 	report["last_step"] = game.current_story_step()
 	PlaySessionMetrics.write_json("res://docs/verification/long-full-"+label+".json",report)
 	for failure in driver.errors:printerr("LONG_FULL_FAIL: "+failure)

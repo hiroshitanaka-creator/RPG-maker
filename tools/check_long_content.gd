@@ -37,6 +37,7 @@ func _initialize()->void:
 	check(document.get("arcs",[]).size()==20,"既存の土地に20件の連続した物語を置く")
 	check(document.get("missions",[]).size()==80,"80件の冒険を定義する")
 	check(document.get("rooms",[]).size()==80,"再訪して使う80区画を定義する")
+	check(used_rooms.size()==80 and battle_count==480 and choice_count==80,"全80区画を使用し、480戦・80判断を維持する")
 	check(document.get("enabled",false)==true,"長編が本番の新規開始で有効になっている")
 	var definition: Variant=load(IMPLEMENTATION)
 	check(definition!=null,"進行処理を読み込める")

@@ -113,8 +113,9 @@ jobs:
         run: |
           set -o pipefail
           python tools/build_long_campaign.py
+          python tools/check_long_authoring.py
           git diff --exit-code -- data/long_campaign_v1.json docs/long-campaign-clue-ledger.md
-          for kind in content geometry past clues ui record device_ui device_boundaries capacity; do
+          for kind in content geometry past clues ui record device_ui device_boundaries recovery capacity; do
             ./godot --headless --path . --script res://tools/check_long_${kind}.gd 2>&1 | tee long-${kind}.log
             if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" long-${kind}.log; then exit 1; fi
             grep -E '^LONG_[A-Z_]+PASS:' long-${kind}.log

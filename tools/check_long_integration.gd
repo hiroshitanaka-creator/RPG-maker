@@ -81,6 +81,8 @@ func _run()->void:
 							for line in response["variants"][1-option]:check(line not in lines,"選ばなかった結果を混ぜない")
 					if not _walk(game,entry["cell"]):break
 					if entry["kind"]=="battle":
+						# 局所検査は一職マスターの固定入力。通常の帰還・補給を使い、後章の育成経路は新規完走検査で扱う。
+						check(game.return_to_town() and game.rest() and game.resume_exploration(),"部分経路の戦闘前に通常の帰還・補給で再開")
 						var fight: BattleState=game.start_story_battle()
 						if not check(fight!=null,"実際の戦闘を開始する"):break
 						for turn in range(60):
@@ -88,6 +90,8 @@ func _run()->void:
 							for actor in fight.pending():check(fight.queue_action(_action(fight,actor)).is_empty(),"技を通常の入力で予約する")
 							for change in Counterplay.adjustments(fight):check(fight.queue_action(change).is_empty(),"予告に対処する")
 							fight.resolve_round()
+						if fight.phase!=BattleState.Phase.VICTORY:
+							printerr("LONG_BATTLE_DIAGNOSTIC: "+JSON.stringify({"step":entry["id"],"party":size,"option":option,"phase":fight.phase,"round":fight.round_number,"snapshot":fight.snapshot()}))
 						if not check(fight.phase==BattleState.Phase.VICTORY and game.finish_battle(),"戦闘の勝利が進行へ反映される"):break
 						battles+=1
 					if entry["kind"]=="dialogue" and entry.get("rest",false):check(game.rest(),"定義された休息を実行する")
