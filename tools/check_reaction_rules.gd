@@ -57,7 +57,9 @@ func _run()->void:
 	OS.remove_logger(diagnostics)
 	var native:=DisplayServer.get_name()!="headless"
 	var destination: String="res://docs/verification/reaction-rules-native.json" if native else "res://docs/verification/reaction-rules.json"
-	PlaySessionMetrics.write_json(destination,{"status":"PASS" if errors.is_empty() else "FAIL","errors":errors,"build":BuildIdentity.current(),"display_server":DisplayServer.get_name(),"native_render_checked":native,"scope":"反応の予告・取消・再現性・軽減・防御・回復の除外と戦闘画面。勝率の受入とは別。"})
+	var expanded:= "--expanded-lines" in OS.get_cmdline_user_args()
+	if expanded:destination=destination.trim_suffix(".json")+"-expanded.json"
+	PlaySessionMetrics.write_json(destination,{"status":"PASS" if errors.is_empty() else "FAIL","errors":errors,"build":BuildIdentity.current(),"display_server":DisplayServer.get_name(),"native_render_checked":native,"expanded_lines":expanded,"scope":"反応の予告・取消・再現性・軽減・防御・回復の除外と戦闘画面。勝率の受入とは別。"})
 	for message in errors:printerr("REACTION_RULE_FAIL: "+message)
 	if errors.is_empty():print("REACTION_RULE_PASS: 予告・取消・実計算・防御・再現性・画面")
 	quit(0 if errors.is_empty() else 1)
@@ -112,6 +114,8 @@ func _check_ui(initial: Dictionary)->void:
 		main.mode=main.Mode.BATTLE
 		main._actor="pc_01"
 		main._refresh()
+		if "--expanded-lines" in OS.get_cmdline_user_args():
+			for label in main.find_children("*","Label",true,false):label.add_theme_constant_override("line_spacing",2)
 		await process_frame
 		await process_frame
 		if DisplayServer.get_name()!="headless":

@@ -861,6 +861,7 @@ func _render_dialogue() -> void:
 
 func _render_battle() -> void:
 	var encounter := game.current_battle()
+	_body.add_theme_constant_override("separation",2)
 	var tools := HBoxContainer.new()
 	_body.add_child(tools)
 	var caption := _label("第%dターン / 回復薬 %d" % [encounter.round_number, encounter.potions], 11)
@@ -887,6 +888,7 @@ func _render_battle() -> void:
 		if actor.team != Combatant.Team.ENEMY:
 			continue
 		var card := VBoxContainer.new()
+		card.add_theme_constant_override("separation",2)
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var definition: Dictionary = game.enemy_definitions[definitions[index]]
 		var icon_size := 32 if definitions.size() >= 3 else 64
@@ -905,10 +907,10 @@ func _render_battle() -> void:
 				var guarded:=encounter.forecast_damage(intent["target"],true,-1,false,actor.id)
 				var kind: String=game.abilities.get(intent["ability"],{}).get("kind","physical")
 				if kind in ["physical","magic"]:
-					description.text+="\n予測%d(防%d) 技%d 敵被%d%%" % [expected,guarded,encounter.reaction_count(),shield]
+					description.text+="\n被%d 防%d\n技%d 敵被%d%%" % [expected,guarded,encounter.reaction_count(),shield]
 					if expected>=encounter.actor_by_id(intent["target"]).hp:description.add_theme_color_override("font_color",Color("eea38b"))
 				else:description.text+="\n反応:技%d 敵被%d%%" % [encounter.reaction_count(),shield]
-				description.tooltip_text+="\n予測は対象が受ける被害、括弧内は通常の防御を選んだ場合です。敵被は敵が受ける割合で、20%なら80%軽減です。攻撃技の予約人数で反応が強まり、3人以上で共鳴防御。通常攻撃・回復・蘇生・防御は数えません。選び直すと予告も戻ります。"
+				description.tooltip_text+="\n被は対象が受ける被害の予測、防は通常の防御を選んだ場合です。敵被は敵が受ける割合で、20%なら80%軽減です。攻撃技の予約人数で反応が強まり、3人以上で共鳴防御。通常攻撃・回復・蘇生・防御は数えません。選び直すと予告も戻ります。"
 			description.custom_minimum_size.x = 70
 			description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			card.add_child(description)
