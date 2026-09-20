@@ -68,17 +68,21 @@ jobs:
       - name: 保護対象を照合
         if: always()
         run: python tools/check_frozen_files.py
-      - name: 制作済みの長編2連作を本番APIで検査
+      - name: 制作済みの長編4連作を本番APIで検査
         run: |
           set -o pipefail
           python tools/build_long_campaign.py
           git diff --exit-code -- data/long_campaign_v1.json
           ./godot --headless --path . --script res://tools/check_long_integration.gd 2>&1 | tee long-integration.log
           ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=w_flute 2>&1 | tee -a long-integration.log
+          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=c_lamp 2>&1 | tee -a long-integration.log
+          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=c_letters 2>&1 | tee -a long-integration.log
+          ./godot --headless --path . --script res://tools/check_long_past.gd 2>&1 | tee long-past.log
           ./godot --headless --path . --script res://tools/check_long_ui.gd 2>&1 | tee long-ui.log
           ./godot --headless --path . --script res://tools/check_long_record.gd 2>&1 | tee long-record.log
-          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" long-integration.log long-ui.log long-record.log; then exit 1; fi
-          test "$(grep -c '^LONG_INTEGRATION_PASS:' long-integration.log)" -eq 2
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" long-integration.log long-ui.log long-record.log long-past.log; then exit 1; fi
+          test "$(grep -c '^LONG_INTEGRATION_PASS:' long-integration.log)" -eq 4
+          test "$(grep -c '^LONG_PAST_PASS:' long-past.log)" -eq 1
           test "$(grep -c '^LONG_UI_PASS:' long-ui.log)" -eq 1
           test "$(grep -c '^LONG_RECORD_PASS:' long-record.log)" -eq 1
           # 全80話のcheck_long_contentは制作中。上の部分検査を全体完成の証拠にはしない。
@@ -107,6 +111,7 @@ jobs:
             long-integration.log
             long-ui.log
             long-record.log
+            long-past.log
             docs/verification/long-ui.json
 
   assets:

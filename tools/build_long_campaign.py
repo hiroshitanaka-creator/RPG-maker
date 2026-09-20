@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 REGION_ENEMIES = {
     'waterway': [['slime', 'mire_slime'], ['bat', 'slime'], ['shell_guard'], ['balm_slime', 'slime'], ['frost_slime', 'bat'], ['elder_slime']],
-    'cave': [['shell_guard', 'bat'], ['tide_shell'], ['venom_shell', 'bat'], ['spike_shell', 'slime'], ['rending_bat', 'shell_guard'], ['ancient_shell']],
+    'cave': [['shell_guard', 'bat'], ['tide_shell'], ['ward_shell', 'bat'], ['spike_shell', 'slime'], ['rending_bat', 'shell_guard'], ['ancient_shell']],
     'school': [['ward_slime', 'bat'], ['rending_bat'], ['echo_bat', 'shell_guard'], ['vigilant_bat', 'slime'], ['frost_bat', 'ember_wisp'], ['night_bat']],
     'records': [['ember_wisp', 'bat'], ['racing_wisp'], ['cinder_wisp', 'slime'], ['lamp_wisp', 'shell_guard'], ['ash_wisp', 'bat'], ['core_wisp']],
     'gate': [['river_beast'], ['swift_beast', 'bat'], ['watch_beast'], ['mending_beast', 'slime'], ['river_beast', 'ember_wisp'], ['flood_beast']],
@@ -59,6 +59,7 @@ def compile_catalog() -> dict:
             for room_number, room_id in enumerate(room_ids):
                 lines = episode['scenes'][room_number]
                 split = (len(lines) + 1) // 2
+                is_past = room_number in episode.get('past_scene_indices', [])
                 prefix = episode['id'] + '_' + str(room_number)
 
                 def step(kind, cell, **extra):
@@ -66,8 +67,8 @@ def compile_catalog() -> dict:
                             'location': region, 'section': room_id, 'chapter': chapter, 'cell': cell, **extra}
 
                 start = step('dialogue', [5, 4], objective=episode['title'] + 'の話を聞く',
-                             text=lines[:split], rest=True,
-                             past=room_number in episode.get('past_scene_indices', []))
+                             text=['奥の足場を確かめ、落ち着いて話を聞ける場所へ進もう。'] if is_past else lines[:split],
+                             rest=True, past=False)
                 if room_number == 3:
                     start['responses'] = [{'choice': choice_id, 'variants': episode['choice']['outcomes']}]
                 steps.append(start)
@@ -79,7 +80,7 @@ def compile_catalog() -> dict:
                                       text=['通り道を確保した。残りの力を確かめて、話の続きを追おう。']))
                     battle_index += 1
                 steps.append(step('dialogue', [25, 10], objective=episode['title'] + 'の状況を調べる',
-                                  text=lines[split:], past=room_number in episode.get('past_scene_indices', [])))
+                                  text=lines if is_past else lines[split:], past=is_past))
                 if room_number == 2:
                     choice = episode['choice']
                     effects = [{'flags': [passage_flag] if effect.get('passage') else [],
