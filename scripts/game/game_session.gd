@@ -1227,6 +1227,12 @@ func save_game(path: String, record_id: String = "") -> bool:
 	var identifier := playthrough_id() if record_id.is_empty() else record_id
 	if not identifier.is_empty():
 		document["_trial_id"] = identifier
+	var saved_types := SavedValueTypes.describe(document)
+	if not saved_types["errors"].is_empty():
+		file.close()
+		DirAccess.remove_absolute(temporary)
+		return false
+	document["_saved_value_types"] = saved_types
 	file.store_string(JSON.stringify(document, "\t"))
 	file.flush()
 	var written := file.get_error() == OK
@@ -1244,6 +1250,9 @@ func load_game(path: String) -> bool:
 	if document.parse(FileAccess.get_file_as_string(path)) != OK or not document.data is Dictionary:
 		return false
 	var candidate: Dictionary = document.data.duplicate(true)
+	var saved_types: Variant = candidate.get("_saved_value_types",null)
+	var has_saved_types := candidate.has("_saved_value_types")
+	candidate.erase("_saved_value_types")
 	var metrics := PlaySessionMetrics.new()
 	var raw_metrics: Variant = candidate.get("_play_session",{})
 	if not raw_metrics is Dictionary or not metrics.restore(raw_metrics):
@@ -1255,12 +1264,30 @@ func load_game(path: String) -> bool:
 	candidate.erase("_trial_id")
 	if not _valid_state(_normalize_numbers(candidate)):
 		return false
+	var restored_state: Dictionary = _normalize_numbers(candidate)
+	var restored_metrics := metrics.snapshot()
+	if has_saved_types:
+		var typed_document := restored_state.duplicate(true)
+		typed_document["_play_session"] = restored_metrics
+		if not record_id.is_empty():typed_document["_trial_id"] = record_id
+		var restored := SavedValueTypes.restore(typed_document,saved_types)
+		if not restored["ok"]:return false
+		restored_state = restored["value"]
+		restored_metrics = restored_state["_play_session"]
+		restored_state.erase("_play_session")
+		restored_state.erase("_trial_id")
+		if not _valid_state(restored_state):return false
+	if not metrics.restore(restored_metrics):return false
+	for field in restored_metrics:
+		if field != "version":metrics.set(field,restored_metrics[field])
+	if SavedValueTypes.describe(metrics.snapshot()) != SavedValueTypes.describe(restored_metrics):return false
 	if _archive != null and _archive.identifier != record_id:
 		close_recording()
 	else:
 		flush_recording()
 	if not import_state(candidate):
 		return false
+	_state = restored_state
 	play_metrics = metrics
 	if _archive != null:
 		_archive.resume(record_id,play_metrics)

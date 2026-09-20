@@ -1,0 +1,31 @@
+{
+  "id": "provisional-20260920-01",
+  "status": "PROVISIONAL",
+  "reason": "測定前に固定した節目戦6種。初期職を変更せず各1回マスターした人間パーティで比較する。初見者の勝率ではない。",
+  "seeds": {"first": 0, "last": 999},
+  "party_sizes": [3, 4],
+  "jobs": ["warrior", "martial_artist", "priest", "mage"],
+  "mastery": "initial_job_once",
+  "hp_mp": "full",
+  "potions": 3,
+  "erosion": 0,
+  "midgame_slots": false,
+  "loadouts": {
+    "warrior": ["power_strike", "firm_guard"],
+    "martial_artist": ["double_strike", "breath"],
+    "priest": ["heal", "revive"],
+    "mage": ["fire", "ice"]
+  },
+  "policy": "revive_then_half_hp_heal_then_quarter_hp_potion_then_max_damage_v1",
+  "turn_limit": 30,
+  "win_rate": {"min": 0.4, "max": 0.6},
+  "fast_finish": {"max_turns": 10, "min_rate": 0.8},
+  "encounters": [
+    {"id": "chapter1_gate", "enemies": ["gate_beast"]},
+    {"id": "chapter2_waterway", "enemies": ["elder_slime"]},
+    {"id": "chapter3_school", "enemies": ["night_bat"]},
+    {"id": "chapter4_records", "enemies": ["ancient_shell"]},
+    {"id": "chapter6_approach", "enemies": ["core_wisp"]},
+    {"id": "chapter6_gate", "enemies": ["flood_beast"]}
+  ]
+}

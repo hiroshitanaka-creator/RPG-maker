@@ -1,0 +1,60 @@
+{
+  "kind": "provisional_threshold_work",
+  "recorded_at": "2026-09-20T02:57:18.8797873Z",
+  "threshold_proposals": "docs/provisional-thresholds-v1.md",
+  "subjective_queue": "PLAYTEST_QUEUE.md",
+  "provisional_inputs": true,
+  "battle": {
+    "command": "godot --headless --path . --script res://tools/check_battle_acceptance.gd",
+    "exit_code": 1,
+    "trials": 12000,
+    "within_10": 11975,
+    "errors": 0,
+    "AC_01": "FAIL",
+    "AC_02": "PASS",
+    "profile_sha256": "609b1911005ec913b774b2ff66e6591c8525237ea591b7904d8cf2a1b2b53c03",
+    "build": {
+      "engine": "4.7.2-stable (official) [ed1daf0bf]",
+      "files": 163,
+      "id": "46790a800066e13807ac94cb5cf81d175c850b3d54726053f278b3a3d66bf919",
+      "version": 1
+    }
+  },
+  "save": {
+    "commands": [
+      "godot --headless --path . --script res://tools/check_saved_value_types.gd",
+      "godot --headless --path . --script res://tools/check_save_complete.gd -- --automated-playtest",
+      "godot --headless --path . --script res://tools/check_save_complete.gd -- --three-member-party --teaching-first --automated-playtest"
+    ],
+    "exit_codes": [
+      0,
+      0,
+      0
+    ],
+    "states_per_party": [
+      357,
+      357
+    ],
+    "differences": 0,
+    "comparison_mutations": 7,
+    "legacy_and_invalid_metadata_checked": true,
+    "root_cause": "JSON往復で装着と戦闘履歴の配列要素型が失われた",
+    "fix": "保存型の補助情報を検証して復元。比較前に保存元を変換しない。"
+  },
+  "other_checks": {
+    "frozen_files_matching": 21,
+    "assets_checked": 108,
+    "asset_errors": 0,
+    "godot_import_exit_code": 0,
+    "git_diff_check_exit_code": 0
+  },
+  "not_run": [
+    "人間によるPT項目の観測",
+    "T04・T05・T07〜T11の追加測定のうち既存検査が覆わない範囲"
+  ],
+  "not_complete": [
+    "AC-01の目標勝率への調整",
+    "追加条件の正式なscope-lock登録"
+  ],
+  "ci": "対象コミットのGitHub Actionsを参照。ローカル結果でCI成功を代用しない。"
+}

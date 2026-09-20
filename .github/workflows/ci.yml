@@ -145,7 +145,7 @@ jobs:
           fi
           test "$(grep -c '^RECOVERY_PASS:' recovery.log)" -eq 1
 
-      - name: v1物語の二つの再訪順と結末を検査
+      - name: v1物語の二つの再訪順・結末・保存全変数を検査
         if: steps.check.outputs.exists == 'true'
         run: |
           set -o pipefail
@@ -154,12 +154,16 @@ jobs:
             exit 1
           fi
           test "$(grep -c '^CONTENT_BOUNDARY_PASS:' content-boundaries.log)" -eq 1
-          timeout 600 ./godot --headless --path . --script res://tools/check_campaign_content.gd -- --automated-playtest 2>&1 | tee story.log
-          timeout 600 ./godot --headless --path . --script res://tools/check_campaign_content.gd -- --three-member-party --teaching-first --automated-playtest 2>&1 | tee -a story.log
+          timeout 60 ./godot --headless --path . --script res://tools/check_saved_value_types.gd 2>&1 | tee saved-value-types.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" saved-value-types.log; then exit 1; fi
+          test "$(grep -c '^SAVED_VALUE_TYPES_PASS:' saved-value-types.log)" -eq 1
+          timeout 600 ./godot --headless --path . --script res://tools/check_save_complete.gd -- --automated-playtest 2>&1 | tee story.log
+          timeout 600 ./godot --headless --path . --script res://tools/check_save_complete.gd -- --three-member-party --teaching-first --automated-playtest 2>&1 | tee -a story.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" story.log; then
             exit 1
           fi
           test "$(grep -c '^STORY_PASS:' story.log)" -eq 2
+          test "$(grep -c '^SAVE_COMPLETE_PASS:' story.log)" -eq 2
 
       - name: 試遊履歴・版識別・上級職・兆候・画面の検査
         if: steps.check.outputs.exists == 'true'
@@ -190,6 +194,9 @@ jobs:
             recovery.log
             content-boundaries.log
             story.log
+            saved-value-types.log
+            docs/verification/save-complete-3.json
+            docs/verification/save-complete-4.json
             v1-finish.log
             docs/verification/nonhuman-v1-checks.json
             docs/verification/scope-lock-current.json

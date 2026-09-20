@@ -25,11 +25,22 @@
 
 | ID | 固定済み | 検証の前に必要なもの | 実行状態 |
 |---|---|---|---|
-| AC-01 | 1戦闘あたり1,000試行、シード0〜999、勝率40〜60%、全滅・上限ターンは敗北、エラーは検査失敗 | 対象戦闘ID、各戦闘の全初期状態、自動行動方針、上限ターン数の事前定義と専用検査 | NOT_RUN。専用verify未定義。 |
-| AC-02 | 10ターン以内、終了率80%以上、対象・初期状態・方針・シードを事前固定 | 対象戦闘と入力一式、AC-01と同じ試行群を使うかの決定、専用検査 | NOT_RUN。専用verify未定義。 |
-| AC-03 | 実ファイルの別インスタンスへのロード、キー・型・値・配列順序の不一致0件 | 下記の保存対象一覧を検査に接続し、3人・4人および条件付き項目を持つ状態を実行する専用検査 | NOT_RUN。既存R-06等は関連検査だが、本条件全体の達成とは数えない。専用verify未定義。 |
+| AC-01 | 1戦闘あたり1,000試行、シード0〜999、勝率40〜60%、全滅・上限ターンは敗北、エラーは検査失敗 | 依頼者の暫定値で進める指示により、6節目戦・3人／4人・初期職1マスター・30ターン上限を測定前に設定 | 暫定入力でFAIL。勝率98〜100%。`tools/check_battle_acceptance.gd`を実装。 |
+| AC-02 | 10ターン以内、終了率80%以上、対象・初期状態・方針・シードを事前固定 | AC-01と同じ12,000試行を使う暫定案 | 暫定入力でPASS。11,975／12,000＝99.7917%。AC-01との合成コマンドは勝率未達により終了1。 |
+| AC-03 | 実ファイルの別インスタンスへのロード、キー・型・値・配列順序の不一致0件 | `tools/check_save_complete.gd`で3人／4人の通常進行と条件付き保存項目を検査する | PASS。型情報の修正後、3人・4人各357状態、計714状態の不一致0件。`docs/verification/save-complete-3.json`と`save-complete-4.json`に実行版・検査コードのSHAを保存。 |
 
-対象戦闘や編成の具体値は今回の依頼には含まれていない。全戦闘への適用、特定ボスだけへの適用、全編完走率への読み替えのいずれも、確定事項として補わない。
+対象戦闘や編成は個別承認済みではない。[閾値案と暫定検証](provisional-thresholds-v1.md)と`data/acceptance_battle_profile_v1.json`へ、今回の指示で先に使用する暫定値として記載した。全戦闘や全編完走率へ条件を読み替えない。
+
+専用コマンド:
+
+```powershell
+godot --headless --path . --script res://tools/check_battle_acceptance.gd
+godot --headless --path . --script res://tools/check_saved_value_types.gd
+godot --headless --path . --script res://tools/check_save_complete.gd -- --automated-playtest
+godot --headless --path . --script res://tools/check_save_complete.gd -- --three-member-party --teaching-first --automated-playtest
+```
+
+戦闘検査は、閾値未達なら終了1、実行不備なら終了2。終了1の結果をCI成功や受入成功へ変換しない。現在のCIには保存の完全往復を追加し、暫定入力で未達の戦闘勝率は独立した未達として公開する。
 
 ## AC-03の往復保存対象一覧
 
@@ -46,6 +57,7 @@
 | 点検の途中状態 | `expedition`の空／非空と`id`・`stage`・`wave`・`origin`の全項目・`solved`の全要素 |
 | 保存時点の計測スナップショット | セーブ中の`_play_session`と対応する`play_metrics.snapshot()`。`version`、`source`、`source_changed`、`active_ms`、`elapsed_ms`、`idle_ms`、`pause_ms`、`chapters`、`counters`、`answers`、`events`、`completed`の全階層 |
 | 試行への参照 | 記録を有効にした保存に存在する`_trial_id`とロード後の試行ID。同じ履歴を参照すること |
+| 型の補助情報 | `_saved_value_types`。JSONで失われる配列の要素型と整数値を持つ小数の型を記録し、ロード後の実状態から作った情報と比較する。補助情報がない従来形式も読める。 |
 
 一覧にない保存項目が追加されていた場合は、比較から無視せず一覧との不一致として検出する。保存直前の比較値を採取してから比較が終わるまで、移動・戦闘・入力・計測更新で対象状態を進めない。
 
@@ -55,4 +67,4 @@
 
 追加受入条件の文書登録は済んでいるが、`.scope-lock/spec.lock.json`に自動実行される要件として登録した状態ではない。既存R-01〜R-08のdone_when・verify・保護ファイルは維持する。元の凍結入力を保存した`docs/scope-lock-input.json`も書き換えない。
 
-専用verifyと検証入力を整えた後、scope-lockの正式な改訂手順で追加を反映する必要がある。存在しない検査コマンドや既存の別範囲のPASSを新3条件のverifyとして登録しない。既存8要件と現行CIが成功しても、AC-01〜AC-03の達成は未検証のままである。
+専用検査と暫定入力を用意し、実行結果を個別に記録する。scope-lockへの正式追加は未実施であり、既存8件のPASSだけでは追加条件の全達成にならない。特にAC-01は暫定入力で未達のまま保持する。
