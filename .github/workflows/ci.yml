@@ -40,6 +40,15 @@ jobs:
           ./godot --headless --path . --script res://tools/check_map_graph_definition.gd 2>&1 | tee map-graph-definition.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" map-graph-definition.log; then exit 1; fi
           test "$(grep -c '^MAP_GRAPH_DEFINITION_PASS:' map-graph-definition.log)" -eq 1
+      - name: ワールド構造のPhase 2と検査器の回帰を検査
+        run: |
+          set -o pipefail
+          ./godot --headless --path . --script res://tools/check_map_graph_structure.gd 2>&1 | tee map-graph-structure.log
+          ./godot --headless --path . --script res://tools/check_map_graph_structure_regressions.gd 2>&1 | tee map-graph-regressions.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" map-graph-structure.log map-graph-regressions.log; then exit 1; fi
+          test "$(grep -c '^MAP_GRAPH_STRUCTURE_PASS:' map-graph-structure.log)" -eq 1
+          test "$(grep -c '^MAP_GRAPH_REGRESSION_PASS: cases=16 errors=0' map-graph-regressions.log)" -eq 1
+          git diff --exit-code -- docs/verification/world-map-phase2.json
       - name: 60時間の目標判定境界・全画面・案内・帰還を検査
         run: |
           set -o pipefail
@@ -108,6 +117,8 @@ jobs:
           name: preplay-checks
           path: |
             preplay*.log
+            map-graph-*.log
+            docs/verification/world-map-phase2.json
             docs/verification/duration-target-60h.json
             docs/verification/preplay-ui-headless.json
             docs/verification/preplay-recovery.json

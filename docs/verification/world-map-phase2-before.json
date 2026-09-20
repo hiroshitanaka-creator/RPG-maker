@@ -1,0 +1,3396 @@
+{
+  "admissible_state_count": 224,
+  "completion_required_mask": 7,
+  "completion_witness": [
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "town"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "gate"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "gate"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "town"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "harbor"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "levee_vault"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "shipyard"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "shipyard"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "levee_vault"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "brine_port"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "breakwater_ruins"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "mist_market"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "windbreak_town"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "wind_observatory"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 7,
+      "node": "wind_observatory"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 7,
+      "node": "windbreak_town"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 7,
+      "node": "ridgehearth"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 7,
+      "node": "highfield"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 7,
+      "node": "summit_archive"
+    }
+  ],
+  "deadlocks": [
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "brine_port",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "tide_beacon",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "salt_mine",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "nettle_hamlet",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "reef_shrine",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "drowned_store",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "breakwater_ruins",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "sailors_rest",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "mist_market",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "lock_station",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "reed_library",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "kiln_village",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "marsh_camp",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "bell_quarry",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "windbreak_town",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 2,
+      "node": "wind_observatory",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "ridgehearth",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "cloud_landing",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "cloud_forge",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "signal_hut",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "survey_post",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "high_camp",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "wind_tomb",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "standing_stone",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "highfield",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "ridge_well",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "wayfarer_refuge",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "aerie_ruins",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "summit_marker",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "snow_shelter",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "echo_platform",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 4,
+      "node": "summit_archive",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "ridgehearth",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "cloud_landing",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "cloud_forge",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "signal_hut",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "survey_post",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "high_camp",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "wind_tomb",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "standing_stone",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "highfield",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "ridge_well",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "wayfarer_refuge",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "aerie_ruins",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "summit_marker",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "snow_shelter",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "echo_platform",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 5,
+      "node": "summit_archive",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "brine_port",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "tide_beacon",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "salt_mine",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "nettle_hamlet",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "reef_shrine",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "drowned_store",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "breakwater_ruins",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "sailors_rest",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "mist_market",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "lock_station",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "reed_library",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "kiln_village",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "marsh_camp",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "bell_quarry",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "windbreak_town",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "wind_observatory",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "ridgehearth",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "cloud_landing",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "cloud_forge",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "signal_hut",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "survey_post",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "high_camp",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "wind_tomb",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "standing_stone",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "highfield",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "ridge_well",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "wayfarer_refuge",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "aerie_ruins",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "summit_marker",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "snow_shelter",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "echo_platform",
+      "witness_from_start": []
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "initially_reachable": false,
+      "mask": 6,
+      "node": "summit_archive",
+      "witness_from_start": []
+    }
+  ],
+  "edge_count": 59,
+  "errors": [
+    {
+      "code": "deadlock",
+      "detail": {
+        "count": 80,
+        "initially_reachable": 0,
+        "sample": {
+          "available_transports": [
+            "walk",
+            "ship"
+          ],
+          "flags": [
+            "world_ship_unlocked"
+          ],
+          "initially_reachable": false,
+          "mask": 2,
+          "node": "brine_port",
+          "witness_from_start": []
+        }
+      }
+    }
+  ],
+  "flag_combination_count": 8,
+  "flag_cycles": [],
+  "flag_dependencies": {
+    "world_causeway_open": [],
+    "world_flight_unlocked": [
+      "world_causeway_open",
+      "world_ship_unlocked"
+    ],
+    "world_ship_unlocked": [
+      "world_causeway_open"
+    ]
+  },
+  "graph_sha256": "62ddab13eb279f9231cbf030a8c8bf0d0f83c79d74060c4597b42c0e4ca4d94a",
+  "initial_reachable_state_count": 106,
+  "mask_summary": [
+    {
+      "admissible": 7,
+      "deadlocks": 0,
+      "historically_consistent": true,
+      "initially_reachable": 7,
+      "mask": 0,
+      "rejected": 42
+    },
+    {
+      "admissible": 17,
+      "deadlocks": 0,
+      "historically_consistent": true,
+      "initially_reachable": 17,
+      "mask": 1,
+      "rejected": 32
+    },
+    {
+      "admissible": 23,
+      "deadlocks": 16,
+      "historically_consistent": false,
+      "initially_reachable": 0,
+      "mask": 2,
+      "rejected": 26
+    },
+    {
+      "admissible": 33,
+      "deadlocks": 0,
+      "historically_consistent": true,
+      "initially_reachable": 33,
+      "mask": 3,
+      "rejected": 16
+    },
+    {
+      "admissible": 23,
+      "deadlocks": 16,
+      "historically_consistent": false,
+      "initially_reachable": 0,
+      "mask": 4,
+      "rejected": 26
+    },
+    {
+      "admissible": 33,
+      "deadlocks": 16,
+      "historically_consistent": false,
+      "initially_reachable": 0,
+      "mask": 5,
+      "rejected": 16
+    },
+    {
+      "admissible": 39,
+      "deadlocks": 32,
+      "historically_consistent": false,
+      "initially_reachable": 0,
+      "mask": 6,
+      "rejected": 10
+    },
+    {
+      "admissible": 49,
+      "deadlocks": 0,
+      "historically_consistent": true,
+      "initially_reachable": 49,
+      "mask": 7,
+      "rejected": 0
+    }
+  ],
+  "monotonic_violations": [],
+  "node_count": 49,
+  "reachable_deadlock_count": 0,
+  "reachable_nodes": [
+    "aerie_ruins",
+    "bell_quarry",
+    "breakwater_ruins",
+    "brine_port",
+    "causeway_cave",
+    "cave",
+    "cloud_forge",
+    "cloud_landing",
+    "drowned_store",
+    "echo_platform",
+    "garden",
+    "gate",
+    "harbor",
+    "herb_station",
+    "high_camp",
+    "highfield",
+    "kiln_village",
+    "levee_vault",
+    "lock_station",
+    "marsh_camp",
+    "mist_market",
+    "nettle_hamlet",
+    "records",
+    "reed_camp",
+    "reed_library",
+    "reef_shrine",
+    "ridge_well",
+    "ridgehearth",
+    "river_watch",
+    "sailors_rest",
+    "salt_mine",
+    "school",
+    "shipyard",
+    "signal_hut",
+    "snow_shelter",
+    "springford",
+    "standing_stone",
+    "stone_shelter",
+    "summit_archive",
+    "summit_marker",
+    "survey_post",
+    "tide_beacon",
+    "toll_post",
+    "town",
+    "waterway",
+    "wayfarer_refuge",
+    "wind_observatory",
+    "wind_tomb",
+    "windbreak_town"
+  ],
+  "rejected_state_count": 168,
+  "rejected_states": [
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "garden"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "herb_station"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "school"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "springford"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "causeway_cave"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "records"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "harbor"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "toll_post"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "levee_vault"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "shipyard"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "brine_port"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "tide_beacon"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "salt_mine"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "nettle_hamlet"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "reef_shrine"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "drowned_store"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "breakwater_ruins"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "sailors_rest"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "mist_market"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "lock_station"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "reed_library"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "kiln_village"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "marsh_camp"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "bell_quarry"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "windbreak_town"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "wind_observatory"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "ridgehearth"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "cloud_landing"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "cloud_forge"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "signal_hut"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "survey_post"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "high_camp"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "wind_tomb"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "standing_stone"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "highfield"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "ridge_well"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "wayfarer_refuge"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "aerie_ruins"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "summit_marker"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "snow_shelter"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "echo_platform"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [],
+      "mask": 0,
+      "node": "summit_archive"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "brine_port"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "tide_beacon"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "salt_mine"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "nettle_hamlet"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "reef_shrine"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "drowned_store"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "breakwater_ruins"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "sailors_rest"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "mist_market"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "lock_station"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "reed_library"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "kiln_village"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "marsh_camp"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "bell_quarry"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "windbreak_town"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "wind_observatory"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "ridgehearth"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "cloud_landing"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "cloud_forge"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "signal_hut"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "survey_post"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "high_camp"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "wind_tomb"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "standing_stone"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "highfield"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "ridge_well"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "wayfarer_refuge"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "aerie_ruins"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "summit_marker"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "snow_shelter"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "echo_platform"
+    },
+    {
+      "available_transports": [
+        "walk"
+      ],
+      "flags": [
+        "world_causeway_open"
+      ],
+      "mask": 1,
+      "node": "summit_archive"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "garden"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "herb_station"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "school"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "springford"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "causeway_cave"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "records"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "harbor"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "toll_post"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "levee_vault"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "shipyard"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "ridgehearth"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "cloud_landing"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "cloud_forge"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "signal_hut"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "survey_post"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "high_camp"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "wind_tomb"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "standing_stone"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "highfield"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "ridge_well"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "wayfarer_refuge"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "aerie_ruins"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "summit_marker"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "snow_shelter"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "echo_platform"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_ship_unlocked"
+      ],
+      "mask": 2,
+      "node": "summit_archive"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "ridgehearth"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "cloud_landing"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "cloud_forge"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "signal_hut"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "survey_post"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "high_camp"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "wind_tomb"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "standing_stone"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "highfield"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "ridge_well"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "wayfarer_refuge"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "aerie_ruins"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "summit_marker"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "snow_shelter"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "echo_platform"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_ship_unlocked"
+      ],
+      "mask": 3,
+      "node": "summit_archive"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "garden"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "herb_station"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "school"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "springford"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "causeway_cave"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "records"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "harbor"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "toll_post"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "levee_vault"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "shipyard"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "brine_port"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "tide_beacon"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "salt_mine"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "nettle_hamlet"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "reef_shrine"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "drowned_store"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "breakwater_ruins"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "sailors_rest"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "mist_market"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "lock_station"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "reed_library"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "kiln_village"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "marsh_camp"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "bell_quarry"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "windbreak_town"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_flight_unlocked"
+      ],
+      "mask": 4,
+      "node": "wind_observatory"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "brine_port"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "tide_beacon"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "salt_mine"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "nettle_hamlet"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "reef_shrine"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "drowned_store"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "breakwater_ruins"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "sailors_rest"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "mist_market"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "lock_station"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "reed_library"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "kiln_village"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "marsh_camp"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "bell_quarry"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "windbreak_town"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "flight",
+        "ship"
+      ],
+      "flags": [
+        "world_causeway_open",
+        "world_flight_unlocked"
+      ],
+      "mask": 5,
+      "node": "wind_observatory"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "garden"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "herb_station"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "school"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "springford"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "causeway_cave"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "records"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "harbor"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "toll_post"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "levee_vault"
+    },
+    {
+      "available_transports": [
+        "walk",
+        "ship",
+        "flight"
+      ],
+      "flags": [
+        "world_ship_unlocked",
+        "world_flight_unlocked"
+      ],
+      "mask": 6,
+      "node": "shipyard"
+    }
+  ],
+  "runtime_integration": "NOT_RUN",
+  "scope": "abstract_graph",
+  "state_count": 392,
+  "status": "FAIL",
+  "terrain_verification": "NOT_RUN",
+  "transition_count": 536,
+  "transport_gains": [
+    {
+      "after_count": 7,
+      "after_mask": 0,
+      "before_count": 0,
+      "before_mask": 0,
+      "new_count": 7,
+      "transport": "walk"
+    },
+    {
+      "after_count": 33,
+      "after_mask": 3,
+      "before_count": 17,
+      "before_mask": 1,
+      "new_count": 16,
+      "new_nodes": [
+        "brine_port",
+        "tide_beacon",
+        "salt_mine",
+        "nettle_hamlet",
+        "reef_shrine",
+        "drowned_store",
+        "breakwater_ruins",
+        "sailors_rest",
+        "mist_market",
+        "lock_station",
+        "reed_library",
+        "kiln_village",
+        "marsh_camp",
+        "bell_quarry",
+        "windbreak_town",
+        "wind_observatory"
+      ],
+      "producer_node": "shipyard",
+      "transport": "ship"
+    },
+    {
+      "after_count": 49,
+      "after_mask": 7,
+      "before_count": 33,
+      "before_mask": 3,
+      "new_count": 16,
+      "new_nodes": [
+        "ridgehearth",
+        "cloud_landing",
+        "cloud_forge",
+        "signal_hut",
+        "survey_post",
+        "high_camp",
+        "wind_tomb",
+        "standing_stone",
+        "highfield",
+        "ridge_well",
+        "wayfarer_refuge",
+        "aerie_ruins",
+        "summit_marker",
+        "snow_shelter",
+        "echo_platform",
+        "summit_archive"
+      ],
+      "producer_node": "wind_observatory",
+      "transport": "flight"
+    }
+  ],
+  "unreachable_nodes": [],
+  "warnings": []
+}

@@ -154,5 +154,5 @@ func _initialize() -> void:
 	for message in failures:
 		printerr("MAP_GRAPH_DEFINITION_FAIL: " + message)
 	if failures.is_empty():
-		print("MAP_GRAPH_DEFINITION_PASS: regions=%d nodes=%d towns=%d dungeons=%d outposts=%d edges=%d legacy_edges=%d walk=%d ship=%d flight=%d flags=%d errors=0 coordinates=0 phase2=NOT_RUN" % [regions.size(), nodes.size(), counts["town"], counts["dungeon"], counts["outpost"], edges.size(), legacy_pairs.size(), tiers["walk"], tiers["ship"], tiers["flight"], flags.size()])
+		print("MAP_GRAPH_DEFINITION_PASS: regions=%d nodes=%d towns=%d dungeons=%d outposts=%d edges=%d legacy_edges=%d walk=%d ship=%d flight=%d flags=%d errors=0 coordinates=0 scope=definition_only" % [regions.size(), nodes.size(), counts["town"], counts["dungeon"], counts["outpost"], edges.size(), legacy_pairs.size(), tiers["walk"], tiers["ship"], tiers["flight"], flags.size()])
 	quit(0 if failures.is_empty() else 1)

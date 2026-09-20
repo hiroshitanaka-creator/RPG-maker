@@ -5,7 +5,8 @@
   "authority": {
     "approved": "依頼者がPhase 0のA方針とPhase 1への進行を承認。256×256、地方3〜4、町村10〜12、ダンジョン14〜18、小拠点20〜25、徒歩・船・飛行が目標。",
     "proposed": "具体的な4地方・49拠点、新規名称・物語上の役割・推奨レベル・進行順・移動秒数・解放イベントは設計者の提案。既存ID・名称は保持。",
-    "unverified": "Phase 2の状態探索、Phase 3の地形、Phase 4の実移動、実行時接続、60時間実測は未実施。"
+    "unverified": "Phase 3の地形、Phase 4の実移動、実行時接続、60時間実測は未実施。",
+    "phase_2_scope": "Phase 2の構造検証と帰還経路2本の補修。結果はdocs/verification/world-map-phase2.json。ゲーム本体の保存データ修復や地形上の通行を検証した意味ではない。"
   },
   "start_node": "town",
   "completion_node": "summit_archive",
@@ -1702,6 +1703,36 @@
       ],
       "roles": [
         "return_shortcut"
+      ]
+    },
+    {
+      "id": "route_brine_port_town_return",
+      "from": "brine_port",
+      "to": "town",
+      "required_transport": "ship",
+      "expected_travel_seconds": 40,
+      "one_way": false,
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "roles": [
+        "return_shortcut",
+        "incomplete_flags_recovery"
+      ]
+    },
+    {
+      "id": "route_ridgehearth_town_return",
+      "from": "ridgehearth",
+      "to": "town",
+      "required_transport": "flight",
+      "expected_travel_seconds": 40,
+      "one_way": false,
+      "unlock_flags": [
+        "world_flight_unlocked"
+      ],
+      "roles": [
+        "return_shortcut",
+        "incomplete_flags_recovery"
       ]
     }
   ]
