@@ -108,7 +108,7 @@ static func journal(state: Dictionary)->Array[Dictionary]:
 		if level==0:continue
 		var entry: Dictionary={"id":clue["id"],"title":clue["title"],"stage":level,
 			"observation":clue["setup"]["text"],"first":clue["first"]}
-		if level==2:entry["resolved"]=clue["resolved"]+"\n次に確かめること: "+clue["next_question"]
+		if level==2:entry["resolved"]=clue["resolved"]+"\nそのときの問い: "+clue["next_question"]
 		result.append(entry)
 	return result
 

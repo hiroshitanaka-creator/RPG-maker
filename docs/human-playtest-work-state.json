@@ -26,30 +26,30 @@
     "save_differences": 0
   },
   "content_work": {
-    "catalog_scripts": 28,
+    "catalog_scripts": 32,
     "catalog_target_scripts": 80,
     "arc_outlines": 20,
     "compiled_room_definitions": 80,
     "runtime_enabled": false,
     "gameplay_connected": true,
     "structural_verify": "FAIL: 80件の冒険が未完成",
-    "remaining_scripts": 52,
-    "connection_verify": "制作済み7連作の部分経路を検査。今回のs_dummyは16経路・96戦・304状態の保存復帰・手帳一致PASS。開始/終了で入力と検査コードのハッシュ一致。",
-    "authored_room_count": 28,
-    "clues": 19,
-    "clue_verify": "PASS: 設置・回収・依存・既読境界19件。依頼一覧・項目選択・回収前後・過去を3人/4人で106画面検査",
+    "remaining_scripts": 48,
+    "connection_verify": "制作済み8連作の部分経路を検査。s_gardenと文面修正したc_lampは各16経路・96戦・304保存復帰PASS。入力ハッシュ一致。",
+    "authored_room_count": 32,
+    "clues": 22,
+    "clue_verify": "PASS: 設置・回収・依存・既読境界22件。依頼一覧・項目選択・回収前後・過去を3人/4人で120画面検査",
     "geometry_verify": "PASS: 80区画・壁の開始地点・半端な座標・地形変更時の再判定。同一初期化20回17,084ms→410ms。s_dummyの同じ通し306.517秒→20.718秒、304保存復帰を維持。"
   },
   "ci": {
-    "commit": "17f07c9d99525f5ced803b0f650210b02b31abd8",
-    "run_id": 35506874751,
+    "commit": "85fe945e9b818b54bb73bb90ed2001dbc3667856",
+    "run_id": 35508445152,
     "status": "SUCCESS",
-    "note": "到達判定の今回の修正は、次のコミットのCIで確認する。"
+    "note": "32話までの今回の変更は次のコミットのCIで確認する。"
   },
   "next_actions": [
-    "到達判定の修正をcommit/pushしCIを確認する",
-    "第3章のs_gardenを制作して回収台帳へ接続する",
-    "残る後半の連作と固有の探索・装置・育成判断を実装する",
+    "32話までの変更をcommit/pushしCIを確認する",
+    "未完成の長編を時間受入候補へ数えないよう、ゲームとPython集計の判定を検査・修正する",
+    "第4章以降の残る12連作48話と固有の探索・装置・育成判断を実装する",
     "全80話の通常操作・分岐・保存容量と時間を検査する"
   ],
   "previous_goal_turn": "PROGRESS: 長編の本番接続、2連作8話、分岐・通路・保存・UIを検査してcommit/push"
