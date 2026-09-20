@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-09-20T12:32:14.575036+00:00",
+  "kind": "synthetic_record_acceptance_regression",
+  "godot_before_exit_code": 1,
+  "python_before_exit_code": 1,
+  "before_failures": [
+    "LONG_RECORD_FAIL: 長編が無効なら未完了でも受入候補にしてしまう",
+    "LONG_RECORD_FAIL: 長編の必須欄がない記録を受入候補にしてしまう",
+    "LONG_RECORD_FAIL: 未完成の本番でも60時間に必要な長編を必須として記録する",
+    "LONG_RECORD_FAIL: 未完成の実ゲームの文脈から60時間の受入候補を作った",
+    "LONG_RECORD_FAIL: 5件という個数だけで異なる5地点の完走と判定した",
+    "LONG_RECORD_FAIL: 長編完了の型が真偽値でなくても受入候補にした"
+  ],
+  "godot_after_exit_code": 0,
+  "python_after_exit_code": 0,
+  "numeric_boundary_checks": "PASS",
+  "party_playtest_check": "PASS",
+  "restart_check": "PASS",
+  "human_playtest": "NOT_RUN",
+  "source_sha256": {
+    "scripts/game/game_session.gd": "cbc64e9ee3d84154dbb7ac06631a3f1ba3fb3e6ae9c3f7af45790be8c4f109a4",
+    "scripts/game/play_session_metrics.gd": "9cb9c379b62e2877a28196295de857ec6628c5d48ecbd5fd3b3564eee779dc6a",
+    "tools/summarize_playtest.py": "bcda0408419e89cdab1c5b26cd55af5f8d6861689f9a0f0c760fe2939b9447ac",
+    "tools/check_long_record.gd": "810ca29c83953c7b41f31926923ada5aa43b1c52b3c980a9b6a758e49dd3bdb4",
+    "tools/check_long_record_summary.py": "c50f5ae7534d814c18f08cd071e7ae8f34d28f3f5ab141ca3ac51354a00b4b0e",
+    "tools/check_duration_target.gd": "f4c42d34236908514f949ebb3dbab0a70ab4d3cbccb9e36f2719fbbbe808ed37",
+    "tools/check_duration_summary.py": "dca5378f8380de42c35eedeb6b8d16bb47d871efbd2019eff39e6b935276aec4"
+  },
+  "note": "時間帯専用fixtureには長編完了の合成前提を明示した。境界値・成否期待値は変更していない。実ゲームの未完走と必須欄false/欠落は追加ケースで拒否する。"
+}

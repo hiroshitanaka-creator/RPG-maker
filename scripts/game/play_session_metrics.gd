@@ -166,14 +166,23 @@ func report(context: Dictionary = {}) -> Dictionary:
 	var target := DurationTarget.definition()
 	value["target_play_minutes"] = [int(target.get("min_minutes",0)),int(target.get("max_minutes",0))]
 	value["duration_target"] = target.duplicate(true)
-	var long_route_done: bool=not context.get("long_campaign_required",false) or context.get("long_campaign_complete",false)
-	value["target_duration_observed"] = source == "human" and not source_changed and completed and context.get("history_complete",false) and not context.get("mixed_builds",true) and context.get("content_revision",0) == 1 and context.get("circuits_completed",[]).size() == 5 and long_route_done and DurationTarget.matches(context) and DurationTarget.includes(play_ms)
+	var long_complete: Variant=context.get("long_campaign_complete",false)
+	var long_route_done: bool=long_complete is bool and long_complete
+	value["target_duration_observed"] = source == "human" and not source_changed and completed and context.get("history_complete",false) and not context.get("mixed_builds",true) and context.get("content_revision",0) == 1 and _full_circuits(context.get("circuits_completed")) and long_route_done and DurationTarget.matches(context) and DurationTarget.includes(play_ms)
 	value["human_review_received"] = source == "human" and not answers.is_empty()
 	value["human_identity_verified"] = false
 	value["acceptance_status"] = "UNREVIEWED"
 	value["recorded_at"] = Time.get_datetime_string_from_system(true)
 	value["game"] = context.duplicate(true)
 	return value
+
+static func _full_circuits(value: Variant)->bool:
+	if not value is Array or value.size()!=5:return false
+	var seen: Dictionary={}
+	for identifier in value:
+		if not identifier is String or identifier not in ["waterway","cave","school","records","gate"] or seen.has(identifier):return false
+		seen[identifier]=true
+	return true
 
 
 func export_report(path: String, context: Dictionary = {}) -> bool:

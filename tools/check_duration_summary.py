@@ -18,6 +18,7 @@ def main():
         'game': {'engine': EXPECTED_ENGINE, 'build_id': build['id'],
                  'build_identity_version': 1, 'content_revision': 1, 'mixed_builds': False,
                  'duration_target_id': target['id'],
+                 'long_campaign_required': True, 'long_campaign_complete': True,
                  'circuits_completed': ['waterway', 'cave', 'school', 'records', 'gate']},
     }
     for minutes in [330, 3239, 3240, 3600, 3960, 3961]:

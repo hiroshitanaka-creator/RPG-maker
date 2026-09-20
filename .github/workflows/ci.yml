@@ -39,6 +39,7 @@ jobs:
           set -o pipefail
           ./godot --headless --path . --script res://tools/check_duration_target.gd 2>&1 | tee preplay.log
           python tools/check_duration_summary.py
+          python tools/check_long_record_summary.py
           ./godot --headless --path . --script res://tools/check_preplay_ui.gd 2>&1 | tee -a preplay.log
           ./godot --headless --path . --script res://tools/check_preplay_recovery.gd 2>&1 | tee -a preplay.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" preplay.log; then exit 1; fi

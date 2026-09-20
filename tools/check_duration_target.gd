@@ -13,7 +13,8 @@ func _initialize() -> void:
 	var metrics := PlaySessionMetrics.new()
 	metrics.source = "human"
 	metrics.completed = true
-	var context := {"history_complete":true,"mixed_builds":false,"content_revision":1,"circuits_completed":["waterway","cave","school","records","gate"],"duration_target_id":target.get("id","")}
+	# 時間帯だけを検査するため、完走済みという合成前提を与える。実ゲームの未完走は別の検査で拒否する。
+	var context := {"history_complete":true,"mixed_builds":false,"content_revision":1,"circuits_completed":["waterway","cave","school","records","gate"],"duration_target_id":target.get("id",""),"long_campaign_required":true,"long_campaign_complete":true}
 	for minutes in [3239,3240,3600,3960,3961]:
 		metrics.active_ms = minutes*60000
 		metrics.elapsed_ms = metrics.active_ms

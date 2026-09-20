@@ -1205,7 +1205,7 @@ func recording_context() -> Dictionary:
 	var journeys: Array[String]=[]
 	for entry in LongCampaign.data().get("missions",[]):
 		if _state.get("progress_flags",{}).get(LongCampaign.cleared_flag(entry["id"]),false):journeys.append(entry["id"])
-	return {"engine":build["engine"],"build_id":build["id"],"build_identity_version":build["version"],"world":world_state(),"party_size":_state.get("party",[]).size(),"content_revision":_state.get("content_revision",0),"circuits_completed":cleared,"content_sha256":CampaignContent.content_hash(),"duration_target_id":DurationTarget.definition().get("id",""),"long_campaign_required":LongCampaign.enabled(),"long_campaign_complete":LongCampaign.all_cleared(_state.get("progress_flags",{})),"long_missions_completed":journeys}
+	return {"engine":build["engine"],"build_id":build["id"],"build_identity_version":build["version"],"world":world_state(),"party_size":_state.get("party",[]).size(),"content_revision":_state.get("content_revision",0),"circuits_completed":cleared,"content_sha256":CampaignContent.content_hash(),"duration_target_id":DurationTarget.definition().get("id",""),"long_campaign_required":true,"long_campaign_complete":LongCampaign.all_cleared(_state.get("progress_flags",{})),"long_missions_completed":journeys}
 
 
 func enable_recording(directory: String) -> bool:

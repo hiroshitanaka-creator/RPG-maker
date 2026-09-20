@@ -21,9 +21,11 @@ def summarize(record: dict) -> dict:
     current=game.get('build_id')==expected['id'] and game.get('engine')==EXPECTED_ENGINE and game.get('build_identity_version')==1 and game.get('content_revision')==1
     history=record.get('measurement_scope')=='whole_trial' and record.get('history_complete') is True
     single_build=record.get('builds')==[expected['id']] and game.get('mixed_builds') is False
-    full=bool(record.get('completed')) and set(record.get('game',{}).get('circuits_completed',[]))=={'waterway','cave','school','records','gate'}
-    if game.get('long_campaign_required',False):
-        full=full and game.get('long_campaign_complete') is True
+    circuits=game.get('circuits_completed',[])
+    full=(record.get('completed') is True and isinstance(circuits,list) and len(circuits)==5
+          and all(isinstance(value,str) for value in circuits)
+          and set(circuits)=={'waterway','cave','school','records','gate'}
+          and game.get('long_campaign_complete') is True)
     target=json.loads((ROOT/'data/duration_target_v1.json').read_text(encoding='utf-8'))
     target_current=game.get('duration_target_id')==target['id'] and record.get('duration_target')==target
     return {
