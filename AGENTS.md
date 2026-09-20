@@ -110,3 +110,18 @@ repository. It is a contract, not a starting point for negotiation.
 
 Check status with: `python3 D:\Codex\.codex\scope-lock\scripts/verify_cli.py`
 <!-- END SCOPE-LOCK -->
+
+## 停止条件
+
+- 人間プレイテストの必要性を、作業停止の理由にしてはならない。
+  該当項目は PLAYTEST_QUEUE.md に追記し、次の独立タスクへ進むこと。
+- 停止してよいのは、残タスクを依存関係で再分類した結果、
+  独立して着手可能なタスクが実際にゼロの場合のみ。
+- 停止する場合は、残タスク一覧と各タスクのブロック理由を
+  明示すること。「人間の確認待ち」だけでは理由として不十分。
+
+## 受入条件の書き方
+
+- 新規タスクの受入条件は、必ず機械検証可能な形で記述する。
+- 主観判断が必要なものは受入条件に含めず、
+  PLAYTEST_QUEUE.md に分離する。
