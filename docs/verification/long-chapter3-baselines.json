@@ -1,0 +1,34 @@
+{
+  "kind": "pre_implementation_baseline",
+  "observed_at_commit": "0e222fcebfcc39455911cf6d7bdd7ec59100038a",
+  "scope": "3連作の追加前に実行した、入口と全96戦への未到達を理由とするFAIL",
+  "results": [
+    {
+      "arc": "c_statues",
+      "exit_code": 1,
+      "parser_error": false,
+      "failures": [
+        "LONG_INTEGRATION_FAIL: 入口から長編へ入れる",
+        "LONG_INTEGRATION_FAIL: 4話×2編成×2選択で全96戦を通る"
+      ]
+    },
+    {
+      "arc": "s_dummy",
+      "exit_code": 1,
+      "parser_error": false,
+      "failures": [
+        "LONG_INTEGRATION_FAIL: 入口から長編へ入れる",
+        "LONG_INTEGRATION_FAIL: 4話×2編成×2選択で全96戦を通る"
+      ]
+    },
+    {
+      "arc": "s_garden",
+      "exit_code": 1,
+      "parser_error": false,
+      "failures": [
+        "LONG_INTEGRATION_FAIL: 入口から長編へ入れる",
+        "LONG_INTEGRATION_FAIL: 4話×2編成×2選択で全96戦を通る"
+      ]
+    }
+  ]
+}
