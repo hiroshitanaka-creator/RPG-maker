@@ -81,7 +81,15 @@ func _run()->void:
 				var found:=false
 				for at in range(entries.size()):
 					if entries[at]["id"]!=clue["id"]:continue
-					found=true;main._journal_index=at
+					found=true
+					var picker: OptionButton=null
+					for child in main._body.get_children():
+						if child is OptionButton:picker=child;break
+					check(picker!=null,"手帳の項目を選ぶ画面操作がある")
+					if picker!=null:
+						picker.select(at)
+						picker.item_selected.emit(at)
+						check(main._journal_index==at,"項目の選択操作が表示へ反映される")
 					check(entries[at].has("resolved")==after,"回収を読んだ後だけ手帳に解答が出る")
 				check(found,"既に見た設置を手帳から参照できる")
 				main._refresh()

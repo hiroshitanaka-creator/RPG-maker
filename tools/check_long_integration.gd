@@ -6,14 +6,26 @@ var moved:=0
 var battles:=0
 var cases:=0
 var arc_id: String="w_ferry"
+var build_at_start: Dictionary={}
+var catalog_at_start: String=""
+var checks_at_start: Dictionary={}
+var started_ms: int=0
+var saves:=0
 
 func check(value: bool,message: String)->bool:
 	if not value:errors.append(message)
 	return value
 
 func _run()->void:
+	started_ms=Time.get_ticks_msec()
+	build_at_start=BuildIdentity.current()
+	catalog_at_start=FileAccess.get_sha256(LongCampaign.PATH)
+	checks_at_start=_check_hashes()
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--arc="):arc_id=argument.trim_prefix("--arc=")
+	if not check(arc_id.is_valid_identifier(),"連作IDがファイル名に使える識別子である"):
+		_finish();return
+	print("LONG_INTEGRATION_START: arc=%s build=%s catalog=%s" % [arc_id,build_at_start["id"],catalog_at_start])
 	var game: Variant=GameSession.new()
 	if not check(game.has_method("long_missions"),"本番の長編選択APIがある"):
 		_finish();return
@@ -100,6 +112,7 @@ func _run()->void:
 					if not errors.is_empty():break
 				check(game.export_state()["progress_flags"].get(LongCampaign.cleared_flag(id),false),"冒険の終端が確定する")
 				cases+=1
+				print("LONG_INTEGRATION_PROGRESS: arc=%s cases=%d/16 battles=%d/96" % [arc_id,cases,battles])
 				if not errors.is_empty():break
 			if not errors.is_empty():break
 		if not errors.is_empty():break
@@ -110,12 +123,13 @@ func _run()->void:
 
 func _save_resume(game: GameSession,size: int,option: int)->bool:
 	var expected:=game.export_state()
-	var path: String="user://qa_long_integration_%d_%d.json" % [size,option]
+	var path: String="user://qa_long_%s_%d_%d_%d.json" % [arc_id,OS.get_process_id(),size,option]
 	if not check(game.save_game(path),"進行の各地点で保存できる"):return false
 	var loaded:=GameSession.new()
 	if not check(loaded.load_game(path),"別インスタンスへロードできる"):return false
 	if not check(Compare.differences(expected,loaded.export_state(),"$",[]).is_empty(),"長編状態のキー・型・値・順序が一致する"):return false
 	check(game.journal_entries()==loaded.journal_entries(),"保存復帰で既読の意味が一致し、先の解答を解放しない")
+	saves+=1
 	if not expected["expedition"].is_empty():
 		check(loaded.return_to_town() and loaded.rest() and loaded.resume_exploration(),"長編の途中から帰還・休息・再開できる")
 		check(loaded.world_state()==expected["world"],"元の区画・位置へ戻る")
@@ -145,6 +159,20 @@ func _walk(game: GameSession,target: Array)->bool:
 	return true
 
 func _finish()->void:
+	BuildIdentity._cached.clear()
+	check(BuildIdentity.current()==build_at_start and FileAccess.get_sha256(LongCampaign.PATH)==catalog_at_start,"検査中に本番のコード・データ・素材を変更していない")
+	check(_check_hashes()==checks_at_start,"検査中に検査コードを変更していない")
+	if arc_id.is_valid_identifier():
+		PlaySessionMetrics.write_json("res://docs/verification/long-integration-%s-%d.json" % [arc_id,OS.get_process_id()],{
+			"status":"PASS" if errors.is_empty() else "FAIL","arc":arc_id,"cases":cases,"battles":battles,"moved":moved,"save_roundtrips":saves,
+			"elapsed_seconds":float(Time.get_ticks_msec()-started_ms)/1000.0,"build":build_at_start,"catalog_sha256":catalog_at_start,"check_sha256":checks_at_start,
+			"failures":errors,"scope":"対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。"})
 	for message in errors:printerr("LONG_INTEGRATION_FAIL: "+message)
 	if errors.is_empty():print("LONG_INTEGRATION_PASS: authored_cases=%d battles=%d moved=%d arc=%s" % [cases,battles,moved,arc_id])
 	quit(0 if errors.is_empty() else 1)
+
+func _check_hashes()->Dictionary:
+	var result: Dictionary={}
+	for path in ["tools/check_long_integration.gd","tools/check_battle_acceptance.gd","tools/counterplay_policy.gd","tools/save_state_comparison.gd"]:
+		result[path]=FileAccess.get_sha256("res://"+path)
+	return result

@@ -68,7 +68,7 @@ jobs:
       - name: 保護対象を照合
         if: always()
         run: python tools/check_frozen_files.py
-      - name: 制作済みの長編5連作を本番APIで検査
+      - name: 制作済みの長編6連作を本番APIで検査
         run: |
           set -o pipefail
           python tools/build_long_campaign.py
@@ -78,12 +78,13 @@ jobs:
           ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=c_lamp 2>&1 | tee -a long-integration.log
           ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=c_letters 2>&1 | tee -a long-integration.log
           ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=w_seeds 2>&1 | tee -a long-integration.log
+          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=c_statues 2>&1 | tee -a long-integration.log
           ./godot --headless --path . --script res://tools/check_long_past.gd 2>&1 | tee long-past.log
           ./godot --headless --path . --script res://tools/check_long_clues.gd 2>&1 | tee long-clues.log
           ./godot --headless --path . --script res://tools/check_long_ui.gd 2>&1 | tee long-ui.log
           ./godot --headless --path . --script res://tools/check_long_record.gd 2>&1 | tee long-record.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" long-integration.log long-ui.log long-record.log long-past.log long-clues.log; then exit 1; fi
-          test "$(grep -c '^LONG_INTEGRATION_PASS:' long-integration.log)" -eq 5
+          test "$(grep -c '^LONG_INTEGRATION_PASS:' long-integration.log)" -eq 6
           test "$(grep -c '^LONG_PAST_PASS:' long-past.log)" -eq 1
           test "$(grep -c '^LONG_CLUES_PASS:' long-clues.log)" -eq 1
           test "$(grep -c '^LONG_UI_PASS:' long-ui.log)" -eq 1
@@ -118,6 +119,7 @@ jobs:
             long-clues.log
             docs/verification/long-ui.json
             docs/verification/long-clues-current.json
+            docs/verification/long-integration-*.json
 
   assets:
     name: 素材検査
