@@ -42,6 +42,9 @@ static func room(identifier: String)->Dictionary:
 static func cleared_flag(identifier: String)->String:
 	return "journey_"+identifier+"_cleared"
 
+static func activity_flag(identifier: String, suffix: String)->String:
+	return "journey_activity_"+identifier+"_"+suffix
+
 static func choice_flag(identifier: String, option: int)->String:
 	return "journey_choice_"+identifier+"_"+str(option)
 
@@ -134,6 +137,19 @@ static func validate_flags(flags: Dictionary, active: Dictionary={})->bool:
 	var known: Dictionary={}
 	for entry in data().get("missions",[]):
 		known[cleared_flag(entry["id"])]=true
+		for activity in entry.get("activities",[]):
+			var touched := false
+			for suffix in ["seen_0","seen_1","done","supported"]:
+				var key := activity_flag(activity["id"],suffix)
+				known[key] = true
+				touched = touched or flags.get(key,false)
+			var done: bool = flags.get(activity_flag(activity["id"],"done"),false)
+			if done and (not flags.get(activity_flag(activity["id"],"seen_0"),false) or not flags.get(activity_flag(activity["id"],"seen_1"),false)):return false
+			if flags.get(activity["support_flag"],false) and not done:return false
+			if flags.get(cleared_flag(entry["id"]),false) and not done:return false
+			if touched:
+				if not flags.get("long_campaign_started",false):return false
+				if not flags.get(cleared_flag(entry["id"]),false) and (active.get("id")!=entry["id"] or int(active.get("stage",-1))<int(activity["unlock_stage"])):return false
 		if flags.get(cleared_flag(entry["id"]),false):
 			if not flags.get("long_campaign_started",false):return false
 			for prerequisite in entry.get("requires",[]):
@@ -177,6 +193,7 @@ static func valid_state(state: Dictionary)->bool:
 	for index in range(source["steps"].size()):
 		var previous: Dictionary=source["steps"][index]
 		if previous["kind"]=="challenge" and index<current["stage"]:solved.append(previous["id"])
+		if index<current["stage"] and previous.has("required_activity") and not flags.get(activity_flag(previous["required_activity"],"done"),false):return false
 		if not previous.get("choice",false):continue
 		var count:=0
 		for option in range(previous["options"].size()):count+=1 if flags.get(choice_flag(previous["id"],option),false) else 0
@@ -211,6 +228,14 @@ static func audit(abilities: Dictionary, enemies: Dictionary)->Array[String]:
 		if entry.get("region") not in REGIONS or entry.get("trigger_step") not in [19,23,28,34,38]:errors.append("既存の章・土地へ接続されていない")
 		var base:=StoryCampaign.step(int(entry.get("trigger_step",-1)))
 		if entry.get("chapter")!=base.get("chapter"):errors.append("章の対応が不正")
+		if entry.get("activities",[]).is_empty():errors.append("現地の観察・操作がない")
+		for activity in entry.get("activities",[]):
+			if activity.get("observations",[]).size()!=2 or activity.get("kind") not in ["sequence","perspective","allocation","route"]:errors.append("現地課題の観察または種別が不正")
+			if activity.get("answer",-1) not in range(activity.get("options",[]).size()):errors.append("現地課題の解法が不正")
+			if not abilities.has(activity.get("support_ability")) or not passage_flags.has(activity.get("support_flag")):errors.append("装着を使う支援または近道が未定義")
+			for marker in activity.get("observations",[])+[activity]:
+				if not _reachable(activity["section"],room(activity["section"])["spawn"],marker.get("cell",[])):errors.append("現地課題へ歩いて到達できない")
+			if activity.get("unlock_stage",-1) not in range(entry.get("steps",[]).size()) or entry["steps"][int(activity["unlock_stage"])]["section"]!=activity["section"]:errors.append("現地課題の解放時期が不正")
 		for prerequisite in entry.get("requires",[]):
 			if prerequisite==entry["id"] or not mission_ids.has(prerequisite):errors.append("前提が未定義または循環する")
 		var previous_room: String=""

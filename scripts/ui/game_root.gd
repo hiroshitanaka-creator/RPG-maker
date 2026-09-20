@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS, WORLD, WORLD_CHOICE, WORLD_ATLAS }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS, WORLD, WORLD_CHOICE, WORLD_ATLAS, JOURNEY_DEVICE }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -46,6 +46,7 @@ var _checkpoint_error: String = ""
 var _world_mover := WorldMovement.new()
 var _world_atlas_texture: ImageTexture
 var _world_motion_ms := -1000
+var _long_support_actor: String = ""
 
 
 func _ready() -> void:
@@ -225,6 +226,7 @@ func automation_snapshot() -> Dictionary:
 	names[Mode.CHALLENGE] = "challenge"
 	names[Mode.JOB_LORE] = "job_lore"
 	names[Mode.JOURNEYS] = "journeys"
+	names[Mode.JOURNEY_DEVICE] = "journey_device"
 	names[Mode.WORLD] = "world"
 	names[Mode.WORLD_CHOICE] = "world_choice"
 	names[Mode.WORLD_ATLAS] = "world_atlas"
@@ -289,6 +291,21 @@ func submit_player_action(action: Dictionary) -> bool:
 		return true
 	var accepted := false
 	match mode:
+		Mode.JOURNEY_DEVICE:
+			if kind == "back":
+				mode = Mode.FIELD
+				accepted = true
+			elif kind == "party":
+				_party_return = Mode.JOURNEY_DEVICE
+				mode = Mode.PARTY
+				accepted = true
+			elif kind == "long_device_answer":
+				var activity := game.long_activity()
+				if game.complete_long_activity(int(action.get("option",-1)),_long_support_actor):
+					_show_dialogue([activity["resolution"],"MPを使って近道を残した。" if not _long_support_actor.is_empty() else "MPを温存して手順を終えた。"],false)
+				else:
+					_notice = "二つの観察と装着・MPを確認してください。進行と報酬は変わっていません。"
+				accepted = true
 		Mode.WORLD, Mode.WORLD_CHOICE, Mode.WORLD_ATLAS:
 			accepted = _world_action(action)
 		Mode.FIELD:
@@ -548,6 +565,20 @@ func _respond_to_erosion(kind: String) -> bool:
 func _interact() -> bool:
 	var step := _step()
 	var world := game.world_state()
+	var activity := game.long_activity_at_player()
+	if not activity.is_empty():
+		if activity["observation"] >= 0:
+			_show_dialogue(game.read_long_observation(),false)
+		elif activity["complete"]:
+			_show_dialogue(["この作業は完了しています。黄色の目的地で判断を伝えられます。"],false)
+		else:
+			_long_support_actor = ""
+			mode = Mode.JOURNEY_DEVICE
+		return true
+	if step.has("required_activity") and not game.export_state()["progress_flags"].get(LongCampaign.activity_flag(step["required_activity"],"done"),false):
+		_notice = "先に緑の観察記録を二つ調べ、青い操作台で作業を終えてください。"
+		_refresh()
+		return false
 	if not game.exploration_at_player().is_empty():
 		mode = Mode.EXPLORATION
 		_notice = ""
@@ -743,6 +774,7 @@ func _refresh() -> void:
 			values.append(str(game.current_erosion(actor["id"])))
 		header.add_child(_label("侵蝕 " + " / ".join(values), 10))
 	match mode:
+		Mode.JOURNEY_DEVICE: _render_long_device()
 		Mode.WORLD: _render_world()
 		Mode.WORLD_CHOICE: _render_world_choice()
 		Mode.WORLD_ATLAS: _render_world_atlas()
@@ -857,7 +889,7 @@ func _render_field() -> void:
 	map.cell_clicked.connect(_map_clicked)
 	_body.add_child(map)
 	if not map.sites.is_empty():
-		_body.add_child(_label("青い枠: 設備 / 緑の箱: 補給 / 灰色: 利用済み。上に立って調べる。",9))
+		_body.add_child(_label("緑: 観察 / 青: 操作台。二つの記録を読んで調べる。" if not game.long_activity().is_empty() else "青い枠: 設備 / 緑の箱: 補給 / 灰色: 利用済み。上に立って調べる。",9))
 	var row := HBoxContainer.new()
 	_body.add_child(row)
 	_action_button(row, "調べる", {"kind":"interact"})
@@ -1791,6 +1823,46 @@ func _render_challenge() -> void:
 	for index in range(task["options"].size()):
 		_action_button(_body,task["options"][index],{"kind":"challenge_answer","option":index})
 	_action_button(_body,"探索へ戻る",{"kind":"back"})
+
+
+func _render_long_device() -> void:
+	var activity := game.long_activity()
+	var flags: Dictionary = game.export_state()["progress_flags"]
+	_body.add_child(_label(activity["name"],13))
+	var record := RichTextLabel.new()
+	record.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	record.add_theme_font_size_override("normal_font_size",10)
+	var lines: Array[String] = []
+	var ready := true
+	for i in range(2):
+		var read: bool = flags.get(LongCampaign.activity_flag(activity["id"],"seen_"+str(i)),false)
+		ready = ready and read
+		lines.append("観察%d: %s" % [i+1,activity["observations"][i]["text"] if read else "現地でまだ確認していない"])
+	lines.append(activity["support_description"])
+	record.text = "\n".join(lines)
+	_body.add_child(record)
+	var support := OptionButton.new()
+	support.add_item("MPを温存して手順だけで進める")
+	support.set_item_metadata(0,"")
+	for actor in game.export_state()["party"]:
+		var skill: String = activity["support_ability"]
+		if actor["hp"] > 0 and skill in actor["equipped_abilities"] and actor["mp"] >= int(game.abilities[skill]["cost"]):
+			support.add_item("%sの堅守で支える（%dMP・近道）" % [actor["name"],game.abilities[skill]["cost"]])
+			support.set_item_metadata(support.item_count-1,actor["id"])
+			if actor["id"] == _long_support_actor:support.select(support.item_count-1)
+	_long_support_actor = support.get_item_metadata(support.selected)
+	support.item_selected.connect(func(index: int) -> void: _long_support_actor = support.get_item_metadata(index))
+	_body.add_child(support)
+	var question := _label(activity["question"],11)
+	question.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(question)
+	for i in range(activity["options"].size()):
+		var button := _action_button(_body,activity["options"][i],{"kind":"long_device_answer","option":i})
+		button.disabled = not ready
+	var row := HBoxContainer.new()
+	_body.add_child(row)
+	_action_button(row,"装着を確認",{"kind":"party"})
+	_action_button(row,"探索へ戻る",{"kind":"back"})
 
 
 func _render_job_lore() -> void:

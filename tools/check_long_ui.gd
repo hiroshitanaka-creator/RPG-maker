@@ -39,6 +39,7 @@ func _run()->void:
 			for at in range(mission["steps"].size()):
 				if mission["steps"][at].get("choice",false):index=at;break
 			var task: Dictionary=mission["steps"][index]
+			_mark_activity(state,mission)
 			state["world"]={"location":task["location"],"player_cell":task["cell"],"section":task["section"],"quest_step":19}
 			state["expedition"]={"id":"w_ferry_1","stage":index,"wave":0,"solved":[],"origin":{"location":base["location"],"player_cell":base["cell"],"quest_step":19}}
 			check(main.game.import_state(state),"選択画面の有効な途中状態")
@@ -129,10 +130,13 @@ func _journal_fixture(state: Dictionary, reference: Dictionary, after: bool)->Di
 	for previous in LongCampaign.data()["missions"]:
 		if previous["arc"]!=mission["arc"] or previous["id"]>mission["id"]:continue
 		var complete: bool=previous["id"]!=mission["id"]
-		if complete:state["progress_flags"][LongCampaign.cleared_flag(previous["id"])]=true
+		if complete:
+			state["progress_flags"][LongCampaign.cleared_flag(previous["id"])]=true
+			_mark_activity(state,previous)
 		for at in range(previous["steps"].size()):
 			var task: Dictionary=previous["steps"][at]
 			if not task.get("choice",false) or (not complete and at>=stage):continue
+			_mark_activity(state,previous)
 			state["progress_flags"][LongCampaign.choice_flag(task["id"],0)]=true
 			for flag in task["choice_effects"][0].get("flags",[]):state["progress_flags"][flag]=true
 			if not complete:solved.append(task["id"])
@@ -141,3 +145,9 @@ func _journal_fixture(state: Dictionary, reference: Dictionary, after: bool)->Di
 	state["expedition"]={"id":mission["id"],"stage":stage,"wave":0,"solved":solved,
 		"origin":{"location":base["location"],"player_cell":base["cell"],"quest_step":mission["trigger_step"]}}
 	return state
+
+func _mark_activity(state: Dictionary, mission: Dictionary) -> void:
+	# 手帳・判断画面の単体入力。現地を歩く検査は別途通常APIで行う。
+	for activity in mission["activities"]:
+		for suffix in ["seen_0","seen_1","done"]:
+			state["progress_flags"][LongCampaign.activity_flag(activity["id"],suffix)] = true

@@ -1,6 +1,6 @@
 extends RefCounted
 
-const ROOT_FIELDS := ["format_version","party","leader_id","inventory","progress_flags","field_battles","return_point","story_battle","content_revision","expedition","world","story_task","gate_team","_play_session","_trial_id","_saved_value_types"]
+const ROOT_FIELDS := ["format_version","party","leader_id","inventory","progress_flags","field_battles","return_point","story_battle","content_revision","expedition","world","overworld","story_task","gate_team","_play_session","_trial_id","_saved_value_types"]
 const ACTOR_FIELDS := ["id","name","job_id","last_human_job","jp","mastered_jobs","learned_abilities","equipped_abilities","unlocked_jobs","monster_form","erosion","irreversible","hp","max_hp","mp","max_mp"]
 
 static func differences(before: Variant, after: Variant, path: String = "$", output: Array[String] = []) -> Array[String]:
@@ -32,6 +32,8 @@ static func unlisted(document: Dictionary) -> Array[String]:
 	for area in schemas:
 		for key in document.get(area,{}):
 			if key not in schemas[area]:result.append("未列挙の保存項目: "+area+"."+str(key))
+	for key in document.get("overworld",{}):
+		if key not in ["active","origin","layer","cell","world_cell","transport","node","room","flags","seen","cleared","choices","visited"]:result.append("未列挙の広域保存項目: "+str(key))
 	for key in document.get("expedition",{}).get("origin",{}):
 		if key not in schemas["world"]:result.append("未列挙の保存項目: expedition.origin."+str(key))
 	var metrics: Dictionary = document.get("_play_session",{})

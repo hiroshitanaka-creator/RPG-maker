@@ -977,6 +977,8 @@ func answer_challenge(option: int) -> bool:
 	var entry := current_story_step()
 	if _battle != null or is_returning_to_town() or entry.get("kind") != "challenge" or world_state()["player_cell"] != entry["cell"] or option not in range(entry["options"].size()):
 		return false
+	if entry.has("required_activity") and not _state["progress_flags"].get(LongCampaign.activity_flag(entry["required_activity"],"done"),false):
+		return false
 	play_metrics.mark("challenge_attempts")
 	var accepted: bool=entry.get("choice",false) or option==entry["answer"]
 	play_metrics.record_event("challenge_answer",{"id":entry["id"],"option":option,"correct":accepted})
@@ -1050,8 +1052,64 @@ func world_walkable_cells() -> Array:
 
 func exploration_sites() -> Array[Dictionary]:
 	if not str(world_state().get("section","")).is_empty():
-		return []
+		return long_activity_markers()
 	return ExplorationSites.in_location(world_state().get("location",""),_state.get("progress_flags",{}))
+
+
+func long_activity() -> Dictionary:
+	if _state.is_empty() or is_returning_to_town():return {}
+	var active: Dictionary = _state.get("expedition",{})
+	var mission := LongCampaign.mission(active.get("id",""))
+	for activity in mission.get("activities",[]):
+		if activity["section"] == world_state().get("section","") and int(active.get("stage",-1)) >= activity["unlock_stage"]:
+			return activity.duplicate(true)
+	return {}
+
+
+func long_activity_markers() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var activity := long_activity()
+	if activity.is_empty():return result
+	for i in range(activity["observations"].size()):
+		result.append({"id":activity["id"]+"_seen_"+str(i),"kind":"record","name":"観察記録"+str(i+1),"cell":activity["observations"][i]["cell"],"complete":_state["progress_flags"].get(LongCampaign.activity_flag(activity["id"],"seen_"+str(i)),false),"observation":i})
+	result.append({"id":activity["id"],"kind":"device","name":activity["name"],"cell":activity["cell"],"complete":_state["progress_flags"].get(LongCampaign.activity_flag(activity["id"],"done"),false),"observation":-1})
+	return result
+
+
+func long_activity_at_player() -> Dictionary:
+	for marker in long_activity_markers():
+		if marker["cell"] == world_state()["player_cell"]:return marker
+	return {}
+
+
+func read_long_observation() -> Array:
+	var marker := long_activity_at_player()
+	if _battle != null or marker.is_empty() or int(marker["observation"]) < 0:return []
+	var activity := long_activity()
+	var index: int = marker["observation"]
+	_state["progress_flags"][LongCampaign.activity_flag(activity["id"],"seen_"+str(index))] = true
+	return [activity["observations"][index]["text"]]
+
+
+func complete_long_activity(answer: int, support_actor: String = "") -> bool:
+	var marker := long_activity_at_player()
+	var activity := long_activity()
+	if _battle != null or marker.is_empty() or activity.is_empty() or marker["kind"] != "device" or marker["complete"] or answer != int(activity["answer"]):return false
+	for i in range(2):
+		if not _state["progress_flags"].get(LongCampaign.activity_flag(activity["id"],"seen_"+str(i)),false):return false
+	var candidate := _state.duplicate(true)
+	if not support_actor.is_empty():
+		var actor := _member(support_actor)
+		var skill: String = activity["support_ability"]
+		if actor.is_empty() or actor["hp"] <= 0 or skill not in actor["equipped_abilities"] or actor["mp"] < abilities[skill]["cost"]:return false
+		for member in candidate["party"]:
+			if member["id"] == support_actor:member["mp"] -= int(abilities[skill]["cost"])
+		candidate["progress_flags"][activity["support_flag"]] = true
+	candidate["progress_flags"][LongCampaign.activity_flag(activity["id"],"done")] = true
+	if not _valid_state(candidate):return false
+	_state = candidate
+	play_metrics.record_event("long_field_completed",{"id":activity["id"],"answer":answer,"support":support_actor})
+	return true
 
 
 func exploration_at_player() -> Dictionary:
@@ -1063,6 +1121,7 @@ func exploration_at_player() -> Dictionary:
 
 func exploration_options() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
+	if not long_activity_at_player().is_empty():return result
 	var site := exploration_at_player()
 	if _battle != null or site.is_empty() or site["complete"]:
 		return result
@@ -1378,7 +1437,8 @@ func save_game(path: String, record_id: String = "") -> bool:
 		DirAccess.remove_absolute(temporary)
 		return false
 	document["_saved_value_types"] = saved_types
-	file.store_string(JSON.stringify(document, "\t", true, true))
+	# 長編の操作履歴も保持したまま、表示用の空白を省いて保存量を抑える。
+	file.store_string(JSON.stringify(document, "", true, true))
 	file.flush()
 	var written := file.get_error() == OK
 	file.close()

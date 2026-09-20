@@ -43,6 +43,12 @@ func _run() -> void:
 	var party_size := 3 if "--three-member-party" in OS.get_cmdline_user_args() else 4
 	main.start_new_game(party_size)
 	main.game.play_metrics.set_source("automated")
+	# この検査は従来の25区画・8回収と旧保存互換の経路を保持する。
+	# 新規開始で必須になる全80話はcheck_long_full.gdで別に通し、ここをその代用にしない。
+	var legacy_start: Dictionary = main.game.export_state()
+	legacy_start["progress_flags"].erase("long_campaign_enrolled")
+	if not _check(main.game.import_state(legacy_start),"旧保存互換の開始状態を通常の読込で受理"):return
+	print("STORY_SCOPE: legacy_save_route; new_game_long_campaign=check_long_full.gd")
 	if not main.game.has_method("journal_entries") or not main.game.has_method("story_complete"):
 		_fail("v1本編の回収台帳・手帳・結末への進行が未接続です。")
 		return

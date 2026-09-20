@@ -109,32 +109,16 @@ jobs:
       - name: 保護対象を照合
         if: always()
         run: python tools/check_frozen_files.py
-      - name: 制作済みの長編8連作を本番APIで検査
+      - name: 長編全80話の定義・既読境界・現地操作・履歴を検査
         run: |
           set -o pipefail
           python tools/build_long_campaign.py
           git diff --exit-code -- data/long_campaign_v1.json docs/long-campaign-clue-ledger.md
-          ./godot --headless --path . --script res://tools/check_long_geometry.gd 2>&1 | tee long-geometry.log
-          ./godot --headless --path . --script res://tools/check_long_integration.gd 2>&1 | tee long-integration.log
-          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=w_flute 2>&1 | tee -a long-integration.log
-          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=c_lamp 2>&1 | tee -a long-integration.log
-          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=c_letters 2>&1 | tee -a long-integration.log
-          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=w_seeds 2>&1 | tee -a long-integration.log
-          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=c_statues 2>&1 | tee -a long-integration.log
-          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=s_dummy 2>&1 | tee -a long-integration.log
-          ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=s_garden 2>&1 | tee -a long-integration.log
-          ./godot --headless --path . --script res://tools/check_long_past.gd 2>&1 | tee long-past.log
-          ./godot --headless --path . --script res://tools/check_long_clues.gd 2>&1 | tee long-clues.log
-          ./godot --headless --path . --script res://tools/check_long_ui.gd 2>&1 | tee long-ui.log
-          ./godot --headless --path . --script res://tools/check_long_record.gd 2>&1 | tee long-record.log
-          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" long-integration.log long-ui.log long-record.log long-past.log long-clues.log long-geometry.log; then exit 1; fi
-          test "$(grep -c '^LONG_INTEGRATION_PASS:' long-integration.log)" -eq 8
-          test "$(grep -c '^LONG_PAST_PASS:' long-past.log)" -eq 1
-          test "$(grep -c '^LONG_CLUES_PASS:' long-clues.log)" -eq 1
-          test "$(grep -c '^LONG_GEOMETRY_PASS:' long-geometry.log)" -eq 1
-          test "$(grep -c '^LONG_UI_PASS:' long-ui.log)" -eq 1
-          test "$(grep -c '^LONG_RECORD_PASS:' long-record.log)" -eq 1
-          # 全80話のcheck_long_contentは制作中。上の部分検査を全体完成の証拠にはしない。
+          for kind in content geometry past clues ui record device_ui device_boundaries capacity; do
+            ./godot --headless --path . --script res://tools/check_long_${kind}.gd 2>&1 | tee long-${kind}.log
+            if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" long-${kind}.log; then exit 1; fi
+            grep -E '^LONG_[A-Z_]+PASS:' long-${kind}.log
+          done
       - name: 試遊前検査の結果を保存
         if: always()
         uses: actions/upload-artifact@v4
@@ -161,7 +145,8 @@ jobs:
             field-recovery.log
             route-counterplay.log
             docs/verification/route-counterplay.json
-            long-integration.log
+            long-*.log
+            docs/verification/long-*.json
             long-ui.log
             long-record.log
             long-past.log
@@ -405,3 +390,87 @@ jobs:
             worst-import.log
             worst-case.log
             docs/verification/worst-case-current.json
+
+  long-full:
+    name: 長編全80話の新規開始からの完走
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        party: [3, 4]
+        order: [forward, reverse]
+    steps:
+      - uses: actions/checkout@v4
+      - name: 固定版Godotの準備
+        run: |
+          set -o pipefail
+          curl -fL -o godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  godot.zip" | sha256sum --check
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot
+          chmod +x godot
+          ./godot --headless --import 2>&1 | tee long-import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" long-import.log; then exit 1; fi
+      - name: 実際の進行・戦闘・装置・全変数保存を検査
+        env:
+          PARTY: ${{ matrix.party }}
+          ORDER: ${{ matrix.order }}
+        run: |
+          set -o pipefail
+          args=()
+          if [ "$ORDER" = "reverse" ]; then args+=(--reverse); fi
+          ./godot --headless --path . --script res://tools/check_long_full.gd -- --party="$PARTY" "${args[@]}" 2>&1 | tee long-full.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" long-full.log; then exit 1; fi
+          test "$(grep -c '^LONG_FULL_PASS:' long-full.log)" -eq 1
+          python tools/check_frozen_files.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: long-full-${{ matrix.party }}-${{ matrix.order }}
+          path: |
+            long-*.log
+            docs/verification/long-full-*.json
+
+  long-branches:
+    name: 長編全20連作の両選択・3人4人
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        arcs:
+          - 'w_ferry w_flute w_seeds w_permit c_lamp'
+          - 'c_letters c_statues c_shelter s_dummy s_garden'
+          - 's_rival s_masks r_ink r_keys r_debt'
+          - 'r_stars g_watch g_banners g_tools g_return'
+    steps:
+      - uses: actions/checkout@v4
+      - name: 固定版Godotの準備
+        run: |
+          set -o pipefail
+          curl -fL -o godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  godot.zip" | sha256sum --check
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot
+          chmod +x godot
+          ./godot --headless --import 2>&1 | tee long-import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" long-import.log; then exit 1; fi
+      - name: 実戦闘と保存を伴う選択分岐検査
+        env:
+          ARCS: ${{ matrix.arcs }}
+        run: |
+          set -o pipefail
+          for arc in $ARCS; do
+            ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc="$arc" 2>&1 | tee "long-${arc}.log"
+            if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" "long-${arc}.log"; then exit 1; fi
+            test "$(grep -c '^LONG_INTEGRATION_PASS:' "long-${arc}.log")" -eq 1
+          done
+          python tools/check_frozen_files.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: long-branches-${{ strategy.job-index }}
+          path: |
+            long-*.log
+            docs/verification/long-integration-*.json

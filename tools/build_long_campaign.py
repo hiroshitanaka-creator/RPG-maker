@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from collections import deque
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -13,6 +14,63 @@ REGION_ENEMIES = {
     'gate': [['river_beast'], ['swift_beast', 'bat'], ['watch_beast'], ['mending_beast', 'slime'], ['river_beast', 'ember_wisp'], ['flood_beast']],
 }
 CHAPTERS = {19: 2, 23: 3, 28: 4, 34: 5, 38: 6}
+
+
+def field_activity(arc: dict, episode: dict, number: int, arc_index: int, area: dict, theme: dict) -> dict:
+    """同じ操作部品で、各連作の対象・条件を持つ現地課題を作る。"""
+    identifier = episode['id'] + '_field'
+    if number == 0:
+        a, b, c = theme['actions']
+        facts = [f'{theme["object"]}の点検札には、「{a}」が済むまで「{b}」を始めないとある。',
+                 f'受取側の札には、「{b}」の後に「{c}」を行うと書かれている。']
+        question = '二つの札を満たす作業順は？'
+        options = [' → '.join([a,b,c]), ' → '.join([b,a,c]), ' → '.join([a,c,b])]
+        kind = 'sequence'
+    elif number == 1:
+        facts = [f'{theme["left"]}から見ると、{theme["object"]}の印は青・白の順に並ぶ。',
+                 f'{theme["right"]}は反対側に立つ。同じ二つの印を、左右を逆に見て受け取る。']
+        question = '両側の記録が同じ物を指す並びは？'
+        options = [f'{theme["left"]}:青→白 / {theme["right"]}:白→青',
+                   f'両側とも青→白', f'両側とも白→青']
+        kind = 'perspective'
+    elif number == 2:
+        capacity, reserve = 6 + arc_index % 4, 1 + arc_index % 2
+        facts = [f'{theme["cargo"]}を置く台は{capacity}個分まで。これを超える荷を載せない。',
+                 f'帰路の準備に{reserve}個分を空ける。残りを作業用に使い、空けた分も全体に数える。']
+        question = '帰路の分を残して、作業用を最も多く置く配分は？'
+        options = [f'作業{capacity-reserve}・帰路{reserve}', f'作業{capacity}・帰路{reserve}',
+                   f'作業{capacity-reserve-1}・帰路{reserve}']
+        kind = 'allocation'
+    else:
+        origin = (18,12)
+        targets = [(4,14),(18,14),(28,12)]
+        distance = {origin:0}
+        queue = deque([origin])
+        while queue:
+            x,y = queue.popleft()
+            for p in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)]:
+                if p not in distance and 0 <= p[0] < 32 and 0 <= p[1] < 18 and area['layout'][p[1]][p[0]] == '.':
+                    distance[p] = distance[(x,y)]+1
+                    queue.append(p)
+        allowed = [(0,1),(1,2),(0,2)][arc_index % 3]
+        best = min(allowed,key=lambda i:(distance[targets[i]],i))
+        facts = [f'{theme["route"]}の閉門時の見取図では、' + '、'.join(f'{chr(65+i)}は{distance[p]}歩' for i,p in enumerate(targets)) + 'と記されている。',
+                 '荷を置いて休めるのは' + 'と'.join(chr(65+i) for i in allowed) + '。休める場所を選び、その中で短い道を使う。']
+        question = '見取図の条件で選ぶ受渡場所は？'
+        options = [f'{chr(65+best)}の受渡場所'] + [f'{chr(65+i)}の受渡場所' for i in range(3) if i != best]
+        kind = 'route'
+    rotation = (arc_index + number) % 3
+    options = options[rotation:] + options[:rotation]
+    answer = (-rotation) % 3
+    used = {tuple(p['cell']) for p in area.get('passages',[])}
+    door_y = next(y for y in range(2,16) if area['layout'][y][15] == '#' and (15,y) not in used)
+    support_flag = 'journey_activity_' + identifier + '_supported'
+    area.setdefault('passages',[]).append({'cell':[15,door_y],'flag':support_flag})
+    return {'id':identifier,'mission':episode['id'],'section':area['id'],'name':theme['object'],
+            'kind':kind,'cell':[18,12],'observations':[{'cell':[4,12],'text':facts[0]},{'cell':[18,4],'text':facts[1]}],
+            'question':question,'options':options,'answer':answer,'support_ability':'firm_guard',
+            'support_flag':support_flag,'resolution':f'{theme["object"]}の条件を照合し、作業を終えた。',
+            'support_description':'装着した堅守で支える場合はMPを使い、再訪でも通れる近道を残す。手順だけで進める場合はMPを温存できる。'}
 
 
 def layout(index: int) -> list[str]:
@@ -30,6 +88,7 @@ def layout(index: int) -> list[str]:
 
 def compile_catalog() -> dict:
     outline = json.loads((ROOT / 'docs/long-campaign-authoring.json').read_text(encoding='utf-8'))
+    themes = json.loads((ROOT / 'data/long_campaign/field_themes.json').read_text(encoding='utf-8'))['themes']
     arcs, rooms, missions = [], [], []
     episodes = {}
     for arc_index, arc in enumerate(outline['arcs']):
@@ -53,6 +112,8 @@ def compile_catalog() -> dict:
             door_y = next(y for y in [4,5,6,7,8,9,10,11,12,13,14,3,2,1,15,16] if affected_room['layout'][y][7] == '#')
             passage_flag = 'journey_passage_' + episode['id']
             affected_room.setdefault('passages', []).append({'cell': [7,door_y], 'flag': passage_flag})
+            activity_room = next(room for room in rooms if room['id'] == room_ids[2])
+            activity = field_activity(arc, episode, number, arc_index, activity_room, themes[identifier])
             trigger = arc['trigger_step']
             chapter = CHAPTERS[trigger]
             steps = []
@@ -95,6 +156,7 @@ def compile_catalog() -> dict:
                                  resolution='選んだことを伝えた。この結果は次の場面で確かめられる。',
                                  reward_potions=1, reward_hp_percent=50, reward_mp_percent=50)
                     entry['id'] = choice_id
+                    entry['required_activity'] = activity['id']
                     steps.append(entry)
                 if room_number < 3:
                     steps.append(step('section_travel', [29, 14], objective='次の場所へ進む',
@@ -105,7 +167,8 @@ def compile_catalog() -> dict:
                              'region': region, 'chapter': chapter, 'trigger_step': trigger,
                              'requires': [] if number == 0 else [f'{identifier}_{number}'],
                              'sections': [room for room in rooms if room['id'] in room_ids],
-                             'steps': steps, 'followup': episode['followup']})
+                             'steps': steps, 'activities':[activity], 'followup': episode['followup']})
+            activity['unlock_stage'] = next(i for i, task in enumerate(steps) if task['section'] == activity['section'])
     mission_lookup = {entry['id']: entry for entry in missions}
     clue_source = ROOT / 'data/long_campaign/clues.json'
     clues = json.loads(clue_source.read_text(encoding='utf-8'))['clues'] if clue_source.exists() else []
@@ -128,7 +191,7 @@ def compile_catalog() -> dict:
 def main() -> None:
     document = compile_catalog()
     destination = ROOT / 'data/long_campaign_v1.json'
-    destination.write_text(json.dumps(document, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    destination.write_text(json.dumps(document, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
     write_ledger(document)
     print(f'LONG_BUILD: scripts={len(document["missions"])} / 80, rooms={len(document["rooms"])}, enabled={document["enabled"]}')
 
@@ -138,7 +201,7 @@ def write_ledger(document: dict) -> None:
     missions = {entry['id']: entry for entry in document['missions']}
     rows = [
         '# 長編の回収台帳（制作資料・物語の内容あり）', '',
-        f'設計者の提案。制作済み{sum(arc["script_count"] > 0 for arc in document["arcs"])}連作の台帳であり、全80話の完成を示さない。既存R01〜R08の台帳は維持する。', '',
+        f'設計者の提案。制作済み{sum(arc["script_count"] > 0 for arc in document["arcs"])}連作の台帳。台帳だけで全体の接続・実測の完成を判定しない。既存R01〜R08の台帳は維持する。', '',
         '`tools/build_long_campaign.py` が `data/long_campaign/clues.json` の参照を本番の会話地点へ解決して生成する。'
         '未読の記録は手帳へ出さず、設置後は最初の見立てだけ、回収後は新しい意味と次の問いを表示する。', '',
         '既読は、該当話の `journey_<話ID>_cleared`、または同じ話の `expedition.stage` が提示地点を越えたことから導く。'
@@ -160,7 +223,7 @@ def write_ledger(document: dict) -> None:
              '`tools/check_long_ui.gd` は3人／4人で回収前後の手帳を開き、512×288内の表示と戻る操作を検査する。'
              '`tools/check_long_integration.gd` は進行地点ごとの保存復帰で手帳内容も一致することを検査する。', '',
              '受け手が意味の変化に気づくか、次の問いを持つかは未検証。PLAYTEST_QUEUE.md の主観観測と分離する。', '']
-    (ROOT / 'docs/long-campaign-clue-ledger.md').write_text('\n'.join(rows), encoding='utf-8')
+    (ROOT / 'docs/long-campaign-clue-ledger.md').write_text('\n'.join(rows), encoding='utf-8', newline='\n')
 
 
 if __name__ == '__main__':

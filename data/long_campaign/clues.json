@@ -1,27 +1,925 @@
 {
-  "notice":"設計者の提案。制作済み連作の設置・回収台帳。座標のsceneとlineは0始まり。既存R01〜R08とは別のIDを使う。",
-  "clues":[
-    {"id":"L-F01","arc":"w_ferry","title":"空の舟","setup":{"mission":"w_ferry_1","scene":0,"line":0},"payoff":{"mission":"w_ferry_2","scene":2,"line":3},"first":"舟を直し終えても運航を再開できない理由がある。","resolved":"舟の傾きだけでは両岸の負担は分からない。引く人、荷を分ける人、返事をする人を別々に確かめる必要があった。","requires":[],"next_question":"舟底の刻みが数えていたのは誰か。"},
-    {"id":"L-F02","arc":"w_ferry","title":"舟底の刻み","setup":{"mission":"w_ferry_1","scene":3,"line":0},"payoff":{"mission":"w_ferry_3","scene":0,"line":2},"first":"乗客の定員を直した跡にも見える。","resolved":"二、三、二は、綱を引く者、荷を分ける者、返答を確かめる者の数だった。両岸の仕事を分けるための印である。","requires":["L-F01"],"next_question":"この分担を、今いる人たちでどう引き受けるか。"},
-    {"id":"L-O01","arc":"w_flute","title":"移る演奏場所","setup":{"mission":"w_flute_1","scene":0,"line":0},"payoff":{"mission":"w_flute_2","scene":1,"line":3},"first":"演奏する場所が決まらず、祭りの準備が進まない。","resolved":"柱を移り、震えの返事が届く場所を確かめていた。同じ場所に立つだけでは、水位が変わった日に同じ相手へ届かない。","requires":[],"next_question":"場所を変えても残す色紐と結び目は、何を伝えるのか。"},
-    {"id":"L-O02","arc":"w_flute","title":"色紐と結び目","setup":{"mission":"w_flute_1","scene":1,"line":1},"payoff":{"mission":"w_flute_3","scene":0,"line":2},"first":"客から見えない所にも残る祭りの飾りに見える。","resolved":"色紐は伝わる位置を確かめ、縄の結び目は返事を待つ間を確かめるものだった。紙と縄は同じ曲を別の方法で読む道具になる。","requires":["L-O01"],"next_question":"音を聞く人と柱へ触れる人の順序を、どうつなぐか。"},
-    {"id":"L-D01","arc":"c_lamp","title":"消された灯り","setup":{"mission":"c_lamp_1","scene":0,"line":0},"payoff":{"mission":"c_lamp_2","scene":1,"line":3},"first":"奥の灯りを消し、油を持ち出すために仕事を止めているように見える。","resolved":"灯りへ寄る魔物から負傷者を離し、運んだ板の後ろの灯りを閉じていた。採れた石と使った油だけの帳面には救出が残らなかった。","requires":[],"next_question":"消えた灯りの列が通った、広い道には何が残るか。"},
-    {"id":"L-D02","arc":"c_lamp","title":"壁の古い傷","setup":{"mission":"c_lamp_2","scene":3,"line":3},"payoff":{"mission":"c_lamp_3","scene":0,"line":2},"first":"使われない迂回路の傷が、何を運んだ跡かまだ分からない。","resolved":"荷車より高い二本の傷は、負傷者を乗せた板の端が触れた跡だった。煤の途切れる列と合わせると、帰る人に必要な幅が分かる。","requires":["L-D01"],"next_question":"採掘する道と、人を運ぶ幅をどう残すか。"},
-    {"id":"L-D03","arc":"c_lamp","title":"持ち手の布","setup":{"mission":"c_lamp_1","scene":1,"line":1},"payoff":{"mission":"c_lamp_2","scene":3,"line":1},"first":"滑り止めにしては厚い布が巻かれている。","resolved":"持ち手の柔らかい布は、長く握っても指を切らないためのものだった。途中で交代する担ぎ手にも同じ道具を渡せる。","requires":[],"next_question":"次の担ぎ手のために、どこで道具と補給を受け渡すか。"},
-    {"id":"L-I01","arc":"c_letters","title":"宛名だけの便り","setup":{"mission":"c_letters_1","scene":0,"line":0},"payoff":{"mission":"c_letters_1","scene":2,"line":2},"first":"本文のない未完成の手紙を、古い職場へ届け続けているように見える。","resolved":"ミルは宛名の筆跡から家族の便りだと分かった。他人の字で書き直せば、同じ名前でも誰から来たか分からなくなる。","requires":[],"next_question":"届いていた便りを、なぜ今も同じ机へ運んでいるのか。"},
-    {"id":"L-I02","arc":"c_letters","title":"裏返された封","setup":{"mission":"c_letters_1","scene":3,"line":2},"payoff":{"mission":"c_letters_2","scene":2,"line":0},"first":"届く時と返す時では折り方が違うが、返す約束の意味はまだ分からない。","resolved":"受け取った人が白い面を外へ折り、届いたという返事を家族へ返していた。住所の変更が伝わらず、返す便だけが休息所へ残った。","requires":["L-I01"],"next_question":"別々の家で待つ人へ、返事を混ぜずに届けるには何が必要か。"},
-    {"id":"L-I03","arc":"c_letters","title":"二つの宛名","setup":{"mission":"c_letters_2","scene":3,"line":3},"payoff":{"mission":"c_letters_3","scene":0,"line":2},"first":"同じ名前を書き重ねた間違いにも見える。","resolved":"別々の家で暮らす親子が、それぞれ同じ人を待って書いた宛名だった。片方へ渡すだけでは、もう片方が返事を待つことになる。","requires":["L-I02"],"next_question":"二人とも返事を確かめられる配達をどう残すか。"},
-    {"id":"L-S01","arc":"w_seeds","title":"閉じた種箱","setup":{"mission":"w_seeds_1","scene":0,"line":0},"payoff":{"mission":"w_seeds_2","scene":2,"line":1},"first":"今日の食事が足りないのに、倉の種を独り占めしているように見える。","resolved":"以前に種の数だけを守った時、まく人と食べる人の都合を数えられなかった。今の箱も一人で閉じ続ければ、同じ負担を誰かへ押しつけることになる。","requires":[],"next_question":"二重の箱は、誰へ渡すためのものだろうか。"},
-    {"id":"L-S02","arc":"w_seeds","title":"二重の底","setup":{"mission":"w_seeds_1","scene":1,"line":0},"payoff":{"mission":"w_seeds_3","scene":0,"line":2},"first":"種を隠しているか、防水のために底を厚くしているように見える。","resolved":"内側の箱も別の蓋で使え、対岸へ種を分けて運ぶために作られていた。一方の倉が濡れた時、もう一方から次の畑へ回すための二つの箱である。","requires":["L-S01"],"next_question":"種を渡す相手の食事と、畑を受け持つ手をどう支えるか。"},
-    {"id":"L-P01","arc":"c_statues","title":"違う名前","setup":{"mission":"c_statues_1","scene":0,"line":0},"payoff":{"mission":"c_statues_2","scene":2,"line":0},"first":"兄の姿に妹の名が彫られた間違いに見える。","resolved":"兄自身が、助けられた人から見えた自分の姿と、下の道で働いた妹の名を一緒に残してほしいと頼んでいた。","requires":[],"next_question":"二人分の道具の印は、救助のどこまでを残そうとしていたのか。"},
-    {"id":"L-P02","arc":"c_statues","title":"柄の二本の線","setup":{"mission":"c_statues_2","scene":3,"line":1},"payoff":{"mission":"c_statues_3","scene":0,"line":2},"first":"道具の持ち主や返却数を確かめる印に見える。","resolved":"二本の線がそろうまで、下の道にいる人が戻るのを待っていた。道具の返却と、使った二人の帰還を一緒に確かめる印だった。","requires":["L-P01"],"next_question":"欠けた依頼も、救助の後に戻る仕事まで含んでいたのか。"},
-    {"id":"L-P03","arc":"c_statues","title":"二種類の鑿","setup":{"mission":"c_statues_1","scene":1,"line":1},"payoff":{"mission":"c_statues_2","scene":1,"line":2},"first":"二本とも元の長さだが、使い分ける理由はまだ分からない。","resolved":"短い鑿は、長い道具を振れない低い天井の下で石を削るために使った。綱を引く役と、引いた先の隙間を広げる役に別々の道具が必要だった。","requires":[],"next_question":"使った場所の違う道具を、なぜ同じ箱へ戻したのか。"},
-    {"id":"L-P04","arc":"c_statues","title":"欠けた依頼","setup":{"mission":"c_statues_2","scene":2,"line":2},"payoff":{"mission":"c_statues_3","scene":1,"line":0},"first":"姿と名前を結ぶ説明が失われ、台座を仕上げられずにいる。","resolved":"欠けていた紙には、二人が戻ったところまで残す依頼があった。綱を引く瞬間だけでなく、その後に相手の帰りを待つ仕事も含まれていた。","requires":["L-P02"],"next_question":"二つの仕事を、初めて見る人へどんな形で渡すか。"},
-    {"id":"L-T01","arc":"s_dummy","title":"打たれない人形","setup":{"mission":"s_dummy_1","scene":0,"line":0},"payoff":{"mission":"s_dummy_2","scene":2,"line":2},"first":"攻撃すると倒れてしまう、使えない教材に見える。","resolved":"勝つ課題と、仲間を支えて帰る課題を分けて確かめるための人形だった。支える役と道具を渡す役を、先に相談する稽古に使っていた。","requires":[],"next_question":"支柱を増やせば、どの班でも同じように支えられるのか。"},
-    {"id":"L-T02","arc":"s_dummy","title":"三本の支柱","setup":{"mission":"s_dummy_1","scene":0,"line":3},"payoff":{"mission":"s_dummy_3","scene":0,"line":2},"first":"不器用な修理を重ねた跡にも見える。","resolved":"何人でどこを支えれば次の人へ渡せるかを測る道具だった。固定しない柱を動かすことで、違う体格や編成でも交替する場所を試せる。","requires":["L-T01"],"next_question":"役を交換する稽古と、得意な役をつなぐ稽古のどちらを支えるか。"},
-    {"id":"L-T03","arc":"s_dummy","title":"袋の治癒札","setup":{"mission":"s_dummy_2","scene":0,"line":0},"payoff":{"mission":"s_dummy_2","scene":2,"line":0},"first":"治癒を覚えた者はいたが、その場で使えるようにしていたかは分からない。","resolved":"覚えた札が袋へ残っていても、その戦いに装着していなければ使えなかった。習得の保持と、今受け持つ役を選ぶことは別だった。","requires":[],"next_question":"帰る時の役まで残すには、各人の装着をどう組み合わせるか。"},
-    {"id":"L-G01","arc":"s_garden","title":"庭の石列","setup":{"mission":"s_garden_1","scene":0,"line":0},"payoff":{"mission":"s_garden_2","scene":2,"line":0},"first":"飼っていた魔物の墓だという噂がある。","resolved":"二人が別れた後も引き受ける仕事の位置へ置いた石だった。死を数えたものではなく、続きを受け持つ場所を残したものだった。","requires":[],"next_question":"裏の文字は、どちらから来る人へ何を知らせるのか。"},
-    {"id":"L-G02","arc":"s_garden","title":"石の背の文字","setup":{"mission":"s_garden_1","scene":1,"line":0},"payoff":{"mission":"s_garden_3","scene":0,"line":2},"first":"名を人目から隠して彫った跡にも見える。","resolved":"刻まれていたのは見張る・運ぶ・知らせる仕事で、その場所へ来る人から読める向きになっていた。窓から眺める側だけを正面にすると、裏返しの石に見えてしまう。","requires":["L-G01"],"next_question":"仕事をする位置と、初めて来た人への説明をどう残すか。"},
-    {"id":"L-G03","arc":"s_garden","title":"殻と人の跡","setup":{"mission":"s_garden_1","scene":3,"line":0},"payoff":{"mission":"s_garden_3","scene":1,"line":2},"first":"魔物が戻って庭を荒らした跡にも見える。","resolved":"水を受け取るものと運ぶ人が、互いの通る場所を残した跡だった。きれいに踏み消す前に、相手が通れる間隔を確かめる必要があった。","requires":["L-G01"],"next_question":"新しい人が世話を引き継ぐ時にも、この間隔を確かめられるか。"}
+  "notice": "設計者の提案。制作済み連作の設置・回収台帳。座標のsceneとlineは0始まり。既存R01〜R08とは別のIDを使う。",
+  "clues": [
+    {
+      "id": "L-F01",
+      "arc": "w_ferry",
+      "title": "空の舟",
+      "setup": {
+        "mission": "w_ferry_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "w_ferry_2",
+        "scene": 2,
+        "line": 3
+      },
+      "first": "舟を直し終えても運航を再開できない理由がある。",
+      "resolved": "舟の傾きだけでは両岸の負担は分からない。引く人、荷を分ける人、返事をする人を別々に確かめる必要があった。",
+      "requires": [],
+      "next_question": "舟底の刻みが数えていたのは誰か。"
+    },
+    {
+      "id": "L-F02",
+      "arc": "w_ferry",
+      "title": "舟底の刻み",
+      "setup": {
+        "mission": "w_ferry_1",
+        "scene": 3,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "w_ferry_3",
+        "scene": 0,
+        "line": 2
+      },
+      "first": "乗客の定員を直した跡にも見える。",
+      "resolved": "二、三、二は、綱を引く者、荷を分ける者、返答を確かめる者の数だった。両岸の仕事を分けるための印である。",
+      "requires": [
+        "L-F01"
+      ],
+      "next_question": "この分担を、今いる人たちでどう引き受けるか。"
+    },
+    {
+      "id": "L-O01",
+      "arc": "w_flute",
+      "title": "移る演奏場所",
+      "setup": {
+        "mission": "w_flute_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "w_flute_2",
+        "scene": 1,
+        "line": 3
+      },
+      "first": "演奏する場所が決まらず、祭りの準備が進まない。",
+      "resolved": "柱を移り、震えの返事が届く場所を確かめていた。同じ場所に立つだけでは、水位が変わった日に同じ相手へ届かない。",
+      "requires": [],
+      "next_question": "場所を変えても残す色紐と結び目は、何を伝えるのか。"
+    },
+    {
+      "id": "L-O02",
+      "arc": "w_flute",
+      "title": "色紐と結び目",
+      "setup": {
+        "mission": "w_flute_1",
+        "scene": 1,
+        "line": 1
+      },
+      "payoff": {
+        "mission": "w_flute_3",
+        "scene": 0,
+        "line": 2
+      },
+      "first": "客から見えない所にも残る祭りの飾りに見える。",
+      "resolved": "色紐は伝わる位置を確かめ、縄の結び目は返事を待つ間を確かめるものだった。紙と縄は同じ曲を別の方法で読む道具になる。",
+      "requires": [
+        "L-O01"
+      ],
+      "next_question": "音を聞く人と柱へ触れる人の順序を、どうつなぐか。"
+    },
+    {
+      "id": "L-D01",
+      "arc": "c_lamp",
+      "title": "消された灯り",
+      "setup": {
+        "mission": "c_lamp_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "c_lamp_2",
+        "scene": 1,
+        "line": 3
+      },
+      "first": "奥の灯りを消し、油を持ち出すために仕事を止めているように見える。",
+      "resolved": "灯りへ寄る魔物から負傷者を離し、運んだ板の後ろの灯りを閉じていた。採れた石と使った油だけの帳面には救出が残らなかった。",
+      "requires": [],
+      "next_question": "消えた灯りの列が通った、広い道には何が残るか。"
+    },
+    {
+      "id": "L-D02",
+      "arc": "c_lamp",
+      "title": "壁の古い傷",
+      "setup": {
+        "mission": "c_lamp_2",
+        "scene": 3,
+        "line": 3
+      },
+      "payoff": {
+        "mission": "c_lamp_3",
+        "scene": 0,
+        "line": 2
+      },
+      "first": "使われない迂回路の傷が、何を運んだ跡かまだ分からない。",
+      "resolved": "荷車より高い二本の傷は、負傷者を乗せた板の端が触れた跡だった。煤の途切れる列と合わせると、帰る人に必要な幅が分かる。",
+      "requires": [
+        "L-D01"
+      ],
+      "next_question": "採掘する道と、人を運ぶ幅をどう残すか。"
+    },
+    {
+      "id": "L-D03",
+      "arc": "c_lamp",
+      "title": "持ち手の布",
+      "setup": {
+        "mission": "c_lamp_1",
+        "scene": 1,
+        "line": 1
+      },
+      "payoff": {
+        "mission": "c_lamp_2",
+        "scene": 3,
+        "line": 1
+      },
+      "first": "滑り止めにしては厚い布が巻かれている。",
+      "resolved": "持ち手の柔らかい布は、長く握っても指を切らないためのものだった。途中で交代する担ぎ手にも同じ道具を渡せる。",
+      "requires": [],
+      "next_question": "次の担ぎ手のために、どこで道具と補給を受け渡すか。"
+    },
+    {
+      "id": "L-I01",
+      "arc": "c_letters",
+      "title": "宛名だけの便り",
+      "setup": {
+        "mission": "c_letters_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "c_letters_1",
+        "scene": 2,
+        "line": 2
+      },
+      "first": "本文のない未完成の手紙を、古い職場へ届け続けているように見える。",
+      "resolved": "ミルは宛名の筆跡から家族の便りだと分かった。他人の字で書き直せば、同じ名前でも誰から来たか分からなくなる。",
+      "requires": [],
+      "next_question": "届いていた便りを、なぜ今も同じ机へ運んでいるのか。"
+    },
+    {
+      "id": "L-I02",
+      "arc": "c_letters",
+      "title": "裏返された封",
+      "setup": {
+        "mission": "c_letters_1",
+        "scene": 3,
+        "line": 2
+      },
+      "payoff": {
+        "mission": "c_letters_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "届く時と返す時では折り方が違うが、返す約束の意味はまだ分からない。",
+      "resolved": "受け取った人が白い面を外へ折り、届いたという返事を家族へ返していた。住所の変更が伝わらず、返す便だけが休息所へ残った。",
+      "requires": [
+        "L-I01"
+      ],
+      "next_question": "別々の家で待つ人へ、返事を混ぜずに届けるには何が必要か。"
+    },
+    {
+      "id": "L-I03",
+      "arc": "c_letters",
+      "title": "二つの宛名",
+      "setup": {
+        "mission": "c_letters_2",
+        "scene": 3,
+        "line": 3
+      },
+      "payoff": {
+        "mission": "c_letters_3",
+        "scene": 0,
+        "line": 2
+      },
+      "first": "同じ名前を書き重ねた間違いにも見える。",
+      "resolved": "別々の家で暮らす親子が、それぞれ同じ人を待って書いた宛名だった。片方へ渡すだけでは、もう片方が返事を待つことになる。",
+      "requires": [
+        "L-I02"
+      ],
+      "next_question": "二人とも返事を確かめられる配達をどう残すか。"
+    },
+    {
+      "id": "L-S01",
+      "arc": "w_seeds",
+      "title": "閉じた種箱",
+      "setup": {
+        "mission": "w_seeds_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "w_seeds_2",
+        "scene": 2,
+        "line": 1
+      },
+      "first": "今日の食事が足りないのに、倉の種を独り占めしているように見える。",
+      "resolved": "以前に種の数だけを守った時、まく人と食べる人の都合を数えられなかった。今の箱も一人で閉じ続ければ、同じ負担を誰かへ押しつけることになる。",
+      "requires": [],
+      "next_question": "二重の箱は、誰へ渡すためのものだろうか。"
+    },
+    {
+      "id": "L-S02",
+      "arc": "w_seeds",
+      "title": "二重の底",
+      "setup": {
+        "mission": "w_seeds_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "w_seeds_3",
+        "scene": 0,
+        "line": 2
+      },
+      "first": "種を隠しているか、防水のために底を厚くしているように見える。",
+      "resolved": "内側の箱も別の蓋で使え、対岸へ種を分けて運ぶために作られていた。一方の倉が濡れた時、もう一方から次の畑へ回すための二つの箱である。",
+      "requires": [
+        "L-S01"
+      ],
+      "next_question": "種を渡す相手の食事と、畑を受け持つ手をどう支えるか。"
+    },
+    {
+      "id": "L-P01",
+      "arc": "c_statues",
+      "title": "違う名前",
+      "setup": {
+        "mission": "c_statues_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "c_statues_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "兄の姿に妹の名が彫られた間違いに見える。",
+      "resolved": "兄自身が、助けられた人から見えた自分の姿と、下の道で働いた妹の名を一緒に残してほしいと頼んでいた。",
+      "requires": [],
+      "next_question": "二人分の道具の印は、救助のどこまでを残そうとしていたのか。"
+    },
+    {
+      "id": "L-P02",
+      "arc": "c_statues",
+      "title": "柄の二本の線",
+      "setup": {
+        "mission": "c_statues_2",
+        "scene": 3,
+        "line": 1
+      },
+      "payoff": {
+        "mission": "c_statues_3",
+        "scene": 0,
+        "line": 2
+      },
+      "first": "道具の持ち主や返却数を確かめる印に見える。",
+      "resolved": "二本の線がそろうまで、下の道にいる人が戻るのを待っていた。道具の返却と、使った二人の帰還を一緒に確かめる印だった。",
+      "requires": [
+        "L-P01"
+      ],
+      "next_question": "欠けた依頼も、救助の後に戻る仕事まで含んでいたのか。"
+    },
+    {
+      "id": "L-P03",
+      "arc": "c_statues",
+      "title": "二種類の鑿",
+      "setup": {
+        "mission": "c_statues_1",
+        "scene": 1,
+        "line": 1
+      },
+      "payoff": {
+        "mission": "c_statues_2",
+        "scene": 1,
+        "line": 2
+      },
+      "first": "二本とも元の長さだが、使い分ける理由はまだ分からない。",
+      "resolved": "短い鑿は、長い道具を振れない低い天井の下で石を削るために使った。綱を引く役と、引いた先の隙間を広げる役に別々の道具が必要だった。",
+      "requires": [],
+      "next_question": "使った場所の違う道具を、なぜ同じ箱へ戻したのか。"
+    },
+    {
+      "id": "L-P04",
+      "arc": "c_statues",
+      "title": "欠けた依頼",
+      "setup": {
+        "mission": "c_statues_2",
+        "scene": 2,
+        "line": 2
+      },
+      "payoff": {
+        "mission": "c_statues_3",
+        "scene": 1,
+        "line": 0
+      },
+      "first": "姿と名前を結ぶ説明が失われ、台座を仕上げられずにいる。",
+      "resolved": "欠けていた紙には、二人が戻ったところまで残す依頼があった。綱を引く瞬間だけでなく、その後に相手の帰りを待つ仕事も含まれていた。",
+      "requires": [
+        "L-P02"
+      ],
+      "next_question": "二つの仕事を、初めて見る人へどんな形で渡すか。"
+    },
+    {
+      "id": "L-T01",
+      "arc": "s_dummy",
+      "title": "打たれない人形",
+      "setup": {
+        "mission": "s_dummy_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "s_dummy_2",
+        "scene": 2,
+        "line": 2
+      },
+      "first": "攻撃すると倒れてしまう、使えない教材に見える。",
+      "resolved": "勝つ課題と、仲間を支えて帰る課題を分けて確かめるための人形だった。支える役と道具を渡す役を、先に相談する稽古に使っていた。",
+      "requires": [],
+      "next_question": "支柱を増やせば、どの班でも同じように支えられるのか。"
+    },
+    {
+      "id": "L-T02",
+      "arc": "s_dummy",
+      "title": "三本の支柱",
+      "setup": {
+        "mission": "s_dummy_1",
+        "scene": 0,
+        "line": 3
+      },
+      "payoff": {
+        "mission": "s_dummy_3",
+        "scene": 0,
+        "line": 2
+      },
+      "first": "不器用な修理を重ねた跡にも見える。",
+      "resolved": "何人でどこを支えれば次の人へ渡せるかを測る道具だった。固定しない柱を動かすことで、違う体格や編成でも交替する場所を試せる。",
+      "requires": [
+        "L-T01"
+      ],
+      "next_question": "役を交換する稽古と、得意な役をつなぐ稽古のどちらを支えるか。"
+    },
+    {
+      "id": "L-T03",
+      "arc": "s_dummy",
+      "title": "袋の治癒札",
+      "setup": {
+        "mission": "s_dummy_2",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "s_dummy_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "治癒を覚えた者はいたが、その場で使えるようにしていたかは分からない。",
+      "resolved": "覚えた札が袋へ残っていても、その戦いに装着していなければ使えなかった。習得の保持と、今受け持つ役を選ぶことは別だった。",
+      "requires": [],
+      "next_question": "帰る時の役まで残すには、各人の装着をどう組み合わせるか。"
+    },
+    {
+      "id": "L-G01",
+      "arc": "s_garden",
+      "title": "庭の石列",
+      "setup": {
+        "mission": "s_garden_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "s_garden_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "飼っていた魔物の墓だという噂がある。",
+      "resolved": "二人が別れた後も引き受ける仕事の位置へ置いた石だった。死を数えたものではなく、続きを受け持つ場所を残したものだった。",
+      "requires": [],
+      "next_question": "裏の文字は、どちらから来る人へ何を知らせるのか。"
+    },
+    {
+      "id": "L-G02",
+      "arc": "s_garden",
+      "title": "石の背の文字",
+      "setup": {
+        "mission": "s_garden_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "s_garden_3",
+        "scene": 0,
+        "line": 2
+      },
+      "first": "名を人目から隠して彫った跡にも見える。",
+      "resolved": "刻まれていたのは見張る・運ぶ・知らせる仕事で、その場所へ来る人から読める向きになっていた。窓から眺める側だけを正面にすると、裏返しの石に見えてしまう。",
+      "requires": [
+        "L-G01"
+      ],
+      "next_question": "仕事をする位置と、初めて来た人への説明をどう残すか。"
+    },
+    {
+      "id": "L-G03",
+      "arc": "s_garden",
+      "title": "殻と人の跡",
+      "setup": {
+        "mission": "s_garden_1",
+        "scene": 3,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "s_garden_3",
+        "scene": 1,
+        "line": 2
+      },
+      "first": "魔物が戻って庭を荒らした跡にも見える。",
+      "resolved": "水を受け取るものと運ぶ人が、互いの通る場所を残した跡だった。きれいに踏み消す前に、相手が通れる間隔を確かめる必要があった。",
+      "requires": [
+        "L-G01"
+      ],
+      "next_question": "新しい人が世話を引き継ぐ時にも、この間隔を確かめられるか。"
+    },
+    {
+      "id": "L-WP01",
+      "arc": "w_permit",
+      "title": "切られた札",
+      "setup": {
+        "mission": "w_permit_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "w_permit_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "一枚分の代金しかない札を増やした偽造にも見える。",
+      "resolved": "札を分けたのは権利を三倍に見せるためではなく、一枚の中で渡す・預かる・受け取る仕事を別々に引き受けるためだった。途中の人が受け取れなければ、残る二人も運び方を変える。",
+      "requires": [],
+      "next_question": "揃わない切口は、重ねずに読むと何を示すのか。"
+    },
+    {
+      "id": "L-WP02",
+      "arc": "w_permit",
+      "title": "つながる切口",
+      "setup": {
+        "mission": "w_permit_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "w_permit_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "持主を隠すために傷つけた札のようにも見える。",
+      "resolved": "札を横に並べると切口がつながり、荷を出す棚から受取の棚へ一本の線が通った。切口は持主を隠す印ではなく、荷の行き先と受取人をつなぐ印だった。",
+      "requires": [
+        "L-WP01"
+      ],
+      "next_question": "空欄を残した台帳で、受取を断る返事も扱えるだろうか。"
+    },
+    {
+      "id": "L-CS01",
+      "arc": "c_shelter",
+      "title": "閉じた暖室",
+      "setup": {
+        "mission": "c_shelter_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "c_shelter_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "空いた床があるのに避難者を拒んでいるように見える。",
+      "resolved": "赤い線は避難者を締め出すために引いたのではなく、巣の熱と空気を保ちながら人が休める距離を、泊まった人たちと測った記録だった。",
+      "requires": [],
+      "next_question": "赤い線の幅が場所で違うのはなぜか。"
+    },
+    {
+      "id": "L-CS02",
+      "arc": "c_shelter",
+      "title": "幅の違う赤い線",
+      "setup": {
+        "mission": "c_shelter_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "c_shelter_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "人を同じ幅で締め出す境界のように見える。",
+      "resolved": "赤い線は部屋を一定の幅で囲っていなかった。空気の戻る角では大きく離れ、流れが抜ける所では近い。人と巣の距離を一律に決める線ではなく、熱の道を残す線だった。",
+      "requires": [
+        "L-CS01"
+      ],
+      "next_question": "初めて使う人も、暖かさ以外の変化に気づけるか。"
+    },
+    {
+      "id": "L-RI01",
+      "arc": "r_ink",
+      "title": "訂正線のある名",
+      "setup": {
+        "mission": "r_ink_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "r_ink_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "清書できなかった間違いを残しているように見える。",
+      "resolved": "訂正線は誤りを隠し損ねた跡だけではなく、帰ってきた人に合わせて記録を更新し、先の知らせを受け取った家へ返事を返すための跡だった。",
+      "requires": [],
+      "next_question": "消さなかった名と時刻は何をつないでいるか。"
+    },
+    {
+      "id": "L-RI02",
+      "arc": "r_ink",
+      "title": "名前を避けた線",
+      "setup": {
+        "mission": "r_ink_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "r_ink_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "消し忘れた文字と時刻が残っているように見える。",
+      "resolved": "名前を避けた線は、その人へ先に出した知らせと、後から返した訂正を同じ名で追うために残されていた。文字まで消すと、どの受取票と照合するか分からなくなる。",
+      "requires": [
+        "L-RI01"
+      ],
+      "next_question": "写しを受け取った人も、元の記録へ戻れるか。"
+    },
+    {
+      "id": "L-RK01",
+      "arc": "r_keys",
+      "title": "使えない鍵",
+      "setup": {
+        "mission": "r_keys_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "r_keys_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "役に立たない物を捨てられないように見える。",
+      "resolved": "使えない鍵は廃品を捨てられなかった物ではなく、扉を壊して出た人が、自分の居場所を確かめるために預けた物だった。開かないから約束もなくなるわけではない。",
+      "requires": [],
+      "next_question": "二本の鍵の傷は、どちらから見た場所を示すのか。"
+    },
+    {
+      "id": "L-RK02",
+      "arc": "r_keys",
+      "title": "鍵の傷",
+      "setup": {
+        "mission": "r_keys_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "r_keys_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "持主の順番や鍵を整理するための印にも見える。",
+      "resolved": "二本の鍵を家の中から外へ出る向きで並べると、傷が低い敷居と壁のくぼみに対応した。鍵の傷は持主の優劣や保存順ではなく、出てきた場所を忘れないための印だった。",
+      "requires": [
+        "L-RK01"
+      ],
+      "next_question": "渡したことと受け取ったことを、どう一緒に確かめるか。"
+    },
+    {
+      "id": "L-SR01",
+      "arc": "s_rival",
+      "title": "書き足した順位",
+      "setup": {
+        "mission": "s_rival_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "s_rival_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "一位の者が勝負を避け、負けを隠そうとしているように見える。",
+      "resolved": "順位札に残った一位は嘘ではないが、全員が帰れたことを意味していなかった。レイダが書き足したのは負けを隠す数字ではなく、勝利の後に誰が戻れたかという別の記録だった。",
+      "requires": [],
+      "next_question": "同じ人数なのに丸の並びが変わるのはなぜか。"
+    },
+    {
+      "id": "L-SR02",
+      "arc": "s_rival",
+      "title": "変わる丸の並び",
+      "setup": {
+        "mission": "s_rival_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "s_rival_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "同じ人数の班で丸の並びが変わる理由が分からない。",
+      "resolved": "丸の並びは、戻る人を支える関係を表していた。回復役が倒れた時には別の者が薬を渡し、守る役が動けない時には攻撃を一度減らして支える。固定した順位ではない。",
+      "requires": [
+        "L-SR01"
+      ],
+      "next_question": "助けを頼んだ記録を、失敗だけの欄にしないで使えるか。"
+    },
+    {
+      "id": "L-SM01",
+      "arc": "s_masks",
+      "title": "名のない仮面",
+      "setup": {
+        "mission": "s_masks_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "s_masks_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "秘密の役を隠しているようにも見える。",
+      "resolved": "職名のない仮面は役を隠すためではなく、姿だけで割り当てられた役を選び直すためのものだった。ただし名を消しただけでは、今使う技を相手へ伝えられなかった。",
+      "requires": [],
+      "next_question": "消しやすい粉で使う空欄は、何のためにあったのか。"
+    },
+    {
+      "id": "L-SM02",
+      "arc": "s_masks",
+      "title": "裏の空欄",
+      "setup": {
+        "mission": "s_masks_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "s_masks_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "前の持主の名を消した跡のように見える。",
+      "resolved": "裏の空欄は以前の名を消し損ねた跡ではなく、今日引き受ける役を持主が書き、次に使う時には書き直すための場所だった。消せることも道具の働きだった。",
+      "requires": [
+        "L-SM01"
+      ],
+      "next_question": "役を替えた時にも、相手へ知らせて引き継げるか。"
+    },
+    {
+      "id": "L-RD01",
+      "arc": "r_debt",
+      "title": "返済済みの借用書",
+      "setup": {
+        "mission": "r_debt_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "r_debt_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "返した後も借り手へ義務を残すための記録に見える。",
+      "resolved": "返済済みの借用書に残った名は未返済者の一覧ではなく、家を直す時に誰がどんな仕事を担ったかという記録だった。助けた人も助けられた人も、同じ欄へ書かれていた。",
+      "requires": [],
+      "next_question": "道具に二つの印があるのはなぜか。"
+    },
+    {
+      "id": "L-RD02",
+      "arc": "r_debt",
+      "title": "道具の二つの印",
+      "setup": {
+        "mission": "r_debt_2",
+        "scene": 3,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "r_debt_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "同じ道具を二重に借りた印にも見える。",
+      "resolved": "道具の二つの印は二重に借りた印ではなく、持主と、直して次へ渡した人の仕事を分けて残したものだった。道具が返ったことだけでは、その間の仕事を数えられない。",
+      "requires": [
+        "L-RD01"
+      ],
+      "next_question": "名簿の期限を、相手を忘れるためではなく尋ね直すために使えるか。"
+    },
+    {
+      "id": "L-RS01",
+      "arc": "r_stars",
+      "title": "違う星図",
+      "setup": {
+        "mission": "r_stars_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "r_stars_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "空を知らない者が描いた間違った天文図に見える。",
+      "resolved": "合わない星図は空を描き損ねたものではなく、地下から見える光をつないで出口へ戻る道を覚える図だった。地上の方角をそのまま当てると、意味を読み違える。",
+      "requires": [],
+      "next_question": "二重の折れ目は、見る位置と歩く位置をどうつなぐのか。"
+    },
+    {
+      "id": "L-RS02",
+      "arc": "r_stars",
+      "title": "二重の折れ目",
+      "setup": {
+        "mission": "r_stars_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "r_stars_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "同じ分岐を二度曲がる道順にも見える。",
+      "resolved": "星図の折れ目は道の角度ではなく、次の光を探してから足を置く順番を表していた。見る位置と歩く位置を同じ点へまとめると、段差へ踏み出してしまう。",
+      "requires": [
+        "L-RS01"
+      ],
+      "next_question": "光のない点で、初めて来る人も待てるだろうか。"
+    },
+    {
+      "id": "L-GW01",
+      "arc": "g_watch",
+      "title": "交替表の二重丸",
+      "setup": {
+        "mission": "g_watch_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "g_watch_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "二人分の仕事を一人へ押しつける表にも見える。",
+      "resolved": "二重の丸は二人分の仕事を数える印ではなく、渡す側が知らせたことと、受ける側が同じ場所を引き受けたことを別々に確認する印だった。",
+      "requires": [],
+      "next_question": "二つの丸があれば、いつの返事でもよいのか。"
+    },
+    {
+      "id": "L-GW02",
+      "arc": "g_watch",
+      "title": "丸の間隔",
+      "setup": {
+        "mission": "g_watch_2",
+        "scene": 3,
+        "line": 2
+      },
+      "payoff": {
+        "mission": "g_watch_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "誰の丸かが分かっても、いつの返事かはまだ曖昧である。",
+      "resolved": "丸の間には交替の時刻を挟む欄があった。二つが近いほど良いという表ではなく、どの交替について互いに返事したかを結ぶ並びだった。",
+      "requires": [
+        "L-GW01"
+      ],
+      "next_question": "受け取れない合図を、相手への拒絶だけとして扱わずに済むか。"
+    },
+    {
+      "id": "L-GB01",
+      "arc": "g_banners",
+      "title": "裏向きの旗",
+      "setup": {
+        "mission": "g_banners_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "g_banners_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "外から見ると敗北や手違いの印に見える。",
+      "resolved": "裏向きの旗は敗北を示したものではなく、門の内側で働く人が合図を読める向きを優先した結果だった。外からの見栄えと、作業の合図は同じ目的ではなかった。",
+      "requires": [],
+      "next_question": "縫い目は見えない時に何を確かめる印なのか。"
+    },
+    {
+      "id": "L-GB02",
+      "arc": "g_banners",
+      "title": "細い縫い目",
+      "setup": {
+        "mission": "g_banners_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "g_banners_2",
+        "scene": 3,
+        "line": 0
+      },
+      "first": "模様と関係のない補修の跡にも見える。",
+      "resolved": "古い旗の縫い目は、表裏を見分ける印と違っていた。内側の班は、暗い時にも指で触れて掛ける旗を選んでいたという。",
+      "requires": [
+        "L-GB01"
+      ],
+      "next_question": "縫い目は見えない時に何を確かめる印なのか。"
+    },
+    {
+      "id": "L-GT01",
+      "arc": "g_tools",
+      "title": "揃わない箱",
+      "setup": {
+        "mission": "g_tools_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "g_tools_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "必要な物が欠けた箱を交換せずに使わせているように見える。",
+      "resolved": "揃わない箱は欠品を放置したものではなく、違う仕事を受け持つ人が必要な時に渡し合う道具の組だった。同じ中身に戻せば、支える物や知らせる物がまた不足する。",
+      "requires": [],
+      "next_question": "箱の留め具の印は、物が離れた後に何を示すのか。"
+    },
+    {
+      "id": "L-GT02",
+      "arc": "g_tools",
+      "title": "留め具の半分の印",
+      "setup": {
+        "mission": "g_tools_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "g_tools_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "違う箱の部品を間違えて組み合わせたようにも見える。",
+      "resolved": "留め具の半分の印は箱の組間違いではなく、借りた道具がどの持ち場へ渡り、どこへ戻るかを示す印だった。二つを合わせると、今の受け手を確かめられる。",
+      "requires": [
+        "L-GT01"
+      ],
+      "next_question": "返却の数と、次に使える状態を分けて確かめられるか。"
+    },
+    {
+      "id": "L-GR01",
+      "arc": "g_return",
+      "title": "帰り側の灯り",
+      "setup": {
+        "mission": "g_return_1",
+        "scene": 0,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "g_return_2",
+        "scene": 2,
+        "line": 0
+      },
+      "first": "仕事へ向かう道より帰りを明るくする臆病さのように見える。",
+      "resolved": "帰り道の灯りは仕事へ向かうのを怖がる印ではなく、終えた後で荷と体力が変わった人を戻すための準備だった。作業の成功と全員の帰着は、別々に確かめる必要があった。",
+      "requires": [],
+      "next_question": "戻る側の足跡と持ち手は、誰へ道を渡す印なのか。"
+    },
+    {
+      "id": "L-GR02",
+      "arc": "g_return",
+      "title": "端へ寄る足跡",
+      "setup": {
+        "mission": "g_return_1",
+        "scene": 1,
+        "line": 0
+      },
+      "payoff": {
+        "mission": "g_return_3",
+        "scene": 0,
+        "line": 0
+      },
+      "first": "帰りに疲れて迷った跡だけのように見える。",
+      "resolved": "道の端に寄った足跡は逃げ迷った跡ではなく、重い荷を持つ人へ中央を空け、途中で休む人を待った跡だった。行きと違う幅には、戻る人同士が道を分けた事情があった。",
+      "requires": [
+        "L-GR01"
+      ],
+      "next_question": "時刻が来る前でも後でも、帰着の返事を受け取れるか。"
+    }
   ]
 }

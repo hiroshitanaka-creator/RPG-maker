@@ -15,7 +15,7 @@ def main():
     directory=Path(tempfile.mkdtemp(prefix='build-id-',dir=temporary_root)).resolve()
     assert directory.is_relative_to(temporary_root)
     try:
-        for folder in ['scripts','scenes','data']:
+        for folder in ['scripts','scenes','data','world']:
             shutil.copytree(ROOT/folder,directory/folder)
         files=['project.godot','assets/registry.json','assets/palette/base.gpl']
         files += [e['path'] for e in json.loads((ROOT/'assets/registry.json').read_text(encoding='utf-8'))['assets']]
@@ -24,7 +24,7 @@ def main():
             target.parent.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(ROOT/relative,target)
         assert identity(EXPECTED_ENGINE,directory)==current
-        for relative in ['data/jobs/01_warrior.json','data/catalog.json','data/story_v1.json','scripts/combat/battle_math.gd']:
+        for relative in ['data/jobs/01_warrior.json','data/catalog.json','data/story_v1.json','scripts/combat/battle_math.gd','world/terrain.json','world/interiors.json','world/map_graph.json']:
             path=directory/relative
             original=path.read_bytes()
             path.write_bytes(original+b'\n')

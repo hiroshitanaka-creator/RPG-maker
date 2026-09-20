@@ -8,7 +8,7 @@ EXPECTED_ENGINE = '4.7.2-stable (official) [ed1daf0bf]'
 
 def identity(engine: str, root: Path = ROOT) -> dict:
     paths = ['project.godot','assets/registry.json','assets/palette/base.gpl']
-    for folder in ['scripts','scenes','data']:
+    for folder in ['scripts','scenes','data','world']:
         paths.extend(p.relative_to(root).as_posix() for p in (root/folder).rglob('*') if p.is_file() and p.suffix in ['.gd','.tscn','.json'])
     paths.extend(e['path'] for e in json.loads((root/'assets/registry.json').read_text(encoding='utf-8'))['assets'])
     paths.sort()

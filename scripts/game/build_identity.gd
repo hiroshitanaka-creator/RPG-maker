@@ -7,7 +7,7 @@ static func current() -> Dictionary:
 	if not _cached.is_empty():
 		return _cached.duplicate(true)
 	var paths: Array[String] = ["project.godot","assets/registry.json","assets/palette/base.gpl"]
-	for directory in ["scripts","scenes","data"]:
+	for directory in ["scripts","scenes","data","world"]:
 		_collect(directory,paths)
 	var registry: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/registry.json"))
 	for entry in registry["assets"]:

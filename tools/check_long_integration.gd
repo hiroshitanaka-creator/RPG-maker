@@ -11,6 +11,7 @@ var catalog_at_start: String=""
 var checks_at_start: Dictionary={}
 var started_ms: int=0
 var saves:=0
+var field_driver = preload("res://tools/long_play_driver.gd").new()
 
 func check(value: bool,message: String)->bool:
 	if not value:errors.append(message)
@@ -91,6 +92,10 @@ func _run()->void:
 						battles+=1
 					if entry["kind"]=="dialogue" and entry.get("rest",false):check(game.rest(),"定義された休息を実行する")
 					if entry["kind"]=="challenge":
+						if not field_driver.field_task(game,option==0):
+							for failure in field_driver.errors:errors.append(failure)
+							break
+						if not _walk(game,entry["cell"]):break
 						var inventory_before: int=game.export_state()["inventory"]["potion"]
 						check(game.answer_challenge(option),"どちらの選択も成立する")
 						check(game.export_state()["progress_flags"].get(LongCampaign.choice_flag(entry["id"],option),false),"選択を保存対象へ記録する")
@@ -173,6 +178,6 @@ func _finish()->void:
 
 func _check_hashes()->Dictionary:
 	var result: Dictionary={}
-	for path in ["tools/check_long_integration.gd","tools/check_battle_acceptance.gd","tools/counterplay_policy.gd","tools/save_state_comparison.gd"]:
+	for path in ["tools/check_long_integration.gd","tools/check_battle_acceptance.gd","tools/counterplay_policy.gd","tools/save_state_comparison.gd","tools/long_play_driver.gd"]:
 		result[path]=FileAccess.get_sha256("res://"+path)
 	return result
