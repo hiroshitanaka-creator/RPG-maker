@@ -899,6 +899,16 @@ func _render_battle() -> void:
 				target_name = "敵"+str(int(str(intent["target"]).trim_prefix("enemy_")))
 			var description := _label("%s→%s" % [intent["action"],target_name],9)
 			description.tooltip_text = "次の行動予定: %s→%s" % [intent["action"],intent["target_name"]]
+			if int(intent.get("reaction_power",0))>0 or int(intent.get("chorus_guard",100))<100:
+				var shield:=int(intent["guard_percent"])
+				var expected:=encounter.forecast_damage(intent["target"],false,-1,false,actor.id)
+				var guarded:=encounter.forecast_damage(intent["target"],true,-1,false,actor.id)
+				var kind: String=game.abilities.get(intent["ability"],{}).get("kind","physical")
+				if kind in ["physical","magic"]:
+					description.text+="\n予測%d(防%d) 技%d 敵被%d%%" % [expected,guarded,encounter.reaction_count(),shield]
+					if expected>=encounter.actor_by_id(intent["target"]).hp:description.add_theme_color_override("font_color",Color("eea38b"))
+				else:description.text+="\n反応:技%d 敵被%d%%" % [encounter.reaction_count(),shield]
+				description.tooltip_text+="\n予測は対象が受ける被害、括弧内は通常の防御を選んだ場合です。敵被は敵が受ける割合で、20%なら80%軽減です。攻撃技の予約人数で反応が強まり、3人以上で共鳴防御。通常攻撃・回復・蘇生・防御は数えません。選び直すと予告も戻ります。"
 			description.custom_minimum_size.x = 70
 			description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			card.add_child(description)
@@ -1261,6 +1271,9 @@ func _start_encounter(story_battle: bool) -> BattleState:
 
 
 func _add_erosion_lines() -> void:
+	var encounter:=game.current_battle()
+	if encounter!=null and encounter.has_reactive_enemy():
+		_battle_log.append("攻撃技の予約人数で反応が強まる相手だ。3人以上の攻撃技では共鳴防御も構える。通常攻撃・回復・蘇生・防御は反応を増やさない。")
 	for actor in game.export_state()["party"]:
 		var line := CharacterVisuals.battle_line(actor)
 		if not line.is_empty():

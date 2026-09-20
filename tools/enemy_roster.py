@@ -78,4 +78,30 @@ def make_enemies(stats):
         if entry["id"] == "flood_beast":
             entry["abilities"] = ["power_strike","flame_breath"]
             entry["role"] = "強打・炎の息型"
+    # 攻撃技の集中へ反応する節目戦。人数そのものや検査シードで勝敗を決めない。
+    reactions = {
+        "gate_beast": (320, 100, 0, 40),
+        "elder_slime": (200, 500, 2, 20),
+        "night_bat": (260, 300, 0, 20),
+        "ancient_shell": (175, 400, 0, 40),
+        "core_wisp": (220, 250, 0, 1),
+        "flood_beast": (160, 200, 0, 20),
+    }
+    for entry in roster:
+        if entry["id"] in reactions:
+            hp, power, speed, shield = reactions[entry["id"]]
+            entry["stats"]["hp"] = hp
+            entry["tactics"].update(reaction_power=power, reaction_speed=speed,
+                                     chorus_guard=shield, focus_variation=100)
+            entry["design_status"] += " 攻撃技の集中への反応・共鳴防御を予告し、通常攻撃・回復・防御で対処できる調整案。"
+        if entry["id"] == "ancient_shell":
+            entry["stats"]["resistance"] = 100
+            entry["tactics"]["guard_every"] = 3
+        if entry["id"] == "elder_slime":
+            entry["stats"]["resistance"] = 50
+            entry["tactics"]["heal_below"] = 25
+        if entry["id"] == "night_bat":
+            entry["stats"]["resistance"] = 30
+        if entry["id"] == "flood_beast":
+            entry["stats"]["resistance"] = 60
     return roster

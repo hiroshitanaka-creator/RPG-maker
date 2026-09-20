@@ -68,7 +68,7 @@ def main():
                 return dict(id=f'{section}_{len(steps):02d}_{kind}',location=location,section=section,chapter=chapters[location],kind=kind,cell=cell,**fields)
             steps.append(step('dialogue',[5,4],objective=title+'の記録を調べる',text=[record],rest=True))
             steps.append(step('battle',[12,6],objective=title+'の通路を確保する',enemies=ENCOUNTERS[location][i],text=['通路を確保した。記録にあった条件を、奥の操作台で確かめよう。']))
-            steps.append(step('challenge',[25,10],objective=title+'の操作を選ぶ',question=question,options=options,answer=answer,record=record,resolution=resolution,reward_potions=1))
+            steps.append(step('challenge',[25,10],objective=title+'の操作を選ぶ',question=question,options=options,answer=answer,record=record,resolution=resolution+'\n確保した足場で短く休息した。生存している仲間のHPとMPが最大値の50%ずつ回復した。',reward_potions=1,reward_hp_percent=50,reward_mp_percent=50))
             steps.append(step('battle',[26,14],objective=title+'の出口を確保する',enemies=ENCOUNTERS[location][(i+2)%5],text=['出口を確保した。次へ進む前に、装着と残りの力を確認できる。']))
             if i<4:steps.append(step('section_travel',[29,14],objective='次の区画へ進む',destination=f'{location}_{i+2}',spawn=[2,4]))
             else:steps.append(step('circuit_complete',[29,14],objective='点検結果を持って本線へ戻る'))

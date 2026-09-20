@@ -2,7 +2,7 @@
 
 職業・アビリティ装着・魔物化を中心にした、1周約60時間を目指すオリジナルRPG企画。2026年9月20日、依頼者の明示回答で正式目標を変更した。[目標と現在の内容量](docs/target-60h.md)を参照する。60時間分の内容を実装済み・実測済みという意味ではない。
 
-現在の受入基準は[scope-lock契約](.scope-lock/spec.lock.json)と、依頼者が追加した[勝率・終了ターン・保存一致の3条件](docs/additional-acceptance-v1.md)。[暫定の閾値案と実測](docs/provisional-thresholds-v1.md)では、勝率は未達、終了率は範囲内、保存の型保持は修正・検査済み。凍結verifyへの追加登録は未実施。[人間の試遊待ち行列](PLAYTEST_QUEUE.md)を機械作業から分離している。Godot 4.7.2-stable / GDScript、人間職12種＋モンスター職8種、3〜4人パーティで実装している。v1の完成や60時間の内容量・実測を確認済みとはしていない。
+現在の受入基準は[scope-lock契約](.scope-lock/spec.lock.json)と、依頼者が追加した[勝率・終了ターン・保存一致の3条件](docs/additional-acceptance-v1.md)。[最新の戦闘・補給検査](docs/battle-and-supply-20260920.md)では、固定入力の勝率41.5〜59.2%、10ターン以内96.875%、区画の消費基準と保存714状態の照合を確認した。内容制作は[継続作業](docs/human-playtest-readiness.md)に残っており、ゲーム全体は制作中。凍結verifyへの追加登録は未実施。[人間の試遊待ち行列](PLAYTEST_QUEUE.md)を機械作業から分離している。Godot 4.7.2-stable / GDScript、人間職12種＋モンスター職8種、3〜4人パーティで実装している。v1の完成や60時間の内容量・実測を確認済みとはしていない。
 
 [企画全体の残作業監査](docs/v1-whole-project-audit.md)で、完走記録以外の未実装・仕様整理・計測・画面上の残件も確認した。現在の作業一覧は[残作業](docs/remaining-v1-work.md)を参照する。凍結8要件のPASSだけで企画全体の完成とは判断しない。
 

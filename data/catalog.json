@@ -584,9 +584,13 @@
         "profile": "legacy",
         "focus": "random",
         "heal_below": 65,
-        "guard_every": 2
+        "guard_every": 2,
+        "reaction_power": 100,
+        "reaction_speed": 0,
+        "chorus_guard": 40,
+        "focus_variation": 100
       },
-      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。 攻撃技の集中への反応・共鳴防御を予告し、通常攻撃・回復・防御で対処できる調整案。"
     },
     {
       "id": "mire_slime",
@@ -716,12 +720,12 @@
       "family": "slime",
       "role": "魔法・再生型",
       "stats": {
-        "hp": 170,
+        "hp": 200,
         "mp": 18,
         "attack": 16,
         "defense": 12,
         "magic": 14,
-        "resistance": 14,
+        "resistance": 50,
         "speed": 10
       },
       "abilities": [
@@ -735,10 +739,14 @@
       "tactics": {
         "profile": "mixed",
         "focus": "random",
-        "heal_below": 50,
-        "guard_every": 2
+        "heal_below": 25,
+        "guard_every": 2,
+        "reaction_power": 500,
+        "reaction_speed": 2,
+        "chorus_guard": 20,
+        "focus_variation": 100
       },
-      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。 攻撃技の集中への反応・共鳴防御を予告し、通常攻撃・回復・防御で対処できる調整案。"
     },
     {
       "id": "frost_bat",
@@ -868,12 +876,12 @@
       "family": "bat",
       "role": "魔法・速攻型",
       "stats": {
-        "hp": 160,
+        "hp": 260,
         "mp": 18,
         "attack": 19,
         "defense": 8,
         "magic": 15,
-        "resistance": 14,
+        "resistance": 30,
         "speed": 25
       },
       "abilities": [
@@ -888,9 +896,13 @@
         "profile": "caster",
         "focus": "highest_magic",
         "heal_below": 65,
-        "guard_every": 2
+        "guard_every": 2,
+        "reaction_power": 300,
+        "reaction_speed": 0,
+        "chorus_guard": 20,
+        "focus_variation": 100
       },
-      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。 攻撃技の集中への反応・共鳴防御を予告し、通常攻撃・回復・防御で対処できる調整案。"
     },
     {
       "id": "iron_shell",
@@ -1020,12 +1032,12 @@
       "family": "shell_guard",
       "role": "重装強打型",
       "stats": {
-        "hp": 230,
+        "hp": 175,
         "mp": 18,
         "attack": 23,
         "defense": 29,
         "magic": 8,
-        "resistance": 8,
+        "resistance": 100,
         "speed": 5
       },
       "abilities": [
@@ -1040,9 +1052,13 @@
         "profile": "guardian",
         "focus": "random",
         "heal_below": 65,
-        "guard_every": 2
+        "guard_every": 3,
+        "reaction_power": 400,
+        "reaction_speed": 0,
+        "chorus_guard": 40,
+        "focus_variation": 100
       },
-      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。"
+      "design_status": "v1調整案。同系統の既存画像を共有し、行動・能力・弱点で区別する。 攻撃技の集中への反応・共鳴防御を予告し、通常攻撃・回復・防御で対処できる調整案。"
     },
     {
       "id": "racing_wisp",
@@ -1175,7 +1191,7 @@
       "family": "ember_wisp",
       "role": "高威力魔法型",
       "stats": {
-        "hp": 200,
+        "hp": 220,
         "mp": 24,
         "attack": 10,
         "defense": 10,
@@ -1195,9 +1211,13 @@
         "profile": "caster",
         "focus": "highest_magic",
         "heal_below": 65,
-        "guard_every": 2
+        "guard_every": 2,
+        "reaction_power": 250,
+        "reaction_speed": 0,
+        "chorus_guard": 1,
+        "focus_variation": 100
       },
-      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。 攻撃技の集中への反応・共鳴防御を予告し、通常攻撃・回復・防御で対処できる調整案。"
     },
     {
       "id": "river_beast",
@@ -1328,12 +1348,12 @@
       "family": "gate_beast",
       "role": "強打・炎の息型",
       "stats": {
-        "hp": 440,
+        "hp": 160,
         "mp": 20,
         "attack": 30,
         "defense": 18,
         "magic": 18,
-        "resistance": 14,
+        "resistance": 60,
         "speed": 13
       },
       "abilities": [
@@ -1346,9 +1366,13 @@
         "profile": "caster",
         "focus": "random",
         "heal_below": 65,
-        "guard_every": 2
+        "guard_every": 2,
+        "reaction_power": 200,
+        "reaction_speed": 0,
+        "chorus_guard": 20,
+        "focus_variation": 100
       },
-      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。"
+      "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。 攻撃技の集中への反応・共鳴防御を予告し、通常攻撃・回復・防御で対処できる調整案。"
     }
   ],
   "encounters": [

@@ -889,7 +889,7 @@ func _advance_expedition(challenge_answered: bool = false) -> bool:
 	else:
 		if entry["kind"] == "challenge":
 			expedition["solved"].append(entry["id"])
-			candidate["inventory"]["potion"] += int(entry["reward_potions"])
+			apply_challenge_reward(candidate,entry)
 		expedition["stage"] += 1
 		expedition["wave"] = 0
 		if entry["kind"] == "section_travel":
@@ -901,6 +901,15 @@ func _advance_expedition(challenge_answered: bool = false) -> bool:
 	if entry["kind"] == "circuit_complete":
 		play_metrics.mark("circuits_completed")
 	return true
+
+
+static func apply_challenge_reward(state: Dictionary, entry: Dictionary) -> void:
+	state["inventory"]["potion"] += int(entry.get("reward_potions",0))
+	for actor in state["party"]:
+		if actor["hp"]<=0:continue
+		for pair in [["hp","max_hp","reward_hp_percent"],["mp","max_mp","reward_mp_percent"]]:
+			var recovered:=ceili(float(actor[pair[1]])*float(entry.get(pair[2],0))/100.0)
+			actor[pair[0]]=mini(actor[pair[1]],actor[pair[0]]+recovered)
 
 
 func world_walkable_cells() -> Array:

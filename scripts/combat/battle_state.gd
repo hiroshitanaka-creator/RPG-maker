@@ -101,6 +101,8 @@ func resolve_round() -> Array[Dictionary]:
 	actions.append_array(_enemy_plan)
 	for actor in actors:
 		actor.guard_rate = 1.0
+		if actor.team==Combatant.Team.ENEMY and reaction_count()>=3:
+			actor.guard_rate=float(actor.tactics.get("chorus_guard",100))/100.0
 	_log("round_start", "第%dターン" % round_number)
 	actions.sort_custom(_before)
 	# 防御は素早さに依存させず、攻撃の解決前に有効化する。
@@ -138,6 +140,10 @@ func enemy_intents() -> Array[Dictionary]:
 		var target := actor_by_id(action.target_id)
 		result.append({"actor":actor.id,"name":actor.display_name,"target":target.id,
 			"target_name":target.display_name,"ability":action.ability_id,
+			"reaction_count":reaction_count(),"reaction_power":int(actor.tactics.get("reaction_power",0)),
+			"reaction_speed":int(actor.tactics.get("reaction_speed",0)),
+			"chorus_guard":int(actor.tactics.get("chorus_guard",100)),
+			"guard_percent":enemy_guard_percent(actor),
 			"action":"攻撃" if action.kind == BattleAction.Kind.ATTACK else str(catalog.abilities[action.ability_id]["name"])})
 	return result
 
@@ -174,7 +180,9 @@ func _choose_enemy_action(enemy: Combatant) -> BattleAction:
 				return BattleAction.skill(enemy.id,enemy.id,identifier)
 	var opponents := living(Combatant.Team.PARTY)
 	var target: Combatant
-	match enemy.tactics["focus"]:
+	var focus: String=enemy.tactics["focus"]
+	if focus!="random" and int(enemy.tactics.get("focus_variation",0))>0 and _rng.randi_range(1,100)<=int(enemy.tactics["focus_variation"]):focus="random"
+	match focus:
 		"lowest_hp":
 			opponents.sort_custom(func(a: Combatant,b: Combatant) -> bool: return a.id < b.id if a.hp == b.hp else a.hp < b.hp)
 			target = opponents[0]
@@ -194,13 +202,67 @@ func _choose_enemy_action(enemy: Combatant) -> BattleAction:
 	return BattleAction.strike(enemy.id,target.id)
 
 
+func reaction_count() -> int:
+	var count:=0
+	for action in queued.values():
+		if action.kind==BattleAction.Kind.ABILITY and catalog.abilities[action.ability_id]["kind"] in ["physical","magic"]:count+=1
+	return count
+
+
+func effective_speed(actor: Combatant, count: int = -1) -> int:
+	var declared:=reaction_count() if count<0 else count
+	return actor.speed + (int(actor.tactics.get("reaction_speed",0))*declared if actor.team==Combatant.Team.ENEMY else 0)
+
+
+func reaction_multiplier(actor: Combatant, count: int = -1) -> float:
+	var declared:=reaction_count() if count<0 else count
+	return 1.0 + (float(actor.tactics.get("reaction_power",0))*declared/100.0 if actor.team==Combatant.Team.ENEMY else 0.0)
+
+
+func has_reactive_enemy() -> bool:
+	for actor in living(Combatant.Team.ENEMY):
+		if int(actor.tactics.get("reaction_power",0))>0 or int(actor.tactics.get("chorus_guard",100))<100:return true
+	return false
+
+
+func enemy_guard_percent(actor: Combatant) -> int:
+	var rate:=int(actor.tactics.get("chorus_guard",100)) if reaction_count()>=3 else 100
+	for action in _enemy_plan:
+		if action.actor_id!=actor.id:continue
+		if action.kind==BattleAction.Kind.GUARD:rate=mini(rate,50)
+		elif action.kind==BattleAction.Kind.ABILITY and catalog.abilities[action.ability_id]["kind"]=="guard":rate=mini(rate,int(catalog.abilities[action.ability_id]["power"]))
+	return rate
+
+
+func forecast_damage(target_id: String, guarded: bool = false, count: int = -1, before_action_only: bool = true, attacker_id: String = "") -> int:
+	_prepare_enemy_plan()
+	var target:=actor_by_id(target_id)
+	if target==null:return 0
+	var total:=0
+	var defense_rate:=0.5 if guarded else 1.0
+	for action in _enemy_plan:
+		if action.target_id!=target_id:continue
+		if not attacker_id.is_empty() and action.actor_id!=attacker_id:continue
+		var enemy:=actor_by_id(action.actor_id)
+		var skill: Dictionary=catalog.abilities.get(action.ability_id,{})
+		var speed:=effective_speed(enemy,count)
+		if before_action_only and int(skill.get("priority",0))<=0 and (speed<target.speed or (speed==target.speed and enemy.id>target.id)):continue
+		var amount:=0
+		var hits:=int(skill.get("hits",1))
+		match skill.get("kind","physical"):
+			"physical":amount=BattleMath.physical(enemy.attack,target.defense,int(skill.get("power",100)),defense_rate)
+			"magic":amount=BattleMath.magical(enemy.magic,target.resistance,int(skill["power"]),str(skill["element"]) in target.weaknesses,defense_rate)
+		total+=ceili(amount*reaction_multiplier(enemy,count))*hits
+	return total
+
+
 func _before(a: BattleAction, b: BattleAction) -> bool:
 	var priority_a := _priority(a)
 	var priority_b := _priority(b)
 	if priority_a != priority_b:
 		return priority_a > priority_b
-	var speed_a := actor_by_id(a.actor_id).speed
-	var speed_b := actor_by_id(b.actor_id).speed
+	var speed_a := effective_speed(actor_by_id(a.actor_id))
+	var speed_b := effective_speed(actor_by_id(b.actor_id))
 	if speed_a != speed_b:
 		return speed_a > speed_b
 	return a.actor_id < b.actor_id
@@ -288,7 +350,7 @@ func _execute(original: BattleAction) -> void:
 		return
 	match action.kind:
 		BattleAction.Kind.GUARD:
-			actor.guard_rate = 0.5
+			actor.guard_rate = minf(actor.guard_rate,0.5)
 			_log("guard", "%sは防御。" % actor.display_name, actor.id, actor.id)
 		BattleAction.Kind.ATTACK:
 			_hit(actor, target, BattleMath.physical(actor.attack, target.defense, 100, target.guard_rate), "攻撃")
@@ -323,7 +385,7 @@ func _use_ability(actor: Combatant, target: Combatant, ability: Dictionary) -> v
 			target.hp = clampi(ceili(float(target.max_hp) * float(power) / 100.0), 1, target.max_hp)
 			_log("revive", "%sの蘇生: %sがHP%dで復帰。" % [actor.display_name, target.display_name, target.hp], actor.id, target.id, target.hp)
 		"guard":
-			actor.guard_rate = float(power) / 100.0
+			actor.guard_rate = minf(actor.guard_rate,float(power) / 100.0)
 			_log("guard", "%sは堅守。" % actor.display_name, actor.id, actor.id)
 		"steal":
 			target.loot_available = false
@@ -332,7 +394,7 @@ func _use_ability(actor: Combatant, target: Combatant, ability: Dictionary) -> v
 
 
 func _hit(actor: Combatant, target: Combatant, amount: int, title: String) -> void:
-	var actual := target.damage(amount)
+	var actual := target.damage(ceili(amount*reaction_multiplier(actor)))
 	_log("damage", "%sの%s: %sに%dダメージ。" % [actor.display_name, title, target.display_name, actual], actor.id, target.id, actual)
 	if not target.is_alive():
 		_log("fallen", "%sは倒れた。" % target.display_name, actor.id, target.id)

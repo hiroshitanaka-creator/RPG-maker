@@ -101,6 +101,10 @@ func _load_document(document: Dictionary) -> void:
 				errors.append("敵の行動規則がありません: " + enemy_id)
 			elif not behavior.get("profile") in AI_PROFILES or not behavior.get("focus") in ["random","lowest_hp","highest_magic"] or not _is_integer(behavior.get("heal_below"),1) or int(behavior.get("heal_below",0)) > 100 or not _is_integer(behavior.get("guard_every"),2):
 				errors.append("敵の行動規則が不正です: " + enemy_id)
+			if behavior is Dictionary:
+				for setting in {"reaction_power":1000,"reaction_speed":20,"focus_variation":100}:
+					if not _is_integer(behavior.get(setting,0),0) or int(behavior.get(setting,0))>int({"reaction_power":1000,"reaction_speed":20,"focus_variation":100}[setting]):errors.append("敵の反応設定が不正です: "+enemy_id+"/"+setting)
+				if not _is_integer(behavior.get("chorus_guard",100),1) or int(behavior.get("chorus_guard",100))>100:errors.append("共鳴防御が不正です: "+enemy_id)
 		if not enemy.get("weaknesses") is Array:
 			errors.append("弱点の一覧がありません: " + enemy_id)
 		else:

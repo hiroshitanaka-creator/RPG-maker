@@ -141,4 +141,7 @@ static func audit(enemies: Dictionary) -> Array[String]:
 					errors.append("追加区画に未知の敵があります。")
 			if task["kind"] == "challenge" and (task["options"].size() != 3 or task["answer"] not in range(3)):
 				errors.append("課題の選択肢と正答が不正です。")
+			if task["kind"] == "challenge":
+				for key in ["reward_hp_percent","reward_mp_percent"]:
+					if not BattleCatalog._is_integer(task.get(key,0),0) or int(task.get(key,0))>100:errors.append("区画の休息報酬が不正です。")
 	return errors

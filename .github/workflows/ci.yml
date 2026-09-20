@@ -16,7 +16,7 @@ jobs:
   preplay:
     name: 試遊前の通常戦闘・案内・画面・復帰検査
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     env:
       RPG_QA_SAVE_PREFIX: ci-preplay
     steps:
@@ -45,13 +45,26 @@ jobs:
           test "$(grep -c '^DURATION_TARGET_PASS:' preplay.log)" -eq 1
           test "$(grep -c '^PREPLAY_UI_RESULT:.*failures=0' preplay.log)" -eq 1
           test "$(grep -c '^PREPLAY_RECOVERY_PASS:' preplay.log)" -eq 1
-      - name: 通常戦闘28,000試行を検査
+      - name: 通常戦闘・補給・行動前全滅82,000試行を検査
         run: |
           set -o pipefail
-          ./godot --headless --path . --script res://tools/check_preplay_combat.gd -- --normal-only 2>&1 | tee preplay-normal.log
+          ./godot --headless --path . --script res://tools/check_preplay_combat.gd 2>&1 | tee preplay-normal.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" preplay-normal.log; then exit 1; fi
-          test "$(grep -c '^PREPLAY_COMBAT_RESULT: trials=28000 T04=PASS T05=PASS T07=NOT_RUN errors=0' preplay-normal.log)" -eq 1
-          # AC-01と途中帰還なしのT07は別の未達条件。ここでは実行しておらず、PASSへ変換しない。
+          test "$(grep -c '^PREPLAY_COMBAT_RESULT: trials=82000 T04=PASS T05=PASS T07=PASS errors=0' preplay-normal.log)" -eq 1
+      - name: 追加受入の勝率と終了率・反応への対処・区画報酬を検査
+        run: |
+          set -o pipefail
+          ./godot --headless --path . --script res://tools/check_battle_acceptance.gd 2>&1 | tee battle-acceptance.log
+          ./godot --headless --path . --script res://tools/check_reaction_rules.gd 2>&1 | tee reaction-rules.log
+          ./godot --headless --path . --script res://tools/check_battle_counterplay.gd 2>&1 | tee counterplay.log
+          ./godot --headless --path . --script res://tools/check_field_recovery.gd 2>&1 | tee field-recovery.log
+          ./godot --headless --path . --script res://tools/check_route_counterplay.gd 2>&1 | tee route-counterplay.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" battle-acceptance.log reaction-rules.log counterplay.log field-recovery.log route-counterplay.log; then exit 1; fi
+          test "$(grep -c '^BATTLE_ACCEPTANCE: AC-01=PASS AC-02=PASS errors=0' battle-acceptance.log)" -eq 1
+          test "$(grep -c '^REACTION_RULE_PASS:' reaction-rules.log)" -eq 1
+          test "$(grep -c '^COUNTERPLAY_PASS:' counterplay.log)" -eq 1
+          test "$(grep -c '^FIELD_RECOVERY_PASS:' field-recovery.log)" -eq 1
+          test "$(grep -c '^ROUTE_COUNTERPLAY_PASS:' route-counterplay.log)" -eq 1
       - name: 保護対象を照合
         if: always()
         run: python tools/check_frozen_files.py
@@ -66,6 +79,17 @@ jobs:
             docs/verification/preplay-ui-headless.json
             docs/verification/preplay-recovery.json
             docs/verification/preplay-normal-combat.json
+            docs/verification/preplay-combat.json
+            docs/verification/provisional-battle-acceptance.json
+            docs/verification/reaction-rules.json
+            docs/verification/battle-counterplay.json
+            docs/verification/field-recovery.json
+            battle-acceptance.log
+            reaction-rules.log
+            counterplay.log
+            field-recovery.log
+            route-counterplay.log
+            docs/verification/route-counterplay.json
 
   assets:
     name: 素材検査

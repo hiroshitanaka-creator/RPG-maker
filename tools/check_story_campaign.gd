@@ -217,6 +217,9 @@ func _run() -> void:
 			"battle":
 				var input: Dictionary = state["battle_input"]
 				if input["ready"]:
+					for change in preload("res://tools/counterplay_policy.gd").adjustments(main.game.current_battle()):
+						var selected: Dictionary={"kind":"guard" if change.kind==BattleAction.Kind.GUARD else "attack","actor":change.actor_id,"target":change.target_id}
+						if not _check(main.submit_player_action(selected),"予告を見て通常コマンドを選び直す"):return
 					main.submit_player_action({"kind":"resolve_round"})
 					rounds += 1
 				else:
@@ -276,6 +279,11 @@ func _choose_battle_action(main: Node, input: Dictionary) -> void:
 	var encounter: BattleState = main.game.current_battle()
 	var actor := encounter.actor_by_id(str(input["actor"]))
 	if actor == null:
+		return
+	if encounter.has_reactive_enemy():
+		var selected: BattleAction=preload("res://tools/counterplay_policy.gd").base_action(encounter,actor)
+		var kinds: Dictionary={BattleAction.Kind.ATTACK:"attack",BattleAction.Kind.GUARD:"guard",BattleAction.Kind.ABILITY:"ability",BattleAction.Kind.ITEM:"potion"}
+		main.submit_player_action({"kind":kinds[selected.kind],"actor":selected.actor_id,"target":selected.target_id,"ability":selected.ability_id})
 		return
 	# 公開された行動予定から、自分の回復より先に致死量を受ける時は防御する。
 	# 固定の勝利判定は変えず、通常画面で選べる入力だけを使う。

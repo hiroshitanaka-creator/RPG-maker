@@ -23,10 +23,13 @@ func _run() -> void:
 	for circuit in CampaignContent.data()["circuits"]:
 		for section in circuit["sections"]:
 			var waves: Array = []
+			var reward_definition: Dictionary={}
 			for entry in circuit["steps"]:
 				if entry["section"] == section["id"] and entry["kind"] == "battle":waves.append(entry["enemies"])
+				if entry["section"] == section["id"] and entry["kind"] == "challenge":reward_definition=entry
 			if waves.size() != 2:errors.append("区画の戦闘数が2ではない")
-			resources.append({"id":section["id"],"waves":waves})
+			if reward_definition.is_empty():errors.append("区画に課題の報酬定義がない")
+			resources.append({"id":section["id"],"waves":waves,"reward":reward_definition})
 	if normal.size() != 14 or resources.size() != 25:errors.append("通常戦14・補給区画25を網羅できない")
 	var game := GameSession.new()
 	var reports: Array = []
@@ -49,7 +52,7 @@ func _run() -> void:
 					if not game.new_game(size) or not game.import_state(initial):
 						errors.append("固定状態を初期化できない")
 						break
-					var result := _trial(game,setup["waves"],seed_value,group == "resources",group == "deterministic")
+					var result := _trial(game,setup["waves"],seed_value,group == "resources",group == "deterministic",setup.get("reward",{}))
 					if result.is_empty():break
 					total += 1
 					wins += 1 if result["victory"] else 0
@@ -69,7 +72,8 @@ func _run() -> void:
 				if group == "resources":supply_pass = supply_pass and ok
 				var histogram: Dictionary = {}
 				for count in potions:histogram[str(count)] = int(histogram.get(str(count),0))+1
-				reports.append({"group":group,"case":setup["id"],"party_size":size,"wins":wins,"trials":1000,"cutoffs":stalled,"victory_potion_median":median,"victory_potion_p90":p90,"victory_potion_counts":histogram,"defeat_potion_samples":loss_potions,"distinct_traces":traces.size(),"trace_counts":traces,"rng_used_trials":rng_used,"passed":ok if group != "deterministic" else (traces.size()==1 and rng_used==0)})
+				var reward_data: Dictionary=setup.get("reward",{})
+				reports.append({"group":group,"case":setup["id"],"party_size":size,"wins":wins,"trials":1000,"cutoffs":stalled,"victory_potion_median":median,"victory_potion_p90":p90,"victory_potion_counts":histogram,"defeat_potion_samples":loss_potions,"distinct_traces":traces.size(),"trace_counts":traces,"rng_used_trials":rng_used,"constant_across_seeds":traces.size()==1 and rng_used==0,"passed":ok if group != "deterministic" else null,"challenge_reward":{"potions":reward_data.get("reward_potions",0),"hp_percent":reward_data.get("reward_hp_percent",0),"mp_percent":reward_data.get("reward_mp_percent",0)}})
 				print("PREPLAY_COMBAT_CASE: %s %s party=%d wins=%d median=%.1f p90=%d" % [group,setup["id"],size,wins,median,p90])
 			if not errors.is_empty():break
 		if not errors.is_empty():break
@@ -77,7 +81,7 @@ func _run() -> void:
 	BuildIdentity._cached.clear()
 	if source_build != BuildIdentity.current():errors.append("検査中にゲームのソースが変更された")
 	if total != (28000 if normal_only else 82000):errors.append("予定した試行数を完了していない")
-	var report := {"kind":"automated_preplay_combat","build":source_build,"profile_sha256":FileAccess.get_sha256(PROFILE),"runner_sha256":FileAccess.get_sha256("res://tools/check_preplay_combat.gd"),"trials":total,"T04":"PASS" if normal_pass else "FAIL","T05":"PASS" if first_action_defeats==0 else "FAIL","T07":"NOT_RUN" if normal_only else ("PASS" if supply_pass else "FAIL"),"before_action_defeats":first_action_defeats,"results":reports,"errors":errors,"human_playtest":"NOT_RUN","resource_policy":"各区画で全快・薬3、途中帰還なし。第1戦勝利後に課題報酬1個。第2戦はHP/MPと所持品を持ち越す。種はseed、seed+1000。敗北消費は別集計。"}
+	var report := {"kind":"automated_preplay_combat","build":source_build,"profile_sha256":FileAccess.get_sha256(PROFILE),"runner_sha256":FileAccess.get_sha256("res://tools/check_preplay_combat.gd"),"trials":total,"T04":"PASS" if normal_pass else "FAIL","T05":"PASS" if first_action_defeats==0 else "FAIL","T07":"NOT_RUN" if normal_only else ("PASS" if supply_pass else "FAIL"),"before_action_defeats":first_action_defeats,"results":reports,"errors":errors,"human_playtest":"NOT_RUN","resource_policy":"各区画で全快・薬3、途中帰還なし。第1戦勝利後に本番の課題報酬処理を実行。薬と休息の定義値を各ケースに記録。第2戦へHP/MP・所持品を持ち越す。種はseed、seed+1000。敗北消費は別集計。シード間の同一性は診断値であり合否条件にしない。"}
 	var output_path := "res://docs/verification/preplay-normal-combat.json" if normal_only else "res://docs/verification/preplay-combat.json"
 	if not PlaySessionMetrics.write_json(output_path,report):errors.append("結果を書き出せない")
 	for error in errors:printerr("PREPLAY_COMBAT_ERROR: "+error)
@@ -85,7 +89,7 @@ func _run() -> void:
 	print("PREPLAY_COMBAT_RESULT: trials=%d T04=%s T05=%s T07=%s errors=%d" % [total,report["T04"],report["T05"],report["T07"],errors.size()])
 	quit(2 if not errors.is_empty() else (0 if normal_pass and supply_pass and first_action_defeats==0 else 1))
 
-func _trial(game: GameSession, waves: Array, seed_value: int, reward: bool, trace_enabled: bool) -> Dictionary:
+func _trial(game: GameSession, waves: Array, seed_value: int, reward: bool, trace_enabled: bool, reward_definition: Dictionary = {"reward_potions":1}) -> Dictionary:
 	var used := 0
 	var first_defeats := 0
 	var rng_used := false
@@ -126,7 +130,7 @@ func _trial(game: GameSession, waves: Array, seed_value: int, reward: bool, trac
 			return {}
 		if reward and wave_index == 0:
 			var state := game.export_state()
-			state["inventory"]["potion"] += 1
+			GameSession.apply_challenge_reward(state,reward_definition)
 			if not game.import_state(state):
 				errors.append("課題報酬の固定状態を適用できない")
 				return {}

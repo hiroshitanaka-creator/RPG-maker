@@ -1,0 +1,30 @@
+{
+  "status": "ACTIVE",
+  "request": "人間の試しプレイが可能になるまで進めて下さい",
+  "target_minutes": 3600,
+  "continuations_started": 0,
+  "max_continuations": 40,
+  "max_stall_rounds": 3,
+  "current_task": "READY-CONTENT",
+  "remaining": [
+    "READY-BATTLE",
+    "READY-SUPPLY",
+    "READY-CONTENT",
+    "READY-PATHS",
+    "READY-RECORD",
+    "READY-HANDOFF"
+  ],
+  "human_playtest": "NOT_RUN",
+  "ready_for_human_playtest": false,
+  "note": "自動継続ターンの開始時に実数を更新する。コンテキスト圧縮や検査呼出しは継続ターンに数えない。人間待ちを理由に独立作業を止めない。",
+  "local_verification": {
+    "READY-BATTLE": "PASS_PENDING_CI",
+    "READY-SUPPLY": "PASS_PENDING_CI",
+    "AC-01": "PASS",
+    "AC-02": "PASS",
+    "fixed_policy_within_ten": "11625/12000",
+    "counterplay_routes": "50000/50000",
+    "save_roundtrip_states": 714,
+    "save_differences": 0
+  }
+}
