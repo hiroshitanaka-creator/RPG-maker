@@ -102,6 +102,12 @@ func _battle_layout() -> void:
 	var main := (load(ProjectSettings.get_setting("application/run/main_scene")) as PackedScene).instantiate()
 	root.add_child(main)
 	await process_frame
+	if "--expanded-font" in OS.get_cmdline_user_args():
+		var expanded := FontVariation.new()
+		expanded.base_font = main.theme.default_font
+		expanded.spacing_top = 2
+		expanded.spacing_bottom = 2
+		main.theme.default_font = expanded
 	main.start_new_game(4)
 	main.game.play_metrics.set_source("automated")
 	var fixture: Dictionary = main.game.export_state()
@@ -160,7 +166,7 @@ func _assert_layout(main: Node) -> void:
 		await process_frame
 	for node in main.find_children("*","Control",true,false):
 		if node.is_visible_in_tree() and (node is BaseButton or node is Label or node is RichTextLabel):
-			check(main.get_viewport_rect().encloses(node.get_global_rect()),"画面に収まる: "+node.get_class())
+			check(main.get_viewport_rect().encloses(node.get_global_rect()),"画面に収まる: %s %s %s" % [node.get_class(),str(node.get_global_rect()),str(node.get("text"))])
 
 func _signs_and_traits() -> void:
 	var game := GameSession.new()

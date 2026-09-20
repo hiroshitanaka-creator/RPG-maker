@@ -869,7 +869,7 @@ func _render_battle() -> void:
 	_action_button(tools, "選び直す", {"kind":"clear_actions"})
 	var resolve := _action_button(tools, "ターン実行", {"kind":"resolve_round"})
 	resolve.disabled = not encounter.can_resolve()
-	var forecast := _label(_erosion_forecast_text(), 10)
+	var forecast := _label(_erosion_forecast_text(), 9)
 	forecast.tooltip_text = "戦闘終了時の侵蝕見込み。予約した技がすべて発動した場合の値。"
 	forecast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(forecast)
@@ -889,7 +889,8 @@ func _render_battle() -> void:
 		var card := VBoxContainer.new()
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var definition: Dictionary = game.enemy_definitions[definitions[index]]
-		card.add_child(_picture("res://assets/monsters/%s/idle.png" % definition.get("sprite_id",definitions[index]), Vector2(64,64)))
+		var icon_size := 32 if definitions.size() >= 3 else 64
+		card.add_child(_picture("res://assets/monsters/%s/idle.png" % definition.get("sprite_id",definitions[index]), Vector2(icon_size,icon_size)))
 		card.add_child(_label("%s\n敵%d HP%d/%d" % [actor.display_name,index+1,actor.hp,actor.max_hp],10))
 		if intents.has(actor.id):
 			var intent: Dictionary = intents[actor.id]
@@ -916,8 +917,8 @@ func _render_battle() -> void:
 		for candidate in game.export_state()["party"]:
 			if candidate["id"] == actor.id:
 				member = candidate
-		card.add_child(_actor_picture(member,"battle",0,Vector2(48,48)))
-		var button := _button(card, "%s%s\nHP%d\nMP%d/%d" % [actor.display_name, " ✓" if encounter.queued.has(actor.id) else "", actor.hp, actor.mp, actor.max_mp], _select_actor.bind(actor.id))
+		card.add_child(_actor_picture(member,"battle",0,Vector2(32,32)))
+		var button := _button(card, "%s HP%d\n%sMP%d/%d" % [actor.display_name,actor.hp,"✓ " if encounter.queued.has(actor.id) else "",actor.mp,actor.max_mp], _select_actor.bind(actor.id))
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.disabled = not actor.is_alive()
 	if not _actor.is_empty():
@@ -953,6 +954,14 @@ func _render_battle() -> void:
 		if not message.is_empty():
 			log.text += "\n"+message
 	_body.add_child(log)
+	# OSのフォント差があっても、戦闘の操作部品とログを同じ画面内に収める。
+	for control in _body.find_children("*","Button",true,false):
+		control.add_theme_font_size_override("font_size",10)
+		for state in ["normal","hover","pressed","focus","disabled"]:
+			var box: StyleBox = control.get_theme_stylebox(state).duplicate()
+			box.content_margin_top = 1
+			box.content_margin_bottom = 1
+			control.add_theme_stylebox_override(state,box)
 
 
 func _select_actor(identifier: String) -> void:
