@@ -78,6 +78,39 @@ static func all_cleared(flags: Dictionary)->bool:
 		if not flags.get(cleared_flag(entry["id"]),false):return false
 	return true
 
+static func clue_stage(identifier: String, state: Dictionary)->int:
+	if not state.get("progress_flags",{}).get("long_campaign_started",false):return 0
+	var clues: Dictionary={}
+	for clue in data().get("clues",[]):clues[clue["id"]]=clue
+	if not clues.has(identifier):return 0
+	var clue: Dictionary=clues[identifier]
+	if not _read_clue_point(clue["setup"],state):return 0
+	if not _read_clue_point(clue["payoff"],state):return 1
+	for prerequisite in clue.get("requires",[]):
+		if not clues.has(prerequisite):return 1
+		if not _read_clue_point(clues[prerequisite]["setup"],state) or not _read_clue_point(clues[prerequisite]["payoff"],state):return 1
+	return 2
+
+static func _read_clue_point(reference: Dictionary, state: Dictionary)->bool:
+	if state.get("progress_flags",{}).get(cleared_flag(reference["mission"]),false):return true
+	var current: Dictionary=state.get("expedition",{})
+	if current.get("id")!=reference["mission"]:return false
+	var steps: Array=mission(reference["mission"]).get("steps",[])
+	for index in range(steps.size()):
+		if steps[index]["id"]==reference["step"]:return int(current.get("stage",-1))>index
+	return false
+
+static func journal(state: Dictionary)->Array[Dictionary]:
+	var result: Array[Dictionary]=[]
+	for clue in data().get("clues",[]):
+		var level:=clue_stage(clue["id"],state)
+		if level==0:continue
+		var entry: Dictionary={"id":clue["id"],"title":clue["title"],"stage":level,
+			"observation":clue["setup"]["text"],"first":clue["first"]}
+		if level==2:entry["resolved"]=clue["resolved"]+"\n次に確かめること: "+clue["next_question"]
+		result.append(entry)
+	return result
+
 static func is_walkable(identifier: String, cell: Vector2i, flags: Dictionary={})->bool:
 	var definition:=room(identifier)
 	if definition.is_empty() or cell.x<0 or cell.y<0 or cell.y>=definition["layout"].size() or cell.x>=definition["layout"][cell.y].length():return false

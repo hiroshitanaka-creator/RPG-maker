@@ -105,6 +105,7 @@ func _save_resume(game: GameSession,size: int,option: int)->bool:
 	var loaded:=GameSession.new()
 	if not check(loaded.load_game(path),"別インスタンスへロードできる"):return false
 	if not check(Compare.differences(expected,loaded.export_state(),"$",[]).is_empty(),"長編状態のキー・型・値・順序が一致する"):return false
+	check(game.journal_entries()==loaded.journal_entries(),"保存復帰で既読の意味が一致し、先の解答を解放しない")
 	if not expected["expedition"].is_empty():
 		check(loaded.return_to_town() and loaded.rest() and loaded.resume_exploration(),"長編の途中から帰還・休息・再開できる")
 		check(loaded.world_state()==expected["world"],"元の区画・位置へ戻る")

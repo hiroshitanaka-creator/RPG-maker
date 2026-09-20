@@ -51,12 +51,54 @@ func _run()->void:
 			await _layout(main,"journey_response_%d_%d" % [size,option])
 			while main.mode==main.Mode.DIALOGUE:check(main.submit_player_action({"kind":"confirm"}),"会話を閉じる")
 			check(main.mode==main.Mode.FIELD,"選択後の探索へ戻る")
+	for size in [3,4]:
+		for clue in LongCampaign.data().get("clues",[]):
+			for after in [false,true]:
+				main.start_new_game(size)
+				var state:=_journal_fixture(main.game.export_state(),clue["payoff"],after)
+				check(main.game.import_state(state),"手帳の回収直前・直後の有効な検査状態")
+				main.mode=main.Mode.FIELD;main._refresh()
+				check(main.submit_player_action({"kind":"journal"}),"通常の手帳操作で新しい手掛かりを読める")
+				var entries: Array=main.game.journal_entries()
+				var found:=false
+				for at in range(entries.size()):
+					if entries[at]["id"]!=clue["id"]:continue
+					found=true;main._journal_index=at
+					check(entries[at].has("resolved")==after,"回収を読んだ後だけ手帳に解答が出る")
+				check(found,"既に見た設置を手帳から参照できる")
+				main._refresh()
+				await _layout(main,"journey_journal_%s_%d_%s" % [clue["id"],size,str(after)])
+				check(main.submit_player_action({"kind":"back"}) and main.mode==main.Mode.FIELD,"手帳を閉じて探索へ戻れる")
 	main.queue_free()
 	await process_frame
 	LongCampaign._source["enabled"]=was_enabled
 	failures.append_array(diagnostics.messages())
 	OS.remove_logger(diagnostics)
-	PlaySessionMetrics.write_json("res://docs/verification/long-ui.json",{"status":"PASS" if failures.is_empty() else "FAIL","cases":cases,"failures":failures,"scope":"制作済みの最初の連作を有効にした入力によるUI接続検査。全80話の完成とは区別する。","build":BuildIdentity.current()})
+	PlaySessionMetrics.write_json("res://docs/verification/long-ui.json",{"status":"PASS" if failures.is_empty() else "FAIL","cases":cases,"failures":failures,"scope":"制作済み部分を有効にした入力によるUI接続・手帳既読境界の検査。全80話の完成とは区別する。","build":BuildIdentity.current()})
 	for message in failures:printerr("LONG_UI_FAIL: "+message)
-	if failures.is_empty():print("LONG_UI_PASS: 依頼一覧・移動・両選択・結果表示を3人/4人で確認")
+	if failures.is_empty():print("LONG_UI_PASS: 依頼一覧・移動・両選択・結果・手帳の既読境界を3人/4人で確認")
 	quit(0 if failures.is_empty() else 1)
+
+func _journal_fixture(state: Dictionary, reference: Dictionary, after: bool)->Dictionary:
+	var mission:=LongCampaign.mission(reference["mission"])
+	var base:=StoryCampaign.step(mission["trigger_step"])
+	var stage:=0
+	for at in range(mission["steps"].size()):
+		if mission["steps"][at]["id"]==reference["step"]:stage=at+(1 if after else 0);break
+	state["progress_flags"].merge({"chapter1_cleared":true,"long_campaign_started":true,"circuit_waterway_cleared":true},true)
+	var solved: Array=[]
+	for previous in LongCampaign.data()["missions"]:
+		if previous["arc"]!=mission["arc"] or previous["id"]>mission["id"]:continue
+		var complete: bool=previous["id"]!=mission["id"]
+		if complete:state["progress_flags"][LongCampaign.cleared_flag(previous["id"])]=true
+		for at in range(previous["steps"].size()):
+			var task: Dictionary=previous["steps"][at]
+			if not task.get("choice",false) or (not complete and at>=stage):continue
+			state["progress_flags"][LongCampaign.choice_flag(task["id"],0)]=true
+			for flag in task["choice_effects"][0].get("flags",[]):state["progress_flags"][flag]=true
+			if not complete:solved.append(task["id"])
+	var current: Dictionary=mission["steps"][stage]
+	state["world"]={"location":current["location"],"player_cell":current["cell"],"section":current["section"],"quest_step":mission["trigger_step"]}
+	state["expedition"]={"id":mission["id"],"stage":stage,"wave":0,"solved":solved,
+		"origin":{"location":base["location"],"player_cell":base["cell"],"quest_step":mission["trigger_step"]}}
+	return state

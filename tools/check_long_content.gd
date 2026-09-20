@@ -32,6 +32,7 @@ func _initialize()->void:
 	inventory={"missions":document.get("missions",[]).size(),"required_missions":80,
 		"authored_room_ids":used_rooms.keys(),"room_definitions":document.get("rooms",[]).size(),
 		"battle_entries":battle_count,"choices":choice_count,"main_text_characters":text_characters,
+		"clues":document.get("clues",[]).size(),
 		"enabled":document.get("enabled",false),"human_duration":"NOT_RUN"}
 	check(document.get("arcs",[]).size()==20,"既存の土地に20件の連続した物語を置く")
 	check(document.get("missions",[]).size()==80,"80件の冒険を定義する")

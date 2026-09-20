@@ -997,6 +997,7 @@ func use_exploration_site(actor_id: String = "", ability_id: String = "") -> boo
 
 func journal_entries() -> Array[Dictionary]:
 	var entries := StoryCampaign.journal(_state.get("progress_flags", {}))
+	entries.append_array(LongCampaign.journal(_state))
 	for entry in entries:
 		if entry["id"] == "R05":
 			var chosen: Array[String] = []
@@ -1008,6 +1009,11 @@ func journal_entries() -> Array[Dictionary]:
 					unused.append(abilities[identifier]["name"])
 			entry["loadout"] = "当時の装着 %d枠\n%s\n習得済み・未装着: %s" % [Loadout.capacity(false,true),"\n".join(chosen),"、".join(unused)]
 	return entries
+
+func journal_capacity() -> int:
+	var count: int=StoryCampaign.data().get("clues",[]).size()
+	if _state.get("progress_flags",{}).get("long_campaign_started",false):count+=LongCampaign.data().get("clues",[]).size()
+	return count
 
 
 func story_complete() -> bool:

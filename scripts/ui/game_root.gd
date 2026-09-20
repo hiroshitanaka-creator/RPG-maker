@@ -1205,7 +1205,7 @@ func _render_complete() -> void:
 
 func _render_journal() -> void:
 	var entries := game.journal_entries()
-	_body.add_child(_label("旅の手帳  %d / 8件" % entries.size(),15))
+	_body.add_child(_label("旅の手帳  %d / %d件" % [entries.size(),game.journal_capacity()],15))
 	if entries.is_empty():
 		_body.add_child(_label("見聞きした手掛かりが、ここへ記録されます。",12))
 	else:

@@ -1,0 +1,10 @@
+{
+  "kind": "pre_implementation_baseline",
+  "command": "godot --headless --path . --script res://tools/check_long_clues.gd",
+  "exit_code": 1,
+  "parser_error": false,
+  "failures": [
+    "LONG_CLUES_FAIL: 制作済みの連作に設置と回収の台帳がある",
+    "LONG_CLUES_FAIL: 保存された進行から設置と回収の既読段階を導ける"
+  ]
+}
