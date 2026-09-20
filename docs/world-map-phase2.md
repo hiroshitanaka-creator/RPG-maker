@@ -87,4 +87,4 @@ godot --headless --path . --script res://tools/check_map_graph_structure_regress
 
 ローカルのログ書込み制限がある場合は、各コマンドに `--log-file .tools/map-graph-check.log` を追加する。受入判定の条件は変わらない。
 
-Phase 3の地形生成とPhase 4の経路・移動時間検査は未実施。今回の合格はグラフの構造に限る。
+この記録の合格はグラフの構造に限る。後続のPhase 3・4と本番への接続結果は `world-map-playable.md` を参照する。

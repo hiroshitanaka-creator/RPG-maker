@@ -1,0 +1,713 @@
+{
+  "version": 1,
+  "graph_sha256": "ee99039cf16469eb2db6f277870e82af819278e40a1ddfeb35a28764bf31cdbb",
+  "seed": 20260920,
+  "width": 256,
+  "height": 256,
+  "tile_size": 32,
+  "step_seconds": {
+    "walk": 0.15,
+    "ship": 0.15,
+    "flight": 0.15
+  },
+  "legend": {
+    "~": "海・水路",
+    "g": "草地",
+    "f": "森",
+    "m": "山",
+    "r": "道",
+    "b": "橋・船の通過点",
+    "n": "拠点入口"
+  },
+  "regions": [
+    {
+      "id": "riverlands",
+      "bounds": [
+        8,
+        8,
+        119,
+        119
+      ]
+    },
+    {
+      "id": "brine_reaches",
+      "bounds": [
+        136,
+        8,
+        247,
+        119
+      ]
+    },
+    {
+      "id": "mist_basin",
+      "bounds": [
+        8,
+        136,
+        119,
+        247
+      ]
+    },
+    {
+      "id": "sky_ridge",
+      "bounds": [
+        136,
+        136,
+        247,
+        247
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "town",
+      "cell": [
+        13,
+        114
+      ],
+      "dock": true
+    },
+    {
+      "id": "river_watch",
+      "cell": [
+        72,
+        73
+      ],
+      "dock": false
+    },
+    {
+      "id": "waterway",
+      "cell": [
+        59,
+        13
+      ],
+      "dock": false
+    },
+    {
+      "id": "reed_camp",
+      "cell": [
+        73,
+        81
+      ],
+      "dock": false
+    },
+    {
+      "id": "cave",
+      "cell": [
+        114,
+        85
+      ],
+      "dock": false
+    },
+    {
+      "id": "stone_shelter",
+      "cell": [
+        86,
+        49
+      ],
+      "dock": false
+    },
+    {
+      "id": "gate",
+      "cell": [
+        51,
+        27
+      ],
+      "dock": false
+    },
+    {
+      "id": "garden",
+      "cell": [
+        92,
+        104
+      ],
+      "dock": false
+    },
+    {
+      "id": "herb_station",
+      "cell": [
+        55,
+        91
+      ],
+      "dock": false
+    },
+    {
+      "id": "school",
+      "cell": [
+        53,
+        19
+      ],
+      "dock": false
+    },
+    {
+      "id": "springford",
+      "cell": [
+        14,
+        90
+      ],
+      "dock": false
+    },
+    {
+      "id": "causeway_cave",
+      "cell": [
+        99,
+        61
+      ],
+      "dock": false
+    },
+    {
+      "id": "records",
+      "cell": [
+        22,
+        27
+      ],
+      "dock": false
+    },
+    {
+      "id": "harbor",
+      "cell": [
+        114,
+        42
+      ],
+      "dock": false
+    },
+    {
+      "id": "toll_post",
+      "cell": [
+        78,
+        56
+      ],
+      "dock": false
+    },
+    {
+      "id": "levee_vault",
+      "cell": [
+        25,
+        17
+      ],
+      "dock": true
+    },
+    {
+      "id": "shipyard",
+      "cell": [
+        61,
+        27
+      ],
+      "dock": false
+    },
+    {
+      "id": "brine_port",
+      "cell": [
+        166,
+        109
+      ],
+      "dock": true
+    },
+    {
+      "id": "tide_beacon",
+      "cell": [
+        158,
+        58
+      ],
+      "dock": false
+    },
+    {
+      "id": "salt_mine",
+      "cell": [
+        220,
+        13
+      ],
+      "dock": false
+    },
+    {
+      "id": "nettle_hamlet",
+      "cell": [
+        240,
+        104
+      ],
+      "dock": true
+    },
+    {
+      "id": "reef_shrine",
+      "cell": [
+        201,
+        72
+      ],
+      "dock": false
+    },
+    {
+      "id": "drowned_store",
+      "cell": [
+        141,
+        60
+      ],
+      "dock": false
+    },
+    {
+      "id": "breakwater_ruins",
+      "cell": [
+        242,
+        39
+      ],
+      "dock": true
+    },
+    {
+      "id": "sailors_rest",
+      "cell": [
+        200,
+        81
+      ],
+      "dock": false
+    },
+    {
+      "id": "mist_market",
+      "cell": [
+        114,
+        171
+      ],
+      "dock": true
+    },
+    {
+      "id": "lock_station",
+      "cell": [
+        106,
+        221
+      ],
+      "dock": false
+    },
+    {
+      "id": "reed_library",
+      "cell": [
+        23,
+        200
+      ],
+      "dock": false
+    },
+    {
+      "id": "kiln_village",
+      "cell": [
+        101,
+        170
+      ],
+      "dock": false
+    },
+    {
+      "id": "marsh_camp",
+      "cell": [
+        78,
+        194
+      ],
+      "dock": false
+    },
+    {
+      "id": "bell_quarry",
+      "cell": [
+        13,
+        146
+      ],
+      "dock": false
+    },
+    {
+      "id": "windbreak_town",
+      "cell": [
+        43,
+        235
+      ],
+      "dock": false
+    },
+    {
+      "id": "wind_observatory",
+      "cell": [
+        63,
+        178
+      ],
+      "dock": false
+    },
+    {
+      "id": "ridgehearth",
+      "cell": [
+        189,
+        157
+      ],
+      "dock": false
+    },
+    {
+      "id": "cloud_landing",
+      "cell": [
+        141,
+        212
+      ],
+      "dock": false
+    },
+    {
+      "id": "cloud_forge",
+      "cell": [
+        159,
+        242
+      ],
+      "dock": false
+    },
+    {
+      "id": "signal_hut",
+      "cell": [
+        216,
+        233
+      ],
+      "dock": false
+    },
+    {
+      "id": "survey_post",
+      "cell": [
+        154,
+        180
+      ],
+      "dock": false
+    },
+    {
+      "id": "high_camp",
+      "cell": [
+        165,
+        170
+      ],
+      "dock": false
+    },
+    {
+      "id": "wind_tomb",
+      "cell": [
+        203,
+        151
+      ],
+      "dock": false
+    },
+    {
+      "id": "standing_stone",
+      "cell": [
+        201,
+        235
+      ],
+      "dock": false
+    },
+    {
+      "id": "highfield",
+      "cell": [
+        242,
+        233
+      ],
+      "dock": false
+    },
+    {
+      "id": "ridge_well",
+      "cell": [
+        240,
+        174
+      ],
+      "dock": false
+    },
+    {
+      "id": "wayfarer_refuge",
+      "cell": [
+        230,
+        141
+      ],
+      "dock": false
+    },
+    {
+      "id": "aerie_ruins",
+      "cell": [
+        153,
+        196
+      ],
+      "dock": false
+    },
+    {
+      "id": "summit_marker",
+      "cell": [
+        234,
+        189
+      ],
+      "dock": false
+    },
+    {
+      "id": "snow_shelter",
+      "cell": [
+        227,
+        208
+      ],
+      "dock": false
+    },
+    {
+      "id": "echo_platform",
+      "cell": [
+        228,
+        181
+      ],
+      "dock": false
+    },
+    {
+      "id": "summit_archive",
+      "cell": [
+        207,
+        141
+      ],
+      "dock": false
+    }
+  ],
+  "rows": [
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffffffffffffffggggggggggggggggggggggggfffffffffffffffffffggggggggggggggggggggggggggffffffffffffff~~~~~~~~~~~~~~~~fffffffggggggggggggggggggggffffffffffffffffffffggggggggggggggggggggggggggggfffffffffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffffffffffffffggggggggggggggggggggggggggffffffffffffffffgggggggggggggggggggggggggggffffffffffffff~~~~~~~~~~~~~~~~ffffffgggggggggggggggggggggggffffffffffffffffffggggggggggggggggggggggggggggfffffffffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~ffffffffffffffffffffffffffffggggggggggggggggggggggggggggfffffffffffffffgggggggggggggggggggggggggggffffffffffffff~~~~~~~~~~~~~~~~fffffggggggggggggggggggggggggggfffffffffffffffggggggggggggggggggggggggggggggffffffffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffffffffffffgggggggggggggggggggggggggggggggffffffffffffgggggggggggggggggggggggggggggfffffffffffff~~~~~~~~~~~~~~~~ffffgggggggggggggggggggggggggggggffffffffffffgggggggggggggggggggggggggggggggffffffffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~ffffffffffffffffffffffffffggggggggggggggggggggggggggggggggggffffffffgggggggggggggggggggggggggggggggfffffffffffff~~~~~~~~~~~~~~~~fffggggggggggggggggggggggggggggggggffffffffgggggggggggggggggggggggggggggggggffffffffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffffffffffggggggggggggggggggggggggggnrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrggggggggggggggfffffffffffff~~~~~~~~~~~~~~~~ffggggggggggggggggggggggggggggrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrnrrrrrrrrrrrrrrrrrrrrfffffff~~~~~~~~",
+    "~~~~~~~~ffffffffffffffffffffffffgggggggggggggggggggggggggggrggggggggggggggggggggggggggggggggrggggggggggggggfffffffffffff~~~~~~~~~~~~~~~~fgggggggggggggggggggggggggggggrgggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffffffrfffffff~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffffffffggggggggggggggggggggggggggggrggggggggggggggggggggggggggggggggrgggggggggggggggffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffffffffrffffffg~~~~~~~~",
+    "~~~~~~~~ffffffffffffffffffffffgggggggggggggggggggggggggggggrggggggggggggggggggggggggggggggggrgggggggggggggggffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffffffffrfffffgg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb~~~~~~~~~~~~~~~~~~~~~~~~~~~~~b~~~~~~~~~b~~~~~~~~~bbgggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffffrffffggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffrffgggggggggggggggggggggggggggggggrggggggggggggggggggggggggggggggggrggggggggggggggggfffffrfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffffrfffgggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffrffgggggggggggggggggggggggggngggggrggggggggggggggggggggggggggggggggrgggggggggggggggggffffrfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffffrfffgggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffrfggggggggggggggggggggggggggrgggggrggggggggggggggggggggggggggggggggrggggggggggggggggggfffrfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffffffrffggggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffrgggggggggggggggggggggggggggrgggggrggggggggggggggggggggggggggggggggrggggggggggggggggggfffrfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffrfgggggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffrgggggggggggggggggggggggggggrgggggrggggggggggggggggggggggggggggggggrgggggggggggggggggggffrfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffrggggggg~~~~~~~~",
+    "~~~~~~~~ffffffffffffffffgrgggggggggggggggggggggggggggrgggggrggggggggggggggggggggggggggggggggrggggggggggggggggggggfrfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffffrggggggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffggrgggggggggggggggggggggggggggrgggggrggggggggggggggggggggggggggggggggrgggggggggggggggggggggrfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffgrggggggg~~~~~~~~",
+    "~~~~~~~~ffffffffffffffgggrgggggggggggggggggggggggggggrgggggrggggggggggggggggggggggggggggggggrgggggggggggggggggggggrfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffggrggggggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffggggrgggggggggggggggggggggggggggrgggggrggggggggggggggggggggggggggggggggrgggggggggggggggggggggrfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffgggrggggggg~~~~~~~~",
+    "~~~~~~~~fffffrrrrrrrrrnrrrrrrrrrrrrrrrrrrrrrrrrrrrrnrrrrrrrrrnrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrggfff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffggggrggggggg~~~~~~~~",
+    "~~~~~~~~fffffrfffffggggggggggggggggggggggggggggggggrgrgggggrggggggggggggggggggggggggggggggggrggggggrggggggggggggggrgggff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffgggggrggggggg~~~~~~~~",
+    "~~~~~~~~fffffrfffffgggggggggggggggggggggggggggggggmrmrmmgggrggggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggfffffffffffgggggggrggggggg~~~~~~~~",
+    "~~~~~~~~fffffrffffgggggggggggggggggggggggggggggggggrmrmmmggrggggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggfffffffffggggggggrggggggg~~~~~~~~",
+    "~~~~~~~~fffffrffgggggggggggggggggggggggggggggggggggrmrmmmmgrggggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggfffffggggggggggrggggggg~~~~~~~~",
+    "~~~~~~~~fffffrfggggggggggggggggggggggggggggggggggggrmrmmmmgrggggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggggggrggggggg~~~~~~~~",
+    "~~~~~~~~fffffrgggggggggggggggggggggggggggggggggggggrgrmmmmmrggggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggggggggrggggggg~~~~~~~~",
+    "~~~~~~~~gfffgrgggggggggggggggggggggggggggggggggggggrgrmmmmmrggggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggggrggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggrgrmmmmmrggggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggggrggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggrgrgmmmmrmgggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggggggrggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggrgrggmmmrmmggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggrggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggrgrgggmmrmmggggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggggggggmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggrggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggrgrgggmmrmmmgggggggggggggggggggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggggggggggggmmmmmmgggggggggrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrnggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggrgrggggmrmmmmggggggggfffffffgggggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggggggggggmmmmmmggggggggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggrgrgggggrmmmmmgggggfffffffffffgggggggggggrggggggrggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggggggffffgggggmmmmmmgggggggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrnggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggggggffffffffffggmmmmmmgggggggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrggggggggggggggggggggggggggggggggggggrgrgggggrmmmmmmggffffffffffrffffgggggggggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggggffffffffffffggmmmmmmggggggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrggggggggggggggggggggggggggggggggggggrgrgggggrgmmmmmmfffffffffffrfffffggggggggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggggffffffffffffffffgmmmmmmgggggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrggggggggggggggggggggggggggggggggggggrgrgggggrgmmmmmmfffffffffffrffffffgggggggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggggffffffffffffffffffmmmmmmgggggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrggggggggggggggggggggggggggggggggggggrgrgggggrggmmmmmmffffffffffrfffffffggggggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgggffffffffffffffffffffmmmmmmggggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrggggggggggggggggggggggggggggggggggggrgrgggggrgggmmmmmmfffffffffrffffffffgggggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbggffffffffffffffffffffffmmmmmmgggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrggggggggggggggggggggggggggggggggggggrgrgggggrggffmmmmmfffffffffrfffffffffggggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbgffffffffffffffffffffffffmmmmmgggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrggggggggggggggggggggggggggggggggggggrgrgggggrgfffmmmmmmffffffffrfffffffnfggggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbfffffffffffffffffffffffffmmmmmmggrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrggggggggggggggggggggggggggggggggggggrgrgggggrgffffmmmmmmfffffffrfffffffrffgggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggbffffffffffffffffffffffffffmmmmmmgrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrggggggggggggggggggggggggggggggggggggrgrgggggrffffffmmmmmmffffffrfffffffrfffggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggfbfffffffffffffffffffffffffffmmmmmmrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrggggggggggggggggggggggggggggggggggggrgrgggggrffffffmmmmmmffffffrfffffffrfffggrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggffbfffffffffffffffffffffffffffmmmmmmrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrggggggggggggggggggggggggggggggggggggrgrggggfrfffffffmmmmmmfffffrfffffffrffffgrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggfffbffffffffffffffffffffffffffffmmmmmrgggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrggggggggggggggggggggggggggggggggggggrgrgggffrffffffffmmmmmmffffrfffffffrffffgrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggffffbfffffffffffffffffffffffffffffmmmmrmggggggggggggggggggggggggggggggggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrffggggggggggggggggggggggggggggggggggrgrggfffrffffffffmmmmmmffffrfffffffrffffgrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggggfffffbfffffffffffffffffffffffffffffmmmmrmggggggggggggggggggggggggggfffgggggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrfffgggggggggggggggggggggggggggggggggrgrgffffrfffffffffmmmmmmfffnfffffffrfffffrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggffffffbffffffffffffffffffffffffffffffmmmrmmgggggggggggggggggggggggfffffffgggggggrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrffffggggggggggggggggggggggggggggggggrgrfffffrffffffffffmmmmmmffffffffffrfffffrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggfffffffbffffffffffffffffffffffffffffffgmmrmmmggggggggggggggggggggfffffffffffgggggrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrfffffgggggggggggggggggggggggggggggggrgrfffffrfffffffffffmmmmmffffffffffrfffffrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggnfffffffbffffffffffffffffffffffffffffffggmrmmmgggggggggggggggggggffffffffffffffgggrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrffffffggggggggggggggggggggggggggggggrgrfffffrfffffffffffmmmmmmfffffffffrfffffrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrfffffffbfffffffffffffffffffffffffffffffgmrmmmmggggggggggggggggggfffffffffffffffggrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffgggggggggggggggggggggggggggggrfrfffffrffffffffffffmmmmmmffffffffrfffffrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggnrrrrrrrrrrrrrrrrrrrrrrrrbrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffgggggggggggggggggggggggggggggrfrfffffrfffffffffffffmmmmmmfffffffrfffffrggggggngggggggggggggggggggf~~~~~~~~~~~~~~~~ggggggggggggggggggggffrfffffffbfffffffffffffffffffffffffffffffggrmmmmmmgggggggggggggggffffffffffffffffffrgbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrffffffffgggggggggggggggggggggggggggfrfrfffffrfffffffffffffmmmmmmfffffffrfffffrggggggrgggggggggggggggggggf~~~~~~~~~~~~~~~~gggggggggggggggggggfffrfffffffbfffffffffffffffffffffffffffffffggrmmmmmmggggggggggggggfffffffffffffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffgggggggggggggggggggggggggffrfrfffffrffffffffffffffmmmmmmffffffrfffffrggggggrggggggggggggggggggff~~~~~~~~~~~~~~~~gggggggggggggggggggfffrfffffffbfffffffffffffffffffffffffffffffggrgmmmmmmgggggggggggggfffffffffffffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~fffffrrffffffffffggggggggggggggggggggggggffrfrfffffrfffffffffffffffmmmmmmfffffrfffffrggggggrggggggggggggggggggff~~~~~~~~~~~~~~~~ggggggggggggggggggffffrfffffffbfffffffffffffffffffffffffffffffggrggmmmmmmggggggggggggfffffffffffffffffffrfbfgggg~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffggggggggggggggggggggggfffrfrfffffrfffffffffffffffmmmmmmfffffrfffffrggggggrggggggggggggggggggff~~~~~~~~~~~~~~~~gggggggggggggggggfffffrfffffffbfffffffffffffffffffffffffffffffggrggmmmmmmggggggggggggfffffffffffffffffffrfbfffgg~~~~~~~~",
+    "~~~~~~~~fffffrrffffffffffffggggggggggggggggggggffffrfrfffffrffffffffffffffffmmmmmmffffrfffffrggggggrgggggggggggggggggfff~~~~~~~~~~~~~~~~gggggggggggggggggfffffrfffffffbfffffffffffffffffffffffffffffffggrgggmmmmmmgggggggggggfffffffffffffffffffrfbffffg~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffffggggggggggggggggggfffffrfrfffffrfffffffffffffffffmmmmmmfffrfffffrggggggrgggggggggggggggggfff~~~~~~~~~~~~~~~~ggggggggggggggggffffffrfffffffbffffffffffffffffffffffffffffffgggrggggmmmmmmggggggggggfffffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrffffffffffffffgggggggggggggggggfffffrfrfffffrffffffffffffffffffmmmmmfffrfffffrggggggrgggggggggggggggggfff~~~~~~~~~~~~~~~~gggggggggggggggfffffffrfffffffbffffffffffffffffffffffffffffffgggrgggggmmmmmggggggggggfffffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffffffgggggggggggggggffffffrfrfffffrffffffffffffffffffmmmmmmffrffffgrggggggrgggggggggggggggggfff~~~~~~~~~~~~~~~~gggggggggggggggfffffffrfffffffbffffffffffffffffffffffffffffffgggrgggggmmmmmmgggggggggfffffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrffffffffffffffffgggggggggggggfffffffrfrfffffrfffffffffffffffffffmmmmmmfrffffgrggggggrgggggggggggggggggfff~~~~~~~~~~~~~~~~ggggggggggggggffffffffrfffffffbfffffffffffffffffffffffffffffggggrggggggmmmmmmggggggggfffffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffffffffggggggggggggfffffffrfrfffffrffffffffffffffffffffmmmmmmrfffggrggggggrgggggggggggggggggfff~~~~~~~~~~~~~~~~ggggggggggggggffffffffrfffffffbfffffffffffffffffffffffffffffggggrgggggggmmmmmmgggggggfffffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffffffffgggggggggggffffffffrfrfffffrffffffffffffffffffffmmmmmmrfffggrggggggrggggggggggggggggggff~~~~~~~~~~~~~~~~gggggggggggggfffffffffrfffffffbffffffffffffffffffffffffffffgggggrnrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrffffffffffffffffffgggggggggfffffffffrfrfffffrffffffffffffnffffffffmmmmmrffgggrggggggrggggggggggggggggggff~~~~~~~~~~~~~~~~gggggggggggggfffffffffrfffffffbffffffffffffffffffffffffffffgggggrggggggggmmmmmmgggggggffffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffffffffffggggggggfffffffffrfrfffffrffffffffffffrfffffffffmmmmrmfgggrggggggrggggggggggggggggggff~~~~~~~~~~~~~~~~gggggggggggggfffffffffrfffffffbfffffffffffffffffffffffffffggggggrgggggggggmmmmmmggggggffffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffffffffffggggggggfffffffffrfrfffffrffffffffffffrfffffffffmmmmrmggggrggggggrggggggggggggggggggff~~~~~~~~~~~~~~~~gggggggggggggfffffffffrfffffffbffffffffffffffffffffffffffgggggggrgggggggggmmmmmmgggggggfffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrffffffffffffffffffffgggggggfffffffffrfrfffffrffffffffffffrffffffffffmmmrmmgggrggggggrggggggggggggggggggff~~~~~~~~~~~~~~~~gggggggggggggfffffffffrfffffffbffffffffffffffffffffffffffgggggggrggggggggggmmmmmmggggggfffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrffffffffffffffffffffgggggggfffffffffrfrfffffrffffffffffffrfffffffffffmmrmmmggrggggggrgggggggggggggggggggf~~~~~~~~~~~~~~~~gggggggggggggfffffffffrfffffffbfffffffffffffffffffffffffggggggggrgggggggggggmmmmmmgggggfffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffffffffffgggggggggffffffffrfrfffffrffffffffffffrffffffffffffmrmmmggrggggggrgggggggggggggggggggf~~~~~~~~~~~~~~~~gggggggggggggfffffffffrfffffffbffffffffffffffffffffffffgggggggggrggggggggggggmmmmmggggggffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffffffffffgggggggggffffffffrfrfffffrffffffffffffrffffffffffffmrmmmmgrggggggrgggggggggggggggggggf~~~~~~~~~~~~~~~~gggggggggggggfffffffffrfffffffbfffffffffffffffffffffffggggggggggrggggggggggggmmmmmmgggggffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~fffffrrfffffffffffffffffffggggggggggfffffffrfrfffffrffffffffffffrffffffffffffgrmmmmmrggggggrgggggggggggggggggggf~~~~~~~~~~~~~~~~ggggggggggggggffffffffrfffffffbfffffffffffffffffffffffggggggggggrgggggggggggggmmmmmmggggffffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~gffffrrffffffffffffffffffggggggggggggffffffrfrfffffrrrrrrrrrrrrrrnffffffffffggrmmmmmrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggfffffffrfffffffbffffffffffffffffffffffgggggggggggnggggggggggggggmmmmmmggggfffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~gffffrrfffffffffffffffffggggggggggggggfffffrfrfffffrffffffffffffrffffffffffgggrmmmmmrggggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggfffffffrfffffffbfffffffffffffffffffffgggggggggggggggggggggggggggmmmmmmggggfffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~ggfffrrfffffffffffffffffgggggggggggggggffffrfrfffffrffffffffffffrfffffffffggggrgmmmmrmgggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggffffffrfffffffbffffffffffffffffffffgggggggggggggggggggggggggggggmmmmmmggggffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~ggfffrrffffffffffffffffggggggggggggggggggffrfrfffffrffffffffffffrffffffffgggggrggmmmrmmggggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggfffffrfffffffbfffffffffffffffffffgggggggggggggggggggggggggggggggmmmmmmgggffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~gggffrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrnggggg~~~~~~~~~~~~~~~~ggggggggggggggggggffffrfffffffbffffffffffffffffffggggggggggggggggggggggggggggggggmmmmmmgggffffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~gggffrrfffffffffffffffgggggggggggggggggggggrfrfffffrffffffffffffrffffffgggggggggggmmrmmmgggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggfffrfffffffbfffffffffffffffffggggggggggggggggggggggggggggggggggmmmmmmgggfffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~ggggfrrffffffffffffffggggggggggggggggggggggrfrfffffrffffffffffffrfffffgggggggggggggmrmmmmggrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggffrfffffffbffffffffffffffffggggggggggggggggggggggggggggggggggggmmmmmmggfffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~ggggfrrfffffffffffffgggggggggggggggggggggggrgrfffffrffffffffffffrffffgggggggggggggggrmmmmggrgggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggfrfffffffbfffffffffffffffggggggggggggggggggggggggggggggggggggggmmmmmggfffffffffffffrfbfffff~~~~~~~~",
+    "~~~~~~~~ggggfrrfffffffffffffgggggggggggggggggggggggrgrgffffrffffffffffffrfffggggggggggggggggrmmmmmgrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrfffffffbffffffffffffffgggggggggggggggggggggggggggggggggggggggmmmmmmggffffffffffffrfbffffg~~~~~~~~",
+    "~~~~~~~~gggggrnrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgffffffbfffffffffffffgggggggggggggggggggggggggggggggggggggggggmmmmmmgffffffffffffrfbffffg~~~~~~~~",
+    "~~~~~~~~gggggrfffffffffffffggggggggggggggggggggggggrgrgnrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrgmmmmmmgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrggfffffbffffffffffffgggggggggggggggggggggggggggggggggggggggggggmmmmmmffffffffffffrfbfffgg~~~~~~~~",
+    "~~~~~~~~gggggrffffffffffffgggggggggggggggggggggggggrgrgggggrggfffffffffgrgggggggggggggggggggrgmmmmmmgggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrggggfffbffffffffffgggggggggggggggggggggggggggggggggggggggggggggmmmmmmffffffffffffrfbffggg~~~~~~~~",
+    "~~~~~~~~gggggrffffffffffffgggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrggmmmmmmggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrggggggfbffffffffggggggggggggggggggggggggggggggggggggggggggggggggmmmmmmfffffffffffrfbffggg~~~~~~~~",
+    "~~~~~~~~gggggrfffffffffffggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrgggmmmmmmgggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbgggfgggggggggggggggggggggggggggggggggggggggggggggggggggggmmmmmmffffffffffrfbfgggg~~~~~~~~",
+    "~~~~~~~~gggggrfffffffffffggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrgggmmmmmmgggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbgggggggggggggggggggggggggggggggggggggggggggggggggggggggggmmmmmmffffffffffrfbfgggg~~~~~~~~",
+    "~~~~~~~~gggggrffffffffffgggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrggggmmmmmmggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbggggggggggggggggggggggggggggggggggggggggggggggggggggggggggmmmmmmfffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~gggggrffffffffffgggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrgggggmmmmmmgggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggmmmmmmffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~gggggrffffffffffgggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~gggggrffffffffffgggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~gggggrffffffffffgggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~gggggrffffffffffgggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~gggggrffffffffffgggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~ggggfrffffffffffgggggggggggggggggggggggggggrgrgggggrggggggggggggrgggggggggggggggggggrggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffrfbggggg~~~~~~~~",
+    "~~~~~~~~gggffrfffffffffffggggggggggggggggggggggggggrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrnggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffnfbggggg~~~~~~~~",
+    "~~~~~~~~gggffrfffffffffffggggggggggggggggggggggggggggggggggrggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffff~fbggggg~~~~~~~~",
+    "~~~~~~~~ggfffrfffffffffffggggggggggggggggggggggggggggggggggrggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffff~fbggggg~~~~~~~~",
+    "~~~~~~~~gffffrfffffffffffggggggggggggggggggggggggggggggggggrggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffff~fbggggg~~~~~~~~",
+    "~~~~~~~~gffffrffffffffffffgggggggggggggggggggggggggggggggggrggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggrgggggggbggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffff~fbggggg~~~~~~~~",
+    "~~~~~~~~fffffrffffffffffffgggggggggggggggggggggggggggggggggrggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggf~~~~~~~~~~~~~~~~ggggggggggggggggggggggrrrrrrrrnrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrbrbggggg~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffggggggggggggggggggggggggggggggggrggggggggggggrgggggggggggggggggggggggggggggggggggggggggggggff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggg~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffff~f~ggggg~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffggggggggggggggggggggggggggggggggrggggggggggggrgggggggggggggggggggggggggggggggggggggggggggggff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggg~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffff~f~fgggg~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffggggggggggggggggggggggggggggggggrggggggggggggrggggggggggggggggggggggggggggggggggggggggggggfff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggg~gggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffff~f~fgggg~~~~~~~~",
+    "~~~~~~~~fffffrffffffffffffffgggggggggggggggggggggggggggggggrggggggggggggrgggggggggggggggggggggggggggggggggggggggggggffff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggg~ggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffff~f~fgggg~~~~~~~~",
+    "~~~~~~~~fffffnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~~~~~~~~~~~~~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffbf~fgggg~~~~~~~~",
+    "~~~~~~~~ffffffffffffffffffffgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffff~f~ffggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffffffgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffff~f~ffggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffffffggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffff~f~ffggg~~~~~~~~",
+    "~~~~~~~~fffffffffffffffffffffgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffff~f~ffggg~~~~~~~~",
+    "~~~~~~~~ffffffffffffffffffffffgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffff~fbfffgg~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~ffffffffffffgggggggggggggggggggggffffffffffffffffffffffffffgggggggggggggggggffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggffffffffffffffffffffffffffggggggggggggggggggggffffffffffffffffffffffffffffffffffffffffffffffgggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~ffffffffffffggggggggggggggggggggggffffffffffffffffffffffffffggggggggggggggggffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggffffffffffffffffffffffffffgggggggggggggggggggffffffffffffffffffffffffffffffffffffffffffffffggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~fffffffffffgggggggggggggggggggggggfffffffffffffffffffffffffffggggggggggggggfffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggffffffffffffffffffffffffffggggggggggggggggggffffffffffffffffffffffffffffffffffffffffffffffggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~fffffffffffgggggggggggggggggggggggffffffffffffffffffffffffffffggggggggggggffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggfffffffffffffffffffffffffffggggggggggggggggffffffffffffffffffffffffffffffffffffffffffffffgggggg~gbggggg~~~~~~~~",
+    "~~~~~~~~ffffffffffggggggggggggggggggggggggfffffffffffffffffffffffffffffggggggggggfffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggffffffffffffffffffffffffffggggggggggggggggffffffffffffffffffffffffffffffffffffffffffffffgggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~ffffffffffgggggggggggggggggggggggggfffffffffffffffffffffffffffffgggggggggfffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggfffffffffffffffffffffffffffggggggggggggggffffffffffffffffffffnffffffffffffffffffffffnffggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~fffffffffggggggggggggggggggggggggggffffffffffffffffffffffffffffffgggggggffffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggffffffffffffffffffffffffffggggggggggggggffffffffffffffffffffffffffffffffffffffffffffffggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~ffffffffggggggggggggggggggggggggggggffffffffffffffffffffffffffffffgggggfffffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggffffffffffffffffffffffffffgggggggggggggfffffffffffffffffffffffffffffffffffffffffffffgggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~ffffffffggggggggggggggggggggggggggggfffffffffffffffffffffffffffffffggggfffffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggffffffffffffffffffffffffffggggggggggggffffffffffffffffffffffffffffffffffffffffffffffggggggggbg~ggggg~~~~~~~~",
+    "~~~~~~~~fffffffggggggggggggggggggggggggggggggffffffffffffffffffffffffffffffggggfffffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggfffffffffffffffffffffffffggggggggggggfffffffffffffffffffffffffffffffffffffffffffffggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~fffffngggggggggggggggggggggggggggggggffffffffffffffffffffffffffffffggggfffffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggfffffffffffffffffffffffffgggggggggggggfffffffffffffffffffffffffffffffffffffffffffgggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~fffffrggggggggggggggggggggggggggggggggfffffffffffffffffffffffffffffgggggffffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggffffffffffffffffffffffffgggggggggggggfffffffffffffffffffffffffffffffffffffffffffgggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~fffffrggggggggggggggggggggggggggggggggffffffffffffffffffffffffffffgggggggfffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggggfffffffffffffffffffffffgggggggggggggffffffffffffffffffffffffffffffffffffffffffggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~ffffgrggggggggggggggggggggggggggggggggfffffffffffffffffffffffffffgggggggggffffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggggfffffffffffffffffffffffggggggggggggggffffffffffffffffffffffffffffffffffffffffgggggggggggg~gbggggg~~~~~~~~",
+    "~~~~~~~~fffggrgggggggggggggggggggggggggggggggggffffffffffffffffffffffffffggggggggggfffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggffffffffffffffffffffffgggggggggggggggffffffffffffffffffffffffffffffffffffffggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~ffgggrgggggggggggggggggggggggggggggggggfffffffffffffffffffffffffggggggggggggffffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggfffffffffffffffffffffggggggggggggggggffffffffffffffnffffffffffffffffffffffgggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~ffgggrggggggggggggggggggggggggggggggggggfffffffffffffffffffffffgggggggggggggggffffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggggggffffffffffffffffffffgggggggggggggggggffffffffffffffffffffffffffffffffffffgggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~fggggrggggggggggggggggggggggggggggggggggfffffffffffffffffffffffggggggggggggggggfffffffffffffffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggggffffffffffffffffffgggggggggggggggggggffffffffffffffffffffffffffffffffffggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggfffffffffffffffffffffggggggggggggggggggfffffffffffffffffffffffffffffffg~~~~~~~~~~~~~~~~ggggggggggggggggggfffffffffffffffffgggggggggggggggggggggffffffffffffffffffffffffffffffffggggggggggggggggbg~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggffffffffffffffffffffgggggggggggggggggggggffffffffffffffffffffffffffffgg~~~~~~~~~~~~~~~~gggggggggggggggggggffffffffffffffffggggggggggggggggggggggffffffffffffffffffffffffffffffggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggffffffffffffffffffgggggggggggggggggggggggfffffffffffffffffffffffffgggg~~~~~~~~~~~~~~~~gggggggggggggggggggfffffffffffffffgggggggggggggggggggggggggfffffffffffffffffffffffffffgggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggmmmmmmffffffffffffggggggggggggggggggggggggfffffffffffffffffffffffggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggfffffffffffffgggggggggmmmmmmgggggnggggggfffffffffffffffffffffffffggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggfmmmmmmffffffffffgggggggggggggggggggggggggggffffffffffffffffffffgggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggfffffffffffffggggggggggmmmmmmggggggggggggffffffffffffffffffffffggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggfmmmmmmffffffffggggggggggggggggggggggggggggggfffffffffffffffffggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggfffffffffffggggggggggggmmmmmmgggggggggggggfffffffffffffffffffgggggggggggggggggggggg~gbggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggfmmmmmmffffffffggggggggggggggggggggggggggggggggfffffffffffffggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggfffffffffffggggggggggggmmmmmmggggggggggggggfffffffffffffffffggggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggffmmmmmmffffffggggggggggggggggggggggggggggggggggggfffffffgggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggfffffffffggggggggggggggmmmmmmgggggggggggggggfffffffffffffggggggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggggffmmmmmmfffffggggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggffffffffggggggggggggggggmmmmmmgggggggggggggggggffffffffggggggggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggggffmmmmmmffffgggggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggfffffffggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggggfffmmmmmmfffgggggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggffffffggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggggggbg~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggggffffmmmmmmffgggggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggffffffgggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggggfffffmmmmmfggggggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggffffffggggggggggggggggggggmmmmmgggggggggggggggggggggggggggggggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggggfffffmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggffffffggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrggggggggggggggggggggggggggggggggggggggffffffmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggfffffffgggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggggggggggggggggggggggggggggggffffffffmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggfffffffggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggg~gbggggg~~~~~~~~",
+    "~~~~~~~~gggggrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrngggggggggggggggggg~~~~~~~~~~~~~~~~gggggggggggggggggggggffffffffngggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggg~g~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrn~~b~~~~~~~~~~~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~~~~~b~~~~~ggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrggggggfffffffffffmmmmmmgggggggggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggggffffffffffgggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrggggggfffffffffffmmmmmmgggggggggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~gggggggggggggggggggffffffffffffggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrgggggfffffffffffffmmmmmmggggggggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~gggggggggggggggggggffffffffffffgggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggnggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrggggfffffffffffffffmmmmmmgggggggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggggfffffffffffffggggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrggggffffffffffffffffmmmmmgggggggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~gggggggggggggggggfffffffffffffffggggggggggggggggggggggggmmmmmggggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrgggfffffffffffffffffmmmmmmggggggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggffffffffffffffffggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrrrrrrrrrrrrrrrrrrrrnfmmmmmmgggggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggggfffffffffffffffffggggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrggfffffffffffffffffffgmmmmmmggggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~gggggggggggggggffffffffffffffffffgggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrgffffffffffffffffffffgmmmmmmggggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggggffffnfffffffffffffffggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrffffffffffffffffffffffgmmmmmmgggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~gggggggggggggfffffffffffffffffffffgggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggnggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrffffffffffffffffffffffggmmmmmmggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggffffffffffffffffffffffggggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggggrffffffffffffffffffffffggmmmmmmggggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggggfffffffffffffffffffffffgggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrggggggggggggggggggfrfffffffffffffffffffffffggmmmmmmgggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~gggggggggggffffffffffffffffffffffffggggggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggggffrfffffffffffffffffffffffgggmmmmmmggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggggffffffffffffffffffffffffffggggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrggggggggggggggggfffrfffffffffffffffffffffffggggmmmmmggrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~gggggggggfffffffffffffffffffffffffffgggggggggggggggggggggggggggmmmmmgggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggggffffrfffffffffffffffffffffffggggmmmmmmgrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggggffffffffffffffffffffffffffffgggggggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrggggggggggggggfffffrffffffffffffffffffffffffggggmmmmmmrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~gggggggffffffffffffffffffffffffffffffgggggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrggggggggggggggfffffrffffffffffffffffffffffffgggggmmmmmrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggfffffffffffffffffffffffffffffffggggggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggnggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggggffffffrffffffffffffffffffffffffgggggmmmmmrgggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggggfffffffffffffffffffffffffffffffggggggggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrggggggggggggfffffffrfffffffffffffffffffffffffgggggmmmmrmggggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~gggggfffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggmmmmmmgggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggggffffffffrfffffffffffffffffffffffffggggggmmmrmmgggggggggggggggggggggggggggggggggrggggg~~~~~~~~~~~~~~~~ggggffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrggggggggggfffffffffrfffffffffffffffffffffffffggggggmmmrmmgggggggggggggggggggggggggggggffffrggggg~~~~~~~~~~~~~~~~gggfffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggmmmmmmggggggggggggggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggggffffffffffrfffffffffffffffffffffffffgggggggmmnmmmgggggggggggggggggggggggggfffffffrffffg~~~~~~~~~~~~~~~~ggffffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggmmmmmmgggfffffffgggggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrggggggggfffffffffffrfffffffffffffffffffffffffggggggggmmmmmmgggggggggggggggggggggggffffffffrfffff~~~~~~~~~~~~~~~~gfffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggggmmmmmmffffffffffffggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrgggggggffffffffffffrfffffffffffffffffffffffffgggggggggmmmmmgggggggggggggggggggggffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffnfffffffffffffffffffffgggggggggggggggggggggggggggggggmmmmmfffffffffffffffgggggggggggggggggggggf~~~~~~~~",
+    "~~~~~~~~gggggrgggggggggrggggggfffffffffffffrffffffffffffffffffffffffffggggggggmmmmmmgggggggggggggggggggfffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggggmmmmmmffffffffffffffffgggggggggggggggggfff~~~~~~~~",
+    "~~~~~~~~ffgggrgggggggggrggggfffffffffffffffrffffffffffffffffffffffffffgggggggggmmmmmmgggggggggggggggggffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggggmmmmmmffffffffffffffffffgggggggggggggffff~~~~~~~~",
+    "~~~~~~~~ffffgrgggggggggrgggffffffffffffffffrffffffffffffffffffffffffffggggggggggmmmmmmgggggggggggggggfffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggggffmmmmmmffffffffffffffffffffgggggggfffffff~~~~~~~~",
+    "~~~~~~~~fffffrfggggggggngffffffffffffffffffrffffffffffffffffffffffffffggggggggggmmmmmmgggggggggggggggfffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggfffmmmmmmffffffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrffffgggggffffffffffffffffffffrffffffffffffffffffffffffffgggggggggggmmmmmmgggggggggggggffffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggffffmmmmmmfffffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrffffffffffffffffffffffffffggggggggggggmmmmmmggggggggggggffffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggffffffmmmmmmffffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffffffgggggggggggggmmmmmmgggggggggggfffffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggffffffmmmmmmffffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffffffggggggggggggggmmmmmmggggggggggfffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggffffffffmmmmmmfffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffffffgggggggggggggggmmmmmmggggggggffffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggfffffffffmmmmmmffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffffffggggggggggggggggmmmmmggggggggffffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggffffffffffmmmmmffffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffffffggggggggggggggggmmmmmmgggggggffffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggfffffffffffmmmmmmfffffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrffffffffffffffffffffffffggggggggggggggggggmmmmmmgggggfffffffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggffffffffffffmmmmmmfffffffnffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrffffffffffffffffffffffffgggggggggggggggggggmmmmmmggggfffffffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggfffffffffffffmmmmmmfffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffffggggggggggggggggggggmmmmmmggggfffffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggfffffffffffffmmmmmmfffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffffgggggggggggggggggggggmmmmmmgggfffffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggffffffffffffffmmmmmmffffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffffggggggggggggggggggggggmmmmmmggfffffffffffffffffrfffff~~~~~~~~~~~~~~~~fffffnfffffffffffffffffffffffffffffgggggggggggggggggggggggggggggggfffffffffffffffmmmmmmfffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrffffffffffffffffffffffgggggggggggggggggggggggmmmmmmggfffffffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggggfffffffffffffffmmmmmmfffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffgggggggggggggggggggggggggmmmmmmgfffffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggggffffffffffffffffmmmmmmffffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffffggggggggggggggggggggggggggmmmmmmfffffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggggfffffffffffffffffmmmmmmfffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrffffffffffffffffffffggggggggggggggggggggggggggggmmmmmfffffffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggggggffffffffffffffffffmmmmmfffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrfffffffffffffffffffgggggggggggggggggggggggggggggmmmmmmffffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggggggffffffffffffffffffmmmmmmffffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrffffffffffffffffffgggggggggggggggggggggggggggggggmmmmmmfffffffffffffffrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffffgggggggggggggggggggggggggggggggggggfffffffffffffffffffmmmmmmfffffffffffffffffffff~~~~~~~~",
+    "~~~~~~~~fffffrfffffffffffffffffffffffffffffrffffffffffffffffffggggggggggggggggggggggggggggggggmmmmmmffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggggggggffffffffffffffffffffmmmmmmfffffffffffffffgggff~~~~~~~~",
+    "~~~~~~~~fffffrffffffffffgggggffffffffffffffrfffffffffffffffffgggggggggggggggggggggggggggggggggmmmmmmffffffffffffffrfffff~~~~~~~~~~~~~~~~ffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggggggggffffffffffffffffffffmmmmmmffffffffffffgggggggg~~~~~~~~",
+    "~~~~~~~~fffffrfffffffggggggggggggffffffffffrfffffffffffffffggggggggggggggggggggggggggggggggggggmmmmmmfffffnrrrrrrrrfffff~~~~~~~~~~~~~~~~fffffffffffffffffffffffffffffggggggggggggggggggggggggggggggggggggggffffffffffffffffffffmmmmmmfffffffffgggggggggg~~~~~~~~",
+    "~~~~~~~~fffffrffffffgggggggggggggggffffffffrffffffffffffffggggggggggggggggggggggggggggggggggggggmmmmmmffffffffffffffffff~~~~~~~~~~~~~~~~gffffffffffffffffffffffffffggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffmmmmmmffffffgggggggggggg~~~~~~~~",
+    "~~~~~~~~fffffrffffggggggggggggggggggggfffffrfffffffffffffgggggggggggggggggggggggggggggggggggggggmmmmmmffffffffffffffffff~~~~~~~~~~~~~~~~ggggffffffffffffffffffffffgggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffmmmmmmfffffggggggggggggg~~~~~~~~",
+    "~~~~~~~~fffffrfffggggggggggggggggggggggggffrfffffffffffggggggggggggggggggggggggggggggggggggggggggmmmmmmfffffffffffffffff~~~~~~~~~~~~~~~~ggggggfffffffffffffffffffggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffmmmmmmfffgggggggggggggg~~~~~~~~",
+    "~~~~~~~~fffffrffgggggggggggggggggggggggggggrfffffffffgggggggggggggggggggggggggggggggggggggggggggggmmmmmmffffffffffffffff~~~~~~~~~~~~~~~~gggggggggffffffffffffffggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffffmmmmmmfggggggggggggggg~~~~~~~~",
+    "~~~~~~~~fffffrfggggggggggggggggggggggggggggrgggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggfffffffffgggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffffffgggggggggggggggg~~~~~~~~",
+    "~~~~~~~~fffffrgggggggggggggggggggggggggggggrgggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffffffffggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~fffffrgggggggggggggggggggggggggggggrgggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffffgggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~fffffrgggggggggggggggggggggggggggggrgggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffffgggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ffffgrgggggggggggggggggggggggggggggrgggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffffffggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~fffggrgggggggggggggggggggggggggggggrgggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffff~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffffgggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~fffggrgggggggggggggggggggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffffggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ffgggrgggggggggggggggggggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffnffffffffffgggggggggggggggnggggg~~~~~~~~",
+    "~~~~~~~~fggggrgggggggggggggggggggggggggggggrggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffgggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~fggggrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrnggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggngggffffffffffffffffffffggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffff~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffgggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffg~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffgggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffg~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffgggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffgg~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffgg~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffgg~~~~~~~~~~~~~~~~gggggggggggggggggggggggnggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffgggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffgggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffggg~~~~~~~~~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffgggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggffffffffffffffffffggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffgggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffggg~~~~~~~~~~~~~~~~gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffgggggggggggggggggggggggggg~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  ],
+  "generation_scope": "Phase 3の地形。到達・秒数・単調区間・未使用陸地の合格はPhase 4の別検査で判定。"
+}

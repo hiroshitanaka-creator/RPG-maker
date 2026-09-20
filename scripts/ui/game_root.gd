@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS, WORLD, WORLD_CHOICE, WORLD_ATLAS }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -43,6 +43,9 @@ var save_path: String = "user://save_v1.json"
 var checkpoint_path: String = "user://battle_checkpoint_v1.json"
 var _checkpoint: Dictionary = {}
 var _checkpoint_error: String = ""
+var _world_mover := WorldMovement.new()
+var _world_atlas_texture: ImageTexture
+var _world_motion_ms := -1000
 
 
 func _ready() -> void:
@@ -79,6 +82,21 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if mode == Mode.WORLD and _world_mover.active():
+		var previous := _world_mover.route.find(_world_mover.cell)
+		var moved := _world_mover.advance(delta)
+		for offset in range(1,moved+1):
+			var next: Vector2i = _world_mover.route[previous+offset]
+			var before_cell := WorldExpedition.point(game.overworld_state()["cell"])
+			if not game.move_overworld(next):
+				_world_mover.stop()
+				break
+			var direction := next-before_cell
+			_facing = 1 if direction.x < 0 else 2 if direction.x > 0 else 3 if direction.y < 0 else 0
+			_world_motion_ms = Time.get_ticks_msec()
+			_walk_frame = (_walk_frame+1)%4
+		if moved > 0:
+			_refresh()
 	if game != null and not game.export_state().is_empty():
 		game.play_metrics.update_clock(str(Mode.keys()[mode]).to_lower(),int(_step().get("chapter",6)),get_window().has_focus())
 		game.play_metrics.completed = game.story_complete()
@@ -92,6 +110,9 @@ func _process(delta: float) -> void:
 				_replay.clear()
 			_refresh()
 	if mode == Mode.FIELD and _walk_frame != 0 and Time.get_ticks_msec()-_last_move_ms > 180:
+		_walk_frame = 0
+		_refresh()
+	if mode == Mode.WORLD and not _world_mover.active() and _walk_frame != 0 and Time.get_ticks_msec()-_world_motion_ms > 180:
 		_walk_frame = 0
 		_refresh()
 
@@ -117,6 +138,21 @@ func _input(event: InputEvent) -> void:
 		return
 	if not event is InputEventKey or not event.pressed:
 		return
+	if mode == Mode.WORLD:
+		var movement := Vector2i.ZERO
+		match event.keycode:
+			KEY_LEFT, KEY_A: movement = Vector2i.LEFT
+			KEY_RIGHT, KEY_D: movement = Vector2i.RIGHT
+			KEY_UP, KEY_W: movement = Vector2i.UP
+			KEY_DOWN, KEY_S: movement = Vector2i.DOWN
+			KEY_ENTER, KEY_SPACE, KEY_E:
+				submit_player_action({"kind":"world_interact"})
+				get_viewport().set_input_as_handled()
+				return
+		if movement != Vector2i.ZERO:
+			submit_player_action({"kind":"world_move","dx":movement.x,"dy":movement.y})
+			get_viewport().set_input_as_handled()
+		return
 	if mode == Mode.DIALOGUE and event.keycode in [KEY_ENTER, KEY_SPACE, KEY_E]:
 		submit_player_action({"kind":"confirm"})
 		get_viewport().set_input_as_handled()
@@ -137,6 +173,7 @@ func _input(event: InputEvent) -> void:
 
 
 func start_new_game(party_size: int = 4) -> void:
+	_world_mover.stop()
 	var previous_source: String = game.play_metrics.source
 	if not game.new_game(party_size):
 		_notice = "ゲームを開始できません。" + "\n".join(game.errors)
@@ -188,6 +225,9 @@ func automation_snapshot() -> Dictionary:
 	names[Mode.CHALLENGE] = "challenge"
 	names[Mode.JOB_LORE] = "job_lore"
 	names[Mode.JOURNEYS] = "journeys"
+	names[Mode.WORLD] = "world"
+	names[Mode.WORLD_CHOICE] = "world_choice"
+	names[Mode.WORLD_ATLAS] = "world_atlas"
 	var result := {"mode": "error" if not diagnostics.is_empty() else names[mode],
 		"chapter1_cleared": diagnostics.is_empty() and saved.get("progress_flags", {}).get("chapter1_cleared", false)}
 	result["story_complete"] = diagnostics.is_empty() and game.story_complete()
@@ -195,6 +235,8 @@ func automation_snapshot() -> Dictionary:
 	result["chapter"] = int(_step().get("chapter",6 if game.story_complete() else 1))
 	result["battle_wave"] = game.story_wave_index()
 	result["section"] = game.world_state().get("section","")
+	if game.world_exploration_active():
+		result["overworld"] = game.overworld_state()
 	if not diagnostics.is_empty():
 		result["errors"] = diagnostics
 		return result
@@ -218,6 +260,14 @@ func automation_snapshot() -> Dictionary:
 
 func submit_player_action(action: Dictionary) -> bool:
 	var kind: String = str(action.get("kind", ""))
+	if kind == "open_world" and mode in [Mode.MENU,Mode.FIELD]:
+		if not game.open_world_exploration():
+			return false
+		_world_mover.stop()
+		mode = Mode.WORLD
+		_notice = "全図で行き先を確認できます。入口の上で『調べる』。"
+		_refresh()
+		return true
 	game.play_metrics.touch()
 	if not _replay.is_empty():
 		_replay.clear()
@@ -239,6 +289,8 @@ func submit_player_action(action: Dictionary) -> bool:
 		return true
 	var accepted := false
 	match mode:
+		Mode.WORLD, Mode.WORLD_CHOICE, Mode.WORLD_ATLAS:
+			accepted = _world_action(action)
 		Mode.FIELD:
 			if kind == "move":
 				if Time.get_ticks_msec()-_last_move_ms < 150:
@@ -446,6 +498,10 @@ func submit_player_action(action: Dictionary) -> bool:
 func _request_erosion_confirmation(action: Dictionary) -> bool:
 	var kind: String = action.get("kind", "")
 	var check_start := mode == Mode.FIELD and kind == "field_battle" and not game.field_battle_enemies().is_empty()
+	if mode == Mode.WORLD and kind == "world_interact":
+		var state := game.overworld_state()
+		var event := WorldExpedition.event_at(state)
+		check_start = event.get("kind") == "battle" and not WorldExpedition.done(state,event["id"]) and WorldExpedition.ready(state,event)
 	if mode == Mode.FIELD and kind == "interact":
 		var world := game.world_state()
 		var step := _step()
@@ -473,7 +529,7 @@ func _respond_to_erosion(kind: String) -> bool:
 	var pending := _risk_action.duplicate(true)
 	mode = _risk_return_mode
 	if kind == "confirm_erosion":
-		if mode == Mode.FIELD:
+		if mode in [Mode.FIELD,Mode.WORLD]:
 			_confirmed_erosion_actors.clear()
 		for entry in _risk_preview:
 			if not entry["actor"] in _confirmed_erosion_actors:
@@ -587,6 +643,7 @@ func _battle_action(action: Dictionary) -> bool:
 		if not encounter.can_resolve():
 			return false
 		var story_battle := not game.is_field_battle()
+		var world_battle := game.is_world_battle()
 		_replay_party = game.export_state()["party"].duplicate(true)
 		_replay_enemies = game.current_enemy_ids().duplicate()
 		var events := encounter.resolve_round()
@@ -628,7 +685,7 @@ func _battle_action(action: Dictionary) -> bool:
 					lines.append_array(_step().get("text", []))
 				else:
 					lines.append("%d/%d戦を終えた。帰還・編成・保存を済ませてから、同じ地点で次の敵へ進める。" % [game.story_wave_index(),game.story_wave_count()])
-			_show_dialogue(lines, story_battle and game.story_battle_cleared())
+			_show_dialogue(lines, story_battle and game.story_battle_cleared(), Mode.WORLD if world_battle else Mode.FIELD)
 		elif encounter.phase == BattleState.Phase.DEFEAT:
 			game.play_metrics.mark("battles_lost")
 			game.finish_battle()
@@ -686,6 +743,9 @@ func _refresh() -> void:
 			values.append(str(game.current_erosion(actor["id"])))
 		header.add_child(_label("侵蝕 " + " / ".join(values), 10))
 	match mode:
+		Mode.WORLD: _render_world()
+		Mode.WORLD_CHOICE: _render_world_choice()
+		Mode.WORLD_ATLAS: _render_world_atlas()
 		Mode.MENU: _render_menu()
 		Mode.ASSETS_MISSING: _render_missing()
 		Mode.FIELD: _render_field()
@@ -727,7 +787,11 @@ func _render_menu() -> void:
 	_body.add_child(_label("職を選び、技を組み、自分の姿を決める。", 13))
 	_body.add_child(_label("第1章  閉じた道", 16))
 	if not game.export_state().is_empty():
-		_button(_body, "現在の冒険に戻る", _resume_current)
+		var row := HBoxContainer.new()
+		_body.add_child(row)
+		_button(row, "現在の冒険に戻る", _resume_current)
+		var world_button := _action_button(row,"世界地図へ",{"kind":"open_world"})
+		world_button.disabled = game.world_state().get("location","") not in ChapterOne.TOWNS
 	_button(_body, "新しくはじめる（4人）", start_new_game.bind(4))
 	_button(_body, "新しくはじめる（3人）", start_new_game.bind(3))
 	_button(_body, "手動セーブから再開", _load_save)
@@ -745,6 +809,8 @@ func _render_menu() -> void:
 
 func _resume_current() -> void:
 	mode = Mode.COMPLETE if game.chapter_one_pause() or game.story_complete() else Mode.FIELD
+	if game.world_exploration_active():
+		mode = Mode.WORLD
 	if game.party_defeated():
 		mode = Mode.DEFEAT
 	if not ChapterOne.missing_art().is_empty():
@@ -816,6 +882,223 @@ func _map_clicked(cell: Vector2i) -> void:
 		submit_player_action({"kind":"interact"})
 	else:
 		submit_player_action({"kind":"move", "dx":cell.x-int(current[0]), "dy":cell.y-int(current[1])})
+
+
+func _world_action(action: Dictionary) -> bool:
+	var kind: String = action.get("kind","")
+	var state := game.overworld_state()
+	if not game.world_exploration_active():
+		return false
+	if kind == "back" and mode in [Mode.WORLD_CHOICE,Mode.WORLD_ATLAS]:
+		mode = Mode.WORLD
+		return true
+	if kind == "world_choose" and mode == Mode.WORLD_CHOICE:
+		var result := game.choose_world_option(int(action.get("option",-1)))
+		if result.is_empty():
+			return false
+		_show_dialogue(result["text"],false,Mode.WORLD)
+		return true
+	if kind == "world_target" and mode in [Mode.WORLD,Mode.WORLD_ATLAS] and state["layer"] == "world":
+		var target: Vector2i
+		if action.has("node"):
+			if not WorldExpedition.unlocked(str(action["node"]),state["flags"]):
+				_notice = "まだ入れません。先に道や乗り物を整えてください。"
+				return false
+			target = WorldTerrain.cell_of(str(action["node"]))
+		else:
+			target = Vector2i(int(action.get("x",-1)),int(action.get("y",-1)))
+		var route := WorldTerrain.path(WorldExpedition.point(state["cell"]),target,state["transport"])
+		if route.is_empty():
+			_notice = "現在の移動手段では届きません。船は青い点の船着場で切り替えられます。"
+			_refresh()
+			return false
+		_world_mover.begin(route,state["transport"])
+		mode = Mode.WORLD
+		_notice = "現在地です。『調べる』で入れます。" if route.size() == 1 else "移動中。別の方向キーか『調べる』で進路を変えられます。"
+		return true
+	if mode != Mode.WORLD:
+		return false
+	match kind:
+		"world_move":
+			if Time.get_ticks_msec()-_last_move_ms < 150:
+				return false
+			if _world_mover.active():
+				if _world_mover.route.size() <= 2:
+					return false
+				_world_mover.stop()
+			var delta := Vector2i(int(action.get("dx",0)),int(action.get("dy",0)))
+			if absi(delta.x)+absi(delta.y) != 1:
+				return false
+			var current := WorldExpedition.point(state["cell"])
+			var target := current+delta
+			if not WorldExpedition.walkable(state,target):
+				return false
+			if state["layer"] == "world":
+				var route: Array[Vector2i] = [current,target]
+				_world_mover.begin(route,state["transport"])
+			elif not game.move_overworld(target):
+				return false
+			_last_move_ms = Time.get_ticks_msec()
+			_world_motion_ms = _last_move_ms
+			_facing = 1 if delta.x < 0 else 2 if delta.x > 0 else 3 if delta.y < 0 else 0
+			_walk_frame = (_walk_frame+1)%4
+			_notice = ""
+			return true
+		"world_transport":
+			_world_mover.stop()
+			var changed := game.change_world_transport(str(action.get("transport","")))
+			_notice = "移動手段を切り替えました。" if changed else "解放済みの移動手段を、入口や船着場で選んでください。"
+			return changed
+		"world_interact":
+			_world_mover.stop()
+			var result := game.interact_overworld()
+			match result.get("kind",""):
+				"moved":
+					_notice = ""
+					return true
+				"dialogue", "blocked":
+					_show_dialogue(result["text"],false,Mode.WORLD)
+					return true
+				"choice":
+					mode = Mode.WORLD_CHOICE
+					return true
+				"battle":
+					var before := game.export_state()
+					var encounter := game.start_world_battle()
+					if encounter == null:
+						return false
+					_checkpoint = before
+					_persist_checkpoint()
+					if not _risk_bypass:
+						_confirmed_erosion_actors.clear()
+					mode = Mode.BATTLE
+					_battle_log = ["この区画の魔物が現れた。勝利後は同じ場所から探索を続けられる。"]
+					_add_erosion_lines()
+					_actor = encounter.pending()[0].id
+					_target_action.clear()
+					return true
+		"party":
+			_world_mover.stop()
+			_party_return = Mode.WORLD
+			mode = Mode.PARTY
+			return true
+		"save":
+			_world_mover.stop()
+			var saved := game.save_game(save_path)
+			_notice = "世界地図と拠点の進行を保存しました。" if saved else "保存できませんでした。"
+			return saved
+		"world_atlas":
+			if state["layer"] != "world":
+				return false
+			_world_mover.stop()
+			mode = Mode.WORLD_ATLAS
+			return true
+		"close_world":
+			_world_mover.stop()
+			if not game.close_world_exploration():
+				return false
+			mode = Mode.FIELD
+			_notice = "町の冒険へ戻りました。広域での記録は残っています。"
+			return true
+	return false
+
+
+func _render_world() -> void:
+	var state := game.overworld_state()
+	var place: String = "世界地図" if state["layer"] == "world" else WorldExpedition.current_room(state)["title"]
+	var modes := {"walk":"徒歩","ship":"船","flight":"飛行"}
+	_body.add_child(_label("%s / %s / 訪問%d・依頼%d" % [place,modes[state["transport"]] if state["layer"] == "world" else "徒歩",state["visited"].size(),state["choices"].size()],11))
+	var map := ExpeditionView.new()
+	map.state = state
+	map.members = game.walking_party()
+	map.facing = _facing
+	map.walk_frame = _walk_frame
+	map.custom_minimum_size = Vector2(480,136)
+	map.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	map.cell_clicked.connect(func(cell: Vector2i) -> void:
+		var current := WorldExpedition.point(game.overworld_state()["cell"])
+		if cell == current:
+			submit_player_action({"kind":"world_interact"})
+		elif game.overworld_state()["layer"] == "world":
+			submit_player_action({"kind":"world_target","x":cell.x,"y":cell.y})
+		else:
+			submit_player_action({"kind":"world_move","dx":cell.x-current.x,"dy":cell.y-current.y})
+	)
+	_body.add_child(map)
+	var help := _label("矢印/WASDで移動。入口で調べる。青点は船着場。" if state["layer"] == "world" else "記録と魔物の印を調べて奥へ。左下の出口から戻れます。",9)
+	_body.add_child(help)
+	var row := HBoxContainer.new()
+	_body.add_child(row)
+	_action_button(row,"調べる",{"kind":"world_interact"})
+	_action_button(row,"編成",{"kind":"party"})
+	_action_button(row,"保存",{"kind":"save"})
+	if state["layer"] == "world":
+		_action_button(row,"全図",{"kind":"world_atlas"})
+		for transport in ["walk","ship","flight"]:
+			var button := _action_button(row,modes[transport],{"kind":"world_transport","transport":transport})
+			button.disabled = not WorldExpedition.transport_allowed(state,transport)
+	if WorldExpedition.at_origin(state):
+		_action_button(row,"本編へ",{"kind":"close_world"})
+	_button(row,"メニュー",_to_menu)
+
+
+func _render_world_choice() -> void:
+	var state := game.overworld_state()
+	var event := WorldExpedition.event_at(state)
+	_body.add_child(_label(WorldExpedition.node(state["node"])["name"],15))
+	var question := _label(event.get("question","選択を確かめる"),13)
+	question.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(question)
+	for i in range(event.get("options",[]).size()):
+		_action_button(_body,event["options"][i],{"kind":"world_choose","option":i})
+	_action_button(_body,"周囲を調べ直す",{"kind":"back"})
+
+
+func _render_world_atlas() -> void:
+	var state := game.overworld_state()
+	_body.add_child(_label("世界全図 / 行き先を選ぶと現在の移動手段で進みます",11))
+	var row := HBoxContainer.new()
+	row.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_body.add_child(row)
+	var overview := VBoxContainer.new()
+	row.add_child(overview)
+	if _world_atlas_texture == null:
+		var picture := Image.create(128,128,false,Image.FORMAT_RGB8)
+		var colors := {"~":Color("244f72"),"g":Color("6b8743"),"f":Color("35502c"),"m":Color("77776e"),"r":Color("ad9971"),"b":Color("c8b087"),"n":Color("f2dd94")}
+		for y in range(128):
+			for x in range(128):
+				picture.set_pixel(x,y,colors.get(WorldTerrain.tile(Vector2i(x*2,y*2)),Color.BLACK))
+		for entry in WorldTerrain.data()["nodes"]:
+			var cell := WorldTerrain.cell_of(entry["id"])
+			picture.set_pixel(cell.x/2,cell.y/2,Color("71b7e8") if entry["dock"] else Color("f2dd94"))
+		_world_atlas_texture = ImageTexture.create_from_image(picture)
+	var image := TextureRect.new()
+	var marked := _world_atlas_texture.get_image()
+	var current := WorldExpedition.point(state["cell"])/2
+	for dy in range(-1,2):
+		for dx in range(-1,2):
+			marked.set_pixel(clampi(current.x+dx,0,127),clampi(current.y+dy,0,127),Color("ef7457"))
+	image.texture = ImageTexture.create_from_image(marked)
+	image.custom_minimum_size = Vector2(128,128)
+	overview.add_child(image)
+	overview.add_child(_label("青: 海 / 緑: 森\n灰: 山 / 黄: 拠点\n赤: 現在地\n船は青点の船着場で切替",10))
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	row.add_child(scroll)
+	var list := VBoxContainer.new()
+	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(list)
+	for entry in WorldExpedition.data()["nodes"]:
+		var allowed := WorldExpedition.unlocked(entry["id"],state["flags"])
+		var label: String = entry["name"] + (" / 依頼済" if state["choices"].has(entry["id"]) else "")
+		if not allowed:
+			label += " / 未解放"
+		var button := _action_button(list,label,{"kind":"world_target","node":entry["id"]})
+		button.disabled = not allowed
+		if not allowed:
+			button.tooltip_text = "船修理場で船を整えると向かえます。" if entry["required_transport"] == "ship" else "風見の観測所で飛行の準備をすると向かえます。" if entry["required_transport"] == "flight" else "分け水門で保守道を整えると入れます。"
+	_action_button(_body,"地図を閉じる",{"kind":"back"})
 
 
 func _render_exploration() -> void:
@@ -1274,6 +1557,7 @@ func _render_gate() -> void:
 
 
 func _load_save() -> void:
+	_world_mover.stop()
 	if not game.load_game(save_path):
 		_notice = "読み込めるセーブがありません。"
 		_refresh()
@@ -1286,6 +1570,8 @@ func _load_save() -> void:
 	game.play_metrics.mark("loads")
 	_party_return = Mode.FIELD
 	mode = Mode.COMPLETE if game.chapter_one_pause() or game.story_complete() else Mode.FIELD
+	if game.world_exploration_active():
+		mode = Mode.WORLD
 	if game.party_defeated():
 		mode = Mode.DEFEAT
 	if not ChapterOne.missing_art().is_empty():
@@ -1364,6 +1650,7 @@ func _load_checkpoint() -> bool:
 
 
 func _reset_after_recovery() -> void:
+	_world_mover.stop()
 	_gate_team = []
 	_trail.clear()
 	_replay.clear()
@@ -1373,12 +1660,13 @@ func _reset_after_recovery() -> void:
 	_risk_preview.clear()
 	_risk_bypass = false
 	_party_return = Mode.FIELD
-	mode = Mode.FIELD
+	mode = Mode.WORLD if game.world_exploration_active() else Mode.FIELD
 	_notice = "戦闘前へ戻りました。編成や帰還で立て直してから挑戦できます。"
 	_refresh()
 
 
 func _to_menu() -> void:
+	_world_mover.stop()
 	_replay.clear()
 	mode = Mode.MENU
 	_notice = ""

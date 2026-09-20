@@ -65,8 +65,10 @@ func _initialize() -> void:
 	var data: Dictionary = parser.data
 	no_coordinates(data)
 	check(data.get("version") == 1, "定義版は1")
-	check(data.get("status") == "phase_1_proposal", "提案状態を明示")
-	check(data.get("runtime_connected") == false, "実行時接続済みと扱わない")
+	check(data.get("status") in ["phase_1_proposal","runtime_graph"], "提案と実行時接続の状態を明示")
+	check(data.get("runtime_connected") is bool, "実行時接続は真偽値")
+	if data.get("runtime_connected") == true:
+		check(data.get("status") == "runtime_graph" and FileAccess.file_exists("res://world/terrain.json") and FileAccess.file_exists("res://world/interiors.json"), "接続済み表示には地形と内部データが必要")
 	var regions := indexed(data.get("regions"), "地方")
 	var nodes := indexed(data.get("nodes"), "拠点")
 	var edges := indexed(data.get("edges"), "接続")

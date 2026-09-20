@@ -21,6 +21,7 @@ var _field_battle: bool = false
 var _story_wave_step: int = -1
 var _story_wave_number: int = 0
 var _expedition_battle_stage: int = -1
+var _world_battle_id: String = ""
 
 
 func _init() -> void:
@@ -95,6 +96,7 @@ func new_game(party_size: int = 4) -> bool:
 		"world": {"location": "town", "player_cell": [2, 4], "quest_step": 0}}
 	if LongCampaign.enabled():_state["progress_flags"]["long_campaign_enrolled"]=true
 	_battle = null
+	_world_battle_id = ""
 	_claimed = true
 	_field_battle = false
 	_story_wave_step = -1
@@ -123,6 +125,7 @@ func import_state(value: Dictionary) -> bool:
 	if not _valid_state(normalized):
 		return false
 	_state = normalized.duplicate(true)
+	_world_battle_id = ""
 	_battle = null
 	_claimed = true
 	_field_battle = false
@@ -138,6 +141,10 @@ func _valid_state(value: Dictionary) -> bool:
 	if party.size() < 3 or party.size() > 4 or not value.get("inventory") is Dictionary or not value.get("progress_flags") is Dictionary or not value.get("world") is Dictionary:
 		return false
 	if not _valid_world(value["world"],value["progress_flags"]):
+		return false
+	if value.has("overworld") and not WorldExpedition.valid(value["overworld"]):
+		return false
+	if value.has("overworld") and value["overworld"]["active"] and value["overworld"]["origin"] != value["world"]["location"]:
 		return false
 	for identifier in value["progress_flags"]:
 		if not identifier is String or not value["progress_flags"][identifier] is bool:
@@ -633,6 +640,7 @@ func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
 		actor.tactics = definition.get("tactics",actor.tactics).duplicate(true)
 		foes.append(actor)
 	_battle = BattleState.new(party, foes, catalog, random_seed)
+	_world_battle_id = ""
 	_battle.potions = int(_state["inventory"]["potion"])
 	_battle_enemy_ids.assign(enemy_ids)
 	_claimed = false
@@ -667,6 +675,8 @@ func story_battle_cleared() -> bool:
 
 
 func start_story_battle() -> BattleState:
+	if world_exploration_active():
+		return null
 	var entry := current_story_step()
 	var world := world_state()
 	if _battle != null or is_returning_to_town() or entry.get("kind") != "battle" or world["location"] != entry["location"] or world["player_cell"] != entry["cell"]:
@@ -717,7 +727,11 @@ func current_enemy_ids() -> Array[String]:
 
 
 func is_field_battle() -> bool:
-	return _battle != null and _field_battle
+	return _battle != null and (_field_battle or not _world_battle_id.is_empty())
+
+
+func is_world_battle() -> bool:
+	return _battle != null and not _world_battle_id.is_empty()
 
 
 func finish_battle() -> bool:
@@ -727,6 +741,8 @@ func finish_battle() -> bool:
 	if _field_battle:
 		_state["field_battles"] = int(_state.get("field_battles", 0)) + 1
 	var won: bool = _battle.phase == BattleState.Phase.VICTORY
+	if won and not _world_battle_id.is_empty() and _world_battle_id not in _state["overworld"]["cleared"]:
+		_state["overworld"]["cleared"].append(_world_battle_id)
 	if won and _expedition_battle_stage >= 0:
 		_state["expedition"]["wave"] = _story_wave_number+1
 	elif won and _story_wave_step >= 0:
@@ -778,6 +794,7 @@ func finish_battle() -> bool:
 		_grant_job_unlocks(actor)
 	play_metrics.record_event("battle_finished",battle_result)
 	_battle = null
+	_world_battle_id = ""
 	_field_battle = false
 	_story_wave_step = -1
 	_expedition_battle_stage = -1
@@ -795,6 +812,89 @@ func rest() -> bool:
 
 func world_state() -> Dictionary:
 	return _state.get("world", {}).duplicate(true)
+
+
+func world_exploration_active() -> bool:
+	return bool(_state.get("overworld",{}).get("active",false))
+
+
+func overworld_state() -> Dictionary:
+	return _state.get("overworld",{}).duplicate(true)
+
+
+func open_world_exploration() -> bool:
+	if _state.is_empty() or _battle != null or party_defeated():
+		return false
+	if world_exploration_active():
+		return true
+	var origin: String = world_state()["location"]
+	if origin not in ChapterOne.TOWNS or not _state.get("expedition",{}).is_empty():
+		return false
+	var candidate := WorldExpedition.initial(origin,_state["progress_flags"])
+	if _state.has("overworld"):
+		for key in ["seen","cleared","choices","visited","flags"]:
+			candidate[key] = _state["overworld"][key].duplicate(true)
+		if _state["progress_flags"].get("chapter1_cleared",false):
+			candidate["flags"]["world_causeway_open"] = true
+	if not WorldExpedition.valid(candidate):
+		return false
+	_state["overworld"] = candidate
+	play_metrics.record_event("world_exploration_started",{"origin":origin})
+	return true
+
+
+func close_world_exploration() -> bool:
+	if not world_exploration_active() or _battle != null or not WorldExpedition.at_origin(_state["overworld"]):
+		return false
+	_state["overworld"]["active"] = false
+	return true
+
+
+func move_overworld(cell: Vector2i) -> bool:
+	if not world_exploration_active() or _battle != null or party_defeated():
+		return false
+	var moved := WorldExpedition.move(_state["overworld"],cell)
+	if moved:
+		play_metrics.mark("moved_cells")
+	return moved
+
+
+func change_world_transport(mode: String) -> bool:
+	return world_exploration_active() and _battle == null and WorldExpedition.change_transport(_state["overworld"],mode)
+
+
+func interact_overworld() -> Dictionary:
+	if not world_exploration_active() or _battle != null or party_defeated():
+		return {}
+	var result := WorldExpedition.interact(_state["overworld"])
+	if result.get("kind") == "rest":
+		rest()
+		result["kind"] = "dialogue"
+		result["text"].append("全員のHPとMPが回復しました。")
+	return result
+
+
+func choose_world_option(option: int) -> Dictionary:
+	if not world_exploration_active() or _battle != null:
+		return {}
+	var result := WorldExpedition.choose(_state["overworld"],option)
+	if not result.is_empty():
+		_state["inventory"]["potion"] += result["potions"]
+		play_metrics.record_event("world_site_completed",{"site":_state["overworld"]["node"],"option":option,"grant":result["grant"]})
+	return result
+
+
+func start_world_battle() -> BattleState:
+	if not world_exploration_active() or _battle != null:
+		return null
+	var state: Dictionary = _state["overworld"]
+	var event := WorldExpedition.event_at(state)
+	if event.get("kind") != "battle" or WorldExpedition.done(state,event["id"]) or not WorldExpedition.ready(state,event):
+		return null
+	var encounter := start_battle(event["enemies"],20260921+int(WorldExpedition.node(state["node"])["progression_index"])*10+state["room"])
+	if encounter != null:
+		_world_battle_id = event["id"]
+	return encounter
 
 
 func is_returning_to_town() -> bool:
@@ -822,6 +922,8 @@ func resume_exploration() -> bool:
 
 
 func set_world(location: String, cell: Array, quest_step: int, section: String = "") -> bool:
+	if world_exploration_active():
+		return false
 	if _state.is_empty() or _battle != null or not ChapterOne.TITLES.has(location) or cell.size() != 2:
 		return false
 	var position := Vector2i(int(cell[0]),int(cell[1]))
@@ -1107,6 +1209,8 @@ func gate_mp_cost() -> int:
 
 
 func advance_story_step(team: Array = []) -> bool:
+	if world_exploration_active():
+		return false
 	if not _state.get("expedition",{}).is_empty():
 		return _advance_expedition()
 	if _battle != null or _state.is_empty() or is_returning_to_town():

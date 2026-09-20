@@ -1,0 +1,625 @@
+{
+  "edges_measured": 61,
+  "edges_required": 61,
+  "errors": [],
+  "hashes": {
+    "res://scripts/world/world_movement.gd": "ae151c00e3cec489013e2c255c8b23261a693cb71ac9a45b374d994b8dbd3e78",
+    "res://scripts/world/world_terrain.gd": "e7439abd934c8423b4a61e4356ab89122d9051eaf22c061227a6d3613c0a3aac",
+    "res://world/map_graph.json": "cae607ab53b7b18e49075e1e096c6bab6707b3f9dfe3de9032fee40b7f789009",
+    "res://world/terrain.json": "3498d35e34f7093928c14b44c435ee73536f0404ac2a78144ebd0fa1b36dd78a"
+  },
+  "routes": [
+    {
+      "arrival": [
+        59,
+        13
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_town_waterway",
+      "movement_seconds": 22.0500000000005,
+      "wall_seconds": 22.049181
+    },
+    {
+      "arrival": [
+        114,
+        85
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_waterway_cave",
+      "movement_seconds": 19.0500000000001,
+      "wall_seconds": 19.03946
+    },
+    {
+      "arrival": [
+        51,
+        27
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_cave_gate",
+      "movement_seconds": 18.1500000000003,
+      "wall_seconds": 18.159163
+    },
+    {
+      "arrival": [
+        92,
+        104
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_gate_garden",
+      "movement_seconds": 17.7000000000004,
+      "wall_seconds": 17.71639
+    },
+    {
+      "arrival": [
+        53,
+        19
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_garden_school",
+      "movement_seconds": 18.6000000000004,
+      "wall_seconds": 18.60987
+    },
+    {
+      "arrival": [
+        14,
+        90
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_school_springford",
+      "movement_seconds": 16.5000000000003,
+      "wall_seconds": 16.514292
+    },
+    {
+      "arrival": [
+        99,
+        61
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_springford_causeway_cave",
+      "movement_seconds": 17.1000000000003,
+      "wall_seconds": 17.120749
+    },
+    {
+      "arrival": [
+        22,
+        27
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_causeway_cave_records",
+      "movement_seconds": 16.6500000000003,
+      "wall_seconds": 16.647402
+    },
+    {
+      "arrival": [
+        114,
+        42
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_records_harbor",
+      "movement_seconds": 16.0500000000004,
+      "wall_seconds": 16.07209
+    },
+    {
+      "arrival": [
+        25,
+        17
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_harbor_levee_vault",
+      "movement_seconds": 17.1000000000003,
+      "wall_seconds": 17.128462
+    },
+    {
+      "arrival": [
+        166,
+        109
+      ],
+      "expected_seconds": 40.0,
+      "id": "route_levee_vault_brine_port",
+      "movement_seconds": 34.9500000000011,
+      "wall_seconds": 34.938548
+    },
+    {
+      "arrival": [
+        220,
+        13
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_brine_port_salt_mine",
+      "movement_seconds": 22.5000000000006,
+      "wall_seconds": 22.509981
+    },
+    {
+      "arrival": [
+        240,
+        104
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_salt_mine_nettle_hamlet",
+      "movement_seconds": 16.6500000000003,
+      "wall_seconds": 16.673085
+    },
+    {
+      "arrival": [
+        141,
+        60
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_nettle_hamlet_drowned_store",
+      "movement_seconds": 21.4500000000001,
+      "wall_seconds": 21.447371
+    },
+    {
+      "arrival": [
+        242,
+        39
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_drowned_store_breakwater_ruins",
+      "movement_seconds": 18.3000000000002,
+      "wall_seconds": 18.321976
+    },
+    {
+      "arrival": [
+        114,
+        171
+      ],
+      "expected_seconds": 40.0,
+      "id": "route_breakwater_ruins_mist_market",
+      "movement_seconds": 38.9999999999991,
+      "wall_seconds": 39.026403
+    },
+    {
+      "arrival": [
+        23,
+        200
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_mist_market_reed_library",
+      "movement_seconds": 18.0000000000003,
+      "wall_seconds": 18.007541
+    },
+    {
+      "arrival": [
+        101,
+        170
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_reed_library_kiln_village",
+      "movement_seconds": 16.2000000000004,
+      "wall_seconds": 16.203513
+    },
+    {
+      "arrival": [
+        13,
+        146
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_kiln_village_bell_quarry",
+      "movement_seconds": 16.8000000000003,
+      "wall_seconds": 16.804733
+    },
+    {
+      "arrival": [
+        43,
+        235
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_bell_quarry_windbreak_town",
+      "movement_seconds": 17.8500000000003,
+      "wall_seconds": 17.867362
+    },
+    {
+      "arrival": [
+        189,
+        157
+      ],
+      "expected_seconds": 40.0,
+      "id": "route_windbreak_town_ridgehearth",
+      "movement_seconds": 33.5999999999994,
+      "wall_seconds": 33.584889
+    },
+    {
+      "arrival": [
+        159,
+        242
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_ridgehearth_cloud_forge",
+      "movement_seconds": 17.2500000000003,
+      "wall_seconds": 17.269762
+    },
+    {
+      "arrival": [
+        203,
+        151
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_cloud_forge_wind_tomb",
+      "movement_seconds": 20.2500000000001,
+      "wall_seconds": 20.255217
+    },
+    {
+      "arrival": [
+        242,
+        233
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_wind_tomb_highfield",
+      "movement_seconds": 18.1500000000003,
+      "wall_seconds": 18.149355
+    },
+    {
+      "arrival": [
+        153,
+        196
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_highfield_aerie_ruins",
+      "movement_seconds": 18.9000000000002,
+      "wall_seconds": 18.913263
+    },
+    {
+      "arrival": [
+        207,
+        141
+      ],
+      "expected_seconds": 28.0,
+      "id": "route_aerie_ruins_summit_archive",
+      "movement_seconds": 16.3500000000004,
+      "wall_seconds": 16.343264
+    },
+    {
+      "arrival": [
+        72,
+        73
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_town_river_watch",
+      "movement_seconds": 15.0000000000003,
+      "wall_seconds": 15.019014
+    },
+    {
+      "arrival": [
+        73,
+        81
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_waterway_reed_camp",
+      "movement_seconds": 12.3000000000002,
+      "wall_seconds": 12.323351
+    },
+    {
+      "arrival": [
+        86,
+        49
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_cave_stone_shelter",
+      "movement_seconds": 9.60000000000005,
+      "wall_seconds": 9.622949
+    },
+    {
+      "arrival": [
+        55,
+        91
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_garden_herb_station",
+      "movement_seconds": 7.49999999999998,
+      "wall_seconds": 7.530119
+    },
+    {
+      "arrival": [
+        78,
+        56
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_harbor_toll_post",
+      "movement_seconds": 7.49999999999998,
+      "wall_seconds": 7.488572
+    },
+    {
+      "arrival": [
+        61,
+        27
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_levee_vault_shipyard",
+      "movement_seconds": 6.89999999999998,
+      "wall_seconds": 6.895776
+    },
+    {
+      "arrival": [
+        158,
+        58
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_brine_port_tide_beacon",
+      "movement_seconds": 8.85000000000002,
+      "wall_seconds": 8.844138
+    },
+    {
+      "arrival": [
+        201,
+        72
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_nettle_hamlet_reef_shrine",
+      "movement_seconds": 10.6500000000001,
+      "wall_seconds": 10.646155
+    },
+    {
+      "arrival": [
+        200,
+        81
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_breakwater_ruins_sailors_rest",
+      "movement_seconds": 12.6000000000002,
+      "wall_seconds": 12.613238
+    },
+    {
+      "arrival": [
+        106,
+        221
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_mist_market_lock_station",
+      "movement_seconds": 8.70000000000001,
+      "wall_seconds": 8.730747
+    },
+    {
+      "arrival": [
+        78,
+        194
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_kiln_village_marsh_camp",
+      "movement_seconds": 7.04999999999998,
+      "wall_seconds": 7.051717
+    },
+    {
+      "arrival": [
+        63,
+        178
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_windbreak_town_wind_observatory",
+      "movement_seconds": 11.5500000000002,
+      "wall_seconds": 11.557441
+    },
+    {
+      "arrival": [
+        141,
+        212
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_ridgehearth_cloud_landing",
+      "movement_seconds": 15.4500000000003,
+      "wall_seconds": 15.447161
+    },
+    {
+      "arrival": [
+        216,
+        233
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_cloud_forge_signal_hut",
+      "movement_seconds": 9.90000000000007,
+      "wall_seconds": 9.897147
+    },
+    {
+      "arrival": [
+        154,
+        180
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_cloud_forge_survey_post",
+      "movement_seconds": 10.0500000000001,
+      "wall_seconds": 10.059217
+    },
+    {
+      "arrival": [
+        165,
+        170
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_cloud_forge_high_camp",
+      "movement_seconds": 11.7000000000002,
+      "wall_seconds": 11.716458
+    },
+    {
+      "arrival": [
+        201,
+        235
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_wind_tomb_standing_stone",
+      "movement_seconds": 12.9000000000002,
+      "wall_seconds": 12.889651
+    },
+    {
+      "arrival": [
+        240,
+        174
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_highfield_ridge_well",
+      "movement_seconds": 9.15000000000003,
+      "wall_seconds": 9.155108
+    },
+    {
+      "arrival": [
+        230,
+        141
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_highfield_wayfarer_refuge",
+      "movement_seconds": 15.6000000000004,
+      "wall_seconds": 15.597146
+    },
+    {
+      "arrival": [
+        234,
+        189
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_aerie_ruins_summit_marker",
+      "movement_seconds": 13.2000000000002,
+      "wall_seconds": 13.20929
+    },
+    {
+      "arrival": [
+        227,
+        208
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_aerie_ruins_snow_shelter",
+      "movement_seconds": 12.9000000000002,
+      "wall_seconds": 12.909772
+    },
+    {
+      "arrival": [
+        228,
+        181
+      ],
+      "expected_seconds": 12.0,
+      "id": "route_aerie_ruins_echo_platform",
+      "movement_seconds": 13.5000000000003,
+      "wall_seconds": 13.507419
+    },
+    {
+      "arrival": [
+        13,
+        114
+      ],
+      "expected_seconds": 24.0,
+      "id": "route_cave_town",
+      "movement_seconds": 19.5000000000002,
+      "wall_seconds": 19.509244
+    },
+    {
+      "arrival": [
+        51,
+        27
+      ],
+      "expected_seconds": 24.0,
+      "id": "route_town_gate",
+      "movement_seconds": 18.7500000000002,
+      "wall_seconds": 18.778765
+    },
+    {
+      "arrival": [
+        92,
+        104
+      ],
+      "expected_seconds": 24.0,
+      "id": "route_waterway_garden",
+      "movement_seconds": 18.6000000000002,
+      "wall_seconds": 18.609141
+    },
+    {
+      "arrival": [
+        22,
+        27
+      ],
+      "expected_seconds": 24.0,
+      "id": "route_garden_records",
+      "movement_seconds": 22.05,
+      "wall_seconds": 22.040366
+    },
+    {
+      "arrival": [
+        13,
+        114
+      ],
+      "expected_seconds": 24.0,
+      "id": "route_harbor_town",
+      "movement_seconds": 25.9499999999998,
+      "wall_seconds": 25.938213
+    },
+    {
+      "arrival": [
+        114,
+        42
+      ],
+      "expected_seconds": 32.0,
+      "id": "route_springford_harbor",
+      "movement_seconds": 22.2,
+      "wall_seconds": 22.225384
+    },
+    {
+      "arrival": [
+        242,
+        39
+      ],
+      "expected_seconds": 32.0,
+      "id": "route_brine_port_breakwater_ruins",
+      "movement_seconds": 21.9,
+      "wall_seconds": 21.91135
+    },
+    {
+      "arrival": [
+        114,
+        171
+      ],
+      "expected_seconds": 32.0,
+      "id": "route_nettle_hamlet_mist_market",
+      "movement_seconds": 28.9499999999996,
+      "wall_seconds": 28.979612
+    },
+    {
+      "arrival": [
+        43,
+        235
+      ],
+      "expected_seconds": 32.0,
+      "id": "route_mist_market_windbreak_town",
+      "movement_seconds": 20.2500000000001,
+      "wall_seconds": 20.280398
+    },
+    {
+      "arrival": [
+        242,
+        233
+      ],
+      "expected_seconds": 32.0,
+      "id": "route_ridgehearth_highfield",
+      "movement_seconds": 19.3500000000002,
+      "wall_seconds": 19.348345
+    },
+    {
+      "arrival": [
+        207,
+        141
+      ],
+      "expected_seconds": 32.0,
+      "id": "route_highfield_summit_archive",
+      "movement_seconds": 19.0500000000002,
+      "wall_seconds": 19.057915
+    },
+    {
+      "arrival": [
+        13,
+        114
+      ],
+      "expected_seconds": 40.0,
+      "id": "route_brine_port_town_return",
+      "movement_seconds": 23.7,
+      "wall_seconds": 23.7151
+    },
+    {
+      "arrival": [
+        13,
+        114
+      ],
+      "expected_seconds": 40.0,
+      "id": "route_ridgehearth_town_return",
+      "movement_seconds": 32.8499999999994,
+      "wall_seconds": 32.855157
+    }
+  ],
+  "status": "PASS",
+  "time_source": "monotonic_wall_clock_no_acceleration"
+}

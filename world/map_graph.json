@@ -1,12 +1,13 @@
 {
   "version": 1,
-  "status": "phase_1_proposal",
-  "runtime_connected": false,
+  "status": "runtime_graph",
+  "runtime_connected": true,
   "authority": {
     "approved": "依頼者がPhase 0のA方針とPhase 1への進行を承認。256×256、地方3〜4、町村10〜12、ダンジョン14〜18、小拠点20〜25、徒歩・船・飛行が目標。",
     "proposed": "具体的な4地方・49拠点、新規名称・物語上の役割・推奨レベル・進行順・移動秒数・解放イベントは設計者の提案。既存ID・名称は保持。",
-    "unverified": "Phase 3の地形、Phase 4の実移動、実行時接続、60時間実測は未実施。",
-    "phase_2_scope": "Phase 2の構造検証と帰還経路2本の補修。結果はdocs/verification/world-map-phase2.json。ゲーム本体の保存データ修復や地形上の通行を検証した意味ではない。"
+    "unverified": "60時間の内容量達成・人間による完走実測・主観評価は未検証。",
+    "phase_2_scope": "Phase 2の構造検証と帰還経路2本の補修。結果はdocs/verification/world-map-phase2.json。ゲーム本体の保存データ修復や地形上の通行を検証した意味ではない。",
+    "phase_3_4_scope": "world/terrain.jsonとworld/interiors.jsonをゲーム画面・移動・戦闘・保存へ接続。機械検証結果はdocs/verification/world-terrain.json、world-terrain-realtime.json、world-integration.jsonを参照。人間による試遊ではない。"
   },
   "start_node": "town",
   "completion_node": "summit_archive",

@@ -49,6 +49,31 @@ jobs:
           test "$(grep -c '^MAP_GRAPH_STRUCTURE_PASS:' map-graph-structure.log)" -eq 1
           test "$(grep -c '^MAP_GRAPH_REGRESSION_PASS: cases=16 errors=0' map-graph-regressions.log)" -eq 1
           git diff --exit-code -- docs/verification/world-map-phase2.json
+      - name: 広域地形の再現性・実経路・実時間記録を検査
+        run: |
+          set -o pipefail
+          python tools/build_world_terrain.py
+          python tools/build_world_interiors.py
+          git diff --exit-code -- world/terrain.json world/interiors.json
+          ./godot --headless --path . --script res://tools/check_world_terrain.gd 2>&1 | tee world-terrain.log
+          ./godot --headless --path . --script res://tools/check_world_terrain_boundaries.gd 2>&1 | tee world-terrain-boundaries.log
+          python tools/check_world_realtime_record.py
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" world-terrain.log world-terrain-boundaries.log; then exit 1; fi
+          test "$(grep -c '^WORLD_TERRAIN_PASS:' world-terrain.log)" -eq 1
+          test "$(grep -c '^WORLD_TERRAIN_BOUNDARY_PASS:' world-terrain-boundaries.log)" -eq 1
+          git diff --exit-code -- docs/verification/world-terrain.json docs/verification/world-terrain-boundaries.json
+      - name: 全49拠点の3人・4人通し操作と保存・本番UIを検査
+        run: |
+          set -o pipefail
+          ./godot --headless --path . --script res://tools/check_world_integration.gd 2>&1 | tee world-integration.log
+          ./godot --headless --path . --script res://tools/check_world_integration.gd -- --party=3 2>&1 | tee world-integration-3.log
+          ./godot --headless --path . --script res://tools/check_world_state_boundaries.gd 2>&1 | tee world-state-boundaries.log
+          ./godot --headless --path . --script res://tools/check_world_ui.gd 2>&1 | tee world-ui.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" world-integration.log world-integration-3.log world-state-boundaries.log world-ui.log; then exit 1; fi
+          test "$(grep -c '^WORLD_INTEGRATION_PASS: sites=49 battles=22 saves=72 moved=9194 errors=0' world-integration.log)" -eq 1
+          test "$(grep -c '^WORLD_INTEGRATION_PASS: sites=49 battles=22 saves=72 moved=9194 errors=0' world-integration-3.log)" -eq 1
+          test "$(grep -c '^WORLD_STATE_PASS: inputs=392 accepted=224 rejected=168 malformed=8 recoveries=4 errors=0' world-state-boundaries.log)" -eq 1
+          test "$(grep -c '^WORLD_UI_PASS:' world-ui.log)" -eq 1
       - name: 60時間の目標判定境界・全画面・案内・帰還を検査
         run: |
           set -o pipefail
@@ -118,6 +143,8 @@ jobs:
           path: |
             preplay*.log
             map-graph-*.log
+            world-*.log
+            docs/verification/world-*.json
             docs/verification/world-map-phase2.json
             docs/verification/duration-target-60h.json
             docs/verification/preplay-ui-headless.json
