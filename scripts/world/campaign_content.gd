@@ -42,15 +42,16 @@ static func _integers(value: Variant) -> Variant:
 
 static func circuit(identifier: String) -> Dictionary:
 	data()
-	return _circuits.get(identifier,{})
+	return _circuits[identifier] if _circuits.has(identifier) else LongCampaign.mission(identifier)
 
 
 static func section(identifier: String) -> Dictionary:
 	data()
-	return _sections.get(identifier,{})
+	return _sections[identifier] if _sections.has(identifier) else LongCampaign.room(identifier)
 
 
-static func step(expedition: Dictionary) -> Dictionary:
+static func step(expedition: Dictionary, flags: Dictionary = {}) -> Dictionary:
+	if not LongCampaign.mission(expedition.get("id","")).is_empty():return LongCampaign.step(expedition,flags)
 	var source := circuit(expedition.get("id",""))
 	var at := int(expedition.get("stage",-1))
 	if source.is_empty() or at < 0 or at >= source["steps"].size():
@@ -58,21 +59,23 @@ static func step(expedition: Dictionary) -> Dictionary:
 	return source["steps"][at].duplicate(true)
 
 
-static func pending(state: Dictionary) -> Dictionary:
+static func pending(state: Dictionary, requested: String = "") -> Dictionary:
 	if int(state.get("content_revision",0)) != 1 or not state.get("expedition",{}).is_empty() or not state.get("return_point",{}).is_empty():
 		return {}
 	for source in data()["circuits"]:
 		if state["world"]["quest_step"] == source["trigger_step"] and not state["progress_flags"].get("circuit_"+source["id"]+"_cleared",false):
 			return source
-	return {}
+	return LongCampaign.pending(state,requested)
 
 
-static func is_walkable(identifier: String, cell: Vector2i) -> bool:
+static func is_walkable(identifier: String, cell: Vector2i, flags: Dictionary = {}) -> bool:
+	if not LongCampaign.room(identifier).is_empty():return LongCampaign.is_walkable(identifier,cell,flags)
 	var room := section(identifier)
 	return not room.is_empty() and cell.x >= 0 and cell.y >= 0 and cell.x < 32 and cell.y < 18 and room["layout"][cell.y].substr(cell.x,1) == "."
 
 
-static func walkable_cells(identifier: String) -> Array:
+static func walkable_cells(identifier: String, flags: Dictionary = {}) -> Array:
+	if not LongCampaign.room(identifier).is_empty():return LongCampaign.walkable_cells(identifier,flags)
 	var result: Array = []
 	for y in range(18):
 		for x in range(32):
@@ -87,6 +90,8 @@ static func valid_state(state: Dictionary) -> bool:
 	var current: Variant = state.get("expedition",{})
 	if not current is Dictionary:
 		return false
+	if not LongCampaign.validate_flags(state["progress_flags"],current):return false
+	if not LongCampaign.mission(current.get("id","")).is_empty():return LongCampaign.valid_state(state)
 	for key in state["progress_flags"]:
 		if str(key).begins_with("circuit_") and str(key).ends_with("_cleared") and circuit(str(key).trim_prefix("circuit_").trim_suffix("_cleared")).is_empty():
 			return false

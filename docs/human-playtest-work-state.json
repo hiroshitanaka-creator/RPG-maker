@@ -2,7 +2,7 @@
   "status": "ACTIVE",
   "request": "人間の試しプレイが可能になるまで進めて下さい",
   "target_minutes": 3600,
-  "continuations_started": 0,
+  "continuations_started": 1,
   "max_continuations": 40,
   "max_stall_rounds": 3,
   "current_task": "READY-CONTENT",
@@ -18,8 +18,8 @@
   "ready_for_human_playtest": false,
   "note": "自動継続ターンの開始時に実数を更新する。コンテキスト圧縮や検査呼出しは継続ターンに数えない。人間待ちを理由に独立作業を止めない。",
   "local_verification": {
-    "READY-BATTLE": "PASS_PENDING_CI",
-    "READY-SUPPLY": "PASS_PENDING_CI",
+    "READY-BATTLE": "PASS_CI_a6d00f8",
+    "READY-SUPPLY": "PASS_CI_a6d00f8",
     "AC-01": "PASS",
     "AC-02": "PASS",
     "fixed_policy_within_ten": "11625/12000",
@@ -28,25 +28,27 @@
     "save_differences": 0
   },
   "content_work": {
-    "catalog_scripts": 4,
+    "catalog_scripts": 8,
     "catalog_target_scripts": 80,
     "arc_outlines": 20,
     "compiled_room_definitions": 80,
     "runtime_enabled": false,
-    "gameplay_connected": false,
+    "gameplay_connected": true,
     "structural_verify": "FAIL: 80件の冒険が未完成",
-    "remaining_scripts": 76
+    "remaining_scripts": 72,
+    "connection_verify": "PASS: 2連作それぞれ16経路・96戦、保存復帰、UI両選択"
   },
   "ci": {
-    "commit": "2f55418c1d95a7011b237e3b734157e650174dca",
-    "run_id": 35500668394,
-    "status": "IN_PROGRESS",
-    "previous_failure": "Linuxの戦闘予告の折返しでログ欄が画面外。全幅の予告一覧へ移して修正済み、CIで再確認中。"
+    "commit": "a6d00f822fce128bbe2628ddb5add2dc3a6289cb",
+    "run_id": 35500819176,
+    "status": "SUCCESS",
+    "note": "長編接続の今回の変更は、次のコミットのCIで確認する。"
   },
   "next_actions": [
-    "最新CIを確認し失敗があれば修正する",
-    "長編進行を本番の移動・会話・選択・保存へ接続する",
-    "残る19連作76話を固有の内容で制作する",
-    "全経路・保存・表示を検査し人間試遊前の未達を解消する"
-  ]
+    "現在の長編接続のCIを確認する",
+    "残る18連作72話を固有の内容で制作する",
+    "全80話の依存・分岐・移動・戦闘・保存を検査する",
+    "人間試遊前の未達を解消し、実測と主観だけを分離する"
+  ],
+  "previous_goal_turn": "PROGRESS: 戦闘・補給・保存の実装検証と最初の連作4話、長編の定義処理をcommit/push"
 }

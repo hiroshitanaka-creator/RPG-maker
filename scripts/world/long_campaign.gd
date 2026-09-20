@@ -11,10 +11,21 @@ static func data()->Dictionary:
 	if _source.is_empty() and FileAccess.file_exists(PATH):
 		var parsed: Variant=JSON.parse_string(FileAccess.get_file_as_string(PATH))
 		if parsed is Dictionary:
-			_source=CampaignContent._integers(parsed)
+			_source=_integers(parsed)
 			for mission in _source.get("missions",[]):_missions[mission["id"]]=mission
 			for room in _source.get("rooms",[]):_rooms[room["id"]]=room
 	return _source
+
+static func _integers(value: Variant)->Variant:
+	if value is Dictionary:
+		var result: Dictionary={}
+		for key in value:result[key]=_integers(value[key])
+		return result
+	if value is Array:
+		var result: Array=[]
+		for item in value:result.append(_integers(item))
+		return result
+	return int(value) if value is float and value==floor(value) else value
 
 static func enabled()->bool:
 	return bool(data().get("enabled",false))
@@ -36,7 +47,7 @@ static func choice_flag(identifier: String, option: int)->String:
 static func available(state: Dictionary)->Array[Dictionary]:
 	var result: Array[Dictionary]=[]
 	var flags: Dictionary=state.get("progress_flags",{})
-	if not enabled() or not flags.get("long_campaign_started",false) or not state.get("expedition",{}).is_empty() or not state.get("return_point",{}).is_empty():return result
+	if not enabled() or not flags.get("long_campaign_enrolled",false) or not flags.get("long_campaign_started",false) or not state.get("expedition",{}).is_empty() or not state.get("return_point",{}).is_empty():return result
 	for entry in data().get("missions",[]):
 		if entry["trigger_step"]!=state.get("world",{}).get("quest_step") or flags.get(cleared_flag(entry["id"]),false):continue
 		var ready:=true
@@ -62,35 +73,81 @@ static func step(expedition: Dictionary, flags: Dictionary={})->Dictionary:
 	return result
 
 static func all_cleared(flags: Dictionary)->bool:
-	if data().get("missions",[]).is_empty():return false
+	if data().get("missions",[]).size()!=80:return false
 	for entry in data()["missions"]:
 		if not flags.get(cleared_flag(entry["id"]),false):return false
 	return true
 
-static func is_walkable(identifier: String, cell: Vector2i)->bool:
+static func is_walkable(identifier: String, cell: Vector2i, flags: Dictionary={})->bool:
 	var definition:=room(identifier)
-	return not definition.is_empty() and cell.x>=0 and cell.y>=0 and cell.y<definition["layout"].size() and cell.x<definition["layout"][cell.y].length() and definition["layout"][cell.y].substr(cell.x,1)=="."
+	if definition.is_empty() or cell.x<0 or cell.y<0 or cell.y>=definition["layout"].size() or cell.x>=definition["layout"][cell.y].length():return false
+	if definition["layout"][cell.y].substr(cell.x,1)==".":return true
+	for passage in definition.get("passages",[]):
+		if passage["cell"]==[cell.x,cell.y] and flags.get(passage["flag"],false):return true
+	return false
 
-static func walkable_cells(identifier: String)->Array:
+static func walkable_cells(identifier: String, flags: Dictionary={})->Array:
 	var definition:=room(identifier)
 	var result: Array=[]
 	if definition.is_empty():return result
 	for y in range(definition["layout"].size()):
 		for x in range(definition["layout"][y].length()):
-			if is_walkable(identifier,Vector2i(x,y)):result.append([x,y])
+			if is_walkable(identifier,Vector2i(x,y),flags):result.append([x,y])
 	return result
 
-static func validate_flags(flags: Dictionary)->bool:
+static func validate_flags(flags: Dictionary, active: Dictionary={})->bool:
+	if flags.get("long_campaign_started",false) and (not flags.get("long_campaign_enrolled",false) or not flags.get("chapter1_cleared",false)):return false
+	var known: Dictionary={}
 	for entry in data().get("missions",[]):
+		known[cleared_flag(entry["id"])]=true
 		if flags.get(cleared_flag(entry["id"]),false):
+			if not flags.get("long_campaign_started",false):return false
 			for prerequisite in entry.get("requires",[]):
 				if not flags.get(cleared_flag(prerequisite),false):return false
 		for task in entry["steps"]:
 			if not task.get("choice",false):continue
 			var selected:=0
-			for option in range(task["options"].size()):selected+=1 if flags.get(choice_flag(task["id"],option),false) else 0
+			for option in range(task["options"].size()):
+				var key:=choice_flag(task["id"],option)
+				known[key]=true
+				selected+=1 if flags.get(key,false) else 0
+				var effects: Array=task.get("choice_effects",[])
+				if option<effects.size():
+					for effect in effects[option].get("flags",[]):
+						known[effect]=true
+						if bool(flags.get(effect,false))!=bool(flags.get(key,false)):return false
 			if selected>1 or (flags.get(cleared_flag(entry["id"]),false) and selected!=1):return false
+			if selected>0 and not flags.get(cleared_flag(entry["id"]),false) and active.get("id")!=entry["id"]:return false
+	for key in flags:
+		if str(key).begins_with("journey_") and not known.has(key):return false
 	return true
+
+static func valid_state(state: Dictionary)->bool:
+	var current: Dictionary=state.get("expedition",{})
+	var flags: Dictionary=state["progress_flags"]
+	if not enabled() or not flags.get("long_campaign_started",false) or not validate_flags(flags,current):return false
+	if not current.has_all(["id","stage","wave","origin","solved"]):return false
+	if not current["stage"] is int or not current["wave"] is int or not current["origin"] is Dictionary or not current["solved"] is Array:return false
+	var source:=mission(current["id"])
+	var task:=step(current,flags)
+	if source.is_empty() or task.is_empty() or flags.get(cleared_flag(current["id"]),false):return false
+	for prerequisite in source.get("requires",[]):
+		if not flags.get(cleared_flag(prerequisite),false):return false
+	var base:=StoryCampaign.step(source["trigger_step"])
+	var origin: Dictionary=current["origin"]
+	if origin.get("location")!=base["location"] or origin.get("player_cell")!=base["cell"] or origin.get("quest_step")!=source["trigger_step"] or not str(origin.get("section","")).is_empty():return false
+	var world: Dictionary=state["world"] if state.get("return_point",{}).is_empty() else state["return_point"]
+	if world.get("quest_step")!=source["trigger_step"] or world.get("location")!=task["location"] or world.get("section")!=task["section"]:return false
+	if current["wave"]<0 or current["wave"]>(1 if task["kind"]=="battle" else 0):return false
+	var solved: Array=[]
+	for index in range(source["steps"].size()):
+		var previous: Dictionary=source["steps"][index]
+		if previous["kind"]=="challenge" and index<current["stage"]:solved.append(previous["id"])
+		if not previous.get("choice",false):continue
+		var count:=0
+		for option in range(previous["options"].size()):count+=1 if flags.get(choice_flag(previous["id"],option),false) else 0
+		if count!=(1 if index<current["stage"] else 0):return false
+	return current["solved"]==solved
 
 static func audit(abilities: Dictionary, enemies: Dictionary)->Array[String]:
 	var errors: Array[String]=[]
@@ -99,12 +156,21 @@ static func audit(abilities: Dictionary, enemies: Dictionary)->Array[String]:
 	var room_ids: Dictionary={}
 	var mission_ids: Dictionary={}
 	var step_ids: Dictionary={}
+	var passage_flags: Dictionary={}
 	for area in document.get("rooms",[]):
 		if room_ids.has(area.get("id")):errors.append("区画IDの重複")
 		room_ids[area.get("id")]=true
 		if area.get("location") not in REGIONS or area.get("layout",[]).size()!=18:errors.append("区画の場所または高さが不正")
 		for row in area.get("layout",[]):
 			if not row is String or row.length()!=32:errors.append("区画の幅が不正")
+		var spawn: Array=area.get("spawn",[])
+		if spawn.size()!=2 or not is_walkable(area["id"],Vector2i(spawn[0],spawn[1])):errors.append("区画の開始地点が不正")
+		for passage in area.get("passages",[]):
+			var at: Array=passage.get("cell",[])
+			if at.size()!=2 or at[0]<=0 or at[0]>=31 or at[1]<=0 or at[1]>=17:errors.append("近道の位置が不正");continue
+			if is_walkable(area["id"],Vector2i(at[0],at[1]),{}):errors.append("近道が最初から開いている")
+			if passage_flags.has(passage.get("flag")):errors.append("近道フラグの重複")
+			passage_flags[passage.get("flag")]=true
 	for entry in document.get("missions",[]):
 		if mission_ids.has(entry.get("id")):errors.append("冒険IDの重複")
 		mission_ids[entry.get("id")]=true
@@ -143,8 +209,21 @@ static func audit(abilities: Dictionary, enemies: Dictionary)->Array[String]:
 				if reactive>1:errors.append("高反応の敵を同じ戦闘に複数配置しない")
 			if task.get("kind")=="challenge":
 				if task.get("options",[]).size()<2 or task["options"].size()>3:errors.append("選択肢が2〜3件ではない")
-				if task.get("choice",false):choices+=1
+				if task.get("choice",false):
+					choices+=1
+					var effects: Array=task.get("choice_effects",[])
+					if effects.size()!=task["options"].size():errors.append("選択肢と結果の数が合わない")
+					var unique: Dictionary={}
+					for effect in effects:
+						unique[JSON.stringify(effect)]=true
+						if not BattleCatalog._is_integer(effect.get("potion_bonus",0),0):errors.append("選択の追加補給が不正")
+						for flag in effect.get("flags",[]):
+							if not passage_flags.has(flag):errors.append("選択が未知の近道を開く")
+					if unique.size()<2:errors.append("選択による状態の違いがない")
 				if task.get("answer",-1) not in range(task["options"].size()):errors.append("自動経路の選択肢が無効")
+			for response in task.get("responses",[]):
+				if not step_ids.has(response.get("choice")):errors.append("結果の会話が先行する選択を参照していない")
+				if response.get("variants",[]).size()<2:errors.append("選択結果の会話が不足")
 			for skill in task.get("required_abilities",[]):
 				if not abilities.has(skill):errors.append("未知の職業技")
 		if battles!=6 or choices<1:errors.append("各冒険の戦闘と選択が不足")

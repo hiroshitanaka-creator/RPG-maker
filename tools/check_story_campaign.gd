@@ -224,6 +224,10 @@ func _run() -> void:
 					rounds += 1
 				else:
 					_choose_battle_action(main,input)
+			"journeys":
+				var choices: Array=main.game.long_missions()
+				if not _check(not choices.is_empty(),"選べる依頼がある"):return
+				if not _check(main.submit_player_action({"kind":"begin_journey","id":choices[0]["id"]}),"通常の一覧から依頼を選ぶ"):return
 			"visits":
 				await _capture(main,"visit_order")
 				var first := "teaching" if "--teaching-first" in OS.get_cmdline_user_args() else "reply"

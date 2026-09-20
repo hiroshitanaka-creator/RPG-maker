@@ -1,0 +1,8 @@
+{
+  "kind": "pre_implementation_baseline",
+  "command": "godot --headless --path . --script res://tools/check_long_integration.gd",
+  "exit_code": 1,
+  "parser_error": false,
+  "failure": "本番の長編選択APIがある",
+  "note": "最初の構文エラーの試行は初期FAILに数えず、構文修正後に未実装APIで失敗した実行を記録した。"
+}

@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -187,6 +187,7 @@ func automation_snapshot() -> Dictionary:
 	names[Mode.REVIEW] = "review"
 	names[Mode.CHALLENGE] = "challenge"
 	names[Mode.JOB_LORE] = "job_lore"
+	names[Mode.JOURNEYS] = "journeys"
 	var result := {"mode": "error" if not diagnostics.is_empty() else names[mode],
 		"chapter1_cleared": diagnostics.is_empty() and saved.get("progress_flags", {}).get("chapter1_cleared", false)}
 	result["story_complete"] = diagnostics.is_empty() and game.story_complete()
@@ -424,10 +425,19 @@ func submit_player_action(action: Dictionary) -> bool:
 				var entry := _step()
 				if game.answer_challenge(int(action.get("option",-1))):
 					_notice = ""
-					_show_dialogue([entry["resolution"],"備蓄から回復薬%d個を受け取った。" % entry["reward_potions"]],false)
+					var reward:=int(entry["reward_potions"])
+					if entry.has("choice_effects"):reward+=int(entry["choice_effects"][int(action["option"])].get("potion_bonus",0))
+					_show_dialogue([entry["resolution"],"備蓄から回復薬%d個を受け取った。" % reward],false)
 				else:
 					_notice = "記録に書かれた条件と照らして、もう一度選べます。"
 				accepted = true
+		Mode.JOURNEYS:
+			if kind=="back":
+				mode=Mode.FIELD
+				accepted=true
+			elif kind=="begin_journey":
+				accepted=game.begin_expedition(str(action.get("id","")))
+				if accepted:mode=Mode.FIELD
 	if accepted:
 		_refresh()
 	return accepted
@@ -495,6 +505,9 @@ func _interact() -> bool:
 		return false
 	match step["kind"]:
 		"expedition":
+			if not game.long_missions().is_empty():
+				mode=Mode.JOURNEYS
+				return true
 			return game.begin_expedition(step["expedition_id"])
 		"section_travel", "circuit_complete":
 			return game.advance_story_step()
@@ -507,7 +520,7 @@ func _interact() -> bool:
 				return false
 			if step.get("rest", false):
 				game.rest()
-			_show_dialogue(lines, true, Mode.FIELD, StoryCampaign.event(step.get("event", "")).get("past", false))
+			_show_dialogue(lines, true, Mode.FIELD, bool(step.get("past",false)) or StoryCampaign.event(step.get("event", "")).get("past", false))
 		"travel":
 			return game.advance_story_step()
 		"battle":
@@ -685,6 +698,7 @@ func _refresh() -> void:
 		Mode.EXPLORATION: _render_exploration()
 		Mode.REVIEW: _render_review()
 		Mode.CHALLENGE: _render_challenge()
+		Mode.JOURNEYS: _render_journeys()
 		Mode.JOB_LORE: _render_job_lore()
 		Mode.EROSION_CONFIRMATION: _render_erosion_confirmation()
 		Mode.COMPLETE: _render_complete()
@@ -838,6 +852,21 @@ func _render_exploration() -> void:
 	_body.add_child(row)
 	_action_button(row,"編成・装着を見直す",{"kind":"party"})
 	_action_button(row,"探索へ戻る",{"kind":"back"})
+
+
+func _render_journeys() -> void:
+	_body.add_child(_label("引き受けることを選ぶ",16))
+	var scroll:=ScrollContainer.new()
+	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	_body.add_child(scroll)
+	var choices:=VBoxContainer.new()
+	choices.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	scroll.add_child(choices)
+	for mission in game.long_missions():
+		var button:=_action_button(choices,mission["title"],{"kind":"begin_journey","id":mission["id"]})
+		button.tooltip_text=ChapterOne.TITLES[mission["region"]]
+	_action_button(_body,"今は戻る",{"kind":"back"})
 
 
 func _render_dialogue() -> void:

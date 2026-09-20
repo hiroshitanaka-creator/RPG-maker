@@ -46,6 +46,11 @@ def compile_catalog() -> dict:
             assert episode['id'] == f'{identifier}_{number + 1}', '連作と話のIDが対応していません'
             assert len(episode['scenes']) == 4, '4つの訪問場面が必要です'
             assert all(len(scene) >= 2 and all(isinstance(line, str) and line for line in scene) for scene in episode['scenes'])
+            assert len(episode['choice']['effects']) == len(episode['choice']['options'])
+            affected_room = next(room for room in rooms if room['id'] == room_ids[number])
+            door_y = next(y for y in [4,5,6,7,8,9,10,11,12,13,14,3,2,1,15,16] if affected_room['layout'][y][7] == '#')
+            passage_flag = 'journey_passage_' + episode['id']
+            affected_room.setdefault('passages', []).append({'cell': [7,door_y], 'flag': passage_flag})
             trigger = arc['trigger_step']
             chapter = CHAPTERS[trigger]
             steps = []
@@ -77,8 +82,13 @@ def compile_catalog() -> dict:
                                   text=lines[split:], past=room_number in episode.get('past_scene_indices', [])))
                 if room_number == 2:
                     choice = episode['choice']
+                    effects = [{'flags': [passage_flag] if effect.get('passage') else [],
+                                'potion_bonus': effect.get('potion_bonus', 0)} for effect in choice['effects']]
+                    options = [label + ('（近道を残す）' if effect.get('passage') else '（補給を多く残す）')
+                               for label, effect in zip(choice['options'], choice['effects'])]
                     entry = step('challenge', [26, 14], objective=episode['title'] + 'で引き受けることを選ぶ',
-                                 choice=True, question=choice['question'], options=choice['options'], answer=0,
+                                 choice=True, question=choice['question'], options=options, choice_effects=effects, answer=0,
+                                 record='\n'.join(episode['scenes'][room_number]),
                                  resolution='選んだことを伝えた。この結果は次の場面で確かめられる。',
                                  reward_potions=1, reward_hp_percent=50, reward_mp_percent=50)
                     entry['id'] = choice_id

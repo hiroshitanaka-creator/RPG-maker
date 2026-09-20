@@ -40,7 +40,7 @@ func _draw() -> void:
 	for y in range(rows+1):
 		for x in range(columns+1):
 			var cell := _camera + Vector2i(x,y)
-			var walkable := ExplorationSites.is_walkable(location,cell,progress_flags) if section_id.is_empty() else CampaignContent.is_walkable(section_id,cell)
+			var walkable := ExplorationSites.is_walkable(location,cell,progress_flags) if section_id.is_empty() else CampaignContent.is_walkable(section_id,cell,progress_flags)
 			var index := 0 if walkable else (2 if location == "waterway" else 1)
 			draw_texture_rect_region(_tiles, Rect2(x*32,y*32,32,32), Rect2(index*32,0,32,32))
 	for site in sites:
