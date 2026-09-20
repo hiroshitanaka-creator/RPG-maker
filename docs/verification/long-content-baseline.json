@@ -1,0 +1,13 @@
+{
+  "kind": "pre_implementation_baseline",
+  "command": "godot --headless --path . --script res://tools/check_long_content.gd --log-file .tools/long-content-baseline.log",
+  "exit_code": 1,
+  "status": "FAIL",
+  "parser_error": false,
+  "observed_failures": [
+    "長編の本番データが存在する",
+    "長編の進行処理が存在する"
+  ],
+  "verifier_sha256": "a9142f916908648c5fb9d5f1be4c6100106b99e973a9c25f960fe844f9b9e01e",
+  "base_commit": "7a6ed7b8edd3b003f0e40b80e30058bee6c61699"
+}
