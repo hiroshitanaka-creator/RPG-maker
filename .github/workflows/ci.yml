@@ -73,6 +73,7 @@ jobs:
           set -o pipefail
           python tools/build_long_campaign.py
           git diff --exit-code -- data/long_campaign_v1.json docs/long-campaign-clue-ledger.md
+          ./godot --headless --path . --script res://tools/check_long_geometry.gd 2>&1 | tee long-geometry.log
           ./godot --headless --path . --script res://tools/check_long_integration.gd 2>&1 | tee long-integration.log
           ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=w_flute 2>&1 | tee -a long-integration.log
           ./godot --headless --path . --script res://tools/check_long_integration.gd -- --arc=c_lamp 2>&1 | tee -a long-integration.log
@@ -84,10 +85,11 @@ jobs:
           ./godot --headless --path . --script res://tools/check_long_clues.gd 2>&1 | tee long-clues.log
           ./godot --headless --path . --script res://tools/check_long_ui.gd 2>&1 | tee long-ui.log
           ./godot --headless --path . --script res://tools/check_long_record.gd 2>&1 | tee long-record.log
-          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" long-integration.log long-ui.log long-record.log long-past.log long-clues.log; then exit 1; fi
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" long-integration.log long-ui.log long-record.log long-past.log long-clues.log long-geometry.log; then exit 1; fi
           test "$(grep -c '^LONG_INTEGRATION_PASS:' long-integration.log)" -eq 7
           test "$(grep -c '^LONG_PAST_PASS:' long-past.log)" -eq 1
           test "$(grep -c '^LONG_CLUES_PASS:' long-clues.log)" -eq 1
+          test "$(grep -c '^LONG_GEOMETRY_PASS:' long-geometry.log)" -eq 1
           test "$(grep -c '^LONG_UI_PASS:' long-ui.log)" -eq 1
           test "$(grep -c '^LONG_RECORD_PASS:' long-record.log)" -eq 1
           # 全80話のcheck_long_contentは制作中。上の部分検査を全体完成の証拠にはしない。
@@ -118,8 +120,10 @@ jobs:
             long-record.log
             long-past.log
             long-clues.log
+            long-geometry.log
             docs/verification/long-ui.json
             docs/verification/long-clues-current.json
+            docs/verification/long-geometry-current.json
             docs/verification/long-integration-*.json
 
   assets:

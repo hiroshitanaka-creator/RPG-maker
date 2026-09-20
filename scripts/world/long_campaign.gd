@@ -6,6 +6,7 @@ const REGIONS: Array[String]=["waterway","cave","school","records","gate"]
 static var _source: Dictionary={}
 static var _missions: Dictionary={}
 static var _rooms: Dictionary={}
+static var _audit_connectivity: Dictionary={}
 
 static func data()->Dictionary:
 	if _source.is_empty() and FileAccess.file_exists(PATH):
@@ -265,13 +266,34 @@ static func audit(abilities: Dictionary, enemies: Dictionary)->Array[String]:
 	return errors
 
 static func _reachable(identifier: String, origin: Array, target: Array)->bool:
-	var queue: Array=[origin]
-	var seen: Dictionary={str(origin):true}
-	var at:=0
-	while at<queue.size():
-		var current: Array=queue[at];at+=1
-		if current==target:return true
-		for delta in [[1,0],[-1,0],[0,1],[0,-1]]:
-			var next: Array=[current[0]+delta[0],current[1]+delta[1]]
-			if not seen.has(str(next)) and is_walkable(identifier,Vector2i(next[0],next[1])):seen[str(next)]=true;queue.append(next)
-	return false
+	if origin.size()!=2 or target.size()!=2:return false
+	for coordinate in origin+target:
+		if not BattleCatalog._is_integer(coordinate,0):return false
+	var start:=Vector2i(origin[0],origin[1])
+	var finish:=Vector2i(target[0],target[1])
+	if not is_walkable(identifier,start) or not is_walkable(identifier,finish):return false
+	var groups:=_closed_components(identifier)
+	return groups.get(start,-1)==groups.get(finish,-2)
+
+static func _closed_components(identifier: String)->Dictionary:
+	var layout: Array=room(identifier)["layout"]
+	var previous: Dictionary=_audit_connectivity.get(identifier,{})
+	if not previous.is_empty() and previous["layout"]==layout:return previous["groups"]
+	# 定義監査では、開通前の地形でつながる領域を調べる。地形配列が一致する時だけ再利用する。
+	var groups: Dictionary={}
+	var number:=0
+	for y in range(layout.size()):
+		for x in range(layout[y].length()):
+			var start:=Vector2i(x,y)
+			if groups.has(start) or not is_walkable(identifier,start):continue
+			number+=1
+			groups[start]=number
+			var queue: Array[Vector2i]=[start]
+			var at:=0
+			while at<queue.size():
+				var cell:=queue[at];at+=1
+				for delta in [Vector2i.RIGHT,Vector2i.DOWN,Vector2i.LEFT,Vector2i.UP]:
+					var next: Vector2i=cell+delta
+					if not groups.has(next) and is_walkable(identifier,next):groups[next]=number;queue.append(next)
+	_audit_connectivity[identifier]={"layout":layout.duplicate(),"groups":groups}
+	return groups
