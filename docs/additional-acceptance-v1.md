@@ -1,6 +1,8 @@
 # v1の追加受入条件
 
-2026年9月20日の更新: [戦闘と補給の検査](battle-and-supply-20260920.md)でAC-01・AC-02、固定方針T07、保存714状態を確認した。旧結果は履歴として残す。測定入力・元の勝率検査コマンド・保護テストは変更せず、追加条件をCIにも接続した。60時間の内容制作は未完了で、継続中。
+2026年9月21日の最新結果: 固定した12ケース×1,000試行の勝率は41.5〜59.2%、10ターン以内の終了は11,625／12,000。AC-01・AC-02はPASS。AC-03も広域を加えた718状態で不一致0件。全体の記録は [長編の実装記録](long-campaign-finish.md) を参照。以下の初回FAILを最新値と混同しない。
+
+2026年9月20日の更新: [戦闘と補給の検査](battle-and-supply-20260920.md)でAC-01・AC-02、固定方針T07、保存714状態を確認した。旧結果は履歴として残す。測定入力・元の勝率検査コマンド・保護テストは変更せず、追加条件をCIにも接続した。これは当日の結果。長編の最新結果は [実装記録](long-campaign-finish.md) を参照。
 
 2026年9月20日、依頼者の明示指示により次の3条件を追加した。条件文の`godot –headless`は、実行可能なCLI表記`godot --headless`へ統一した。数値・判定内容は変更していない。
 
@@ -23,7 +25,7 @@
 - AC-03は実際の保存ファイルを別のゲームインスタンスで読む。比較対象の削除、比較前の型変換や配列ソートで差分を消さない。JSON本文の表記ではなく、保存直前とロード後のGDScriptの状態・型を比較する。
 - 勝率・終了率・保存一致を、戦闘バランスの適切さや動作の自然さの主観評価へ置き換えない。
 
-## 検証入力と現在の状態
+## 初回の暫定入力による測定履歴
 
 | ID | 固定済み | 検証の前に必要なもの | 実行状態 |
 |---|---|---|---|
@@ -42,7 +44,7 @@ godot --headless --path . --script res://tools/check_save_complete.gd -- --autom
 godot --headless --path . --script res://tools/check_save_complete.gd -- --three-member-party --teaching-first --automated-playtest
 ```
 
-戦闘検査は、閾値未達なら終了1、実行不備なら終了2。終了1の結果をCI成功や受入成功へ変換しない。現在のCIには保存の完全往復を追加し、暫定入力で未達の戦闘勝率は独立した未達として公開する。
+戦闘検査は、閾値未達なら終了1、実行不備なら終了2。終了1の結果をCI成功や受入成功へ変換しない。初回測定時点では勝率が未達だった。その後の修正と最新のCI結果は冒頭の記録を参照する。
 
 ## AC-03の往復保存対象一覧
 
@@ -53,6 +55,8 @@ godot --headless --path . --script res://tools/check_save_complete.gd -- --three
 | 進行の基本情報 | `format_version`、`leader_id`、`content_revision` |
 | パーティ | `party`の人数・順序、各人の`id`、`name`、`job_id`、`last_human_job`、`jp`の全職、`mastered_jobs`、`learned_abilities`、`equipped_abilities`、`unlocked_jobs`、`monster_form`、`erosion`、`irreversible`、`hp`、`max_hp`、`mp`、`max_mp` |
 | 所持品・進行フラグ | `inventory`の全項目、`progress_flags`の全項目。章・装着枠・回収の設置／回収・イベント・設備・補給箱・点検完了を含む |
+| 長編 | `progress_flags`の参加・開始・80話完了・観察・装置・支援・判断・近道の全項目、`expedition`の現在話・段階・戦闘・解答、既読段階から復元する手帳 |
+| 広域探索 | 条件付きの`overworld`。`active`、`origin`、`layer`、`cell`、`world_cell`、`transport`、`node`、`room`、`flags`、`seen`、`cleared`、`choices`、`visited`のキー・型・値・配列順序 |
 | 探索位置 | `world`の`location`、`player_cell`、`quest_step`、存在する場合の`section` |
 | 任意戦闘・帰還 | `field_battles`、`return_point`の空／非空と全項目 |
 | 物語の途中状態 | `story_battle`の空／非空と`step`・`cleared`、存在する場合の`story_task`の`id`・`step`、`gate_team`の担当者と順序 |
@@ -69,4 +73,8 @@ godot --headless --path . --script res://tools/check_save_complete.gd -- --three
 
 追加受入条件の文書登録は済んでいるが、`.scope-lock/spec.lock.json`に自動実行される要件として登録した状態ではない。既存R-01〜R-08のdone_when・verify・保護ファイルは維持する。元の凍結入力を保存した`docs/scope-lock-input.json`も書き換えない。
 
-専用検査と暫定入力を用意し、実行結果を個別に記録する。scope-lockへの正式追加は未実施であり、既存8件のPASSだけでは追加条件の全達成にならない。特にAC-01は暫定入力で未達のまま保持する。
+専用検査と暫定入力を用意し、実行結果を個別に記録する。scope-lockへの正式追加は未実施であり、既存8件のPASSだけでは追加条件の全達成にならない。初回のAC-01のFAILは履歴として保持する。追加条件の正式scope-lock登録と、CIでの専用検査実行を区別する。
+
+## 2026年9月21日の保存網羅
+
+広域を開く・閉じる実状態を追加し、3人・4人各359状態、計718状態で不一致0件。新規の長編完走4経路でも各1,780回、計7,120回の保存と別インスタンスへのロードを行い、不一致0件を確認した。保存対象の追加を理由に既存のキー・型・値・配列順序の比較を外していない。証拠は `docs/verification/save-complete-3.json`、`save-complete-4.json`、`long-full-ci.json`。

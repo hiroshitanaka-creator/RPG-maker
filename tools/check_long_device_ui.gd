@@ -45,6 +45,29 @@ func _run() -> void:
 				if picker != null:
 					picker.select(1 if support_enabled else 0)
 					picker.item_selected.emit(1 if support_enabled else 0)
+				if mission["id"]=="w_ferry_1" and support_enabled:
+					main.submit_player_action({"kind":"party"})
+					var removed := false
+					for button in main.find_children("*","Button",true,false):
+						if button.text==str(main.game.abilities["firm_guard"]["name"])+"を外す":
+							button.pressed.emit()
+							removed=true
+							break
+					check(removed,"選んだ支援技を実際のボタンで外す")
+					main.submit_player_action({"kind":"back"})
+					check(main._long_support_actor=="","支援条件が消えたら表示と内部選択の両方を手動へ戻す")
+					main.submit_player_action({"kind":"party"})
+					for button in main.find_children("*","Button",true,false):
+						if button.text=="装着":
+							button.pressed.emit()
+							break
+					main.submit_player_action({"kind":"back"})
+					for child in main._body.get_children():
+						if child is OptionButton:picker=child
+					check(picker.item_count>=2,"再装着後に支援担当を再び選べる")
+					if picker.item_count>=2:
+						picker.select(1)
+						picker.item_selected.emit(1)
 				before = main.game.export_state()
 				main.submit_player_action({"kind":"long_device_answer","option":(activity["answer"]+1)%3})
 				check(main.game.export_state()==before,"誤操作の画面入力でMPと進行を失わない")

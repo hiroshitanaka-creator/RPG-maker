@@ -1,0 +1,514 @@
+{
+  "status": "PASS",
+  "ci_run": 35545306055,
+  "tested_commit": "a5a9ec6821bdeb038de247448bf87558850f428c",
+  "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/35545306055",
+  "scope": "成功したlong-branches 4ジョブの結果。新規完走や人間実測とは別。各局所入力は初期職一度マスター、以後は実戦闘のJP、公開HPを使った標的選択、通常の帰還・補給。",
+  "arcs": 20,
+  "cases": 320,
+  "battles": 1920,
+  "save_roundtrips": 6080,
+  "records": [
+    {
+      "arc": "c_lamp",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 21.771,
+      "failures": [],
+      "moved": 4224,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "w_ferry",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 24.801,
+      "failures": [],
+      "moved": 3724,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "w_flute",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 21.763,
+      "failures": [],
+      "moved": 3748,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "w_permit",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 21.473,
+      "failures": [],
+      "moved": 3648,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "w_seeds",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 21.376,
+      "failures": [],
+      "moved": 3524,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "c_letters",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 23.006,
+      "failures": [],
+      "moved": 3556,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "c_shelter",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.246,
+      "failures": [],
+      "moved": 3728,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "c_statues",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.573,
+      "failures": [],
+      "moved": 3708,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "s_dummy",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 19.927,
+      "failures": [],
+      "moved": 3708,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "s_garden",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.12,
+      "failures": [],
+      "moved": 3248,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "r_debt",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.448,
+      "failures": [],
+      "moved": 3356,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "r_ink",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.473,
+      "failures": [],
+      "moved": 3256,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "r_keys",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.201,
+      "failures": [],
+      "moved": 3392,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "s_masks",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.838,
+      "failures": [],
+      "moved": 3372,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "s_rival",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 22.151,
+      "failures": [],
+      "moved": 3888,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "g_banners",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.767,
+      "failures": [],
+      "moved": 3340,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "g_return",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.702,
+      "failures": [],
+      "moved": 3584,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "g_tools",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.49,
+      "failures": [],
+      "moved": 3560,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "g_watch",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 20.832,
+      "failures": [],
+      "moved": 3344,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    },
+    {
+      "arc": "r_stars",
+      "battles": 96,
+      "build": {
+        "engine": "4.7.2-stable (official) [ed1daf0bf]",
+        "files": 196,
+        "id": "aae47d18c1dc2c178ea828d0e2e0e5b2d1fd44fa612cf97a9a0446678edfd6ff",
+        "version": 1
+      },
+      "cases": 16,
+      "catalog_sha256": "b6bf7562dd021f39f39e0aa1a07356d1ce6c8573a50e76456bcea797ec7fd41d",
+      "check_sha256": {
+        "tools/check_battle_acceptance.gd": "1cb461cba622882d55f84f3e6bfdd9c74b6aa17bea34424da3a1971ea91f2383",
+        "tools/check_long_integration.gd": "d1f60bc2f126fddec616fc5c8e033f511eaad0aeac0da55ca2ba7398ccc083d7",
+        "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+        "tools/long_play_driver.gd": "08215730d29b13c3711b44bd27e36dd7727b94ec0a118856665af4b54d799038",
+        "tools/save_state_comparison.gd": "64cc975d6a46db4255c05d0790402355aa671d1c30c0fb8e7fb396b0d7eb2355"
+      },
+      "elapsed_seconds": 22.987,
+      "failures": [],
+      "moved": 3852,
+      "save_roundtrips": 304,
+      "scope": "対象章の入口からの部分通し。全80話の完走や人間の所要時間ではない。",
+      "status": "PASS"
+    }
+  ],
+  "human_duration": "NOT_RUN"
+}
