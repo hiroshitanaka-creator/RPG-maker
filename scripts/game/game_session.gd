@@ -1535,7 +1535,7 @@ func load_game(path: String) -> bool:
 	if not metrics.restore(restored_metrics):return false
 	for field in restored_metrics:
 		if field != "version":metrics.set(field,restored_metrics[field])
-	if SavedValueTypes.describe(metrics.snapshot()) != SavedValueTypes.describe(restored_metrics):return false
+	if not SavedValueTypes.same_types(metrics.snapshot(),restored_metrics):return false
 	if _archive != null and _archive.identifier != record_id:
 		close_recording()
 	else:

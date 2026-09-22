@@ -7,6 +7,11 @@ func check(value: bool, message: String) -> void:
 	if not value:failures.append(message)
 
 func _initialize() -> void:
+	var typed: Array[int]=[1,2]
+	check(SavedValueTypes.same_types({"nested":[typed,1.0]},{"nested":[typed.duplicate(),2.0]}),"値と区別して同じ型構造を照合")
+	check(not SavedValueTypes.same_types({"nested":[typed,1.0]},{"nested":[[1,2],1.0]}),"型付き配列を通常配列へ置換した差を検出")
+	check(not SavedValueTypes.same_types({"nested":[typed,1.0]},{"nested":[typed,1]}),"深い位置の小数を整数へ置換した差を検出")
+	check(not SavedValueTypes.same_types({"nested":[1]},{"other":[1]}),"同じ型でもキー欠落を検出")
 	var game := GameSession.new()
 	game.new_game(4)
 	game.play_metrics.set_source("automated")

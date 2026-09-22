@@ -3,6 +3,19 @@ extends RefCounted
 
 const ARRAY_TYPES := [TYPE_BOOL,TYPE_INT,TYPE_FLOAT,TYPE_STRING,TYPE_DICTIONARY,TYPE_ARRAY]
 
+# 読戻しの型照合では、全項目のパス一覧を2回作らず、同じ位置を直接比較する。
+static func same_types(left: Variant,right: Variant) -> bool:
+	if typeof(left)!=typeof(right):return false
+	if left is Dictionary:
+		if left.is_typed()!=right.is_typed() or left.size()!=right.size():return false
+		for key in left:
+			if not right.has(key) or not same_types(left[key],right[key]):return false
+	elif left is Array:
+		if left.is_typed()!=right.is_typed() or left.get_typed_builtin()!=right.get_typed_builtin() or left.size()!=right.size():return false
+		for index in range(left.size()):
+			if not same_types(left[index],right[index]):return false
+	return true
+
 # JSONだけでは区別できない型情報を値とは別に保存する。
 static func describe(value: Variant) -> Dictionary:
 	var result := {"version":1,"arrays":[],"floats":[],"errors":[]}
