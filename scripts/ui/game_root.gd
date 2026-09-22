@@ -1336,7 +1336,7 @@ func _render_battle() -> void:
 			var definition: Dictionary = game.abilities[identifier]
 			if definition["kind"]=="passive":continue
 			var button := _button(commands, "%s %dMP" % [definition["name"], encounter.effects.cost(actor,definition)], _choose_target.bind("ability", identifier))
-			button.tooltip_text = game.describe_ability(identifier)
+			button.tooltip_text = game.describe_ability(identifier,actor.id)
 			button.disabled = encounter.targets_for(_actor, BattleAction.Kind.ABILITY, identifier).is_empty()
 		var potion := _button(commands, "回復薬", _choose_target.bind("potion", ""))
 		potion.tooltip_text = "HPを%d回復します。MP回復・蘇生の効果はありません。" % game.catalog.potion_healing
@@ -1442,7 +1442,7 @@ func _render_party() -> void:
 	_body.add_child(slots)
 	for identifier in actor["equipped_abilities"]:
 		var remove := _button(slots, game.abilities[identifier]["name"] + "を外す", _unequip.bind(actor["id"], identifier))
-		remove.tooltip_text = game.describe_ability(identifier)
+		remove.tooltip_text = game.describe_ability(identifier,actor["id"])
 	var skills := OptionButton.new()
 	for identifier in game.available_abilities(actor["id"]):
 		if not identifier in actor["equipped_abilities"]:
@@ -1457,11 +1457,11 @@ func _render_party() -> void:
 			_notice = "装着しました。" if game.equip_ability(actor["id"], skills.get_item_metadata(skills.selected)) else "装着枠または習得状態を確認してください。"
 			_refresh())
 	equip.disabled = skills.item_count == 0
-	var skill_details := _label("習得した技をここで装着できます。" if skills.item_count == 0 else game.describe_ability(skills.get_item_metadata(skills.selected)), 10)
+	var skill_details := _label("習得した技をここで装着できます。" if skills.item_count == 0 else game.describe_ability(skills.get_item_metadata(skills.selected),actor["id"]), 10)
 	skill_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(skill_details)
 	skills.item_selected.connect(func(index: int) -> void:
-		skill_details.text = game.describe_ability(skills.get_item_metadata(index)))
+		skill_details.text = game.describe_ability(skills.get_item_metadata(index),actor["id"]))
 	var current := game.effective_stats(actor["id"])
 	_body.add_child(_label("HP%d/%d MP%d/%d\n攻撃%d 防御%d 魔力%d 魔防%d 速さ%d" % [actor["hp"],actor["max_hp"],actor["mp"],actor["max_mp"],current["attack"],current["defense"],current["magic"],current["resistance"],current["speed"]], 11))
 	if not str(actor["monster_form"]).is_empty() or int(actor["erosion"]) > 0:

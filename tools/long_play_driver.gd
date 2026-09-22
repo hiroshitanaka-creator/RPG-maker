@@ -84,9 +84,13 @@ func field_task(game: GameSession, support: bool) -> bool:
 
 func prepare(game: GameSession, train_jobs: bool) -> void:
 	var base_jobs := ["warrior","martial_artist","priest","mage","thief"]
+	var boss: bool=game._integration_reward_kind()=="boss"
+	var battle_jobs: Array=["warrior","martial_artist","priest","mage"]
 	var index := 0
 	for actor in game.export_state()["party"]:
-		if train_jobs and actor["job_id"] in actor["mastered_jobs"]:
+		if boss:
+			check(game.choose_job(actor["id"],battle_jobs[index]),"大きな戦闘の前に習得を保持して担当職へ組み替える")
+		elif train_jobs and actor["job_id"] in actor["mastered_jobs"]:
 			var next_job: String = base_jobs[index]
 			for offset in range(base_jobs.size()):
 				var job: String = base_jobs[(index+offset)%base_jobs.size()]

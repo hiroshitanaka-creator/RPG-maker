@@ -1,0 +1,11 @@
+{
+  "status": "FAIL",
+  "exit_code": 1,
+  "command": "godot --headless --path . --script res://tools/check_integrated_combat.gd",
+  "scope": "敵機構を通常の行動選択へ接続する修正前の作業ツリーで再現。基礎関数への直接呼出しを本番接続の証拠にしない。",
+  "failures": [
+    "本番の予告で前半は物理行動",
+    "本番の敵行動選択が反射場を準備する",
+    "敵自身が実際に維持装置を生成する"
+  ]
+}

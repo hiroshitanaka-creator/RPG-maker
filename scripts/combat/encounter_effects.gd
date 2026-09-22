@@ -62,14 +62,7 @@ func _make_device(id: String, hp: int, label: String) -> void:
 	b.actors.append(device)
 
 func cost(actor: Combatant, ability: Dictionary) -> int:
-	var amount: int = int(ability["cost"])
-	if amount==0:return 0
-	if amount>=4:
-		for tag in ability.get("tags",[]):
-			if tag in actor.affinities:
-				amount-=1
-				break
-	return amount+actor.form_mp_add
+	return IntegratedProgression.ability_cost(ability,actor.affinities,actor.form_mp_add)
 
 func validate(action: BattleAction) -> String:
 	var b = _battle.get_ref()

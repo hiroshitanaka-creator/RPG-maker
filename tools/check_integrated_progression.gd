@@ -20,6 +20,21 @@ func fight(game: GameSession, skill: String="") -> void:
 	check(b.phase==BattleState.Phase.VICTORY and game.finish_battle(),"勝利と実報酬を反映")
 func _initialize() -> void:
 	var game:=GameSession.new()
+	game.new_game(4);game.choose_job("pc_01","mage")
+	var cost_state:=game.export_state()
+	cost_state["party"][0]["learned_abilities"]=["conduct"]
+	cost_state["party"][0]["equipped_abilities"]=["conduct"]
+	check(game.import_state(cost_state),"MP表示検査の習得入力")
+	check(game.integrated_preview("pc_01","conduct")["cost"]==3 and "3MP" in game.describe_ability("conduct","pc_01"),"編成の説明と準備画面は得意割引後3MP")
+	var cost_battle:=game.start_battle(["slime"],5)
+	var before_mp:=cost_battle.actor_by_id("pc_01").mp
+	for member in cost_battle.pending():cost_battle.queue_action(BattleAction.skill(member.id,"pc_02","conduct") if member.id=="pc_01" else BattleAction.guard(member.id))
+	cost_battle.resolve_round()
+	check(before_mp-cost_battle.actor_by_id("pc_01").mp==3,"表示と実際の消費が一致")
+	check(IntegratedProgression.ability_cost(game.abilities["conduct"],["enchant"],2)==5,"割引の後に形態MP2を加算")
+	check(IntegratedProgression.ability_cost(game.abilities["restore_mp"],[],2)==0,"無料行動には形態コストを加算しない")
+	check("侵蝕+0.1" in game.describe_ability("rending_claw","pc_01"),"新規ルールの技説明は侵蝕0.1")
+	cases+=1
 	check(game.new_game(4),"新規開始")
 	check(game.export_state()["format_version"]==2,"通常開始の保存形式2")
 	for i in range(4):fight(game)

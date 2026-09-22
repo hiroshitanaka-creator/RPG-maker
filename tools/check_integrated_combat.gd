@@ -135,7 +135,7 @@ func boundaries() -> void:
 	cases+=1
 	b=make_battle("mixed");foe=b.actor_by_id("enemy_01");foe.mp=100
 	skill(b,"pc_01","cover","pc_04");run_round(b)
-	check(b.actor_by_id("pc_04").hp<1000 and b.effects.state("pc_04")["cover"]["used"]==0,"全体魔法は護衛で引き受けない")
+	check(b._events.filter(func(e:Dictionary)->bool:return e["code"]=="damage" and e["actor"]=="enemy_01").size()==4 and b.effects.state("pc_04")["cover"]["used"]==0,"全体魔法は4人全員が対象で護衛を消費しない")
 	cases+=1
 	b=make_battle();b.actor_by_id("pc_01").weapons=[{"attack":0,"tags":["melee"],"on_hit":{"kind":"seal"}}]
 	skill(b,"pc_01","four_strike");run_round(b)
@@ -149,9 +149,13 @@ func boundaries() -> void:
 	check(events.filter(func(e:Dictionary)->bool:return e["code"]=="damage" and e["actor"]=="pc_01").size()==1,"4打への反撃は1回")
 	cases+=1
 	b=make_battle("attrition");foe=b.actor_by_id("enemy_01");foe.mp=100
-	check(b.effects.enemy_action(foe).ability_id=="charge_blow","前半は物理行動")
+	check(b.enemy_intents()[0]["ability"]=="charge_blow","本番の予告で前半は物理行動")
 	run_round(b);run_round(b)
-	check(b.effects.enemy_action(foe).ability_id=="arc_burst","後半は魔法行動へ変わる")
+	check(b.enemy_intents()[0]["ability"]=="arc_burst","本番の予告で後半は魔法行動へ変わる")
+	b=make_battle("reflector");b.actor_by_id("enemy_01").mp=100
+	check(b.enemy_intents()[0]["ability"]=="reflect_field","本番の敵行動選択が反射場を準備する")
+	run_round(b)
+	check(b.effects.field.get("owner")=="enemy_01","敵自身が実際に維持装置を生成する")
 	cases+=1
 	b=make_battle();b.actor_by_id("pc_01").mp=3
 	var before:=b.snapshot()

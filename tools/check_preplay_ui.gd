@@ -144,6 +144,7 @@ func _screens(main: Node) -> void:
 	state=main.game.export_state()
 	for actor in state["party"]:
 		actor["erosion"]=89
+		actor["integrated"]["erosion_fraction"]=9
 		actor["learned_abilities"]=["acid"]
 		actor["equipped_abilities"]=["acid"]
 	check(main.game.import_state(state),"4人同時の確認用状態")

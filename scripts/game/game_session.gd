@@ -490,12 +490,12 @@ func preview_job(actor_id: String, job_id: String) -> Dictionary:
 		"jp": int(actor["jp"].get(job_id,0)), "mastery_cost": IntegratedProgression.cost(jobs[job_id],IntegratedProgression.modern(_state))}
 
 
-func describe_ability(ability_id: String) -> String:
+func describe_ability(ability_id: String,actor_id: String="") -> String:
 	if not abilities.has(ability_id):
 		return ""
 	var ability: Dictionary = abilities[ability_id]
 	var targets := {"enemy":"敵1体", "ally":"味方1人", "self":"自分", "fallen_ally":"戦闘不能の味方1人","enemies":"敵全体","allies":"味方全体"}
-	var detail := ""
+	var detail: String=ability.get("description","")
 	match ability["kind"]:
 		"physical": detail = "物理攻撃%d%% × %d回" % [ability["power"], ability["hits"]]
 		"magic": detail = "%s魔法・威力%d" % [{"none":"無属性", "fire":"炎属性", "ice":"氷属性","electric":"電属性"}[ability["element"]], ability["power"]]
@@ -506,8 +506,13 @@ func describe_ability(ability_id: String) -> String:
 	if int(ability["priority"]) > 0:
 		detail += "・優先行動"
 	if not monster_skill_origin(ability_id).is_empty():
-		detail += "・実使用で侵蝕+%d" % MONSTER_SKILL_EROSION
-	return "%s / %dMP / %s\n%s" % [ability["name"], ability["cost"], targets[ability["target"]], detail]
+		detail += "・実使用で侵蝕+0.1" if IntegratedProgression.modern(_state) else "・実使用で侵蝕+%d" % MONSTER_SKILL_EROSION
+	var actual:=int(ability["cost"])
+	var actor:=_member(actor_id)
+	if not actor.is_empty() and actor.has("integrated"):
+		actual=IntegratedProgression.ability_cost(ability,catalog.integration["affinities"].get(actor["job_id"],[]),int(IntegratedProgression.form_rule(actor).get("mp_add",0)))
+		if actual!=int(ability["cost"]):detail+="\n基礎%dMPから現在職の得意・形態の補正を適用。" % ability["cost"]
+	return "%s / %dMP / %s\n%s" % [ability["name"], actual, targets[ability["target"]], detail]
 
 
 func monster_skill_origin(ability_id: String) -> String:
@@ -1554,12 +1559,9 @@ func integrated_preview(actor_id: String, ability_id: String, target_id: String=
 	if _battle!=null:return _battle.preview_action(BattleAction.skill(actor_id,target_id,ability_id))
 	var actor:=_member(actor_id)
 	if actor.is_empty() or not abilities.has(ability_id):return {"allowed":false,"reason":"人物または技がありません。"}
-	var value:=int(abilities[ability_id]["cost"])
 	var form:=IntegratedProgression.form_rule(actor)
-	if actor.has("integrated") and value>=4:
-		for tag in abilities[ability_id].get("tags",[]):
-			if tag in catalog.integration["affinities"].get(actor["job_id"],[]):value-=1;break
-	if value>0:value+=int(form.get("mp_add",0))
+	var affinity: Array=catalog.integration["affinities"].get(actor["job_id"],[]) if actor.has("integrated") else []
+	var value:=IntegratedProgression.ability_cost(abilities[ability_id],affinity,int(form.get("mp_add",0)))
 	return {"allowed":ability_id in actor["equipped_abilities"] and ability_id in _available(actor) and actor["mp"]>=value,"cost":value,"reason":"戦闘中に対象と条件を再確認します。"}
 
 func bind_focus(actor_id: String, ability_id: String) -> bool:

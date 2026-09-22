@@ -161,6 +161,8 @@ func _prepare_enemy_plan() -> void:
 
 
 func _choose_enemy_action(enemy: Combatant) -> BattleAction:
+	var special:=effects.enemy_action(enemy)
+	if special!=null:return special
 	var profile: String = enemy.tactics["profile"]
 	if profile in ["healer","reviver","mixed"]:
 		for kind in ["revive","heal"]:

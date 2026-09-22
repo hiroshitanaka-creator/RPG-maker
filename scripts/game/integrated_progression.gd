@@ -41,6 +41,13 @@ static func weapon(id: String) -> Dictionary:
 	for item in rules()["weapons"]:
 		if item["id"]==id:return item
 	return {}
+static func ability_cost(ability: Dictionary,affinities: Array,form_add: int=0) -> int:
+	var amount: int=int(ability["cost"])
+	if amount==0:return 0
+	if amount>=4:
+		for tag in ability.get("tags",[]):
+			if tag in affinities:amount-=1;break
+	return amount+form_add
 static func weapon_bonus(actor: Dictionary) -> int:
 	var held: Array=actor.get("integrated",{}).get("weapons",[])
 	return 0 if held.is_empty() else int(weapon(held[0]).get("attack",0))
