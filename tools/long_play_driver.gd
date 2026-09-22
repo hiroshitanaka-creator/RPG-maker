@@ -95,7 +95,7 @@ func prepare(game: GameSession, train_jobs: bool) -> void:
 					break
 			if actor["job_id"] != next_job:check(game.choose_job(actor["id"],next_job),"修練の次の職か、戦闘の担当職を選ぶ")
 		var available: Array = game.available_abilities(actor["id"])
-		var desired: Array = ["heal","revive","firm_guard"] if index == 2 else ["fire","power_strike","double_strike"]
+		var desired: Array = ["heal","revive","restore_mp","firm_guard"] if index == 2 else ["disarm","four_strike","fire","power_strike","double_strike"]
 		var target: Array = []
 		for skill in desired:
 			if skill in available and target.size() < game.slot_limit(actor["id"]):target.append(skill)
@@ -117,7 +117,9 @@ func battle(game: GameSession) -> bool:
 			check(encounter.queue_action(action).is_empty(),"公開された予告へ対処")
 		encounter.resolve_round()
 		rounds += 1
-	if not check(encounter.phase == BattleState.Phase.VICTORY,"通常の戦闘計算で勝利: "+str(game.current_story_step().get("id",""))):return false
+	if not check(encounter.phase == BattleState.Phase.VICTORY,"通常の戦闘計算で勝利: "+str(game.current_story_step().get("id",""))):
+		printerr("LONG_BATTLE_DIAGNOSTIC: "+JSON.stringify({"snapshot":encounter.snapshot(),"party":game.export_state()["party"]}))
+		return false
 	check(game.finish_battle(),"勝利のJP・習得・進行を一度反映")
 	battles += 1
 	return true

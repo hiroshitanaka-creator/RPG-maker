@@ -89,6 +89,7 @@ func _run() -> void:
 	quit(2 if not errors.is_empty() else (0 if rates_ok and fast_ok else 1))
 
 func _initial_state(game: GameSession, size: int, _profile: Dictionary) -> Dictionary:
+	if not game.new_game(size):return {}
 	var source: Dictionary=LongCampaign._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/acceptance_battle_initial_states_v1.json")))
 	var state: Dictionary=source["states"][str(size)].duplicate(true)
 	if not game.import_state(state):

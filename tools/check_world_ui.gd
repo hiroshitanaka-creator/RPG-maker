@@ -103,7 +103,7 @@ func _run() -> void:
 	while main.automation_snapshot()["mode"] == "battle" and turns < 60:
 		var battle: BattleState = main.game.current_battle()
 		for actor in battle.pending():
-			var action: BattleAction = policy.base_action(battle,actor)
+			var action: BattleAction = preload("res://tools/integrated_play_policy.gd").action(battle,actor)
 			var kinds := {BattleAction.Kind.ATTACK:"attack",BattleAction.Kind.GUARD:"guard",BattleAction.Kind.ABILITY:"ability",BattleAction.Kind.ITEM:"potion"}
 			check(main.submit_player_action({"kind":kinds[action.kind],"actor":action.actor_id,"target":action.target_id,"ability":action.ability_id}),"画面の戦闘入力を受理")
 		for action in policy.adjustments(battle):

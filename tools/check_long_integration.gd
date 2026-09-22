@@ -47,6 +47,8 @@ func _run()->void:
 		for option in [0,1]:
 			game=GameSession.new()
 			var initial:=_initial_state(game,size,profile)
+			# 固定AC入力と、長編への参加を選んだ部分経路入力を区別する。
+			initial["progress_flags"]["long_campaign_enrolled"]=true
 			initial["progress_flags"]["chapter1_cleared"]=true
 			initial["progress_flags"]["circuit_waterway_cleared"]=true
 			var entry:=StoryCampaign.step(17)
