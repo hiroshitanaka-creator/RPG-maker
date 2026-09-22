@@ -121,6 +121,7 @@ static func is_walkable(identifier: String, cell: Vector2i, flags: Dictionary={}
 	if definition["layout"][cell.y].substr(cell.x,1)==".":return true
 	for passage in definition.get("passages",[]):
 		if passage["cell"]==[cell.x,cell.y] and flags.get(passage["flag"],false):return true
+	if IntegratedCampaign.route_open(identifier,cell,flags):return true
 	return false
 
 static func walkable_cells(identifier: String, flags: Dictionary={})->Array:

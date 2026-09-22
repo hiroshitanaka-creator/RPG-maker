@@ -11,9 +11,11 @@
   },
   "abilities": [
     "flame_breath",
-    "power_strike"
+    "power_strike",
+    "rending_claw",
+    "overdrive"
   ],
-  "mastery_cost": 60,
+  "mastery_cost": 120,
   "stats": {
     "hp": 170,
     "mp": 36,
@@ -38,5 +40,10 @@
       "forget_monster_abilities": true
     }
   },
-  "design_status": "未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。"
+  "design_status": "未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。",
+  "legacy_mastery_cost": 60,
+  "legacy_abilities": [
+    "flame_breath",
+    "power_strike"
+  ]
 }

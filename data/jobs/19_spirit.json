@@ -11,9 +11,12 @@
   },
   "abilities": [
     "spirit_bolt",
-    "heal"
+    "heal",
+    "overdrive",
+    "deflect_magic",
+    "seal"
   ],
-  "mastery_cost": 56,
+  "mastery_cost": 180,
   "stats": {
     "hp": 95,
     "mp": 52,
@@ -38,5 +41,10 @@
       "forget_monster_abilities": true
     }
   },
-  "design_status": "未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。"
+  "design_status": "未指定の名称・数値は調整案。魔物化はマスター時。解除は祠、侵蝕90未満、魔物技全消去。",
+  "legacy_mastery_cost": 56,
+  "legacy_abilities": [
+    "spirit_bolt",
+    "heal"
+  ]
 }

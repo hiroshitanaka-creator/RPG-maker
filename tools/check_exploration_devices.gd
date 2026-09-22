@@ -1,5 +1,5 @@
 extends "res://tools/smoke_chapter1.gd"
-
+## 旧保存形式1の互換検査。数値の期待値は維持し、形式2は別の統合機構検査で検証。
 var _failures: Array[String] = []
 
 
@@ -10,7 +10,7 @@ func _check(condition: bool, message: String) -> void:
 
 func _run() -> void:
 	var game: Variant = GameSession.new()
-	game.new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").begin(game,4)
 	if not game.has_method("exploration_sites") or not game.has_method("use_exploration_site"):
 		_check(false,"既存ダンジョンの仕掛け・補給箱・開通保存が未接続です。")
 		_finish()
@@ -26,6 +26,7 @@ func _check_normal_route() -> void:
 	root.add_child(main)
 	await process_frame
 	main.start_new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	# 最初の2戦を通常操作で終えて強打を習得する。進行フラグの注入はしない。
 	for frame in range(MAX_STEPS):
 		await process_frame
@@ -125,7 +126,7 @@ func _check_all_locations() -> void:
 	var caches := 0
 	for location in starts:
 		var game: Variant = GameSession.new()
-		game.new_game(3)
+		preload("res://tools/legacy_save_fixture.gd").begin(game,3)
 		var world_step: int = starts[location]
 		var step := StoryCampaign.step(world_step)
 		game.set_world(location,step["cell"],world_step)
@@ -188,7 +189,7 @@ func _check_all_locations() -> void:
 
 func _check_boundaries() -> void:
 	var game: Variant = GameSession.new()
-	game.new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").begin(game,4)
 	var unchanged: Dictionary = game.export_state()
 	_check(not game.use_exploration_site("pc_01","power_strike") and game.export_state() == unchanged,"離れた町から設備を操作できない")
 	for key in ["exploration_unknown","exploration_waterway_cache"]:

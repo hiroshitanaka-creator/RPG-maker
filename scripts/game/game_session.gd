@@ -89,11 +89,13 @@ func new_game(party_size: int = 4) -> bool:
 			"hp": int(job["stats"]["hp"]), "max_hp": int(job["stats"]["hp"]),
 			"mp": int(job["stats"]["mp"]), "max_mp": int(job["stats"]["mp"])
 		})
+	for actor in party:actor["integrated"]=IntegratedProgression.initial_actor()
 	play_metrics = PlaySessionMetrics.new()
-	_state = {"format_version": 1, "party": party, "leader_id":"pc_01", "inventory": {"potion": 3},
+	_state = {"format_version": 2, "party": party, "leader_id":"pc_01", "inventory": {"potion": 3},
 		"progress_flags": {"chapter1_cleared": false, "midgame_slots": false},
 		"field_battles": 0, "return_point": {}, "story_battle": {}, "content_revision":1, "expedition":{},
 		"world": {"location": "town", "player_cell": [2, 4], "quest_step": 0}}
+	_state["integrated"]=IntegratedProgression.initial_world()
 	if LongCampaign.enabled():_state["progress_flags"]["long_campaign_enrolled"]=true
 	_battle = null
 	_world_battle_id = ""
@@ -135,11 +137,14 @@ func import_state(value: Dictionary) -> bool:
 
 
 func _valid_state(value: Dictionary) -> bool:
-	if value.get("format_version") != 1 or not value.get("party") is Array:
+	if value.get("format_version") not in [1,2] or not value.get("party") is Array:
 		return false
+	if value["format_version"]==2 and not IntegratedProgression.valid_world(value.get("integrated")):return false
+	if value["format_version"]==1 and value.has("integrated"):return false
 	var party: Array = value["party"]
 	if party.size() < 3 or party.size() > 4 or not value.get("inventory") is Dictionary or not value.get("progress_flags") is Dictionary or not value.get("world") is Dictionary:
 		return false
+	if not IntegratedCampaign.flags_valid(value):return false
 	if not _valid_world(value["world"],value["progress_flags"]):
 		return false
 	if value.has("overworld") and not WorldExpedition.valid(value["overworld"]):
@@ -224,7 +229,7 @@ func _valid_state(value: Dictionary) -> bool:
 					return false
 				seen.append(identifier)
 				if field == "mastered_jobs":
-					if not jobs.has(identifier) or int(actor["jp"].get(identifier, 0)) < int(jobs[identifier]["mastery_cost"]):
+					if not jobs.has(identifier) or int(actor["jp"].get(identifier, 0)) < IntegratedProgression.cost(jobs[identifier],value["format_version"]==2):
 						return false
 				elif not abilities.has(identifier):
 					return false
@@ -240,6 +245,8 @@ func _valid_state(value: Dictionary) -> bool:
 		for field in ["hp", "max_hp", "mp", "max_mp"]:
 			if not actor[field] is int or actor[field] < 0:
 				return false
+		if value["format_version"]==2 and not IntegratedProgression.valid_actor(actor,jobs,abilities,value["integrated"]["armory"]):return false
+		if value["format_version"]==1 and actor.has("integrated"):return false
 		var computed := _compute_stats(actor, true)
 		if actor["max_hp"] != computed["hp"] or actor["max_mp"] != computed["mp"] or actor["hp"] > actor["max_hp"] or actor["mp"] > actor["max_mp"]:
 			return false
@@ -407,6 +414,7 @@ func unequip_ability(actor_id: String, ability_id: String) -> bool:
 	if actor.is_empty() or not ability_id in actor["equipped_abilities"]:
 		return false
 	actor["equipped_abilities"].erase(ability_id)
+	_reconcile_slots(actor)
 	play_metrics.record_event("ability_unequipped",{"actor":actor_id,"ability":ability_id})
 	return true
 
@@ -418,6 +426,9 @@ func _reconcile_slots(actor: Dictionary) -> void:
 		if identifier in valid and kept.size() < slot_limit(actor["id"]):
 			kept.append(identifier)
 	actor["equipped_abilities"] = kept
+	if actor.has("integrated"):
+		if "twin_grip" not in kept:actor["integrated"]["weapons"]=actor["integrated"]["weapons"].slice(0,1)
+		if actor["integrated"]["focus_binding"] not in kept or "focus_vow" not in kept:actor["integrated"]["focus_binding"]=""
 
 
 func _compute_stats(actor: Dictionary, include_form: bool) -> Dictionary:
@@ -425,6 +436,10 @@ func _compute_stats(actor: Dictionary, include_form: bool) -> Dictionary:
 	for identifier in actor["mastered_jobs"]:
 		for stat in jobs[identifier]["stat_growth"]:
 			result[stat] = int(result.get(stat, 0)) + int(jobs[identifier]["stat_growth"][stat])
+	if actor.has("integrated"):
+		var bonus:=IntegratedProgression.growth(actor)
+		for key in bonus:result[key]+=bonus[key]
+		result["attack"]=maxi(1,int(result["attack"])+IntegratedProgression.weapon_bonus(actor))
 	if include_form and not str(actor["monster_form"]).is_empty():
 		var modifiers: Dictionary = jobs[actor["monster_form"]]["monster_form"]["stat_modifiers"]
 		for stat in modifiers:
@@ -472,18 +487,18 @@ func preview_job(actor_id: String, job_id: String) -> Dictionary:
 		candidate["monster_form"] = job_id
 	return {"allowed": _battle == null and not (actor["irreversible"] and jobs[job_id]["type"] == "human"),
 		"stats": _compute_stats(candidate, true), "monster_form": candidate["monster_form"],
-		"jp": int(actor["jp"].get(job_id,0)), "mastery_cost": int(jobs[job_id]["mastery_cost"])}
+		"jp": int(actor["jp"].get(job_id,0)), "mastery_cost": IntegratedProgression.cost(jobs[job_id],IntegratedProgression.modern(_state))}
 
 
 func describe_ability(ability_id: String) -> String:
 	if not abilities.has(ability_id):
 		return ""
 	var ability: Dictionary = abilities[ability_id]
-	var targets := {"enemy":"敵1体", "ally":"味方1人", "self":"自分", "fallen_ally":"戦闘不能の味方1人"}
+	var targets := {"enemy":"敵1体", "ally":"味方1人", "self":"自分", "fallen_ally":"戦闘不能の味方1人","enemies":"敵全体","allies":"味方全体"}
 	var detail := ""
 	match ability["kind"]:
 		"physical": detail = "物理攻撃%d%% × %d回" % [ability["power"], ability["hits"]]
-		"magic": detail = "%s魔法・威力%d" % [{"none":"無属性", "fire":"炎属性", "ice":"氷属性"}[ability["element"]], ability["power"]]
+		"magic": detail = "%s魔法・威力%d" % [{"none":"無属性", "fire":"炎属性", "ice":"氷属性","electric":"電属性"}[ability["element"]], ability["power"]]
 		"heal": detail = "HP回復・回復量は%d＋魔力×2" % ability["power"]
 		"revive": detail = "最大HPの%d%%で蘇生" % ability["power"]
 		"guard": detail = "このターンの被ダメージを%d%%に抑える" % ability["power"]
@@ -515,10 +530,16 @@ static func erosion_stage(value: int) -> String:
 	return "平常"
 
 
-func current_erosion(actor_id: String) -> int:
+func current_erosion(actor_id: String) -> float:
 	var actor := _member(actor_id)
 	if actor.is_empty():
 		return 0
+	if actor.has("integrated"):
+		var units:=IntegratedProgression.erosion_tenths(actor)
+		if _battle!=null:
+			for ability_id in _battle.successful_abilities(actor_id):
+				if not monster_skill_origin(ability_id).is_empty():units+=1
+		return minf(100.0,units/10.0)
 	var value := int(actor["erosion"])
 	if _battle != null:
 		for ability_id in _battle.successful_abilities(actor_id):
@@ -528,6 +549,7 @@ func current_erosion(actor_id: String) -> int:
 
 
 func erosion_preview(include_queued: bool = false) -> Array[Dictionary]:
+	if IntegratedProgression.modern(_state):return _integrated_erosion_preview(include_queued)
 	var results: Array[Dictionary] = []
 	for actor in _state.get("party", []):
 		var before := int(actor["erosion"])
@@ -578,7 +600,7 @@ func _refresh_caps(actor: Dictionary) -> void:
 
 func _learn_form(actor: Dictionary, job_id: String) -> void:
 	for identifier in jobs[job_id]["monster_form"]["abilities"]:
-		if not identifier in actor["learned_abilities"]:
+		if not identifier in actor["learned_abilities"] and identifier not in actor.get("integrated",{}).get("forgotten",[]):
 			actor["learned_abilities"].append(identifier)
 
 
@@ -600,14 +622,19 @@ func release_monster_form(actor_id: String, event: String) -> bool:
 				human_skills.append(identifier)
 			else:
 				monster_skills.append(identifier)
+	var removed: Array=[]
 	if release["forget_monster_abilities"]:
 		var kept: Array[String] = []
 		for identifier in actor["learned_abilities"]:
 			if not identifier in monster_skills or identifier in human_skills:
 				kept.append(identifier)
+			else:removed.append(identifier)
 		actor["learned_abilities"] = kept
 	actor["monster_form"] = ""
-	actor["erosion"] = maxi(0, int(actor["erosion"]) - int(release["erosion_reduction"]))
+	if actor.has("integrated"):
+		IntegratedProgression.forget(actor,removed)
+		IntegratedProgression.set_erosion(actor,IntegratedProgression.erosion_tenths(actor)-int(release["erosion_reduction"])*10)
+	else:actor["erosion"] = maxi(0,int(actor["erosion"])-int(release["erosion_reduction"]))
 	if jobs[actor["job_id"]]["type"] == "monster":
 		actor["job_id"] = actor["last_human_job"]
 	_refresh_caps(actor)
@@ -629,6 +656,13 @@ func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
 		actor.mp = saved["mp"]
 		actor.learned = _available(saved)
 		actor.equipped.assign(saved["equipped_abilities"])
+		if saved.has("integrated"):
+			actor.affinities.assign(catalog.integration["affinities"].get(saved["job_id"],[]))
+			actor.focus_binding=saved["integrated"]["focus_binding"]
+			for id in saved["integrated"]["weapons"]:actor.weapons.append(IntegratedProgression.weapon(id).duplicate(true))
+			actor.primary_weapon_attack=IntegratedProgression.weapon_bonus(saved)
+			var form:=IntegratedProgression.form_rule(saved)
+			actor.form_mp_add=int(form.get("mp_add",0));actor.physical_taken=float(form.get("physical_rate",1));actor.magic_taken=float(form.get("magic_rate",1))
 		party.append(actor)
 	var foes: Array[Combatant] = []
 	for i in range(enemy_ids.size()):
@@ -642,6 +676,7 @@ func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
 	_battle = BattleState.new(party, foes, catalog, random_seed)
 	_world_battle_id = ""
 	_battle.potions = int(_state["inventory"]["potion"])
+	if IntegratedProgression.modern(_state):_battle.effects.knowledge=_state["integrated"]["knowledge"].duplicate(true)
 	_battle_enemy_ids.assign(enemy_ids)
 	_claimed = false
 	_field_battle = false
@@ -687,6 +722,7 @@ func start_story_battle() -> BattleState:
 		return null
 	var encounter := start_battle(waves[next],int(entry.get("seed",20260919+int(world["quest_step"])))+next*1000)
 	if encounter != null:
+		if IntegratedProgression.modern(_state):encounter.effects.configure(integrated_rule(),_state["integrated"]["knowledge"])
 		_story_wave_step = int(world["quest_step"])
 		_story_wave_number = next
 		if not _state.get("expedition",{}).is_empty():
@@ -762,27 +798,32 @@ func finish_battle() -> bool:
 		var job: Dictionary = jobs[actor["job_id"]]
 		var erosion: Dictionary = erosion_results[member_index]
 		member_index += 1
-		actor["erosion"] = erosion["after"]
+		if actor.has("integrated"):IntegratedProgression.set_erosion(actor,int(erosion["after_tenths"]))
+		else:actor["erosion"] = erosion["after"]
 		if actor["erosion"] >= 90:
 			actor["irreversible"] = true
 		if won:
-			var earned := floori(float(reward) / 2.0) if job["type"] == "human" and int(actor["erosion"]) >= 60 else reward
-			var jp := int(actor["jp"].get(actor["job_id"], 0)) + earned
-			actor["jp"][actor["job_id"]] = jp
-			var cost := int(job["mastery_cost"])
-			if jp >= ceili(float(cost) / 2.0):
-				var first_skill: String = job["abilities"][0]
-				if not first_skill in actor["learned_abilities"]:
-					actor["learned_abilities"].append(first_skill)
-			if jp >= cost:
-				for identifier in job["abilities"]:
-					if not identifier in actor["learned_abilities"]:
-						actor["learned_abilities"].append(identifier)
-				if not actor["job_id"] in actor["mastered_jobs"]:
+			var modern: bool=actor.has("integrated")
+			if modern:
+				var award:=IntegratedProgression.reward(_integration_reward_kind())
+				var change:=IntegratedProgression.apply_reward(actor,job,award,job["type"]=="human" and int(actor["erosion"])>=60)
+				play_metrics.record_event("growth_awarded",{"actor":actor["id"],"change":change})
+			else:
+				var earned:=floori(reward/2.0) if job["type"]=="human" and int(actor["erosion"])>=60 else reward
+				actor["jp"][actor["job_id"]]=int(actor["jp"].get(actor["job_id"],0))+earned
+			var jp:=int(actor["jp"][actor["job_id"]])
+			var cost:=IntegratedProgression.cost(job,modern)
+			var old_skills:=IntegratedProgression.skill_list(job,false)
+			if not modern and jp>=ceili(cost/2.0) and old_skills[0] not in actor["learned_abilities"]:actor["learned_abilities"].append(old_skills[0])
+			if jp>=cost:
+				for identifier in IntegratedProgression.skill_list(job,modern):
+					if identifier not in actor["learned_abilities"] and identifier not in actor.get("integrated",{}).get("forgotten",[]):actor["learned_abilities"].append(identifier)
+				if actor["job_id"] not in actor["mastered_jobs"]:
 					actor["mastered_jobs"].append(actor["job_id"])
-					if job["type"] == "monster":
-						actor["monster_form"] = actor["job_id"]
-						_learn_form(actor, actor["job_id"])
+					if job["type"]=="monster":
+						actor["monster_form"]=actor["job_id"]
+						_learn_form(actor,actor["job_id"])
+
 		# JPは戦闘時の職へ与え、その後に90到達時の職業移行を反映する。
 		if not str(erosion["forced_job"]).is_empty():
 			actor["job_id"] = erosion["forced_job"]
@@ -792,6 +833,9 @@ func finish_battle() -> bool:
 		_refresh_caps(actor)
 		_reconcile_slots(actor)
 		_grant_job_unlocks(actor)
+	if IntegratedProgression.modern(_state):
+		_state["integrated"]["knowledge"]=_battle.effects.knowledge.duplicate(true)
+		if won:_record_integrated_outcome()
 	play_metrics.record_event("battle_finished",battle_result)
 	_battle = null
 	_world_battle_id = ""
@@ -894,6 +938,7 @@ func start_world_battle() -> BattleState:
 	var encounter := start_battle(event["enemies"],20260921+int(WorldExpedition.node(state["node"])["progression_index"])*10+state["room"])
 	if encounter != null:
 		_world_battle_id = event["id"]
+		if IntegratedProgression.modern(_state):encounter.effects.configure(integrated_rule(),integration_knowledge())
 	return encounter
 
 
@@ -1052,7 +1097,12 @@ func world_walkable_cells() -> Array:
 
 func exploration_sites() -> Array[Dictionary]:
 	if not str(world_state().get("section","")).is_empty():
-		return long_activity_markers()
+		var result:=long_activity_markers()
+		var rule:=integrated_rule()
+		if not rule.is_empty() and not is_returning_to_town():
+			for i in range(2):
+				result.append({"id":"mechanism_"+str(i),"kind":"record","name":"機構の観察","cell":[4,8] if i==0 else [18,8],"complete":i in integration_knowledge().get(rule["id"],{}).get("facts",[])})
+		return result
 	return ExplorationSites.in_location(world_state().get("location",""),_state.get("progress_flags",{}))
 
 
@@ -1498,3 +1548,138 @@ func load_game(path: String) -> bool:
 		_archive.resume(record_id,play_metrics)
 		flush_recording()
 	return true
+
+
+func integrated_preview(actor_id: String, ability_id: String, target_id: String="") -> Dictionary:
+	if _battle!=null:return _battle.preview_action(BattleAction.skill(actor_id,target_id,ability_id))
+	var actor:=_member(actor_id)
+	if actor.is_empty() or not abilities.has(ability_id):return {"allowed":false,"reason":"人物または技がありません。"}
+	var value:=int(abilities[ability_id]["cost"])
+	var form:=IntegratedProgression.form_rule(actor)
+	if actor.has("integrated") and value>=4:
+		for tag in abilities[ability_id].get("tags",[]):
+			if tag in catalog.integration["affinities"].get(actor["job_id"],[]):value-=1;break
+	if value>0:value+=int(form.get("mp_add",0))
+	return {"allowed":ability_id in actor["equipped_abilities"] and ability_id in _available(actor) and actor["mp"]>=value,"cost":value,"reason":"戦闘中に対象と条件を再確認します。"}
+
+func bind_focus(actor_id: String, ability_id: String) -> bool:
+	var actor:=_member(actor_id)
+	if _battle!=null or not actor.has("integrated"):return false
+	if not ability_id.is_empty() and ("focus_vow" not in actor["equipped_abilities"] or ability_id not in actor["equipped_abilities"] or abilities[ability_id]["kind"] not in ["physical","magic"]):return false
+	actor["integrated"]["focus_binding"]=ability_id
+	return true
+
+func equip_weapon(actor_id: String, weapon_id: String, slot: int=0) -> bool:
+	var actor:=_member(actor_id)
+	if _battle!=null or not actor.has("integrated") or weapon_id not in _state["integrated"]["armory"] or slot not in [0,1]:return false
+	if slot==1 and "twin_grip" not in actor["equipped_abilities"]:return false
+	var held: Array=actor["integrated"]["weapons"]
+	if slot==held.size():held.append(weapon_id)
+	else:held[slot]=weapon_id
+	return true
+
+func integration_knowledge() -> Dictionary:
+	return _state.get("integrated",{}).get("knowledge",{}).duplicate(true)
+
+func read_job_lore() -> void:
+	if not IntegratedProgression.modern(_state) or _battle!=null:return
+	var sources: Array=["bestiary"]
+	if world_state()["location"] in ChapterOne.TOWNS:sources.append("rumor")
+	for id in job_progression["advanced"]:
+		for source in sources:
+			var key: String=id+"/"+source
+			if key not in _state["integrated"]["job_notes"]:_state["integrated"]["job_notes"].append(key)
+
+func upgrade_rules() -> bool:
+	if _battle!=null or _state.is_empty() or IntegratedProgression.modern(_state):return false
+	var candidate:=IntegratedProgression.upgrade(_state,jobs)
+	for actor in candidate["party"]:_refresh_caps(actor)
+	if not _valid_state(candidate):return false
+	_state=candidate
+	play_metrics.record_event("rules_upgraded",{"format_version":2})
+	return true
+
+func _integrated_erosion_preview(include_queued: bool) -> Array[Dictionary]:
+	var result: Array[Dictionary]=[]
+	for actor in _state["party"]:
+		var before:=IntegratedProgression.erosion_tenths(actor)
+		var battle_units:=2 if jobs[actor["job_id"]]["type"]=="monster" else 0
+		var after:=mini(1000,before+battle_units)
+		var count:=0
+		var forced:=""
+		var uses: Array[String]=[]
+		if _battle!=null:
+			uses=_battle.successful_abilities(actor["id"])
+			if include_queued and _battle.queued.has(actor["id"]):
+				var action: BattleAction=_battle.queued[actor["id"]]
+				if action.kind==BattleAction.Kind.ABILITY and _battle._action_error(action).is_empty():uses.append(action.ability_id)
+		for id in uses:
+			var origin:=monster_skill_origin(id)
+			if origin.is_empty():continue
+			var previous:=after
+			after=mini(1000,after+1);count+=1
+			if previous<900 and after>=900 and jobs[actor["job_id"]]["type"]=="human":forced=origin
+		result.append({"actor":actor["id"],"name":actor["name"],"before":before/10.0,"after":after/10.0,"after_tenths":after,"battle_cost":battle_units/10.0,"skill_uses":count,"forced_job":forced,"crosses_irreversible":before<900 and after>=900})
+	return result
+
+func integrated_rule() -> Dictionary:
+	if not IntegratedProgression.modern(_state):return {}
+	var entry:=IntegratedCampaign.assignment(_integrated_site())
+	for rule in catalog.integration["enemy_rules"]:
+		if rule["id"]==entry.get("rule"):return rule.duplicate(true)
+	return {}
+
+func _integrated_site() -> String:
+	return "world/"+str(_state["overworld"]["node"]) if world_exploration_active() else str(_state.get("expedition",{}).get("id",""))
+
+func _integration_reward_kind() -> String:
+	if _field_battle:return "normal"
+	if not _state.get("expedition",{}).is_empty():
+		return "boss" if current_story_step().get("section","").ends_with("_d") else "challenge"
+	var enemies: Array=_battle_enemy_ids if _battle!=null else current_story_step().get("enemies",[])
+	for id in enemies:
+		if id in ["gate_beast","elder_slime","ancient_shell","night_bat","core_wisp","flood_beast"]:return "boss"
+	return "normal"
+
+func _record_integrated_outcome() -> void:
+	if _battle.effects.rules.is_empty():return
+	var site:=_integrated_site()
+	var assignment:=IntegratedCampaign.assignment(site)
+	if assignment.is_empty():return
+	var known_methods: Array=_state["integrated"]["outcomes"].get(site,{}).get("methods",[]).duplicate()
+	for method in _battle.effects.methods:
+		if method not in known_methods:known_methods.append(method)
+	_state["integrated"]["outcomes"][site]={"rule":_battle.effects.rules.get("id",""),"methods":known_methods}
+	if IntegratedCampaign.opens_route(known_methods) and not assignment["flag"].is_empty():_state["progress_flags"][assignment["flag"]]=true
+	if IntegratedCampaign.grants_weapon(known_methods) and assignment["reward"] not in _state["integrated"]["armory"]:_state["integrated"]["armory"].append(assignment["reward"])
+	if "field_break" in known_methods and site not in _state["integrated"]["claimed"]:
+		_state["integrated"]["claimed"].append(site)
+		_state["inventory"]["potion"]+=2
+
+func integrated_observation() -> Dictionary:
+	var rule:=integrated_rule()
+	if rule.is_empty() or _battle!=null or is_returning_to_town():return {}
+	var cell: Array=world_state()["player_cell"]
+	var index:=0 if cell==[4,8] else (1 if cell==[18,8] else -1)
+	if index<0:return {}
+	return {"rule":rule["id"],"fact":index,"text":rule["facts"][index]}
+
+func read_integrated_observation() -> Array:
+	var clue:=integrated_observation()
+	if clue.is_empty():return []
+	var known: Dictionary=_state["integrated"]["knowledge"].get(clue["rule"],{"facts":[],"confirmed":false})
+	if clue["fact"] not in known["facts"]:known["facts"].append(clue["fact"])
+	_state["integrated"]["knowledge"][clue["rule"]]=known
+	return [clue["text"]]
+
+
+func mastery_forecast(field_battle: bool=false) -> Array[Dictionary]:
+	var result: Array[Dictionary]=[]
+	if not IntegratedProgression.modern(_state):return result
+	var amount:=int(IntegratedProgression.reward("normal" if field_battle else _integration_reward_kind())["jp"])
+	for actor in _state["party"]:
+		var job: Dictionary=jobs[actor["job_id"]]
+		if job["type"]!="monster" or job["id"] in actor["mastered_jobs"]:continue
+		if int(actor["jp"].get(job["id"],0))+amount>=int(job["mastery_cost"]):
+			result.append({"actor":actor["id"],"name":actor["name"],"job":job["name"],"job_id":job["id"],"jp":amount,"kind":"mastery","form":job["monster_form"]})
+	return result

@@ -112,7 +112,7 @@ func fight(game: GameSession) -> bool:
 		if battle.phase != BattleState.Phase.INPUT:
 			break
 		for actor in battle.pending():
-			var action: BattleAction = policy.base_action(battle,actor)
+			var action: BattleAction = preload("res://tools/integrated_play_policy.gd").action(battle,actor)
 			check(battle.queue_action(action).is_empty(),"画面で選べる行動を予約")
 		for action in policy.adjustments(battle):
 			check(battle.queue_action(action).is_empty(),"予告に応じて行動を組み直す")

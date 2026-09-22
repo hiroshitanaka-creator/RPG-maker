@@ -2,10 +2,11 @@ class_name BattleCatalog
 extends RefCounted
 
 const STAT_KEYS := ["hp", "mp", "attack", "defense", "magic", "resistance", "speed"]
-const EFFECTS := ["physical", "magic", "heal", "revive", "guard", "steal"]
-const TARGETS := ["enemy", "ally", "self", "fallen_ally"]
+const EFFECTS := ["physical", "magic", "heal", "revive", "guard", "steal", "focus", "conduct", "amplify", "overdrive", "deflect_physical", "deflect_magic", "cover", "seal", "field", "passive", "riposte", "recycle", "disarm", "restore_mp"]
+const TARGETS := ["enemy", "ally", "self", "fallen_ally", "enemies", "allies"]
 const AI_PROFILES := ["legacy","caster","guardian","healer","raider","reviver","mixed"]
 
+var integration: Dictionary = {}
 var errors: Array[String] = []
 var jobs: Dictionary = {}
 var abilities: Dictionary = {}
@@ -37,6 +38,12 @@ func _init(path: String = "res://data/catalog.json") -> void:
 					return
 				definitions.append(job_json.data)
 		document["jobs"] = definitions
+	var supplemental := JSON.new()
+	if supplemental.parse(FileAccess.get_file_as_string("res://data/integrated_rules.json")) != OK or not supplemental.data is Dictionary:
+		errors.append("統合機構の定義を読み取れません。")
+		return
+	integration = supplemental.data
+	document["abilities"].append_array(integration["abilities"])
 	_load_document(document)
 
 
@@ -68,11 +75,11 @@ func _load_document(document: Dictionary) -> void:
 		for field in ["cost", "power", "hits", "priority"]:
 			if not _is_integer(entry.get(field), 1 if field == "hits" else 0):
 				errors.append("技の数値が不正です: %s.%s" % [ability_id, field])
-		if not entry.get("element") in ["none", "fire", "ice"]:
+		if not entry.get("element") in ["none", "fire", "ice", "electric"]:
 			errors.append("属性が不正です: " + ability_id)
 		if not entry.get("description") is String:
 			errors.append("技の説明がありません: " + ability_id)
-		if entry.get("kind") in ["physical", "magic", "steal"] and entry.get("target") != "enemy":
+		if entry.get("kind") in ["physical", "magic", "steal"] and entry.get("target") not in ["enemy","enemies"]:
 			errors.append("攻撃技の対象は敵です: " + ability_id)
 		if entry.get("kind") == "revive" and entry.get("target") != "fallen_ally":
 			errors.append("蘇生の対象が不正です: " + ability_id)
@@ -109,7 +116,7 @@ func _load_document(document: Dictionary) -> void:
 			errors.append("弱点の一覧がありません: " + enemy_id)
 		else:
 			for weakness in enemy["weaknesses"]:
-				if not weakness in ["fire", "ice"]:
+				if not weakness in ["fire", "ice", "electric"]:
 					errors.append("弱点が不正です: " + enemy_id)
 	for encounter_id in encounters:
 		_validate_references(encounters[encounter_id].get("enemies"), enemies, encounter_id, false)

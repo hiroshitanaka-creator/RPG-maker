@@ -34,6 +34,14 @@ jobs:
           chmod +x godot
           ./godot --headless --import 2>&1 | tee preplay-import.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" preplay-import.log; then exit 1; fi
+      - name: 新機構の実戦・育成・保存・画面・全配分・同予算比較を検査
+        run: |
+          set -o pipefail
+          python tools/check_original_acceptance_inputs.py
+          for kind in entry combat progression campaign ui builds; do
+            timeout 240 ./godot --headless --path . --script res://tools/check_integrated_${kind}.gd 2>&1 | tee integrated-${kind}.log
+            if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" integrated-${kind}.log; then exit 1; fi
+          done
       - name: ワールド構造のPhase 1定義を検査
         run: |
           set -o pipefail
@@ -127,6 +135,8 @@ jobs:
           name: preplay-checks
           path: |
             preplay*.log
+            integrated-*.log
+            docs/verification/integrated-*.json
             map-graph-*.log
             world-*.log
             docs/verification/world-*.json

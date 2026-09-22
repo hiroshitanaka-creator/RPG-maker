@@ -112,7 +112,7 @@ func battle(game: GameSession) -> bool:
 	for turn in range(80):
 		if encounter.phase != BattleState.Phase.INPUT:break
 		for actor in encounter.pending():
-			check(encounter.queue_action(policy.base_action(encounter,actor)).is_empty(),"使える技と道具だけで行動")
+			check(encounter.queue_action(preload("res://tools/integrated_play_policy.gd").action(encounter,actor)).is_empty(),"使える技と道具だけで行動")
 		for action in policy.adjustments(encounter):
 			check(encounter.queue_action(action).is_empty(),"公開された予告へ対処")
 		encounter.resolve_round()

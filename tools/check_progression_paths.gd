@@ -1,5 +1,5 @@
 extends "res://tools/smoke_chapter1.gd"
-
+## 旧保存形式1の互換検査。数値の期待値は維持し、形式2は別の統合機構検査で検証。
 
 var _failures: Array[String] = []
 
@@ -22,7 +22,7 @@ func _check(condition: bool, message: String) -> void:
 
 func _run() -> void:
 	var game := GameSession.new()
-	game.new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").begin(game,4)
 	var original := game.export_state()
 	for bad_world in [{}, {"location":"missing", "player_cell":[2,4], "quest_step":0}, {"location":"town", "player_cell":[0,0], "quest_step":0}]:
 		var broken := original.duplicate(true)
@@ -30,13 +30,13 @@ func _run() -> void:
 		_check(not game.import_state(broken), "破損した探索位置を読み込まない")
 		_check(game.export_state() == original, "読み込み失敗時は現在の冒険を保持する")
 	for job_id in game.jobs:
-		game.new_game(4)
+		preload("res://tools/legacy_save_fixture.gd").begin(game,4)
 		var before_preview := game.export_state()
 		var preview := game.preview_job("pc_01", job_id)
 		_check(game.export_state() == before_preview, "転職比較は状態を変更しない")
 		_check(game.change_job("pc_01", job_id), "比較対象の職へ転職できる")
 		_check(game.effective_stats("pc_01") == preview["stats"], "転職後の能力値が比較表示と一致する")
-	game.new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").begin(game,4)
 	var legacy := game.export_state()
 	legacy.erase("return_point")
 	legacy.erase("field_battles")
@@ -48,6 +48,7 @@ func _run() -> void:
 	await process_frame
 	var party_size := 3 if "--three-member-party" in OS.get_cmdline_user_args() else 4
 	main.start_new_game(party_size)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	_check(not main.submit_player_action({"kind":"field_battle"}), "町から任意戦闘は開始できない")
 	# 進行フラグを直接書かず、最初の水路戦の勝利まで通常の操作で進む。
 	for step in range(6000):

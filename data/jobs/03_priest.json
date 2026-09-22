@@ -11,9 +11,11 @@
   },
   "abilities": [
     "heal",
-    "revive"
+    "revive",
+    "seal",
+    "restore_mp"
   ],
-  "mastery_cost": 32,
+  "mastery_cost": 120,
   "stats": {
     "hp": 105,
     "mp": 40,
@@ -23,5 +25,10 @@
     "resistance": 16,
     "speed": 10
   },
-  "design_status": "未指定の名称・数値は調整案"
+  "design_status": "未指定の名称・数値は調整案",
+  "legacy_mastery_cost": 32,
+  "legacy_abilities": [
+    "heal",
+    "revive"
+  ]
 }

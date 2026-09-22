@@ -1,5 +1,5 @@
 extends SceneTree
-
+## 旧保存形式1の互換検査。数値の期待値は維持し、形式2は別の統合機構検査で検証。
 var failures: Array[String] = []
 
 func _initialize() -> void:
@@ -35,7 +35,7 @@ func _wait_real(milliseconds: int) -> void:
 func _recording() -> void:
 	var directory := "user://qa_recording_"+str(Time.get_ticks_usec())
 	var game := GameSession.new()
-	check(game.enable_recording(directory) and game.new_game(4),"独立した記録を有効にする")
+	check(game.enable_recording(directory) and preload("res://tools/legacy_save_fixture.gd").begin(game,4),"独立した記録を有効にする")
 	game.play_metrics.set_source("automated")
 	var identifier := game.playthrough_id()
 	check(PlaythroughArchive.valid_id(identifier),"一試行に固有IDを付ける")
@@ -109,6 +109,7 @@ func _battle_layout() -> void:
 		expanded.spacing_bottom = 2
 		main.theme.default_font = expanded
 	main.start_new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	main.game.play_metrics.set_source("automated")
 	var fixture: Dictionary = main.game.export_state()
 	fixture["progress_flags"]["midgame_slots"] = true
@@ -123,6 +124,7 @@ func _battle_layout() -> void:
 	main._choose_target("ability","fire")
 	await _assert_layout(main)
 	main.start_new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	main.game.play_metrics.set_source("automated")
 	for actor in main.game.export_state()["party"]:
 		main.game.change_job(actor["id"],"slime")
@@ -170,7 +172,7 @@ func _assert_layout(main: Node) -> void:
 
 func _signs_and_traits() -> void:
 	var game := GameSession.new()
-	game.new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").begin(game,4)
 	for actor in game.export_state()["party"]:
 		var normal: Dictionary = actor.duplicate(true)
 		normal["erosion"] = 29
@@ -209,7 +211,7 @@ func _signs_and_traits() -> void:
 	check(loaded.import_state(eroded),"未魔物化の兆候状態を用意する")
 	check(loaded.release_monster_form("pc_01","purification_shrine") and loaded.current_erosion("pc_01") == 0,"未魔物化でも祠で侵蝕を30下げられる")
 	var crossing := GameSession.new()
-	crossing.new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").begin(crossing,4)
 	state = crossing.export_state()
 	state["party"][0]["erosion"] = 29
 	state["party"][0]["learned_abilities"] = ["acid"]
@@ -228,6 +230,7 @@ func _player_jobs() -> void:
 	root.add_child(main)
 	await process_frame
 	main.start_new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	main.game.play_metrics.set_source("automated")
 	main.submit_player_action({"kind":"party"})
 	for job_id in main.game.job_progression["advanced"]:
@@ -243,6 +246,7 @@ func _player_jobs() -> void:
 	main.submit_player_action({"kind":"back"})
 	for job_id in main.game.job_progression["advanced"]:
 		main.start_new_game(4)
+		preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 		main.game.play_metrics.set_source("automated")
 		var rule: Dictionary = main.game.job_progression["advanced"][job_id]
 		for prerequisite in rule["masters"]:
@@ -283,6 +287,7 @@ func _capture_signs() -> void:
 	root.add_child(main)
 	await process_frame
 	main.start_new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	main.game.play_metrics.set_source("automated")
 	var state: Dictionary = main.game.export_state()
 	for actor in state["party"]:actor["erosion"] = 30

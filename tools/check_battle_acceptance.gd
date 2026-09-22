@@ -88,26 +88,14 @@ func _run() -> void:
 	for error in errors:printerr("BATTLE_ACCEPTANCE_ERROR: "+error)
 	quit(2 if not errors.is_empty() else (0 if rates_ok and fast_ok else 1))
 
-func _initial_state(game: GameSession, size: int, profile: Dictionary) -> Dictionary:
-	if not game.new_game(size):return {}
-	var state := game.export_state()
-	state["inventory"]["potion"] = int(profile["potions"])
-	state["progress_flags"]["midgame_slots"] = profile["midgame_slots"]
-	for actor in state["party"]:
-		var job: Dictionary = game.jobs[actor["job_id"]]
-		actor["jp"][job["id"]] = int(job["mastery_cost"])
-		actor["mastered_jobs"] = [job["id"]]
-		actor["learned_abilities"] = job["abilities"].duplicate()
-		actor["equipped_abilities"] = profile["loadouts"][job["id"]].duplicate()
-		actor["erosion"] = int(profile["erosion"])
-		actor["max_hp"] = int(job["stats"]["hp"])+int(job["stat_growth"].get("hp",0))
-		actor["hp"] = actor["max_hp"]
-		actor["max_mp"] = int(job["stats"]["mp"])+int(job["stat_growth"].get("mp",0))
-		actor["mp"] = actor["max_mp"]
+func _initial_state(game: GameSession, size: int, _profile: Dictionary) -> Dictionary:
+	var source: Dictionary=LongCampaign._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/acceptance_battle_initial_states_v1.json")))
+	var state: Dictionary=source["states"][str(size)].duplicate(true)
 	if not game.import_state(state):
-		errors.append("事前定義した初期状態が無効")
+		errors.append("固定済みの旧受入入力を復元できない")
 		return {}
 	return game.export_state()
+
 
 func _action(battle: BattleState, actor: Combatant) -> BattleAction:
 	for skill in actor.equipped:

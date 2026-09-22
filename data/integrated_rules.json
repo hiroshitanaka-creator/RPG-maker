@@ -1,0 +1,643 @@
+{
+  "version": 1,
+  "design_status": "2026-09-23実装用暫定値。基礎ダメージ式・先行防御・JPマスター維持。人間評価は未実施。",
+  "abilities": [
+    {
+      "id": "focus_vow",
+      "name": "専心",
+      "kind": "focus",
+      "cost": 0,
+      "power": 0,
+      "hits": 1,
+      "target": "self",
+      "element": "none",
+      "tags": [
+        "discipline"
+      ],
+      "priority": 0,
+      "description": "装着した攻撃技を結び付けて準備。次の本人の行動機会にその技を使うと＋100%。別行動・中断で失効。"
+    },
+    {
+      "id": "conduct",
+      "name": "導電付与",
+      "kind": "conduct",
+      "cost": 4,
+      "power": 0,
+      "hits": 1,
+      "target": "ally",
+      "element": "none",
+      "tags": [
+        "enchant"
+      ],
+      "priority": 10,
+      "description": "味方の次の物理攻撃1行動の全打を電属性にする。付与ラウンドと次ラウンドまで。"
+    },
+    {
+      "id": "amplify",
+      "name": "増幅付与",
+      "kind": "amplify",
+      "cost": 6,
+      "power": 0,
+      "hits": 1,
+      "target": "ally",
+      "element": "none",
+      "tags": [
+        "enchant"
+      ],
+      "priority": 10,
+      "description": "味方の次の攻撃1行動を＋50%。付与ラウンドと次ラウンドまで。同系統は重複しない。"
+    },
+    {
+      "id": "overdrive",
+      "name": "過負荷増幅",
+      "kind": "overdrive",
+      "cost": 10,
+      "power": 0,
+      "hits": 1,
+      "target": "ally",
+      "element": "none",
+      "tags": [
+        "enchant"
+      ],
+      "priority": 10,
+      "description": "味方の次の攻撃1行動を＋100%。使用後、次の本人の行動機会は攻撃不可。専心と併用不可。"
+    },
+    {
+      "id": "deflect_physical",
+      "name": "偏向防御・物理",
+      "kind": "deflect_physical",
+      "cost": 0,
+      "power": 0,
+      "hits": 1,
+      "target": "self",
+      "element": "none",
+      "tags": [
+        "ward"
+      ],
+      "priority": 0,
+      "description": "このラウンドの物理被害0.2倍、魔法被害1.5倍。"
+    },
+    {
+      "id": "deflect_magic",
+      "name": "偏向防御・魔法",
+      "kind": "deflect_magic",
+      "cost": 0,
+      "power": 0,
+      "hits": 1,
+      "target": "self",
+      "element": "none",
+      "tags": [
+        "ward"
+      ],
+      "priority": 0,
+      "description": "このラウンドの魔法被害0.2倍、物理被害1.5倍。"
+    },
+    {
+      "id": "cover",
+      "name": "護衛",
+      "kind": "cover",
+      "cost": 3,
+      "power": 0,
+      "hits": 1,
+      "target": "ally",
+      "element": "none",
+      "tags": [
+        "ward"
+      ],
+      "priority": 10,
+      "description": "指定した味方への次の単体物理攻撃1行動を引き受け、0.5倍。全体攻撃は対象外。"
+    },
+    {
+      "id": "seal",
+      "name": "封緘",
+      "kind": "seal",
+      "cost": 4,
+      "power": 0,
+      "hits": 1,
+      "target": "enemy",
+      "element": "none",
+      "tags": [
+        "control"
+      ],
+      "priority": 10,
+      "description": "敵共通の封緘＋1。封緘中の充填開始でも＋1。3で行動1回中断、防御0。1戦1回。"
+    },
+    {
+      "id": "reflect_field",
+      "name": "金属反射場",
+      "kind": "field",
+      "cost": 10,
+      "power": 0,
+      "hits": 1,
+      "target": "self",
+      "element": "none",
+      "tags": [
+        "field"
+      ],
+      "priority": 10,
+      "description": "1ラウンド予告後、2ラウンド敵味方の射撃被害を半減。維持装置の破壊で解除。"
+    },
+    {
+      "id": "four_strike",
+      "name": "四連撃",
+      "kind": "physical",
+      "cost": 6,
+      "power": 70,
+      "hits": 4,
+      "target": "enemy",
+      "element": "none",
+      "tags": [
+        "combo"
+      ],
+      "priority": 0,
+      "description": "威力70%で4打。二刀流装着中は各武器4打。MPは1行動で一度だけ。"
+    },
+    {
+      "id": "rending_claw",
+      "name": "裂爪",
+      "kind": "physical",
+      "cost": 6,
+      "power": 70,
+      "hits": 4,
+      "target": "enemy",
+      "element": "none",
+      "tags": [
+        "beast"
+      ],
+      "priority": 0,
+      "description": "威力70%で4打、各打の防御を20無視。魔物専用技。",
+      "ignore_defense": 20,
+      "monster_only": true,
+      "natural": true
+    },
+    {
+      "id": "twin_grip",
+      "name": "二刀流",
+      "kind": "passive",
+      "cost": 0,
+      "power": 0,
+      "hits": 1,
+      "target": "self",
+      "element": "none",
+      "tags": [
+        "weapon"
+      ],
+      "priority": 0,
+      "description": "装着中は武器を2本持てる。自動行動は発生しない。"
+    },
+    {
+      "id": "riposte",
+      "name": "応撃の構え",
+      "kind": "riposte",
+      "cost": 2,
+      "power": 0,
+      "hits": 1,
+      "target": "self",
+      "element": "none",
+      "tags": [
+        "ward"
+      ],
+      "priority": 0,
+      "description": "2ラウンド、攻撃を受けて生存した場合、相手の1行動へ一度だけ通常反撃。再反撃しない。"
+    },
+    {
+      "id": "recycle",
+      "name": "還流付与",
+      "kind": "recycle",
+      "cost": 2,
+      "power": 0,
+      "hits": 1,
+      "target": "ally",
+      "element": "none",
+      "tags": [
+        "enchant"
+      ],
+      "priority": 10,
+      "description": "味方の次の有料攻撃で、支払MP以下・最大2を一度還元。2ラウンド有効。"
+    },
+    {
+      "id": "disarm",
+      "name": "残留解除",
+      "kind": "disarm",
+      "cost": 3,
+      "power": 0,
+      "hits": 1,
+      "target": "enemy",
+      "element": "none",
+      "tags": [
+        "control"
+      ],
+      "priority": 10,
+      "description": "敵の死亡後に発生する残留効果を解除する。",
+      "monster_only": false
+    },
+    {
+      "id": "restore_mp",
+      "name": "息継ぎ",
+      "kind": "restore_mp",
+      "cost": 0,
+      "power": 5,
+      "hits": 1,
+      "target": "ally",
+      "element": "none",
+      "tags": [
+        "recovery"
+      ],
+      "priority": 0,
+      "description": "味方のMPを5回復する。行動1回を使う。"
+    },
+    {
+      "id": "arc_burst",
+      "name": "放電波",
+      "kind": "magic",
+      "cost": 8,
+      "power": 34,
+      "hits": 1,
+      "target": "enemies",
+      "element": "electric",
+      "tags": [
+        "magic"
+      ],
+      "priority": 0,
+      "description": "敵全体に電属性魔法。"
+    },
+    {
+      "id": "charge_blow",
+      "name": "充填打撃",
+      "kind": "physical",
+      "cost": 4,
+      "power": 130,
+      "hits": 1,
+      "target": "enemy",
+      "element": "none",
+      "tags": [
+        "charge"
+      ],
+      "priority": 0,
+      "description": "充填タグの付いた物理打撃。封緘による割込みを受ける。"
+    },
+    {
+      "id": "bolt_shot",
+      "name": "機構の射撃",
+      "kind": "physical",
+      "cost": 3,
+      "power": 110,
+      "hits": 1,
+      "target": "enemy",
+      "element": "none",
+      "tags": [
+        "projectile"
+      ],
+      "priority": 0,
+      "description": "射撃タグの物理攻撃。反射場の影響を受ける。"
+    }
+  ],
+  "affinities": {
+    "warrior": [
+      "ward"
+    ],
+    "martial_artist": [
+      "combo"
+    ],
+    "priest": [
+      "control",
+      "recovery"
+    ],
+    "mage": [
+      "enchant",
+      "magic"
+    ],
+    "thief": [
+      "control"
+    ],
+    "hunter": [
+      "weapon",
+      "combo"
+    ],
+    "apothecary": [
+      "recovery"
+    ],
+    "bard": [
+      "enchant"
+    ],
+    "knight": [
+      "ward"
+    ],
+    "sage": [
+      "enchant",
+      "control"
+    ],
+    "swordsman": [
+      "combo",
+      "discipline"
+    ],
+    "shaman": [
+      "control",
+      "field"
+    ],
+    "slime": [
+      "enchant"
+    ],
+    "beast": [
+      "combo"
+    ],
+    "undead": [
+      "control"
+    ],
+    "bird": [
+      "weapon"
+    ],
+    "plant": [
+      "recovery"
+    ],
+    "shell": [
+      "ward"
+    ],
+    "spirit": [
+      "magic"
+    ],
+    "dragon": [
+      "combo"
+    ]
+  },
+  "weapons": [
+    {
+      "id": "practice_blade",
+      "name": "稽古剣",
+      "attack": 0,
+      "tags": [
+        "melee"
+      ]
+    },
+    {
+      "id": "practice_staff",
+      "name": "術杖",
+      "attack": -2,
+      "tags": [
+        "melee"
+      ]
+    },
+    {
+      "id": "practice_bow",
+      "name": "稽古弓",
+      "attack": -1,
+      "tags": [
+        "projectile"
+      ]
+    },
+    {
+      "id": "iron_blade",
+      "name": "補強剣",
+      "attack": 3,
+      "tags": [
+        "melee"
+      ]
+    },
+    {
+      "id": "twin_blade",
+      "name": "軽双剣",
+      "attack": 1,
+      "tags": [
+        "melee"
+      ]
+    },
+    {
+      "id": "long_bow",
+      "name": "封緘の長弓",
+      "attack": 3,
+      "tags": [
+        "projectile"
+      ],
+      "on_hit": {
+        "kind": "seal"
+      }
+    }
+  ],
+  "job_skills": {
+    "warrior": [
+      "cover",
+      "riposte"
+    ],
+    "martial_artist": [
+      "four_strike",
+      "focus_vow"
+    ],
+    "priest": [
+      "seal",
+      "restore_mp"
+    ],
+    "mage": [
+      "conduct",
+      "amplify"
+    ],
+    "thief": [
+      "disarm",
+      "twin_grip"
+    ],
+    "hunter": [
+      "four_strike",
+      "twin_grip"
+    ],
+    "apothecary": [
+      "restore_mp",
+      "recycle"
+    ],
+    "bard": [
+      "amplify",
+      "recycle"
+    ],
+    "knight": [
+      "cover",
+      "deflect_physical"
+    ],
+    "sage": [
+      "overdrive",
+      "conduct",
+      "seal"
+    ],
+    "swordsman": [
+      "four_strike",
+      "focus_vow",
+      "twin_grip"
+    ],
+    "shaman": [
+      "seal",
+      "reflect_field"
+    ],
+    "slime": [
+      "conduct",
+      "recycle"
+    ],
+    "beast": [
+      "rending_claw",
+      "riposte"
+    ],
+    "undead": [
+      "seal",
+      "disarm"
+    ],
+    "bird": [
+      "four_strike",
+      "deflect_physical"
+    ],
+    "plant": [
+      "amplify",
+      "restore_mp"
+    ],
+    "shell": [
+      "cover",
+      "reflect_field"
+    ],
+    "spirit": [
+      "overdrive",
+      "deflect_magic",
+      "seal"
+    ],
+    "dragon": [
+      "rending_claw",
+      "overdrive"
+    ]
+  },
+  "forms": {
+    "slime": {
+      "mp_add": 1,
+      "physical_rate": 1.2,
+      "magic_rate": 1.0
+    },
+    "beast": {
+      "mp_add": 2,
+      "physical_rate": 1.0,
+      "magic_rate": 1.25
+    },
+    "undead": {
+      "mp_add": 1,
+      "physical_rate": 1.0,
+      "magic_rate": 1.2
+    },
+    "bird": {
+      "mp_add": 1,
+      "physical_rate": 1.25,
+      "magic_rate": 1.0
+    },
+    "plant": {
+      "mp_add": 1,
+      "physical_rate": 1.0,
+      "magic_rate": 1.25
+    },
+    "shell": {
+      "mp_add": 2,
+      "physical_rate": 1.0,
+      "magic_rate": 1.2
+    },
+    "spirit": {
+      "mp_add": 1,
+      "physical_rate": 1.25,
+      "magic_rate": 1.0
+    },
+    "dragon": {
+      "mp_add": 2,
+      "physical_rate": 1.0,
+      "magic_rate": 1.25
+    }
+  },
+  "growth": {
+    "level_cap": 30,
+    "first_exp": 80,
+    "exp_step": 20,
+    "hp_per_level": 2,
+    "mp_every_levels": 2,
+    "normal_mastery": 120,
+    "advanced_mastery": 180,
+    "thresholds": [
+      8,
+      24,
+      60,
+      96,
+      144
+    ],
+    "rewards": {
+      "normal": {
+        "exp": 20,
+        "jp": 1
+      },
+      "challenge": {
+        "exp": 5,
+        "jp": 4
+      },
+      "boss": {
+        "exp": 40,
+        "jp": 12
+      }
+    }
+  },
+  "enemy_rules": [
+    {
+      "id": "conductor",
+      "name": "導電装甲",
+      "armor_defense": 60,
+      "electric_defense": 20,
+      "charge": true,
+      "device": "armor",
+      "device_hp": 45,
+      "facts": [
+        "装甲は電気を通すと抵抗が弱まる。",
+        "調整器を壊しても装甲は開く。"
+      ],
+      "hypothesis": "導電付与か調整器への攻撃で、物理攻撃が通る。"
+    },
+    {
+      "id": "charger",
+      "name": "充填機構",
+      "armor_defense": 45,
+      "charge": true,
+      "device": "armor",
+      "device_hp": 40,
+      "facts": [
+        "封緘のある相手は充填の開始でも封緘が進む。",
+        "3段階で予定行動が止まり、装甲が崩れる。"
+      ],
+      "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。"
+    },
+    {
+      "id": "reflector",
+      "name": "反射装置",
+      "field": true,
+      "facts": [
+        "場は1ラウンドの予告後に作動する。",
+        "射撃を使うのは敵も同じ。近接・魔法は弱まらない。"
+      ],
+      "hypothesis": "装置を壊す、攻撃区分を替える、敵の射撃を抑える使い方を比べる。"
+    },
+    {
+      "id": "mixed",
+      "name": "混成の予兆",
+      "magic": true,
+      "facts": [
+        "強い予兆は物理と魔法で別の軽減が必要。",
+        "護衛は単体物理だけを引き受ける。"
+      ],
+      "hypothesis": "対象と攻撃区分を見て、護衛・偏向防御を分担する。"
+    },
+    {
+      "id": "attrition",
+      "name": "連続局面",
+      "phase_round": 3,
+      "magic": true,
+      "facts": [
+        "3ラウンド目に機構の局面が変わる。",
+        "局面が変わっても味方のMPと付与は持ち越す。"
+      ],
+      "hypothesis": "前半の出力と後半に残すMPを分けて考える。"
+    },
+    {
+      "id": "residue",
+      "name": "残留する反応",
+      "death_burst": 25,
+      "facts": [
+        "倒れたあとにも残留反応が続く。",
+        "残留解除を先に使えば反応は消える。"
+      ],
+      "hypothesis": "解除するか、残留にも耐えられるHPと防御を用意する。"
+    }
+  ]
+}

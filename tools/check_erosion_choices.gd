@@ -1,5 +1,5 @@
 extends SceneTree
-
+## 旧保存形式1の互換検査。数値の期待値は維持し、形式2は別の統合機構検査で検証。
 
 var _failures: Array[String] = []
 
@@ -15,7 +15,7 @@ func _check(condition: bool, message: String) -> void:
 
 func _fixture(job_id: String, erosion: int, skill: String = "acid") -> GameSession:
 	var game := GameSession.new()
-	game.new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").begin(game,4)
 	game.change_job("pc_01", job_id)
 	var state := game.export_state()
 	state["party"][0]["erosion"] = erosion
@@ -125,6 +125,7 @@ func _check_ui() -> void:
 	root.add_child(main)
 	await process_frame
 	main.start_new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	var fixture := _fixture("slime", 87)
 	fixture.set_world("waterway", [7,12], 3)
 	_check(main.game.import_state(fixture.export_state()), "UI境界値のセーブを読み込む")
@@ -141,6 +142,7 @@ func _check_ui() -> void:
 	_check(main.submit_player_action({"kind":"confirm_erosion"}), "同意後に戦闘を開始する")
 	_check(main.automation_snapshot().get("mode") == "battle", "同意した戦闘へ入る")
 	main.start_new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	fixture = _fixture("warrior", 89)
 	fixture.set_world("waterway", [7,12], 3)
 	main.game.import_state(fixture.export_state())

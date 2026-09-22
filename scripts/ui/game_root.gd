@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS, WORLD, WORLD_CHOICE, WORLD_ATLAS, JOURNEY_DEVICE }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS, WORLD, WORLD_CHOICE, WORLD_ATLAS, JOURNEY_DEVICE, MECHANICS, RULE_UPGRADE }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -47,6 +47,10 @@ var _world_mover := WorldMovement.new()
 var _world_atlas_texture: ImageTexture
 var _world_motion_ms := -1000
 var _long_support_actor: String = ""
+var _mechanics_return: Mode = Mode.FIELD
+var _tactic_actor: String = ""
+var _tactic_ability: String = "__observe"
+var _tactic_target: String = ""
 
 
 func _ready() -> void:
@@ -227,6 +231,8 @@ func automation_snapshot() -> Dictionary:
 	names[Mode.JOB_LORE] = "job_lore"
 	names[Mode.JOURNEYS] = "journeys"
 	names[Mode.JOURNEY_DEVICE] = "journey_device"
+	names[Mode.MECHANICS]="mechanics"
+	names[Mode.RULE_UPGRADE]="rule_upgrade"
 	names[Mode.WORLD] = "world"
 	names[Mode.WORLD_CHOICE] = "world_choice"
 	names[Mode.WORLD_ATLAS] = "world_atlas"
@@ -276,6 +282,23 @@ func submit_player_action(action: Dictionary) -> bool:
 		if kind == "skip_presentation":
 			_refresh()
 			return true
+	if kind=="mechanics" and mode in [Mode.FIELD,Mode.PARTY,Mode.BATTLE]:
+		_mechanics_return=mode;mode=Mode.MECHANICS;_refresh();return true
+	if mode==Mode.MECHANICS:
+		if kind=="back":mode=_mechanics_return;_refresh();return true
+		if kind=="reserve_tactic" and game.current_battle()!=null:
+			var command: Dictionary={"kind":"observe" if _tactic_ability=="__observe" else "ability","actor":_tactic_actor,"ability":_tactic_ability,"target":_tactic_target}
+			var accepted:=_battle_action(command)
+			if accepted:mode=Mode.BATTLE
+			_refresh();return accepted
+	if kind=="preview_rule_upgrade" and mode==Mode.PARTY:
+		mode=Mode.RULE_UPGRADE;_refresh();return true
+	if mode==Mode.RULE_UPGRADE:
+		if kind=="back":mode=Mode.PARTY;_refresh();return true
+		if kind=="confirm_rule_upgrade":
+			var changed:=game.upgrade_rules()
+			mode=Mode.PARTY;_notice="新しいルールへ引き継ぎました。" if changed else "更新できませんでした。"
+			_refresh();return changed
 	if kind == "review" and mode in [Mode.MENU,Mode.FIELD,Mode.COMPLETE]:
 		_review_return = mode
 		mode = Mode.REVIEW
@@ -391,6 +414,7 @@ func submit_player_action(action: Dictionary) -> bool:
 				_notice = "転職しました。装着済みの技は持ち越します。" if accepted else "その職はまだ選べません。町の噂と魔物図鑑で手掛かりを探せます。"
 				_refresh()
 			elif kind == "job_lore":
+				game.read_job_lore()
 				mode = Mode.JOB_LORE
 				accepted = true
 			elif kind == "set_leader":
@@ -530,6 +554,7 @@ func _request_erosion_confirmation(action: Dictionary) -> bool:
 	for entry in game.erosion_preview(check_round):
 		if entry["crosses_irreversible"] and (check_start or not entry["actor"] in _confirmed_erosion_actors):
 			risk.append(entry)
+	if check_start:risk.append_array(game.mastery_forecast(kind=="field_battle"))
 	if risk.is_empty():
 		return false
 	_risk_action = action.duplicate(true)
@@ -565,6 +590,9 @@ func _respond_to_erosion(kind: String) -> bool:
 func _interact() -> bool:
 	var step := _step()
 	var world := game.world_state()
+	if not game.integrated_observation().is_empty():
+		_show_dialogue(game.read_integrated_observation(),false)
+		return true
 	var activity := game.long_activity_at_player()
 	if not activity.is_empty():
 		if activity["observation"] >= 0:
@@ -693,22 +721,33 @@ func _battle_action(action: Dictionary) -> bool:
 			game.finish_battle()
 			var lines: Array = ["勝利！"]
 			var after := game.export_state()
+			if after.has("integrated"):
+				if after["integrated"]["claimed"].size()>before["integrated"]["claimed"].size():lines.append("場を止めて補給箱へ手が届いた。回復薬を2個受け取った。")
+				for id in after["integrated"]["armory"]:
+					if id not in before["integrated"]["armory"]:lines.append("機構の扱いを確認し、『%s』の貸与が解放された。編成で持ち替えられる。" % IntegratedProgression.weapon(id)["name"])
+				for flag in after["progress_flags"]:
+					if str(flag).begins_with("integration_route_") and not before["progress_flags"].get(flag,false):lines.append("機構の扱いを通路に応用した。この区画の東側の近道が開いた。")
 			for i in range(after["party"].size()):
 				var actor: Dictionary = after["party"][i]
 				var job_id: String = before["party"][i]["job_id"]
 				var gain := int(actor["jp"].get(job_id, 0))-int(before["party"][i]["jp"].get(job_id, 0))
-				lines.append("%s: %sのJP +%d" % [actor["name"], game.jobs[job_id]["name"], gain])
+				lines.append("%s: %sのJP +%d" % [actor["name"],game.jobs[job_id]["name"],gain])
+				if actor.has("integrated"):
+					var old_growth: Dictionary=before["party"][i]["integrated"]
+					lines.append("EXP +%d / Lv%d→%d" % [actor["integrated"]["exp"]-old_growth["exp"],old_growth["level"],actor["integrated"]["level"]])
 				if actor["mastered_jobs"].size() > before["party"][i]["mastered_jobs"].size():
 					lines.append("%sが%sをマスター。" % [actor["name"], game.jobs[job_id]["name"]])
+				for id in actor["unlocked_jobs"]:
+					if id not in before["party"][i]["unlocked_jobs"]:lines.append("%sは%sへ転職できるようになった。" % [actor["name"],game.jobs[id]["name"]])
 				for ability_id in actor["learned_abilities"]:
 					if not ability_id in before["party"][i]["learned_abilities"]:
 						lines.append("%sが『%s』を習得。編成で装着すると使える。" % [actor["name"], game.abilities[ability_id]["name"]])
 				if actor["monster_form"] != before["party"][i]["monster_form"]:
 					lines.append("%sが魔物化した。能力と使用可能な技、装着枠が変化した。" % actor["name"])
-				var old_erosion := int(before["party"][i]["erosion"])
-				var new_erosion := int(actor["erosion"])
+				var old_erosion := IntegratedProgression.erosion_tenths(before["party"][i])/10.0
+				var new_erosion := IntegratedProgression.erosion_tenths(actor)/10.0
 				if old_erosion != new_erosion:
-					lines.append("%sの侵蝕 %d→%d（%s）" % [actor["name"], old_erosion, new_erosion, GameSession.erosion_stage(new_erosion)])
+					lines.append("%sの侵蝕 %.1f→%.1f（%s）" % [actor["name"], old_erosion, new_erosion, GameSession.erosion_stage(int(new_erosion))])
 				if actor["job_id"] != job_id:
 					lines.append("侵蝕90に達し、%sは%sへ移った。人間職へ戻ることと祠での解除はできない。" % [actor["name"], game.jobs[actor["job_id"]]["name"]])
 			if story_battle:
@@ -739,6 +778,7 @@ func _battle_action(action: Dictionary) -> bool:
 		"guard": command = BattleAction.guard(actor_id)
 		"ability": command = BattleAction.skill(actor_id, target_id, str(action.get("ability", "")))
 		"potion": command = BattleAction.potion(actor_id, target_id)
+		"observe": command = BattleAction.observe(actor_id,target_id)
 		_: return false
 	var error := encounter.queue_action(command)
 	if not error.is_empty():
@@ -775,6 +815,8 @@ func _refresh() -> void:
 		header.add_child(_label("侵蝕 " + " / ".join(values), 10))
 	match mode:
 		Mode.JOURNEY_DEVICE: _render_long_device()
+		Mode.MECHANICS: _render_mechanics()
+		Mode.RULE_UPGRADE: _render_rule_upgrade()
 		Mode.WORLD: _render_world()
 		Mode.WORLD_CHOICE: _render_world_choice()
 		Mode.WORLD_ATLAS: _render_world_atlas()
@@ -1212,6 +1254,7 @@ func _render_battle() -> void:
 	if not _actor.is_empty():caption.text+=" / "+encounter.actor_by_id(_actor).display_name+"の行動"
 	caption.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	tools.add_child(caption)
+	_action_button(tools,"機構・予測",{"kind":"mechanics"})
 	_action_button(tools, "選び直す", {"kind":"clear_actions"})
 	var resolve := _action_button(tools, "ターン実行", {"kind":"resolve_round"})
 	resolve.disabled = not encounter.can_resolve()
@@ -1232,7 +1275,7 @@ func _render_battle() -> void:
 		intents[intent["actor"]] = intent
 	var index := 0
 	for actor in encounter.actors:
-		if actor.team != Combatant.Team.ENEMY:
+		if actor.team != Combatant.Team.ENEMY or actor.is_device:
 			continue
 		var card := VBoxContainer.new()
 		card.add_theme_constant_override("separation",2)
@@ -1248,7 +1291,7 @@ func _render_battle() -> void:
 				target_name = "敵"+str(int(str(intent["target"]).trim_prefix("enemy_")))
 			var description := _label("敵%d %s→%s" % [index+1,intent["action"],target_name],9)
 			description.tooltip_text = "次の行動予定: %s→%s" % [intent["action"],intent["target_name"]]
-			if int(intent.get("reaction_power",0))>0 or int(intent.get("chorus_guard",100))<100:
+			if game.export_state()["format_version"]==1 and encounter.effects.rules.is_empty() and (int(intent.get("reaction_power",0))>0 or int(intent.get("chorus_guard",100))<100):
 				var shield:=int(intent["guard_percent"])
 				var expected:=encounter.forecast_damage(intent["target"],false,-1,false,actor.id)
 				var guarded:=encounter.forecast_damage(intent["target"],true,-1,false,actor.id)
@@ -1286,11 +1329,13 @@ func _render_battle() -> void:
 		commands.columns = 4
 		_body.add_child(commands)
 		_button(commands, "攻撃", _choose_target.bind("attack", ""))
+		_button(commands,"観察",_choose_target.bind("observe",""))
 		_action_button(commands, "防御", {"kind":"guard", "actor":_actor})
 		var actor := encounter.actor_by_id(_actor)
 		for identifier in actor.equipped:
 			var definition: Dictionary = game.abilities[identifier]
-			var button := _button(commands, "%s %dMP" % [definition["name"], int(definition["cost"])], _choose_target.bind("ability", identifier))
+			if definition["kind"]=="passive":continue
+			var button := _button(commands, "%s %dMP" % [definition["name"], encounter.effects.cost(actor,definition)], _choose_target.bind("ability", identifier))
 			button.tooltip_text = game.describe_ability(identifier)
 			button.disabled = encounter.targets_for(_actor, BattleAction.Kind.ABILITY, identifier).is_empty()
 		var potion := _button(commands, "回復薬", _choose_target.bind("potion", ""))
@@ -1299,7 +1344,7 @@ func _render_battle() -> void:
 	if not _target_action.is_empty():
 		var row := HBoxContainer.new()
 		_body.add_child(row)
-		var action_kind := BattleAction.Kind.ABILITY if _target_action["kind"] == "ability" else (BattleAction.Kind.ITEM if _target_action["kind"] == "potion" else BattleAction.Kind.ATTACK)
+		var action_kind := BattleAction.Kind.ABILITY if _target_action["kind"] == "ability" else (BattleAction.Kind.ITEM if _target_action["kind"] == "potion" else (BattleAction.Kind.OBSERVE if _target_action["kind"]=="observe" else BattleAction.Kind.ATTACK))
 		for target in encounter.targets_for(_actor, action_kind, _target_action.get("ability", "")):
 			var action := _target_action.duplicate()
 			action["target"] = target.id
@@ -1383,8 +1428,11 @@ func _render_party() -> void:
 		change.disabled = not game.preview_job(actor["id"], identifier)["allowed"] or not game.job_unlocked(actor["id"],identifier))
 	_action_button(_body,"町の噂・魔物図鑑",{"kind":"job_lore"})
 	_body.add_child(_label("魔物職はマスターで魔物化。侵蝕90以降は人間職へ戻れません。", 10))
-	_body.add_child(_label("侵蝕 %d（%s） / 30:兆候・60:人間JP半減・90:復帰不可" % [actor["erosion"], GameSession.erosion_stage(actor["erosion"])], 10))
-	_body.add_child(_label("JP %d/%d  %s / 装着 %d/%d" % [int(actor["jp"].get(actor["job_id"],0)), int(game.jobs[actor["job_id"]]["mastery_cost"]), "マスター" if actor["job_id"] in actor["mastered_jobs"] else "修練中", actor["equipped_abilities"].size(), game.slot_limit(actor["id"])], 11))
+	_body.add_child(_label("侵蝕 %.1f（%s） / 30:兆候・60:人間JP半減・90:復帰不可" % [game.current_erosion(actor["id"]), GameSession.erosion_stage(actor["erosion"])], 10))
+	_body.add_child(_label("JP %d/%d  %s / 装着 %d/%d" % [int(actor["jp"].get(actor["job_id"],0)), IntegratedProgression.cost(game.jobs[actor["job_id"]],actor.has("integrated")), "マスター" if actor["job_id"] in actor["mastered_jobs"] else "修練中", actor["equipped_abilities"].size(), game.slot_limit(actor["id"])], 11))
+	if actor.has("integrated"):_integrated_party_controls(actor)
+	else:_action_button(_body,"新しい育成・侵蝕ルールへの引継ぎ",{"kind":"preview_rule_upgrade"})
+	_action_button(_body,"機構の覚え書き",{"kind":"mechanics"})
 	for trait_entry in game.mastery_traits(actor["id"]):
 		var trait_label := _label(trait_entry["name"]+": "+trait_entry["description"]+"（常時・枠不要）",10)
 		trait_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -1430,12 +1478,12 @@ func _job_preview_text(actor: Dictionary, job_id: String) -> String:
 	var current := game.effective_stats(actor["id"])
 	var next: Dictionary = preview["stats"]
 	var text := "転職後の比較: HP%d→%d MP%d→%d\n攻撃%d→%d 防御%d→%d 魔力%d→%d 魔防%d→%d 速さ%d→%d" % [current["hp"],next["hp"],current["mp"],next["mp"],current["attack"],next["attack"],current["defense"],next["defense"],current["magic"],next["magic"],current["resistance"],next["resistance"],current["speed"],next["speed"]]
-	var definitions: Array = game.jobs[job_id]["abilities"]
+	var definitions: Array = IntegratedProgression.skill_list(game.jobs[job_id],actor.has("integrated"))
 	text += "\nマスター特性: "+game.mastery_trait(job_id)["description"]+"（転職後も常時）"
 	for index in range(definitions.size()):
 		var ability_id: String = definitions[index]
-		var required := ceili(float(preview["mastery_cost"])/2.0) if index == 0 else int(preview["mastery_cost"])
-		var remaining := maxi(0, required-int(preview["jp"]))
+		var required := IntegratedProgression.threshold(game.jobs[job_id],ability_id) if actor.has("integrated") else (ceili(float(preview["mastery_cost"])/2.0) if index==0 else int(preview["mastery_cost"]))
+		var remaining := maxi(0,required-int(actor.get("integrated",{}).get("relearn",{}).get(ability_id,0))) if ability_id in actor.get("integrated",{}).get("forgotten",[]) else maxi(0,required-int(preview["jp"]))
 		var progress := "次の勝利で再習得" if remaining == 0 else "あと%dJPで習得" % remaining
 		text += "\n%s: %s" % [game.abilities[ability_id]["name"], "習得済み" if ability_id in actor["learned_abilities"] else progress]
 	if not str(preview["monster_form"]).is_empty():
@@ -1473,15 +1521,21 @@ func _erosion_forecast_text() -> String:
 	var parts: Array[String] = []
 	for entry in game.erosion_preview(true):
 		if entry["after"] != entry["before"]:
-			parts.append("%s %d→%d %s" % [entry["name"], entry["before"], entry["after"], GameSession.erosion_stage(entry["after"])])
+			parts.append("%s %.1f→%.1f %s" % [entry["name"], entry["before"], entry["after"], GameSession.erosion_stage(int(entry["after"]))])
 	return "侵蝕予測: " + ("変化なし" if parts.is_empty() else " / ".join(parts))
 
 
 func _render_erosion_confirmation() -> void:
-	_body.add_child(_label("侵蝕90を越える操作の確認", 15))
+	_body.add_child(_label("戦闘後の変化を確認", 15))
 	var text := "侵蝕90以上では、人間職への転職と祠での解除ができなくなります。\n"
 	for entry in _risk_preview:
-		text += "\n%s: %d→最大%d" % [entry["name"], entry["before"], entry["after"]]
+		if entry.get("kind")=="mastery":
+			text+="\n%s: 勝利のJP%dで%sをマスターし、魔物化します。追加枠＋1。" % [entry["name"],entry["jp"],entry["job"]]
+			var weak: Dictionary=game.catalog.integration["forms"].get(entry["job_id"],{})
+			text+="有料技MP＋%d、物理被害%.2f倍、魔法被害%.2f倍。" % [weak.get("mp_add",0),weak.get("physical_rate",1),weak.get("magic_rate",1)]
+			text+="避ける場合は取消して職業を変えられます。\n"
+			continue
+		text += "\n%s: %.1f→最大%.1f" % [entry["name"], entry["before"], entry["after"]]
 		if not str(entry["forced_job"]).is_empty():
 			text += " / 終了後は" + game.jobs[entry["forced_job"]]["name"]
 	text += "\n\n予約した技は実際に発動した回数だけ加算します。未マスターの職が、この確認だけでマスターになることはありません。"
@@ -1641,6 +1695,8 @@ func _persist_checkpoint() -> bool:
 		return false
 	# 別セッションに進行だけを複製し、戦闘中の本体や手動保存を変更しない。
 	var saved := GameSession.new()
+	if _checkpoint.get("format_version",1)==2:
+		_checkpoint["integrated"]["knowledge"]=game.integration_knowledge()
 	if not saved.import_state(_checkpoint):
 		_checkpoint_error = "戦闘前の記録が不正です。手動セーブを確認してください。"
 		return false
@@ -1875,9 +1931,13 @@ func _render_job_lore() -> void:
 	for identifier in game.job_progression["advanced"]:
 		var record: Dictionary = game.job_progression["advanced"][identifier]
 		lines.append(str(game.jobs[identifier]["name"]))
-		if in_town:
+		var known: Array=game.export_state().get("integrated",{}).get("job_notes",[])
+		var legacy: bool=game.export_state()["format_version"]==1
+		if (legacy and in_town) or identifier+"/rumor" in known:
 			lines.append("町の噂: "+str(record["rumor"]))
-		lines.append("図鑑: "+str(record["bestiary"]))
+		else:lines.append("町の噂: 未確認。町で聞ける。")
+		if legacy or identifier+"/bestiary" in known:lines.append("図鑑: "+str(record["bestiary"]))
+		else:lines.append("図鑑: 未確認。図鑑を開いて調べる。")
 		lines.append("")
 	text.text = "\n".join(lines)
 	_body.add_child(text)
@@ -1901,3 +1961,95 @@ static func _button(parent: Node, text: String, callback: Callable) -> Button:
 	button.pressed.connect(callback)
 	parent.add_child(button)
 	return button
+
+
+func _integrated_party_controls(actor: Dictionary) -> void:
+	var own: Dictionary=actor["integrated"]
+	_body.add_child(_label("Lv%d / EXP%d / 専門技と基礎成長は別" % [own["level"],own["exp"]],11))
+	for slot in range(2 if "twin_grip" in actor["equipped_abilities"] else 1):
+		var row:=HBoxContainer.new();_body.add_child(row)
+		row.add_child(_label("武器%d" % (slot+1),11))
+		var picker:=OptionButton.new();picker.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(picker)
+		for id in game.export_state()["integrated"]["armory"]:
+			var item:=IntegratedProgression.weapon(id)
+			picker.add_item("%s / 攻撃%+d / %s" % [item["name"],item["attack"],"射撃" if "projectile" in item["tags"] else "近接"])
+			picker.set_item_metadata(picker.item_count-1,id)
+			if slot<own["weapons"].size() and own["weapons"][slot]==id:picker.select(picker.item_count-1)
+		picker.item_selected.connect(func(index: int)->void:
+			_notice="武器を持ち替えました。" if game.equip_weapon(actor["id"],picker.get_item_metadata(index),slot) else "装着条件を確認してください。"
+			_refresh())
+	if "focus_vow" in actor["equipped_abilities"]:
+		var bind:=OptionButton.new();bind.add_item("専心: 結び付けなし");bind.set_item_metadata(0,"")
+		for id in actor["equipped_abilities"]:
+			if game.abilities[id]["kind"] not in ["physical","magic"]:continue
+			bind.add_item("専心 → "+str(game.abilities[id]["name"]));bind.set_item_metadata(bind.item_count-1,id)
+			if own["focus_binding"]==id:bind.select(bind.item_count-1)
+		bind.item_selected.connect(func(index: int)->void:game.bind_focus(actor["id"],bind.get_item_metadata(index));_refresh())
+		_body.add_child(bind)
+	for id in own["forgotten"]:
+		_body.add_child(_label("再習得: %s / 累積%dJP" % [game.abilities[id]["name"],own["relearn"].get(id,0)],10))
+	var form:=IntegratedProgression.form_rule(actor)
+	if not form.is_empty():
+		var line:=_label("形態: 有料技MP＋%d / 物理被害%.2f倍 / 魔法被害%.2f倍" % [form.get("mp_add",0),form.get("physical_rate",1),form.get("magic_rate",1)],10)
+		line.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;_body.add_child(line)
+
+func _render_mechanics() -> void:
+	_body.add_child(_label("機構・行動の確認",14))
+	var b:=game.current_battle()
+	if b==null:
+		var text:=RichTextLabel.new();text.size_flags_vertical=Control.SIZE_EXPAND_FILL;text.add_theme_font_size_override("normal_font_size",12)
+		var lines: Array[String]=[]
+		for rule in game.catalog.integration["enemy_rules"]:
+			var known: Dictionary=game.integration_knowledge().get(rule["id"],{})
+			if known.is_empty():continue
+			lines.append(str(rule["name"])+(" / 確認済み" if known.get("confirmed",false) else " / 見立て"))
+			for index in known.get("facts",[]):lines.append(rule["facts"][int(index)])
+			lines.append(str(rule["hypothesis"]))
+		text.text="観察した機構はまだありません。現地の緑の印や、戦闘中の観察で記録できます。" if lines.is_empty() else "\n".join(lines)
+		_body.add_child(text)
+	else:
+		var select_actor:=OptionButton.new()
+		for actor in b.living(Combatant.Team.PARTY):
+			select_actor.add_item(actor.display_name);select_actor.set_item_metadata(select_actor.item_count-1,actor.id)
+			if actor.id==_tactic_actor:select_actor.select(select_actor.item_count-1)
+		_tactic_actor=select_actor.get_item_metadata(select_actor.selected)
+		select_actor.item_selected.connect(func(index:int)->void:_tactic_actor=select_actor.get_item_metadata(index);_tactic_ability="__observe";_tactic_target="";_refresh())
+		_body.add_child(select_actor)
+		var actor:=b.actor_by_id(_tactic_actor)
+		var skills:=OptionButton.new();skills.add_item("観察 / MP0");skills.set_item_metadata(0,"__observe")
+		for id in actor.equipped:
+			if game.abilities[id]["kind"]=="passive":continue
+			skills.add_item("%s / %dMP" % [game.abilities[id]["name"],b.effects.cost(actor,game.abilities[id])]);skills.set_item_metadata(skills.item_count-1,id)
+			if id==_tactic_ability:skills.select(skills.item_count-1)
+		_tactic_ability=skills.get_item_metadata(skills.selected)
+		skills.item_selected.connect(func(index:int)->void:_tactic_ability=skills.get_item_metadata(index);_tactic_target="";_refresh())
+		_body.add_child(skills)
+		var targets:=OptionButton.new()
+		var mode_name: String="enemy" if _tactic_ability=="__observe" else game.abilities[_tactic_ability]["target"]
+		for target in b.actors:
+			var offered: bool=(target.team!=actor.team and target.is_alive()) if mode_name in ["enemy","enemies"] else (target.team==actor.team and (not target.is_alive() if mode_name=="fallen_ally" else target.is_alive()))
+			if mode_name=="self":offered=target.id==actor.id
+			if not offered:continue
+			targets.add_item(target.display_name);targets.set_item_metadata(targets.item_count-1,target.id)
+			if target.id==_tactic_target:targets.select(targets.item_count-1)
+		_body.add_child(targets)
+		_tactic_target=targets.get_item_metadata(targets.selected) if targets.item_count>0 else ""
+		targets.item_selected.connect(func(index:int)->void:_tactic_target=targets.get_item_metadata(index);_refresh())
+		var action:=BattleAction.observe(_tactic_actor,_tactic_target) if _tactic_ability=="__observe" else BattleAction.skill(_tactic_actor,_tactic_target,_tactic_ability)
+		var preview:=b.preview_action(action)
+		var text:=RichTextLabel.new();text.size_flags_vertical=Control.SIZE_EXPAND_FILL;text.add_theme_font_size_override("normal_font_size",10)
+		text.text="\n".join(b.effects.description())+"\n"
+		if _tactic_ability!="__observe":text.text+=str(game.abilities[_tactic_ability]["description"])+"\n"
+		if preview["allowed"]:
+			text.text+="消費MP%d / %s\n%s" % [preview["cost"],"予測ダメージ%d" % preview["predicted_damage"] if preview["predicted_damage"]>=0 else "ダメージ未確定",preview["condition"]]
+		else:text.text+=str(preview["reason"])
+		_body.add_child(text)
+		var reserve:=_action_button(_body,"この行動を予約",{"kind":"reserve_tactic"});reserve.disabled=not preview["allowed"]
+	_action_button(_body,"戻る",{"kind":"back"})
+
+func _render_rule_upgrade() -> void:
+	_body.add_child(_label("新しいルールへ引き継ぐ",14))
+	var text:=RichTextLabel.new();text.size_flags_vertical=Control.SIZE_EXPAND_FILL;text.add_theme_font_size_override("normal_font_size",12)
+	text.text="現在地、所持技、解決済みの出来事、魔物化と不可逆の履歴を保持します。JPは新しいマスター量への割合で換算し、取得済みマスターを維持します。\nEXPはLv1から開始し、侵蝕は戦闘0.2・専用技1行動0.1になります。祠で消した技には再習得の量が必要になります。\n終えた事件は巻き戻しません。新しい導入から遊ぶ場合は新規開始を使えます。更新は確認した場合だけ行います。"
+	_body.add_child(text)
+	_action_button(_body,"引き継ぐ",{"kind":"confirm_rule_upgrade"});_action_button(_body,"今は戻る",{"kind":"back"})

@@ -1,7 +1,7 @@
 class_name BattleAction
 extends RefCounted
 
-enum Kind { ATTACK, GUARD, ABILITY, ITEM }
+enum Kind { ATTACK, GUARD, ABILITY, ITEM, OBSERVE }
 
 var kind: Kind
 var actor_id: String
@@ -30,3 +30,7 @@ static func skill(actor: String, target: String, ability: String) -> BattleActio
 
 static func potion(actor: String, target: String) -> BattleAction:
 	return BattleAction.new(Kind.ITEM, actor, target)
+
+
+static func observe(actor: String, target: String) -> BattleAction:
+	return BattleAction.new(Kind.OBSERVE,actor,target)

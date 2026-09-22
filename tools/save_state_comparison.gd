@@ -1,7 +1,7 @@
 extends RefCounted
 
-const ROOT_FIELDS := ["format_version","party","leader_id","inventory","progress_flags","field_battles","return_point","story_battle","content_revision","expedition","world","overworld","story_task","gate_team","_play_session","_trial_id","_saved_value_types"]
-const ACTOR_FIELDS := ["id","name","job_id","last_human_job","jp","mastered_jobs","learned_abilities","equipped_abilities","unlocked_jobs","monster_form","erosion","irreversible","hp","max_hp","mp","max_mp"]
+const ROOT_FIELDS := ["format_version","party","leader_id","inventory","progress_flags","field_battles","return_point","story_battle","content_revision","expedition","world","overworld","story_task","gate_team","_play_session","_trial_id","_saved_value_types","integrated"]
+const ACTOR_FIELDS := ["id","name","job_id","last_human_job","jp","mastered_jobs","learned_abilities","equipped_abilities","unlocked_jobs","monster_form","erosion","irreversible","hp","max_hp","mp","max_mp","integrated"]
 
 static func differences(before: Variant, after: Variant, path: String = "$", output: Array[String] = []) -> Array[String]:
 	if typeof(before) != typeof(after):
@@ -28,6 +28,16 @@ static func unlisted(document: Dictionary) -> Array[String]:
 	for actor in document.get("party",[]):
 		for key in actor:
 			if key not in ACTOR_FIELDS:result.append("未列挙の人物項目: "+str(key))
+		for key in actor.get("integrated",{}):
+			if key not in ["exp","level","erosion_fraction","jp_remainders","forgotten","relearn","focus_binding","weapons"]:result.append("未列挙の育成項目: "+str(key))
+	for key in document.get("integrated",{}):
+		if key not in ["knowledge","outcomes","claimed","armory","job_notes"]:result.append("未列挙の機構項目: "+str(key))
+	for entry in document.get("integrated",{}).get("knowledge",{}).values():
+		for key in entry:
+			if key not in ["facts","confirmed"]:result.append("未列挙の知識項目: "+str(key))
+	for entry in document.get("integrated",{}).get("outcomes",{}).values():
+		for key in entry:
+			if key not in ["rule","methods"]:result.append("未列挙の解法項目: "+str(key))
 	var schemas := {"world":["location","player_cell","quest_step","section"],"return_point":["location","player_cell","quest_step","section"],"story_task":["id","step"],"story_battle":["step","cleared"],"expedition":["id","stage","wave","origin","solved"],"_play_session":["version","source","source_changed","active_ms","elapsed_ms","idle_ms","pause_ms","chapters","counters","answers","events","completed"]}
 	for area in schemas:
 		for key in document.get(area,{}):

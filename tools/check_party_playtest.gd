@@ -1,5 +1,5 @@
 extends SceneTree
-
+## 旧保存形式1の互換検査。数値の期待値は維持し、形式2は別の統合機構検査で検証。
 var failures: Array[String] = []
 
 
@@ -14,7 +14,7 @@ func check(value: bool, message: String) -> void:
 
 func _run() -> void:
 	var game: Variant = GameSession.new()
-	game.new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").begin(game,4)
 	check(game.has_method("set_party_leader"),"4人の先頭切替と歩行表示が未接続")
 	check(game.has_method("save_playtest_report"),"実測と評価の保存が未接続")
 	var main := (load(ProjectSettings.get_setting("application/run/main_scene")) as PackedScene).instantiate()
@@ -107,6 +107,7 @@ func _check_metrics(game: GameSession) -> void:
 
 func _check_walking_and_battle(main: Node) -> void:
 	main.start_new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	main.game.play_metrics.set_source("automated")
 	for identifier in ["pc_01","pc_02","pc_03","pc_04"]:
 		main.submit_player_action({"kind":"party"})
@@ -144,6 +145,7 @@ func _check_walking_and_battle(main: Node) -> void:
 	check(attack_seen and hurt_seen,"実際の攻撃と被ダメージに対応するコマを再生する")
 	main.submit_player_action({"kind":"skip_presentation"})
 	main.start_new_game(3)
+	preload("res://tools/legacy_save_fixture.gd").as_legacy(main.game)
 	main.game.play_metrics.set_source("automated")
 	check(main.game.walking_party().size() == 3,"3人編成で4人目を表示しない")
 	main.submit_player_action({"kind":"review"})
@@ -153,7 +155,7 @@ func _check_walking_and_battle(main: Node) -> void:
 
 func _check_transform(main: Node) -> void:
 	var game := GameSession.new()
-	game.new_game(4)
+	preload("res://tools/legacy_save_fixture.gd").begin(game,4)
 	game.change_job("pc_01","undead")
 	for training in range(30):
 		var actor: Dictionary = game.export_state()["party"][0]

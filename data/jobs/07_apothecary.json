@@ -11,9 +11,11 @@
   },
   "abilities": [
     "salve",
-    "breath"
+    "breath",
+    "restore_mp",
+    "recycle"
   ],
-  "mastery_cost": 48,
+  "mastery_cost": 120,
   "stats": {
     "hp": 115,
     "mp": 38,
@@ -23,5 +25,10 @@
     "resistance": 13,
     "speed": 12
   },
-  "design_status": "未指定の名称・数値は調整案"
+  "design_status": "未指定の名称・数値は調整案",
+  "legacy_mastery_cost": 48,
+  "legacy_abilities": [
+    "salve",
+    "breath"
+  ]
 }

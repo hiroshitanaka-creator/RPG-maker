@@ -17,6 +17,14 @@ var magic: int
 var resistance: int
 var speed: int
 var guard_rate: float = 1.0
+var is_device := false
+var affinities: Array[String] = []
+var weapons: Array = []
+var primary_weapon_attack := 0
+var focus_binding := ""
+var form_mp_add := 0
+var physical_taken := 1.0
+var magic_taken := 1.0
 var loot_available: bool = true
 var learned: Array[String] = []
 var equipped: Array[String] = []
@@ -59,3 +67,11 @@ func heal(amount: int) -> int:
 
 func snapshot() -> Dictionary:
 	return {"id": id, "name": display_name, "hp": hp, "max_hp": max_hp, "mp": mp, "max_mp": max_mp}
+
+
+func copy() -> Combatant:
+	var result := Combatant.new(id,display_name,team,{"hp":max_hp,"mp":max_mp,"attack":attack,"defense":defense,"magic":magic,"resistance":resistance,"speed":speed})
+	for key in ["hp","mp","job_id","guard_rate","loot_available","is_device","primary_weapon_attack","focus_binding","form_mp_add","physical_taken","magic_taken"]:result.set(key,get(key))
+	result.learned=learned.duplicate();result.equipped=equipped.duplicate();result.weaknesses=weaknesses.duplicate();result.affinities=affinities.duplicate()
+	result.weapons=weapons.duplicate(true);result.tactics=tactics.duplicate(true)
+	return result

@@ -1,0 +1,3107 @@
+{
+  "version": 1,
+  "status": "provisional",
+  "methods_open_route": [
+    "device",
+    "seal_break",
+    "field_break",
+    "disarm",
+    "conducted_hit"
+  ],
+  "assignments": {
+    "w_ferry_1": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_w_ferry_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_d",
+          "cell": [
+            23,
+            9
+          ]
+        }
+      ],
+      "flag": "integration_route_w_ferry_1",
+      "reward": "iron_blade"
+    },
+    "w_ferry_2": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_w_ferry_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_d",
+          "cell": [
+            23,
+            9
+          ]
+        }
+      ],
+      "flag": "integration_route_w_ferry_2",
+      "reward": "twin_blade"
+    },
+    "w_ferry_3": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_w_ferry_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_d",
+          "cell": [
+            23,
+            9
+          ]
+        }
+      ],
+      "flag": "integration_route_w_ferry_3",
+      "reward": "long_bow"
+    },
+    "w_ferry_4": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_w_ferry_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_ferry_d",
+          "cell": [
+            23,
+            9
+          ]
+        }
+      ],
+      "flag": "integration_route_w_ferry_4",
+      "reward": "iron_blade"
+    },
+    "w_flute_1": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_w_flute_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_flute_1",
+      "reward": "twin_blade"
+    },
+    "w_flute_2": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_w_flute_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_flute_2",
+      "reward": "long_bow"
+    },
+    "w_flute_3": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_w_flute_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_flute_3",
+      "reward": "iron_blade"
+    },
+    "w_flute_4": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_w_flute_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_flute_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_flute_4",
+      "reward": "twin_blade"
+    },
+    "c_lamp_1": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_c_lamp_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_d",
+          "cell": [
+            23,
+            10
+          ]
+        }
+      ],
+      "flag": "integration_route_c_lamp_1",
+      "reward": "long_bow"
+    },
+    "c_lamp_2": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_c_lamp_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_d",
+          "cell": [
+            23,
+            10
+          ]
+        }
+      ],
+      "flag": "integration_route_c_lamp_2",
+      "reward": "iron_blade"
+    },
+    "c_lamp_3": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_c_lamp_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_d",
+          "cell": [
+            23,
+            10
+          ]
+        }
+      ],
+      "flag": "integration_route_c_lamp_3",
+      "reward": "twin_blade"
+    },
+    "c_lamp_4": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_c_lamp_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_lamp_d",
+          "cell": [
+            23,
+            10
+          ]
+        }
+      ],
+      "flag": "integration_route_c_lamp_4",
+      "reward": "long_bow"
+    },
+    "c_letters_1": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_c_letters_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_letters_1",
+      "reward": "iron_blade"
+    },
+    "c_letters_2": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_c_letters_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_letters_2",
+      "reward": "twin_blade"
+    },
+    "c_letters_3": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_c_letters_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_letters_3",
+      "reward": "long_bow"
+    },
+    "c_letters_4": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_c_letters_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_letters_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_letters_4",
+      "reward": "iron_blade"
+    },
+    "w_seeds_1": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_w_seeds_a",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_w_seeds_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_seeds_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_seeds_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_seeds_1",
+      "reward": "twin_blade"
+    },
+    "w_seeds_2": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_w_seeds_a",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_w_seeds_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_seeds_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_seeds_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_seeds_2",
+      "reward": "long_bow"
+    },
+    "w_seeds_3": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_w_seeds_a",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_w_seeds_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_seeds_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_seeds_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_seeds_3",
+      "reward": "iron_blade"
+    },
+    "w_seeds_4": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_w_seeds_a",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_w_seeds_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_seeds_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_seeds_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_seeds_4",
+      "reward": "twin_blade"
+    },
+    "c_statues_1": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_c_statues_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_statues_1",
+      "reward": "long_bow"
+    },
+    "c_statues_2": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_c_statues_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_statues_2",
+      "reward": "iron_blade"
+    },
+    "c_statues_3": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_c_statues_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_statues_3",
+      "reward": "twin_blade"
+    },
+    "c_statues_4": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_c_statues_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_statues_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_statues_4",
+      "reward": "long_bow"
+    },
+    "s_dummy_1": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_s_dummy_a",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_s_dummy_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_dummy_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_dummy_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_dummy_1",
+      "reward": "iron_blade"
+    },
+    "s_dummy_2": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_s_dummy_a",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_s_dummy_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_dummy_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_dummy_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_dummy_2",
+      "reward": "twin_blade"
+    },
+    "s_dummy_3": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_s_dummy_a",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_s_dummy_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_dummy_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_dummy_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_dummy_3",
+      "reward": "long_bow"
+    },
+    "s_dummy_4": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_s_dummy_a",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_s_dummy_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_dummy_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_dummy_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_dummy_4",
+      "reward": "iron_blade"
+    },
+    "s_garden_1": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_s_garden_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_garden_b",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_s_garden_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_garden_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_garden_1",
+      "reward": "twin_blade"
+    },
+    "s_garden_2": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_s_garden_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_garden_b",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_s_garden_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_garden_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_garden_2",
+      "reward": "long_bow"
+    },
+    "s_garden_3": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_s_garden_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_garden_b",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_s_garden_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_garden_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_garden_3",
+      "reward": "iron_blade"
+    },
+    "s_garden_4": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_s_garden_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_garden_b",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_s_garden_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_garden_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_garden_4",
+      "reward": "twin_blade"
+    },
+    "w_permit_1": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_w_permit_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_permit_1",
+      "reward": "long_bow"
+    },
+    "w_permit_2": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_w_permit_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_permit_2",
+      "reward": "iron_blade"
+    },
+    "w_permit_3": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_w_permit_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_permit_3",
+      "reward": "twin_blade"
+    },
+    "w_permit_4": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_w_permit_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_w_permit_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_w_permit_4",
+      "reward": "long_bow"
+    },
+    "c_shelter_1": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_c_shelter_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_shelter_b",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_c_shelter_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_shelter_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_shelter_1",
+      "reward": "iron_blade"
+    },
+    "c_shelter_2": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_c_shelter_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_shelter_b",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_c_shelter_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_shelter_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_shelter_2",
+      "reward": "twin_blade"
+    },
+    "c_shelter_3": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_c_shelter_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_shelter_b",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_c_shelter_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_shelter_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_shelter_3",
+      "reward": "long_bow"
+    },
+    "c_shelter_4": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_c_shelter_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_shelter_b",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_c_shelter_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_c_shelter_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_c_shelter_4",
+      "reward": "iron_blade"
+    },
+    "r_ink_1": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_r_ink_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_ink_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_ink_c",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_r_ink_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_ink_1",
+      "reward": "twin_blade"
+    },
+    "r_ink_2": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_r_ink_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_ink_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_ink_c",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_r_ink_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_ink_2",
+      "reward": "long_bow"
+    },
+    "r_ink_3": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_r_ink_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_ink_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_ink_c",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_r_ink_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_ink_3",
+      "reward": "iron_blade"
+    },
+    "r_ink_4": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_r_ink_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_ink_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_ink_c",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_r_ink_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_ink_4",
+      "reward": "twin_blade"
+    },
+    "r_keys_1": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_r_keys_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_keys_1",
+      "reward": "long_bow"
+    },
+    "r_keys_2": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_r_keys_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_keys_2",
+      "reward": "iron_blade"
+    },
+    "r_keys_3": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_r_keys_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_keys_3",
+      "reward": "twin_blade"
+    },
+    "r_keys_4": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_r_keys_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_keys_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_keys_4",
+      "reward": "long_bow"
+    },
+    "s_rival_1": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_s_rival_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_rival_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_rival_c",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_s_rival_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_rival_1",
+      "reward": "iron_blade"
+    },
+    "s_rival_2": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_s_rival_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_rival_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_rival_c",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_s_rival_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_rival_2",
+      "reward": "twin_blade"
+    },
+    "s_rival_3": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_s_rival_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_rival_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_rival_c",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_s_rival_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_rival_3",
+      "reward": "long_bow"
+    },
+    "s_rival_4": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_s_rival_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_rival_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_rival_c",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_s_rival_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_s_rival_4",
+      "reward": "iron_blade"
+    },
+    "s_masks_1": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_s_masks_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_d",
+          "cell": [
+            23,
+            9
+          ]
+        }
+      ],
+      "flag": "integration_route_s_masks_1",
+      "reward": "twin_blade"
+    },
+    "s_masks_2": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_s_masks_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_d",
+          "cell": [
+            23,
+            9
+          ]
+        }
+      ],
+      "flag": "integration_route_s_masks_2",
+      "reward": "long_bow"
+    },
+    "s_masks_3": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_s_masks_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_d",
+          "cell": [
+            23,
+            9
+          ]
+        }
+      ],
+      "flag": "integration_route_s_masks_3",
+      "reward": "iron_blade"
+    },
+    "s_masks_4": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_s_masks_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_s_masks_d",
+          "cell": [
+            23,
+            9
+          ]
+        }
+      ],
+      "flag": "integration_route_s_masks_4",
+      "reward": "twin_blade"
+    },
+    "r_debt_1": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_r_debt_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_debt_1",
+      "reward": "long_bow"
+    },
+    "r_debt_2": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_r_debt_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_debt_2",
+      "reward": "iron_blade"
+    },
+    "r_debt_3": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_r_debt_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_debt_3",
+      "reward": "twin_blade"
+    },
+    "r_debt_4": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_r_debt_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_debt_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_r_debt_4",
+      "reward": "long_bow"
+    },
+    "r_stars_1": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_r_stars_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_d",
+          "cell": [
+            23,
+            10
+          ]
+        }
+      ],
+      "flag": "integration_route_r_stars_1",
+      "reward": "iron_blade"
+    },
+    "r_stars_2": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_r_stars_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_d",
+          "cell": [
+            23,
+            10
+          ]
+        }
+      ],
+      "flag": "integration_route_r_stars_2",
+      "reward": "twin_blade"
+    },
+    "r_stars_3": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_r_stars_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_d",
+          "cell": [
+            23,
+            10
+          ]
+        }
+      ],
+      "flag": "integration_route_r_stars_3",
+      "reward": "long_bow"
+    },
+    "r_stars_4": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_r_stars_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_r_stars_d",
+          "cell": [
+            23,
+            10
+          ]
+        }
+      ],
+      "flag": "integration_route_r_stars_4",
+      "reward": "iron_blade"
+    },
+    "g_watch_1": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_g_watch_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_watch_1",
+      "reward": "twin_blade"
+    },
+    "g_watch_2": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_g_watch_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_watch_2",
+      "reward": "long_bow"
+    },
+    "g_watch_3": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_g_watch_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_watch_3",
+      "reward": "iron_blade"
+    },
+    "g_watch_4": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_g_watch_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_watch_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_watch_4",
+      "reward": "twin_blade"
+    },
+    "g_banners_1": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_g_banners_a",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_g_banners_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_banners_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_banners_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_banners_1",
+      "reward": "long_bow"
+    },
+    "g_banners_2": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_g_banners_a",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_g_banners_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_banners_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_banners_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_banners_2",
+      "reward": "iron_blade"
+    },
+    "g_banners_3": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_g_banners_a",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_g_banners_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_banners_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_banners_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_banners_3",
+      "reward": "twin_blade"
+    },
+    "g_banners_4": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_g_banners_a",
+          "cell": [
+            23,
+            9
+          ]
+        },
+        {
+          "room": "journey_g_banners_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_banners_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_banners_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_banners_4",
+      "reward": "long_bow"
+    },
+    "g_tools_1": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_g_tools_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_tools_1",
+      "reward": "iron_blade"
+    },
+    "g_tools_2": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_g_tools_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_tools_2",
+      "reward": "twin_blade"
+    },
+    "g_tools_3": {
+      "rule": "reflector",
+      "routes": [
+        {
+          "room": "journey_g_tools_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_tools_3",
+      "reward": "long_bow"
+    },
+    "g_tools_4": {
+      "rule": "mixed",
+      "routes": [
+        {
+          "room": "journey_g_tools_a",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_tools_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_tools_4",
+      "reward": "iron_blade"
+    },
+    "g_return_1": {
+      "rule": "attrition",
+      "routes": [
+        {
+          "room": "journey_g_return_a",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_g_return_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_return_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_return_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_return_1",
+      "reward": "twin_blade"
+    },
+    "g_return_2": {
+      "rule": "residue",
+      "routes": [
+        {
+          "room": "journey_g_return_a",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_g_return_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_return_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_return_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_return_2",
+      "reward": "long_bow"
+    },
+    "g_return_3": {
+      "rule": "conductor",
+      "routes": [
+        {
+          "room": "journey_g_return_a",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_g_return_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_return_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_return_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_return_3",
+      "reward": "iron_blade"
+    },
+    "g_return_4": {
+      "rule": "charger",
+      "routes": [
+        {
+          "room": "journey_g_return_a",
+          "cell": [
+            23,
+            10
+          ]
+        },
+        {
+          "room": "journey_g_return_b",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_return_c",
+          "cell": [
+            23,
+            8
+          ]
+        },
+        {
+          "room": "journey_g_return_d",
+          "cell": [
+            23,
+            8
+          ]
+        }
+      ],
+      "flag": "integration_route_g_return_4",
+      "reward": "twin_blade"
+    },
+    "world/town": {
+      "rule": "conductor",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/river_watch": {
+      "rule": "charger",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/waterway": {
+      "rule": "reflector",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/reed_camp": {
+      "rule": "mixed",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/cave": {
+      "rule": "attrition",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/stone_shelter": {
+      "rule": "residue",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/gate": {
+      "rule": "conductor",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/garden": {
+      "rule": "charger",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/herb_station": {
+      "rule": "reflector",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/school": {
+      "rule": "mixed",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/springford": {
+      "rule": "attrition",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/causeway_cave": {
+      "rule": "residue",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/records": {
+      "rule": "conductor",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/harbor": {
+      "rule": "charger",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/toll_post": {
+      "rule": "reflector",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/levee_vault": {
+      "rule": "mixed",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/shipyard": {
+      "rule": "attrition",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/brine_port": {
+      "rule": "residue",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/tide_beacon": {
+      "rule": "conductor",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/salt_mine": {
+      "rule": "charger",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/nettle_hamlet": {
+      "rule": "reflector",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/reef_shrine": {
+      "rule": "mixed",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/drowned_store": {
+      "rule": "attrition",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/breakwater_ruins": {
+      "rule": "residue",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/sailors_rest": {
+      "rule": "conductor",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/mist_market": {
+      "rule": "charger",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/lock_station": {
+      "rule": "reflector",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/reed_library": {
+      "rule": "mixed",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/kiln_village": {
+      "rule": "attrition",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/marsh_camp": {
+      "rule": "residue",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/bell_quarry": {
+      "rule": "conductor",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/windbreak_town": {
+      "rule": "charger",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/wind_observatory": {
+      "rule": "reflector",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/ridgehearth": {
+      "rule": "mixed",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/cloud_landing": {
+      "rule": "attrition",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/cloud_forge": {
+      "rule": "residue",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/signal_hut": {
+      "rule": "conductor",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/survey_post": {
+      "rule": "charger",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/high_camp": {
+      "rule": "reflector",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/wind_tomb": {
+      "rule": "mixed",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/standing_stone": {
+      "rule": "attrition",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/highfield": {
+      "rule": "residue",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/ridge_well": {
+      "rule": "conductor",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/wayfarer_refuge": {
+      "rule": "charger",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/aerie_ruins": {
+      "rule": "reflector",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/summit_marker": {
+      "rule": "mixed",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    },
+    "world/snow_shelter": {
+      "rule": "attrition",
+      "routes": [],
+      "flag": "",
+      "reward": "twin_blade"
+    },
+    "world/echo_platform": {
+      "rule": "residue",
+      "routes": [],
+      "flag": "",
+      "reward": "long_bow"
+    },
+    "world/summit_archive": {
+      "rule": "conductor",
+      "routes": [],
+      "flag": "",
+      "reward": "iron_blade"
+    }
+  }
+}
