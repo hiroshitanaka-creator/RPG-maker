@@ -110,6 +110,11 @@ func prepare(game: GameSession, train_jobs: bool) -> void:
 		index += 1
 
 func battle(game: GameSession) -> bool:
+	if game._integration_reward_kind()=="boss":
+		prepare(game,false)
+		if game.world_state()["location"] not in ChapterOne.TOWNS:
+			check(game.return_to_town() and game.rest() and game.resume_exploration(),"次の波の編成に合わせて担当職とMPを整える")
+		else:game.rest()
 	var encounter := game.start_story_battle()
 	if not check(encounter != null,"本番の敵編成とシードで戦闘を開始"):return false
 	var policy = preload("res://tools/counterplay_policy.gd")

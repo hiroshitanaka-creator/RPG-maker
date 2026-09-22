@@ -1636,11 +1636,16 @@ func _integrated_site() -> String:
 
 func _integration_reward_kind() -> String:
 	if _field_battle:return "normal"
-	if not _state.get("expedition",{}).is_empty():
-		return "boss" if current_story_step().get("section","").ends_with("_d") else "challenge"
-	var enemies: Array=_battle_enemy_ids if _battle!=null else current_story_step().get("enemies",[])
+	var enemies: Array=_battle_enemy_ids if _battle!=null else []
+	if world_exploration_active():
+		var event:=WorldExpedition.event_at(_state["overworld"])
+		if _battle==null:enemies=event.get("enemies",[])
+	elif _battle==null:
+		var waves:=StoryCampaign.battle_waves(current_story_step())
+		if story_wave_index()<waves.size():enemies=waves[story_wave_index()]
 	for id in enemies:
 		if id in ["gate_beast","elder_slime","ancient_shell","night_bat","core_wisp","flood_beast"]:return "boss"
+	if world_exploration_active() or not _state.get("expedition",{}).is_empty():return "challenge"
 	return "normal"
 
 func _record_integrated_outcome() -> void:
