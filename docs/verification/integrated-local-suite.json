@@ -2,17 +2,27 @@
   "status": "PASS",
   "completed": 48,
   "total": 48,
-  "build": {
-    "version": 1,
-    "id": "62ae4bfc118ae427e176d3d679a00bd944aad4133370ab1c73ed5a88ec3f591b",
-    "engine": "4.7.2-stable (official) [ed1daf0bf]",
-    "files": 202
+  "builds": {
+    "original_checks": {
+      "version": 1,
+      "id": "62ae4bfc118ae427e176d3d679a00bd944aad4133370ab1c73ed5a88ec3f591b",
+      "engine": "4.7.2-stable (official) [ed1daf0bf]",
+      "files": 202
+    },
+    "storage_recheck": {
+      "version": 1,
+      "id": "8f0e796ed660489980bb2ee49e5a847aba0e3fa27342f5507ca133577f526c08",
+      "engine": "4.7.2-stable (official) [ed1daf0bf]",
+      "files": 203
+    }
   },
-  "scope": "圧縮保存の追加前に実行した18件＋30件。保存処理の変更は追加検査と最終の全編再実行で検証する。",
+  "recorded_at": "2026-09-23T02:47:28.719054+00:00",
   "parts": [
     "integrated-local-suite-prefix.json",
     "integrated-local-suite-tail.json"
   ],
+  "storage_rechecks": "integrated-storage-suite.json",
+  "scope": "圧縮保存の追加前に実行した48件と、保存のみの変更後に再実行した関係12件。実行版を分けて保持する。GitHub CIの成功とは区別。",
   "results": [
     {
       "name": "check_map_graph_definition",

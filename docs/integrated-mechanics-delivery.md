@@ -16,7 +16,7 @@
 
 ## 検証の扱い
 
-この記録は検証中。最終の全編・受入検査が終わるまでは全件完了と扱わない。
+ローカルの新機構・既存受入・全編到達検査を実行した。GitHub CIは外部条件で開始できていないため、作業契約上の完了とは扱わない。
 
 | 検査 | 実行記録 | 現状 |
 |---|---|---|
@@ -25,11 +25,12 @@
 | 育成・旧保存・実戦での習得 | `verification/integrated-progression-current.json` | 10ケースPASS。3人/4人の新規開始からJP注入なしの習得・魔物化・再習得を含む |
 | 配分・通路・不正入力拒否 | `verification/integrated-campaign-current.json` | 129配分、6機構、320通路PASS |
 | 通常画面 | `verification/integrated-ui-headless.json`、`verification/integrated-ui-native.json` | 6画面・71部品。headlessと実描画を区別 |
+| 圧縮保存の互換・破損拒否 | `verification/integrated-storage-current.json` | 43検査PASS。1万件の合成履歴と4件の実保存で、状態・型・値・順序を照合 |
 | 同予算の構成比較 | `verification/integrated-builds-current.json` | 240JP/4800EXP、3構成×6機構×100シード。勝率・平均/最大ターン・生存者の残MPを記録 |
-| 既存の固定勝率・終了率 | `verification/provisional-battle-acceptance.json` | 12,000試行。元の初期値を別JSONとハッシュで固定 |
-| 全80話・3人4人・両順序 | `verification/long-full-*.json` | 保存容量を修正した最終版で再実行中。圧縮前は4件とも80話・550戦に到達したが、1MiB上限を超えた |
-| 既存CIの独立した受入検査 | `verification/integrated-local-suite.json` | RUNNING。各コマンドの終了値と診断ログを逐次記録 |
-| 高頻度履歴 | `verification/long-record-capacity.json` | 72,000件の型・値・順序を保持。暫定16MiB/保存・読込み各5秒の検査 |
+| 既存の固定勝率・終了率 | `verification/provisional-battle-acceptance.json` | 12,000試行PASS。各条件の勝率41.5〜59.2%。10ターン以内11,625/12,000。元の初期値を固定 |
+| 全80話・3人4人・両順序 | `verification/long-full-*.json` | 圧縮保存を含む最終版の4条件すべてPASS。各80話・80現地操作・550戦。保存の1MiB・2秒条件も維持 |
+| 既存CIの独立した受入検査 | `verification/integrated-local-suite.json` | 48件PASS（中断前18件＋再開後30件）。保存のみの変更後に関係12件を再実行してPASS。各実行版・終了値・ログ・結果要約を保持 |
+| 高頻度履歴 | `verification/long-record-capacity.json` | 72,000件の型・値・順序を保持。315,191バイト、保存930ms、読込み2,223ms。暫定16MiB/各5秒以内でPASS |
 | GitHub CI | `verification/integrated-ci-blocked.json` | BLOCKED_BEFORE_EXECUTION。GitHubの支払い状態または利用上限の通知によりジョブ未開始。ローカルPASSをGitHub CIの成功へ置換しない |
 
 固定ACと旧数値の互換検査を分けた理由は `integrated-validation-boundaries.md`。敵の本番行動選択の接続漏れは、直接呼出しだけの検査では不十分だったため、予告と実行を通る検査に追加してFAILを再現してから修正した。修正前の記録は `verification/integrated-enemy-dispatch-baseline.json`。
@@ -42,6 +43,26 @@
 
 ## 残る確認
 
-- GitHub側でActionsを実行可能にし、最終コミットのCIを実行する必要がある。エンジンや受入条件を変えてこの制約を回避しない。
-- 人間による初見の理解・面白さ・テンポ・60時間の実測はNOT_RUN。`PLAYTEST_QUEUE.md` の既存項目とPT19〜PT21に分離してある。
-- 職別行動をマスター必須条件へ追加する旧衝突は解消扱いにしない。今回の推奨案は凍結要件どおりJPマスターを維持する。
+| 残る項目 | ブロック理由・成立条件 |
+|---|---|
+| 最新コミットのGitHub CI | GitHubから支払い状態または利用上限の確認を求められ、ジョブ開始前に拒否された。実装・検査の準備は済んでいる。アカウント側でActionsを実行可能にしてから再実行する必要がある |
+| 初見の理解・面白さ・テンポ・60時間の実測 | NOT_RUN。本人の初見体験・理解・実時間を機械の入力回数や実行秒数から認定できないため、`PLAYTEST_QUEUE.md` の既存項目とPT19〜PT21で別に記録する |
+
+今回の推奨案として採用した新機構について、独立して着手できる実装・ローカル検証は終えている。人間の試遊の必要性を理由に機械作業を残したものではない。GitHub CIの制約を、エンジンや受入条件の変更で回避しない。
+
+職別行動をマスター必須条件へ追加する旧衝突は、今回の採用範囲とは別の仕様判断として残す。凍結要件どおりJPマスターを維持する推奨案を実装しており、旧衝突を解消したとは扱わない。
+
+## 全編の実行結果
+
+| 人数 | 進行順 | 話数 | 戦闘数 | 保存往復 | 別プロセス再開 | 結果 |
+|---|---|---|---|---|---|---|
+| 3 | 正順 | 80 | 550 | 1780 | 0 | PASS |
+| 3 | 逆順 | 80 | 550 | 1780 | 1 | PASS |
+| 4 | 正順 | 80 | 550 | 1780 | 0 | PASS |
+| 4 | 逆順 | 80 | 550 | 1780 | 0 | PASS |
+
+ゲームコードの実行版ID: `8f0e796ed660489980bb2ee49e5a847aba0e3fa27342f5507ca133577f526c08`。このコードの検査中にゲーム・検査コードが変わっていないことも各完走で照合した。機械の実行秒数を人間の60時間の実測へ加算しない。
+
+## 変更ファイル
+
+比較元は `d4b5bef`。全134ファイルの一覧は [変更ファイル一覧](verification/integrated-change-manifest.json) に記録した。主な変更は `scripts/combat/`、`scripts/game/`、`scripts/ui/game_root.gd`、`scripts/world/integrated_campaign.gd`、`data/jobs/`、`data/integrated_*.json`、検証用の `tools/` と記録類。ゲームに使う画像は今回変更していない。

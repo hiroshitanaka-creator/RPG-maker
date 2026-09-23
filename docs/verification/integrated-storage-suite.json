@@ -1,0 +1,384 @@
+{
+  "status": "PASS",
+  "completed": 12,
+  "total": 12,
+  "all_checks": 48,
+  "selected_checks": [
+    "check_world_state_boundaries",
+    "check_world_ui",
+    "check_long_recovery",
+    "check_battle_recovery",
+    "check_saved_value_types",
+    "check_save_complete_automated-playtest",
+    "check_save_complete_three-member-party_teaching-first_automated-playtest",
+    "check_v1_finish",
+    "check_build_identity",
+    "check_record_restart",
+    "check_frozen_files",
+    "validate_assets"
+  ],
+  "build": {
+    "version": 1,
+    "id": "8f0e796ed660489980bb2ee49e5a847aba0e3fa27342f5507ca133577f526c08",
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 203
+  },
+  "checks": {
+    "tools/audit_v1_inventory.py": "d27c17893b5e8f2886e2ced0203f217e0ce3f30b40ff3e3a595632a5287a5f3b",
+    "tools/audit_v1_runtime.gd": "f248e49090f7f3e3ddbbdbc8d97468f52f8e3ec0902a450ce4c4dbcd7adfa9b5",
+    "tools/build_asset_provenance.py": "94404e6f491b87925ed7e7c272cc6c60607aaf6553b685b3d273e25afe18b872",
+    "tools/build_campaign_content.py": "3063a9255fc755efda2cda6b4dc2914f39dca622c3b839b1181bfdba2c1146da",
+    "tools/build_erosion_signs.py": "26146c1d3d0c3827b7f5447dc086100abc7e329b8e20e4a9cc7c8a92c4677376",
+    "tools/build_identity.py": "53e48584755e82e4c7a461c7675e883208d18f11dd5b1867f45183bc010014ac",
+    "tools/build_long_campaign.py": "6e086106764763546efcd36fa0c3b55b6db1b24d42b9dd61848e8f11b7ea4036",
+    "tools/build_palette.py": "4654259a1e9cf0b327e09ba9cb62f2aca7893d5d3cb595395f81dc0684f4b55f",
+    "tools/build_world_interiors.py": "ca6ffaacfa5a0b1366f3c4abbc27fdf69fd6eb7a5218a6c23d825cd26aa0ffc0",
+    "tools/build_world_terrain.py": "da2e3263cffca14659b8f000dae37ac24fee929f5ba921078f2ef9a5a65e3c70",
+    "tools/capture_campaign_preview.gd": "aaa75c0a0093f8dd3149be0acdf89b767215c894f7756a790c94fa9f69d24196",
+    "tools/capture_native_preview.gd": "8985e037cc819cca47c47bbb8e8d420649162fce2141e8d3867ec57d53ad14da",
+    "tools/check_battle_acceptance.gd": "8a0f87091a5625c1506d0d3cbbe61951d412bf7a5cf71b40438fb7e4c457f8a9",
+    "tools/check_battle_counterplay.gd": "2023f4cfcd00a2894414928103cf2aaf36e18cae4ca7277b39ecd4987f4186d7",
+    "tools/check_battle_recovery.gd": "4c6dc1e08c3f4dac58d11c2652800deb0401e7fd8d4c588b06c5b8eae9b211b5",
+    "tools/check_build_identity.py": "19d412f97fbd3f19d7e4d7e12e8ccdcebb5cb17a817e4e1010f976ec698c15e3",
+    "tools/check_campaign_boundaries.gd": "b65f6c07d87e1f865701db6e8a69ee48f649db588bd90958ac1c08130a53bd2d",
+    "tools/check_campaign_content.gd": "4a631ce30fa168a5e9d355402b09f3f56e400c2c0f08bcaa8057675fb7377803",
+    "tools/check_duration_summary.py": "dca5378f8380de42c35eedeb6b8d16bb47d871efbd2019eff39e6b935276aec4",
+    "tools/check_duration_target.gd": "f4c42d34236908514f949ebb3dbab0a70ab4d3cbccb9e36f2719fbbbe808ed37",
+    "tools/check_enemy_encounters.gd": "1939d90e4a92c1aad1de5e7ce668f8fce40b2d612f1c1c61da62821f3fa5fabf",
+    "tools/check_erosion_choices.gd": "0b5e416e7431e9a4be73dea08ab49a6cb78a077853fa7b5d2bce314c9e935dda",
+    "tools/check_exploration_devices.gd": "c59f931972d1628a3628dcb8f85c38d46ad1c2283a31e1815cc6798d983f026a",
+    "tools/check_field_recovery.gd": "ac32c988c1b022dfece8ae771440510067541becd98bf909e81ab1ff398cfc92",
+    "tools/check_frozen_files.py": "d592cecf1b6dd9dbf2a87006a2254e75c18c219a143e961bea579c2cdfdb575d",
+    "tools/check_integrated_builds.gd": "c70a46a1e3c722b3bf91a58af5caeadbad317b362a54b9f775562e407825da71",
+    "tools/check_integrated_campaign.gd": "4323b3da12e7a7d4a793e985968da27ab2a0f4a2ec650a81e817349f36224310",
+    "tools/check_integrated_combat.gd": "76f30f96edce59dd31185744df08fa132f02528e712093e2463946410df6878b",
+    "tools/check_integrated_entry.gd": "cd995b3acc1c5c67741e78ba6909c5a10bb8f861baf4fc80830ca83fe9551a49",
+    "tools/check_integrated_progression.gd": "93f4e64aae4d6cf7e0aa3bcb37e93747a1fa56c86649494556b32c2c84f2acb3",
+    "tools/check_integrated_storage.gd": "e202ee8ad8c3cc9dace108568fe7458d7c09a501546acd2a3edce768919eba88",
+    "tools/check_integrated_ui.gd": "dc2b696874ff8138472fe02f58a571d77197e9a0086768a1d17db5b1b7773908",
+    "tools/check_long_audit_checkpoint.gd": "8736de04e03e4d6bf0cf8e5f6ad548a14a7758ec486efcd728d0d54342eef88c",
+    "tools/check_long_authoring.py": "c1dec2c3678e2e99b9234d0dc87d369c94ed90515143d5a10bf717f494ce9f4b",
+    "tools/check_long_capacity.gd": "fe44c95708ed093b4ba919818f4da66bcbb75a9b2561f86f70be507a0f66d08f",
+    "tools/check_long_clues.gd": "4aa078ddd1de1688f506f6625acc1897812ed989fab44ea57eb62cb3fb58c177",
+    "tools/check_long_content.gd": "74500f2fd94bb033739dd96019f9f6045a76b273d892b95ed6c4a27fd8e23356",
+    "tools/check_long_device_boundaries.gd": "5bc6a2322c7cd98417df5e9a4fbe330fc8834c8be44131e1a3cdc823134a29d0",
+    "tools/check_long_device_ui.gd": "153755bb4fc4c359f2895a09cbbecb2e7f572f4c26a670624d86c3dadd5c6c1a",
+    "tools/check_long_full.gd": "7ad32d6cccd06a240ee3b77d955b930f0041bf2563a0e17b2b39121af42afeac",
+    "tools/check_long_geometry.gd": "94218c3d070d22118d860049712b66ae37c5078e0a7e2d270b0f0e325c229a48",
+    "tools/check_long_integration.gd": "61a6ebdee8519f60ebece458d07fe595289028800b2ad548b4d168c0e44c05b1",
+    "tools/check_long_past.gd": "aab0e6eb3c5e14de05e5b7f797f2de0914218d6d0e35f11001f6b54fd6e859ba",
+    "tools/check_long_record.gd": "810ca29c83953c7b41f31926923ada5aa43b1c52b3c980a9b6a758e49dd3bdb4",
+    "tools/check_long_record_summary.py": "c50f5ae7534d814c18f08cd071e7ae8f34d28f3f5ab141ca3ac51354a00b4b0e",
+    "tools/check_long_recovery.gd": "f14c56fb0ae032af659038292db9b4664882bc9cb3b7b4e5f612557cd1ec1fb6",
+    "tools/check_long_ui.gd": "7469dc0f975ce456b2c63a5c3590cb3ad3de4f558f4e2933d4d8d9258164ea84",
+    "tools/check_map_graph_definition.gd": "cca39da1f7fdd8668610606f94d8bda2e5addff5024a5f4fbcbe46412fd6171a",
+    "tools/check_map_graph_structure.gd": "bf8ab1838b4dda80d012ae140dcde6daba0c072fba775fdb792b757dc7de340d",
+    "tools/check_map_graph_structure_regressions.gd": "fb389f2ed38af2f57022ff3d3325970aa16b8d6ef2429b5b61a8fcdc8b01c824",
+    "tools/check_original_acceptance_inputs.py": "d7159eaa0890f6046a5ebafb010d7ade23a684fd84b390d2ec6573a8b17eb697",
+    "tools/check_party_playtest.gd": "f70fe766bf13467ed249b9d6bad537b9c50b16865f3ed6a9b1ba91db36af9bf8",
+    "tools/check_preplay_combat.gd": "14f42490b7188014a8f1013cfbb4441b216eee1f4a943e449fce0aeb8f0c2595",
+    "tools/check_preplay_recovery.gd": "94ddafe43932a1b4ad5bf6a6a46000c5f6662c1f0f85defbf3caf604eeb31212",
+    "tools/check_preplay_render_record.gd": "07bda5e90f3d158da8c9afcecedf7386969818119cfe500bd2490c9630c8218e",
+    "tools/check_preplay_ui.gd": "933237c7e0b2ff9dab638e4242fddedc45f89ada0d338b51fce07cfe0bf1c6e8",
+    "tools/check_progression_paths.gd": "ff6f8c9973df42220df5c4b67702431e1896eeba806885cdaa06d0dc445f90a0",
+    "tools/check_reaction_rules.gd": "8fb9fc1dc2410b07074717dbfbcb75d269b91aeb8b5443f2963e0b1dd1f7cf37",
+    "tools/check_record_restart.gd": "eacee3caa52f003515e3e99134b3642dd558dc5e4053a30558f98867696fdf45",
+    "tools/check_record_restart.py": "cc797af2e52adf3b8b429b9c220d45b9069eab2ee9ea2783024306640fd74ab3",
+    "tools/check_route_counterplay.gd": "bf52b9d3baf529713f20e6b63ed5dec423de7739c51bad51a6ea528ca1554ded",
+    "tools/check_runtime_edges.gd": "c9df928606cda6812886e6351b927ce2f1f0abbeb1f2a907bf66ed3c825f4730",
+    "tools/check_saved_value_types.gd": "0cba7545114ac09222e015313c1baa9265968fca001cbbfce02b4132258913e0",
+    "tools/check_save_complete.gd": "a3fa321f5479e8d1c5c845dd9e19a975f5eb2b76d6e9318ec33e9a7377f73828",
+    "tools/check_story_campaign.gd": "3b3204c250aecf377f83d5176fd6cc7856bc23921dc5a32994734e5fde226025",
+    "tools/check_v1_finish.gd": "121d0d34d200fff63c00f568e293e22b0a6d3c9d167ce3aad8f63f964573a170",
+    "tools/check_world_data.gd": "4de55a4cdc891686769241eb85c0fa61a3b89f14f8607e62e59913f2b4437784",
+    "tools/check_world_integration.gd": "638940d4cfe1e48a67810a822ac3f04d55d0e47239353e7aa4567111b38ab21f",
+    "tools/check_world_realtime_record.py": "d0eed4cacd6d30e00c4c7b065cbcf7acf5ae35973143500a6848976fa3b31fc9",
+    "tools/check_world_state_boundaries.gd": "1eeaaffce3e47a34202416c37257becea3d8b1632c637abc1c1a750d44db7f04",
+    "tools/check_world_terrain.gd": "e3e9cb74c1a37d7d04f9760adb76c76f1f0ad377511311c6b56f27d8138e4351",
+    "tools/check_world_terrain_boundaries.gd": "e1b336b02a843576507d4ae5480cd6bb5791c3ae0f37be876e09c7de96f7973e",
+    "tools/check_world_terrain_realtime.gd": "2dff5ad12058599d13010b521fcc4cb3df70994483b82b5ffcf82199ad7e3892",
+    "tools/check_world_ui.gd": "257ac0e10af7be1f511635c4417f3bc4fc388e0cd7914627ff3ac422c9fd4b41",
+    "tools/check_worst_case.gd": "c6d3f4a12efcb3c1eadbf8ae49c9693671162947ca98695dd95d918ac1e3990b",
+    "tools/counterplay_policy.gd": "40663dc0af2530588b9c862ca54e42003126d34a48abc16ac2b3e03c04be5741",
+    "tools/enemy_roster.py": "bf38104a271368b192fee93ab0b6ada1c1af8c4aacfd577e9ae206ad9f35c132",
+    "tools/generate_jobs.py": "451cd09efa0d3a503b208da463b1e552135b1fc8cb398e4e32f43c44e68d9a32",
+    "tools/import_chapter1_art.py": "c8ecdb76b85c4b63ab98edf7a2243f9ae5b008c5b66971d40fd9b5f6fa3d9b49",
+    "tools/import_character_art.py": "06522810ecd9e34e259e3812edb0ec9befe1032710e590e8b2c0fd78c249e90d",
+    "tools/import_monster_forms.py": "72648aa05e72c795b5e5ef5b6f7ac15cbc77c62d0fd61068baaf1a87a9766956",
+    "tools/import_party_art.py": "69e7eaa3466208365a84577645e4e70bab5a9583cd812e9507d8ad11a5a4e10e",
+    "tools/import_user_monsters.py": "c85e3f6409576244c8101ad2b1ddfb7eadabf64aa285da3084d0e6cabdaf0f4b",
+    "tools/integrated_play_policy.gd": "354e4329dfaa456aed9e5f4597defbd57e539c757c1bdd78beb3024e7dc74e81",
+    "tools/legacy_save_fixture.gd": "901d76d02c50e3a6734fe5f27255bbe720cb8d910a56506a70e014dc78acdb9e",
+    "tools/long_audit_checkpoint.gd": "a0dc482f6f021d6b5a446607333048fea1da49f1ab6d3fe76524adf19453235e",
+    "tools/long_play_driver.gd": "9eff4055c5cc61bef5b3cb30bfaf2bd1f52593d4230269faa3855a1fce840c2d",
+    "tools/map_graph_audit.gd": "13fda156dc4d80d4606d1f9ccb7b9dddb6d3ccd2683522b39fa0c34c5adad981",
+    "tools/probe_guardian_final.gd": "cc3a76d61a609843f788ba4f8730bd11fab873579ed8af9c763306ce9ba9a9c5",
+    "tools/probe_normal_balance.gd": "c299b3516a22a5e23aad26b02878b88eff25b1f6ccae4d441502dfb2247a5a50",
+    "tools/probe_potion_balance.gd": "e6bf65a9751106aa17590c88125d50a93d6dba48ad9c8635d6fee745465522d5",
+    "tools/probe_reaction_balance.gd": "61d2eb869f47e2421d4e19305dc50e2982b51aed1a167fa9c7b5367b82f7666a",
+    "tools/probe_reaction_endurance.gd": "c938e18e56bbb2d741061f654b3c6aa660fa021913db2aeb677ddf135ca02efe",
+    "tools/probe_reaction_final.gd": "90310a4b2db43b72adf3f3acaaf3b441fb5c04a4d4361e630e4d622cf441d65d",
+    "tools/probe_reaction_refine.gd": "3659ae8e0cea52872b5bc57c61e8b77f0433b2175f9edc453b5bb68c620f9988",
+    "tools/probe_reaction_resistance.gd": "3f93ef0670e818983f9415bddc599ac8952e596aa5884979656e16905beb290b",
+    "tools/probe_reaction_tempo.gd": "3accc0cf57769de80e3f3f0d5bbea05dc5a48d99ef0f25b99be1e6fea1587fcb",
+    "tools/probe_reaction_tempo_final.gd": "6180cd0b4455b95484c70ff4d0074693010f0ad01f25fa5d9e6129fc173c291a",
+    "tools/probe_resource_bosses.gd": "782fd998141a379a5efa60f6d2c03b226859a1fe5e2eeea04b43972d521aa9a9",
+    "tools/probe_supply_balance.gd": "9d082d81faa228b674198090dae19460b8634140e3ad16a42677351e21390f2e",
+    "tools/run_integrated_local_suite.py": "3e7d681a5018c8aad21df3325aee96c11aef5d366f06e7b7923fd032f8aebe36",
+    "tools/run_locked_checks.py": "2b124f39bb8305aaa5041689d96845829b80e3dd62738571a2831e600cc7b958",
+    "tools/save_state_comparison.gd": "536f40b91010cf1e05a964bdf7f4338a2fd61de846badb8115b6bbb33aa29bce",
+    "tools/smoke_chapter1.gd": "e0198c54a44f159e07f36a7bd5a3d493a243c1c1ae572e1823f2227e76da5853",
+    "tools/summarize_playtest.py": "bcda0408419e89cdab1c5b26cd55af5f8d6861689f9a0f0c760fe2939b9447ac",
+    "tools/validate_assets.py": "b55d275639c0b94865f4c99aa3180029ec51172908a7b116118fecd28c8f0863"
+  },
+  "scope": "GitHub CIの代用の緑表示ではなくローカル実行記録。全80話の4条件・同予算比較・凍結verify・容量・実描画は別の実行記録。",
+  "results": [
+    {
+      "name": "check_world_state_boundaries",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_state_boundaries-engine.log",
+        "--script",
+        "res://tools/check_world_state_boundaries.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 2.618,
+      "log": ".tools/integrated-local-suite/check_world_state_boundaries.log",
+      "log_sha256": "fccac43e2f29de0d143e0d0fd3dd0702bd4afa745cf85ed2156fe2d33fc9d6fc",
+      "summary": [
+        "WORLD_STATE_PASS: inputs=392 accepted=224 rejected=168 malformed=8 recoveries=4 errors=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_world_ui",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_ui-engine.log",
+        "--script",
+        "res://tools/check_world_ui.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 5.837,
+      "log": ".tools/integrated-local-suite/check_world_ui.log",
+      "log_sha256": "e79047098e0ca03aededc9b18cefe07939c84a82656e8590b4e5f2407e8b1467",
+      "summary": [
+        "WORLD_UI_PASS: captures=0 errors=0"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_recovery-engine.log",
+        "--script",
+        "res://tools/check_long_recovery.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 117.141,
+      "log": ".tools/integrated-local-suite/check_long_recovery.log",
+      "log_sha256": "89ec960879f816e8250ddbc63e2e8e6bf857e5d9e6c9e3b8396a3de27b610e87",
+      "summary": [
+        "LONG_RECOVERY_PASS: recoveries=160"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_battle_recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_battle_recovery-engine.log",
+        "--script",
+        "res://tools/check_battle_recovery.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 16.555,
+      "log": ".tools/integrated-local-suite/check_battle_recovery.log",
+      "log_sha256": "fa056b8c415399be950ceb13b7f51e2149127ace24278a1dc74374bb5f34a571",
+      "summary": [
+        "RECOVERY_PASS: 手動保存の保持・戦闘前の復元・全滅計測の保持・3人/4人・連戦・区画・破損保存を検証"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_saved_value_types",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_saved_value_types-engine.log",
+        "--script",
+        "res://tools/check_saved_value_types.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.844,
+      "log": ".tools/integrated-local-suite/check_saved_value_types.log",
+      "log_sha256": "6a677ea805055b7e15919b4abe3d9a2131af05fc8831c346624deb7c64b375c5",
+      "summary": [
+        "SAVED_VALUE_TYPES_PASS: 型付き配列・整数と小数・従来保存・破損時不変"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_save_complete_automated-playtest",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_save_complete_automated-playtest-engine.log",
+        "--script",
+        "res://tools/check_save_complete.gd",
+        "--",
+        "--automated-playtest"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 448.087,
+      "log": ".tools/integrated-local-suite/check_save_complete_automated-playtest.log",
+      "log_sha256": "a956e886fad38ed7bfbbaed9e1fe583856d775a0cfa506b20dc681254746a43a",
+      "summary": [
+        "SAVE_COMPLETE_PASS: party=4 states=359 differences=0",
+        "STORY_PASS: party=4 moved=1675 rounds=185 clues=8 visits=reply,teaching"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_save_complete_three-member-party_teaching-first_automated-playtest",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_save_complete_three-member-party_teaching-first_automated-playtest-engine.log",
+        "--script",
+        "res://tools/check_save_complete.gd",
+        "--",
+        "--three-member-party",
+        "--teaching-first",
+        "--automated-playtest"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 419.243,
+      "log": ".tools/integrated-local-suite/check_save_complete_three-member-party_teaching-first_automated-playtest.log",
+      "log_sha256": "cfa4a6e8cc4a71d90975aeadb33ebba83cd025cd7d1228d600c70f8aa6c86b5e",
+      "summary": [
+        "SAVE_COMPLETE_PASS: party=3 states=359 differences=0",
+        "STORY_PASS: party=3 moved=1675 rounds=258 clues=8 visits=teaching,reply"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_v1_finish",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_v1_finish-engine.log",
+        "--script",
+        "res://tools/check_v1_finish.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 5.619,
+      "log": ".tools/integrated-local-suite/check_v1_finish.log",
+      "log_sha256": "9f919d99097b43eaf6ccb7bfdc6dc260cbd3106bfac620be7ba03d7fa14aa6a6",
+      "summary": [
+        "V1_FINISH_PASS: 試遊履歴の独立保存・復帰・版識別・画面領域を確認"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_build_identity",
+      "command": [
+        "python",
+        "tools/check_build_identity.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.533,
+      "log": ".tools/integrated-local-suite/check_build_identity.log",
+      "log_sha256": "fba1b89270845cf3d1b7883b56d73863b502a7263621ef176e6b5077a756ca2d",
+      "summary": [
+        "BUILD_ID_PASS: 実行版の一致・職業/敵/物語/処理の変更検出・旧記録と混在の非受入"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_record_restart",
+      "command": [
+        "python",
+        "tools/check_record_restart.py",
+        "--godot",
+        "godot"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 3.969,
+      "log": ".tools/integrated-local-suite/check_record_restart.log",
+      "log_sha256": "d3e16ffb484d4cf13714025dfc848970d3ed102aefe911d5815770c8afff08d1",
+      "summary": [
+        "RESTART_PASS: 保存済みの試行履歴を復元し、強制終了後の不明な末尾時間を未検証と表示"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_frozen_files",
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.163,
+      "log": ".tools/integrated-local-suite/check_frozen_files.log",
+      "log_sha256": "333068eecd33833826f80ca4b6645e7546b50ff53e94425a50ec89a29b3fb953",
+      "summary": [],
+      "diagnostics": []
+    },
+    {
+      "name": "validate_assets",
+      "command": [
+        "python",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.827,
+      "log": ".tools/integrated-local-suite/validate_assets.log",
+      "log_sha256": "b1a4fdcc94e012ea1cc37cbe853d1b1b0d4aa5cf40bb972653f485f5c7b1cace",
+      "summary": [],
+      "diagnostics": []
+    }
+  ]
+}
