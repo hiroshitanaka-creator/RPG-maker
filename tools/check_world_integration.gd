@@ -91,10 +91,11 @@ func travel(game: GameSession, id: String) -> bool:
 	return walk_path(game,best[2])
 
 func equip(game: GameSession) -> void:
-	var desired := {"warrior":["power_strike","firm_guard"],"martial_artist":["double_strike","breath"],"priest":["heal","revive"],"mage":["fire","ice"]}
+	var desired := {"warrior":["power_strike","firm_guard","cover"],"martial_artist":["four_strike","double_strike","breath"],"priest":["heal","revive","restore_mp"],"mage":["fire","conduct","ice"]}
 	for actor in game.export_state()["party"]:
+		for id in actor["equipped_abilities"]:game.unequip_ability(actor["id"],id)
 		for id in desired.get(actor["job_id"],[]):
-			if id in game.available_abilities(actor["id"]) and id not in actor["equipped_abilities"]:
+			if id in game.available_abilities(actor["id"]):
 				game.equip_ability(actor["id"],id)
 
 func fight(game: GameSession) -> bool:
@@ -107,17 +108,17 @@ func fight(game: GameSession) -> bool:
 	check(game.is_world_battle(),"広域戦闘の識別")
 	check(not game.move_overworld(Vector2i(1,1)),"戦闘中は移動拒否")
 	check(not game.save_game("user://qa_world_during_battle.json"),"戦闘中の保存を拒否")
-	var policy = preload("res://tools/counterplay_policy.gd")
 	for turn in range(60):
 		if battle.phase != BattleState.Phase.INPUT:
 			break
 		for actor in battle.pending():
 			var action: BattleAction = preload("res://tools/integrated_play_policy.gd").action(battle,actor)
 			check(battle.queue_action(action).is_empty(),"画面で選べる行動を予約")
-		for action in policy.adjustments(battle):
+		for action in preload("res://tools/integrated_play_policy.gd").adjustments(battle):
 			check(battle.queue_action(action).is_empty(),"予告に応じて行動を組み直す")
 		battle.resolve_round()
 	if not check(battle.phase == BattleState.Phase.VICTORY,"初期パーティと獲得した技・薬で勝利: "+game.overworld_state()["node"]):
+		printerr("WORLD_BATTLE_DIAGNOSTIC: "+JSON.stringify({"party":before["party"],"snapshot":battle.snapshot()}))
 		return false
 	check(game.finish_battle(),"実際の勝利からJPと進行を反映")
 	check(game.overworld_state()["cleared"].size() == before["overworld"]["cleared"].size()+1,"戦闘の突破は一度だけ増える")

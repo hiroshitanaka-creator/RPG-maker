@@ -98,7 +98,6 @@ func _run() -> void:
 	await capture(main,"world_interior")
 	check(main.submit_player_action({"kind":"world_interact"}) and main.automation_snapshot()["mode"] == "battle","拠点内部の印から戦闘を開始")
 	await capture(main,"world_battle")
-	var policy = preload("res://tools/counterplay_policy.gd")
 	var turns := 0
 	while main.automation_snapshot()["mode"] == "battle" and turns < 60:
 		var battle: BattleState = main.game.current_battle()
@@ -106,7 +105,7 @@ func _run() -> void:
 			var action: BattleAction = preload("res://tools/integrated_play_policy.gd").action(battle,actor)
 			var kinds := {BattleAction.Kind.ATTACK:"attack",BattleAction.Kind.GUARD:"guard",BattleAction.Kind.ABILITY:"ability",BattleAction.Kind.ITEM:"potion"}
 			check(main.submit_player_action({"kind":kinds[action.kind],"actor":action.actor_id,"target":action.target_id,"ability":action.ability_id}),"画面の戦闘入力を受理")
-		for action in policy.adjustments(battle):
+		for action in preload("res://tools/integrated_play_policy.gd").adjustments(battle):
 			var kinds := {BattleAction.Kind.ATTACK:"attack",BattleAction.Kind.GUARD:"guard",BattleAction.Kind.ABILITY:"ability",BattleAction.Kind.ITEM:"potion"}
 			check(main.submit_player_action({"kind":kinds[action.kind],"actor":action.actor_id,"target":action.target_id,"ability":action.ability_id}),"予告に応じた入力修正")
 		check(main.submit_player_action({"kind":"resolve_round"}),"画面からターンを解決")

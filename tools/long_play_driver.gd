@@ -85,6 +85,13 @@ func field_task(game: GameSession, support: bool) -> bool:
 func prepare(game: GameSession, train_jobs: bool) -> void:
 	var base_jobs := ["warrior","martial_artist","priest","mage","thief"]
 	var boss: bool=game._integration_reward_kind()=="boss"
+	var mechanism:=game.integrated_rule()
+	if not mechanism.is_empty() and not game.is_returning_to_town():
+		var original: Array=game.world_state()["player_cell"].duplicate()
+		for cell in [[4,8],[18,8]]:
+			if not walk(game,cell):return
+			check(not game.read_integrated_observation().is_empty(),"現地で機構の情報を確認する")
+		if not walk(game,original):return
 	var battle_jobs: Array=["warrior","martial_artist","priest","mage"]
 	var index := 0
 	for actor in game.export_state()["party"]:
@@ -100,6 +107,7 @@ func prepare(game: GameSession, train_jobs: bool) -> void:
 			if actor["job_id"] != next_job:check(game.choose_job(actor["id"],next_job),"修練の次の職か、戦闘の担当職を選ぶ")
 		var available: Array = game.available_abilities(actor["id"])
 		var desired: Array = ["heal","revive","restore_mp","firm_guard"] if index == 2 else ["disarm","four_strike","fire","power_strike","double_strike"]
+		if mechanism.get("id")=="residue" and "disarm" in available:desired=["disarm","heal","fire","four_strike"]
 		var target: Array = []
 		for skill in desired:
 			if skill in available and target.size() < game.slot_limit(actor["id"]):target.append(skill)
@@ -117,12 +125,11 @@ func battle(game: GameSession) -> bool:
 		else:game.rest()
 	var encounter := game.start_story_battle()
 	if not check(encounter != null,"本番の敵編成とシードで戦闘を開始"):return false
-	var policy = preload("res://tools/counterplay_policy.gd")
 	for turn in range(80):
 		if encounter.phase != BattleState.Phase.INPUT:break
 		for actor in encounter.pending():
 			check(encounter.queue_action(preload("res://tools/integrated_play_policy.gd").action(encounter,actor)).is_empty(),"使える技と道具だけで行動")
-		for action in policy.adjustments(encounter):
+		for action in preload("res://tools/integrated_play_policy.gd").adjustments(encounter):
 			check(encounter.queue_action(action).is_empty(),"公開された予告へ対処")
 		encounter.resolve_round()
 		rounds += 1

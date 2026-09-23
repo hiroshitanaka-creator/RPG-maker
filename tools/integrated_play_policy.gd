@@ -1,5 +1,17 @@
 extends RefCounted
 const Base=preload("res://tools/counterplay_policy.gd")
+static func adjustments(battle: BattleState) -> Array[BattleAction]:
+	var result: Array[BattleAction]=Base.adjustments(battle)
+	for change in result:battle.queue_action(change)
+	if battle.effects.rules.is_empty():return result
+	for actor in battle.living(Combatant.Team.PARTY):
+		if battle.forecast_damage(actor.id,false,-1,true)*2<actor.hp:continue
+		var defense:=BattleAction.guard(actor.id)
+		if "firm_guard" in actor.equipped:
+			var firm:=BattleAction.skill(actor.id,actor.id,"firm_guard")
+			if battle._action_error(firm).is_empty():defense=firm
+		result.append(defense)
+	return result
 ## 表示される装置・HP・装着だけを読む。シードと内部の防御値は読まない。
 static func action(battle: BattleState,actor: Combatant) -> BattleAction:
 	var projected: Dictionary={}
@@ -35,11 +47,23 @@ static func action(battle: BattleState,actor: Combatant) -> BattleAction:
 			for target in battle.living(Combatant.Team.ENEMY):
 				var remove:=BattleAction.skill(actor.id,target.id,"disarm")
 				if battle._action_error(remove).is_empty():return remove
-		if rule=="residue":
+		var armed: bool=battle.living(Combatant.Team.ENEMY).any(func(foe:Combatant)->bool:return battle.effects.state(foe.id).get("death_armed",false))
+		if rule=="residue" and armed:
 			var party:=battle.living(Combatant.Team.PARTY)
 			party.sort_custom(func(a:Combatant,b:Combatant)->bool:return a.hp>b.hp if a.hp!=b.hp else a.id<b.id)
 			if projected[party[-1].id]<=25 and potions_left>0:return BattleAction.potion(actor.id,party[-1].id)
-			if actor.id!=party[0].id:return BattleAction.guard(actor.id)
+			var striker: String=party[0].id
+			var best: int=-1
+			var target:=battle.living(Combatant.Team.ENEMY)[0]
+			for member in party:
+				var damage:=BattleMath.physical(member.attack,target.defense)
+				for id in member.equipped:
+					var definition: Dictionary=battle.catalog.abilities[id]
+					if member.mp<battle.effects.cost(member,definition):continue
+					if definition["kind"]=="physical":damage=maxi(damage,BattleMath.physical(member.attack,target.defense,int(definition["power"]))*int(definition["hits"]))
+					elif definition["kind"]=="magic":damage=maxi(damage,BattleMath.magical(member.magic,target.resistance,int(definition["power"]),definition["element"] in target.weaknesses))
+				if damage>best:best=damage;striker=member.id
+			if actor.id!=striker:return BattleAction.guard(actor.id)
 	if "restore_mp" in actor.equipped and actor.mp<4:
 		var restore:=BattleAction.skill(actor.id,actor.id,"restore_mp")
 		if battle._action_error(restore).is_empty():return restore

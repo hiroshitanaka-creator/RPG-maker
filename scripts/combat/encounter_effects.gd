@@ -319,7 +319,9 @@ func description() -> Array[String]:
 		result.append(str(rules["name"])+("・確認済み" if seen.get("confirmed",false) else "・規則未確認"))
 		for index in seen.get("facts",[]):result.append(rules["facts"][int(index)])
 		if seen.get("facts",[]).size()>0:result.append("見立て: "+str(rules.get("hypothesis","")))
-		if rules.has("death_burst"):result.append("残留反応: 全員へ基礎%dの魔法被害。最後の敵の後にも発動。防御・解除が可能。" % rules["death_burst"])
+		if rules.has("death_burst"):
+			var armed: bool=b.living(Combatant.Team.ENEMY).any(func(foe:Combatant)->bool:return states.get(foe.id,{}).get("death_armed",false))
+			result.append("残留反応: 全員へ基礎%dの魔法被害。最後の敵の後にも発動。防御・解除が可能。" % rules["death_burst"] if armed else "生存している相手の残留反応は解除済み。")
 	if not field.is_empty():result.append("反射場: 第%d〜%dラウンド" % [field["start"],field["end"]])
 	for device in b.actors:
 		if device.is_device and device.is_alive():result.append("%s HP%d/%d。攻撃対象に選べる。" % [device.display_name,device.hp,device.max_hp])

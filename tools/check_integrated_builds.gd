@@ -31,6 +31,7 @@ func _initialize()->void:
 				for turn in range(40):
 					if b.phase!=BattleState.Phase.INPUT:break
 					for member in b.pending():check(b.queue_action(Policy.action(b,member)).is_empty(),"使用可能なコマンドだけを予約")
+					for adjustment in Policy.adjustments(b):check(b.queue_action(adjustment).is_empty(),"予告に対する防御を予約")
 					b.resolve_round();turns+=1
 				wins+=1 if b.phase==BattleState.Phase.VICTORY else 0
 				fast+=1 if b.phase!=BattleState.Phase.INPUT and b.round_number<=11 else 0
