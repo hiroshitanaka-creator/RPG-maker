@@ -163,3 +163,10 @@ func boundaries() -> void:
 	b.actor_by_id("pc_01").mp=100;b.actor_by_id("pc_01").equipped.erase("four_strike")
 	check(not b.queue_action(BattleAction.skill("pc_01","enemy_01","four_strike")).is_empty(),"未装着の新技を拒否")
 	cases+=1
+	b=make_battle();b.actor_by_id("enemy_01").physical_taken=1.25
+	skill(b,"pc_01","four_strike");events=run_round(b)
+	check(damage_by(events,"pc_01")==140,"形態の物理弱点1.25倍は4打それぞれに適用")
+	b=make_battle();b.actor_by_id("enemy_01").magic_taken=1.25
+	skill(b,"pc_01","arc_burst");events=run_round(b)
+	check(damage_by(events,"pc_01")==68,"形態の魔法弱点1.25倍は54から切上げ68")
+	cases+=1

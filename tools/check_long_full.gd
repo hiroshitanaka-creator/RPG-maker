@@ -1,5 +1,6 @@
 extends SceneTree
 const Driver = preload("res://tools/long_play_driver.gd")
+const Audit=preload("res://tools/long_audit_checkpoint.gd")
 var errors: Array[String] = []
 
 func _initialize() -> void:
@@ -11,8 +12,14 @@ func _run() -> void:
 	var option := 1 if reverse_order else 0
 	var label := "%d_%s" % [size,"reverse" if reverse_order else "forward"]
 	var resume_path := ""
+	var audit_session:=""
+	var checkpoint_limit:=0
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--resume-qa="):resume_path = argument.trim_prefix("--resume-qa=")
+		if argument.begins_with("--audit-session="):audit_session=argument.trim_prefix("--audit-session=")
+		if argument.begins_with("--checkpoint-limit="):checkpoint_limit=int(argument.trim_prefix("--checkpoint-limit="))
+	if (not audit_session.is_empty() and (not audit_session.is_valid_identifier() or audit_session.length()>40 or not resume_path.is_empty())) or (checkpoint_limit>0 and audit_session.is_empty()):
+		printerr("LONG_FULL_FAIL: 検査再開の引数が不正");quit(2);return
 	if not resume_path.is_empty():label += "_resume_diagnostic"
 	var driver = Driver.new()
 	var build := BuildIdentity.current()
@@ -35,7 +42,20 @@ func _run() -> void:
 				if game.export_state()["progress_flags"].get(LongCampaign.activity_flag(activity["id"],"done"),false):driver.activities+=1
 		world_detour = true
 	var seen_chapters: Dictionary = {}
-	for iteration in range(5000):
+	var audit: RefCounted
+	var start_iteration:=0
+	var prior_elapsed:=0.0
+	var resumptions:=0
+	if not audit_session.is_empty():
+		audit=Audit.new(audit_session,label,build,check_hashes,first_save)
+		var receipt: Dictionary=audit.load_latest(game,driver)
+		if receipt.has("error"):printerr("LONG_FULL_FAIL: "+str(receipt["error"]));quit(2);return
+		if not receipt.is_empty():
+			missions=receipt["missions"];checkpoints=receipt["checkpoints"];world_detour=receipt["world_detour"]
+			start_iteration=receipt["sequence"];prior_elapsed=receipt["elapsed_seconds"];resumptions=receipt["resumptions"]+1
+			print("LONG_FULL_RESUME: missions=%d battles=%d checkpoint=%d" % [missions,driver.battles,checkpoints])
+	var segment_checkpoints:=0
+	for iteration in range(start_iteration,5000):
 		if not driver.errors.is_empty() or game.story_complete():break
 		if game.chapter_one_pause():
 			driver.check(game.continue_story(),"第1章から本編を続ける")
@@ -119,6 +139,12 @@ func _run() -> void:
 			driver.check(game.close_world_exploration() and game.resume_exploration(),"広域から長編へ復帰")
 			driver.check(game.world_state()==before_world,"寄り道前の位置と進行へ復帰")
 			world_detour = true
+		if audit!=null:
+			var progress:={"sequence":iteration+1,"missions":missions,"checkpoints":checkpoints,"world_detour":world_detour,"elapsed_seconds":prior_elapsed+(Time.get_ticks_msec()-started)/1000.0,"resumptions":resumptions}
+			if not driver.check(audit.store(game,driver,progress),"版・ゲーム保存・実行集計を一緒に記録"):break
+			segment_checkpoints+=1
+			if checkpoint_limit>0 and segment_checkpoints>=checkpoint_limit:
+				print("LONG_FULL_CHECKPOINTED: 未完了の検査を再開可能な状態で保存");quit(75);return
 		if iteration%20==0:await process_frame
 	driver.check(game.story_complete() and missions==80 and LongCampaign.all_cleared(game.export_state()["progress_flags"]),"全80話を経て本編の結末へ到達")
 	driver.check(driver.activities==80,"全80話の現地操作を完了")
@@ -133,6 +159,10 @@ func _run() -> void:
 	driver.check(_check_hashes()==check_hashes,"検査中に検査コードを変更していない")
 	var report := {"status":"PASS" if driver.errors.is_empty() else "FAIL","failures":driver.errors,"party":size,"order":label,"missions":missions,"activities":driver.activities,"battles":driver.battles,"rounds":driver.rounds,"moved":driver.moved,"save_roundtrips":driver.saves,"save_max_bytes":driver.save_bytes,"save_max_ms":driver.max_save_ms,"load_max_ms":driver.max_load_ms,"elapsed_seconds":(Time.get_ticks_msec()-started)/1000.0,"build":build,"source":"new_game_normal_api_no_progress_or_stat_injection","human_duration":"NOT_RUN"}
 	report["check_sha256"] = check_hashes
+	if audit!=null:
+		report["source"]="new_game_with_verified_saved_continuation"
+		report["resumptions"]=resumptions;report["audit_session"]=audit_session
+		report["elapsed_seconds"]+=prior_elapsed
 	if not resume_path.is_empty():report["source"] = "saved_real_run_diagnostic_not_new_game_proof"
 	report["last_step"] = game.current_story_step()
 	PlaySessionMetrics.write_json("res://docs/verification/long-full-"+label+".json",report)
@@ -142,6 +172,6 @@ func _run() -> void:
 
 func _check_hashes() -> Dictionary:
 	var result := {}
-	for path in ["tools/check_long_full.gd","tools/long_play_driver.gd","tools/counterplay_policy.gd","tools/save_state_comparison.gd"]:
+	for path in ["tools/check_long_full.gd","tools/long_play_driver.gd","tools/counterplay_policy.gd","tools/integrated_play_policy.gd","tools/save_state_comparison.gd","tools/long_audit_checkpoint.gd"]:
 		result[path] = FileAccess.get_sha256("res://"+path)
 	return result

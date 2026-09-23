@@ -1,0 +1,390 @@
+{
+  "status": "INTERRUPTED",
+  "completed": 18,
+  "total": 48,
+  "scope": "GitHub CIの代用の緑表示ではなくローカル実行記録。全80話の4条件・同予算比較・凍結verify・容量・実描画は別の実行記録。",
+  "results": [
+    {
+      "name": "check_map_graph_definition",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_map_graph_definition-engine.log",
+        "--script",
+        "res://tools/check_map_graph_definition.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.592,
+      "log": ".tools/integrated-local-suite/check_map_graph_definition.log",
+      "diagnostics": [],
+      "log_sha256": "c5e3990e767ede11484be717d8b7f612b2e927ac1e8a02c90c6e68d16aaa471a",
+      "summary": [
+        "MAP_GRAPH_DEFINITION_PASS: regions=4 nodes=49 towns=11 dungeons=16 outposts=22 edges=61 legacy_edges=11 walk=17 ship=16 flight=16 flags=3 errors=0 coordinates=0 scope=definition_only"
+      ]
+    },
+    {
+      "name": "check_map_graph_structure",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_map_graph_structure-engine.log",
+        "--script",
+        "res://tools/check_map_graph_structure.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.703,
+      "log": ".tools/integrated-local-suite/check_map_graph_structure.log",
+      "diagnostics": [],
+      "log_sha256": "0ca396f41bf4d403defd2d8e973f488e5e0f04c0da83cb519e2468bbaf97ce6e",
+      "summary": [
+        "MAP_GRAPH_STRUCTURE_PASS: nodes=49 reachable=49 masks=8 states=392 admissible=224 rejected=168 reachable_states=106 cycles=0 deadlocks=0 warnings=0"
+      ]
+    },
+    {
+      "name": "check_map_graph_structure_regressions",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_map_graph_structure_regressions-engine.log",
+        "--script",
+        "res://tools/check_map_graph_structure_regressions.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.478,
+      "log": ".tools/integrated-local-suite/check_map_graph_structure_regressions.log",
+      "diagnostics": [],
+      "log_sha256": "28581e6c657280faa239027467d059d50ada2085c2cc8629018135ae40eed5e5",
+      "summary": [
+        "MAP_GRAPH_REGRESSION_PASS: cases=16 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_terrain",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_terrain-engine.log",
+        "--script",
+        "res://tools/check_world_terrain.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 2.884,
+      "log": ".tools/integrated-local-suite/check_world_terrain.log",
+      "diagnostics": [],
+      "log_sha256": "5e7e9a73363531cfda9546e783c11522e09efb67b80839e07077b4249e74cf0b",
+      "summary": [
+        "WORLD_TERRAIN_PASS: tiles=65536 nodes=49 edges=61 unused_land=1540/49885 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_terrain_boundaries",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_terrain_boundaries-engine.log",
+        "--script",
+        "res://tools/check_world_terrain_boundaries.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.982,
+      "log": ".tools/integrated-local-suite/check_world_terrain_boundaries.log",
+      "diagnostics": [],
+      "log_sha256": "d969042d42872353beed2e24de59a9a3174dc9d2daae171eafab65907ea37b91",
+      "summary": [
+        "WORLD_TERRAIN_BOUNDARY_PASS: reverse_edges=61 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_realtime_record",
+      "command": [
+        "python",
+        "tools/check_world_realtime_record.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.188,
+      "log": ".tools/integrated-local-suite/check_world_realtime_record.log",
+      "diagnostics": [],
+      "log_sha256": "e781965141aa6551ee8dc19e5e85e2131e0bf25a884dcbb464d994eb24560ea9",
+      "summary": [
+        "WORLD_REALTIME_RECORD_PASS: edges=61 hashes=4 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_integration",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_integration-engine.log",
+        "--script",
+        "res://tools/check_world_integration.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 13.311,
+      "log": ".tools/integrated-local-suite/check_world_integration.log",
+      "diagnostics": [],
+      "log_sha256": "e47ea9e08d95f22e5c775bfbe136db5af10e67e015410c3440b9f1c8579bfce3",
+      "summary": [
+        "WORLD_INTEGRATION_PASS: sites=49 battles=22 saves=72 moved=9194 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_integration_party-3",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_integration_party-3-engine.log",
+        "--script",
+        "res://tools/check_world_integration.gd",
+        "--",
+        "--party=3"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 12.073,
+      "log": ".tools/integrated-local-suite/check_world_integration_party-3.log",
+      "diagnostics": [],
+      "log_sha256": "e47ea9e08d95f22e5c775bfbe136db5af10e67e015410c3440b9f1c8579bfce3",
+      "summary": [
+        "WORLD_INTEGRATION_PASS: sites=49 battles=22 saves=72 moved=9194 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_state_boundaries",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_state_boundaries-engine.log",
+        "--script",
+        "res://tools/check_world_state_boundaries.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 3.204,
+      "log": ".tools/integrated-local-suite/check_world_state_boundaries.log",
+      "diagnostics": [],
+      "log_sha256": "fccac43e2f29de0d143e0d0fd3dd0702bd4afa745cf85ed2156fe2d33fc9d6fc",
+      "summary": [
+        "WORLD_STATE_PASS: inputs=392 accepted=224 rejected=168 malformed=8 recoveries=4 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_ui",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_ui-engine.log",
+        "--script",
+        "res://tools/check_world_ui.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 7.443,
+      "log": ".tools/integrated-local-suite/check_world_ui.log",
+      "diagnostics": [],
+      "log_sha256": "e79047098e0ca03aededc9b18cefe07939c84a82656e8590b4e5f2407e8b1467",
+      "summary": [
+        "WORLD_UI_PASS: captures=0 errors=0"
+      ]
+    },
+    {
+      "name": "check_duration_target",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_duration_target-engine.log",
+        "--script",
+        "res://tools/check_duration_target.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.565,
+      "log": ".tools/integrated-local-suite/check_duration_target.log",
+      "diagnostics": [],
+      "log_sha256": "7cb0e96db11fac618c47094c86219d07e18f0be4f2051435afd5490b0faf24a1",
+      "summary": [
+        "DURATION_TARGET_PASS: 60時間目標、54〜66時間の暫定幅、旧記録・自動操作の除外"
+      ]
+    },
+    {
+      "name": "check_duration_summary",
+      "command": [
+        "python",
+        "tools/check_duration_summary.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.844,
+      "log": ".tools/integrated-local-suite/check_duration_summary.log",
+      "diagnostics": [],
+      "log_sha256": "73d7a40f313cbe4b92b1e16c7de2ab40ea726a63493f962cf8df94ac6626260a",
+      "summary": [
+        "DURATION_SUMMARY_PASS: 旧330分の非受入、60時間の境界、旧目標と自動操作の除外。合成入力のみ。"
+      ]
+    },
+    {
+      "name": "check_long_record_summary",
+      "command": [
+        "python",
+        "tools/check_long_record_summary.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.877,
+      "log": ".tools/integrated-local-suite/check_long_record_summary.log",
+      "diagnostics": [],
+      "log_sha256": "c7c2e4de81a408a22309b52acaa2643101cb42761ccdb55c5e494f89cdb416ae",
+      "summary": [
+        "LONG_RECORD_SUMMARY_PASS: 必須欄の有無にかかわらず未完走を拒否。合成入力のみ。"
+      ]
+    },
+    {
+      "name": "check_preplay_ui",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_preplay_ui-engine.log",
+        "--script",
+        "res://tools/check_preplay_ui.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 19.112,
+      "log": ".tools/integrated-local-suite/check_preplay_ui.log",
+      "diagnostics": [],
+      "log_sha256": "2ab58d160d57c8816cdf3d54036c8a56012ab89c85dc0a1f8afcfcfd29d426c1",
+      "summary": [
+        "PREPLAY_UI_RESULT: cases=222 objectives=172 failures=0 native=false"
+      ]
+    },
+    {
+      "name": "check_preplay_recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_preplay_recovery-engine.log",
+        "--script",
+        "res://tools/check_preplay_recovery.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 9.968,
+      "log": ".tools/integrated-local-suite/check_preplay_recovery.log",
+      "diagnostics": [],
+      "log_sha256": "a46e8d3bb500493824528ada685308cad0de60773bbe522aed9f65db31c851ea",
+      "summary": [
+        "PREPLAY_RECOVERY_PASS: 25区画×3人/4人、消耗から復帰、進行不変"
+      ]
+    },
+    {
+      "name": "check_preplay_combat",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_preplay_combat-engine.log",
+        "--script",
+        "res://tools/check_preplay_combat.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 925.495,
+      "log": ".tools/integrated-local-suite/check_preplay_combat.log",
+      "diagnostics": [],
+      "log_sha256": "f1bea381f6d4a1bfa64fc1e878a6f4de61d2ff1e4ce5a61ee28773fcc08debc6",
+      "summary": [
+        "PREPLAY_COMBAT_RESULT: trials=82000 T04=PASS T05=PASS T07=PASS errors=0"
+      ]
+    },
+    {
+      "name": "check_battle_acceptance",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_battle_acceptance-engine.log",
+        "--script",
+        "res://tools/check_battle_acceptance.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 100.8,
+      "log": ".tools/integrated-local-suite/check_battle_acceptance.log",
+      "diagnostics": [],
+      "log_sha256": "cdb80a7f7cad765ae4a23a630ab7c734e985f8360f8e7073b210848640d56629",
+      "summary": [
+        "BATTLE_ACCEPTANCE: AC-01=PASS AC-02=PASS errors=0"
+      ]
+    },
+    {
+      "name": "check_reaction_rules",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_reaction_rules-engine.log",
+        "--script",
+        "res://tools/check_reaction_rules.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 8.576,
+      "log": ".tools/integrated-local-suite/check_reaction_rules.log",
+      "diagnostics": [],
+      "log_sha256": "1c3da9429c4b895b5b474653ab5f1909ea3dc543d7628e1efe01abd0bbdcb3dc",
+      "summary": [
+        "REACTION_RULE_PASS: 予告・取消・実計算・防御・再現性・画面"
+      ]
+    }
+  ],
+  "interruption": "終了値を受け取る前に実行セッションとプロセスが消失。完了した18件の結果だけを保持。",
+  "game_code_commit": "3be921fcdff6596f2fc46dc88c0243b48e0581ba"
+}

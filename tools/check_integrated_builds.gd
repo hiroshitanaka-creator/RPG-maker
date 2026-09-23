@@ -22,7 +22,7 @@ func _initialize()->void:
 			for value in member["jp"].values():jp+=int(value)
 			check(jp==240 and member["integrated"]["exp"]==4800,"全員同一240JP・4800EXPの予算")
 		for rule in game.catalog.integration["enemy_rules"]:
-			var wins:=0;var turns:=0;var mp:=0;var fast:=0
+			var wins:=0;var turns:=0;var mp:=0;var fast:=0;var maximum:=0
 			for seed_value in range(100):
 				check(game.import_state(initial),"試行ごとに初期状態を完全復元")
 				var b:=game.start_battle(["elder_slime"],seed_value)
@@ -34,11 +34,12 @@ func _initialize()->void:
 					for adjustment in Policy.adjustments(b):check(b.queue_action(adjustment).is_empty(),"予告に対する防御を予約")
 					b.resolve_round();turns+=1
 				wins+=1 if b.phase==BattleState.Phase.VICTORY else 0
-				fast+=1 if b.phase!=BattleState.Phase.INPUT and b.round_number<=11 else 0
+				fast+=1 if b.phase!=BattleState.Phase.INPUT and b.round_number<=10 else 0
+				maximum=maxi(maximum,mini(40,b.round_number))
 				for member in b.living(Combatant.Team.PARTY):mp+=member.mp
 				if b.phase!=BattleState.Phase.INPUT:check(game.finish_battle(),"試行の戦闘を終了")
 				else:game=GameSession.new()
-			rows.append({"build":label,"rule":rule["id"],"seeds":[0,99],"trials":100,"wins":wins,"within10":fast,"mean_rounds":turns/100.0,"mean_remaining_mp":mp/100.0,"initial":initial})
+			rows.append({"build":label,"rule":rule["id"],"seeds":[0,99],"trials":100,"wins":wins,"within10":fast,"max_rounds":maximum,"mean_rounds":turns/100.0,"mean_remaining_mp":mp/100.0,"remaining_mp_scope":"生存者の合計","initial":initial})
 	PlaySessionMetrics.write_json("res://docs/verification/integrated-builds-current.json",{"status":"PASS" if failures.is_empty() else "FAIL","trials":1800,"rows":rows,"failures":failures,"scope":"同一予算の固定構成・固定方針の比較。最適解探索、面白さ、AC-01勝率帯の検証ではない。全滅と40ターン打切りは敗北。"})
 	for row in rows:print("INTEGRATED_BUILD: %s/%s wins=%d/100 mean_rounds=%.2f" % [row["build"],row["rule"],row["wins"],row["mean_rounds"]])
 	for error in failures:printerr("INTEGRATED_BUILD_FAIL: "+error)
