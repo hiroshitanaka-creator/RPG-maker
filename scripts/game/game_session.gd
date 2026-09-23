@@ -1493,7 +1493,7 @@ func save_game(path: String, record_id: String = "") -> bool:
 		return false
 	document["_saved_value_types"] = saved_types
 	# 長編の操作履歴も保持したまま、表示用の空白を省いて保存量を抑える。
-	file.store_string(JSON.stringify(document, "", true, true))
+	file.store_string(SavedDocument.encode(document))
 	file.flush()
 	var written := file.get_error() == OK
 	file.close()
@@ -1509,7 +1509,9 @@ func load_game(path: String) -> bool:
 	var document := JSON.new()
 	if document.parse(FileAccess.get_file_as_string(path)) != OK or not document.data is Dictionary:
 		return false
-	var candidate: Dictionary = document.data.duplicate(true)
+	var decoded:=SavedDocument.decode(document.data)
+	if decoded.is_empty():return false
+	var candidate: Dictionary = decoded.duplicate(true)
 	var saved_types: Variant = candidate.get("_saved_value_types",null)
 	var has_saved_types := candidate.has("_saved_value_types")
 	candidate.erase("_saved_value_types")

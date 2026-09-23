@@ -27,7 +27,7 @@
 | 通常画面 | `verification/integrated-ui-headless.json`、`verification/integrated-ui-native.json` | 6画面・71部品。headlessと実描画を区別 |
 | 同予算の構成比較 | `verification/integrated-builds-current.json` | 240JP/4800EXP、3構成×6機構×100シード。勝率・平均/最大ターン・生存者の残MPを記録 |
 | 既存の固定勝率・終了率 | `verification/provisional-battle-acceptance.json` | 12,000試行。元の初期値を別JSONとハッシュで固定 |
-| 全80話・3人4人・両順序 | `verification/long-full-*.json` | RUNNING。旧途中診断のFAILを合格へ書き換えない |
+| 全80話・3人4人・両順序 | `verification/long-full-*.json` | 保存容量を修正した最終版で再実行中。圧縮前は4件とも80話・550戦に到達したが、1MiB上限を超えた |
 | 既存CIの独立した受入検査 | `verification/integrated-local-suite.json` | RUNNING。各コマンドの終了値と診断ログを逐次記録 |
 | 高頻度履歴 | `verification/long-record-capacity.json` | 72,000件の型・値・順序を保持。暫定16MiB/保存・読込み各5秒の検査 |
 | GitHub CI | `verification/integrated-ci-blocked.json` | BLOCKED_BEFORE_EXECUTION。GitHubの支払い状態または利用上限の通知によりジョブ未開始。ローカルPASSをGitHub CIの成功へ置換しない |
@@ -37,6 +37,8 @@
 検査プロセスの中断が発生したため、全編検査には `--audit-session` による二世代の再開記録を追加した。ゲーム保存のSHA-256、ゲームコード、検査コード、初期状態、保存内の実勝利履歴と集計を照合する。条件が一致しない記録は拒否する。従来の `--resume-qa` による診断再開を、新規開始の証明へ昇格させるものではない。最終の4条件はこの記録を導入した後に新規開始している。
 
 既存受入検査は、中断前に終了値を得た18件と残り30件を独立記録に分ける。終了値がない途中実行は成功に数えない。再実行のためのコマンド一覧と照合は `tools/run_integrated_local_suite.py` に保持する。
+
+圧縮前の4条件は進行・戦闘・回収の照合まで到達し、保存容量だけが上限を超えた。履歴は `verification/history/integrated-uncompressed-long-*.json` に保持した。保存量を抑えるため履歴を消す処置は行わず、保存用の包みを可逆圧縮する処理を追加した。実際の4件の全編保存と1万件の合成履歴で、旧JSON互換・型・値・順序・破損時の拒否を別途検証している。この再保存検査を最終版の全編到達に代用しない。
 
 ## 残る確認
 

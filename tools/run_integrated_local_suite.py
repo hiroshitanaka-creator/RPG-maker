@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser()
 parser.add_argument("--godot", required=True)
 parser.add_argument("--from-check")
+parser.add_argument("--select-checks")
 parser.add_argument("--report-name", default="integrated-local-suite")
 parser.add_argument("--resume", action="store_true")
 args = parser.parse_args()
@@ -60,6 +61,11 @@ python("check_frozen_files")
 python("validate_assets", ["--strict"])
 
 all_count = len(commands)
+if args.select_checks:
+    if args.from_check:parser.error("from-checkとselect-checksは同時に指定できません")
+    selected = args.select_checks.split(",")
+    if len(selected)!=len(set(selected)) or set(selected)-{x[0] for x in commands}:parser.error("選択した検査名が不正です")
+    commands=[x for x in commands if x[0] in selected]
 if args.from_check:
     labels = [x[0] for x in commands]
     if args.from_check not in labels:parser.error("存在しない検査名です")

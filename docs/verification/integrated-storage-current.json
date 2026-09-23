@@ -1,0 +1,39 @@
+{
+  "actual_completed_saves": [
+    {
+      "order": "forward",
+      "original_bytes": 1640828,
+      "packed_bytes": 78695,
+      "party": 3
+    },
+    {
+      "order": "reverse",
+      "original_bytes": 1571388,
+      "packed_bytes": 75111,
+      "party": 3
+    },
+    {
+      "order": "forward",
+      "original_bytes": 2045762,
+      "packed_bytes": 93455,
+      "party": 4
+    },
+    {
+      "order": "reverse",
+      "original_bytes": 1976460,
+      "packed_bytes": 90651,
+      "party": 4
+    }
+  ],
+  "build": {
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 203,
+    "id": "8f0e796ed660489980bb2ee49e5a847aba0e3fa27342f5507ca133577f526c08",
+    "version": 1
+  },
+  "checks": 43,
+  "failures": [],
+  "scope": "保存形式の互換と全変数の往復。旧版の実保存を読み替えたことを最終版の全編通過には数えない。",
+  "status": "PASS",
+  "synthetic_events": 10000
+}

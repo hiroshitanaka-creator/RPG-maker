@@ -1,0 +1,1042 @@
+{
+  "status": "PASS",
+  "completed": 48,
+  "total": 48,
+  "build": {
+    "version": 1,
+    "id": "62ae4bfc118ae427e176d3d679a00bd944aad4133370ab1c73ed5a88ec3f591b",
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 202
+  },
+  "scope": "圧縮保存の追加前に実行した18件＋30件。保存処理の変更は追加検査と最終の全編再実行で検証する。",
+  "parts": [
+    "integrated-local-suite-prefix.json",
+    "integrated-local-suite-tail.json"
+  ],
+  "results": [
+    {
+      "name": "check_map_graph_definition",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_map_graph_definition-engine.log",
+        "--script",
+        "res://tools/check_map_graph_definition.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.592,
+      "log": ".tools/integrated-local-suite/check_map_graph_definition.log",
+      "diagnostics": [],
+      "log_sha256": "c5e3990e767ede11484be717d8b7f612b2e927ac1e8a02c90c6e68d16aaa471a",
+      "summary": [
+        "MAP_GRAPH_DEFINITION_PASS: regions=4 nodes=49 towns=11 dungeons=16 outposts=22 edges=61 legacy_edges=11 walk=17 ship=16 flight=16 flags=3 errors=0 coordinates=0 scope=definition_only"
+      ]
+    },
+    {
+      "name": "check_map_graph_structure",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_map_graph_structure-engine.log",
+        "--script",
+        "res://tools/check_map_graph_structure.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.703,
+      "log": ".tools/integrated-local-suite/check_map_graph_structure.log",
+      "diagnostics": [],
+      "log_sha256": "0ca396f41bf4d403defd2d8e973f488e5e0f04c0da83cb519e2468bbaf97ce6e",
+      "summary": [
+        "MAP_GRAPH_STRUCTURE_PASS: nodes=49 reachable=49 masks=8 states=392 admissible=224 rejected=168 reachable_states=106 cycles=0 deadlocks=0 warnings=0"
+      ]
+    },
+    {
+      "name": "check_map_graph_structure_regressions",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_map_graph_structure_regressions-engine.log",
+        "--script",
+        "res://tools/check_map_graph_structure_regressions.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.478,
+      "log": ".tools/integrated-local-suite/check_map_graph_structure_regressions.log",
+      "diagnostics": [],
+      "log_sha256": "28581e6c657280faa239027467d059d50ada2085c2cc8629018135ae40eed5e5",
+      "summary": [
+        "MAP_GRAPH_REGRESSION_PASS: cases=16 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_terrain",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_terrain-engine.log",
+        "--script",
+        "res://tools/check_world_terrain.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 2.884,
+      "log": ".tools/integrated-local-suite/check_world_terrain.log",
+      "diagnostics": [],
+      "log_sha256": "5e7e9a73363531cfda9546e783c11522e09efb67b80839e07077b4249e74cf0b",
+      "summary": [
+        "WORLD_TERRAIN_PASS: tiles=65536 nodes=49 edges=61 unused_land=1540/49885 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_terrain_boundaries",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_terrain_boundaries-engine.log",
+        "--script",
+        "res://tools/check_world_terrain_boundaries.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.982,
+      "log": ".tools/integrated-local-suite/check_world_terrain_boundaries.log",
+      "diagnostics": [],
+      "log_sha256": "d969042d42872353beed2e24de59a9a3174dc9d2daae171eafab65907ea37b91",
+      "summary": [
+        "WORLD_TERRAIN_BOUNDARY_PASS: reverse_edges=61 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_realtime_record",
+      "command": [
+        "python",
+        "tools/check_world_realtime_record.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.188,
+      "log": ".tools/integrated-local-suite/check_world_realtime_record.log",
+      "diagnostics": [],
+      "log_sha256": "e781965141aa6551ee8dc19e5e85e2131e0bf25a884dcbb464d994eb24560ea9",
+      "summary": [
+        "WORLD_REALTIME_RECORD_PASS: edges=61 hashes=4 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_integration",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_integration-engine.log",
+        "--script",
+        "res://tools/check_world_integration.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 13.311,
+      "log": ".tools/integrated-local-suite/check_world_integration.log",
+      "diagnostics": [],
+      "log_sha256": "e47ea9e08d95f22e5c775bfbe136db5af10e67e015410c3440b9f1c8579bfce3",
+      "summary": [
+        "WORLD_INTEGRATION_PASS: sites=49 battles=22 saves=72 moved=9194 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_integration_party-3",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_integration_party-3-engine.log",
+        "--script",
+        "res://tools/check_world_integration.gd",
+        "--",
+        "--party=3"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 12.073,
+      "log": ".tools/integrated-local-suite/check_world_integration_party-3.log",
+      "diagnostics": [],
+      "log_sha256": "e47ea9e08d95f22e5c775bfbe136db5af10e67e015410c3440b9f1c8579bfce3",
+      "summary": [
+        "WORLD_INTEGRATION_PASS: sites=49 battles=22 saves=72 moved=9194 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_state_boundaries",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_state_boundaries-engine.log",
+        "--script",
+        "res://tools/check_world_state_boundaries.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 3.204,
+      "log": ".tools/integrated-local-suite/check_world_state_boundaries.log",
+      "diagnostics": [],
+      "log_sha256": "fccac43e2f29de0d143e0d0fd3dd0702bd4afa745cf85ed2156fe2d33fc9d6fc",
+      "summary": [
+        "WORLD_STATE_PASS: inputs=392 accepted=224 rejected=168 malformed=8 recoveries=4 errors=0"
+      ]
+    },
+    {
+      "name": "check_world_ui",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_world_ui-engine.log",
+        "--script",
+        "res://tools/check_world_ui.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 7.443,
+      "log": ".tools/integrated-local-suite/check_world_ui.log",
+      "diagnostics": [],
+      "log_sha256": "e79047098e0ca03aededc9b18cefe07939c84a82656e8590b4e5f2407e8b1467",
+      "summary": [
+        "WORLD_UI_PASS: captures=0 errors=0"
+      ]
+    },
+    {
+      "name": "check_duration_target",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_duration_target-engine.log",
+        "--script",
+        "res://tools/check_duration_target.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.565,
+      "log": ".tools/integrated-local-suite/check_duration_target.log",
+      "diagnostics": [],
+      "log_sha256": "7cb0e96db11fac618c47094c86219d07e18f0be4f2051435afd5490b0faf24a1",
+      "summary": [
+        "DURATION_TARGET_PASS: 60時間目標、54〜66時間の暫定幅、旧記録・自動操作の除外"
+      ]
+    },
+    {
+      "name": "check_duration_summary",
+      "command": [
+        "python",
+        "tools/check_duration_summary.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.844,
+      "log": ".tools/integrated-local-suite/check_duration_summary.log",
+      "diagnostics": [],
+      "log_sha256": "73d7a40f313cbe4b92b1e16c7de2ab40ea726a63493f962cf8df94ac6626260a",
+      "summary": [
+        "DURATION_SUMMARY_PASS: 旧330分の非受入、60時間の境界、旧目標と自動操作の除外。合成入力のみ。"
+      ]
+    },
+    {
+      "name": "check_long_record_summary",
+      "command": [
+        "python",
+        "tools/check_long_record_summary.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.877,
+      "log": ".tools/integrated-local-suite/check_long_record_summary.log",
+      "diagnostics": [],
+      "log_sha256": "c7c2e4de81a408a22309b52acaa2643101cb42761ccdb55c5e494f89cdb416ae",
+      "summary": [
+        "LONG_RECORD_SUMMARY_PASS: 必須欄の有無にかかわらず未完走を拒否。合成入力のみ。"
+      ]
+    },
+    {
+      "name": "check_preplay_ui",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_preplay_ui-engine.log",
+        "--script",
+        "res://tools/check_preplay_ui.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 19.112,
+      "log": ".tools/integrated-local-suite/check_preplay_ui.log",
+      "diagnostics": [],
+      "log_sha256": "2ab58d160d57c8816cdf3d54036c8a56012ab89c85dc0a1f8afcfcfd29d426c1",
+      "summary": [
+        "PREPLAY_UI_RESULT: cases=222 objectives=172 failures=0 native=false"
+      ]
+    },
+    {
+      "name": "check_preplay_recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_preplay_recovery-engine.log",
+        "--script",
+        "res://tools/check_preplay_recovery.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 9.968,
+      "log": ".tools/integrated-local-suite/check_preplay_recovery.log",
+      "diagnostics": [],
+      "log_sha256": "a46e8d3bb500493824528ada685308cad0de60773bbe522aed9f65db31c851ea",
+      "summary": [
+        "PREPLAY_RECOVERY_PASS: 25区画×3人/4人、消耗から復帰、進行不変"
+      ]
+    },
+    {
+      "name": "check_preplay_combat",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_preplay_combat-engine.log",
+        "--script",
+        "res://tools/check_preplay_combat.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 925.495,
+      "log": ".tools/integrated-local-suite/check_preplay_combat.log",
+      "diagnostics": [],
+      "log_sha256": "f1bea381f6d4a1bfa64fc1e878a6f4de61d2ff1e4ce5a61ee28773fcc08debc6",
+      "summary": [
+        "PREPLAY_COMBAT_RESULT: trials=82000 T04=PASS T05=PASS T07=PASS errors=0"
+      ]
+    },
+    {
+      "name": "check_battle_acceptance",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_battle_acceptance-engine.log",
+        "--script",
+        "res://tools/check_battle_acceptance.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 100.8,
+      "log": ".tools/integrated-local-suite/check_battle_acceptance.log",
+      "diagnostics": [],
+      "log_sha256": "cdb80a7f7cad765ae4a23a630ab7c734e985f8360f8e7073b210848640d56629",
+      "summary": [
+        "BATTLE_ACCEPTANCE: AC-01=PASS AC-02=PASS errors=0"
+      ]
+    },
+    {
+      "name": "check_reaction_rules",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_reaction_rules-engine.log",
+        "--script",
+        "res://tools/check_reaction_rules.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 8.576,
+      "log": ".tools/integrated-local-suite/check_reaction_rules.log",
+      "diagnostics": [],
+      "log_sha256": "1c3da9429c4b895b5b474653ab5f1909ea3dc543d7628e1efe01abd0bbdcb3dc",
+      "summary": [
+        "REACTION_RULE_PASS: 予告・取消・実計算・防御・再現性・画面"
+      ]
+    },
+    {
+      "name": "check_battle_counterplay",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_battle_counterplay-engine.log",
+        "--script",
+        "res://tools/check_battle_counterplay.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 112.769,
+      "log": ".tools/integrated-local-suite/check_battle_counterplay.log",
+      "log_sha256": "cc526462787f11bd595e5ee7f9fe3ad4a52940a3cdc6824066ef7240a9efd3ab",
+      "summary": [
+        "COUNTERPLAY_PASS: 固定状態と1000シードで対処方針の全ケース80%以上"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_field_recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_field_recovery-engine.log",
+        "--script",
+        "res://tools/check_field_recovery.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 12.209,
+      "log": ".tools/integrated-local-suite/check_field_recovery.log",
+      "log_sha256": "b885515de08dfc7edbd9aa62cc4e39936eef7e4ef3401a665cf2fd70a4a2c46d",
+      "summary": [
+        "FIELD_RECOVERY_PASS: 50状態、誤答・上限・戦闘不能・二重取得・保存復帰"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_route_counterplay",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_route_counterplay-engine.log",
+        "--script",
+        "res://tools/check_route_counterplay.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 752.212,
+      "log": ".tools/integrated-local-suite/check_route_counterplay.log",
+      "log_sha256": "da3b7c169b57c72b1a4b4fc25cd32c70ac09e6c109737d9fdcb42324d101d332",
+      "summary": [
+        "ROUTE_COUNTERPLAY_PASS: 25区画×3人/4人×1000シード、途中帰還なしで全件90%以上"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_authoring",
+      "command": [
+        "python",
+        "tools/check_long_authoring.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.239,
+      "log": ".tools/integrated-local-suite/check_long_authoring.log",
+      "log_sha256": "b3a56d40129db1a44e6286ef944cefe255ef1b27758ed384cff46a15a1c4c656",
+      "summary": [
+        "LONG_AUTHORING_PASS: 20連作80話・本文320場面・観察160・結果160。60時間の実測ではない"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_content",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_content-engine.log",
+        "--script",
+        "res://tools/check_long_content.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 2.211,
+      "log": ".tools/integrated-local-suite/check_long_content.log",
+      "log_sha256": "95230046ba426b702976aeadc27fb7d6ccdee9b365c5c3d403f21e70aaaf01f0",
+      "summary": [
+        "LONG_CONTENT_PASS: 20連作・80冒険・80区画の定義と依存を検査"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_geometry",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_geometry-engine.log",
+        "--script",
+        "res://tools/check_long_geometry.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 3.511,
+      "log": ".tools/integrated-local-suite/check_long_geometry.log",
+      "log_sha256": "fb393ee339dc580867d9f05426dd5288bed586776a8b8e201fcea9d4c188c92b",
+      "summary": [
+        "LONG_GEOMETRY_PASS: rooms=80 地形の変更も検査に反映"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_past",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_past-engine.log",
+        "--script",
+        "res://tools/check_long_past.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.684,
+      "log": ".tools/integrated-local-suite/check_long_past.log",
+      "log_sha256": "c60dbca1620ed56e7acf17075d0617b20c9fdc2c1737a7e44f8dad650dcdac94",
+      "summary": [
+        "LONG_PAST_PASS: scenes=20 過去の本文を一括表示し、現在の戦闘を挟まない"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_clues",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_clues-engine.log",
+        "--script",
+        "res://tools/check_long_clues.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.166,
+      "log": ".tools/integrated-local-suite/check_long_clues.log",
+      "log_sha256": "1934da059d87c53d102b76451df5deb7477bcd3d74d660f9948538af7dbb9873",
+      "summary": [
+        "LONG_CLUES_PASS: clues=46 設置・回収の到達順と既読境界を検査"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_ui",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_ui-engine.log",
+        "--script",
+        "res://tools/check_long_ui.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 28.914,
+      "log": ".tools/integrated-local-suite/check_long_ui.log",
+      "log_sha256": "d2e71248ea352d8a4c1b428468c63db56f4ec6285017bf04572bdf685c83af16",
+      "summary": [
+        "LONG_UI_PASS: 依頼一覧・移動・両選択・結果・手帳の既読境界を3人/4人で確認"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_record",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_record-engine.log",
+        "--script",
+        "res://tools/check_long_record.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.908,
+      "log": ".tools/integrated-local-suite/check_long_record.log",
+      "log_sha256": "c172aa31d20985e18eeeb4c5b358f79ee5d2cf4707480482350e424d79681538",
+      "summary": [
+        "LONG_RECORD_PASS: 長編の未完走を除外。合成境界入力、人間の実測ではない"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_device_ui",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_device_ui-engine.log",
+        "--script",
+        "res://tools/check_long_device_ui.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 93.409,
+      "log": ".tools/integrated-local-suite/check_long_device_ui.log",
+      "log_sha256": "adacac96d34636c7154a7d7803b4f5c917e53a98c36d2a7d5f2c65d63cb01026",
+      "summary": [
+        "LONG_DEVICE_UI_PASS: operations=320 layouts=640"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_device_boundaries",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_device_boundaries-engine.log",
+        "--script",
+        "res://tools/check_long_device_boundaries.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 10.712,
+      "log": ".tools/integrated-local-suite/check_long_device_boundaries.log",
+      "log_sha256": "dc597e2ffb6bab22a39597d1bcbb9a1a194722299138bb5f7eba3ac121ee4119",
+      "summary": [
+        "LONG_DEVICE_BOUNDARY_PASS: activities=80"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_long_recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_long_recovery-engine.log",
+        "--script",
+        "res://tools/check_long_recovery.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 121.515,
+      "log": ".tools/integrated-local-suite/check_long_recovery.log",
+      "log_sha256": "89ec960879f816e8250ddbc63e2e8e6bf857e5d9e6c9e3b8396a3de27b610e87",
+      "summary": [
+        "LONG_RECOVERY_PASS: recoveries=160"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_progression_paths",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_progression_paths-engine.log",
+        "--script",
+        "res://tools/check_progression_paths.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 11.865,
+      "log": ".tools/integrated-local-suite/check_progression_paths.log",
+      "log_sha256": "2d959435faee3944e9beaf3d99fe9651b57230822ec2e903462379543369ea4d",
+      "summary": [
+        "PROGRESSION_PASS: party=4 通常移動・帰還保存・任意戦闘・魔物化・取消と解除を通過"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_erosion_choices",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_erosion_choices-engine.log",
+        "--script",
+        "res://tools/check_erosion_choices.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 4.145,
+      "log": ".tools/integrated-local-suite/check_erosion_choices.log",
+      "log_sha256": "fbe03af8bfc92624cc1ec8972a0e29dc35be14a085cf74ba17f42bc0ca66968b",
+      "summary": [
+        "EROSION_PASS: 専用技実使用・60/90境界・確認取消・不可逆保存を検証"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_enemy_encounters",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_enemy_encounters-engine.log",
+        "--script",
+        "res://tools/check_enemy_encounters.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 3.676,
+      "log": ".tools/integrated-local-suite/check_enemy_encounters.log",
+      "log_sha256": "ce19db45c841531253398c3d3e82fa824a72e8184bd46f8cafef820b50313fb2",
+      "summary": [
+        "ENCOUNTER_PASS: 敵30種・回復/防御/蘇生・予定の再現性・連戦保存を検証"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_exploration_devices",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_exploration_devices-engine.log",
+        "--script",
+        "res://tools/check_exploration_devices.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 18.821,
+      "log": ".tools/integrated-local-suite/check_exploration_devices.log",
+      "log_sha256": "a3ff16a486684d67b6dfe2abd30fc607cc9b963a9458d360d7aaa14f5708d2b8",
+      "summary": [
+        "EXPLORATION_PASS: 5設備・5補給箱・装着/MP判定・通常移動・近道保存・重複防止を検証"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_party_playtest",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_party_playtest-engine.log",
+        "--script",
+        "res://tools/check_party_playtest.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 6.874,
+      "log": ".tools/integrated-local-suite/check_party_playtest.log",
+      "log_sha256": "e7fd668c2073e537dfb20583cd657b1e868b616171c79214d6135c6a8fe769ae",
+      "summary": [
+        "PARTY_PLAYTEST_PASS: 4人歩行・先頭保存・32魔物外見・実戦闘の攻撃/被弾・計測/評価/保存を検証"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_battle_recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_battle_recovery-engine.log",
+        "--script",
+        "res://tools/check_battle_recovery.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 17.229,
+      "log": ".tools/integrated-local-suite/check_battle_recovery.log",
+      "log_sha256": "fa056b8c415399be950ceb13b7f51e2149127ace24278a1dc74374bb5f34a571",
+      "summary": [
+        "RECOVERY_PASS: 手動保存の保持・戦闘前の復元・全滅計測の保持・3人/4人・連戦・区画・破損保存を検証"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_campaign_boundaries",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_campaign_boundaries-engine.log",
+        "--script",
+        "res://tools/check_campaign_boundaries.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 2.277,
+      "log": ".tools/integrated-local-suite/check_campaign_boundaries.log",
+      "log_sha256": "96377b36d40d4a2496755176ea7e7561e16b71e1f661c4cc7a1cde09fc0f45fc",
+      "summary": [
+        "CONTENT_BOUNDARY_PASS: 全25区画の到達性・戦闘前提・誤答・一度だけの報酬・途中帰還保存・従来保存を検証"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_saved_value_types",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_saved_value_types-engine.log",
+        "--script",
+        "res://tools/check_saved_value_types.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 2.127,
+      "log": ".tools/integrated-local-suite/check_saved_value_types.log",
+      "log_sha256": "6a677ea805055b7e15919b4abe3d9a2131af05fc8831c346624deb7c64b375c5",
+      "summary": [
+        "SAVED_VALUE_TYPES_PASS: 型付き配列・整数と小数・従来保存・破損時不変"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_progression_paths_three-member-party",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_progression_paths_three-member-party-engine.log",
+        "--script",
+        "res://tools/check_progression_paths.gd",
+        "--",
+        "--three-member-party"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 11.636,
+      "log": ".tools/integrated-local-suite/check_progression_paths_three-member-party.log",
+      "log_sha256": "b64a49464fdeaeb11550fac6ed78cd68b7fcd3f5a005fc371d1e4f80ae7706ea",
+      "summary": [
+        "PROGRESSION_PASS: party=3 通常移動・帰還保存・任意戦闘・魔物化・取消と解除を通過"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_save_complete_automated-playtest",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_save_complete_automated-playtest-engine.log",
+        "--script",
+        "res://tools/check_save_complete.gd",
+        "--",
+        "--automated-playtest"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 442.339,
+      "log": ".tools/integrated-local-suite/check_save_complete_automated-playtest.log",
+      "log_sha256": "8e01ddf71d93899edf5e6406bd5ebcb540370d4f61e0220ad277483adba4ac21",
+      "summary": [
+        "SAVE_COMPLETE_PASS: party=4 states=359 differences=0",
+        "STORY_PASS: party=4 moved=1675 rounds=185 clues=8 visits=reply,teaching"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_save_complete_three-member-party_teaching-first_automated-playtest",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_save_complete_three-member-party_teaching-first_automated-playtest-engine.log",
+        "--script",
+        "res://tools/check_save_complete.gd",
+        "--",
+        "--three-member-party",
+        "--teaching-first",
+        "--automated-playtest"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 418.17,
+      "log": ".tools/integrated-local-suite/check_save_complete_three-member-party_teaching-first_automated-playtest.log",
+      "log_sha256": "54efda83f61730dd8621f2094ca3cf035c502b7fe9886badc8a359ad1f5ac7f9",
+      "summary": [
+        "SAVE_COMPLETE_PASS: party=3 states=359 differences=0",
+        "STORY_PASS: party=3 moved=1675 rounds=258 clues=8 visits=teaching,reply"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_v1_finish",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_v1_finish-engine.log",
+        "--script",
+        "res://tools/check_v1_finish.gd"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 5.779,
+      "log": ".tools/integrated-local-suite/check_v1_finish.log",
+      "log_sha256": "9f919d99097b43eaf6ccb7bfdc6dc260cbd3106bfac620be7ba03d7fa14aa6a6",
+      "summary": [
+        "V1_FINISH_PASS: 試遊履歴の独立保存・復帰・版識別・画面領域を確認"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_build_identity",
+      "command": [
+        "python",
+        "tools/check_build_identity.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.635,
+      "log": ".tools/integrated-local-suite/check_build_identity.log",
+      "log_sha256": "fba1b89270845cf3d1b7883b56d73863b502a7263621ef176e6b5077a756ca2d",
+      "summary": [
+        "BUILD_ID_PASS: 実行版の一致・職業/敵/物語/処理の変更検出・旧記録と混在の非受入"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_record_restart",
+      "command": [
+        "python",
+        "tools/check_record_restart.py",
+        "--godot",
+        "godot"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 4.008,
+      "log": ".tools/integrated-local-suite/check_record_restart.log",
+      "log_sha256": "164f31d71de45e436501f7a5f2a4288d704257fa0aed73182c7d066e7d6f2c5c",
+      "summary": [
+        "RESTART_PASS: 保存済みの試行履歴を復元し、強制終了後の不明な末尾時間を未検証と表示"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_worst_case_three-member-party_teaching-first_automated-playtest",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--log-file",
+        ".tools\\integrated-local-suite\\check_worst_case_three-member-party_teaching-first_automated-playtest-engine.log",
+        "--script",
+        "res://tools/check_worst_case.gd",
+        "--",
+        "--three-member-party",
+        "--teaching-first",
+        "--automated-playtest"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 730.793,
+      "log": ".tools/integrated-local-suite/check_worst_case_three-member-party_teaching-first_automated-playtest.log",
+      "log_sha256": "f3b77578c4558e54a1cbec003208717da5ee966b7fed0644cf830576bfa20995",
+      "summary": [
+        "WORST_CASE_PASS: regions=40 sections=25 sites=10 detour_moves=1666",
+        "STORY_PASS: party=3 moved=2679 rounds=287 clues=8 visits=teaching,reply"
+      ],
+      "diagnostics": []
+    },
+    {
+      "name": "check_frozen_files",
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.256,
+      "log": ".tools/integrated-local-suite/check_frozen_files.log",
+      "log_sha256": "333068eecd33833826f80ca4b6645e7546b50ff53e94425a50ec89a29b3fb953",
+      "summary": [],
+      "diagnostics": []
+    },
+    {
+      "name": "validate_assets",
+      "command": [
+        "python",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.046,
+      "log": ".tools/integrated-local-suite/validate_assets.log",
+      "log_sha256": "b1a4fdcc94e012ea1cc37cbe853d1b1b0d4aa5cf40bb972653f485f5c7b1cace",
+      "summary": [],
+      "diagnostics": []
+    }
+  ]
+}
