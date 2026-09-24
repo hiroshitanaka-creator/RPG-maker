@@ -16,7 +16,7 @@
 
 ## 検証の扱い
 
-ローカルの新機構・既存受入・全編到達検査を実行した。GitHub CIは外部条件で開始できていないため、作業契約上の完了とは扱わない。
+ローカルの新機構・既存受入・全編到達検査を実行した。2026年9月24日のGitHub CI `35972806162` は実装コミット `9a70db9` の全12ジョブで成功し、開始できなかった制約は解消した。2026年9月25日の依頼範囲の再照合で見つけた合計表示と測定記録の不足は、[タスクの完了照合](integrated-task-closure.md)に追記した。この追補に対するCIは、追補コミットの実行結果と区別する。
 
 | 検査 | 実行記録 | 現状 |
 |---|---|---|
@@ -24,14 +24,15 @@
 | 新機構の固定値・状態遷移 | `verification/integrated-combat-current.json` | 20ケースPASS |
 | 育成・旧保存・実戦での習得 | `verification/integrated-progression-current.json` | 10ケースPASS。3人/4人の新規開始からJP注入なしの習得・魔物化・再習得を含む |
 | 配分・通路・不正入力拒否 | `verification/integrated-campaign-current.json` | 129配分、6機構、320通路PASS |
-| 通常画面 | `verification/integrated-ui-headless.json`、`verification/integrated-ui-native.json` | 6画面・71部品。headlessと実描画を区別 |
+| 通常画面 | `verification/integrated-ui-headless.json`、`verification/integrated-ui-native.json` | 追補後は6画面・92部品。全20職取得時の合計表示と個別内訳を含む。headlessと実描画を区別 |
+| 常時特性の合計・侵蝕の固定550戦 | `verification/integrated-completion-current.json` | 24ケースPASS。20職の合計、再取得・保存、3方針計1,650戦。実際の全編遭遇や人間の選択頻度の分布とは区別 |
 | 圧縮保存の互換・破損拒否 | `verification/integrated-storage-current.json` | 43検査PASS。1万件の合成履歴と4件の実保存で、状態・型・値・順序を照合 |
 | 同予算の構成比較 | `verification/integrated-builds-current.json` | 240JP/4800EXP、3構成×6機構×100シード。勝率・平均/最大ターン・生存者の残MPを記録 |
 | 既存の固定勝率・終了率 | `verification/provisional-battle-acceptance.json` | 12,000試行PASS。各条件の勝率41.5〜59.2%。10ターン以内11,625/12,000。元の初期値を固定 |
 | 全80話・3人4人・両順序 | `verification/long-full-*.json` | 圧縮保存を含む最終版の4条件すべてPASS。各80話・80現地操作・550戦。保存の1MiB・2秒条件も維持 |
 | 既存CIの独立した受入検査 | `verification/integrated-local-suite.json` | 48件PASS（中断前18件＋再開後30件）。保存のみの変更後に関係12件を再実行してPASS。各実行版・終了値・ログ・結果要約を保持 |
 | 高頻度履歴 | `verification/long-record-capacity.json` | 72,000件の型・値・順序を保持。315,191バイト、保存930ms、読込み2,223ms。暫定16MiB/各5秒以内でPASS |
-| GitHub CI | `verification/integrated-ci-blocked.json` | BLOCKED_BEFORE_EXECUTION。GitHubの支払い状態または利用上限の通知によりジョブ未開始。ローカルPASSをGitHub CIの成功へ置換しない |
+| GitHub CI | `verification/integrated-ci-success.json` | `9a70db9` の全12ジョブ成功・スキップ0。`integrated-ci-blocked.json` は以前の未開始の履歴として保持 |
 
 固定ACと旧数値の互換検査を分けた理由は `integrated-validation-boundaries.md`。敵の本番行動選択の接続漏れは、直接呼出しだけの検査では不十分だったため、予告と実行を通る検査に追加してFAILを再現してから修正した。修正前の記録は `verification/integrated-enemy-dispatch-baseline.json`。
 
@@ -45,10 +46,9 @@
 
 | 残る項目 | ブロック理由・成立条件 |
 |---|---|
-| 最新コミットのGitHub CI | GitHubから支払い状態または利用上限の確認を求められ、ジョブ開始前に拒否された。実装・検査の準備は済んでいる。アカウント側でActionsを実行可能にしてから再実行する必要がある |
 | 初見の理解・面白さ・テンポ・60時間の実測 | NOT_RUN。本人の初見体験・理解・実時間を機械の入力回数や実行秒数から認定できないため、`PLAYTEST_QUEUE.md` の既存項目とPT19〜PT21で別に記録する |
 
-今回の推奨案として採用した新機構について、独立して着手できる実装・ローカル検証は終えている。人間の試遊の必要性を理由に機械作業を残したものではない。GitHub CIの制約を、エンジンや受入条件の変更で回避しない。
+採用した新機構の対応はD01〜D32を[タスクの完了照合](integrated-task-closure.md)で追跡する。以前の「独立して着手できる実装・ローカル検証は終えている」という判断には、D04の合計表示とD21の測定記録の不足があった。今回この2点を補った。CIの開始制約をエンジンや受入条件の変更で回避したものではない。
 
 職別行動をマスター必須条件へ追加する旧衝突は、今回の採用範囲とは別の仕様判断として残す。凍結要件どおりJPマスターを維持する推奨案を実装しており、旧衝突を解消したとは扱わない。
 

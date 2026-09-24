@@ -1,0 +1,49 @@
+{
+  "cases": 24,
+  "erosion_profiles": [
+    {
+      "battles": 550,
+      "enemy": "slime",
+      "final_erosion": 0.0,
+      "first_crossing_battle": {},
+      "party": 4,
+      "profile": "human",
+      "rest_before_each_battle": true,
+      "seed": 71,
+      "skill_uses": 0
+    },
+    {
+      "battles": 550,
+      "enemy": "slime",
+      "final_erosion": 100.0,
+      "first_crossing_battle": {
+        "30": 150,
+        "60": 300,
+        "90": 450
+      },
+      "party": 4,
+      "profile": "monster_attack",
+      "rest_before_each_battle": true,
+      "seed": 71,
+      "skill_uses": 0
+    },
+    {
+      "battles": 550,
+      "enemy": "slime",
+      "final_erosion": 100.0,
+      "first_crossing_battle": {
+        "30": 120,
+        "60": 220,
+        "90": 320
+      },
+      "party": 4,
+      "profile": "monster_skill",
+      "rest_before_each_battle": true,
+      "seed": 71,
+      "skill_uses": 490
+    }
+  ],
+  "failures": [],
+  "scope": "D04の合計とD21の固定550戦。全編の遭遇分布・人間の選択頻度・60時間の実測の代用にはしない。",
+  "status": "PASS"
+}

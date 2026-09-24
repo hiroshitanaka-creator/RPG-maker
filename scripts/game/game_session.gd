@@ -472,6 +472,24 @@ func mastery_traits(actor_id: String) -> Array[Dictionary]:
 	return result
 
 
+func mastery_bonus(actor_id: String) -> Dictionary:
+	var result := {"hp":0,"mp":0,"attack":0,"defense":0,"magic":0,"resistance":0,"speed":0}
+	for trait_entry in mastery_traits(actor_id):
+		for stat in trait_entry["stat_growth"]:
+			result[stat] += int(trait_entry["stat_growth"][stat])
+	return result
+
+
+func mastery_bonus_text(actor_id: String) -> String:
+	var names := {"hp":"HP","mp":"MP","attack":"攻撃","defense":"防御","magic":"魔力","resistance":"魔防","speed":"速さ"}
+	var bonus := mastery_bonus(actor_id)
+	var parts: Array[String] = []
+	for stat in names:
+		if bonus[stat] != 0:
+			parts.append("%s %+d" % [names[stat], bonus[stat]])
+	return "常時特性の合計: " + ("未取得" if parts.is_empty() else " / ".join(parts))
+
+
 func base_effective_stats(actor_id: String) -> Dictionary:
 	var actor := _member(actor_id)
 	return {} if actor.is_empty() else _compute_stats(actor, false)

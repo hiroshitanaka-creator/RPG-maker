@@ -1433,6 +1433,9 @@ func _render_party() -> void:
 	if actor.has("integrated"):_integrated_party_controls(actor)
 	else:_action_button(_body,"新しい育成・侵蝕ルールへの引継ぎ",{"kind":"preview_rule_upgrade"})
 	_action_button(_body,"機構の覚え書き",{"kind":"mechanics"})
+	var trait_total := _label(game.mastery_bonus_text(actor["id"]), 10)
+	trait_total.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(trait_total)
 	for trait_entry in game.mastery_traits(actor["id"]):
 		var trait_label := _label(trait_entry["name"]+": "+trait_entry["description"]+"（常時・枠不要）",10)
 		trait_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

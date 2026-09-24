@@ -12,9 +12,19 @@ func _run() -> void:
 	state["progress_flags"]["midgame_slots"]=true
 	state["party"][0]["learned_abilities"]=["focus_vow","four_strike","twin_grip"]
 	state["party"][0]["equipped_abilities"]=["focus_vow","four_strike","twin_grip"]
+	# 全20職の特性がある場合も合計と個別内訳をスクロールして確認できる。
+	for job_id in main.game.jobs:
+		state["party"][0]["mastered_jobs"].append(job_id)
+		state["party"][0]["jp"][job_id]=int(main.game.jobs[job_id]["mastery_cost"])
+	state["party"][0]["max_hp"]+=48
 	check(main.game.import_state(state),"実UI検査用の有効な装着")
 	main.mode=main.Mode.PARTY;main._refresh()
 	await _layout(main,"integrated_party")
+	var total_visible:=false
+	for label in main.find_children("*","Label",true,false):
+		if label.text=="常時特性の合計: HP +48 / 攻撃 +12 / 防御 +8 / 魔力 +12 / 魔防 +8":
+			total_visible=label.is_visible_in_tree()
+	check(total_visible,"本番編成画面に全20職の特性合計を表示")
 	var selected:=0
 	for control in main.find_children("*","OptionButton",true,false):
 		if control.item_count>0 and control.get_item_metadata(0)=="practice_blade":

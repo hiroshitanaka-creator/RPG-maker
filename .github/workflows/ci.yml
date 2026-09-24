@@ -38,7 +38,7 @@ jobs:
         run: |
           set -o pipefail
           python tools/check_original_acceptance_inputs.py
-          for kind in entry combat progression campaign storage ui builds; do
+          for kind in entry combat progression campaign storage ui builds completion; do
             timeout 240 ./godot --headless --path . --script res://tools/check_integrated_${kind}.gd 2>&1 | tee integrated-${kind}.log
             if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" integrated-${kind}.log; then exit 1; fi
           done
