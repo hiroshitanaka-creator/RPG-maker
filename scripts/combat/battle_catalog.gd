@@ -2,7 +2,7 @@ class_name BattleCatalog
 extends RefCounted
 
 const STAT_KEYS := ["hp", "mp", "attack", "defense", "magic", "resistance", "speed"]
-const EFFECTS := ["physical", "magic", "heal", "revive", "guard", "steal", "focus", "conduct", "amplify", "overdrive", "deflect_physical", "deflect_magic", "cover", "seal", "field", "passive", "riposte", "recycle", "disarm", "restore_mp"]
+const EFFECTS := ["physical", "magic", "heal", "revive", "guard", "steal", "focus", "conduct", "amplify", "overdrive", "deflect_physical", "deflect_magic", "cover", "seal", "field", "passive", "riposte", "recycle", "disarm", "restore_mp", "weaken"]
 const TARGETS := ["enemy", "ally", "self", "fallen_ally", "enemies", "allies"]
 const AI_PROFILES := ["legacy","caster","guardian","healer","raider","reviver","mixed"]
 
@@ -92,6 +92,7 @@ func _load_document(document: Dictionary) -> void:
 		if not job.get("playable") is bool or not job.get("category") in ["human", "monster", "advanced"]:
 			errors.append("職業の区分が不正です: " + job_id)
 		if job.get("playable", false):
+			if not JobMastery.valid_definition(job,abilities):errors.append("職別修練の条件または習得前提が不正です: "+job_id)
 			_validate_stats(job.get("stats"), job_id)
 			_validate_references(job.get("abilities"), abilities, job_id)
 	for enemy_id in enemies:

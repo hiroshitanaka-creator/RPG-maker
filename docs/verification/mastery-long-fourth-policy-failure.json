@@ -1,0 +1,64 @@
+{
+  "activities": 6,
+  "audit_session": "mastery_roles2_20260925",
+  "battles": 49,
+  "build": {
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 204,
+    "id": "ebf3db0feec2a3e884037321c29e65722295df2b180afff1a5f64a95ed3aa0f1",
+    "version": 1
+  },
+  "check_sha256": {
+    "tools/check_long_full.gd": "7ad32d6cccd06a240ee3b77d955b930f0041bf2563a0e17b2b39121af42afeac",
+    "tools/counterplay_policy.gd": "40663dc0af2530588b9c862ca54e42003126d34a48abc16ac2b3e03c04be5741",
+    "tools/integrated_play_policy.gd": "354e4329dfaa456aed9e5f4597defbd57e539c757c1bdd78beb3024e7dc74e81",
+    "tools/long_audit_checkpoint.gd": "a0dc482f6f021d6b5a446607333048fea1da49f1ab6d3fe76524adf19453235e",
+    "tools/long_play_driver.gd": "f5307e835396e4fc5150d49f7b5a0dda7e0fb11c164a3c00647669867bb27c5e",
+    "tools/save_state_comparison.gd": "841457868b8ceba47a37a31c3a82b0e9f176b6b177675fb13b3ae511fd5bd477"
+  },
+  "elapsed_seconds": 33.591,
+  "failures": [
+    "通常の戦闘計算で勝利: w_flute_2_2_11_battle",
+    "全80話を経て本編の結末へ到達",
+    "全80話の現地操作を完了",
+    "既存70戦と長編480戦を全て通常計算で勝利",
+    "既存8件と長編46件を保持",
+    "未回収を残さない",
+    "未回収を残さない",
+    "未回収を残さない",
+    "未回収を残さない",
+    "記録にも実際の完走を渡す"
+  ],
+  "human_duration": "NOT_RUN",
+  "last_step": {
+    "cell": [
+      12,
+      6
+    ],
+    "chapter": 2,
+    "enemies": [
+      "elder_slime"
+    ],
+    "id": "w_flute_2_2_11_battle",
+    "kind": "battle",
+    "location": "waterway",
+    "objective": "柱の向こうの子の通り道を確保する",
+    "section": "journey_w_flute_c",
+    "seed": 721004,
+    "text": [
+      "通り道を確保した。残りの力を確かめて、話の続きを追おう。"
+    ]
+  },
+  "load_max_ms": 91,
+  "missions": 5,
+  "moved": 6179,
+  "order": "3_forward",
+  "party": 3,
+  "resumptions": 0,
+  "rounds": 185,
+  "save_max_bytes": 159568,
+  "save_max_ms": 129,
+  "save_roundtrips": 157,
+  "source": "new_game_with_verified_saved_continuation",
+  "status": "FAIL"
+}

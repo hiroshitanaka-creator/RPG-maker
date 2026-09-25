@@ -29,9 +29,11 @@ static func unlisted(document: Dictionary) -> Array[String]:
 		for key in actor:
 			if key not in ACTOR_FIELDS:result.append("未列挙の人物項目: "+str(key))
 		for key in actor.get("integrated",{}):
-			if key not in ["exp","level","erosion_fraction","jp_remainders","forgotten","relearn","focus_binding","weapons"]:result.append("未列挙の育成項目: "+str(key))
+			if key not in ["exp","level","erosion_fraction","jp_remainders","forgotten","relearn","focus_binding","weapons","mastery"]:result.append("未列挙の育成項目: "+str(key))
+		for key in actor.get("integrated",{}).get("mastery",{}):
+			if key not in ["counts","legacy_masters"]:result.append("未列挙の修練項目: "+str(key))
 	for key in document.get("integrated",{}):
-		if key not in ["knowledge","outcomes","claimed","armory","job_notes"]:result.append("未列挙の機構項目: "+str(key))
+		if key not in ["knowledge","outcomes","claimed","armory","job_notes","mastery_rules_version"]:result.append("未列挙の機構項目: "+str(key))
 	for entry in document.get("integrated",{}).get("knowledge",{}).values():
 		for key in entry:
 			if key not in ["facts","confirmed"]:result.append("未列挙の知識項目: "+str(key))

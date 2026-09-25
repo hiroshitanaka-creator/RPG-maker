@@ -6,9 +6,9 @@ static func rules() -> Dictionary:
 	if _rules.is_empty():_rules=JSON.parse_string(FileAccess.get_file_as_string("res://data/integrated_rules.json"))
 	return _rules
 static func initial_actor() -> Dictionary:
-	return {"exp":0,"level":1,"erosion_fraction":0,"jp_remainders":{},"forgotten":[],"relearn":{},"focus_binding":"","weapons":["practice_blade"]}
+	return {"exp":0,"level":1,"erosion_fraction":0,"jp_remainders":{},"forgotten":[],"relearn":{},"focus_binding":"","weapons":["practice_blade"],"mastery":JobMastery.initial()}
 static func initial_world() -> Dictionary:
-	return {"knowledge":{},"outcomes":{},"claimed":[],"job_notes":[],"armory":["practice_blade","practice_staff","practice_bow"]}
+	return {"knowledge":{},"outcomes":{},"claimed":[],"job_notes":[],"armory":["practice_blade","practice_staff","practice_bow"],"mastery_rules_version":1}
 static func modern(state: Dictionary) -> bool:
 	return state.get("format_version",1)==2
 static func cost(job: Dictionary, modern_rules: bool) -> int:
@@ -16,6 +16,7 @@ static func cost(job: Dictionary, modern_rules: bool) -> int:
 static func skill_list(job: Dictionary, modern_rules: bool) -> Array:
 	return job["abilities"] if modern_rules else job.get("legacy_abilities",job["abilities"])
 static func threshold(job: Dictionary, ability: String) -> int:
+	if job.get("ability_thresholds",{}).has(ability):return int(job["ability_thresholds"][ability])
 	var index: int=job["abilities"].find(ability)
 	var schedule: Array=rules()["growth"]["thresholds"]
 	return int(schedule[mini(index,schedule.size()-1)]) if index>=0 else int(job["mastery_cost"])
@@ -85,6 +86,7 @@ static func forget(actor: Dictionary, removed: Array) -> void:
 		own["relearn"][id]=0
 	if own["focus_binding"] in removed:own["focus_binding"]=""
 static func valid_actor(actor: Dictionary,jobs: Dictionary,abilities: Dictionary,armory: Array) -> bool:
+	if not JobMastery.valid(actor,jobs):return false
 	var own: Variant=actor.get("integrated")
 	if not own is Dictionary or not own.has_all(["exp","level","erosion_fraction","jp_remainders","forgotten","relearn","focus_binding","weapons"]):return false
 	for key in ["exp","level","erosion_fraction"]:
@@ -106,6 +108,7 @@ static func valid_actor(actor: Dictionary,jobs: Dictionary,abilities: Dictionary
 	return true
 static func valid_world(value: Variant) -> bool:
 	if not value is Dictionary or not value.has_all(["knowledge","outcomes","claimed","armory","job_notes"]):return false
+	if value.has("mastery_rules_version") and (not value["mastery_rules_version"] is int or value["mastery_rules_version"]!=1):return false
 	if not value["job_notes"] is Array:return false
 	var notes: Array=[]
 	for note in value["job_notes"]:
@@ -128,7 +131,7 @@ static func valid_world(value: Variant) -> bool:
 	for id in value["armory"]:
 		if id in seen_weapons:return false
 		seen_weapons.append(id)
-	var methods: Array=["electric","observe","field","seal_break","conducted_hit","device","field_break","seal","disarm","focus","conduct","amplify","overdrive","deflect_physical","deflect_magic","cover","reflect_field","riposte","recycle","restore_mp"]
+	var methods: Array=["electric","observe","field","seal_break","conducted_hit","device","field_break","seal","disarm","focus","conduct","amplify","overdrive","deflect_physical","deflect_magic","cover","reflect_field","riposte","recycle","restore_mp","weaken"]
 	for id in value["outcomes"]:
 		if not id is String:return false
 		var assignment:=IntegratedCampaign.assignment(id)
@@ -149,6 +152,7 @@ static func upgrade(old: Dictionary,jobs: Dictionary) -> Dictionary:
 	result["integrated"]=initial_world()
 	for actor in result["party"]:
 		actor["integrated"]=initial_actor()
+		actor["integrated"]["mastery"]=JobMastery.initial(actor["mastered_jobs"])
 		var formerly_possible: Array=[]
 		for job_id in actor["jp"]:
 			var job: Dictionary=jobs[job_id]

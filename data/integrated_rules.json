@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "design_status": "2026-09-23実装用暫定値。基礎ダメージ式・先行防御・JPマスター維持。人間評価は未実施。",
+  "design_status": "2026-09-25 v1確定値。依頼者の最終確定指示に基づく。JPと職別行動回数でマスター。人間評価の結果は未実測。",
   "abilities": [
     {
       "id": "focus_vow",
@@ -290,6 +290,22 @@
       ],
       "priority": 0,
       "description": "射撃タグの物理攻撃。反射場の影響を受ける。"
+    },
+    {
+      "id": "intimidate",
+      "name": "威嚇",
+      "kind": "weaken",
+      "cost": 2,
+      "power": 25,
+      "hits": 1,
+      "target": "enemy",
+      "element": "none",
+      "tags": [
+        "monster",
+        "control"
+      ],
+      "priority": 0,
+      "description": "相手を萎縮させ、付与したラウンドと次ラウンドの物理与ダメージを25%減らす。効果中の重ねがけは不可。獣系の修練対象。"
     }
   ],
   "affinities": {

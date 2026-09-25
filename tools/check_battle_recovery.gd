@@ -38,6 +38,8 @@ func _check_recovery(main: Node) -> void:
 		check(main.game.change_job("pc_01","slime"),"魔物職へ転職する")
 		var learning: Dictionary = main.game.export_state()
 		learning["party"][0]["jp"]["slime"] = int(main.game.jobs["slime"]["mastery_cost"])-1
+		# 保存・復帰検査の開始条件。修練の成立自体は専用テストで検証する。
+		learning["party"][0]["integrated"]["mastery"]["counts"]["slime"] = int(main.game.jobs["slime"]["mastery_action"]["required"])
 		check(main.game.import_state(learning),"マスター直前の検査用状態を設定する")
 		var training: BattleState = main.game.start_battle(["slime"],7)
 		for turn in range(30):

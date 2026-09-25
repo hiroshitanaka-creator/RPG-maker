@@ -91,6 +91,8 @@ func validate(action: BattleAction) -> String:
 	if kind=="field" and not field.is_empty():return "準備中または有効な場が既にあります。"
 	if kind=="disarm" and not other.get("death_armed",false):return "解除する残留反応がありません。"
 	if kind=="restore_mp" and target.mp>=target.max_mp:return "対象のMPは満タンです。"
+	if kind=="weaken" and target.is_device:return "装置には萎縮を付与できません。"
+	if kind=="weaken" and int(other.get("weaken_until",0))>=b.round_number:return "相手は既に萎縮しています。"
 	return ""
 
 func observe(target: Combatant) -> void:
@@ -189,6 +191,9 @@ func apply(actor: Combatant, target: Combatant, ability: Dictionary) -> bool:
 	var own := state(actor.id)
 	var other := state(target.id)
 	match ability["kind"]:
+		"weaken":
+			other["weaken_until"]=b.round_number+1
+			b._log("status_applied","相手を萎縮させた。物理与ダメージ25%減。",actor.id,target.id,1)
 		"focus":own["focused"]=true
 		"conduct":other["conduct"]={"until":b.round_number+1}
 		"amplify","overdrive":other["amplifier"]={"until":b.round_number+1,"bonus":100 if ability["kind"]=="overdrive" else 50,"overload":ability["kind"]=="overdrive"}
@@ -243,6 +248,7 @@ func damage(actor: Combatant, target: Combatant, ability: Dictionary, weapon: Di
 	current["overload"]=bool(own.get("amplifier",{}).get("overload",false))
 	raw=ceili(raw*(1.0+bonus/100.0))
 	var rate: float=target.guard_rate
+	if physical and int(own.get("weaken_until",0))>=b.round_number:rate*=0.75
 	if other.has("deflect"):
 		rate*=0.2 if other["deflect"]==("physical" if physical else "magic") else 1.5
 		if target.team==Combatant.Team.PARTY and other["deflect"]==("physical" if physical else "magic"):confirm_rule("deflect_"+other["deflect"])

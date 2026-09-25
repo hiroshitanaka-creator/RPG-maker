@@ -8,7 +8,13 @@ func _initialize()->void:
 		for stage in range(2):
 			if stage==1:
 				for i in range(4):check(game.choose_job("pc_%02d" % (i+1),builds[label][i]),"比較の2職目へ通常転職")
-			for victory in range(120):game.rest();fight(game)
+			var practice_battles:=0
+			for member in game.export_state()["party"]:
+				var id: String=member["job_id"]
+				var issues: Array=preload("res://tools/mastery_action_fixture.gd").exercise(game,member["id"],id)
+				check(issues.is_empty(),"比較用の修練入力: "+str(issues))
+				practice_battles+=int(game.jobs[id]["mastery_action"]["required"])
+			for victory in range(120-practice_battles):game.rest();fight(game)
 		var initial:=game.export_state();initial["progress_flags"]["midgame_slots"]=true
 		check(game.import_state(initial),"比較時点の3枠解放を明示した入力")
 		for member in game.export_state()["party"]:
@@ -40,7 +46,7 @@ func _initialize()->void:
 				if b.phase!=BattleState.Phase.INPUT:check(game.finish_battle(),"試行の戦闘を終了")
 				else:game=GameSession.new()
 			rows.append({"build":label,"rule":rule["id"],"seeds":[0,99],"trials":100,"wins":wins,"within10":fast,"max_rounds":maximum,"mean_rounds":turns/100.0,"mean_remaining_mp":mp/100.0,"remaining_mp_scope":"生存者の合計","initial":initial})
-	PlaySessionMetrics.write_json("res://docs/verification/integrated-builds-current.json",{"status":"PASS" if failures.is_empty() else "FAIL","trials":1800,"rows":rows,"failures":failures,"scope":"同一予算の固定構成・固定方針の比較。最適解探索、面白さ、AC-01勝率帯の検証ではない。全滅と40ターン打切りは敗北。"})
+	PlaySessionMetrics.write_json("res://docs/verification/integrated-builds-current.json",{"status":"PASS" if failures.is_empty() else "FAIL","trials":1800,"rows":rows,"failures":failures,"scope":"同一予算の固定構成・固定方針の比較。修練は専用の制御入力で実行し、自然な育成経路の証明には用いない。最適解探索、面白さ、AC-01勝率帯の検証ではない。全滅と40ターン打切りは敗北。"})
 	for row in rows:print("INTEGRATED_BUILD: %s/%s wins=%d/100 mean_rounds=%.2f" % [row["build"],row["rule"],row["wins"],row["mean_rounds"]])
 	for error in failures:printerr("INTEGRATED_BUILD_FAIL: "+error)
 	quit(0 if failures.is_empty() else 1)

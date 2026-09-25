@@ -1,0 +1,108 @@
+{
+  "contract_ids": [
+    "R-01",
+    "R-02",
+    "R-03",
+    "R-04",
+    "R-05",
+    "R-06",
+    "R-07",
+    "R-08"
+  ],
+  "baseline": "docs/verification/scope-lock-baseline-20260919T043309Z.json",
+  "files": [
+    {
+      "path": "test/support/game_test.gd",
+      "sha256": "c5d452dfbd68a31d9f9c5f7189d2f7e7421df90f019b22db7bb09805fb45e004"
+    },
+    {
+      "path": "test/support/game_test.gd.uid",
+      "sha256": "aa7f4569403c33c262942b5d45476e577678eee3f93cd4df04e949d0f6e11bcf"
+    },
+    {
+      "path": "test/support/gut_gate.gd",
+      "sha256": "83d03acd52192b43d5fcb8f2654eb4378f96d0e10a18f47f0bf61e4918852bac"
+    },
+    {
+      "path": "test/support/gut_gate.gd.uid",
+      "sha256": "fa0d9afd78806f9ad6ee4f36914132af8271e0cf054f5de5b5ebbf8f58ccd525"
+    },
+    {
+      "path": "test/unit/test_ability_slots.gd",
+      "sha256": "7cc7e3768bcc7b1023c2259799f56b6a505dcfbfabfb024a16b6b16453815aa3"
+    },
+    {
+      "path": "test/unit/test_ability_slots.gd.uid",
+      "sha256": "6ae63f60539ada210ca0692f4f9efcb04b5bea6696d2b8060fa1516c1906cfe1"
+    },
+    {
+      "path": "test/unit/test_battle_loop.gd",
+      "sha256": "8ca674ea671f39cae542ad370a881ff3f0cd6e6b92b2bc98698ede6c03935a38"
+    },
+    {
+      "path": "test/unit/test_battle_loop.gd.uid",
+      "sha256": "16f12e6b6e707d1a867a5f32dcd41a731cc310b845f972ab05a9fda31195c6c4"
+    },
+    {
+      "path": "test/unit/test_job_change.gd",
+      "sha256": "8bee5e5d532f1aa106dc0f102c8dc353debeaf17e429896ef1a7fbc10dd75495"
+    },
+    {
+      "path": "test/unit/test_job_change.gd.uid",
+      "sha256": "a5899c31e6b6fee68b9d243778c4b68216b518f63841daa6c4762e4d1cbad437"
+    },
+    {
+      "path": "test/unit/test_job_data.gd",
+      "sha256": "62f2d442e2b671a7be58e14e2e2e3df6664a859cfdeb54854427f488c99c7613"
+    },
+    {
+      "path": "test/unit/test_job_data.gd.uid",
+      "sha256": "5530ecad8bf18c0496406ec3e56b70dcd90b590983d1acd31d822d78b726727d"
+    },
+    {
+      "path": "test/unit/test_monster_form.gd",
+      "sha256": "c6d66d4278c0b8382efb665ce267576fdc8559a232b2bf9fae247ca40bd915bc"
+    },
+    {
+      "path": "test/unit/test_monster_form.gd.uid",
+      "sha256": "3b2525776381ae6501ba474b2b6b6e01045593700f8ba75f60609c677b0b5e6f"
+    },
+    {
+      "path": "test/unit/test_save_roundtrip.gd",
+      "sha256": "03102af3eead761907f5514817f1b369ab55f0be381c13c3636b90aa7b4b6e03"
+    },
+    {
+      "path": "test/unit/test_save_roundtrip.gd.uid",
+      "sha256": "bf572c2fa2695d5e4fb57b6dc7594b1abaed34aea0d7340b180923b447d1753f"
+    },
+    {
+      "path": "test/unit/test_startup.gd",
+      "sha256": "21d01ab3117064e960eab7e0d2b1ea2164e214a38b5e8bbdd6f7bf3084ee78cc"
+    },
+    {
+      "path": "test/unit/test_startup.gd.uid",
+      "sha256": "57086ca1c4d798b17e198e6fc25dd7e990368269a46444705b0ab74fa0077ffa"
+    },
+    {
+      "path": "data/schema/job.schema.json",
+      "sha256": "ee8e3f6966de5692552505361e7b376077ddeb58c9b85c28cda8c1ca6af9438a"
+    },
+    {
+      "path": "tools/smoke_chapter1.gd",
+      "sha256": "e0198c54a44f159e07f36a7bd5a3d493a243c1c1ae572e1823f2227e76da5853"
+    },
+    {
+      "path": "project.godot",
+      "sha256": "56b09d8a81f12d640b02082daa24b2b0113051e8e537de0ed0069d3b0a62422a"
+    },
+    {
+      "path": "test/unit/test_job_actions.gd",
+      "sha256": "775845fb20735c4cc8f56f0efe4f0984b07bf2faefa94f4457fac7c055921bd4"
+    },
+    {
+      "path": "test/unit/test_job_actions.gd.uid",
+      "sha256": "d3ffd68185e03f2a4dc5fe285c3fceff3c7faef4543eac10566025f98a03b4cd"
+    }
+  ],
+  "amendment": "依頼者の2026-09-25の行動回数採用指示。旧ハッシュはdocs/verification/mastery-amendment-before/frozen-files.jsonに保持。"
+}

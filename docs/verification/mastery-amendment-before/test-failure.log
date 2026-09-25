@@ -1,0 +1,46 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[1m[INFO]:  [0musing [C:/Users/tanak/AppData/Roaming/Godot/app_userdata/RPG-maker] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.6.1
+
+
+res://test/unit/test_job_actions.gd
+* test_action_mastery_entry_and_fixed_original_conditions
+    [Failed]:  職別行動進捗を本番APIで参照できること
+      at line 5
+* test_jp_alone_never_masters_any_job
+    [Failed]:  新規行動条件が未実装
+      at line 15
+0/2 passed.
+SCOPE_GUT_RESULT {"assertions":10,"failed_assertions":2,"invalid":false,"pending":0,"tests":2}
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+res://test/unit/test_job_actions.gd
+- test_action_mastery_entry_and_fixed_original_conditions
+    [Failed]:  職別行動進捗を本番APIで参照できること
+          at line 5
+- test_jp_alone_never_masters_any_job
+    [Failed]:  新規行動条件が未実装
+          at line 15
+
+Totals
+------
+Scripts               1
+Tests                 2
+Passing Tests      none
+Failing Tests         2
+Asserts            8/10
+Time              0.86s
+
+
+---- 2 failing tests ----
+GUT 9.7.1:  https://github.com/bitwes/Gut/releases/tag/v9.7.1 is now available!
+

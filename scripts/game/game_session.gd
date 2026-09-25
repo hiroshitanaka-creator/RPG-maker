@@ -246,6 +246,7 @@ func _valid_state(value: Dictionary) -> bool:
 			if not actor[field] is int or actor[field] < 0:
 				return false
 		if value["format_version"]==2 and not IntegratedProgression.valid_actor(actor,jobs,abilities,value["integrated"]["armory"]):return false
+		if value["format_version"]==2 and value["integrated"].has("mastery_rules_version")!=JobMastery.active(actor):return false
 		if value["format_version"]==1 and actor.has("integrated"):return false
 		var computed := _compute_stats(actor, true)
 		if actor["max_hp"] != computed["hp"] or actor["max_mp"] != computed["mp"] or actor["hp"] > actor["max_hp"] or actor["mp"] > actor["max_mp"]:
@@ -470,6 +471,13 @@ func mastery_traits(actor_id: String) -> Array[Dictionary]:
 	for identifier in _member(actor_id).get("mastered_jobs",[]):
 		result.append(mastery_trait(identifier))
 	return result
+
+
+func mastery_progress(actor_id: String, job_id: String) -> Dictionary:
+	var actor := _member(actor_id)
+	if actor.is_empty() or not jobs.has(job_id):return {}
+	var condition: Dictionary=jobs[job_id]["mastery_action"]
+	return {"count":JobMastery.count(actor,job_id),"required":int(condition["required"]),"description":condition["description"],"active":JobMastery.active(actor),"met":JobMastery.ready(actor,jobs[job_id]),"legacy":job_id in actor.get("integrated",{}).get("mastery",{}).get("legacy_masters",[])}
 
 
 func mastery_bonus(actor_id: String) -> Dictionary:
@@ -700,6 +708,8 @@ func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
 	_world_battle_id = ""
 	_battle.potions = int(_state["inventory"]["potion"])
 	if IntegratedProgression.modern(_state):_battle.effects.knowledge=_state["integrated"]["knowledge"].duplicate(true)
+	for member in _state["party"]:
+		if JobMastery.active(member):_battle.mastery_conditions[member["id"]]=jobs[member["job_id"]]["mastery_action"].duplicate(true)
 	_battle_enemy_ids.assign(enemy_ids)
 	_claimed = false
 	_field_battle = false
@@ -820,6 +830,9 @@ func finish_battle() -> bool:
 		actor["mp"] = combatant.mp
 		var job: Dictionary = jobs[actor["job_id"]]
 		var erosion: Dictionary = erosion_results[member_index]
+		if JobMastery.active(actor):
+			var counts: Dictionary=actor["integrated"]["mastery"]["counts"]
+			counts[actor["job_id"]]=mini(int(job["mastery_action"]["required"]),JobMastery.count(actor,actor["job_id"])+int(_battle.mastery_counts.get(actor["id"],0)))
 		member_index += 1
 		if actor.has("integrated"):IntegratedProgression.set_erosion(actor,int(erosion["after_tenths"]))
 		else:actor["erosion"] = erosion["after"]
@@ -841,7 +854,7 @@ func finish_battle() -> bool:
 			if jp>=cost:
 				for identifier in IntegratedProgression.skill_list(job,modern):
 					if identifier not in actor["learned_abilities"] and identifier not in actor.get("integrated",{}).get("forgotten",[]):actor["learned_abilities"].append(identifier)
-				if actor["job_id"] not in actor["mastered_jobs"]:
+				if actor["job_id"] not in actor["mastered_jobs"] and JobMastery.ready(actor,job):
 					actor["mastered_jobs"].append(actor["job_id"])
 					if job["type"]=="monster":
 						actor["monster_form"]=actor["job_id"]
@@ -1613,8 +1626,12 @@ func read_job_lore() -> void:
 			if key not in _state["integrated"]["job_notes"]:_state["integrated"]["job_notes"].append(key)
 
 func upgrade_rules() -> bool:
-	if _battle!=null or _state.is_empty() or IntegratedProgression.modern(_state):return false
-	var candidate:=IntegratedProgression.upgrade(_state,jobs)
+	if _battle!=null or _state.is_empty():return false
+	if IntegratedProgression.modern(_state) and _state["party"].all(func(a:Dictionary)->bool:return JobMastery.active(a)):return false
+	var candidate:=_state.duplicate(true) if IntegratedProgression.modern(_state) else IntegratedProgression.upgrade(_state,jobs)
+	candidate["integrated"]["mastery_rules_version"]=1
+	for actor in candidate["party"]:
+		if not JobMastery.active(actor):actor["integrated"]["mastery"]=JobMastery.initial(actor["mastered_jobs"])
 	for actor in candidate["party"]:_refresh_caps(actor)
 	if not _valid_state(candidate):return false
 	_state=candidate

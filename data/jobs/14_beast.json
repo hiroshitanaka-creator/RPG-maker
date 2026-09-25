@@ -13,7 +13,8 @@
     "fang",
     "breath",
     "rending_claw",
-    "riposte"
+    "riposte",
+    "intimidate"
   ],
   "mastery_cost": 120,
   "stats": {
@@ -45,5 +46,14 @@
   "legacy_abilities": [
     "fang",
     "breath"
-  ]
+  ],
+  "mastery_action": {
+    "metric": "status",
+    "required": 20,
+    "description": "状態異常を20回付与",
+    "training_ability": "intimidate"
+  },
+  "ability_thresholds": {
+    "intimidate": 8
+  }
 }

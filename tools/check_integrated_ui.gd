@@ -17,7 +17,7 @@ func _run() -> void:
 		state["party"][0]["mastered_jobs"].append(job_id)
 		state["party"][0]["jp"][job_id]=int(main.game.jobs[job_id]["mastery_cost"])
 	state["party"][0]["max_hp"]+=48
-	check(main.game.import_state(state),"実UI検査用の有効な装着")
+	check(main.game.import_state(preload("res://tools/mastery_action_fixture.gd").complete_state(state,main.game.jobs)),"実UI検査用の有効な装着")
 	main.mode=main.Mode.PARTY;main._refresh()
 	await _layout(main,"integrated_party")
 	var total_visible:=false
@@ -58,6 +58,7 @@ func _run() -> void:
 	main.start_new_game(4)
 	main.game.change_job("pc_01","beast")
 	state=main.game.export_state();state["party"][0]["jp"]["beast"]=119
+	state["party"][0]["integrated"]["mastery"]["counts"]["beast"]=20
 	check(main.game.import_state(state),"マスター直前の画面境界入力")
 	check(main.game.set_world("waterway",[10,8],3),"任意戦闘の実施場所")
 	main.mode=main.Mode.FIELD;main._refresh()

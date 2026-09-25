@@ -79,5 +79,7 @@ func master_job(game: Variant, actor_id: String, job_id: String) -> void:
 		if actor["id"] == actor_id:
 			actor["jp"][job_id] = int(game.jobs[job_id]["mastery_cost"]) - 1
 	assert_true(game.import_state(state), "閾値直前の有効なセーブ状態を読み込めること。")
+	var practice_errors: Array=preload("res://tools/mastery_action_fixture.gd").exercise(game,actor_id,job_id)
+	assert_eq(practice_errors.size(),0,"採用した職別行動を実際に達成する: "+str(practice_errors))
 	win_battle(game)
 	assert_true(job_id in member(game, actor_id)["mastered_jobs"], "戦闘報酬でマスターへ遷移すること。")

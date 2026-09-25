@@ -16,6 +16,10 @@ var _events: Array[Dictionary] = []
 var _ability_uses: Dictionary = {}
 var _enemy_plan: Array[BattleAction] = []
 var _enemy_plan_round: int = 0
+var mastery_conditions: Dictionary = {}
+var mastery_counts: Dictionary = {}
+var _mastery_seen: Dictionary = {}
+var _mastery_ability: Dictionary = {}
 
 
 func _init(party: Array[Combatant], enemies: Array[Combatant], definitions: BattleCatalog, random_seed: int = 20260919) -> void:
@@ -355,6 +359,7 @@ func _execute(original: BattleAction) -> void:
 		effects.finish_action(actor,action)
 		return
 	effects.current["executed"]=true
+	_mastery_ability=catalog.abilities[action.ability_id] if action.kind==BattleAction.Kind.ABILITY else {}
 	match action.kind:
 		BattleAction.Kind.GUARD:
 			actor.guard_rate=minf(actor.guard_rate,0.5)
@@ -431,7 +436,7 @@ func snapshot() -> Dictionary:
 	var members: Array[Dictionary] = []
 	for actor in actors:
 		members.append(actor.snapshot())
-	return {"round": round_number, "phase": phase, "potions": potions, "actors": members, "effects": effects.snapshot()}
+	return {"round": round_number, "phase": phase, "potions": potions, "actors": members, "effects": effects.snapshot(), "mastery_counts":mastery_counts.duplicate(true)}
 
 
 func successful_abilities(actor_id: String) -> Array[String]:
@@ -441,6 +446,12 @@ func successful_abilities(actor_id: String) -> Array[String]:
 
 
 func _log(code: String, message: String, actor_id: String = "", target_id: String = "", amount: int = 0) -> void:
+	if mastery_conditions.has(actor_id) and effects.current.get("actor")==actor_id and effects.current.get("executed",false):
+		var condition: Dictionary=mastery_conditions[actor_id]
+		var key: String=actor_id+":"+str(effects.current["id"])
+		if not _mastery_seen.has(key) and JobMastery.matches(condition["metric"],code,_mastery_ability,amount):
+			_mastery_seen[key]=true
+			mastery_counts[actor_id]=mini(int(condition["required"]),int(mastery_counts.get(actor_id,0))+1)
 	_events.append({"code": code, "message": message, "actor": actor_id, "target": target_id, "amount": amount, "snapshot": snapshot()})
 
 

@@ -55,5 +55,6 @@ func test_runtime_uses_all_job_definitions_and_valid_abilities() -> void:
 		return
 	assert_eq(game.jobs.size(), 20)
 	for job in game.jobs.values():
+		assert_true(JobMastery.valid_definition(job,game.abilities),"全職がマスター前に実行できる修練条件を持つ")
 		for ability_id in job["abilities"]:
 			assert_has(game.abilities, ability_id, "定義した職業の技を実際の戦闘で参照できること。")

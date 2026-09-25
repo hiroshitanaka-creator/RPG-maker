@@ -93,15 +93,24 @@ func prepare(game: GameSession, train_jobs: bool) -> void:
 			check(not game.read_integrated_observation().is_empty(),"現地で機構の情報を確認する")
 		if not walk(game,original):return
 	var battle_jobs: Array=["warrior","martial_artist","priest","mage"]
+	if game.export_state()["party"].size()==3:
+		var second: Dictionary=game.export_state()["party"][1]
+		if "fire" in second["learned_abilities"] and not mechanism.is_empty():battle_jobs[1]="mage"
+		# 本編に含まれる課題戦で技を習得し、強い戦闘へ持ち越す。
+		# マスターや行動回数を注入せず、追加の稼ぎ戦闘も挟まない。
+		if game._integration_reward_kind()=="challenge":
+			if "four_strike" not in game.export_state()["party"][0]["learned_abilities"]:battle_jobs[0]="martial_artist"
+			if "fire" not in second["learned_abilities"]:battle_jobs[1]="mage"
+			elif "four_strike" not in second["learned_abilities"]:battle_jobs[1]="martial_artist"
 	var index := 0
 	for actor in game.export_state()["party"]:
-		if boss:
+		if boss or not train_jobs:
 			check(game.choose_job(actor["id"],battle_jobs[index]),"大きな戦闘の前に習得を保持して担当職へ組み替える")
-		elif train_jobs and actor["job_id"] in actor["mastered_jobs"]:
+		elif train_jobs and (actor["job_id"] in actor["mastered_jobs"] or int(actor["jp"].get(actor["job_id"],0))>=int(game.jobs[actor["job_id"]]["mastery_cost"])):
 			var next_job: String = base_jobs[index]
 			for offset in range(base_jobs.size()):
 				var job: String = base_jobs[(index+offset)%base_jobs.size()]
-				if job not in actor["mastered_jobs"]:
+				if job not in actor["mastered_jobs"] and int(actor["jp"].get(job,0))<int(game.jobs[job]["mastery_cost"]):
 					next_job = job
 					break
 			if actor["job_id"] != next_job:check(game.choose_job(actor["id"],next_job),"修練の次の職か、戦闘の担当職を選ぶ")
@@ -118,11 +127,12 @@ func prepare(game: GameSession, train_jobs: bool) -> void:
 		index += 1
 
 func battle(game: GameSession) -> bool:
-	if game._integration_reward_kind()=="boss":
-		prepare(game,false)
-		if game.world_state()["location"] not in ChapterOne.TOWNS:
-			check(game.return_to_town() and game.rest() and game.resume_exploration(),"次の波の編成に合わせて担当職とMPを整える")
-		else:game.rest()
+	# 修練中の職に固定せず、各戦の前に習得を保持して戦闘の担当職へ戻す。
+	# 3人では物理・魔法・回復を1人ずつ。行動条件やJPを注入しない。
+	prepare(game,false)
+	if game.world_state()["location"] not in ChapterOne.TOWNS:
+		check(game.return_to_town() and game.rest() and game.resume_exploration(),"次の波の編成に合わせて担当職とMPを整える")
+	else:game.rest()
 	var encounter := game.start_story_battle()
 	if not check(encounter != null,"本番の敵編成とシードで戦闘を開始"):return false
 	for turn in range(80):

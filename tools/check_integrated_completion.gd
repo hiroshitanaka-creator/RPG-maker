@@ -32,7 +32,7 @@ func check_totals(game: GameSession) -> void:
 			expected[stat] += int(game.jobs[job_id]["stat_growth"][stat])
 		fixture["party"][0]["max_hp"] = baseline["hp"] + expected["hp"]
 		fixture["party"][0]["max_mp"] = baseline["mp"] + expected["mp"]
-		check(game.import_state(fixture), "累積マスター入力: " + job_id)
+		check(game.import_state(preload("res://tools/mastery_action_fixture.gd").complete_state(fixture,game.jobs)), "累積マスター入力: " + job_id)
 		check(game.call("mastery_bonus", "pc_01") == expected, "合計は取得済み職データの和: " + job_id)
 		var actual := game.base_effective_stats("pc_01")
 		for stat in expected:

@@ -54,6 +54,7 @@ static func action(battle: BattleState,actor: Combatant) -> BattleAction:
 			if projected[party[-1].id]<=25 and potions_left>0:return BattleAction.potion(actor.id,party[-1].id)
 			var striker: String=party[0].id
 			var best: int=-1
+			var total_damage: int=0
 			var target:=battle.living(Combatant.Team.ENEMY)[0]
 			for member in party:
 				var damage:=BattleMath.physical(member.attack,target.defense)
@@ -63,7 +64,10 @@ static func action(battle: BattleState,actor: Combatant) -> BattleAction:
 					if definition["kind"]=="physical":damage=maxi(damage,BattleMath.physical(member.attack,target.defense,int(definition["power"]))*int(definition["hits"]))
 					elif definition["kind"]=="magic":damage=maxi(damage,BattleMath.magical(member.magic,target.resistance,int(definition["power"]),definition["element"] in target.weaknesses))
 				if damage>best:best=damage;striker=member.id
-			if actor.id!=striker:return BattleAction.guard(actor.id)
+				total_damage+=damage
+			# 残留反応に備えた防御は倒せる見込みのあるターンだけ行う。
+			# 戦闘中ずっと1人に攻撃を任せて長期化させない。
+			if total_damage>=target.hp and actor.id!=striker:return BattleAction.guard(actor.id)
 	if "restore_mp" in actor.equipped and actor.mp<4:
 		var restore:=BattleAction.skill(actor.id,actor.id,"restore_mp")
 		if battle._action_error(restore).is_empty():return restore

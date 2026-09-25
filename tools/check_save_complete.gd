@@ -88,6 +88,8 @@ func _finish_extra(main: Node) -> bool:
 		if not _check(game.change_job("pc_01",job_id),"変身保存用の職へ変更する"):return false
 		var state := game.export_state()
 		state["party"][0]["jp"][job_id] = int(game.jobs[job_id]["mastery_cost"])-1
+		# 保存・復帰検査の開始条件。修練の成立自体は専用テストで検証する。
+		state["party"][0]["integrated"]["mastery"]["counts"][job_id] = int(game.jobs[job_id]["mastery_action"]["required"])
 		if not _check(game.import_state(state),"実戦闘でマスターできる直前状態"):return false
 		game.rest()
 		var battle := game.start_battle(["slime"],73)

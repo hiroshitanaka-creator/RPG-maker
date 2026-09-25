@@ -77,6 +77,7 @@ func _initialize() -> void:
 	cases+=1
 	game.new_game(4);game.change_job("pc_01","beast")
 	fixture=game.export_state();fixture["party"][0]["jp"]["beast"]=119
+	fixture["party"][0]["integrated"]["mastery"]["counts"]["beast"]=20
 	check(game.import_state(fixture),"マスター直前の状態")
 	fight(game)
 	check(actor(game)["monster_form"]=="beast","JP到達で必ず魔物化")
@@ -109,7 +110,11 @@ func _initialize() -> void:
 		game.new_game(size);game.change_job("pc_01","beast")
 		for victory in range(120):
 			check(game.rest(),"町で正規の休息")
-			fight(game)
+			var practice:=""
+			if "intimidate" in actor(game)["learned_abilities"] and JobMastery.count(actor(game),"beast")<20:
+				if "intimidate" not in actor(game)["equipped_abilities"]:check(game.equip_ability("pc_01","intimidate"),"習得した威嚇を通常装着")
+				practice="intimidate"
+			fight(game,practice)
 			if victory==6:check("fang" not in actor(game)["learned_abilities"],"7JPでは未習得")
 			if victory==7:check("fang" in actor(game)["learned_abilities"],"8JPの実勝利で第1技を習得")
 			if victory==118:check(actor(game)["monster_form"]=="","119JPでは未マスター")

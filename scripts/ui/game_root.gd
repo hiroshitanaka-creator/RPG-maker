@@ -1431,7 +1431,14 @@ func _render_party() -> void:
 	_body.add_child(_label("侵蝕 %.1f（%s） / 30:兆候・60:人間JP半減・90:復帰不可" % [game.current_erosion(actor["id"]), GameSession.erosion_stage(actor["erosion"])], 10))
 	_body.add_child(_label("JP %d/%d  %s / 装着 %d/%d" % [int(actor["jp"].get(actor["job_id"],0)), IntegratedProgression.cost(game.jobs[actor["job_id"]],actor.has("integrated")), "マスター" if actor["job_id"] in actor["mastered_jobs"] else "修練中", actor["equipped_abilities"].size(), game.slot_limit(actor["id"])], 11))
 	if actor.has("integrated"):_integrated_party_controls(actor)
-	else:_action_button(_body,"新しい育成・侵蝕ルールへの引継ぎ",{"kind":"preview_rule_upgrade"})
+	if not JobMastery.active(actor):_action_button(_body,"新しい育成・修練ルールへの引継ぎ",{"kind":"preview_rule_upgrade"})
+	var mastery: Dictionary=game.mastery_progress(actor["id"],actor["job_id"])
+	var mastery_text: String="修練: %s  %d/%d" % [mastery["description"],mastery["count"],mastery["required"]]
+	if mastery["legacy"]:mastery_text+="（旧保存のマスターを継承）"
+	elif not mastery["active"]:mastery_text="旧保存のJPマスター方式。修練回数は未記録。"
+	var mastery_label:=_label(mastery_text,10)
+	mastery_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	_body.add_child(mastery_label)
 	_action_button(_body,"機構の覚え書き",{"kind":"mechanics"})
 	var trait_total := _label(game.mastery_bonus_text(actor["id"]), 10)
 	trait_total.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -1483,6 +1490,9 @@ func _job_preview_text(actor: Dictionary, job_id: String) -> String:
 	var text := "転職後の比較: HP%d→%d MP%d→%d\n攻撃%d→%d 防御%d→%d 魔力%d→%d 魔防%d→%d 速さ%d→%d" % [current["hp"],next["hp"],current["mp"],next["mp"],current["attack"],next["attack"],current["defense"],next["defense"],current["magic"],next["magic"],current["resistance"],next["resistance"],current["speed"],next["speed"]]
 	var definitions: Array = IntegratedProgression.skill_list(game.jobs[job_id],actor.has("integrated"))
 	text += "\nマスター特性: "+game.mastery_trait(job_id)["description"]+"（転職後も常時）"
+	if JobMastery.active(actor):
+		var training: Dictionary=game.mastery_progress(actor["id"],job_id)
+		text+="\nマスター条件: JP%d と %s（現在%d/%d）" % [preview["mastery_cost"],training["description"],training["count"],training["required"]]
 	for index in range(definitions.size()):
 		var ability_id: String = definitions[index]
 		var required := IntegratedProgression.threshold(game.jobs[job_id],ability_id) if actor.has("integrated") else (ceili(float(preview["mastery_cost"])/2.0) if index==0 else int(preview["mastery_cost"]))
@@ -1533,7 +1543,10 @@ func _render_erosion_confirmation() -> void:
 	var text := "侵蝕90以上では、人間職への転職と祠での解除ができなくなります。\n"
 	for entry in _risk_preview:
 		if entry.get("kind")=="mastery":
-			text+="\n%s: 勝利のJP%dで%sをマスターし、魔物化します。追加枠＋1。" % [entry["name"],entry["jp"],entry["job"]]
+			var progress: Dictionary=game.mastery_progress(entry["actor"],entry["job_id"])
+			text+="\n%s: 勝利のJP%dで%sのJP条件に到達する見込みです。" % [entry["name"],entry["jp"],entry["job"]]
+			if progress["active"]:text+="修練は%s（%d/%d）。両条件を満たした勝利で魔物化し、追加枠＋1。" % [progress["description"],progress["count"],progress["required"]]
+			else:text+="旧ルールではJP到達で魔物化し、追加枠＋1。"
 			var weak: Dictionary=game.catalog.integration["forms"].get(entry["job_id"],{})
 			text+="有料技MP＋%d、物理被害%.2f倍、魔法被害%.2f倍。" % [weak.get("mp_add",0),weak.get("physical_rate",1),weak.get("magic_rate",1)]
 			text+="避ける場合は取消して職業を変えられます。\n"
@@ -2053,6 +2066,6 @@ func _render_mechanics() -> void:
 func _render_rule_upgrade() -> void:
 	_body.add_child(_label("新しいルールへ引き継ぐ",14))
 	var text:=RichTextLabel.new();text.size_flags_vertical=Control.SIZE_EXPAND_FILL;text.add_theme_font_size_override("normal_font_size",12)
-	text.text="現在地、所持技、解決済みの出来事、魔物化と不可逆の履歴を保持します。JPは新しいマスター量への割合で換算し、取得済みマスターを維持します。\nEXPはLv1から開始し、侵蝕は戦闘0.2・専用技1行動0.1になります。祠で消した技には再習得の量が必要になります。\n終えた事件は巻き戻しません。新しい導入から遊ぶ場合は新規開始を使えます。更新は確認した場合だけ行います。"
+	text.text="現在地、所持技、解決済みの出来事、魔物化と不可逆の履歴を保持します。取得済みマスターは維持し、未取得の職はJPと職別修練の両条件が必要になります。未記録の修練回数は0から開始します。\n以前の育成形式1から更新する場合だけ、JPを新しい必要量へ換算しEXPはLv1から開始します。形式2のEXP・JPはそのままです。侵蝕は戦闘0.2・専用技1行動0.1、祠後は技の再習得が必要です。\n更新は確認した場合だけ行います。"
 	_body.add_child(text)
 	_action_button(_body,"引き継ぐ",{"kind":"confirm_rule_upgrade"});_action_button(_body,"今は戻る",{"kind":"back"})

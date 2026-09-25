@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "RPG-maker v1 職業",
   "type": "object",
-  "required": ["id", "name", "type", "stat_growth", "abilities", "mastery_cost"],
+  "required": ["id", "name", "type", "stat_growth", "abilities", "mastery_cost", "mastery_action"],
   "properties": {
     "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
     "name": {"type": "string", "minLength": 1},
@@ -16,7 +16,18 @@
       "type": "array", "minItems": 1, "uniqueItems": true,
       "items": {"type": "string", "minLength": 1}
     },
-    "mastery_cost": {"type": "integer", "minimum": 1}
+    "mastery_cost": {"type": "integer", "minimum": 1},
+    "mastery_action": {
+      "type": "object",
+      "required": ["metric", "required", "description", "training_ability"],
+      "properties": {
+        "metric": {"enum": ["physical", "magic", "multi", "revive", "steal", "heal", "guard", "status", "shot", "song", "acid", "wind", "breath_attack"]},
+        "required": {"type": "integer", "minimum": 1},
+        "description": {"type": "string", "minLength": 1},
+        "training_ability": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": true
 }

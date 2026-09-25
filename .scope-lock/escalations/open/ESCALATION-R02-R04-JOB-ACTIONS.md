@@ -1,6 +1,8 @@
 # R-02・R-04: 旧企画の職別行動条件と凍結したJPマスターの衝突
 
-状態: 人間の仕様判断待ち。実装不能なのは現行契約と旧行動条件を同時に成立させる部分。凍結verify自体はPASSであり、未解決の企画差分をPASSに含めない。
+状態: 2026年9月25日、依頼者が「行動回数条件を採用して契約・実装・テストを改訂して下さい」と改訂を選択した。仕様判断待ちは解消。R-02・R-04の改訂、20職の実装、行動条件の検査を追加し、改訂後の8verifyはPASS。以下の旧本文は改訂前の証拠として保持する。
+
+改訂手続きの残件: `.scope-lock/frozen-files.json` の更新を保護フックが拒否した。反映案は `docs/verification/mastery-frozen-files-proposed.json`、変更前後のハッシュは `docs/verification/mastery-amendment-protected-changes.json`。台帳反映とCI成功までは手続き全体を完了とは扱わない。依頼者の改訂判断をもう一度求めているものではない。
 
 ## 対象と証拠
 
