@@ -190,6 +190,12 @@ jobs:
       - name: 素材台帳に従って検査
         run: python tools/validate_assets.py --strict
 
+      - name: 進捗文書と検証結果の集計を検査
+        run: |
+          python tools/check_progress_docs.py
+          python tools/test_locked_check_reporting.py
+          python tools/check_acceptance_registration.py --proposal
+
   godot-import:
     name: Godot・凍結受入テスト
     runs-on: ubuntu-latest
@@ -241,11 +247,19 @@ jobs:
           fi
           echo "インポートは正常に完了しました。"
 
-      - name: R-01からR-08のverifyを実行
+      - name: 凍結契約に登録された全verifyを実行
         if: steps.check.outputs.exists == 'true'
         run: |
           export PATH="$PWD:$PATH"
           python tools/run_locked_checks.py
+
+      - name: 全718状態の保存契約を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 300 ./godot --headless --path . --script res://tools/check_save_contract.gd 2>&1 | tee save-contract.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" save-contract.log; then exit 1; fi
+          test "$(grep -c '^SAVE_COMPLETE_PASS:' save-contract.log)" -eq 2
 
       - name: 帰還・任意戦闘・解除確認の操作検査
         if: steps.check.outputs.exists == 'true'
@@ -356,6 +370,8 @@ jobs:
             content-boundaries.log
             story.log
             saved-value-types.log
+            save-contract.log
+            docs/verification/save-contract-current.json
             docs/verification/save-complete-3.json
             docs/verification/save-complete-4.json
             v1-finish.log

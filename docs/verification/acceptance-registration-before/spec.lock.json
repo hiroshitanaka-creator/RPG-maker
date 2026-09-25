@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "project": "RPG-maker",
+  "goal": "Godot 4.7.2-stable / GDScript で、1周約60時間で遊び切れるオリジナルRPG v1 を完成させる。3〜4人パーティ、職業システム、モンスター職、FF5方式のアビリティ装着枠、モンスター職マスターによる魔物化を含む。依頼者本人の初見体験を温存し、短い版やMVPの完成を前提条件にしない。",
+  "non_negotiables": [
+    "v2以降の要素（追加大陸、追加職業、追加シナリオ章）は実装してはならない・提案もしない。",
+    "マルチプレイ、オンライン機能、ボイス、実績システムは実装してはならない・提案もしない。",
+    "v1要件を満たす前の演出強化・リファクタ・エンジン差し替えは実装してはならない・提案もしない。",
+    "テストのskip・assert削除・期待値の書き換えによる合格を禁止する。テストが要件と食い違う場合は escalation ファイルに記録し、実装を続行する。",
+    "要件を達成不能と判断した場合、勝手に縮小せず ESCALATION-<要件id>.md を書いて他要件へ進む。",
+    "新しいphase・マイルストーン・MVPを独自に設けない。",
+    "未実装・未検証の項目、空のテスト、GUTの改変による成功を達成として扱わない。"
+  ],
+  "protected_paths": [
+    "test/", "test/**",
+    "tools/smoke_chapter1.gd",
+    "data/schema/", "data/schema/**",
+    ".scope-lock/", ".scope-lock/**",
+    "project.godot"
+  ],
+  "denied_commands": [],
+  "budget": {"max_continuations": 40, "max_stall_rounds": 3, "verify_timeout_sec": 300},
+  "requirements": [
+    {
+      "id": "R-01", "title": "職業データ定義",
+      "done_when": "人間職12種とモンスター職8種が data/jobs/*.json に定義され、必須キー（id, name, type, stat_growth, abilities, mastery_cost）が全件そろい、id重複が無い",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit"
+    },
+    {
+      "id": "R-02", "title": "職業変更と熟練度",
+      "done_when": "戦闘勝利でJPが加算され、新規ルールではJP規定値と職ごとの成功行動回数の両条件を満たした場合だけマスター状態になる。職業変更後も習得済みアビリティと人物別・職別の行動進捗が保持される。盗賊は盗み成功10回、僧侶は蘇生5回、獣系は状態異常付与20回を必要とする。予約・不発・同一行動の多段・結果の二重反映では回数を増やさない。旧保存の取得済みマスターは維持し、未記録の行動回数は補完しない",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit"
+    },
+    {
+      "id": "R-03", "title": "アビリティ装着枠（FF5方式）",
+      "done_when": "装着枠が上限を超えて装着できず、枠から外すと該当効果が戦闘計算から消え、未習得アビリティは装着できない",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit"
+    },
+    {
+      "id": "R-04", "title": "魔物化",
+      "done_when": "新規ルールではJPと職別行動回数を満たしてモンスター職をマスターしたキャラが魔物化状態へ遷移する。片方だけの達成では魔物化しない。能力値と使用可能アビリティが定義どおり変化し、解除条件も定義どおり動作する",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit"
+    },
+    {
+      "id": "R-05", "title": "戦闘ループ",
+      "done_when": "3〜4人パーティのターン制戦闘が、行動順・ダメージ計算・勝利／全滅判定まで一巡し、固定シードで同じ入力から同じ結果を返す",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit"
+    },
+    {
+      "id": "R-06", "title": "セーブ／ロード往復",
+      "done_when": "パーティ構成・職業・熟練度・装着アビリティ・魔物化状態・所持品・進行フラグを保存し、ロード後の状態が保存前と完全一致する",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit"
+    },
+    {
+      "id": "R-07", "title": "第1章の通し到達",
+      "done_when": "自動プレイスクリプトが、ゲーム開始から第1章クリアフラグ成立まで停止せず到達し、途中でエラーログを出さない",
+      "verify": "godot --headless --path . --script res://tools/smoke_chapter1.gd"
+    },
+    {
+      "id": "R-08", "title": "全体テスト緑",
+      "done_when": "test/unit 配下の全テストが成功し、起動時にエラー・警告が出ない",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit"
+    }
+  ],
+  "amendments": [
+    {
+      "at": "2026-09-25",
+      "requirement": "R-02,R-04,R-06,R-08",
+      "change": "JPのみのマスターからJPと職別成功行動回数の両条件へ改訂。関連する保護テスト・共有検査入力・凍結ハッシュを変更履歴を残して更新する。実績システム禁止は外部実績・独立した実績一覧を指し、この職業修練条件は明示採用する。保存・全テスト成功の要求を維持する。",
+      "reason": "依頼者が『行動回数条件を採用して契約・実装・テストを改訂して下さい』と指示し、既存の職別行動条件エスカレーションの改訂案を選択したため。",
+      "decided_by": "依頼者（2026年9月25日の本会話で明示承認）"
+    },
+    {
+      "at": "2026-09-20",
+      "requirement": "goal",
+      "change": "1周5〜6時間から1周約60時間へ正式に変更。R-01〜R-08のdone_when・verify・保護テストとその他の変更禁止事項は維持。",
+      "reason": "依頼者が自分で遊びたいゲームを作るという目的と、本人の試遊で初見体験を消費したくない意向を示し、目標変更の質問へ『60時間を正式目標に戻す』と明示回答したため。",
+      "decided_by": "依頼者（この会話で明示承認）"
+    }
+  ]
+}

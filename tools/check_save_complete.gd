@@ -6,8 +6,13 @@ var covered: Dictionary = {}
 var receipts: Array = []
 var variant_counter := 0
 var run_token := str(Time.get_ticks_usec())
+var contract_cases: Array = []
 
 func _run() -> void:
+	if not _comparison_self_test():return
+	await super._run()
+
+func _comparison_self_test() -> bool:
 	var original := {"integer":1,"array":["a","b"],"nested":{"flag":true}}
 	var mutations: Array = []
 	var changed := original.duplicate(true)
@@ -19,11 +24,11 @@ func _run() -> void:
 	changed = original.duplicate(true);changed["nested"]["new"] = false;mutations.append(changed)
 	var typed_array: Array[String] = ["a","b"]
 	changed = original.duplicate(true);changed["array"] = typed_array;mutations.append(changed)
-	if not _check(Compare.differences(original,original.duplicate(true),"$",[]).is_empty(),"同一状態の型比較が一致する"):return
+	if not _check(Compare.differences(original,original.duplicate(true),"$",[]).is_empty(),"同一状態の型比較が一致する"):return false
 	for mutation in mutations:
-		if not _check(not Compare.differences(original,mutation,"$",[]).is_empty(),"欠落・型・値・順序・長さ・追加の改変を検出する"):return
-	if not _check(not Compare.unlisted({"unlisted_field":1}).is_empty(),"列挙外の保存項目を無視しない"):return
-	await super._run()
+		if not _check(not Compare.differences(original,mutation,"$",[]).is_empty(),"欠落・型・値・順序・長さ・追加の改変を検出する"):return false
+	if not _check(not Compare.unlisted({"unlisted_field":1}).is_empty(),"列挙外の保存項目を無視しない"):return false
+	return true
 
 func _detour(main: Node, _state: Dictionary, _entry: Dictionary) -> bool:
 	var state: Dictionary = main.game.export_state()
@@ -55,6 +60,8 @@ func _document(game: GameSession) -> Dictionary:
 	return value
 
 func _roundtrip(source: GameSession, label: String) -> bool:
+	if "--capture-save-cases" in OS.get_cmdline_user_args():
+		contract_cases.append({"case":label,"state":source.export_state(),"metrics":source.play_metrics.snapshot(),"recording":not source.playthrough_id().is_empty()})
 	variant_counter += 1
 	var directory := "user://qa_complete_save_"+run_token+"_"+str(variant_counter)
 	# 比較前にrestoreや数値正規化を通さず、実際の保存元を直接採取する。
@@ -126,4 +133,9 @@ func _finish_extra(main: Node) -> bool:
 	var report := {"requirement":"AC-03","status":"PASS","party_size":count,"checked_states":receipts.size(),"difference_count":0,"covered_paths":covered,"cases":receipts,"comparison_self_test_mutations":7,"build":BuildIdentity.current(),"runner_sha256":FileAccess.get_sha256("res://tools/check_save_complete.gd"),"comparison_sha256":FileAccess.get_sha256("res://tools/save_state_comparison.gd"),"human_playtest":"NOT_RUN","trial_history_is_separate":true}
 	if not _check(PlaySessionMetrics.write_json("res://docs/verification/save-complete-%d.json" % count,report),"保存往復の証拠を記録する"):return false
 	print("SAVE_COMPLETE_PASS: party=%d states=%d differences=0" % [count,receipts.size()])
+	if "--capture-save-cases" in OS.get_cmdline_user_args():
+		var output := FileAccess.open_compressed("res://docs/verification/save-contract-cases-%d.bin" % count,FileAccess.WRITE,FileAccess.COMPRESSION_ZSTD)
+		if not _check(output != null,"型を保持した保存検査入力を記録する"):return false
+		output.store_var({"party_size":count,"source":"legacy_route_and_explicit_save_boundary_fixtures","build":BuildIdentity.current(),"cases":contract_cases})
+		output.close()
 	return true
