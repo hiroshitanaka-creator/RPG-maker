@@ -44,6 +44,8 @@ jobs:
           done
           ./godot --headless --path . --script res://tools/check_mastery_charger_probe.gd 2>&1 | tee integrated-charger-policy.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" integrated-charger-policy.log; then exit 1; fi
+          ./godot --headless --path . --script res://tools/check_mastery_role_transition.gd 2>&1 | tee integrated-role-transition.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" integrated-role-transition.log; then exit 1; fi
           ./godot --headless --path . --script res://tools/check_long_audit_checkpoint.gd 2>&1 | tee integrated-audit-checkpoint.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" integrated-audit-checkpoint.log; then exit 1; fi
       - name: ワールド構造のPhase 1定義を検査

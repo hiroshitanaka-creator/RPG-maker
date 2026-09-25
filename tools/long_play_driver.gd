@@ -117,7 +117,7 @@ func prepare(game: GameSession, train_jobs: bool) -> void:
 		var available: Array = game.available_abilities(actor["id"])
 		var desired: Array=["heal","revive","restore_mp","firm_guard"]
 		if index!=2:
-			if actor["job_id"]=="mage":desired=["fire","ice","firm_guard"]
+			if game.export_state()["party"][index]["job_id"]=="mage":desired=["fire","ice","firm_guard"]
 			elif "four_strike" in available:desired=["four_strike","firm_guard"]
 			elif "power_strike" in available:desired=["power_strike","firm_guard"]
 			else:desired=["double_strike","firm_guard","fire","ice"]
