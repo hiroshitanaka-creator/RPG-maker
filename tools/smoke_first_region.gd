@@ -1,5 +1,5 @@
-extends "res://tools/smoke_chapter1.gd"
-## 実装前の受入仕様。継承元から利用するのは読み取り専用の経路探索 _route だけ。
+extends SceneTree
+## 実装前の受入仕様。読み取り専用の経路探索もこのテスト内に持つ。
 
 const REGION_SEED := 20260925
 const LIMIT_MS := 180000
@@ -141,16 +141,30 @@ func _party() -> Array:
 	return value.duplicate(true) if value is Array else []
 
 
+func _visible_text(node: Node) -> Array[String]:
+	var labels: Array[String] = []
+	if node is Control and node.is_visible_in_tree():
+		if node is Button or node is Label:labels.append(node.text)
+		if node is RichTextLabel:labels.append(node.get_parsed_text())
+		if node is LineEdit or node is TextEdit:
+			labels.append(node.text if not node.text.is_empty() else node.placeholder_text)
+		if node is ItemList or node is OptionButton:
+			for index in range(node.item_count):labels.append(node.get_item_text(index))
+		if node is TabBar:
+			for index in range(node.tab_count):
+				if not node.is_tab_hidden(index):labels.append(node.get_tab_title(index))
+	if node is PopupMenu and node.visible:
+		for index in range(node.item_count):labels.append(node.get_item_text(index))
+	return labels
+
+
 func _watch() -> void:
 	if _finished or not is_instance_valid(_main):return
 	var pending: Array[Node] = [root]
 	while not pending.is_empty():
 		var node: Node = pending.pop_back()
 		for child in node.get_children(true):pending.append(child)
-		var labels: Array[String] = []
-		if node is Button and node.is_visible_in_tree():labels.append(node.text)
-		if node is PopupMenu and node.visible:
-			for index in range(node.item_count):labels.append(node.get_item_text(index))
+		var labels := _visible_text(node)
 		for label in labels:
 			for forbidden in FORBIDDEN_LABELS:
 				if label.contains(forbidden) and forbidden not in _forbidden_seen:_forbidden_seen.append(forbidden)
@@ -163,7 +177,7 @@ func _watch() -> void:
 		_left_village = true
 		_exit_party = _party()
 	if not _definition.is_empty() and not pose.is_empty():
-		if _gate_probe_active and _at(_definition["gate"]["beyond"]) and not _has_pass():_gate_breach = true
+		if not _has_pass() and (_at(_definition["gate"]["cell"]) or (_gate_probe_active and _at(_definition["gate"]["beyond"]))):_gate_breach = true
 	var battle := _battle()
 	if battle != null and not _seen_battles.has(battle.get_instance_id()):
 		var input: Variant = _snapshot().get("battle_input", {})
@@ -502,7 +516,7 @@ func _play_route() -> void:
 	for attempt in range(2):
 		if not await _step_direction(direction):return
 	_gate_probe_active = false
-	if not _record("A06", not _gate_breach and not _has_pass() and (_at(gate["before"]) or _at(gate["cell"])), "通行証なしの2歩の通行試行で門の向こうへ進まない"):return
+	if not _record("A06", not _gate_breach and not _has_pass() and _at(gate["before"]), "通行証なしでは門セルへ一度も入らず、2歩の試行後も手前にいる"):return
 	_blocker = "A07の洞窟入口への歩行が未成立"
 	if not await _walk(_outside(_definition["cave_entrance"])):return
 	var cave_spawn: Dictionary = _definition["cave_spawn"]
@@ -594,3 +608,29 @@ func _run() -> void:
 	elif data_ok:
 		_blocker = "A01の開始位置が未成立"
 	_finish()
+
+
+func _route(start: Array, goal: Array, cells: Array) -> Array:
+	var allowed: Dictionary = {}
+	for cell in cells:
+		allowed[Vector2i(int(cell[0]), int(cell[1]))] = true
+	var origin := Vector2i(int(start[0]), int(start[1]))
+	var target := Vector2i(int(goal[0]), int(goal[1]))
+	var pending: Array[Vector2i] = [origin]
+	var parents: Dictionary = {origin: origin}
+	var at := 0
+	while at < pending.size():
+		var current := pending[at]
+		at += 1
+		if current == target:
+			var route: Array = []
+			while current != origin:
+				route.push_front([current.x, current.y])
+				current = parents[current]
+			return route
+		for delta in [Vector2i.RIGHT, Vector2i.DOWN, Vector2i.LEFT, Vector2i.UP]:
+			var next: Vector2i = current + delta
+			if allowed.has(next) and not parents.has(next):
+				parents[next] = current
+				pending.append(next)
+	return []
