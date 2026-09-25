@@ -1,0 +1,61 @@
+{
+  "activities": 70,
+  "battles": 485,
+  "build": {
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 204,
+    "id": "d21e311bb4574dedab74b60b099e322dd140c961d1180d840736258dbb5932fd",
+    "version": 1
+  },
+  "check_sha256": {
+    "tools/check_long_full.gd": "7ad32d6cccd06a240ee3b77d955b930f0041bf2563a0e17b2b39121af42afeac",
+    "tools/counterplay_policy.gd": "70f15be435649f471c980d46f13f3d56081855d56a3b386f2f62ac9da1033d27",
+    "tools/integrated_play_policy.gd": "1f8d195d0cf872c7c2e766d0ab1fd7c813b534a470f1714ad670d4f9bd42025d",
+    "tools/long_audit_checkpoint.gd": "a0dc482f6f021d6b5a446607333048fea1da49f1ab6d3fe76524adf19453235e",
+    "tools/long_play_driver.gd": "3b448e31a77d9034d0a8613e9b8b95c0039707fe55f14098d8d8c6cd0cacc6bc",
+    "tools/save_state_comparison.gd": "841457868b8ceba47a37a31c3a82b0e9f176b6b177675fb13b3ae511fd5bd477"
+  },
+  "elapsed_seconds": 822.554,
+  "failures": [
+    "通常の戦闘計算で勝利: g_tools_2_2_11_battle",
+    "全80話を経て本編の結末へ到達",
+    "全80話の現地操作を完了",
+    "既存70戦と長編480戦を全て通常計算で勝利",
+    "既存8件と長編46件を保持",
+    "未回収を残さない",
+    "未回収を残さない",
+    "未回収を残さない",
+    "記録にも実際の完走を渡す"
+  ],
+  "human_duration": "NOT_RUN",
+  "last_step": {
+    "cell": [
+      12,
+      6
+    ],
+    "chapter": 6,
+    "enemies": [
+      "flood_beast"
+    ],
+    "id": "g_tools_2_2_11_battle",
+    "kind": "battle",
+    "location": "gate",
+    "objective": "同じ物を配った日の通り道を確保する",
+    "section": "journey_g_tools_c",
+    "seed": 891004,
+    "text": [
+      "通り道を確保した。残りの力を確かめて、話の続きを追おう。"
+    ]
+  },
+  "load_max_ms": 376,
+  "missions": 69,
+  "moved": 70186,
+  "order": "3_reverse",
+  "party": 3,
+  "rounds": 1739,
+  "save_max_bytes": 259968,
+  "save_max_ms": 497,
+  "save_roundtrips": 1567,
+  "source": "new_game_normal_api_no_progress_or_stat_injection",
+  "status": "FAIL"
+}

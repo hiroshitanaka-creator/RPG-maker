@@ -1,0 +1,5522 @@
+{
+  "build": {
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 204,
+    "id": "ebf3db0feec2a3e884037321c29e65722295df2b180afff1a5f64a95ed3aa0f1",
+    "version": 1
+  },
+  "human": "NOT_RUN",
+  "rows": [
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 52,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 22,
+            "name": "カイナ"
+          },
+          {
+            "hp": 25,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 54,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 9
+            },
+            "pc_01": {
+              "opportunities": 9
+            },
+            "pc_02": {
+              "opportunities": 9
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 4
+        },
+        "phase": 2,
+        "potions": 0,
+        "round": 9
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 0
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "power_strike",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "fire",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 0,
+      "rounds": 9,
+      "variant": "original",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 82,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 16,
+            "name": "カイナ"
+          },
+          {
+            "hp": 64,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 51,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 9
+            },
+            "pc_01": {
+              "opportunities": 9
+            },
+            "pc_02": {
+              "opportunities": 9
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 4
+        },
+        "phase": 2,
+        "potions": 0,
+        "round": 9
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 0
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "ice",
+              "fire",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 0,
+      "rounds": 9,
+      "variant": "guard_and_ice",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 58,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 13,
+            "name": "カイナ"
+          },
+          {
+            "hp": 50,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 44,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 47,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "seal",
+            "seal_break",
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 10,
+              "seal_count": 0,
+              "seal_last": 1,
+              "seal_until": 3,
+              "seal_used": true
+            },
+            "pc_01": {
+              "opportunities": 10
+            },
+            "pc_02": {
+              "opportunities": 10
+            },
+            "pc_03": {
+              "opportunities": 6
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 4
+        },
+        "phase": 2,
+        "potions": 0,
+        "round": 10
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 0
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "ice",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2172,
+              "martial_artist": 344,
+              "priest": 60
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave",
+              "heal",
+              "revive",
+              "seal"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "heal",
+              "revive"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 0,
+      "rounds": 10,
+      "variant": "seal_and_guard",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 56,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 28,
+            "name": "カイナ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 54,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 14
+            },
+            "pc_01": {
+              "opportunities": 14
+            },
+            "pc_02": {
+              "opportunities": 14
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 5
+        },
+        "phase": 2,
+        "potions": 0,
+        "round": 14
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 1
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "power_strike",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "fire",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 1,
+      "rounds": 14,
+      "variant": "original",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 82,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 16,
+            "name": "カイナ"
+          },
+          {
+            "hp": 64,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 51,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 9
+            },
+            "pc_01": {
+              "opportunities": 9
+            },
+            "pc_02": {
+              "opportunities": 9
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3
+        },
+        "phase": 2,
+        "potions": 1,
+        "round": 9
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 1
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "ice",
+              "fire",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 1,
+      "rounds": 9,
+      "variant": "guard_and_ice",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 72,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 16,
+            "name": "カイナ"
+          },
+          {
+            "hp": 50,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 35,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 47,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "seal",
+            "seal_break",
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 13,
+              "seal_count": 0,
+              "seal_last": 1,
+              "seal_until": 3,
+              "seal_used": true
+            },
+            "pc_01": {
+              "opportunities": 13
+            },
+            "pc_02": {
+              "opportunities": 13
+            },
+            "pc_03": {
+              "opportunities": 6
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 4,
+          "pc_02": 1
+        },
+        "phase": 2,
+        "potions": 0,
+        "round": 13
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 1
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "ice",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2172,
+              "martial_artist": 344,
+              "priest": 60
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave",
+              "heal",
+              "revive",
+              "seal"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "heal",
+              "revive"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 1,
+      "rounds": 13,
+      "variant": "seal_and_guard",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 83,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 28,
+            "name": "カイナ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 54,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 17
+            },
+            "pc_01": {
+              "opportunities": 17
+            },
+            "pc_02": {
+              "opportunities": 17
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 5
+        },
+        "phase": 2,
+        "potions": 0,
+        "round": 17
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 3
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "power_strike",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "fire",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 3,
+      "rounds": 17,
+      "variant": "original",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 82,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 16,
+            "name": "カイナ"
+          },
+          {
+            "hp": 64,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 51,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 9
+            },
+            "pc_01": {
+              "opportunities": 9
+            },
+            "pc_02": {
+              "opportunities": 9
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3
+        },
+        "phase": 2,
+        "potions": 3,
+        "round": 9
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 3
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "ice",
+              "fire",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 3,
+      "rounds": 9,
+      "variant": "guard_and_ice",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 86,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 13,
+            "name": "カイナ"
+          },
+          {
+            "hp": 50,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 32,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 47,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "seal",
+            "seal_break",
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 14,
+              "seal_count": 0,
+              "seal_last": 1,
+              "seal_until": 3,
+              "seal_used": true
+            },
+            "pc_01": {
+              "opportunities": 14
+            },
+            "pc_02": {
+              "opportunities": 14
+            },
+            "pc_03": {
+              "opportunities": 6
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3,
+          "pc_02": 2
+        },
+        "phase": 2,
+        "potions": 1,
+        "round": 14
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 3
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "ice",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2172,
+              "martial_artist": 344,
+              "priest": 60
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave",
+              "heal",
+              "revive",
+              "seal"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "heal",
+              "revive"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 3,
+      "rounds": 14,
+      "variant": "seal_and_guard",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 0,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 28,
+            "name": "カイナ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 50,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 12,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 21
+            },
+            "pc_01": {
+              "opportunities": 21
+            },
+            "pc_02": {
+              "opportunities": 17
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3,
+          "pc_02": 1
+        },
+        "phase": 3,
+        "potions": 2,
+        "round": 21
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 6
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "power_strike",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "fire",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 6,
+      "rounds": 21,
+      "variant": "original",
+      "victory": false
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 82,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 16,
+            "name": "カイナ"
+          },
+          {
+            "hp": 64,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 51,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 9
+            },
+            "pc_01": {
+              "opportunities": 9
+            },
+            "pc_02": {
+              "opportunities": 9
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3
+        },
+        "phase": 2,
+        "potions": 6,
+        "round": 9
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 6
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "ice",
+              "fire",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 6,
+      "rounds": 9,
+      "variant": "guard_and_ice",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 86,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 13,
+            "name": "カイナ"
+          },
+          {
+            "hp": 50,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 32,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 47,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "seal",
+            "seal_break",
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 14,
+              "seal_count": 0,
+              "seal_last": 1,
+              "seal_until": 3,
+              "seal_used": true
+            },
+            "pc_01": {
+              "opportunities": 14
+            },
+            "pc_02": {
+              "opportunities": 14
+            },
+            "pc_03": {
+              "opportunities": 6
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3,
+          "pc_02": 2
+        },
+        "phase": 2,
+        "potions": 4,
+        "round": 14
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 6
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "ice",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2172,
+              "martial_artist": 344,
+              "priest": 60
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave",
+              "heal",
+              "revive",
+              "seal"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "heal",
+              "revive"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 6,
+      "rounds": 14,
+      "variant": "seal_and_guard",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 0,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 28,
+            "name": "カイナ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 50,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 12,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 21
+            },
+            "pc_01": {
+              "opportunities": 21
+            },
+            "pc_02": {
+              "opportunities": 17
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3,
+          "pc_02": 1
+        },
+        "phase": 3,
+        "potions": 8,
+        "round": 21
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 12
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "power_strike",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "fire",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 12,
+      "rounds": 21,
+      "variant": "original",
+      "victory": false
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 82,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 16,
+            "name": "カイナ"
+          },
+          {
+            "hp": 64,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 51,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 9
+            },
+            "pc_01": {
+              "opportunities": 9
+            },
+            "pc_02": {
+              "opportunities": 9
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3
+        },
+        "phase": 2,
+        "potions": 12,
+        "round": 9
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 12
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "ice",
+              "fire",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 12,
+      "rounds": 9,
+      "variant": "guard_and_ice",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 86,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 13,
+            "name": "カイナ"
+          },
+          {
+            "hp": 50,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 32,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 47,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "seal",
+            "seal_break",
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 14,
+              "seal_count": 0,
+              "seal_last": 1,
+              "seal_until": 3,
+              "seal_used": true
+            },
+            "pc_01": {
+              "opportunities": 14
+            },
+            "pc_02": {
+              "opportunities": 14
+            },
+            "pc_03": {
+              "opportunities": 6
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3,
+          "pc_02": 2
+        },
+        "phase": 2,
+        "potions": 10,
+        "round": 14
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 12
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "ice",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2172,
+              "martial_artist": 344,
+              "priest": 60
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave",
+              "heal",
+              "revive",
+              "seal"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "heal",
+              "revive"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 12,
+      "rounds": 14,
+      "variant": "seal_and_guard",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 0,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 28,
+            "name": "カイナ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 50,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 12,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 21
+            },
+            "pc_01": {
+              "opportunities": 21
+            },
+            "pc_02": {
+              "opportunities": 17
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3,
+          "pc_02": 1
+        },
+        "phase": 3,
+        "potions": 20,
+        "round": 21
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 24
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "power_strike",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "fire",
+              "double_strike"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 24,
+      "rounds": 21,
+      "variant": "original",
+      "victory": false
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 82,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 16,
+            "name": "カイナ"
+          },
+          {
+            "hp": 64,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 51,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 46,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 9
+            },
+            "pc_01": {
+              "opportunities": 9
+            },
+            "pc_02": {
+              "opportunities": 9
+            },
+            "pc_03": {
+              "opportunities": 5
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3
+        },
+        "phase": 2,
+        "potions": 24,
+        "round": 9
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 24
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "ice",
+              "fire",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2232,
+              "martial_artist": 344
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "heal",
+              "revive",
+              "restore_mp"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 24,
+      "rounds": 9,
+      "variant": "guard_and_ice",
+      "victory": true
+    },
+    {
+      "final": {
+        "actors": [
+          {
+            "hp": 86,
+            "id": "pc_01",
+            "max_hp": 182,
+            "max_mp": 34,
+            "mp": 13,
+            "name": "カイナ"
+          },
+          {
+            "hp": 50,
+            "id": "pc_02",
+            "max_hp": 134,
+            "max_mp": 54,
+            "mp": 32,
+            "name": "リオネ"
+          },
+          {
+            "hp": 0,
+            "id": "pc_03",
+            "max_hp": 145,
+            "max_mp": 50,
+            "mp": 47,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 20,
+            "mp": 0,
+            "name": "溶岩の大荒獣"
+          },
+          {
+            "hp": 0,
+            "id": "armor_regulator",
+            "max_hp": 40,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "装甲調整器"
+          }
+        ],
+        "effects": {
+          "field": {},
+          "knowledge": {
+            "charger": {
+              "confirmed": true,
+              "facts": [
+                0,
+                1
+              ]
+            }
+          },
+          "methods": [
+            "seal",
+            "seal_break",
+            "device"
+          ],
+          "phase": 0,
+          "rules": {
+            "armor_defense": 45.0,
+            "charge": true,
+            "device": "armor",
+            "device_hp": 40.0,
+            "facts": [
+              "封緘のある相手は充填の開始でも封緘が進む。",
+              "3段階で予定行動が止まり、装甲が崩れる。"
+            ],
+            "hypothesis": "封緘を重ねるか調整器を壊して、攻撃の機会を作る。",
+            "id": "charger",
+            "name": "充填機構"
+          },
+          "states": {
+            "armor_regulator": {
+              "opportunities": 0
+            },
+            "enemy_01": {
+              "opportunities": 14,
+              "seal_count": 0,
+              "seal_last": 1,
+              "seal_until": 3,
+              "seal_used": true
+            },
+            "pc_01": {
+              "opportunities": 14
+            },
+            "pc_02": {
+              "opportunities": 14
+            },
+            "pc_03": {
+              "opportunities": 6
+            }
+          }
+        },
+        "mastery_counts": {
+          "pc_01": 3,
+          "pc_02": 2
+        },
+        "phase": 2,
+        "potions": 22,
+        "round": 14
+      },
+      "initial": {
+        "content_revision": 1,
+        "expedition": {},
+        "field_battles": 0,
+        "format_version": 2,
+        "integrated": {
+          "armory": [
+            "practice_blade",
+            "practice_staff",
+            "practice_bow"
+          ],
+          "claimed": [],
+          "job_notes": [],
+          "knowledge": {},
+          "mastery_rules_version": 1,
+          "outcomes": {}
+        },
+        "inventory": {
+          "potion": 24
+        },
+        "leader_id": "pc_01",
+        "party": [
+          {
+            "equipped_abilities": [
+              "four_strike",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 182,
+            "id": "pc_01",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "martial_artist": 10,
+                  "warrior": 20
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "warrior",
+            "jp": {
+              "martial_artist": 60,
+              "warrior": 2516
+            },
+            "last_human_job": "warrior",
+            "learned_abilities": [
+              "power_strike",
+              "double_strike",
+              "firm_guard",
+              "breath",
+              "four_strike",
+              "cover",
+              "riposte",
+              "sound_wave"
+            ],
+            "mastered_jobs": [
+              "warrior"
+            ],
+            "max_hp": 182,
+            "max_mp": 34,
+            "monster_form": "",
+            "mp": 34,
+            "name": "カイナ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "ice",
+              "firm_guard"
+            ],
+            "erosion": 0,
+            "hp": 134,
+            "id": "pc_02",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "mage": 20,
+                  "martial_artist": 10
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "mage",
+            "jp": {
+              "mage": 2172,
+              "martial_artist": 344,
+              "priest": 60
+            },
+            "last_human_job": "mage",
+            "learned_abilities": [
+              "double_strike",
+              "fire",
+              "breath",
+              "four_strike",
+              "ice",
+              "conduct",
+              "amplify",
+              "focus_vow",
+              "firm_guard",
+              "sound_wave",
+              "heal",
+              "revive",
+              "seal"
+            ],
+            "mastered_jobs": [
+              "mage",
+              "martial_artist"
+            ],
+            "max_hp": 134,
+            "max_mp": 54,
+            "monster_form": "",
+            "mp": 54,
+            "name": "リオネ",
+            "unlocked_jobs": []
+          },
+          {
+            "equipped_abilities": [
+              "seal",
+              "heal",
+              "revive"
+            ],
+            "erosion": 0,
+            "hp": 145,
+            "id": "pc_03",
+            "integrated": {
+              "erosion_fraction": 0,
+              "exp": 5545,
+              "focus_binding": "",
+              "forgotten": [],
+              "jp_remainders": {},
+              "level": 21,
+              "mastery": {
+                "counts": {
+                  "priest": 1
+                },
+                "legacy_masters": []
+              },
+              "relearn": {},
+              "weapons": [
+                "practice_blade"
+              ]
+            },
+            "irreversible": false,
+            "job_id": "priest",
+            "jp": {
+              "priest": 2576
+            },
+            "last_human_job": "priest",
+            "learned_abilities": [
+              "heal",
+              "revive",
+              "seal",
+              "restore_mp",
+              "firm_guard",
+              "sound_wave"
+            ],
+            "mastered_jobs": [],
+            "max_hp": 145,
+            "max_mp": 50,
+            "monster_form": "",
+            "mp": 50,
+            "name": "ハルド",
+            "unlocked_jobs": []
+          }
+        ],
+        "progress_flags": {
+          "chapter1_cleared": false,
+          "long_campaign_enrolled": true,
+          "midgame_slots": true
+        },
+        "return_point": {},
+        "story_battle": {},
+        "world": {
+          "location": "town",
+          "player_cell": [
+            2,
+            4
+          ],
+          "quest_step": 0
+        }
+      },
+      "potions": 24,
+      "rounds": 14,
+      "variant": "seal_and_guard",
+      "victory": true
+    }
+  ],
+  "scope": "CIの戦闘直前パーティを使用。開始時の薬数は元ログにないため0へ固定した制御検査。元の戦闘の完全再現とは呼ばない。"
+}
