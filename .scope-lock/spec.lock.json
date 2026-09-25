@@ -1,68 +1,90 @@
 {
   "version": 1,
   "project": "RPG-maker",
-  "goal": "Godot 4.7.2-stable / GDScript で、1周約60時間で遊び切れるオリジナルRPG v1 を完成させる。3〜4人パーティ、職業システム、モンスター職、FF5方式のアビリティ装着枠、モンスター職マスターによる魔物化を含む。依頼者本人の初見体験を温存し、短い版やMVPの完成を前提条件にしない。",
+  "goal": "Godot 4.7.2-stable / GDScript で、1周約60時間で遊び切れるオリジナルRPG v1 を完成させる。3〜4人パーティ、職業システム、モンスター職、FF5方式のアビリティ装着枠、モンスター職マスターによる魔物化を含む。依頼者本人の初見体験を温存し、短い版やMVPの完成を前提条件にしない。 ゲームの形は docs/experience-spec-v2.md（世界マップ攻略型）に従う。世界マップを土台に城・町・村・洞窟・塔・ダンジョンを攻略して進み、前半は一本道、飛行手段の入手後は自由順とする。",
   "non_negotiables": [
-    "v2以降の要素（追加大陸、追加職業、追加シナリオ章）は実装してはならない・提案もしない。",
+    "v2以降の要素（追加大陸、追加職業、追加シナリオ章）は実装してはならない・提案もしない。 既存の256×256世界マップと4地方は追加大陸に当たらない。",
     "マルチプレイ、オンライン機能、ボイス、実績システムは実装してはならない・提案もしない。",
-    "v1要件を満たす前の演出強化・リファクタ・エンジン差し替えは実装してはならない・提案もしない。",
+    "v1要件を満たす前の演出強化・リファクタ・エンジン差し替えは実装してはならない・提案もしない。 ただし docs/experience-spec-v2.md に定める世界マップ攻略型への構造切り替え（旧本編の凍結と再配置を含む）は依頼者承認済みのため、この禁止の対象外とする。",
     "テストのskip・assert削除・期待値の書き換えによる合格を禁止する。テストが要件と食い違う場合は escalation ファイルに記録し、実装を続行する。",
     "要件を達成不能と判断した場合、勝手に縮小せず ESCALATION-<要件id>.md を書いて他要件へ進む。",
-    "新しいphase・マイルストーン・MVPを独自に設けない。",
+    "新しいphase・マイルストーン・MVPを独自に設けない。 docs/experience-spec-v2.md の「作業の順番」は依頼者が定めたものであり、これに当たらない。",
     "未実装・未検証の項目、空のテスト、GUTの改変による成功を達成として扱わない。"
   ],
   "protected_paths": [
-    "test/", "test/**",
+    "test/",
+    "test/**",
     "tools/smoke_chapter1.gd",
-    "data/schema/", "data/schema/**",
-    ".scope-lock/", ".scope-lock/**",
+    "data/schema/",
+    "data/schema/**",
+    ".scope-lock/",
+    ".scope-lock/**",
     "project.godot"
   ],
   "denied_commands": [],
-  "budget": {"max_continuations": 40, "max_stall_rounds": 3, "verify_timeout_sec": 300},
+  "budget": {
+    "max_continuations": 40,
+    "max_stall_rounds": 3,
+    "verify_timeout_sec": 300
+  },
   "requirements": [
     {
-      "id": "R-01", "title": "職業データ定義",
+      "id": "R-01",
+      "title": "職業データ定義",
       "done_when": "人間職12種とモンスター職8種が data/jobs/*.json に定義され、必須キー（id, name, type, stat_growth, abilities, mastery_cost）が全件そろい、id重複が無い",
       "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit"
     },
     {
-      "id": "R-02", "title": "職業変更と熟練度",
+      "id": "R-02",
+      "title": "職業変更と熟練度",
       "done_when": "戦闘勝利でJPが加算され、新規ルールではJP規定値と職ごとの成功行動回数の両条件を満たした場合だけマスター状態になる。職業変更後も習得済みアビリティと人物別・職別の行動進捗が保持される。盗賊は盗み成功10回、僧侶は蘇生5回、獣系は状態異常付与20回を必要とする。予約・不発・同一行動の多段・結果の二重反映では回数を増やさない。旧保存の取得済みマスターは維持し、未記録の行動回数は補完しない",
       "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit"
     },
     {
-      "id": "R-03", "title": "アビリティ装着枠（FF5方式）",
+      "id": "R-03",
+      "title": "アビリティ装着枠（FF5方式）",
       "done_when": "装着枠が上限を超えて装着できず、枠から外すと該当効果が戦闘計算から消え、未習得アビリティは装着できない",
       "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit"
     },
     {
-      "id": "R-04", "title": "魔物化",
+      "id": "R-04",
+      "title": "魔物化",
       "done_when": "新規ルールではJPと職別行動回数を満たしてモンスター職をマスターしたキャラが魔物化状態へ遷移する。片方だけの達成では魔物化しない。能力値と使用可能アビリティが定義どおり変化し、解除条件も定義どおり動作する",
       "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit"
     },
     {
-      "id": "R-05", "title": "戦闘ループ",
+      "id": "R-05",
+      "title": "戦闘ループ",
       "done_when": "3〜4人パーティのターン制戦闘が、行動順・ダメージ計算・勝利／全滅判定まで一巡し、固定シードで同じ入力から同じ結果を返す",
       "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit"
     },
     {
-      "id": "R-06", "title": "セーブ／ロード往復",
+      "id": "R-06",
+      "title": "セーブ／ロード往復",
       "done_when": "パーティ構成・職業・熟練度・装着アビリティ・魔物化状態・所持品・進行フラグを保存し、ロード後の状態が保存前と完全一致する",
       "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit"
     },
     {
-      "id": "R-07", "title": "第1章の通し到達",
+      "id": "R-07",
+      "title": "第1章の通し到達",
       "done_when": "自動プレイスクリプトが、ゲーム開始から第1章クリアフラグ成立まで停止せず到達し、途中でエラーログを出さない",
       "verify": "godot --headless --path . --script res://tools/smoke_chapter1.gd"
     },
     {
-      "id": "R-08", "title": "全体テスト緑",
+      "id": "R-08",
+      "title": "全体テスト緑",
       "done_when": "test/unit 配下の全テストが成功し、起動時にエラー・警告が出ない",
       "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit"
     }
   ],
   "amendments": [
+    {
+      "at": "2026-09-25",
+      "requirement": "goal,non_negotiables",
+      "change": "ゲームの形を世界マップ攻略型（docs/experience-spec-v2.md）へ改訂。構造切り替えをリファクタ禁止の対象外とし、仕様書の作業順を独自のphaseに当たらないと明記。R-01〜R-08のdone_when・verify・保護テストは変更しない。R-07の差し替えは受入テストの確認後に別の改訂で行う。",
+      "reason": "依頼者が、メニュー中心の本編ではなく世界マップを先に置いて攻略する一般的な2D RPGの形を求め、この方針に合わせて既存の全仕様を置き換えてよいと明示承認したため。",
+      "decided_by": "依頼者（2026年9月25日にClaudeとの会話で明示承認）"
+    },
     {
       "at": "2026-09-25",
       "requirement": "R-02,R-04,R-06,R-08",
