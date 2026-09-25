@@ -1,13 +1,14 @@
 {
-  "recorded_at": "2026-09-23T02:13:32.524827+00:00",
+  "recorded_at": "2026-09-25T01:59:18.096299+00:00",
   "kind": "requirement_verification",
   "test_sha256": {
-    "test/support/game_test.gd": "5a85d19d1f0496e8071e70c77519efdd1d7741558ee5a6925b0d8da00a27d577",
+    "test/support/game_test.gd": "c5d452dfbd68a31d9f9c5f7189d2f7e7421df90f019b22db7bb09805fb45e004",
     "test/support/gut_gate.gd": "83d03acd52192b43d5fcb8f2654eb4378f96d0e10a18f47f0bf61e4918852bac",
     "test/unit/test_ability_slots.gd": "7cc7e3768bcc7b1023c2259799f56b6a505dcfbfabfb024a16b6b16453815aa3",
     "test/unit/test_battle_loop.gd": "8ca674ea671f39cae542ad370a881ff3f0cd6e6b92b2bc98698ede6c03935a38",
+    "test/unit/test_job_actions.gd": "775845fb20735c4cc8f56f0efe4f0984b07bf2faefa94f4457fac7c055921bd4",
     "test/unit/test_job_change.gd": "8bee5e5d532f1aa106dc0f102c8dc353debeaf17e429896ef1a7fbc10dd75495",
-    "test/unit/test_job_data.gd": "d44e30cff048d634e315c4785b03d8bf7e9fb86c7282b0e440f3b8fe02074786",
+    "test/unit/test_job_data.gd": "62f2d442e2b671a7be58e14e2e2e3df6664a859cfdeb54854427f488c99c7613",
     "test/unit/test_monster_form.gd": "c6d66d4278c0b8382efb665ce267576fdc8559a232b2bf9fae247ca40bd915bc",
     "test/unit/test_save_roundtrip.gd": "03102af3eead761907f5514817f1b369ab55f0be381c13c3636b90aa7b4b6e03",
     "test/unit/test_startup.gd": "21d01ab3117064e960eab7e0d2b1ea2164e214a38b5e8bbdd6f7bf3084ee78cc"
@@ -23,7 +24,7 @@
       "parser_failed": false,
       "timed_out": false,
       "gut_summary": {
-        "assertions": 741,
+        "assertions": 765,
         "failed_assertions": 0,
         "invalid": false,
         "pending": 0,
@@ -33,18 +34,18 @@
     },
     {
       "id": "R-02",
-      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_change.gd -gexit",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
       "exit_code": 0,
       "status": "PASS",
       "tests_ran": true,
       "parser_failed": false,
       "timed_out": false,
       "gut_summary": {
-        "assertions": 49,
+        "assertions": 946,
         "failed_assertions": 0,
         "invalid": false,
         "pending": 0,
-        "tests": 2
+        "tests": 5
       },
       "failure_messages": []
     },
@@ -57,7 +58,7 @@
       "parser_failed": false,
       "timed_out": false,
       "gut_summary": {
-        "assertions": 70,
+        "assertions": 73,
         "failed_assertions": 0,
         "invalid": false,
         "pending": 0,
@@ -74,7 +75,7 @@
       "parser_failed": false,
       "timed_out": false,
       "gut_summary": {
-        "assertions": 285,
+        "assertions": 293,
         "failed_assertions": 0,
         "invalid": false,
         "pending": 0,
@@ -108,7 +109,7 @@
       "parser_failed": false,
       "timed_out": false,
       "gut_summary": {
-        "assertions": 83,
+        "assertions": 87,
         "failed_assertions": 0,
         "invalid": false,
         "pending": 0,
@@ -136,11 +137,11 @@
       "parser_failed": false,
       "timed_out": false,
       "gut_summary": {
-        "assertions": 1316,
+        "assertions": 2302,
         "failed_assertions": 0,
         "invalid": false,
         "pending": 0,
-        "tests": 12
+        "tests": 17
       },
       "failure_messages": []
     }

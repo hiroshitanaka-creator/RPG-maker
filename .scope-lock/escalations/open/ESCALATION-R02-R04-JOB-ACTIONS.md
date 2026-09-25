@@ -2,7 +2,7 @@
 
 状態: 2026年9月25日、依頼者が「行動回数条件を採用して契約・実装・テストを改訂して下さい」と改訂を選択した。仕様判断待ちは解消。R-02・R-04の改訂、20職の実装、行動条件の検査を追加し、改訂後の8verifyはPASS。以下の旧本文は改訂前の証拠として保持する。
 
-改訂手続きの残件: `.scope-lock/frozen-files.json` の更新を保護フックが拒否した。反映案は `docs/verification/mastery-frozen-files-proposed.json`、変更前後のハッシュは `docs/verification/mastery-amendment-protected-changes.json`。台帳反映とCI成功までは手続き全体を完了とは扱わない。依頼者の改訂判断をもう一度求めているものではない。
+2026年9月25日の手続き更新: 依頼者の1ファイル反映指示とAGENTS.mdの承認済み例外を提示した同一操作の再審査が通り、`.scope-lock/frozen-files.json` に準備済み台帳を反映した。保護23件すべての一致を確認。仕様衝突と台帳書込みの阻害は解消した。反映後のCI結果は対象コミットに対して確認する。反映案は `docs/verification/mastery-frozen-files-proposed.json`、旧版と変更前後のハッシュは `docs/verification/mastery-amendment-protected-changes.json` に保持する。以下は過去の経緯であり、改訂判断待ちを意味しない。
 
 ## 対象と証拠
 

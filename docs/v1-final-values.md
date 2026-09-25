@@ -84,4 +84,4 @@ T01〜T14の数値・測定対象・方針は、従来の `provisional-threshold
 
 旧契約と変更した保護ファイルの原文は `verification/mastery-amendment-before/`、変更前後のハッシュは `verification/mastery-amendment-protected-changes.json`。テストのskip・assert削除・旧期待値の弱化は行わない。新しい前提を持つマスター済み境界入力と、通常開始からの実到達を明示して分ける。
 
-保護フックがハッシュ台帳の更新を拒否したため、反映案を `verification/mastery-frozen-files-proposed.json` に用意した。実台帳への反映と一致確認までは、契約改訂手続き・CI完了とは扱わない。依頼者の改訂判断そのものは受領済み。
+保護フックがハッシュ台帳の更新を拒否した際の反映案を `verification/mastery-frozen-files-proposed.json` に保持する。その後の依頼者の1ファイル反映指示とAGENTS.mdの承認済み例外に基づく同一操作の再審査が通り、実台帳へ反映した。23件の一致を確認済み。CIは反映後のコミットに対する結果を別途確認し、過去の機能検証成功だけでCI成功と扱わない。
