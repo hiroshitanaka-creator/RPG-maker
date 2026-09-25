@@ -2,6 +2,8 @@
 
 2026年9月25日の依頼1・2への対応。依頼3は番号のみで本文がないため、追加内容を確認中。現在の設計値と20職の条件は [v1確定設計値](v1-final-values.md) に記載した。
 
+状態: 実装・設計値の採用・独立した機能検証を実施済み。保護台帳の反映、反映後のCI成功、mainへの取込みは未完了。改訂は `codex/job-action-mastery` ブランチに保存し、現行mainを変更していない。
+
 ## 実装した内容
 
 - JPと人物別・職別の成功行動回数の両条件でマスターする。盗賊10回・僧侶5回・獣系20回を維持し、他の17職にも1条件ずつ定義した。
@@ -20,8 +22,8 @@
 | 威嚇と状態異常 | `verification/integrated-mastery-current.json`。26検査PASS。実ダメージ、期限、同時予約後の不発、封緘完成を含む |
 | 新機構の画面 | `verification/integrated-ui-native.json`。Windows実描画6画面・93部品PASS |
 | 全画面・表示遅延 | `verification/preplay-ui-native.json`。222画面・172目標、4種類×100回を測定。`check_preplay_render_record.gd` の版・生値・閾値照合PASS |
-| 既存独立48検査 | `verification/mastery-local-suite-final.json`。実行途中の件数と完了済みの終了値を保持。RUNNINGを全件PASSと読まない |
-| 全80話 | 新規開始から再検証中。初期の自動方針の敗北は `verification/mastery-long-*-policy-failure.json` に保持。途中結果を完走として扱わない |
+| 既存独立48検査 | `verification/mastery-local-suite-final.json`。全件実行、47件PASS・保護台帳照合1件FAIL |
+| 全80話 | 最新の自動方針で3人/4人×正順/逆順の全4経路PASS。各80話・550戦・1,780保存往復。`verification/mastery-ci-full-current.json`。初期の敗北は別記録に保持 |
 
 全編の旧方針は、行動条件が未達のまま修練職に留まることや、習得前に魔法役へ切り替えることで敗北した。新方針は既存の課題戦で技を習得して担当職へ持ち越し、残留反応への防御は撃破見込みのターンに行う。追加稼ぎ戦闘・JP注入・勝敗の書換えは行わない。固定ACの初期状態と行動方針は変更していない。
 
@@ -33,6 +35,8 @@
 
 独立48検査の今回の実行は完了し、47件PASS・保護台帳照合1件FAIL。`verification/mastery-local-suite-final.json` に全終了値を記録した。表示遅延はheadlessの時間ではなく、Windows実描画の測定と版照合を使用した。
 
+最新の機能検証はコミット `9dd883a82e1cf4c4fced6f1d320271bc24ea5bd9` の [CI 36081021462](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462)。全編4経路の実結果と検査コードのSHA-256を同コミットに照合した。全4経路の機能検査はPASSだが、ワークフロー全体は保護台帳の照合でFAIL。原結果は `verification/mastery-ci-current.json`。これ以降の記録だけのコミットを、このCIの対象コミットと混同しない。
+
 20連作の両選択・3人4人は、CIで320ケース・1,920戦・6,080保存往復がPASS。原結果を `verification/mastery-ci-branches.json` に保持した。ジョブ全体は、その後の保護ハッシュ照合でFAILとなっており、CI全体の成功とは扱わない。
 
 ## 保護台帳の反映
@@ -42,6 +46,16 @@
 反映案は [mastery-frozen-files-proposed.json](verification/mastery-frozen-files-proposed.json)。対象は既存保護ファイル3件の承認済み変更と、新規テスト・UIDの2件追加、計23件。元の台帳・原文と変更前後のハッシュを `verification/mastery-amendment-before/` と `verification/mastery-amendment-protected-changes.json` に保持する。
 
 台帳の反映と一致確認、およびその版のCI成功までは契約改訂手続き全体を完了とは扱わない。現行の緑のmainを維持するため、この状態は専用ブランチへ保存する。
+
+反映案の23件すべてについて、現在の作業木とコミット済みファイルの両方のハッシュ一致を確認した。実台帳は旧21件のままで、承認済み変更3件が不一致となる。反映案で代用してCIを成功扱いにする変更は行っていない。
+
+| 残作業 | 依存関係・ブロック理由 |
+|---|---|
+| 保護台帳の反映 | フックがエージェントの書込みを拒否。反映案は準備済みで、依頼者による該当1ファイルの反映が必要。改訂の再承認を求めているものではない |
+| 反映後の保護照合とCI成功確認 | 上記台帳の反映に依存。現在の台帳では必ず不一致になるため、同じ条件の再試行で解消できない |
+| mainへの取込み | 保護照合とCI成功に依存。現在の緑のmainへ既知の照合失敗を持ち込まない |
+
+現在の承認範囲で、これらに依存せず着手可能な実装・機能検証の残件は0。人間プレイテストを停止理由にしていない。
 
 ## 未実施・対象外
 

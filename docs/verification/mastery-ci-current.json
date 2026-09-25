@@ -1,0 +1,1052 @@
+{
+  "conclusion": "failure",
+  "headSha": "9dd883a82e1cf4c4fced6f1d320271bc24ea5bd9",
+  "jobs": [
+    {
+      "completedAt": "2026-09-25T01:13:00Z",
+      "conclusion": "failure",
+      "databaseId": 107902787094,
+      "name": "最悪ケースの全章通し検査",
+      "startedAt": "2026-09-25T01:12:51Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:56Z",
+          "conclusion": "success",
+          "name": "固定版Godotを取得",
+          "number": 4,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:56Z",
+          "conclusion": "failure",
+          "name": "インポートと保護ファイルの確認",
+          "number": 5,
+          "startedAt": "2026-09-25T01:12:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:56Z",
+          "conclusion": "skipped",
+          "name": "回り道・任意戦闘・要約・全員人間・保存復帰で結末まで進む",
+          "number": 6,
+          "startedAt": "2026-09-25T01:12:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:56Z",
+          "conclusion": "failure",
+          "name": "検査後の保護ファイルを照合",
+          "number": 7,
+          "startedAt": "2026-09-25T01:12:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "success",
+          "name": "最悪ケースのログを保存",
+          "number": 8,
+          "startedAt": "2026-09-25T01:12:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "skipped",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 15,
+          "startedAt": "2026-09-25T01:12:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "startedAt": "2026-09-25T01:12:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "startedAt": "2026-09-25T01:12:57Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787094"
+    },
+    {
+      "completedAt": "2026-09-25T01:44:18Z",
+      "conclusion": "failure",
+      "databaseId": 107902787280,
+      "name": "長編全80話の新規開始からの完走 (4, forward)",
+      "startedAt": "2026-09-25T01:12:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:55Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:03Z",
+          "conclusion": "success",
+          "name": "固定版Godotの準備",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:44:14Z",
+          "conclusion": "failure",
+          "name": "実際の進行・戦闘・装置・全変数保存を検査",
+          "number": 4,
+          "startedAt": "2026-09-25T01:13:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:44:16Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 5,
+          "startedAt": "2026-09-25T01:44:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:44:16Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-09-25T01:44:16Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:44:16Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-25T01:44:16Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787280"
+    },
+    {
+      "completedAt": "2026-09-25T01:32:25Z",
+      "conclusion": "failure",
+      "databaseId": 107902787282,
+      "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+      "startedAt": "2026-09-25T01:12:51Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:03Z",
+          "conclusion": "success",
+          "name": "固定版Godotを取得してインポート",
+          "number": 4,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:44Z",
+          "conclusion": "success",
+          "name": "新機構の実戦・育成・保存・画面・全配分・同予算比較を検査",
+          "number": 5,
+          "startedAt": "2026-09-25T01:13:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:44Z",
+          "conclusion": "success",
+          "name": "ワールド構造のPhase 1定義を検査",
+          "number": 6,
+          "startedAt": "2026-09-25T01:13:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:45Z",
+          "conclusion": "success",
+          "name": "ワールド構造のPhase 2と検査器の回帰を検査",
+          "number": 7,
+          "startedAt": "2026-09-25T01:13:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:51Z",
+          "conclusion": "success",
+          "name": "広域地形の再現性・実経路・実時間記録を検査",
+          "number": 8,
+          "startedAt": "2026-09-25T01:13:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:26Z",
+          "conclusion": "success",
+          "name": "全49拠点の3人・4人通し操作と保存・本番UIを検査",
+          "number": 9,
+          "startedAt": "2026-09-25T01:13:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:15:05Z",
+          "conclusion": "success",
+          "name": "60時間の目標判定境界・全画面・案内・帰還を検査",
+          "number": 10,
+          "startedAt": "2026-09-25T01:14:26Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:23:19Z",
+          "conclusion": "success",
+          "name": "通常戦闘・補給・行動前全滅82,000試行を検査",
+          "number": 11,
+          "startedAt": "2026-09-25T01:15:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:32:23Z",
+          "conclusion": "success",
+          "name": "追加受入の勝率と終了率・反応への対処・区画報酬を検査",
+          "number": 12,
+          "startedAt": "2026-09-25T01:23:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:32:23Z",
+          "conclusion": "failure",
+          "name": "保護対象を照合",
+          "number": 13,
+          "startedAt": "2026-09-25T01:32:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:32:23Z",
+          "conclusion": "skipped",
+          "name": "長編全80話の定義・既読境界・現地操作・履歴を検査",
+          "number": 14,
+          "startedAt": "2026-09-25T01:32:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:32:23Z",
+          "conclusion": "success",
+          "name": "試遊前検査の結果を保存",
+          "number": 15,
+          "startedAt": "2026-09-25T01:32:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:32:23Z",
+          "conclusion": "skipped",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 29,
+          "startedAt": "2026-09-25T01:32:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:32:24Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 30,
+          "startedAt": "2026-09-25T01:32:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:32:24Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 31,
+          "startedAt": "2026-09-25T01:32:24Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787282"
+    },
+    {
+      "completedAt": "2026-09-25T01:14:49Z",
+      "conclusion": "failure",
+      "databaseId": 107902787284,
+      "name": "長編全20連作の両選択・3人4人 (r_stars g_watch g_banners g_tools g_return)",
+      "startedAt": "2026-09-25T01:12:51Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:52Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:04Z",
+          "conclusion": "success",
+          "name": "固定版Godotの準備",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:47Z",
+          "conclusion": "failure",
+          "name": "実戦闘と保存を伴う選択分岐検査",
+          "number": 4,
+          "startedAt": "2026-09-25T01:13:04Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:48Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 5,
+          "startedAt": "2026-09-25T01:14:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:48Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-09-25T01:14:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:48Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-25T01:14:48Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787284"
+    },
+    {
+      "completedAt": "2026-09-25T01:14:27Z",
+      "conclusion": "failure",
+      "databaseId": 107902787321,
+      "name": "長編全20連作の両選択・3人4人 (s_rival s_masks r_ink r_keys r_debt)",
+      "startedAt": "2026-09-25T01:12:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:55Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:07Z",
+          "conclusion": "success",
+          "name": "固定版Godotの準備",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:25Z",
+          "conclusion": "failure",
+          "name": "実戦闘と保存を伴う選択分岐検査",
+          "number": 4,
+          "startedAt": "2026-09-25T01:13:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:26Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 5,
+          "startedAt": "2026-09-25T01:14:25Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:26Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-09-25T01:14:26Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:26Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-25T01:14:26Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787321"
+    },
+    {
+      "completedAt": "2026-09-25T01:13:00Z",
+      "conclusion": "success",
+      "databaseId": 107902787325,
+      "name": "素材検査",
+      "startedAt": "2026-09-25T01:12:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:55Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:55Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "success",
+          "name": "Pillow を導入",
+          "number": 4,
+          "startedAt": "2026-09-25T01:12:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "success",
+          "name": "素材台帳に従って検査",
+          "number": 5,
+          "startedAt": "2026-09-25T01:12:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 9,
+          "startedAt": "2026-09-25T01:12:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-09-25T01:12:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-25T01:12:57Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787325"
+    },
+    {
+      "completedAt": "2026-09-25T01:14:53Z",
+      "conclusion": "failure",
+      "databaseId": 107902787341,
+      "name": "長編全20連作の両選択・3人4人 (c_letters c_statues c_shelter s_dummy s_garden)",
+      "startedAt": "2026-09-25T01:12:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:04Z",
+          "conclusion": "success",
+          "name": "固定版Godotの準備",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:50Z",
+          "conclusion": "failure",
+          "name": "実戦闘と保存を伴う選択分岐検査",
+          "number": 4,
+          "startedAt": "2026-09-25T01:13:04Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:51Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 5,
+          "startedAt": "2026-09-25T01:14:50Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:51Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-09-25T01:14:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:51Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-25T01:14:51Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787341"
+    },
+    {
+      "completedAt": "2026-09-25T01:42:54Z",
+      "conclusion": "failure",
+      "databaseId": 107902787358,
+      "name": "長編全80話の新規開始からの完走 (4, reverse)",
+      "startedAt": "2026-09-25T01:12:51Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:52Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:04Z",
+          "conclusion": "success",
+          "name": "固定版Godotの準備",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:42:52Z",
+          "conclusion": "failure",
+          "name": "実際の進行・戦闘・装置・全変数保存を検査",
+          "number": 4,
+          "startedAt": "2026-09-25T01:13:04Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:42:53Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 5,
+          "startedAt": "2026-09-25T01:42:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:42:53Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-09-25T01:42:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:42:53Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-25T01:42:53Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787358"
+    },
+    {
+      "completedAt": "2026-09-25T01:30:59Z",
+      "conclusion": "failure",
+      "databaseId": 107902787384,
+      "name": "長編全80話の新規開始からの完走 (3, forward)",
+      "startedAt": "2026-09-25T01:12:51Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:52Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:01Z",
+          "conclusion": "success",
+          "name": "固定版Godotの準備",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:30:56Z",
+          "conclusion": "failure",
+          "name": "実際の進行・戦闘・装置・全変数保存を検査",
+          "number": 4,
+          "startedAt": "2026-09-25T01:13:01Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:30:56Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 5,
+          "startedAt": "2026-09-25T01:30:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:30:57Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-09-25T01:30:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:30:57Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-25T01:30:57Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787384"
+    },
+    {
+      "completedAt": "2026-09-25T01:36:17Z",
+      "conclusion": "failure",
+      "databaseId": 107902787427,
+      "name": "長編全80話の新規開始からの完走 (3, reverse)",
+      "startedAt": "2026-09-25T01:12:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:57Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:12Z",
+          "conclusion": "success",
+          "name": "固定版Godotの準備",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:36:13Z",
+          "conclusion": "failure",
+          "name": "実際の進行・戦闘・装置・全変数保存を検査",
+          "number": 4,
+          "startedAt": "2026-09-25T01:13:12Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:36:14Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 5,
+          "startedAt": "2026-09-25T01:36:13Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:36:14Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-09-25T01:36:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:36:14Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-25T01:36:14Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787427"
+    },
+    {
+      "completedAt": "2026-09-25T01:12:55Z",
+      "conclusion": "failure",
+      "databaseId": 107902787441,
+      "name": "Godot・凍結受入テスト",
+      "startedAt": "2026-09-25T01:12:51Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:52Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "failure",
+          "name": "凍結ファイルのハッシュを確認",
+          "number": 4,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "Godot プロジェクトの有無を確認",
+          "number": 5,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "Godot を取得",
+          "number": 6,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "インポートしてエラーを検出",
+          "number": 7,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "R-01からR-08のverifyを実行",
+          "number": 8,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "帰還・任意戦闘・解除確認の操作検査",
+          "number": 9,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "侵蝕の加算と不可逆操作の確認を検査",
+          "number": 10,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "敵の行動予定と連戦の保存を検査",
+          "number": 11,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "探索設備・補給箱・開通した近道の保存を検査",
+          "number": 12,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "人物表示・魔物化外見・試遊記録の検査",
+          "number": 13,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "戦闘前の自動保存と全滅からの復帰を検査",
+          "number": 14,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "v1物語の二つの再訪順・結末・保存全変数を検査",
+          "number": 15,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "試遊履歴・版識別・上級職・兆候・画面の検査",
+          "number": 16,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "failure",
+          "name": "検証後も保護ファイルが不変であることを確認",
+          "number": 17,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "ログを保存",
+          "number": 18,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "skipped",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 35,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 36,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:54Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 37,
+          "startedAt": "2026-09-25T01:12:54Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787441"
+    },
+    {
+      "completedAt": "2026-09-25T01:14:50Z",
+      "conclusion": "failure",
+      "databaseId": 107902787466,
+      "name": "長編全20連作の両選択・3人4人 (w_ferry w_flute w_seeds w_permit c_lamp)",
+      "startedAt": "2026-09-25T01:12:51Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-09-25T01:12:52Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:12:53Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-09-25T01:12:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:13:02Z",
+          "conclusion": "success",
+          "name": "固定版Godotの準備",
+          "number": 3,
+          "startedAt": "2026-09-25T01:12:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:48Z",
+          "conclusion": "failure",
+          "name": "実戦闘と保存を伴う選択分岐検査",
+          "number": 4,
+          "startedAt": "2026-09-25T01:13:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:49Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 5,
+          "startedAt": "2026-09-25T01:14:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:49Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-09-25T01:14:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-09-25T01:14:49Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-09-25T01:14:49Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462/job/107902787466"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/36081021462"
+}
