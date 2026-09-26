@@ -385,11 +385,25 @@ func _link(value: Variant) -> bool:
 	return value is Dictionary and _point(value.get("from")) and _point(value.get("to"))
 
 
+func _normalize_numbers(value: Variant) -> Variant:
+	if value is float and is_finite(value) and value == floor(value):return int(value)
+	if value is Array:
+		var items: Array = []
+		for item in value:items.append(_normalize_numbers(item))
+		return items
+	if value is Dictionary:
+		var result: Dictionary = {}
+		for key in value:result[key] = _normalize_numbers(value[key])
+		return result
+	return value
+
+
 func _load_definition() -> bool:
 	if not FileAccess.file_exists(DATA_PATH):return false
 	var parser := JSON.new()
 	if parser.parse(FileAccess.get_file_as_string(DATA_PATH)) != OK or not parser.data is Dictionary:return false
-	var data: Dictionary = parser.data
+	# GodotのJSONは整数も小数型で返すため、整数相当の値を整数型へそろえてから比較する。
+	var data: Dictionary = _normalize_numbers(parser.data)
 	var region: Variant = data.get("first_region")
 	if not region is Dictionary or region.get("version") != 1:
 		_blocker = "world/interiors.json のfirst_region定義がない"
