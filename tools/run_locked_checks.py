@@ -15,7 +15,40 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def execution_summary(requirement_id: str, clean: str) -> tuple[bool, bool, dict | None]:
+def first_region_summary(clean: str) -> tuple[bool, bool, str | None]:
+    """14件の個別結果と最終行を照合し、欠落や矛盾を実行証拠にしない。"""
+    lines = clean.replace("\r\n", "\n").splitlines()
+    checks = [line for line in lines if "FIRST_REGION_CHECK:" in line]
+    expected = {f"A{i:02d}" for i in range(1, 15)}
+    outcomes = {}
+    for line in checks:
+        match = re.fullmatch(r"FIRST_REGION_CHECK: (A[0-9]{2}) (PASS|FAIL) (\S.*)", line)
+        if not match or line.count("FIRST_REGION_CHECK:") != 1:
+            return False, False, "FIRST_REGION_CHECKの行形式が不正です。"
+        identifier, outcome, _ = match.groups()
+        if identifier not in expected:
+            return False, False, f"未定義の検査IDです: {identifier}"
+        if identifier in outcomes:
+            return False, False, f"検査IDが重複しています: {identifier}"
+        outcomes[identifier] = outcome
+    if set(outcomes) != expected:
+        return False, False, "検査IDが欠落しています: " + ", ".join(sorted(expected - set(outcomes)))
+    finals = [line for line in lines if line.startswith(("FIRST_REGION_PASS:", "FIRST_REGION_FAIL:"))]
+    if len(finals) != 1:
+        return False, False, "FIRST_REGIONの最終行は1行だけ必要です。"
+    failed = sum(value == "FAIL" for value in outcomes.values())
+    final = finals[0]
+    if final == "FIRST_REGION_PASS: checks=14":
+        if failed:
+            return False, False, "最終PASS行と個別FAILの結果が矛盾しています。"
+    else:
+        match = re.fullmatch(r"FIRST_REGION_FAIL: failed=([0-9]+)/14", final)
+        if not match or failed == 0 or int(match[1]) != failed:
+            return False, False, "最終FAIL行の件数と個別結果が一致しません。"
+    return True, failed == 0 and "FIRST_REGION_FAIL" not in clean, None
+
+
+def execution_summary(requirement_id: str, clean: str, command: str = "") -> tuple[bool, bool, dict | None]:
     """検査形式ごとの実行証拠を確認し、終了0だけの空実行を拒否する。"""
     clean = clean.replace("\r\n", "\n")
     if requirement_id in ("AC-01", "AC-02"):
@@ -28,7 +61,12 @@ def execution_summary(requirement_id: str, clean: str) -> tuple[bool, bool, dict
         complete = len(matches) == 2 and {m[0] for m in matches} == {"3", "4"} and all(int(m[1]) > 0 for m in matches)
         return bool(matches), complete, None
     if requirement_id == "R-07":
-        return "CHAPTER1_" in clean, "CHAPTER1_PASS:" in clean, None
+        if "smoke_chapter1.gd" in command:
+            return "CHAPTER1_" in clean, "CHAPTER1_PASS:" in clean, None
+        if "smoke_first_region.gd" in command:
+            ran, passed, _ = first_region_summary(clean)
+            return ran, passed, None
+        return False, False, None
     summaries = re.findall(r"^SCOPE_GUT_RESULT (.+)$", clean, re.MULTILINE)
     try:
         gut = json.loads(summaries[-1]) if summaries else None
@@ -37,6 +75,28 @@ def execution_summary(requirement_id: str, clean: str) -> tuple[bool, bool, dict
     ran = bool(gut and gut.get("tests", 0) > 0 and gut.get("assertions", 0) > 0)
     passed = bool(ran and gut.get("failed_assertions") == 0 and gut.get("pending") == 0 and gut.get("invalid") is False)
     return ran, passed, gut
+
+
+def judge_output(requirement_id: str, command: str, code: int, output: str, timed_out: bool = False) -> dict:
+    """本番と回帰検査で同じ共通判定を使う。契約や検証記録は書き換えない。"""
+    clean = re.sub(r'\x1b\[[0-9;]*m', '', output)
+    failures = [line.strip() for line in clean.splitlines() if '[Failed]' in line or re.search(r'SCRIPT ERROR|ERROR:|WARNING:|_FAIL:', line)]
+    parser_failed = 'Parse Error' in clean or 'Failed to load script' in clean
+    tests_ran, reported_pass, gut_summary = execution_summary(requirement_id, clean, command)
+    if requirement_id == "R-07" and "smoke_chapter1.gd" not in command:
+        if "smoke_first_region.gd" in command:
+            _, _, reason = first_region_summary(clean)
+        else:
+            reason = "R-07のverifyコマンドに対応する判定規則がありません。"
+        if reason:
+            failures.insert(0, reason)
+    return {
+        'id': requirement_id, 'verify': command, 'exit_code': code,
+        'status': ('INVALID' if parser_failed or not tests_ran or timed_out else ('PASS' if code == 0 and reported_pass and not failures else 'FAIL')), 'tests_ran': tests_ran,
+        'parser_failed': parser_failed, 'timed_out': timed_out,
+        'gut_summary': gut_summary,
+        'failure_messages': failures[:20],
+    }
 
 
 def main() -> int:
@@ -67,22 +127,12 @@ def main() -> int:
             code, timed_out = -1, True
             output = (exc.stdout or b'').decode('utf-8', errors='replace') + '\nTIMEOUT'
         (log_root / (requirement['id'] + '.log')).write_text(output, encoding='utf-8')
-        clean = re.sub(r'\x1b\[[0-9;]*m', '', output)
-        failures = [line.strip() for line in clean.splitlines() if '[Failed]' in line or re.search(r'SCRIPT ERROR|ERROR:|WARNING:|_FAIL:', line)]
-        parser_failed = 'Parse Error' in clean or 'Failed to load script' in clean
-        tests_ran, reported_pass, gut_summary = execution_summary(requirement['id'], clean)
-        result = {
-            'id': requirement['id'], 'verify': command, 'exit_code': code,
-            'status': ('INVALID' if parser_failed or not tests_ran or timed_out else ('PASS' if code == 0 and reported_pass and not failures else 'FAIL')), 'tests_ran': tests_ran,
-            'parser_failed': parser_failed, 'timed_out': timed_out,
-            'gut_summary': gut_summary,
-            'failure_messages': failures[:20],
-        }
+        result = judge_output(requirement['id'], command, code, output, timed_out)
         results.append(result)
         print('%s %s (exit=%s, tests_ran=%s, parser_failed=%s)' % (
-            result['status'], requirement['id'], code, tests_ran, parser_failed), flush=True)
-        if failures:
-            print('  ' + failures[0], flush=True)
+            result['status'], requirement['id'], code, result['tests_ran'], result['parser_failed']), flush=True)
+        if result['failure_messages']:
+            print('  ' + result['failure_messages'][0], flush=True)
     baseline_valid = all(r['exit_code'] != 0 and r['tests_ran'] and not r['parser_failed'] and not r['timed_out'] for r in results)
     report = {
         'recorded_at': datetime.now(timezone.utc).isoformat(),
