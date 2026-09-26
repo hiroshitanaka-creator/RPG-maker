@@ -1,0 +1,3582 @@
+{
+  "baseline": "883af5e7aa563bcf59155c00137834c697eac153",
+  "measurement": "透明余白を除いた不透明領域の長辺。ボスは192×160キャンバス内へ縦横比を保って収める。",
+  "imported": [
+    {
+      "source_id": "crowned_ogre",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0929.PNG",
+      "original_sha256": "13cceec89a3778629bd139411372a6c60240b2d98782c7ee441a517d150c9b4c",
+      "slot": 1,
+      "crop": [
+        4,
+        86,
+        768,
+        1080
+      ],
+      "name": "棘冠の大鬼（仮）",
+      "element": "地",
+      "habitat": "cave",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "gate_beast",
+      "path": "assets/monsters/gate_beast/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "c2b31b442957f8946121d136d989fcadef03889650593b9d5c8b3c449b7845d8",
+      "black_threshold": 40,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "boss",
+      "target_extent": 156,
+      "visible_size": [
+        117,
+        156
+      ]
+    },
+    {
+      "source_id": "green_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
+      "original_sha256": "5b52d27f0049e22cf1dc3ac873f19c83453b7227205eb52a149392b681e47a04",
+      "slot": 1,
+      "crop": [
+        20,
+        58,
+        161,
+        191
+      ],
+      "name": "緑のしずく（仮）",
+      "element": "水",
+      "habitat": "plains",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "slime",
+      "path": "assets/monsters/slime/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "b87deb4e63fe22b410529d7c1f8c46df34e7f079a6a70631f1e178bbbbbe3b92",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        48,
+        45
+      ]
+    },
+    {
+      "source_id": "brown_cave_bat",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
+      "original_sha256": "5b52d27f0049e22cf1dc3ac873f19c83453b7227205eb52a149392b681e47a04",
+      "slot": 2,
+      "crop": [
+        192,
+        48,
+        427,
+        180
+      ],
+      "name": "茶翼コウモリ（仮）",
+      "element": "風",
+      "habitat": "cave",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "bat",
+      "path": "assets/monsters/bat/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "a7264d5514e32e43dc1463bfa6d1ed1564b79dafa93f3bd57bfbcac0bf9dddf3",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        31
+      ]
+    },
+    {
+      "source_id": "gray_fang_wolf",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
+      "original_sha256": "5b52d27f0049e22cf1dc3ac873f19c83453b7227205eb52a149392b681e47a04",
+      "slot": 3,
+      "crop": [
+        455,
+        34,
+        663,
+        192
+      ],
+      "name": "灰毛の牙狼（仮）",
+      "element": "無",
+      "habitat": "forest",
+      "tier": "early",
+      "original_facing": "L",
+      "id": "shadow_wolf",
+      "path": "assets/monsters/shadow_wolf/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "9820de5dd3a25395ae3cb7cf0c06fb1e2fb7dcb7676e0243b2ee961edc5448a3",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "medium",
+      "target_extent": 80,
+      "visible_size": [
+        80,
+        61
+      ]
+    },
+    {
+      "source_id": "club_goblin",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
+      "original_sha256": "5b52d27f0049e22cf1dc3ac873f19c83453b7227205eb52a149392b681e47a04",
+      "slot": 4,
+      "crop": [
+        689,
+        20,
+        866,
+        194
+      ],
+      "name": "こん棒小鬼（仮）",
+      "element": "無",
+      "habitat": "plains",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "club_goblin",
+      "path": "assets/monsters/club_goblin/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "c069db2fb3c20a77e68e1f1e937ae6738c11ba07485e8b6be694303a04c5cf62",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        72,
+        71
+      ]
+    },
+    {
+      "source_id": "blue_horn_beetle",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
+      "original_sha256": "5b52d27f0049e22cf1dc3ac873f19c83453b7227205eb52a149392b681e47a04",
+      "slot": 5,
+      "crop": [
+        896,
+        67,
+        1089,
+        196
+      ],
+      "name": "青角甲虫（仮）",
+      "element": "地",
+      "habitat": "forest",
+      "tier": "early",
+      "original_facing": "L",
+      "id": "shell_guard",
+      "path": "assets/monsters/shell_guard/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "7fd1391e78ce98b4e5721c5f9313d511ede5f43235f3a45332b980d93d70490d",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        72,
+        48
+      ]
+    },
+    {
+      "source_id": "violet_fang_bat",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
+      "original_sha256": "2b4a2bf35e84bfcf67f6f59f586a9a294389c63dcf0ff8328855801883dc6fb9",
+      "slot": 1,
+      "crop": [
+        17,
+        53,
+        254,
+        229
+      ],
+      "name": "紫の牙コウモリ（仮）",
+      "element": "闇",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "violet_fang_bat",
+      "path": "assets/monsters/violet_fang_bat/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "44f80e317a192f66875fcac2675b13ba883857e95d6d4f094d2e42036a894298",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        42
+      ]
+    },
+    {
+      "source_id": "rock_toad",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
+      "original_sha256": "2b4a2bf35e84bfcf67f6f59f586a9a294389c63dcf0ff8328855801883dc6fb9",
+      "slot": 2,
+      "crop": [
+        269,
+        85,
+        473,
+        234
+      ],
+      "name": "岩肌ガエル（仮）",
+      "element": "地",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "R",
+      "id": "rock_toad",
+      "path": "assets/monsters/rock_toad/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "9dd0a99b21bd2f38b6560bf0170707e8c74655789ad37c9aa8777d06da5b9846",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        72,
+        53
+      ]
+    },
+    {
+      "source_id": "violet_spider",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
+      "original_sha256": "2b4a2bf35e84bfcf67f6f59f586a9a294389c63dcf0ff8328855801883dc6fb9",
+      "slot": 3,
+      "crop": [
+        499,
+        86,
+        708,
+        232
+      ],
+      "name": "紫脚グモ（仮）",
+      "element": "毒",
+      "habitat": "cave",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "violet_spider",
+      "path": "assets/monsters/violet_spider/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "9439fe32a5daa9754ebf94838b762d6d59d59f724025cea732c8d61f5468457c",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        39
+      ]
+    },
+    {
+      "source_id": "spotted_mushroom",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
+      "original_sha256": "2b4a2bf35e84bfcf67f6f59f586a9a294389c63dcf0ff8328855801883dc6fb9",
+      "slot": 4,
+      "crop": [
+        738,
+        71,
+        890,
+        234
+      ],
+      "name": "斑点キノコ（仮）",
+      "element": "毒",
+      "habitat": "forest",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "spotted_mushroom",
+      "path": "assets/monsters/spotted_mushroom/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "52c8f4769629f6ed3247c31a9f0bd15084e5bdbe5f32f2bccb2687b39afa1cbf",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        45,
+        48
+      ]
+    },
+    {
+      "source_id": "lava_rock_golem",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
+      "original_sha256": "2b4a2bf35e84bfcf67f6f59f586a9a294389c63dcf0ff8328855801883dc6fb9",
+      "slot": 5,
+      "crop": [
+        922,
+        20,
+        1143,
+        241
+      ],
+      "name": "熔岩の岩巨人（仮）",
+      "element": "火",
+      "habitat": "cave",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "lava_turtle",
+      "path": "assets/monsters/lava_turtle/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "84dd6c1894c65c8ef8095a63094adaba3da3258fb178e706520f44c893680b67",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        96,
+        96
+      ]
+    },
+    {
+      "source_id": "hollow_armor",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
+      "original_sha256": "c506cc9abde32b8c5ec1ff255939c3678c530868b752b82191c7c169a627aace",
+      "slot": 1,
+      "crop": [
+        20,
+        38,
+        202,
+        262
+      ],
+      "name": "うつろの鎧（仮）",
+      "element": "闇",
+      "habitat": "castle",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "hollow_armor",
+      "path": "assets/monsters/hollow_armor/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "11bfbd0c61fefb74e8e865829f1feca384cff94ed8428fe3a86a5d396e74c85c",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 80,
+      "visible_size": [
+        65,
+        80
+      ]
+    },
+    {
+      "source_id": "white_shroud",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
+      "original_sha256": "c506cc9abde32b8c5ec1ff255939c3678c530868b752b82191c7c169a627aace",
+      "slot": 2,
+      "crop": [
+        254,
+        85,
+        414,
+        254
+      ],
+      "name": "白い布の魔物（仮）",
+      "element": "闇",
+      "habitat": "tower",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "white_shroud",
+      "path": "assets/monsters/white_shroud/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "b39aacf955544be93d5409b82b46c1ea4d24c5ded424e09c78366e3427eb586a",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        53,
+        56
+      ]
+    },
+    {
+      "source_id": "toothed_chest",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
+      "original_sha256": "c506cc9abde32b8c5ec1ff255939c3678c530868b752b82191c7c169a627aace",
+      "slot": 3,
+      "crop": [
+        467,
+        82,
+        640,
+        262
+      ],
+      "name": "牙付き宝箱（仮）",
+      "element": "無",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "toothed_chest",
+      "path": "assets/monsters/toothed_chest/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "a0f9eb3eb84273e722a124364fcddbf72ed96848c178293ef13614ddfb10de1b",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        69,
+        72
+      ]
+    },
+    {
+      "source_id": "shield_skeleton",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
+      "original_sha256": "c506cc9abde32b8c5ec1ff255939c3678c530868b752b82191c7c169a627aace",
+      "slot": 4,
+      "crop": [
+        708,
+        60,
+        850,
+        262
+      ],
+      "name": "盾持ち骸骨（仮）",
+      "element": "闇",
+      "habitat": "underworld",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "shield_skeleton",
+      "path": "assets/monsters/shield_skeleton/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "3c0c3cab5f7474b5ae0572fa9ef63c28a1547245e715267c9adf92e2d0ccc614",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        51,
+        72
+      ]
+    },
+    {
+      "source_id": "moss_stone_golem",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
+      "original_sha256": "c506cc9abde32b8c5ec1ff255939c3678c530868b752b82191c7c169a627aace",
+      "slot": 5,
+      "crop": [
+        895,
+        20,
+        1092,
+        267
+      ],
+      "name": "苔石巨人（仮）",
+      "element": "地",
+      "habitat": "forest",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "moss_stone_golem",
+      "path": "assets/monsters/moss_stone_golem/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "2edad8c711ff1fb4ef337058a3b720663095bf3211fd8ac6878fb1b9dfab658b",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        77,
+        96
+      ]
+    },
+    {
+      "source_id": "crowned_club_ogre",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0936.PNG",
+      "original_sha256": "907d4ae339f0251f6e029179c572282bd2bba9b76dfea991581f60e0fbba046d",
+      "slot": 1,
+      "crop": [
+        11,
+        33,
+        292,
+        321
+      ],
+      "name": "冠のこん棒鬼（仮）",
+      "element": "地",
+      "habitat": "castle",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "crowned_club_ogre",
+      "path": "assets/monsters/crowned_club_ogre/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "e0b6cf835ea1536820f4dde54876fd245c919bc1c8133e20c3c0b8d3bdbbccc4",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 144,
+      "visible_size": [
+        140,
+        144
+      ]
+    },
+    {
+      "source_id": "brood_spider",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0936.PNG",
+      "original_sha256": "907d4ae339f0251f6e029179c572282bd2bba9b76dfea991581f60e0fbba046d",
+      "slot": 2,
+      "crop": [
+        313,
+        57,
+        572,
+        379
+      ],
+      "name": "子連れ大グモ（仮）",
+      "element": "毒",
+      "habitat": "cave",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "brood_spider",
+      "path": "assets/monsters/brood_spider/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "f5d3b3aa8d97f67fceb89a3e393bb0997f07facb53dac7bba17f3c96a39f1837",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 156,
+      "visible_size": [
+        125,
+        156
+      ]
+    },
+    {
+      "source_id": "horned_armor",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0936.PNG",
+      "original_sha256": "907d4ae339f0251f6e029179c572282bd2bba9b76dfea991581f60e0fbba046d",
+      "slot": 3,
+      "crop": [
+        598,
+        20,
+        850,
+        326
+      ],
+      "name": "角付きの鎧（仮）",
+      "element": "闇",
+      "habitat": "tower",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "horned_armor",
+      "path": "assets/monsters/horned_armor/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "e7485adbaa4613d9a084f6b517a7e36ad7f56d1779a2fe77da20d3edc5d3988c",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 144,
+      "visible_size": [
+        119,
+        144
+      ]
+    },
+    {
+      "source_id": "stone_sword_golem",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0936.PNG",
+      "original_sha256": "907d4ae339f0251f6e029179c572282bd2bba9b76dfea991581f60e0fbba046d",
+      "slot": 4,
+      "crop": [
+        856,
+        20,
+        1152,
+        329
+      ],
+      "name": "石剣巨人（仮）",
+      "element": "地",
+      "habitat": "tower",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "stone_sword_golem",
+      "path": "assets/monsters/stone_sword_golem/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "fd655815db092679deecd265d17c3e983adbfed703962033a8a709e518942dcc",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 156,
+      "visible_size": [
+        149,
+        156
+      ]
+    },
+    {
+      "source_id": "bristled_boar",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
+      "original_sha256": "1ea343ba954a9e0c6258d6afd6cf8b8dfd5a475e48df2effb04b1a65cccca5dc",
+      "slot": 1,
+      "crop": [
+        18,
+        101,
+        212,
+        309
+      ],
+      "name": "剛毛イノシシ（仮）",
+      "element": "無",
+      "habitat": "plains",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "wet_beast",
+      "path": "assets/monsters/wet_beast/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "1cf2b82f69abc0ce08b7ed2e46cfaf5b18786e111edcf426112f1083a2ac3329",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        90,
+        96
+      ]
+    },
+    {
+      "source_id": "green_coil_snake",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
+      "original_sha256": "1ea343ba954a9e0c6258d6afd6cf8b8dfd5a475e48df2effb04b1a65cccca5dc",
+      "slot": 2,
+      "crop": [
+        246,
+        105,
+        431,
+        314
+      ],
+      "name": "緑巻きヘビ（仮）",
+      "element": "毒",
+      "habitat": "forest",
+      "tier": "early",
+      "original_facing": "L",
+      "id": "green_coil_snake",
+      "path": "assets/monsters/green_coil_snake/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": true,
+      "output_sha256": "d1ebae03f83eebac255aea68e8f7eece6a775f0277cd085d913d1e4354681e71",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        50,
+        56
+      ]
+    },
+    {
+      "source_id": "brown_forest_bear",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
+      "original_sha256": "1ea343ba954a9e0c6258d6afd6cf8b8dfd5a475e48df2effb04b1a65cccca5dc",
+      "slot": 3,
+      "crop": [
+        461,
+        121,
+        671,
+        311
+      ],
+      "name": "森の茶熊（仮）",
+      "element": "地",
+      "habitat": "forest",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "brown_forest_bear",
+      "path": "assets/monsters/brown_forest_bear/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "f5db0323b06453300d3d4ac8d24742705117bee227b69cbfbe8587f370767375",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        96,
+        87
+      ]
+    },
+    {
+      "source_id": "broadwing_eagle",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
+      "original_sha256": "1ea343ba954a9e0c6258d6afd6cf8b8dfd5a475e48df2effb04b1a65cccca5dc",
+      "slot": 4,
+      "crop": [
+        646,
+        18,
+        973,
+        275
+      ],
+      "name": "大翼ワシ（仮）",
+      "element": "風",
+      "habitat": "sky",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "broadwing_eagle",
+      "path": "assets/monsters/broadwing_eagle/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "859b629b4d14af9ce04494dc42ef1315d69b02da464fd7d2252f94a21c7477d0",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        72,
+        57
+      ]
+    },
+    {
+      "source_id": "marsh_frog",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
+      "original_sha256": "1ea343ba954a9e0c6258d6afd6cf8b8dfd5a475e48df2effb04b1a65cccca5dc",
+      "slot": 5,
+      "crop": [
+        945,
+        163,
+        1125,
+        314
+      ],
+      "name": "沼ガエル（仮）",
+      "element": "水",
+      "habitat": "plains",
+      "tier": "early",
+      "original_facing": "L",
+      "id": "marsh_frog",
+      "path": "assets/monsters/marsh_frog/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": true,
+      "output_sha256": "17729f7733deb129bf55d7c2de5162630079828a0ff0f1ef0892f158f1c2414b",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        47
+      ]
+    },
+    {
+      "source_id": "flame_wisp",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
+      "original_sha256": "7ed30cb7289560c3ec290fcffbad842dfdbcf3a48c3c77a1fbe2e45f713e062c",
+      "slot": 1,
+      "crop": [
+        18,
+        18,
+        171,
+        240
+      ],
+      "name": "火の小精（仮）",
+      "element": "火",
+      "habitat": "cave",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "ember_wisp",
+      "path": "assets/monsters/ember_wisp/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "669416234676ab550e93e24b680236895e8dba31f41dafd4114580ec5bb200a2",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        33,
+        48
+      ]
+    },
+    {
+      "source_id": "ice_wisp",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
+      "original_sha256": "7ed30cb7289560c3ec290fcffbad842dfdbcf3a48c3c77a1fbe2e45f713e062c",
+      "slot": 2,
+      "crop": [
+        226,
+        42,
+        394,
+        243
+      ],
+      "name": "氷の小精（仮）",
+      "element": "氷",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "ice_wisp",
+      "path": "assets/monsters/ice_wisp/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "7068b5dbed184652cfddfeec3d0ebb9d3713d4dc8dd65e5478f13a6b461c1aa4",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        40,
+        48
+      ]
+    },
+    {
+      "source_id": "spark_wisp",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
+      "original_sha256": "7ed30cb7289560c3ec290fcffbad842dfdbcf3a48c3c77a1fbe2e45f713e062c",
+      "slot": 3,
+      "crop": [
+        437,
+        55,
+        641,
+        250
+      ],
+      "name": "雷の小精（仮）",
+      "element": "雷",
+      "habitat": "tower",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "spark_wisp",
+      "path": "assets/monsters/spark_wisp/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "ebd34b1e38b4a40b91aa19a0b2a54ac8df68be1246b58515137d14acc988af27",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        48,
+        46
+      ]
+    },
+    {
+      "source_id": "wind_wisp",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
+      "original_sha256": "7ed30cb7289560c3ec290fcffbad842dfdbcf3a48c3c77a1fbe2e45f713e062c",
+      "slot": 4,
+      "crop": [
+        681,
+        26,
+        851,
+        248
+      ],
+      "name": "風の小精（仮）",
+      "element": "風",
+      "habitat": "sky",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "wind_wisp",
+      "path": "assets/monsters/wind_wisp/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "cec4c33c47363c357284fed523a8fcc3987eccd62c87502581deff7323506fd0",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        37,
+        48
+      ]
+    },
+    {
+      "source_id": "clay_wisp",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
+      "original_sha256": "7ed30cb7289560c3ec290fcffbad842dfdbcf3a48c3c77a1fbe2e45f713e062c",
+      "slot": 5,
+      "crop": [
+        874,
+        79,
+        1089,
+        252
+      ],
+      "name": "土の小精（仮）",
+      "element": "地",
+      "habitat": "cave",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "clay_wisp",
+      "path": "assets/monsters/clay_wisp/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "0a292ba89ce1e3646be70e362bc16ab661ef505ece40b94368c746d684dbe396",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        48,
+        39
+      ]
+    },
+    {
+      "source_id": "green_drake",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
+      "original_sha256": "42386f02beda6aa719c5ebedb2ff82d24345b7c747026ae4e525b07bf8cfae6d",
+      "slot": 1,
+      "crop": [
+        17,
+        54,
+        261,
+        277
+      ],
+      "name": "緑翼の小竜（仮）",
+      "element": "風",
+      "habitat": "forest",
+      "tier": "middle",
+      "original_facing": "R",
+      "id": "green_drake",
+      "path": "assets/monsters/green_drake/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "97b0250409c44ee960e5dd19735cb522c4a26b7a031e5c160a655d722b3fd5d7",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        96,
+        88
+      ]
+    },
+    {
+      "source_id": "crested_raptor",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
+      "original_sha256": "42386f02beda6aa719c5ebedb2ff82d24345b7c747026ae4e525b07bf8cfae6d",
+      "slot": 2,
+      "crop": [
+        290,
+        18,
+        463,
+        284
+      ],
+      "name": "冠羽の猛禽（仮）",
+      "element": "風",
+      "habitat": "sky",
+      "tier": "middle",
+      "original_facing": "R",
+      "id": "crested_raptor",
+      "path": "assets/monsters/crested_raptor/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "5c9adf8a1dcf6d853e72ce92058df1492a99ef9a447412d0855d6c78b88333de",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        47,
+        72
+      ]
+    },
+    {
+      "source_id": "striped_hornet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
+      "original_sha256": "42386f02beda6aa719c5ebedb2ff82d24345b7c747026ae4e525b07bf8cfae6d",
+      "slot": 3,
+      "crop": [
+        523,
+        80,
+        720,
+        249
+      ],
+      "name": "縞の大蜂（仮）",
+      "element": "毒",
+      "habitat": "forest",
+      "tier": "early",
+      "original_facing": "R",
+      "id": "striped_hornet",
+      "path": "assets/monsters/striped_hornet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "8792e924865192b8308c8d24cc885256e3f3dcf03f47bfa58f202c8386e00524",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        48
+      ]
+    },
+    {
+      "source_id": "dusk_owl",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
+      "original_sha256": "42386f02beda6aa719c5ebedb2ff82d24345b7c747026ae4e525b07bf8cfae6d",
+      "slot": 4,
+      "crop": [
+        765,
+        53,
+        923,
+        277
+      ],
+      "name": "夕闇フクロウ（仮）",
+      "element": "闇",
+      "habitat": "forest",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "dusk_owl",
+      "path": "assets/monsters/dusk_owl/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "262b7e48a7e53b69e5331c60958a199c8d5a61b96896eb6ecc8d3aa801f2818f",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        40,
+        56
+      ]
+    },
+    {
+      "source_id": "red_horn_dragon",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
+      "original_sha256": "42386f02beda6aa719c5ebedb2ff82d24345b7c747026ae4e525b07bf8cfae6d",
+      "slot": 5,
+      "crop": [
+        958,
+        128,
+        1141,
+        280
+      ],
+      "name": "赤角の火竜（仮）",
+      "element": "火",
+      "habitat": "cave",
+      "tier": "boss",
+      "original_facing": "L",
+      "id": "chimera_boss",
+      "path": "assets/monsters/chimera_boss/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": true,
+      "output_sha256": "9a84e3ebebfc8b47a42d54d79102b045f603e8d1b78d665fe39e381a990f7409",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "boss",
+      "target_extent": 176,
+      "visible_size": [
+        176,
+        146
+      ]
+    },
+    {
+      "source_id": "rotting_walker",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0940.PNG",
+      "original_sha256": "9cedbe9f0aa1d43e1ef3ce78bc1a784fd2b21e117cdc82affbb7384468d7ca1c",
+      "slot": 1,
+      "crop": [
+        18,
+        29,
+        202,
+        330
+      ],
+      "name": "腐敗歩き（仮）",
+      "element": "闇",
+      "habitat": "underworld",
+      "tier": "middle",
+      "original_facing": "R",
+      "id": "rotting_walker",
+      "path": "assets/monsters/rotting_walker/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "80d99dd046665150f3617466fcce3c00c7c6b4dc23bb4b47139fb23328c2d5c5",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        44,
+        72
+      ]
+    },
+    {
+      "source_id": "skeletal_wolf",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0940.PNG",
+      "original_sha256": "9cedbe9f0aa1d43e1ef3ce78bc1a784fd2b21e117cdc82affbb7384468d7ca1c",
+      "slot": 3,
+      "crop": [
+        448,
+        167,
+        676,
+        335
+      ],
+      "name": "骸骨狼（仮）",
+      "element": "闇",
+      "habitat": "underworld",
+      "tier": "middle",
+      "original_facing": "R",
+      "id": "bone_wolf",
+      "path": "assets/monsters/bone_wolf/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "f393c60f7de108baf304b7a800da02bb8ed894ea5067b0bb77b7ad71ad7222b2",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "medium",
+      "target_extent": 80,
+      "visible_size": [
+        80,
+        59
+      ]
+    },
+    {
+      "source_id": "sealed_coffin",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0940.PNG",
+      "original_sha256": "9cedbe9f0aa1d43e1ef3ce78bc1a784fd2b21e117cdc82affbb7384468d7ca1c",
+      "slot": 4,
+      "crop": [
+        706,
+        39,
+        853,
+        330
+      ],
+      "name": "封じられた棺（仮）",
+      "element": "闇",
+      "habitat": "underworld",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "sealed_coffin",
+      "path": "assets/monsters/sealed_coffin/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "b33891ef63411fc69be3a8fcacfafd2ce2a4b408d4d1c84823ccd3f76936219b",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        36,
+        72
+      ]
+    },
+    {
+      "source_id": "violet_skull_flame",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0940.PNG",
+      "original_sha256": "9cedbe9f0aa1d43e1ef3ce78bc1a784fd2b21e117cdc82affbb7384468d7ca1c",
+      "slot": 5,
+      "crop": [
+        906,
+        18,
+        1087,
+        343
+      ],
+      "name": "紫炎の頭骨（仮）",
+      "element": "闇",
+      "habitat": "underworld",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "violet_skull_flame",
+      "path": "assets/monsters/violet_skull_flame/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "cee4c2d263a4eededd616ca042f54d49fb192ee6858c30089de00dc631e297ac",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        31,
+        55
+      ]
+    },
+    {
+      "source_id": "axe_orc",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0941.PNG",
+      "original_sha256": "af47a91869cd35304384fb82608c2cc0d4fcacd3babcd246c029e086351dfe7b",
+      "slot": 1,
+      "crop": [
+        17,
+        18,
+        270,
+        293
+      ],
+      "name": "斧の大鬼（仮）",
+      "element": "地",
+      "habitat": "castle",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "axe_orc",
+      "path": "assets/monsters/axe_orc/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "5e86d88c31b4997c9ab1fb835b3d0ba1f7268bfc35d7eef195bea58b75551185",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 80,
+      "visible_size": [
+        74,
+        80
+      ]
+    },
+    {
+      "source_id": "wailing_root",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
+      "original_sha256": "8d608c4ab4c76a1707cc58938b3ac7018bea7ed694c8b7ce6a6ff970094f3a28",
+      "slot": 1,
+      "crop": [
+        18,
+        30,
+        178,
+        300
+      ],
+      "name": "叫び根（仮）",
+      "element": "地",
+      "habitat": "forest",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "wailing_root",
+      "path": "assets/monsters/wailing_root/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "46f5eea45a0714ad6cc083a498f7dea4e198dbdeb1297dc1bb25e3d9ecaacbe2",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        43,
+        72
+      ]
+    },
+    {
+      "source_id": "thorn_cactus",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
+      "original_sha256": "8d608c4ab4c76a1707cc58938b3ac7018bea7ed694c8b7ce6a6ff970094f3a28",
+      "slot": 2,
+      "crop": [
+        224,
+        66,
+        424,
+        300
+      ],
+      "name": "花咲く刺サボテン（仮）",
+      "element": "地",
+      "habitat": "desert",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "thorn_cactus",
+      "path": "assets/monsters/thorn_cactus/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "c1361818ae82589c788d031809ca114cbe7aa23ea4f959705f4a956ef9126a26",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        62,
+        72
+      ]
+    },
+    {
+      "source_id": "blue_water_blob",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
+      "original_sha256": "8d608c4ab4c76a1707cc58938b3ac7018bea7ed694c8b7ce6a6ff970094f3a28",
+      "slot": 3,
+      "crop": [
+        452,
+        121,
+        648,
+        300
+      ],
+      "name": "青い水滴（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "blue_water_blob",
+      "path": "assets/monsters/blue_water_blob/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "0892f8ffb51f39eabcce9a58422a08d793f0b40e5cc4928983a72039ad1cea4b",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        48,
+        44
+      ]
+    },
+    {
+      "source_id": "redfin_biter",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
+      "original_sha256": "8d608c4ab4c76a1707cc58938b3ac7018bea7ed694c8b7ce6a6ff970094f3a28",
+      "slot": 4,
+      "crop": [
+        684,
+        98,
+        905,
+        287
+      ],
+      "name": "赤びれの牙魚（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "redfin_biter",
+      "path": "assets/monsters/redfin_biter/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": true,
+      "output_sha256": "b8f2714d8c3fe7f9124367bb14dd02422294b78589f8db19353fd1745ae02a93",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        48
+      ]
+    },
+    {
+      "source_id": "haunted_sword",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
+      "original_sha256": "8d608c4ab4c76a1707cc58938b3ac7018bea7ed694c8b7ce6a6ff970094f3a28",
+      "slot": 5,
+      "crop": [
+        944,
+        18,
+        1072,
+        315
+      ],
+      "name": "ひとりで動く剣（仮）",
+      "element": "闇",
+      "habitat": "castle",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "haunted_sword",
+      "path": "assets/monsters/haunted_sword/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "f7ec715e50a993a46086a410553d2b714fa999a55a0e3fc06c4622ac7fd923a3",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        31,
+        72
+      ]
+    },
+    {
+      "source_id": "meadow_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
+      "original_sha256": "2e1c3d7cab46e804c482fe9fc8c0fd577b4671be68f98dc8ced8e15a03f2b929",
+      "slot": 1,
+      "crop": [
+        18,
+        19,
+        174,
+        185
+      ],
+      "name": "草色のしずく（仮）",
+      "element": "地",
+      "habitat": "plains",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "meadow_droplet",
+      "path": "assets/monsters/meadow_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "bde95a5e5030c60445466aaf0dbd91b7a0c82aa340e2759e2d2f1254b8681a1b",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        45,
+        48
+      ]
+    },
+    {
+      "source_id": "river_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
+      "original_sha256": "2e1c3d7cab46e804c482fe9fc8c0fd577b4671be68f98dc8ced8e15a03f2b929",
+      "slot": 2,
+      "crop": [
+        244,
+        19,
+        401,
+        185
+      ],
+      "name": "川色のしずく（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "river_droplet",
+      "path": "assets/monsters/river_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "91ea4faee2e19ee57db8645b57d85294bee1178f5125d50d803bbdb1c4f40e18",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        45,
+        48
+      ]
+    },
+    {
+      "source_id": "red_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
+      "original_sha256": "2e1c3d7cab46e804c482fe9fc8c0fd577b4671be68f98dc8ced8e15a03f2b929",
+      "slot": 3,
+      "crop": [
+        470,
+        19,
+        626,
+        185
+      ],
+      "name": "赤いしずく（仮）",
+      "element": "火",
+      "habitat": "cave",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "red_droplet",
+      "path": "assets/monsters/red_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "4f464d868c571c550942b7902bc7eadf692410da5cd23de52d96154d875078f4",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        45,
+        48
+      ]
+    },
+    {
+      "source_id": "amber_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
+      "original_sha256": "2e1c3d7cab46e804c482fe9fc8c0fd577b4671be68f98dc8ced8e15a03f2b929",
+      "slot": 4,
+      "crop": [
+        695,
+        18,
+        852,
+        186
+      ],
+      "name": "琥珀のしずく（仮）",
+      "element": "雷",
+      "habitat": "desert",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "amber_droplet",
+      "path": "assets/monsters/amber_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "7c153e7a16ccfb71af147e21a7761e37c059f0690213d2187ced1cbc3136eb99",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        45,
+        48
+      ]
+    },
+    {
+      "source_id": "violet_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
+      "original_sha256": "2e1c3d7cab46e804c482fe9fc8c0fd577b4671be68f98dc8ced8e15a03f2b929",
+      "slot": 5,
+      "crop": [
+        921,
+        19,
+        1077,
+        185
+      ],
+      "name": "紫のしずく（仮）",
+      "element": "毒",
+      "habitat": "cave",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "violet_droplet",
+      "path": "assets/monsters/violet_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "24d130666d8929286fdb2e3f2082c764fc47ed13623e40db8842744235741f7e",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        45,
+        48
+      ]
+    },
+    {
+      "source_id": "charcoal_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
+      "original_sha256": "ee461f639e393102a0f7e0d529044e7b72f44c5c560f3e979af4e2ead1fb0f9f",
+      "slot": 1,
+      "crop": [
+        18,
+        51,
+        185,
+        230
+      ],
+      "name": "炭色のしずく（仮）",
+      "element": "闇",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "charcoal_droplet",
+      "path": "assets/monsters/charcoal_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "d3e98f0fa62b50a5f42f7d9269f225bf680b9597b72ae832a70b90d5ff07fa64",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        45,
+        48
+      ]
+    },
+    {
+      "source_id": "silver_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
+      "original_sha256": "ee461f639e393102a0f7e0d529044e7b72f44c5c560f3e979af4e2ead1fb0f9f",
+      "slot": 2,
+      "crop": [
+        240,
+        51,
+        406,
+        230
+      ],
+      "name": "銀のしずく（仮）",
+      "element": "無",
+      "habitat": "tower",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "silver_droplet",
+      "path": "assets/monsters/silver_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "df205e5c437801612ed7d6157386ef56b5c305b4027067bc8c7f454e200ff7c1",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        45,
+        48
+      ]
+    },
+    {
+      "source_id": "gold_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
+      "original_sha256": "ee461f639e393102a0f7e0d529044e7b72f44c5c560f3e979af4e2ead1fb0f9f",
+      "slot": 3,
+      "crop": [
+        461,
+        51,
+        626,
+        230
+      ],
+      "name": "金のしずく（仮）",
+      "element": "無",
+      "habitat": "castle",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "gold_droplet",
+      "path": "assets/monsters/gold_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "d5ff1cf4299ff2ee1a36004a455627965dea1c9b1465413941d3b9d22ee35e43",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        44,
+        48
+      ]
+    },
+    {
+      "source_id": "blazing_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
+      "original_sha256": "ee461f639e393102a0f7e0d529044e7b72f44c5c560f3e979af4e2ead1fb0f9f",
+      "slot": 4,
+      "crop": [
+        680,
+        18,
+        844,
+        231
+      ],
+      "name": "炎のしずく（仮）",
+      "element": "火",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "flame_slime",
+      "path": "assets/monsters/flame_slime/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "839bb442aefd3eec15e209eed73e85f7a0335f2b7ba5526d8ecfb8549f80b5b1",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        37,
+        48
+      ]
+    },
+    {
+      "source_id": "crystal_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
+      "original_sha256": "ee461f639e393102a0f7e0d529044e7b72f44c5c560f3e979af4e2ead1fb0f9f",
+      "slot": 5,
+      "crop": [
+        890,
+        49,
+        1083,
+        234
+      ],
+      "name": "結晶のしずく（仮）",
+      "element": "氷",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "crystal_slime",
+      "path": "assets/monsters/crystal_slime/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "1753c584dd0beb2ead14fb6205551307f8e12e29b72b9727d71fd32c0d2cf858",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "small",
+      "target_extent": 64,
+      "visible_size": [
+        64,
+        61
+      ]
+    },
+    {
+      "source_id": "charged_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
+      "original_sha256": "f2d06aa1ad4ba4db60015c8290f8b0c3c343d6a5e8a510927bea3f46f57bbf6b",
+      "slot": 1,
+      "crop": [
+        18,
+        56,
+        206,
+        228
+      ],
+      "name": "帯電しずく（仮）",
+      "element": "雷",
+      "habitat": "tower",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "charged_droplet",
+      "path": "assets/monsters/charged_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "1b8249d53719ac680ffbc4609fd498871f40164096dc51036b735ae2310a8fa6",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        48,
+        44
+      ]
+    },
+    {
+      "source_id": "venom_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
+      "original_sha256": "f2d06aa1ad4ba4db60015c8290f8b0c3c343d6a5e8a510927bea3f46f57bbf6b",
+      "slot": 2,
+      "crop": [
+        234,
+        79,
+        420,
+        229
+      ],
+      "name": "毒斑のしずく（仮）",
+      "element": "毒",
+      "habitat": "forest",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "venom_droplet",
+      "path": "assets/monsters/venom_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "4e3714f527b7bd9b7a12d351f0e3504767e721425dcff326baa7f46c3dd1f800",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        48,
+        39
+      ]
+    },
+    {
+      "source_id": "crowned_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
+      "original_sha256": "f2d06aa1ad4ba4db60015c8290f8b0c3c343d6a5e8a510927bea3f46f57bbf6b",
+      "slot": 3,
+      "crop": [
+        450,
+        18,
+        661,
+        230
+      ],
+      "name": "冠のしずく（仮）",
+      "element": "無",
+      "habitat": "castle",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "crowned_droplet",
+      "path": "assets/monsters/crowned_droplet/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "02db549b695619243ede63ca704d857d9143225463af4bdfdc2007f0857d97ba",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 128,
+      "visible_size": [
+        127,
+        128
+      ]
+    },
+    {
+      "source_id": "stacked_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
+      "original_sha256": "f2d06aa1ad4ba4db60015c8290f8b0c3c343d6a5e8a510927bea3f46f57bbf6b",
+      "slot": 4,
+      "crop": [
+        692,
+        18,
+        887,
+        230
+      ],
+      "name": "重なりしずく（仮）",
+      "element": "地",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "stacked_droplet",
+      "path": "assets/monsters/stacked_droplet/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "d2bbd3e04357fbde9e9ab30ff975827b12413dd8837603e8b6f3cffd015490ac",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 64,
+      "visible_size": [
+        59,
+        64
+      ]
+    },
+    {
+      "source_id": "boulder_droplet",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
+      "original_sha256": "f2d06aa1ad4ba4db60015c8290f8b0c3c343d6a5e8a510927bea3f46f57bbf6b",
+      "slot": 5,
+      "crop": [
+        908,
+        58,
+        1127,
+        232
+      ],
+      "name": "岩のしずく（仮）",
+      "element": "地",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "stone_slime",
+      "path": "assets/monsters/stone_slime/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "9a4d79ca53fbc46984df08321035e238e6da6285983b8ebafe5abf26ac93c30e",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "small",
+      "target_extent": 64,
+      "visible_size": [
+        64,
+        51
+      ]
+    },
+    {
+      "source_id": "spiny_puffer",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
+      "original_sha256": "f0c682c7f972ac18ca7369c629d281d0cdf1bc3cb39aafc912ffc407991b3acf",
+      "slot": 1,
+      "crop": [
+        18,
+        34,
+        231,
+        212
+      ],
+      "name": "刺ふぐ（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "early",
+      "original_facing": "L",
+      "id": "spiny_puffer",
+      "path": "assets/monsters/spiny_puffer/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": true,
+      "output_sha256": "ac0506d05a8243ec56a4bb41609a267e865b01a03ca69cdd5e81a877d1441a88",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        47
+      ]
+    },
+    {
+      "source_id": "red_claw_crab",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
+      "original_sha256": "f0c682c7f972ac18ca7369c629d281d0cdf1bc3cb39aafc912ffc407991b3acf",
+      "slot": 2,
+      "crop": [
+        264,
+        48,
+        480,
+        227
+      ],
+      "name": "赤爪ガニ（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "red_claw_crab",
+      "path": "assets/monsters/red_claw_crab/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "d4d228a507b178962dd35b9a4423c860cf0792b00e70425afdb36ca34462aa20",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        46
+      ]
+    },
+    {
+      "source_id": "pale_jellyfish",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
+      "original_sha256": "f0c682c7f972ac18ca7369c629d281d0cdf1bc3cb39aafc912ffc407991b3acf",
+      "slot": 3,
+      "crop": [
+        517,
+        28,
+        676,
+        232
+      ],
+      "name": "白クラゲ（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "pale_jellyfish",
+      "path": "assets/monsters/pale_jellyfish/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "d5d849a4c2f2aebb7c1261e52f28f36437a92aaf220e9755ca2843ad22e81c5b",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        44,
+        56
+      ]
+    },
+    {
+      "source_id": "gold_seahorse",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
+      "original_sha256": "f0c682c7f972ac18ca7369c629d281d0cdf1bc3cb39aafc912ffc407991b3acf",
+      "slot": 4,
+      "crop": [
+        729,
+        18,
+        865,
+        236
+      ],
+      "name": "金色タツノオトシゴ（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "gold_seahorse",
+      "path": "assets/monsters/gold_seahorse/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": true,
+      "output_sha256": "6c66e0401475ded73eb385cf1f5142ed1c78947e703061a3ab7104afa532706e",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        35,
+        56
+      ]
+    },
+    {
+      "source_id": "green_octopus",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
+      "original_sha256": "f0c682c7f972ac18ca7369c629d281d0cdf1bc3cb39aafc912ffc407991b3acf",
+      "slot": 5,
+      "crop": [
+        909,
+        54,
+        1099,
+        232
+      ],
+      "name": "緑ダコ（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "green_octopus",
+      "path": "assets/monsters/green_octopus/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "da63f98ffd4a2c76425192c96d84173434c53c694e39ec7456e700ec6201d709",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        52
+      ]
+    },
+    {
+      "source_id": "reef_shark",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0947.PNG",
+      "original_sha256": "3cefbd92440e0d2f7f9530cd6255bb379eaf401dbd7ea470caf6716b26c71754",
+      "slot": 1,
+      "crop": [
+        14,
+        94,
+        276,
+        262
+      ],
+      "name": "岩礁ザメ（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "reef_shark",
+      "path": "assets/monsters/reef_shark/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "cc352aaec83601d1f1c443eaf62efc988774fd199bf4f2bd4299d41025024b21",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        96,
+        62
+      ]
+    },
+    {
+      "source_id": "coil_sea_serpent",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0947.PNG",
+      "original_sha256": "3cefbd92440e0d2f7f9530cd6255bb379eaf401dbd7ea470caf6716b26c71754",
+      "slot": 2,
+      "crop": [
+        291,
+        78,
+        467,
+        287
+      ],
+      "name": "巻き海蛇（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "late",
+      "original_facing": "L",
+      "id": "coil_sea_serpent",
+      "path": "assets/monsters/coil_sea_serpent/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "b805e5491aef16d4a4e22db14b427e06ac71b51fb259fef0d26267c95e42e6af",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        81,
+        96
+      ]
+    },
+    {
+      "source_id": "lantern_angler",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0947.PNG",
+      "original_sha256": "3cefbd92440e0d2f7f9530cd6255bb379eaf401dbd7ea470caf6716b26c71754",
+      "slot": 3,
+      "crop": [
+        487,
+        95,
+        687,
+        271
+      ],
+      "name": "灯りアンコウ（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "lantern_angler",
+      "path": "assets/monsters/lantern_angler/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "500ec1dbf47865f7ee6a6b8ac504d666a939cfedc53f1a7795d63cd368f826c0",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        72,
+        63
+      ]
+    },
+    {
+      "source_id": "green_shell_turtle",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0947.PNG",
+      "original_sha256": "3cefbd92440e0d2f7f9530cd6255bb379eaf401dbd7ea470caf6716b26c71754",
+      "slot": 4,
+      "crop": [
+        704,
+        126,
+        926,
+        288
+      ],
+      "name": "緑甲羅の海亀（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "green_shell_turtle",
+      "path": "assets/monsters/green_shell_turtle/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "c5daf89224b239f4fea048c0f72f545fdafb14a4afe08e668350d536abb473b5",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        72,
+        53
+      ]
+    },
+    {
+      "source_id": "fang_clam",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0948.PNG",
+      "original_sha256": "d0b93a523f03575f30154547599cd70923b5e91e607aed35878ef1f3573f7157",
+      "slot": 1,
+      "crop": [
+        17,
+        38,
+        247,
+        283
+      ],
+      "name": "大牙の貝（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "fang_clam",
+      "path": "assets/monsters/fang_clam/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "937781774664e311de3e49916f1cf464c2940478ac42df89ca51552c6ba2a69f",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        90,
+        96
+      ]
+    },
+    {
+      "source_id": "coral_guardian",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0948.PNG",
+      "original_sha256": "d0b93a523f03575f30154547599cd70923b5e91e607aed35878ef1f3573f7157",
+      "slot": 2,
+      "crop": [
+        255,
+        18,
+        495,
+        284
+      ],
+      "name": "珊瑚の岩獣（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "coral_guardian",
+      "path": "assets/monsters/coral_guardian/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "2e18eeae40833a06123e78c43c96b5f2600ff2bab9a6be5b053f0f4c4face427",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        87,
+        96
+      ]
+    },
+    {
+      "source_id": "seaweed_eye",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0948.PNG",
+      "original_sha256": "d0b93a523f03575f30154547599cd70923b5e91e607aed35878ef1f3573f7157",
+      "slot": 3,
+      "crop": [
+        503,
+        93,
+        718,
+        289
+      ],
+      "name": "海藻の目玉（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "seaweed_eye",
+      "path": "assets/monsters/seaweed_eye/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "82a2fd41578849b31dcc11b3b6b98740f320ab59fb908b40a42c1638a5275e54",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        72,
+        66
+      ]
+    },
+    {
+      "source_id": "azure_water_drake",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0948.PNG",
+      "original_sha256": "d0b93a523f03575f30154547599cd70923b5e91e607aed35878ef1f3573f7157",
+      "slot": 5,
+      "crop": [
+        938,
+        57,
+        1152,
+        293
+      ],
+      "name": "蒼い水竜（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "late",
+      "original_facing": "L",
+      "id": "azure_water_drake",
+      "path": "assets/monsters/azure_water_drake/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "96adb0306300f5887d91e06e08df3e5af7b545a0895f8d8b1b4c7fe37621d1f7",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        87,
+        96
+      ]
+    },
+    {
+      "source_id": "crowned_crab",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0949.PNG",
+      "original_sha256": "ab18c2af4e54521a35a748cbca3e88970c98fe900451bceaa0c64d8c8d1ca74b",
+      "slot": 1,
+      "crop": [
+        18,
+        24,
+        333,
+        281
+      ],
+      "name": "冠の大ガニ（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "crowned_crab",
+      "path": "assets/monsters/crowned_crab/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "5b2fe732a9feb5e75773b9560b1c58c5eca9a5b75bd49d5c35dbec371809f26d",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 176,
+      "visible_size": [
+        176,
+        144
+      ]
+    },
+    {
+      "source_id": "violet_kraken",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0949.PNG",
+      "original_sha256": "ab18c2af4e54521a35a748cbca3e88970c98fe900451bceaa0c64d8c8d1ca74b",
+      "slot": 2,
+      "crop": [
+        361,
+        53,
+        574,
+        282
+      ],
+      "name": "紫の大ダコ（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "violet_kraken",
+      "path": "assets/monsters/violet_kraken/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "5da094d6e6f0d0fbffbbe1389d16db4f787d17ac99a4bab61a296574b2ad30a6",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 160,
+      "visible_size": [
+        145,
+        156
+      ]
+    },
+    {
+      "source_id": "blue_horn_dragon",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0949.PNG",
+      "original_sha256": "ab18c2af4e54521a35a748cbca3e88970c98fe900451bceaa0c64d8c8d1ca74b",
+      "slot": 4,
+      "crop": [
+        862,
+        22,
+        1139,
+        289
+      ],
+      "name": "青角の大竜（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "boss",
+      "original_facing": "L",
+      "id": "blue_horn_dragon",
+      "path": "assets/monsters/blue_horn_dragon/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": true,
+      "output_sha256": "efa8d55c05de06a4b0a23b77dd86da2b473e1a1022b980a5e55d04c1b8255bef",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 176,
+      "visible_size": [
+        162,
+        156
+      ]
+    },
+    {
+      "source_id": "deep_angler_king",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0951.PNG",
+      "original_sha256": "ca340bc7928aaca8b3ce0c0ed61ff79dfe5204424da46bff3e44f8cbd7037075",
+      "slot": 1,
+      "crop": [
+        18,
+        167,
+        293,
+        453
+      ],
+      "name": "深海の灯魚（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "deep_angler_king",
+      "path": "assets/monsters/deep_angler_king/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "fd296e7304fec7aa6f277ae05c0fff8901ce67f932e803a8c582f7d837f6b9c0",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 160,
+      "visible_size": [
+        150,
+        156
+      ]
+    },
+    {
+      "source_id": "haunted_ship",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0951.PNG",
+      "original_sha256": "ca340bc7928aaca8b3ce0c0ed61ff79dfe5204424da46bff3e44f8cbd7037075",
+      "slot": 3,
+      "crop": [
+        723,
+        18,
+        1092,
+        483
+      ],
+      "name": "魔物の帆船（仮）",
+      "element": "闇",
+      "habitat": "sea",
+      "tier": "boss",
+      "original_facing": "L",
+      "id": "haunted_ship",
+      "path": "assets/monsters/haunted_ship/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": true,
+      "output_sha256": "5534cef1a8a376de509708bc1dbb6f8757a09daa5ab0eec079e83213de22ea02",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 188,
+      "visible_size": [
+        124,
+        156
+      ]
+    },
+    {
+      "source_id": "eagle_griffin",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
+      "original_sha256": "ea4e09d2a867340b33161c9af124270899536b28707c12ac70c3e5fd6081b10a",
+      "slot": 1,
+      "crop": [
+        18,
+        18,
+        238,
+        236
+      ],
+      "name": "鷲頭の翼獣（仮）",
+      "element": "風",
+      "habitat": "sky",
+      "tier": "late",
+      "original_facing": "R",
+      "id": "winged_beast",
+      "path": "assets/monsters/winged_beast/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "4f14694be0d5e28272a8c49c52537cfb8d5f4926f833546ef417ac259b168792",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        96,
+        95
+      ]
+    },
+    {
+      "source_id": "stone_gargoyle",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
+      "original_sha256": "ea4e09d2a867340b33161c9af124270899536b28707c12ac70c3e5fd6081b10a",
+      "slot": 2,
+      "crop": [
+        250,
+        35,
+        443,
+        235
+      ],
+      "name": "石の翼像（仮）",
+      "element": "地",
+      "habitat": "tower",
+      "tier": "middle",
+      "original_facing": "R",
+      "id": "stone_gargoyle",
+      "path": "assets/monsters/stone_gargoyle/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "ce0331ebd98b5dcd7920284d3ff26b11f59a731650d925f037a7d1d2ab107615",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        69,
+        72
+      ]
+    },
+    {
+      "source_id": "winged_eye",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
+      "original_sha256": "ea4e09d2a867340b33161c9af124270899536b28707c12ac70c3e5fd6081b10a",
+      "slot": 3,
+      "crop": [
+        460,
+        71,
+        695,
+        214
+      ],
+      "name": "翼の一つ目（仮）",
+      "element": "闇",
+      "habitat": "tower",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "winged_eye",
+      "path": "assets/monsters/winged_eye/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "c8e94502c0a362bba591d6e4478b3ff0caea4a7d7592cd739a48a76746154c65",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        34
+      ]
+    },
+    {
+      "source_id": "gold_thunderbird",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
+      "original_sha256": "ea4e09d2a867340b33161c9af124270899536b28707c12ac70c3e5fd6081b10a",
+      "slot": 4,
+      "crop": [
+        702,
+        25,
+        897,
+        246
+      ],
+      "name": "金の雷鳥（仮）",
+      "element": "雷",
+      "habitat": "sky",
+      "tier": "late",
+      "original_facing": "L",
+      "id": "gold_thunderbird",
+      "path": "assets/monsters/gold_thunderbird/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "c6af09d6ae5b7230543833b92c31f81dff0ba5d9424d37a0f1dd04cd38b3c718",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        85,
+        96
+      ]
+    },
+    {
+      "source_id": "red_imp",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
+      "original_sha256": "ea4e09d2a867340b33161c9af124270899536b28707c12ac70c3e5fd6081b10a",
+      "slot": 5,
+      "crop": [
+        915,
+        53,
+        1141,
+        247
+      ],
+      "name": "赤翼の小悪魔（仮）",
+      "element": "火",
+      "habitat": "tower",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "red_imp",
+      "path": "assets/monsters/red_imp/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": true,
+      "output_sha256": "e1a4b00cdff8d7a9efc43a2b5c62ba0d06d145149fc62371286743c4c654f5dc",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        48
+      ]
+    },
+    {
+      "source_id": "dark_winged_horse",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0953.PNG",
+      "original_sha256": "3885fc19cce6170fc259c3127c8cfee2104626cdca4323c79dcfce26797ec782",
+      "slot": 1,
+      "crop": [
+        18,
+        18,
+        257,
+        263
+      ],
+      "name": "黒翼の馬（仮）",
+      "element": "風",
+      "habitat": "sky",
+      "tier": "late",
+      "original_facing": "R",
+      "id": "wind_wolf",
+      "path": "assets/monsters/wind_wolf/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "d2d2684a4141f8637594f01db95182f48cd416a172d28d5f452aea301e5a4322",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        94,
+        96
+      ]
+    },
+    {
+      "source_id": "violet_ghost_orb",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0953.PNG",
+      "original_sha256": "3885fc19cce6170fc259c3127c8cfee2104626cdca4323c79dcfce26797ec782",
+      "slot": 2,
+      "crop": [
+        246,
+        113,
+        469,
+        246
+      ],
+      "name": "紫の幽翼玉（仮）",
+      "element": "氷",
+      "habitat": "cave",
+      "tier": "middle",
+      "original_facing": "F",
+      "id": "ghost_bat",
+      "path": "assets/monsters/ghost_bat/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "ad91dd123896eea13afd4949bdc16bf5f5b005c00a0593a03b3bc306d787d818",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        48,
+        29
+      ]
+    },
+    {
+      "source_id": "night_raptor",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0953.PNG",
+      "original_sha256": "3885fc19cce6170fc259c3127c8cfee2104626cdca4323c79dcfce26797ec782",
+      "slot": 3,
+      "crop": [
+        450,
+        24,
+        717,
+        236
+      ],
+      "name": "夜の猛禽（仮）",
+      "element": "闇",
+      "habitat": "sky",
+      "tier": "middle",
+      "original_facing": "L",
+      "id": "night_raptor",
+      "path": "assets/monsters/night_raptor/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "eda5cb319c818f930180bc5c3c496bef8c937bd97aa212383044743a1c0c695f",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        72,
+        57
+      ]
+    },
+    {
+      "source_id": "cloud_wisp",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0953.PNG",
+      "original_sha256": "3885fc19cce6170fc259c3127c8cfee2104626cdca4323c79dcfce26797ec782",
+      "slot": 5,
+      "crop": [
+        939,
+        66,
+        1139,
+        270
+      ],
+      "name": "雲の小精（仮）",
+      "element": "風",
+      "habitat": "sky",
+      "tier": "early",
+      "original_facing": "F",
+      "id": "cloud_wisp",
+      "path": "assets/monsters/cloud_wisp/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "a0e05c640904e853870fc70e28a061f87aa86bf3a57fb3851fe84c1ecd83decd",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 48,
+      "visible_size": [
+        47,
+        48
+      ]
+    },
+    {
+      "source_id": "flame_phoenix",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0954.PNG",
+      "original_sha256": "3933c2fe23be789cb0991d050835d6f87fb6c8c5fb436dee65061f446efe6c37",
+      "slot": 1,
+      "crop": [
+        18,
+        18,
+        252,
+        279
+      ],
+      "name": "炎羽の大鳥（仮）",
+      "element": "火",
+      "habitat": "sky",
+      "tier": "boss",
+      "original_facing": "R",
+      "id": "flame_phoenix",
+      "path": "assets/monsters/flame_phoenix/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "39da4a9e6d3d073b6b3a76b56c776a71ec83a6cc42de78860dc763601d783df0",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 176,
+      "visible_size": [
+        140,
+        156
+      ]
+    },
+    {
+      "source_id": "horned_chimera",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0954.PNG",
+      "original_sha256": "3933c2fe23be789cb0991d050835d6f87fb6c8c5fb436dee65061f446efe6c37",
+      "slot": 2,
+      "crop": [
+        256,
+        82,
+        458,
+        278
+      ],
+      "name": "角獣の合成魔獣（仮）",
+      "element": "闇",
+      "habitat": "underworld",
+      "tier": "boss",
+      "original_facing": "R",
+      "id": "underworld_boss",
+      "path": "assets/monsters/underworld_boss/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "c30ee4dda2b9abf1a49920b860e05eae64ce42d977b9c1b0c90902a2c91bf506",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "boss",
+      "target_extent": 176,
+      "visible_size": [
+        161,
+        156
+      ]
+    },
+    {
+      "source_id": "axe_bull_beast",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0954.PNG",
+      "original_sha256": "3933c2fe23be789cb0991d050835d6f87fb6c8c5fb436dee65061f446efe6c37",
+      "slot": 3,
+      "crop": [
+        480,
+        60,
+        698,
+        279
+      ],
+      "name": "斧持ち牛獣（仮）",
+      "element": "地",
+      "habitat": "castle",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "axe_bull_beast",
+      "path": "assets/monsters/axe_bull_beast/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "fdc38d76e84cb837cf29f3270cbaa5a321e43e1130e2de6b0e3526ca2a13465e",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        96,
+        96
+      ]
+    },
+    {
+      "source_id": "three_headed_hound",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0954.PNG",
+      "original_sha256": "3933c2fe23be789cb0991d050835d6f87fb6c8c5fb436dee65061f446efe6c37",
+      "slot": 5,
+      "crop": [
+        906,
+        69,
+        1120,
+        279
+      ],
+      "name": "三頭の魔犬（仮）",
+      "element": "火",
+      "habitat": "underworld",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "magma_wolf",
+      "path": "assets/monsters/magma_wolf/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "34c4e7a2645829d789dbdec8eaf65f934d455364cd8cb4dac5b1cc255e2e94e9",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        96,
+        94
+      ]
+    },
+    {
+      "source_id": "triple_hydra",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
+      "original_sha256": "0b316381189afb19080d89842e55baa93f313b75a0e031c95ac1b45f06a2dbfc",
+      "slot": 1,
+      "crop": [
+        16,
+        18,
+        238,
+        255
+      ],
+      "name": "三首の大蛇（仮）",
+      "element": "水",
+      "habitat": "sea",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "triple_hydra",
+      "path": "assets/monsters/triple_hydra/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "fbb446dd46c13b1e56f9cc715bab7c842cd49546e98df6924b5f5b0bf791ab7c",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 176,
+      "visible_size": [
+        146,
+        156
+      ]
+    },
+    {
+      "source_id": "one_eye_ogre",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
+      "original_sha256": "0b316381189afb19080d89842e55baa93f313b75a0e031c95ac1b45f06a2dbfc",
+      "slot": 2,
+      "crop": [
+        246,
+        22,
+        455,
+        252
+      ],
+      "name": "一つ目の大鬼（仮）",
+      "element": "地",
+      "habitat": "cave",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "one_eye_ogre",
+      "path": "assets/monsters/one_eye_ogre/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "199856ea71462ec57541c4c107d829779857ee08e8c9873d00be2f23ceef6b4d",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        87,
+        96
+      ]
+    },
+    {
+      "source_id": "winged_sphinx",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
+      "original_sha256": "0b316381189afb19080d89842e55baa93f313b75a0e031c95ac1b45f06a2dbfc",
+      "slot": 3,
+      "crop": [
+        483,
+        32,
+        666,
+        253
+      ],
+      "name": "翼の人面獣（仮）",
+      "element": "地",
+      "habitat": "desert",
+      "tier": "boss",
+      "original_facing": "F",
+      "id": "winged_sphinx",
+      "path": "assets/monsters/winged_sphinx/idle.png",
+      "size": [
+        192,
+        160
+      ],
+      "mirror": false,
+      "output_sha256": "c1583840b65a57a04996d93131245b9dd154d268090280c75f469f79e1286558",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "boss",
+      "target_extent": 160,
+      "visible_size": [
+        129,
+        156
+      ]
+    },
+    {
+      "source_id": "white_manytail_fox",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
+      "original_sha256": "0b316381189afb19080d89842e55baa93f313b75a0e031c95ac1b45f06a2dbfc",
+      "slot": 4,
+      "crop": [
+        697,
+        59,
+        907,
+        252
+      ],
+      "name": "白い多尾狐（仮）",
+      "element": "無",
+      "habitat": "forest",
+      "tier": "late",
+      "original_facing": "L",
+      "id": "white_manytail_fox",
+      "path": "assets/monsters/white_manytail_fox/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "1b57463a6de47cb13190e628b4025b151a61d5f0ef0361275d800279b7767da7",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        96,
+        88
+      ]
+    },
+    {
+      "source_id": "violet_unicorn",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
+      "original_sha256": "0b316381189afb19080d89842e55baa93f313b75a0e031c95ac1b45f06a2dbfc",
+      "slot": 5,
+      "crop": [
+        903,
+        51,
+        1161,
+        255
+      ],
+      "name": "紫たてがみの一角獣（仮）",
+      "element": "無",
+      "habitat": "forest",
+      "tier": "late",
+      "original_facing": "L",
+      "id": "violet_unicorn",
+      "path": "assets/monsters/violet_unicorn/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": true,
+      "output_sha256": "89a16c0649f7eec0c4d75a6b7208dfa2c68cef983830ec03679e3e38e22129b0",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        96,
+        76
+      ]
+    },
+    {
+      "source_id": "gold_block_golem",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0959.PNG",
+      "original_sha256": "2d5511e4a3dc9cf67d27f1ffa34c2658647e336891486e7f76394dae139eb75c",
+      "slot": 1,
+      "crop": [
+        18,
+        94,
+        204,
+        371
+      ],
+      "name": "金の角柱人形（仮）",
+      "element": "地",
+      "habitat": "castle",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "gold_block_golem",
+      "path": "assets/monsters/gold_block_golem/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "f4845ace68474ad8d7a45f553f07e612d260870f8891b72816eaad2950bf1bf7",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "medium",
+      "target_extent": 72,
+      "visible_size": [
+        48,
+        72
+      ]
+    },
+    {
+      "source_id": "gold_plume_bird",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
+      "original_sha256": "fbe89411ef9b2b21ddbd9df77b425c8baf33476737e800d4f165fb44ff559e5d",
+      "slot": 1,
+      "crop": [
+        18,
+        23,
+        221,
+        281
+      ],
+      "name": "金羽の霊鳥（仮）",
+      "element": "光",
+      "habitat": "sky",
+      "tier": "late",
+      "original_facing": "R",
+      "id": "gold_plume_bird",
+      "path": "assets/monsters/gold_plume_bird/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "dfb656b0189d7089e4fe7ff18e9b062d47fbbf9ff3bc56fb6512b8912fca2f24",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        76,
+        96
+      ]
+    },
+    {
+      "source_id": "scroll_dove",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
+      "original_sha256": "fbe89411ef9b2b21ddbd9df77b425c8baf33476737e800d4f165fb44ff559e5d",
+      "slot": 2,
+      "crop": [
+        248,
+        64,
+        441,
+        253
+      ],
+      "name": "巻物の白鳥（仮）",
+      "element": "風",
+      "habitat": "sky",
+      "tier": "middle",
+      "original_facing": "R",
+      "id": "scroll_dove",
+      "path": "assets/monsters/scroll_dove/idle.png",
+      "size": [
+        64,
+        64
+      ],
+      "mirror": false,
+      "output_sha256": "f8909544ad0919de8ee6ad368f7a8e0d70913cdfe78f9475a08e7350b5c63c5a",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "small",
+      "target_extent": 56,
+      "visible_size": [
+        56,
+        55
+      ]
+    },
+    {
+      "source_id": "storm_raven",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
+      "original_sha256": "fbe89411ef9b2b21ddbd9df77b425c8baf33476737e800d4f165fb44ff559e5d",
+      "slot": 3,
+      "crop": [
+        445,
+        18,
+        683,
+        275
+      ],
+      "name": "雷羽の黒鳥（仮）",
+      "element": "雷",
+      "habitat": "sky",
+      "tier": "late",
+      "original_facing": "R",
+      "id": "storm_wolf",
+      "path": "assets/monsters/storm_wolf/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "694d2942665acc4049db9d6442ce7a27230f1d5f11ffe18be3d5ac0badefa3f7",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "required",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        89,
+        96
+      ]
+    },
+    {
+      "source_id": "gold_guard_lion",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
+      "original_sha256": "fbe89411ef9b2b21ddbd9df77b425c8baf33476737e800d4f165fb44ff559e5d",
+      "slot": 4,
+      "crop": [
+        712,
+        40,
+        918,
+        280
+      ],
+      "name": "金の守護獅子（仮）",
+      "element": "地",
+      "habitat": "castle",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "gold_guard_lion",
+      "path": "assets/monsters/gold_guard_lion/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "b976401520d71866be34c88e6d704fa4cb9511fdbebd5c0aa2e58d3955b6bb7e",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        82,
+        96
+      ]
+    },
+    {
+      "source_id": "silver_guard_lion",
+      "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
+      "original_sha256": "fbe89411ef9b2b21ddbd9df77b425c8baf33476737e800d4f165fb44ff559e5d",
+      "slot": 5,
+      "crop": [
+        938,
+        36,
+        1144,
+        281
+      ],
+      "name": "銀の守護獅子（仮）",
+      "element": "氷",
+      "habitat": "tower",
+      "tier": "late",
+      "original_facing": "F",
+      "id": "silver_guard_lion",
+      "path": "assets/monsters/silver_guard_lion/idle.png",
+      "size": [
+        96,
+        96
+      ],
+      "mirror": false,
+      "output_sha256": "dca911dbceb3d940ec80e16a760d4d50331a7850497410ab7512983ad43dfcba",
+      "black_threshold": 24,
+      "resampling": "nearest",
+      "max_colors": 32,
+      "registered_status": "optional",
+      "size_class": "large",
+      "target_extent": 96,
+      "visible_size": [
+        81,
+        96
+      ]
+    }
+  ],
+  "counts": {
+    "boss": 16,
+    "small": 42,
+    "medium": 22,
+    "large": 22
+  }
+}

@@ -237,8 +237,8 @@
       "path": "assets/monsters/slime/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "required",
@@ -248,18 +248,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#green_droplet",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#green_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        48,
+        45
+      ]
     },
     {
       "path": "assets/monsters/bat/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "required",
@@ -269,10 +274,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#brown_cave_bat",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#brown_cave_bat",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        31
+      ]
     },
     {
       "path": "assets/tiles/field_outdoor.png",
@@ -443,17 +453,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#blue_horn_beetle",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#blue_horn_beetle",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        72,
+        48
+      ]
     },
     {
       "path": "assets/monsters/ember_wisp/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "required",
@@ -463,10 +478,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#flame_wisp",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#flame_wisp",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        33,
+        48
+      ]
     },
     {
       "path": "assets/monsters/gate_beast/idle.png",
@@ -483,10 +503,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0929.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大40以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#crowned_ogre",
+      "modified": "原本の左から1体目。外周につながるRGB最大40以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺156px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#crowned_ogre",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        117,
+        156
+      ]
     },
     {
       "path": "assets/monsters/wet_beast/idle.png",
@@ -503,10 +528,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#bristled_boar",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#bristled_boar",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        90,
+        96
+      ]
     },
     {
       "path": "assets/monsters/winged_beast/idle.png",
@@ -523,17 +553,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#eagle_griffin",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#eagle_griffin",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        96,
+        95
+      ]
     },
     {
       "path": "assets/monsters/flame_slime/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "required",
@@ -543,18 +578,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#blazing_droplet",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#blazing_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        37,
+        48
+      ]
     },
     {
       "path": "assets/monsters/stone_slime/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "required",
@@ -564,11 +604,16 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#boulder_droplet",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺64px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#boulder_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        64,
+        51
+      ]
     },
     {
       "path": "assets/monsters/bone_wolf/idle.png",
@@ -585,10 +630,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0940.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#skeletal_wolf",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺80px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#skeletal_wolf",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        80,
+        59
+      ]
     },
     {
       "path": "assets/monsters/bone_bat/idle.png",
@@ -615,10 +665,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#lava_rock_golem",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#lava_rock_golem",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        96,
+        96
+      ]
     },
     {
       "path": "assets/monsters/shadow_wolf/idle.png",
@@ -635,10 +690,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#gray_fang_wolf",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格中、絵の長辺80px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#gray_fang_wolf",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        80,
+        61
+      ]
     },
     {
       "path": "assets/monsters/chimera_boss/idle.png",
@@ -655,10 +715,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#red_horn_dragon",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格ボス、絵の長辺176px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#red_horn_dragon",
       "facing": "right",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        176,
+        146
+      ]
     },
     {
       "path": "assets/monsters/magma_wolf/idle.png",
@@ -675,10 +740,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0954.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#three_headed_hound",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#three_headed_hound",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        96,
+        94
+      ]
     },
     {
       "path": "assets/monsters/wind_wolf/idle.png",
@@ -695,17 +765,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0953.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#dark_winged_horse",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#dark_winged_horse",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        94,
+        96
+      ]
     },
     {
       "path": "assets/monsters/crystal_slime/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "required",
@@ -715,11 +790,16 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#crystal_droplet",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺64px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#crystal_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        64,
+        61
+      ]
     },
     {
       "path": "assets/monsters/zombie_wolf/idle.png",
@@ -735,8 +815,8 @@
       "path": "assets/monsters/ghost_bat/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "required",
@@ -746,10 +826,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0953.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#violet_ghost_orb",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#violet_ghost_orb",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        48,
+        29
+      ]
     },
     {
       "path": "assets/monsters/glacier_turtle/idle.png",
@@ -776,10 +861,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#storm_raven",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#storm_raven",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        89,
+        96
+      ]
     },
     {
       "path": "assets/monsters/underworld_boss/idle.png",
@@ -796,10 +886,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0954.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#horned_chimera",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺161px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#horned_chimera",
       "facing": "right",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        161,
+        156
+      ]
     },
     {
       "path": "assets/characters/pc_01/forms/slime/walk.png",
@@ -7259,17 +7354,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0933.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#club_goblin",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#club_goblin",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        72,
+        71
+      ]
     },
     {
       "path": "assets/monsters/violet_fang_bat/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7279,10 +7379,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#violet_fang_bat",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#violet_fang_bat",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        42
+      ]
     },
     {
       "path": "assets/monsters/rock_toad/idle.png",
@@ -7299,17 +7404,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#rock_toad",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#rock_toad",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        72,
+        53
+      ]
     },
     {
       "path": "assets/monsters/violet_spider/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7319,17 +7429,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#violet_spider",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#violet_spider",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        39
+      ]
     },
     {
       "path": "assets/monsters/spotted_mushroom/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7339,10 +7454,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0934.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#spotted_mushroom",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#spotted_mushroom",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        45,
+        48
+      ]
     },
     {
       "path": "assets/monsters/hollow_armor/idle.png",
@@ -7359,17 +7479,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#hollow_armor",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺80px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#hollow_armor",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        65,
+        80
+      ]
     },
     {
       "path": "assets/monsters/white_shroud/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7379,10 +7504,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#white_shroud",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#white_shroud",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        53,
+        56
+      ]
     },
     {
       "path": "assets/monsters/toothed_chest/idle.png",
@@ -7399,10 +7529,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#toothed_chest",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#toothed_chest",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        69,
+        72
+      ]
     },
     {
       "path": "assets/monsters/shield_skeleton/idle.png",
@@ -7419,10 +7554,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#shield_skeleton",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#shield_skeleton",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        51,
+        72
+      ]
     },
     {
       "path": "assets/monsters/moss_stone_golem/idle.png",
@@ -7439,10 +7579,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0935.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#moss_stone_golem",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#moss_stone_golem",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        77,
+        96
+      ]
     },
     {
       "path": "assets/monsters/crowned_club_ogre/idle.png",
@@ -7459,10 +7604,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0936.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#crowned_club_ogre",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺144px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#crowned_club_ogre",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        140,
+        144
+      ]
     },
     {
       "path": "assets/monsters/brood_spider/idle.png",
@@ -7479,10 +7629,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0936.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#brood_spider",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺156px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#brood_spider",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        125,
+        156
+      ]
     },
     {
       "path": "assets/monsters/horned_armor/idle.png",
@@ -7499,10 +7654,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0936.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#horned_armor",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺144px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#horned_armor",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        119,
+        144
+      ]
     },
     {
       "path": "assets/monsters/stone_sword_golem/idle.png",
@@ -7519,17 +7679,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0936.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#stone_sword_golem",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺156px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#stone_sword_golem",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        149,
+        156
+      ]
     },
     {
       "path": "assets/monsters/green_coil_snake/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7539,10 +7704,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#green_coil_snake",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#green_coil_snake",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        50,
+        56
+      ]
     },
     {
       "path": "assets/monsters/brown_forest_bear/idle.png",
@@ -7559,10 +7729,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#brown_forest_bear",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#brown_forest_bear",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        96,
+        87
+      ]
     },
     {
       "path": "assets/monsters/broadwing_eagle/idle.png",
@@ -7579,17 +7754,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#broadwing_eagle",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#broadwing_eagle",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        72,
+        57
+      ]
     },
     {
       "path": "assets/monsters/marsh_frog/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7599,17 +7779,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0937.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#marsh_frog",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#marsh_frog",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        47
+      ]
     },
     {
       "path": "assets/monsters/ice_wisp/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7619,17 +7804,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#ice_wisp",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#ice_wisp",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        40,
+        48
+      ]
     },
     {
       "path": "assets/monsters/spark_wisp/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7639,17 +7829,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#spark_wisp",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#spark_wisp",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        48,
+        46
+      ]
     },
     {
       "path": "assets/monsters/wind_wisp/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7659,17 +7854,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#wind_wisp",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#wind_wisp",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        37,
+        48
+      ]
     },
     {
       "path": "assets/monsters/clay_wisp/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7679,10 +7879,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0938.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#clay_wisp",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#clay_wisp",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        48,
+        39
+      ]
     },
     {
       "path": "assets/monsters/green_drake/idle.png",
@@ -7699,10 +7904,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#green_drake",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#green_drake",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        96,
+        88
+      ]
     },
     {
       "path": "assets/monsters/crested_raptor/idle.png",
@@ -7719,17 +7929,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#crested_raptor",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#crested_raptor",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        47,
+        72
+      ]
     },
     {
       "path": "assets/monsters/striped_hornet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7739,17 +7954,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#striped_hornet",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#striped_hornet",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        48
+      ]
     },
     {
       "path": "assets/monsters/dusk_owl/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7759,10 +7979,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0939.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#dusk_owl",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#dusk_owl",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        40,
+        56
+      ]
     },
     {
       "path": "assets/monsters/rotting_walker/idle.png",
@@ -7779,10 +8004,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0940.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#rotting_walker",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#rotting_walker",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        44,
+        72
+      ]
     },
     {
       "path": "assets/monsters/sealed_coffin/idle.png",
@@ -7799,17 +8029,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0940.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#sealed_coffin",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#sealed_coffin",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        36,
+        72
+      ]
     },
     {
       "path": "assets/monsters/violet_skull_flame/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7819,10 +8054,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0940.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#violet_skull_flame",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺55px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#violet_skull_flame",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        31,
+        55
+      ]
     },
     {
       "path": "assets/monsters/axe_orc/idle.png",
@@ -7839,10 +8079,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0941.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#axe_orc",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格中、絵の長辺80px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#axe_orc",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        74,
+        80
+      ]
     },
     {
       "path": "assets/monsters/wailing_root/idle.png",
@@ -7859,10 +8104,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#wailing_root",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#wailing_root",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        43,
+        72
+      ]
     },
     {
       "path": "assets/monsters/thorn_cactus/idle.png",
@@ -7879,17 +8129,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#thorn_cactus",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#thorn_cactus",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        62,
+        72
+      ]
     },
     {
       "path": "assets/monsters/blue_water_blob/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7899,18 +8154,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#blue_water_blob",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#blue_water_blob",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        48,
+        44
+      ]
     },
     {
       "path": "assets/monsters/redfin_biter/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7920,10 +8180,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#redfin_biter",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#redfin_biter",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        48
+      ]
     },
     {
       "path": "assets/monsters/haunted_sword/idle.png",
@@ -7940,17 +8205,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0942.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#haunted_sword",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#haunted_sword",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        31,
+        72
+      ]
     },
     {
       "path": "assets/monsters/meadow_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7960,18 +8230,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#meadow_droplet",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#meadow_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        45,
+        48
+      ]
     },
     {
       "path": "assets/monsters/river_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -7981,18 +8256,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#river_droplet",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#river_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        45,
+        48
+      ]
     },
     {
       "path": "assets/monsters/red_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8002,18 +8282,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#red_droplet",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#red_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        45,
+        48
+      ]
     },
     {
       "path": "assets/monsters/amber_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8023,18 +8308,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#amber_droplet",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#amber_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        45,
+        48
+      ]
     },
     {
       "path": "assets/monsters/violet_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8044,18 +8334,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0943.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#violet_droplet",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#violet_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        45,
+        48
+      ]
     },
     {
       "path": "assets/monsters/charcoal_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8065,18 +8360,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#charcoal_droplet",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#charcoal_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        45,
+        48
+      ]
     },
     {
       "path": "assets/monsters/silver_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8086,18 +8386,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#silver_droplet",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#silver_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        45,
+        48
+      ]
     },
     {
       "path": "assets/monsters/gold_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8107,18 +8412,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0944.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#gold_droplet",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#gold_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        44,
+        48
+      ]
     },
     {
       "path": "assets/monsters/charged_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8128,18 +8438,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#charged_droplet",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#charged_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        48,
+        44
+      ]
     },
     {
       "path": "assets/monsters/venom_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8149,11 +8464,16 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#venom_droplet",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#venom_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        48,
+        39
+      ]
     },
     {
       "path": "assets/monsters/crowned_droplet/idle.png",
@@ -8170,18 +8490,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#crowned_droplet",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺128px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#crowned_droplet",
       "facing": "front",
       "monster_tier": "boss",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "boss",
+      "visible_size": [
+        127,
+        128
+      ]
     },
     {
       "path": "assets/monsters/stacked_droplet/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8191,18 +8516,23 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0945.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#stacked_droplet",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺64px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#stacked_droplet",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "small",
+      "visible_size": [
+        59,
+        64
+      ]
     },
     {
       "path": "assets/monsters/spiny_puffer/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8212,17 +8542,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#spiny_puffer",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#spiny_puffer",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        47
+      ]
     },
     {
       "path": "assets/monsters/red_claw_crab/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8232,17 +8567,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#red_claw_crab",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#red_claw_crab",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        46
+      ]
     },
     {
       "path": "assets/monsters/pale_jellyfish/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8252,17 +8592,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#pale_jellyfish",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#pale_jellyfish",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        44,
+        56
+      ]
     },
     {
       "path": "assets/monsters/gold_seahorse/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8272,17 +8617,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#gold_seahorse",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#gold_seahorse",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        35,
+        56
+      ]
     },
     {
       "path": "assets/monsters/green_octopus/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8292,10 +8642,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0946.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#green_octopus",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#green_octopus",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        52
+      ]
     },
     {
       "path": "assets/monsters/reef_shark/idle.png",
@@ -8312,10 +8667,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0947.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#reef_shark",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#reef_shark",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        96,
+        62
+      ]
     },
     {
       "path": "assets/monsters/coil_sea_serpent/idle.png",
@@ -8332,10 +8692,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0947.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#coil_sea_serpent",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#coil_sea_serpent",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        81,
+        96
+      ]
     },
     {
       "path": "assets/monsters/lantern_angler/idle.png",
@@ -8352,10 +8717,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0947.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#lantern_angler",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#lantern_angler",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        72,
+        63
+      ]
     },
     {
       "path": "assets/monsters/green_shell_turtle/idle.png",
@@ -8372,10 +8742,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0947.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#green_shell_turtle",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#green_shell_turtle",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        72,
+        53
+      ]
     },
     {
       "path": "assets/monsters/fang_clam/idle.png",
@@ -8392,10 +8767,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0948.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#fang_clam",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#fang_clam",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        90,
+        96
+      ]
     },
     {
       "path": "assets/monsters/coral_guardian/idle.png",
@@ -8412,10 +8792,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0948.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#coral_guardian",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#coral_guardian",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        87,
+        96
+      ]
     },
     {
       "path": "assets/monsters/seaweed_eye/idle.png",
@@ -8432,10 +8817,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0948.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#seaweed_eye",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#seaweed_eye",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        72,
+        66
+      ]
     },
     {
       "path": "assets/monsters/azure_water_drake/idle.png",
@@ -8452,10 +8842,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0948.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#azure_water_drake",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#azure_water_drake",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        87,
+        96
+      ]
     },
     {
       "path": "assets/monsters/crowned_crab/idle.png",
@@ -8472,10 +8867,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0949.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#crowned_crab",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺176px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#crowned_crab",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        176,
+        144
+      ]
     },
     {
       "path": "assets/monsters/violet_kraken/idle.png",
@@ -8492,10 +8892,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0949.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#violet_kraken",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺156px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#violet_kraken",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        145,
+        156
+      ]
     },
     {
       "path": "assets/monsters/blue_horn_dragon/idle.png",
@@ -8512,10 +8917,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0949.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#blue_horn_dragon",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格ボス、絵の長辺162px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#blue_horn_dragon",
       "facing": "right",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        162,
+        156
+      ]
     },
     {
       "path": "assets/monsters/deep_angler_king/idle.png",
@@ -8532,10 +8942,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0951.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#deep_angler_king",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺156px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#deep_angler_king",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        150,
+        156
+      ]
     },
     {
       "path": "assets/monsters/haunted_ship/idle.png",
@@ -8552,10 +8967,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0951.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#haunted_ship",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格ボス、絵の長辺156px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#haunted_ship",
       "facing": "right",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        124,
+        156
+      ]
     },
     {
       "path": "assets/monsters/stone_gargoyle/idle.png",
@@ -8572,17 +8992,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#stone_gargoyle",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#stone_gargoyle",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        69,
+        72
+      ]
     },
     {
       "path": "assets/monsters/winged_eye/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8592,10 +9017,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#winged_eye",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#winged_eye",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        34
+      ]
     },
     {
       "path": "assets/monsters/gold_thunderbird/idle.png",
@@ -8612,17 +9042,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#gold_thunderbird",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#gold_thunderbird",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        85,
+        96
+      ]
     },
     {
       "path": "assets/monsters/red_imp/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8632,10 +9067,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0952.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#red_imp",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#red_imp",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        48
+      ]
     },
     {
       "path": "assets/monsters/night_raptor/idle.png",
@@ -8652,17 +9092,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0953.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#night_raptor",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#night_raptor",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "medium",
+      "visible_size": [
+        72,
+        57
+      ]
     },
     {
       "path": "assets/monsters/cloud_wisp/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8672,10 +9117,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0953.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#cloud_wisp",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺48px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#cloud_wisp",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        47,
+        48
+      ]
     },
     {
       "path": "assets/monsters/flame_phoenix/idle.png",
@@ -8692,10 +9142,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0954.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#flame_phoenix",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺156px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#flame_phoenix",
       "facing": "right",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        140,
+        156
+      ]
     },
     {
       "path": "assets/monsters/axe_bull_beast/idle.png",
@@ -8712,10 +9167,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0954.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#axe_bull_beast",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#axe_bull_beast",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        96,
+        96
+      ]
     },
     {
       "path": "assets/monsters/triple_hydra/idle.png",
@@ -8732,10 +9192,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#triple_hydra",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺156px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#triple_hydra",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        146,
+        156
+      ]
     },
     {
       "path": "assets/monsters/one_eye_ogre/idle.png",
@@ -8752,10 +9217,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#one_eye_ogre",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#one_eye_ogre",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        87,
+        96
+      ]
     },
     {
       "path": "assets/monsters/winged_sphinx/idle.png",
@@ -8772,10 +9242,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
-      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#winged_sphinx",
+      "modified": "原本の左から3体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格ボス、絵の長辺156px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#winged_sphinx",
       "facing": "front",
-      "monster_tier": "boss"
+      "monster_tier": "boss",
+      "size_class": "boss",
+      "visible_size": [
+        129,
+        156
+      ]
     },
     {
       "path": "assets/monsters/white_manytail_fox/idle.png",
@@ -8792,10 +9267,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#white_manytail_fox",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#white_manytail_fox",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        96,
+        88
+      ]
     },
     {
       "path": "assets/monsters/violet_unicorn/idle.png",
@@ -8812,10 +9292,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0955.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。",
-      "conversion_record": "assets/source_records/owner-monsters.json#violet_unicorn",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。左向きから右向きへ反転。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#violet_unicorn",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        96,
+        76
+      ]
     },
     {
       "path": "assets/monsters/gold_block_golem/idle.png",
@@ -8832,11 +9317,16 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0959.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#gold_block_golem",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格中、絵の長辺72px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#gold_block_golem",
       "facing": "front",
       "monster_tier": "normal",
-      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する"
+      "note": "依頼者が独自の意匠であると判断して採用（2026年9月26日）。公開・販売を検討する段階で再確認する",
+      "size_class": "medium",
+      "visible_size": [
+        48,
+        72
+      ]
     },
     {
       "path": "assets/monsters/gold_plume_bird/idle.png",
@@ -8853,17 +9343,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
-      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#gold_plume_bird",
+      "modified": "原本の左から1体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#gold_plume_bird",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        76,
+        96
+      ]
     },
     {
       "path": "assets/monsters/scroll_dove/idle.png",
       "kind": "monster_idle",
       "size": [
-        96,
-        96
+        64,
+        64
       ],
       "max_colors": 32,
       "status": "optional",
@@ -8873,10 +9368,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
-      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#scroll_dove",
+      "modified": "原本の左から2体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格小、絵の長辺56px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#scroll_dove",
       "facing": "right",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "small",
+      "visible_size": [
+        56,
+        55
+      ]
     },
     {
       "path": "assets/monsters/gold_guard_lion/idle.png",
@@ -8893,10 +9393,15 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
-      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#gold_guard_lion",
+      "modified": "原本の左から4体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#gold_guard_lion",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        82,
+        96
+      ]
     },
     {
       "path": "assets/monsters/silver_guard_lion/idle.png",
@@ -8913,17 +9418,22 @@
       "author": "依頼者",
       "provided_at": "2026-09-26",
       "original_file": "assets/_incoming/owner-2026-09-26/IMG_0960.PNG",
-      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。",
-      "conversion_record": "assets/source_records/owner-monsters.json#silver_guard_lion",
+      "modified": "原本の左から5体目。外周につながるRGB最大24以下の黒背景を除去、最近傍縮小、32色以内へ減色、二値透過。正面または右向きを維持。 2026-09-27: 体格大、絵の長辺96px。原本から最近傍で再変換し、32色以内と二値透過を維持。",
+      "conversion_record": "assets/source_records/owner-monsters-size-review.json#silver_guard_lion",
       "facing": "front",
-      "monster_tier": "normal"
+      "monster_tier": "normal",
+      "size_class": "large",
+      "visible_size": [
+        81,
+        96
+      ]
     },
     {
       "path": "assets/tiles/cave_wall_top.png",
       "kind": "tileset",
       "size": [
-        256,
-        256
+        128,
+        128
       ],
       "max_colors": 64,
       "status": "required",
@@ -8932,9 +9442,9 @@
       "tool": "imagegen + Python/Pillow",
       "author": "RPG-maker / Codex",
       "license": "LicenseRef-Generated-Project",
-      "generated_at": "2026-09-26",
-      "prompt_record": "assets/source_records/cave-wall-revision.json",
-      "modified": "丸い岩の新規原画を減色。距離帯の規則で岩壁と岩岸を32pxセルへ自動接続。参考JPEGの画素は不使用。",
+      "generated_at": "2026-09-27",
+      "prompt_record": "assets/source_records/sprint0-rock-pixel.json",
+      "modified": "角張った岩の新規原画を最近傍縮小・減色。岩面の座標歪みと補間を使わず32pxセルへ接続。壁64px・上面32px・側面32pxと輪郭を維持。",
       "tile_size": [
         32,
         32
@@ -8944,8 +9454,8 @@
       "path": "assets/tiles/cave_wall_side.png",
       "kind": "tileset",
       "size": [
-        256,
-        256
+        128,
+        128
       ],
       "max_colors": 64,
       "status": "required",
@@ -8954,9 +9464,9 @@
       "tool": "imagegen + Python/Pillow",
       "author": "RPG-maker / Codex",
       "license": "LicenseRef-Generated-Project",
-      "generated_at": "2026-09-26",
-      "prompt_record": "assets/source_records/cave-wall-revision.json",
-      "modified": "丸い岩の新規原画を減色。距離帯の規則で岩壁と岩岸を32pxセルへ自動接続。参考JPEGの画素は不使用。",
+      "generated_at": "2026-09-27",
+      "prompt_record": "assets/source_records/sprint0-rock-pixel.json",
+      "modified": "角張った岩の新規原画を最近傍縮小・減色。岩面の座標歪みと補間を使わず32pxセルへ接続。壁64px・上面32px・側面32pxと輪郭を維持。",
       "tile_size": [
         32,
         32
@@ -9020,9 +9530,9 @@
       "tool": "imagegen + Python/Pillow",
       "author": "RPG-maker / Codex",
       "license": "LicenseRef-Generated-Project",
-      "generated_at": "2026-09-26",
-      "prompt_record": "assets/source_records/cave-wall-revision.json",
-      "modified": "丸い岩の新規原画を減色。距離帯の規則で岩壁と岩岸を32pxセルへ自動接続。参考JPEGの画素は不使用。",
+      "generated_at": "2026-09-27",
+      "prompt_record": "assets/source_records/sprint0-rock-pixel.json",
+      "modified": "角張った岩の新規原画を最近傍縮小・減色。岩面の座標歪みと補間を使わず32pxセルへ接続。壁64px・上面32px・側面32pxと輪郭を維持。",
       "tile_size": [
         32,
         32
@@ -9042,7 +9552,7 @@
           "assets/tiles/cave_quiet_floor.png",
           "assets/tiles/cave_quiet_water.png"
         ],
-        "variants": 790
+        "variants": 783
       }
     }
   ],

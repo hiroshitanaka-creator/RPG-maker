@@ -8,7 +8,7 @@ from import_visual_target_assets import quantize,periodic
 
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs/verification/art-review-2'
 W,H=1152,768
-RECORD='assets/source_records/cave-wall-revision.json'
+RECORD='assets/source_records/sprint0-rock-pixel.json'
 
 def smooth(points,steps=12):
     pts=np.array(points,float);result=[]
@@ -53,16 +53,22 @@ def main():
     raw['sha256']=hashlib.sha256((ROOT/raw['source_file']).read_bytes()).hexdigest();(ROOT/RECORD).write_text(json.dumps(raw,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     def save(name,im,**extra):
         path=f'assets/tiles/cave_{name}.png';im=quantize(im);im.save(ROOT/path)
-        e=dict(path=path,kind='tileset',size=list(im.size),max_colors=64,status='required',palette='assets/palette/natural.gpl',source='generated',tool='imagegen + Python/Pillow',author='RPG-maker / Codex',license='LicenseRef-Generated-Project',generated_at='2026-09-26',prompt_record=RECORD,modified='丸い岩の新規原画を減色。距離帯の規則で岩壁と岩岸を32pxセルへ自動接続。参考JPEGの画素は不使用。',tile_size=[32,32]);e.update(extra);entries[path]=e;return path,im
+        e=dict(path=path,kind='tileset',size=list(im.size),max_colors=64,status='required',palette='assets/palette/natural.gpl',source='generated',tool='imagegen + Python/Pillow',author='RPG-maker / Codex',license='LicenseRef-Generated-Project',generated_at='2026-09-27',prompt_record=RECORD,modified='角張った岩の新規原画を最近傍縮小・減色。岩面の座標歪みと補間を使わず32pxセルへ接続。壁64px・上面32px・側面32pxと輪郭を維持。',tile_size=[32,32]);e.update(extra);entries[path]=e;return path,im
     materials={}
-    for i,name in enumerate(('wall_top','wall_side','quiet_floor','quiet_water')):
-        x=i%2;y=i//2;part=source.crop((x*source.width//2+10,y*source.height//2+10,(x+1)*source.width//2-10,(y+1)*source.height//2-10))
-        # 大きな丸石を32px前後で残すため256pxの材質面を使う。
-        path,im=save(name,periodic(part.resize((256,256),Image.Resampling.NEAREST)));materials[name]=im
+    for i,name in enumerate(('wall_top','wall_side')):
+        part=source.crop((i*source.width//2+12,12,(i+1)*source.width//2-12,source.height-12))
+        # 壁面は不透明の材質。生成原画の弱い半透明を穴として扱わない。
+        part.putalpha(255)
+        im=quantize(part.resize((128,128),Image.Resampling.NEAREST))
+        # 境界は画素のコピーだけで接続する。平均色による平滑化は使わない。
+        a=np.array(im);a[:,-1]=a[:,0];a[-1]=a[0]
+        path,im=save(name,Image.fromarray(a));materials[name]=im
+    for name in ('quiet_floor','quiet_water'):
+        materials[name]=Image.open(ROOT/f'assets/tiles/cave_{name}.png').convert('RGBA')
     floor,lakes=masks();wall=expand(floor,64)&~floor;side=expand(floor,32)&~floor;cap=wall&~side
     terrain=np.zeros((H,W,4),np.uint8);terrain[:,:,3]=255;terrain[:,:,:3]=1
     ground=texture(materials['quiet_floor'],warp=True);terrain[floor]=ground[floor]
-    top=texture(materials['wall_top'],warp=True);face=texture(materials['wall_side'],warp=True)
+    top=texture(materials['wall_top']);face=texture(materials['wall_side'])
     terrain[cap]=top[cap];terrain[side]=face[side]
     water=texture(materials['quiet_water'],warp=True)
     for lake in lakes:
@@ -101,7 +107,7 @@ def main():
     lake_report=[]
     for a in lakes:
         y,x=np.where(a);area=int(a.sum());bbox=int((x.max()-x.min()+1)*(y.max()-y.min()+1));lake_report.append(dict(area=area,bbox_area=bbox,fill_ratio=area/bbox))
-    report=dict(wall_depth_px=64,top_depth_px=32,side_depth_px=32,inner_pillars=2,wall_pixels=int(wall.sum()),top_luma=float(np.array(image)[:,:,:3][cap].mean()),side_luma=float(np.array(image)[:,:,:3][side].mean()),lake_count=3,lakes=lake_report,unique_32px_cells=len(parts),reference_pixels_used=0)
+    report=dict(wall_depth_px=64,top_depth_px=32,side_depth_px=32,wall_coordinate_warp=False,wall_resampling='nearest',wall_edge_blending=False,inner_pillars=2,wall_pixels=int(wall.sum()),top_luma=float(np.array(image)[:,:,:3][cap].mean()),side_luma=float(np.array(image)[:,:,:3][side].mean()),lake_count=3,lakes=lake_report,unique_32px_cells=len(parts),reference_pixels_used=0)
     (OUT/'cave-revision-checks.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf8')
     print(f'CAVE_REVISION_PASS: wall_depth=64 top=32 side=32 lakes=3 variants={len(parts)}')
 

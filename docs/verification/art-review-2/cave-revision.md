@@ -11,3 +11,11 @@
 `floor-mask.png` と壁・湖のマスク、`cave-revision-checks.json` が検査の記録。`tools/check_owner_monsters.py` が壁全体を再計算して一致を調べ、側面が上面より明るいことも実画素から確認する。
 
 生成原画と指示は `assets/source_records/cave-wall-revision.json`。参考JPEGは比較と絵柄の参照専用で、画素の切り出しはしていない。配色は既存のnatural64色以内。変更したのは素材と静止配置だけで、本番のワールドや画面処理には接続していない。
+
+## 2026年9月27日の岩の質感修正
+
+岩面を角張った画素のまとまりと、明確な割れ目・明暗で描き直した。最新の生成指示は `assets/source_records/sprint0-rock-pixel.json`。壁面は128×128pxへ最近傍で縮小し、不透明にして既存のnaturalパレットへ減色する。平均色による境界の平滑化はせず、画素のコピーで端を合わせる。
+
+なめらかに伸びた岩の原因だった、岩面に対する正弦波の座標歪みを外した。床と水の模様は変更せず、壁の厚み64px、上面32px・側面32px、床・壁・湖の輪郭マスク7枚も初回提出版と同じまま。湖の岩岸には新しい岩面を反映する。
+
+`rock-pixel-before-after.png` は岩面の前後を同じ倍率で拡大した比較。`cave-natural-compare.png` は目標と修正版の全体比較。今回の検査は `tools/check_size_rock_review.py` で固定した修正版を読み、配置JSONの実画素と歪みのない岩面の画素が一致することを確かめる。
