@@ -19,7 +19,10 @@
     "data/schema/**",
     ".scope-lock/",
     ".scope-lock/**",
-    "project.godot"
+    "project.godot",
+    "tools/smoke_first_region.gd",
+    "tools/smoke_first_region.gd.uid",
+    "docs/first-region-acceptance.md"
   ],
   "denied_commands": [],
   "budget": {
@@ -66,9 +69,9 @@
     },
     {
       "id": "R-07",
-      "title": "第1章の通し到達",
-      "done_when": "自動プレイスクリプトが、ゲーム開始から第1章クリアフラグ成立まで停止せず到達し、途中でエラーログを出さない",
-      "verify": "godot --headless --path . --script res://tools/smoke_chapter1.gd"
+      "title": "最初の地方の通し到達",
+      "done_when": "自動プレイスクリプトが、ニューゲームから始まりの村の内部で開始し、出口から世界マップへ出て、洞窟2階のボスを倒し、通行証で関所を越えるまで、方向キー・決定キー・画面上のボタン・通常の戦闘操作だけで到達し、docs/first-region-acceptance.md のA01〜A14をすべて満たし、途中でエラーログを出さない",
+      "verify": "godot --headless --path . --script res://tools/smoke_first_region.gd"
     },
     {
       "id": "R-08",
@@ -78,6 +81,13 @@
     }
   ],
   "amendments": [
+    {
+      "at": "2026-09-25",
+      "requirement": "R-07",
+      "change": "R-07を旧「第1章の通し到達」（tools/smoke_chapter1.gd）から新「最初の地方の通し到達」（tools/smoke_first_region.gd、コミットea7e355）へ差し替え。新テスト・UID・受入文書を保護パスに追加。旧テストは履歴として保護を維持する。",
+      "reason": "docs/experience-spec-v2.md の世界マップ攻略型への改訂に伴い、旧第1章の通しは新構造の受入条件でなくなったため。新テストは実装前に作成し、依頼者とClaudeが内容を確認した。",
+      "decided_by": "依頼者（2026年9月25日にClaudeとの会話で明示承認）"
+    },
     {
       "at": "2026-09-25",
       "requirement": "goal,non_negotiables",
