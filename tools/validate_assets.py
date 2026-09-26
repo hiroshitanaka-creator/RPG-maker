@@ -186,6 +186,15 @@ def check_autotile(entry: dict) -> list[str]:
 def check_provenance(entry: dict) -> list[str]:
     """2026年9月26日以降の新項目の出典記録を検査する。"""
     rel = entry.get("path", "<pathなし>")
+    if entry.get('source') == 'owner':
+        fields=('author','provided_at','original_file','modified')
+        errors=[f'{rel}: 依頼者原本の記録 {key} がない' for key in fields if not entry.get(key)]
+        if entry.get('author') != '依頼者' or entry.get('license') != 'LicenseRef-Owner-Provided':
+            errors.append(f'{rel}: 依頼者原本の作者またはライセンスが不一致')
+        original=entry.get('original_file','')
+        if not original.startswith('assets/_incoming/owner-2026-09-26/') or '..' in Path(original).parts or not (REPO_ROOT/original).is_file():
+            errors.append(f'{rel}: 依頼者の原本ファイルが存在しない、または配置が不正')
+        return errors
     if entry.get("source") == "generated":
         fields = ("tool", "generated_at", "prompt_record", "author", "license", "modified")
         errors = [f"{rel}: 生成記録 {key} がない" for key in fields if not entry.get(key)]
@@ -272,7 +281,7 @@ def main() -> int:
         entry_errors, exists = check_asset(entry, entry_palette)
         errors.extend(entry_errors)
         errors.extend(check_autotile(entry))
-        if entry["path"] not in legacy:
+        if entry["path"] not in legacy or entry.get('source') == 'owner':
             errors.extend(check_provenance(entry))
         if not exists and entry.get("status", "required") == "placeholder":
             missing.append(f"{entry['path']} ({entry.get('kind', '-')})")
