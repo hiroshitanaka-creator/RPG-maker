@@ -1,8 +1,8 @@
 {
-  "recorded_at": "2026-09-25T03:05:51.695015+00:00",
+  "recorded_at": "2026-09-26T03:21:20.697759+00:00",
   "kind": "requirement_verification",
   "spec_path": ".scope-lock/spec.lock.json",
-  "spec_sha256": "3314dd55ec927d4b0173a7afb7dc1ec9e65ba327b9ad98ba4f4c295d13463ae3",
+  "spec_sha256": "601a7452fe13be169d28327dfce1946b5a2ee2e7a1b1d8f92924d77dc95dedb3",
   "test_sha256": {
     "test/support/game_test.gd": "c5d452dfbd68a31d9f9c5f7189d2f7e7421df90f019b22db7bb09805fb45e004",
     "test/support/gut_gate.gd": "83d03acd52192b43d5fcb8f2654eb4378f96d0e10a18f47f0bf61e4918852bac",
@@ -121,7 +121,7 @@
     },
     {
       "id": "R-07",
-      "verify": "godot --headless --path . --script res://tools/smoke_chapter1.gd",
+      "verify": "godot --headless --path . --script res://tools/smoke_first_region.gd",
       "exit_code": 0,
       "status": "PASS",
       "tests_ran": true,
