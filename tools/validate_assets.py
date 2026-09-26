@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import wave
 from pathlib import Path
 
 try:
@@ -161,6 +162,51 @@ def collect_png_files() -> set[str]:
     return found
 
 
+def check_provenance(entry: dict) -> list[str]:
+    """2026年9月26日以降の新項目の出典記録を検査する。"""
+    rel = entry.get("path", "<pathなし>")
+    if entry.get("source") == "generated":
+        fields = ("tool", "generated_at", "prompt_record", "author", "license", "modified")
+        errors = [f"{rel}: 生成記録 {key} がない" for key in fields if not entry.get(key)]
+        if entry.get("license") != "LicenseRef-Generated-Project":
+            errors.append(f"{rel}: 生成素材の識別用ライセンスが不一致")
+    else:
+        fields = ("source_url", "author", "license", "retrieved_at", "modified")
+        errors = [f"{rel}: 出典記録 {key} がない" for key in fields if not entry.get(key)]
+        allowed = {"CC0-1.0", "MIT", "BSD-2-Clause", "BSD-3-Clause", "Apache-2.0", "Unlicense"}
+        if entry.get("license") not in allowed:
+            errors.append(f"{rel}: 許可されていない外部ライセンス")
+    return errors
+
+
+def check_audio(entry: dict) -> list[str]:
+    """音を画像として開かず、所在・形式・出典を確かめる。"""
+    errors = check_provenance(entry)
+    rel = entry.get("path", "")
+    path = REPO_ROOT / rel
+    kind = entry.get("kind")
+    allowed = {"bgm": {".ogg"}, "se": {".ogg", ".wav"}}
+    if kind not in allowed or path.suffix.lower() not in allowed.get(kind, set()):
+        errors.append(f"{rel}: 音の種別または拡張子が規約外")
+    if not rel.startswith(f"assets/audio/{kind}/") or ".." in Path(rel).parts:
+        errors.append(f"{rel}: 音の配置が規約外")
+    if not path.is_file():
+        return errors + [f"{rel}: 音声ファイルが存在しない"]
+    try:
+        if path.suffix.lower() == ".ogg":
+            with path.open("rb") as stream:
+                header = stream.read(128)
+            if not header.startswith(b"OggS") or b"\x01vorbis" not in header:
+                errors.append(f"{rel}: OGG Vorbisのヘッダーではない")
+        elif path.suffix.lower() == ".wav":
+            with wave.open(str(path), "rb") as stream:
+                if stream.getnframes() <= 0:
+                    errors.append(f"{rel}: WAVの音声フレームが空")
+    except (OSError, EOFError, wave.Error) as exc:
+        errors.append(f"{rel}: 音声を読めない ({exc})")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="素材台帳に従って画像を検査する")
     parser.add_argument("--strict", action="store_true", help="台帳外のファイルもエラーにする")
@@ -184,11 +230,28 @@ def main() -> int:
     missing: list[str] = []
     registered: set[str] = set()
 
+    # 元の108項目はそのまま、追加項目だけに新しい出典条件を適用する。
+    legacy_path = REPO_ROOT / "assets/source_records/legacy-images.json"
+    legacy = set(json.loads(legacy_path.read_text(encoding="utf-8"))["paths"])
+    palette_cache = {}
+    palette_paths = {p.relative_to(REPO_ROOT).as_posix() for p in (REPO_ROOT / "assets/palette").glob("*.gpl")}
+    palette_paths.update(e.get("palette", palette_rel) for e in entries)
+    for rel in sorted(p for p in palette_paths if p):
+        selected = load_palette(REPO_ROOT / rel)
+        palette_cache[rel] = selected
+        if selected is None:
+            errors.append(f"{rel}: 指定パレットが存在しない、または色が空")
+        elif len(selected) > 64:
+            errors.append(f"{rel}: パレットの色数超過 {len(selected)} 色 / 上限64色")
+
     for entry in entries:
         entry.setdefault("max_colors", defaults.get("max_colors"))
         registered.add(entry["path"])
-        entry_errors, exists = check_asset(entry, palette)
+        entry_palette = palette_cache.get(entry.get("palette", palette_rel), palette)
+        entry_errors, exists = check_asset(entry, entry_palette)
         errors.extend(entry_errors)
+        if entry["path"] not in legacy:
+            errors.extend(check_provenance(entry))
         if not exists and entry.get("status", "required") == "placeholder":
             missing.append(f"{entry['path']} ({entry.get('kind', '-')})")
 
@@ -203,6 +266,22 @@ def main() -> int:
                 print(f"[{label}] {msg}")
 
     print(f"検査対象: {len(entries)} 件")
+
+    audio_entries = registry.get("audio", [])
+    audio_registered = set()
+    for entry in audio_entries:
+        rel = entry.get("path", "")
+        if rel in audio_registered:
+            errors.append(f"{rel}: 音の台帳登録が重複")
+        audio_registered.add(rel)
+        errors.extend(check_audio(entry))
+    for path in (REPO_ROOT / "assets").rglob("*"):
+        if path.suffix.lower() not in {".ogg", ".wav"} or IGNORED_DIRS & set(path.parts):
+            continue
+        rel = path.relative_to(REPO_ROOT).as_posix()
+        if rel not in audio_registered:
+            errors.append(f"{rel}: 音の台帳に登録されていない")
+    print(f"音の検査対象: {len(audio_entries)} 件 / パレット: {len(palette_cache)} 件")
 
     if missing:
         print(f"\n--- 不足素材 ({len(missing)} 件) ---")

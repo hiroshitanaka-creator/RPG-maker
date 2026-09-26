@@ -12,6 +12,9 @@ static func current() -> Dictionary:
 	var registry: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/registry.json"))
 	for entry in registry["assets"]:
 		paths.append(entry["path"])
+	paths.append("assets/palette/bright.gpl")
+	for entry in registry.get("audio",[]):
+		paths.append(entry["path"])
 	paths.sort()
 	var version := Engine.get_version_info()
 	var engine: String = version["string"]+" ["+str(version["hash"]).left(9)+"]"
