@@ -105,7 +105,7 @@
     },
     {
       "path": "tools/smoke_first_region.gd",
-      "sha256": "fb90820cba8685fab9d32b1eaaa6720c9a05fe6661736aedad74751d777f7687"
+      "sha256": "6c74d23b1b541ac9cf034b4713de57ccbc6e1c55704751116df07af204ef94f8"
     },
     {
       "path": "tools/smoke_first_region.gd.uid",
@@ -116,5 +116,5 @@
       "sha256": "d875372b3373e51e049d1225cf16217b44de82ddd82b0be2bfdb3c94c655ebfb"
     }
   ],
-  "amendment": "依頼者の2026-09-25の行動回数採用指示。旧ハッシュはdocs/verification/mastery-amendment-before/frozen-files.jsonに保持。 2026-09-25追記：R-07差し替えに伴い、tools/smoke_first_region.gd・同UID・docs/first-region-acceptance.md（コミットea7e355時点）を依頼者承認で追加。"
+  "amendment": "依頼者の2026-09-25の行動回数採用指示。旧ハッシュはdocs/verification/mastery-amendment-before/frozen-files.jsonに保持。 2026-09-25追記：R-07差し替えに伴い、tools/smoke_first_region.gd・同UID・docs/first-region-acceptance.md（コミットea7e355時点）を依頼者承認で追加。 2026-09-26追記：tools/smoke_first_region.gd に、GodotのJSONが整数を小数型で返すことによる型の不一致を解消する正規化処理を追加（検査項目・件数・上限は不変）。依頼者承認・Claude確認。"
 }
