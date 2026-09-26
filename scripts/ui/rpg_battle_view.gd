@@ -45,7 +45,8 @@ func _draw() -> void:
 		var member: Dictionary=members[i]
 		var visual := CharacterVisuals.appearance(member,"battle",int(frames.get(member["id"],0)))
 		if not visual["available"]:continue
-		var position_on_map := Vector2(368 if i%2==0 else 424,64+i*24)+_impact(member["id"])
+		var positions_on_ground: Array[Vector2]=[Vector2(356,104),Vector2(420,104),Vector2(366,140),Vector2(430,140)]
+		var position_on_map := positions_on_ground[mini(i,3)]+_impact(member["id"])
 		draw_texture_rect_region(_texture(visual["path"]),Rect2(position_on_map,Vector2(48,48)),visual["region"])
 		if selected_actor==member["id"]:
 			draw_texture_rect(_texture("res://assets/ui/cursor_bright.png"),Rect2(position_on_map+Vector2(40,13),Vector2(16,16)),false)
