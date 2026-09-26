@@ -117,6 +117,7 @@ func new_first_region() -> bool:
 	if not new_game(3):return false
 	_state["first_region"] = {"version":1,"reserve":_state["party"].slice(1).duplicate(true),"coins":20}
 	_state["party"] = [_state["party"][0]]
+	_state["inventory"]["world_map"] = 1
 	_state["overworld"] = {"active":true,"layer":"interior","node":"start_village","room":0,"cell":[],"facing":0,"transport":"walk","cleared":[],"opened":[],"entry_lock":""}
 	FirstRegion.place(_state["overworld"],FirstRegion.data()["start"])
 	return true
@@ -140,25 +141,42 @@ func move_first_region(cell: Vector2i) -> Dictionary:
 	if not result.is_empty():play_metrics.mark("moved_cells")
 	return result
 
+func advance_first_region_residents() -> bool:
+	return first_region_active() and _battle == null and FirstRegion.advance_residents(_state)
+
+func use_first_region_potion(actor_id: String) -> bool:
+	if not first_region_active() or _battle != null or int(_state["inventory"].get("potion",0))<=0:return false
+	var member := _member(actor_id)
+	if member.is_empty() or member["hp"]<=0 or member["hp"]>=member["max_hp"]:return false
+	member["hp"]=mini(int(member["max_hp"]),int(member["hp"])+catalog.potion_healing)
+	_state["inventory"]["potion"]-=1
+	return true
+
 
 func interact_first_region() -> Dictionary:
 	if not first_region_active() or _battle != null:return {}
 	var state: Dictionary = _state["overworld"]
 	var target: Vector2i = WorldExpedition.point(state["cell"])+[Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP][state["facing"]]
-	for event in FirstRegion.room(state).get("events",[]):
+	for event in FirstRegion.residents_for(_state):
 		if event["kind"] == "recruit" and FirstRegion.joined(_state,event["actor"]):continue
-		if event["cell"] != [target.x,target.y] and event["cell"] != state["cell"]:continue
+		var event_position := FirstRegion.event_cell(_state,event)
+		var direction: Vector2i = [Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP][state["facing"]]
+		var across_counter: bool = int(event.get("reach",1)) == 2 and event_position == target+direction
+		if event_position != target and event_position != WorldExpedition.point(state["cell"]) and not across_counter:continue
+		FirstRegion.face_event(_state,event)
 		match event["kind"]:
+			"npc":
+				return {"kind":"dialogue","speaker":event.get("label","村人"),"text":event["text"]}
 			"recruit":
 				for actor in _state["first_region"]["reserve"]:
 					if actor["id"] == event["actor"]:
 						_state["party"].append(actor.duplicate(true))
 						_state["first_region"]["reserve"].erase(actor)
-						return {"kind":"dialogue","text":event["text"]+[actor["name"]+"が仲間になった。"]}
+						return {"kind":"dialogue","speaker":actor["name"],"speaker_actor":actor["id"],"text":event["text"]+[actor["name"]+"が仲間になった。"]}
 				return {"kind":"dialogue","text":["準備ができたら出発しよう。"]}
 			"rest":
 				rest()
-				return {"kind":"dialogue","text":["宿で休み、HPとMPが回復しました。"]}
+				return {"kind":"dialogue","speaker":event.get("label","宿の主人"),"sound":"heal","text":["宿で休み、HPとMPが回復しました。"]}
 			"shop":
 				return {"kind":"shop","text":event["text"]}
 			"weapon_shop":
@@ -167,7 +185,7 @@ func interact_first_region() -> Dictionary:
 				if event["id"] in state["opened"]:return {"kind":"dialogue","text":["宝箱は空です。"]}
 				state["opened"].append(event["id"])
 				_state["inventory"][event["item"]] = int(_state["inventory"].get(event["item"],0))+int(event["amount"])
-				return {"kind":"dialogue","text":["回復薬を%d個手に入れた。" % event["amount"]]}
+				return {"kind":"dialogue","speaker":"宝箱","sound":"chest","text":["回復薬を%d個手に入れた。" % event["amount"]]}
 	return {}
 
 
@@ -192,6 +210,7 @@ func start_first_region_battle(event: Dictionary) -> BattleState:
 	_world_battle_id = event["id"]
 	if _world_battle_id == "first_boss":
 		var foe: Combatant = encounter.living(Combatant.Team.ENEMY)[0]
+		foe.display_name="水門の荒獣"
 		for key in FirstRegion.data()["boss"]["stats"]:
 			foe.set("max_hp" if key == "hp" else key,int(FirstRegion.data()["boss"]["stats"][key]))
 		foe.hp = foe.max_hp

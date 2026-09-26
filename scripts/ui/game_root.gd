@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS, WORLD, WORLD_CHOICE, WORLD_ATLAS, JOURNEY_DEVICE, MECHANICS, RULE_UPGRADE }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS, WORLD, WORLD_CHOICE, WORLD_ATLAS, JOURNEY_DEVICE, MECHANICS, RULE_UPGRADE, REGION_COMMANDS, REGION_ITEMS }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -52,6 +52,18 @@ var _tactic_actor: String = ""
 var _tactic_ability: String = "__observe"
 var _tactic_target: String = ""
 var _region_shop: String = ""
+var _region_screen: FirstRegionScreen
+var _rpg_audio: RpgAudio
+var _region_speaker := ""
+var _region_speaking_actor := ""
+var _region_place_key := ""
+var _region_place_ms := 0
+var _region_resident_time := 0.0
+var _region_resident_ms := 0
+var _region_resident_from: Dictionary = {}
+var _region_victory := false
+var _region_focus_label := ""
+var _region_flash_ms := -1000
 
 
 func _ready() -> void:
@@ -64,6 +76,8 @@ func _ready() -> void:
 	OS.add_logger(_diagnostics)
 	game = GameSession.new()
 	game.enable_recording("user://playthroughs" if qa_prefix.is_empty() else "user://qa_playthroughs/"+qa_prefix)
+	_rpg_audio=RpgAudio.new()
+	add_child(_rpg_audio)
 	var font := SystemFont.new()
 	font.font_names = PackedStringArray(["Yu Gothic UI", "Meiryo", "Noto Sans CJK JP", "sans-serif"])
 	var ui_theme := Theme.new()
@@ -90,7 +104,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if mode == Mode.WORLD and game.first_region_active() and _world_mover.active():
 		if _world_mover.advance(delta) > 0:
+			var before_region := game.overworld_state()
 			var result := game.move_first_region(_world_mover.cell)
+			var after_region := game.overworld_state()
+			if before_region["layer"] != after_region["layer"] or before_region["node"] != after_region["node"]:
+				_rpg_audio.effect("door")
+			elif before_region["room"] != after_region["room"]:
+				_rpg_audio.effect("stairs" if after_region["node"] == "first_cave" else "door")
 			_world_mover.stop()
 			_world_motion_ms = Time.get_ticks_msec()
 			_walk_frame = (_walk_frame+1)%4
@@ -129,9 +149,11 @@ func _process(delta: float) -> void:
 	if mode == Mode.WORLD and not _world_mover.active() and _walk_frame != 0 and Time.get_ticks_msec()-_world_motion_ms > 180:
 		_walk_frame = 0
 		_refresh()
+	_process_region_display(delta)
 
 
 func _exit_tree() -> void:
+	if is_instance_valid(_rpg_audio):_rpg_audio.shutdown()
 	if game != null:
 		game.flush_recording()
 	if game != null and game.party_defeated() and recovery_available():
@@ -152,6 +174,18 @@ func _input(event: InputEvent) -> void:
 		return
 	if not event is InputEventKey or not event.pressed:
 		return
+	if game.first_region_active() and mode in [Mode.BATTLE,Mode.DEFEAT] and _replay.is_empty() and event.keycode in [KEY_UP,KEY_DOWN,KEY_LEFT,KEY_RIGHT] and get_viewport().gui_get_focus_owner()==null and is_instance_valid(_region_screen):
+		_region_screen.focus_command()
+		get_viewport().set_input_as_handled()
+		return
+	if game.first_region_active() and event.keycode==KEY_ESCAPE:
+		if mode==Mode.WORLD:_region_ui_action({"kind":"ui_menu"})
+		elif mode==Mode.REGION_COMMANDS:_region_ui_action({"kind":"ui_resume"})
+		elif mode in [Mode.REGION_ITEMS,Mode.WORLD_ATLAS,Mode.WORLD_CHOICE]:_region_ui_action({"kind":"ui_back"})
+		elif mode in [Mode.PARTY,Mode.JOURNAL,Mode.MECHANICS,Mode.RULE_UPGRADE]:_region_ui_action({"kind":"back"})
+		elif mode==Mode.EROSION_CONFIRMATION:_region_ui_action({"kind":"cancel_erosion"})
+		get_viewport().set_input_as_handled()
+		return
 	if mode == Mode.WORLD:
 		var movement := Vector2i.ZERO
 		match event.keycode:
@@ -160,6 +194,7 @@ func _input(event: InputEvent) -> void:
 			KEY_UP, KEY_W: movement = Vector2i.UP
 			KEY_DOWN, KEY_S: movement = Vector2i.DOWN
 			KEY_ENTER, KEY_SPACE, KEY_E:
+				if game.first_region_active():_rpg_audio.effect("confirm")
 				submit_player_action({"kind":"world_interact"})
 				get_viewport().set_input_as_handled()
 				return
@@ -168,7 +203,9 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 		return
 	if mode == Mode.DIALOGUE and event.keycode in [KEY_ENTER, KEY_SPACE, KEY_E]:
+		if game.first_region_active():_rpg_audio.effect("confirm")
 		submit_player_action({"kind":"confirm"})
+		if game.first_region_active():get_viewport().set_input_as_handled()
 		get_viewport().set_input_as_handled()
 	elif mode == Mode.FIELD:
 		var delta := Vector2i.ZERO
@@ -188,6 +225,8 @@ func _input(event: InputEvent) -> void:
 
 func start_new_game(party_size: int = 4, first_region: bool = false) -> void:
 	_world_mover.stop()
+	_region_place_key=""
+	_region_victory=false
 	var previous_source: String = game.play_metrics.source
 	if not (game.new_first_region() if first_region else game.new_game(party_size)):
 		_notice = "ゲームを開始できません。" + "\n".join(game.errors)
@@ -245,6 +284,8 @@ func automation_snapshot() -> Dictionary:
 	names[Mode.WORLD] = "world"
 	names[Mode.WORLD_CHOICE] = "world_choice"
 	names[Mode.WORLD_ATLAS] = "world_atlas"
+	names[Mode.REGION_COMMANDS]="menu"
+	names[Mode.REGION_ITEMS]="items"
 	var result := {"mode": "error" if not diagnostics.is_empty() else names[mode],
 		"chapter1_cleared": diagnostics.is_empty() and saved.get("progress_flags", {}).get("chapter1_cleared", false)}
 	result["story_complete"] = diagnostics.is_empty() and game.story_complete()
@@ -728,6 +769,7 @@ func _battle_action(action: Dictionary) -> bool:
 				_replay.append(event.duplicate(true))
 		_target_action.clear()
 		if encounter.phase == BattleState.Phase.VICTORY:
+			if game.first_region_active():_region_victory=true;_region_speaker="戦闘の結果";_region_flash_ms=Time.get_ticks_msec()
 			game.play_metrics.mark("battles_won")
 			var before := game.export_state()
 			game.finish_battle()
@@ -803,9 +845,21 @@ func _battle_action(action: Dictionary) -> bool:
 
 
 func _refresh() -> void:
+	var focused := get_viewport().gui_get_focus_owner()
+	_region_focus_label=focused.text if mode==Mode.BATTLE and focused is Button and is_instance_valid(_region_screen) and _region_screen.is_ancestor_of(focused) else ""
 	for child in get_children():
+		if child==_rpg_audio:continue
 		remove_child(child)
 		child.queue_free()
+	_region_screen=null
+	if game.first_region_active():
+		_sync_region_music()
+		if mode in [Mode.WORLD,Mode.DIALOGUE,Mode.BATTLE,Mode.WORLD_CHOICE,Mode.WORLD_ATLAS,Mode.REGION_COMMANDS,Mode.REGION_ITEMS,Mode.DEFEAT]:
+			_render_region_screen()
+			return
+		if mode in [Mode.PARTY,Mode.JOURNAL,Mode.MECHANICS,Mode.EROSION_CONFIRMATION,Mode.RULE_UPGRADE]:
+			_render_region_panel()
+			return
 	var margin := MarginContainer.new()
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for side in ["left", "right", "top", "bottom"]:
@@ -1092,18 +1146,23 @@ func _world_action(action: Dictionary) -> bool:
 
 func _first_region_result(result: Dictionary) -> void:
 	_facing = int(game.overworld_state()["facing"])
+	if result.has("sound"):_rpg_audio.effect(result["sound"])
 	match result.get("kind",""):
 		"battle":
+			_region_victory=false
+			_region_flash_ms=Time.get_ticks_msec()
 			_checkpoint = game.export_state()
 			var encounter := game.start_first_region_battle(result)
 			if encounter == null:return
 			_persist_checkpoint()
 			mode = Mode.BATTLE
-			_battle_log = ["洞窟の番人（仮）が現れた。" if result["id"] == "first_boss" else "魔物が現れた。"]
+			_battle_log = ["水門の荒獣が現れた。" if result["id"] == "first_boss" else "魔物が現れた。"]
 			_actor = encounter.pending()[0].id
 			_target_action.clear()
 		"dialogue":
 			_show_dialogue(result["text"],false,Mode.WORLD)
+			_region_speaker=str(result.get("speaker","カイナ"))
+			_region_speaking_actor=str(result.get("speaker_actor",""))
 		"shop", "weapon_shop":
 			_region_shop = result["kind"]
 			mode = Mode.WORLD_CHOICE
@@ -1133,7 +1192,7 @@ func _first_region_action(action: Dictionary) -> bool:
 			var current := WorldExpedition.point(game.overworld_state()["cell"])
 			var target := current+direction
 			if not game.first_region_walkable(target):
-				_notice = "関所（仮）：通行証が必要です。" if game.overworld_state()["layer"] == "world" and [target.x,target.y] == FirstRegion.data()["gate"]["cell"]["cell"] else ""
+				_notice = "門番：通行証が必要です。" if game.overworld_state()["layer"] == "world" and [target.x,target.y] == FirstRegion.data()["gate"]["cell"]["cell"] else ""
 				return true
 			var path: Array[Vector2i] = [current,target]
 			if not _world_mover.begin(path,"walk",game.first_region_walkable):return false
@@ -2187,3 +2246,156 @@ func _render_rule_upgrade() -> void:
 	text.text="現在地、所持技、解決済みの出来事、魔物化と不可逆の履歴を保持します。取得済みマスターは維持し、未取得の職はJPと職別修練の両条件が必要になります。未記録の修練回数は0から開始します。\n以前の育成形式1から更新する場合だけ、JPを新しい必要量へ換算しEXPはLv1から開始します。形式2のEXP・JPはそのままです。侵蝕は戦闘0.2・専用技1行動0.1、祠後は技の再習得が必要です。\n更新は確認した場合だけ行います。"
 	_body.add_child(text)
 	_action_button(_body,"引き継ぐ",{"kind":"confirm_rule_upgrade"});_action_button(_body,"今は戻る",{"kind":"back"})
+
+
+func _sync_region_music() -> void:
+	if mode==Mode.WORLD:_region_victory=false;_region_speaking_actor=""
+	var track := "village"
+	var state := game.overworld_state()
+	if state["layer"]=="world":track="world"
+	elif state["node"]=="first_cave":track="cave"
+	if mode==Mode.BATTLE:track="boss" if game.current_encounter_id()=="first_boss" else "battle"
+	elif _region_victory:track="victory"
+	_rpg_audio.play_music(track)
+
+func _region_background() -> String:
+	var state := game.overworld_state()
+	if state["node"]=="first_cave":return "cave"
+	if state["layer"]=="world":
+		var map: Dictionary=FirstRegionPresentation.data()["maps"]["world"]
+		var local := WorldExpedition.point(state["cell"])-WorldExpedition.point(map["origin"])
+		if local.x>=0 and local.y>=0 and local.x<map["width"] and local.y<map["height"] and str(map["terrain"][local.y]).substr(local.x,1)=="f":return "forest"
+	return "plains"
+
+func _render_region_screen() -> void:
+	if mode==Mode.WORLD_ATLAS:
+		var atlas := FirstRegionAtlas.new()
+		atlas.saved=game.export_state()
+		atlas.closed.connect(func()->void:_region_ui_action({"kind":"ui_back"}))
+		add_child(atlas)
+		return
+	var state := game.overworld_state()
+	var key := "%s:%s:%d" % [state["layer"],state["node"],state["room"]]
+	if key!=_region_place_key:_region_place_key=key;_region_place_ms=Time.get_ticks_msec()
+	_region_screen=FirstRegionScreen.new()
+	_region_screen.game=game
+	_region_screen.screen_mode={Mode.WORLD:"world",Mode.DIALOGUE:"dialogue",Mode.BATTLE:"battle",Mode.WORLD_CHOICE:"shop",Mode.REGION_COMMANDS:"commands",Mode.REGION_ITEMS:"items",Mode.DEFEAT:"defeat"}[mode]
+	_region_screen.recovery_available=recovery_available()
+	_region_screen.actor=_actor
+	_region_screen.focus_label=_region_focus_label
+	_region_screen.flash_alpha=0.22*maxf(0.0,1.0-(Time.get_ticks_msec()-_region_flash_ms)/180.0)
+	_region_screen.target_action=_target_action
+	_region_screen.notice=_notice
+	_region_screen.walk_frame=_walk_frame
+	_region_screen.battle_background=_region_background()
+	_region_screen.speaker=_region_speaker
+	_region_screen.speaking_actor=_region_speaking_actor if mode==Mode.DIALOGUE else ""
+	if mode==Mode.DIALOGUE:_region_screen.message=_messages[_message_index]
+	if mode==Mode.WORLD_CHOICE:_region_screen.speaker="道具屋" if _region_shop=="shop" else "武器屋"
+	if Time.get_ticks_msec()-_region_place_ms<2200:_region_screen.place_name=FirstRegionPresentation.place_name(state)
+	if not _replay.is_empty():
+		_region_screen.replay=_replay[_replay_index]
+		_region_screen.replay_members=_replay_party
+		_region_screen.replay_enemies=_replay_enemies
+		var code: String=_replay[_replay_index].get("code","")
+		if code in ["damage","fallen"]:_rpg_audio.effect("damage")
+		elif code in ["heal","revive"]:_rpg_audio.effect("heal")
+	_region_screen.action_requested.connect(_region_ui_action)
+	add_child(_region_screen)
+
+func _render_region_panel() -> void:
+	_region_screen=FirstRegionScreen.new()
+	_region_screen.game=game
+	_region_screen.screen_mode="backdrop"
+	add_child(_region_screen)
+	var window := _region_screen._window(Rect2(8,8,496,238))
+	if mode==Mode.PARTY:
+		# 編成側がスクロール枠を持つので、親へ二重に作らない。
+		_body=window
+		_body.custom_minimum_size=Vector2(478,220)
+	else:
+		var scroll := ScrollContainer.new()
+		scroll.custom_minimum_size=Vector2(478,220)
+		scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+		window.add_child(scroll)
+		_body=VBoxContainer.new()
+		_body.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		_body.custom_minimum_size.x=466
+		scroll.add_child(_body)
+	match mode:
+		Mode.PARTY:_render_party()
+		Mode.JOURNAL:_render_journal()
+		Mode.MECHANICS:_render_mechanics()
+		Mode.EROSION_CONFIRMATION:_render_erosion_confirmation()
+		Mode.RULE_UPGRADE:_render_rule_upgrade()
+	var close := Button.new()
+	close.text="戻る"
+	close.position=Vector2(384,254);close.size=Vector2(120,26)
+	close.pressed.connect(func()->void:_region_ui_action({"kind":"cancel_erosion" if mode==Mode.EROSION_CONFIRMATION else "back"}))
+	_region_screen.add_child(close)
+
+func _region_ui_action(action: Dictionary) -> void:
+	var kind: String=action.get("kind","")
+	_rpg_audio.effect("cancel" if kind in ["ui_back","ui_resume","ui_cancel_target","back","cancel_erosion"] else "confirm")
+	match kind:
+		"ui_menu":
+			if _world_mover.active():return
+			mode=Mode.REGION_COMMANDS;_notice=""
+		"ui_resume":_resume_current();return
+		"ui_title":_to_menu();return
+		"ui_items":mode=Mode.REGION_ITEMS
+		"ui_atlas":
+			if int(game.export_state()["inventory"].get("world_map",0))<=0:return
+			mode=Mode.WORLD_ATLAS
+		"ui_back":mode=Mode.REGION_ITEMS if mode==Mode.WORLD_ATLAS else Mode.REGION_COMMANDS if mode==Mode.REGION_ITEMS else Mode.WORLD
+		"ui_load":_load_save();return
+		"ui_potion":
+			if game.use_first_region_potion(action["actor"]):_rpg_audio.effect("heal")
+		"ui_actor":_select_actor(action["actor"]);return
+		"ui_target":_choose_target(action["action"],action.get("ability",""));return
+		"ui_cancel_target":_target_action.clear()
+		"save":
+			if mode==Mode.REGION_COMMANDS:_notice="場所と向きを保存しました。" if game.save_game(save_path) else "保存できませんでした。"
+			else:submit_player_action(action);return
+		"party":
+			_party_return=Mode.WORLD;mode=Mode.PARTY
+		"journal":
+			_journal_return=Mode.WORLD;mode=Mode.JOURNAL
+		_:
+			if kind in ["attack","ability"]:_rpg_audio.effect("attack")
+			submit_player_action(action);return
+	_refresh()
+
+func _process_region_display(delta: float) -> void:
+	if game==null or not game.first_region_active():return
+	if mode==Mode.WORLD:
+		_region_resident_time+=delta
+		if _region_resident_time>=1.3 and not _world_mover.active():
+			_region_resident_time=0.0
+			var saved := game.export_state()
+			var before: Dictionary={}
+			for event in FirstRegion.residents_for(saved):before[FirstRegion.event_key(saved["overworld"],event)]=FirstRegion.event_cell(saved,event)
+			if game.advance_first_region_residents():_region_resident_from=before;_region_resident_ms=Time.get_ticks_msec();_refresh()
+	if is_instance_valid(_region_screen):
+		if is_instance_valid(_region_screen.place_label):_region_screen.place_label.visible=Time.get_ticks_msec()-_region_place_ms<2200
+		if is_instance_valid(_region_screen.map_view):
+			var view: FirstRegionView=_region_screen.map_view
+			view.movement_offset=Vector2.ZERO
+			if _world_mover.active() and _world_mover.route.size()==2:
+				view.movement_offset=Vector2(_world_mover.route[1]-_world_mover.route[0])*clampf(_world_mover.elapsed_seconds/0.15,0.0,1.0)
+				view.walk_frame=1 if _walk_frame%2==0 else 3
+			view.npc_offsets.clear()
+			var fraction := clampf((Time.get_ticks_msec()-_region_resident_ms)/150.0,0.0,1.0)
+			if fraction<1.0:
+				for event in FirstRegion.residents_for(view.saved):
+					var key := FirstRegion.event_key(view.saved["overworld"],event)
+					var current := FirstRegion.event_cell(view.saved,event)
+					if _region_resident_from.has(key) and current!=_region_resident_from[key]:view.npc_offsets[key]=Vector2(_region_resident_from[key]-current)*(1.0-fraction)
+			view.queue_redraw()
+	if mode==Mode.WORLD and not _world_mover.active() and Time.get_ticks_msec()-_last_move_ms>=150:
+		var direction := Vector2i.ZERO
+		if Input.is_physical_key_pressed(KEY_LEFT) or Input.is_physical_key_pressed(KEY_A):direction=Vector2i.LEFT
+		elif Input.is_physical_key_pressed(KEY_RIGHT) or Input.is_physical_key_pressed(KEY_D):direction=Vector2i.RIGHT
+		elif Input.is_physical_key_pressed(KEY_UP) or Input.is_physical_key_pressed(KEY_W):direction=Vector2i.UP
+		elif Input.is_physical_key_pressed(KEY_DOWN) or Input.is_physical_key_pressed(KEY_S):direction=Vector2i.DOWN
+		if direction!=Vector2i.ZERO:submit_player_action({"kind":"world_move","dx":direction.x,"dy":direction.y})

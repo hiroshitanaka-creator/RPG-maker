@@ -1,0 +1,54 @@
+--- a/tools/smoke_first_region.gd
++++ b/tools/smoke_first_region.gd
+@@ -195,7 +195,7 @@
+ 
+ func _key(code: int) -> bool:
+ 	if not _active():return false
+-	if code not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_ENTER]:
++	if code not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_ENTER, KEY_ESCAPE]:
+ 		_input_violation = true
+ 		return false
+ 	_input_log.append("key:" + str(code))
+@@ -496,10 +496,12 @@
+ func _save_load() -> bool:
+ 	var before := _save_observation()
+ 	if before.is_empty() or before["floor"] != 1 or _at(_definition["save_probe"]):return false
++	if not await _key(KEY_ESCAPE):return false
+ 	if not await _button(["セーブ"]):return false
++	if not await _button(["現在の冒険に戻る"]):return false
+ 	if not await _walk(_definition["save_probe"]):return false
+ 	if _same(before, _save_observation()):return false
+-	if not await _button(["メニュー"]):return false
++	if not await _key(KEY_ESCAPE):return false
+ 	if not await _button(["手動セーブから再開"]):return false
+ 	if not await _settle():return false
+ 	return _same(before, _save_observation())
+@@ -609,7 +611,7 @@
+ 	var pose := _pose()
+ 	_record("A01", _started_by_ui and pose.get("layer") == "interior" and pose.get("node") == "start_village" and _party().size() >= 1, "New Game後のstart_village内部・1人以上" if pose.get("node") == "start_village" else "New Game後にstart_village内部の位置情報がない")
+ 	# 現行版の禁止ラベルも実際にメニューを開いて検出する。
+-	if await _button(["メニュー"]):
++	if await _key(KEY_ESCAPE):
+ 		_menu_checked = true
+ 		await _frames()
+ 		if not await _button(["現在の冒険に戻る"]):
+--- a/docs/first-region-acceptance.md
++++ b/docs/first-region-acceptance.md
+@@ -54,7 +54,7 @@
+ 
+ 位置と向きは、会話・メニュー・戦闘中にも直前の探索状態として読める必要がある。観測不足を「戦闘なし」「警告なし」等へ置き換えない。キーや返り値が不足する場合はFAILとし、未実装APIを構文上の必須参照にしてロードエラーを起こさない。
+ 
+-通常UIの操作には既存のラベルを再利用する。New Gameは「新しくはじめる」または現行の「新しくはじめる（3人）」、ほかは「メニュー」「現在の冒険に戻る」「セーブ」「手動セーブから再開」。表示されている有効なボタンへ入力する。将来UI名を変更する場合は、実装に合わせて無断でテストを緩めず、レビューで操作契約を合わせる。
++通常UIの操作には既存のラベルを再利用する。New Gameは「新しくはじめる」または現行の「新しくはじめる（3人）」、ほかは「現在の冒険に戻る」「セーブ」「手動セーブから再開」。探索中はEscapeキーでコマンド窓を開く。保存後は「現在の冒険に戻る」で閉じてから移動し、ロード時もEscapeキーで窓を開く。表示されている有効なボタンへ入力する。将来UI名を変更する場合は、実装に合わせて無断でテストを緩めず、レビューで操作契約を合わせる。
+ 
+ ## 実装側が提供するゲームデータ
+ 
+@@ -98,7 +98,7 @@
+ 
+ ## A14を保証する方法と判定の境界
+ 
+-入力処理を`_key`・`_button`・`_combat_command`へ集める。キーは上下左右と決定だけ、戦闘コマンドは攻撃とターン確定だけを許可し、すべて記録する。読み取りは既存のexport_state・automation_snapshot・current_battleと実データ・表示ノードに限る。
++入力処理を`_key`・`_button`・`_combat_command`へ集める。キーは上下左右と決定、通常メニューを開くEscapeだけ、戦闘コマンドは攻撃とターン確定だけを許可し、すべて記録する。読み取りは既存のexport_state・automation_snapshot・current_battleと実データ・表示ノードに限る。
+ 
+ ゲームの`new_game`・`start_new_game`を直接呼ばず、保存・ロードも実際のUIを使う。位置・向き・HP・JP・所持品・進行フラグ・`_last_move_ms`の代入、import_state、勝利確定、隠しコマンドはコードに含めない。`SceneTree`を直接継承し、旧スモークのコードはロードせず、このテスト内へ複写した読み取り専用BFSだけを利用する。A14は入力が1回送れただけではPASSにならず、実移動・実戦闘と全経路の到達が必要である。
+ 
