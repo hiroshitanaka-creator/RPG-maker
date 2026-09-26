@@ -3,36 +3,6 @@
 2026年9月26日取得。以下は新素材だけの記録。個別ファイルの対応・加工内容は `assets/registry.json` と `docs/asset-sourcing-2026-09.md` に記録する。生成画像に外部素材のライセンスを流用しない。
 
 
-## kenney_rpg
-
-配布元に同梱された表記：
-
-```text
-###############################################################################
-
-
-	Roguelike pack
-	by Kenney Vleugels for Kenney (www.kenney.nl)
-	with help by Lynn Evers (Twitter: @EversLynn)
-
-			------------------------------
-
-	License (Creative Commons Zero, CC0)
-	http://creativecommons.org/publicdomain/zero/1.0/
-
-	You may use these graphics in personal and commercial projects.
-	Credit (Kenney or www.kenney.nl) would be nice but is not mandatory.
-
-			------------------------------
-
-	Donate:   http://donate.kenney.nl/
-	Request:  http://request.kenney.nl/
-
-
-###############################################################################
-```
-
-
 ## interface-sounds
 
 配布元に同梱された表記：

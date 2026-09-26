@@ -1,0 +1,42 @@
+スプリントA ローカル検証結果
+
+python tools/validate_assets.py --strict
+検査対象: 233 件
+音の検査対象: 14 件 / パレット: 2 件
+問題なし
+
+python tools/check_frozen_files.py
+保護対象26件、一致26件。
+
+python3 D:/Codex/.codex/scope-lock/scripts/verify_cli.py --quiet .
+PASS R-01  (2.9s)
+PASS R-02  (11.7s)
+PASS R-03  (2.6s)
+PASS R-04  (3.1s)
+PASS R-05  (2.5s)
+PASS R-06  (3.1s)
+PASS R-07  (28.3s)
+PASS R-08  (18.4s)
+
+[scope-lock] all verifiable requirements pass
+
+godot --headless --path . --script res://tools/check_v1_finish.gd
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+V1_FINISH_PASS: 試遊履歴の独立保存・復帰・版識別・画面領域を確認
+
+python tools/check_build_identity.py
+BUILD_ID_PASS: 実行版の一致・職業/敵/物語/処理の変更検出・旧記録と混在の非受入
+
+godot --headless --path . --script res://tools/check_party_playtest.gd
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PARTY_PLAYTEST_PASS: 4人歩行・先頭保存・32魔物外見・実戦闘の攻撃/被弾・計測/評価/保存を検証
+
+Godotインポート終了0、ERROR / WARNING / Parse Error 検出0件。
+ART_A_IMPORT_PASS: assets=111 party=12 periodic_patterns=13 edge_mismatches=0
+ART_A_ADJACENCY_PASS: connections=112 mismatches=0
+ART_A_SCOPE_PASS: 650 unchanged files; party shared palettes=16 or fewer; ground=47
+全16方向組で3コマが別画像。花の外周は透明。
+
+CIはpush後の終了を確認して最終報告に記載する。ここには未実施の成功を書かない。

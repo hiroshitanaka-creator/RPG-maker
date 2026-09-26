@@ -159,3 +159,162 @@ BGMは44100 HzステレオOGG Vorbis。80 msの循環クロスフェードと両
 ## 判断を残す点
 
 既存の仲間は細身で暗め、新NPCは頭身が低く色が明るい。今回の画像では両者を変更せず並べた。依頼者がこの相性を判断する。音楽の好み・繰り返しの心地よさと画面上の最終見え方は、人間による確認をまだ行っていない。依頼範囲の素材不足はない。
+
+## 2026年9月26日：絵柄統一スプリントA
+
+上の素材調達一覧と検査記録は前スプリント時点の履歴。以下の画像については、この節と現在の台帳を優先する。
+
+既存69画像を差し替え、42画像を追加した。仲間の基本歩行・戦闘・顔は12画像。Kenney由来のゲーム画像55件は同じパスで置き換え、ファイルの削除は0件。音8件のKenney素材は引き続き使う。旧512×512アトラス2枚も新素材で組み直し、サイズと参照番号を維持した。
+
+基本衣装は設定画で固定し、生成時にはその人物の設定画を参照入力として渡した。顔・髪型・体格・旅服を原画と縮小後の一覧で照合した。左右反転で歩行の方向を作っていない。設定画と比較画像への依頼者の承認は、作成・検査の完了とは別に扱う。
+
+全画像は新生成または承認済み生成画像からの切り出し。ツールはimagegenとPython/Pillow、日付は2026年9月26日。外部素材に付けるCC0を流用せず、LicenseRef-Generated-Projectとして生成記録を残す。
+
+| ファイル | サイズ | 元の生成記録 | 更新 |
+| --- | --- | --- | --- |
+| `assets/characters/pc_01/battle.png` | 144×48 | `assets/source_records/art-sprint-a.json#pc_01_battle` | 差し替え |
+| `assets/characters/pc_01/portrait.png` | 64×64 | `assets/source_records/art-sprint-a.json#pc_01_design` | 差し替え |
+| `assets/characters/pc_01/walk.png` | 96×192 | `assets/source_records/art-sprint-a.json#pc_01_walk` | 差し替え |
+| `assets/characters/pc_02/battle.png` | 144×48 | `assets/source_records/art-sprint-a.json#pc_02_battle` | 差し替え |
+| `assets/characters/pc_02/portrait.png` | 64×64 | `assets/source_records/art-sprint-a.json#pc_02_design` | 差し替え |
+| `assets/characters/pc_02/walk.png` | 96×192 | `assets/source_records/art-sprint-a.json#pc_02_walk` | 差し替え |
+| `assets/characters/pc_03/battle.png` | 144×48 | `assets/source_records/art-sprint-a.json#pc_03_battle` | 差し替え |
+| `assets/characters/pc_03/portrait.png` | 64×64 | `assets/source_records/art-sprint-a.json#pc_03_design` | 差し替え |
+| `assets/characters/pc_03/walk.png` | 96×192 | `assets/source_records/art-sprint-a.json#pc_03_walk` | 差し替え |
+| `assets/characters/pc_04/battle.png` | 144×48 | `assets/source_records/art-sprint-a.json#pc_04_battle` | 差し替え |
+| `assets/characters/pc_04/portrait.png` | 64×64 | `assets/source_records/art-sprint-a.json#pc_04_design` | 差し替え |
+| `assets/characters/pc_04/walk.png` | 96×192 | `assets/source_records/art-sprint-a.json#pc_04_walk` | 差し替え |
+| `assets/objects/chest.png` | 64×32 | `assets/source_records/art-sprint-a.json#chest` | 差し替え |
+| `assets/objects/gate.png` | 192×96 | `assets/source_records/art-sprint-a.json#gate` | 差し替え |
+| `assets/tiles/bright_barrel.png` | 32×32 | `assets/source_records/art-sprint-a.json#furniture` | 差し替え |
+| `assets/tiles/bright_bed.png` | 32×64 | `assets/source_records/art-sprint-a.json#furniture` | 差し替え |
+| `assets/tiles/bright_bridge.png` | 64×64 | `assets/source_records/art-sprint-a.json#bridge_fence` | 差し替え |
+| `assets/tiles/bright_cave_floor.png` | 32×32 | `assets/source_records/art-sprint-a.json#interior_surfaces` | 差し替え |
+| `assets/tiles/bright_cave_wall.png` | 64×64 | `assets/source_records/art-sprint-a.json#cave_wall` | 差し替え |
+| `assets/tiles/bright_chair.png` | 32×32 | `assets/source_records/art-sprint-a.json#furniture` | 差し替え |
+| `assets/tiles/bright_deep_forest.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 差し替え |
+| `assets/tiles/bright_deep_forest_edge_east.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_inner_ne.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_inner_nw.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_inner_se.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_inner_sw.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_ne.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_north.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_nw.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_se.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_south.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_sw.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_deep_forest_edge_west.png` | 128×128 | `assets/source_records/art-sprint-a.json#deep_forest` | 追加 |
+| `assets/tiles/bright_fence.png` | 32×32 | `assets/source_records/art-sprint-a.json#bridge_fence` | 差し替え |
+| `assets/tiles/bright_flowers.png` | 32×32 | `assets/source_records/art-sprint-a.json#flowers` | 差し替え |
+| `assets/tiles/bright_forest.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 差し替え |
+| `assets/tiles/bright_forest_edge_east.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_inner_ne.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_inner_nw.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_inner_se.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_inner_sw.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_ne.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_north.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_nw.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_se.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_south.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_sw.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_forest_edge_west.png` | 128×128 | `assets/source_records/art-sprint-a.json#forest` | 追加 |
+| `assets/tiles/bright_grass.png` | 32×32 | `assets/source_records/art-sprint-a.json#grass_set` | 差し替え |
+| `assets/tiles/bright_grass_2.png` | 32×32 | `assets/source_records/art-sprint-a.json#grass_set` | 追加 |
+| `assets/tiles/bright_grass_3.png` | 32×32 | `assets/source_records/art-sprint-a.json#grass_set` | 追加 |
+| `assets/tiles/bright_hills.png` | 128×128 | `assets/source_records/art-sprint-a.json#hills` | 差し替え |
+| `assets/tiles/bright_house_door.png` | 32×32 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_house_roof.png` | 128×64 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_house_wall.png` | 32×32 | `assets/source_records/art-sprint-a.json#interior_surfaces` | 差し替え |
+| `assets/tiles/bright_house_window.png` | 32×32 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_inn_counter.png` | 64×32 | `assets/source_records/art-sprint-a.json#furniture` | 差し替え |
+| `assets/tiles/bright_inn_door.png` | 32×32 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_inn_roof.png` | 128×64 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_inn_wall.png` | 32×32 | `assets/source_records/art-sprint-a.json#interior_surfaces` | 差し替え |
+| `assets/tiles/bright_inn_window.png` | 32×32 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_interior_wall.png` | 32×32 | `assets/source_records/art-sprint-a.json#interior_surfaces` | 差し替え |
+| `assets/tiles/bright_item_shop_door.png` | 32×32 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_item_shop_roof.png` | 128×64 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_item_shop_wall.png` | 32×32 | `assets/source_records/art-sprint-a.json#interior_surfaces` | 差し替え |
+| `assets/tiles/bright_item_shop_window.png` | 64×32 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_mountains.png` | 128×128 | `assets/source_records/art-sprint-a.json#mountains` | 差し替え |
+| `assets/tiles/bright_pot.png` | 32×32 | `assets/source_records/art-sprint-a.json#furniture` | 差し替え |
+| `assets/tiles/bright_road.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 差し替え |
+| `assets/tiles/bright_road_edge_east.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_inner_ne.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_inner_nw.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_inner_se.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_inner_sw.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_ne.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_north.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_nw.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_se.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_south.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_sw.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_road_edge_west.png` | 32×32 | `assets/source_records/art-sprint-a.json#road` | 追加 |
+| `assets/tiles/bright_rug.png` | 64×64 | `assets/source_records/art-sprint-a.json#furniture` | 差し替え |
+| `assets/tiles/bright_shelf.png` | 32×64 | `assets/source_records/art-sprint-a.json#furniture` | 差し替え |
+| `assets/tiles/bright_shop_counter.png` | 64×32 | `assets/source_records/art-sprint-a.json#furniture` | 差し替え |
+| `assets/tiles/bright_shore_east.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 差し替え |
+| `assets/tiles/bright_shore_inner_ne.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 追加 |
+| `assets/tiles/bright_shore_inner_nw.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 追加 |
+| `assets/tiles/bright_shore_inner_se.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 追加 |
+| `assets/tiles/bright_shore_inner_sw.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 追加 |
+| `assets/tiles/bright_shore_ne.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 差し替え |
+| `assets/tiles/bright_shore_north.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 差し替え |
+| `assets/tiles/bright_shore_nw.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 差し替え |
+| `assets/tiles/bright_shore_se.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 差し替え |
+| `assets/tiles/bright_shore_south.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 差し替え |
+| `assets/tiles/bright_shore_sw.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 差し替え |
+| `assets/tiles/bright_shore_west.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 差し替え |
+| `assets/tiles/bright_stairs_down.png` | 32×32 | `assets/source_records/art-sprint-a.json#cave_props` | 差し替え |
+| `assets/tiles/bright_stairs_up.png` | 32×32 | `assets/source_records/art-sprint-a.json#cave_props` | 差し替え |
+| `assets/tiles/bright_table.png` | 32×32 | `assets/source_records/art-sprint-a.json#furniture` | 差し替え |
+| `assets/tiles/bright_torch.png` | 32×32 | `assets/source_records/art-sprint-a.json#cave_props` | 差し替え |
+| `assets/tiles/bright_water.png` | 32×32 | `assets/source_records/art-sprint-a.json#water` | 差し替え |
+| `assets/tiles/bright_weapon_shop_door.png` | 32×32 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_weapon_shop_roof.png` | 128×64 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_weapon_shop_wall.png` | 32×32 | `assets/source_records/art-sprint-a.json#interior_surfaces` | 差し替え |
+| `assets/tiles/bright_weapon_shop_window.png` | 32×32 | `assets/source_records/generated-bright.json#buildings` | 差し替え |
+| `assets/tiles/bright_wood_floor.png` | 32×32 | `assets/source_records/art-sprint-a.json#interior_surfaces` | 差し替え |
+| `assets/tiles/dungeon_cave.png` | 512×512 | `assets/source_records/art-sprint-a.json#cave_wall` | 差し替え |
+| `assets/tiles/field_outdoor.png` | 512×512 | `assets/source_records/art-sprint-a.json#grass_set` | 差し替え |
+| `assets/ui/icon_castle.png` | 32×32 | `assets/source_records/art-sprint-a.json#icons` | 差し替え |
+| `assets/ui/icon_cave.png` | 32×32 | `assets/source_records/art-sprint-a.json#icons` | 差し替え |
+| `assets/ui/icon_tower.png` | 32×32 | `assets/source_records/art-sprint-a.json#icons` | 差し替え |
+
+### 絵柄と変換
+
+- 設定画は `docs/verification/art-review/party-design-sheet.png`。4人それぞれの原画も同フォルダの `source/` に保存した。
+- `docs/art-style-guide.md` に頭身・輪郭・光・材質・パレット・コマの規則を記録した。
+- 新しい取込手順は `python tools/import_art_sprint_a.py`、確認画像は `python tools/build_art_review_a.py`。前スプリントの取込スクリプトは当時の再現用であり、新しい絵へ再度上書きする用途には使わない。
+- 歩行の原画は透明な余白を見て行と列を分離し、隣のコマの小片を除去する。12コマの接地行47、空コマ0、歩行・戦闘・顔を通じて人物ごとに16色以内。マントの赤とハルドの銀髪もパレット内の色で維持した。
+- 地形の端を補正した後に減色する。草3種は接続端を共通化。森・深い森・丘・山は128×128（4×4セル）の地形ブロック。岸は8方向と内角4方向、道と森にも接続用の画像を用意した。
+- 反復用13パターンの上下・左右の端の不一致は0。岸・道・森の定義済み112接続も不一致0。任意の違う地形同士を無条件でつなげられるという意味ではない。数値一致に加えて8×8反復と村・世界の静止合成を確認した。
+
+### 継ぎ目の確認
+
+| 反復パターン | 寸法 | 左右不一致 | 上下不一致 |
+| --- | --- | --- | --- |
+| `assets/tiles/bright_grass.png` | 32×32 | 0 | 0 |
+| `assets/tiles/bright_grass_2.png` | 32×32 | 0 | 0 |
+| `assets/tiles/bright_grass_3.png` | 32×32 | 0 | 0 |
+| `assets/tiles/bright_water.png` | 32×32 | 0 | 0 |
+| `assets/tiles/bright_road.png` | 32×32 | 0 | 0 |
+| `assets/tiles/bright_forest.png` | 128×128 | 0 | 0 |
+| `assets/tiles/bright_deep_forest.png` | 128×128 | 0 | 0 |
+| `assets/tiles/bright_hills.png` | 128×128 | 0 | 0 |
+| `assets/tiles/bright_mountains.png` | 128×128 | 0 | 0 |
+| `assets/tiles/bright_wood_floor.png` | 32×32 | 0 | 0 |
+| `assets/tiles/bright_interior_wall.png` | 32×32 | 0 | 0 |
+| `assets/tiles/bright_cave_floor.png` | 32×32 | 0 | 0 |
+| `assets/tiles/bright_cave_wall.png` | 64×64 | 0 | 0 |
+
+### 保存した確認画像
+
+`docs/verification/art-review/` に、party-design-sheet.png、party-sprites.png、party-with-npcs.png、tiling-preview.png、objects.png、village-mock-v2.png、world-mock.pngを保存した。地形・家具の一覧、旧参照アトラス、反復パターンごとの画像と数値記録も同じ場所にある。
+
+### 今回変更しなかったもの
+
+ゲームの処理・シーン・世界データ・既存検査・CI・両パレットは変更していない。職業衣装、魔物化、侵蝕の兆候、敵、承認済みのNPC・建物外観・樹木・背景・音は開始時と同一。BとCの作業には進んでいない。体験仕様の挿入先は現物では見出し記号のない「音」だったため、その行自体を変更せず、直前へ指定文を挿入した。
