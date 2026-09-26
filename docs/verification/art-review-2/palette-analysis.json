@@ -1,0 +1,181 @@
+{
+  "method": "各画像160×108最近傍サンプル。材質の色相群と明度帯へ枠を割り当てて中央値分割。誤差は最近色までのRGB距離の平均。palette-mapping.jsonは一般素材の色相を保った最近色対応。仲間の共通16色は別途一対一で選ぶ。",
+  "groups": [
+    {
+      "group": "green",
+      "count": 15
+    },
+    {
+      "group": "blue",
+      "count": 8
+    },
+    {
+      "group": "red",
+      "count": 8
+    },
+    {
+      "group": "purple",
+      "count": 4
+    },
+    {
+      "group": "neutral",
+      "count": 15
+    },
+    {
+      "group": "earth",
+      "count": 14
+    }
+  ],
+  "targets": [
+    {
+      "target": "capital-city.jpg",
+      "dominant_colors": [
+        "#2E291D",
+        "#594C35",
+        "#16130D",
+        "#686245",
+        "#412F20",
+        "#34443E",
+        "#93896F",
+        "#192829"
+      ],
+      "bright_error": 33.596,
+      "natural_error": 12.241
+    },
+    {
+      "target": "castle-town.jpg",
+      "dominant_colors": [
+        "#1E2E1B",
+        "#3D3C29",
+        "#60543C",
+        "#6C6D42",
+        "#41502E",
+        "#9F9470",
+        "#16160F",
+        "#392719"
+      ],
+      "bright_error": 36.341,
+      "natural_error": 12.078
+    },
+    {
+      "target": "cave-natural.jpg",
+      "dominant_colors": [
+        "#000000",
+        "#5E5143",
+        "#231D15",
+        "#4F3C26",
+        "#35332F",
+        "#8A7960",
+        "#070709",
+        "#00060B"
+      ],
+      "bright_error": 39.581,
+      "natural_error": 8.509
+    },
+    {
+      "target": "dungeon-stone.jpg",
+      "dominant_colors": [
+        "#383228",
+        "#1E1D18",
+        "#1A1914",
+        "#16140F",
+        "#0F0F0C",
+        "#29241C",
+        "#070705",
+        "#4D453A"
+      ],
+      "bright_error": 36.093,
+      "natural_error": 9.123
+    },
+    {
+      "target": "ruins-temple.jpg",
+      "dominant_colors": [
+        "#78764D",
+        "#141E12",
+        "#3A3D23",
+        "#26301B",
+        "#676540",
+        "#4C5231",
+        "#0D1A11",
+        "#938F65"
+      ],
+      "bright_error": 39.115,
+      "natural_error": 12.43
+    },
+    {
+      "target": "town-river.jpg",
+      "dominant_colors": [
+        "#74633C",
+        "#B8A977",
+        "#8B8149",
+        "#553924",
+        "#262C17",
+        "#647C44",
+        "#999253",
+        "#405F4F"
+      ],
+      "bright_error": 38.221,
+      "natural_error": 12.892
+    },
+    {
+      "target": "town-walled-a.jpg",
+      "dominant_colors": [
+        "#536B23",
+        "#B2AA7A",
+        "#273E15",
+        "#1E190A",
+        "#594E2F",
+        "#7B6D4A",
+        "#848B46",
+        "#4F301B"
+      ],
+      "bright_error": 41.086,
+      "natural_error": 14.839
+    },
+    {
+      "target": "town-walled-b.jpg",
+      "dominant_colors": [
+        "#5F7230",
+        "#405225",
+        "#A5A477",
+        "#202415",
+        "#858B4E",
+        "#423225",
+        "#7B784C",
+        "#60593C"
+      ],
+      "bright_error": 42.243,
+      "natural_error": 11.494
+    },
+    {
+      "target": "village-farm-a.jpg",
+      "dominant_colors": [
+        "#687628",
+        "#40531D",
+        "#887E35",
+        "#C7AB5E",
+        "#1F280E",
+        "#493416",
+        "#94903E",
+        "#6E5927"
+      ],
+      "bright_error": 38.13,
+      "natural_error": 13.23
+    },
+    {
+      "target": "village-farm-b.jpg",
+      "dominant_colors": [
+        "#453F16",
+        "#4D6C33",
+        "#1A220D",
+        "#948738",
+        "#B3A74E",
+        "#8D712C",
+        "#6A4B1A",
+        "#234628"
+      ],
+      "bright_error": 34.371,
+      "natural_error": 18.177
+    }
+  ]
+}

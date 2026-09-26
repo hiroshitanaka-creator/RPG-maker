@@ -20,13 +20,14 @@ def main():
         files=['project.godot','assets/registry.json','assets/palette/base.gpl']
         files += [e['path'] for e in json.loads((ROOT/'assets/registry.json').read_text(encoding='utf-8'))['assets']]
         files += ['assets/palette/bright.gpl']
+        files += ['assets/palette/natural.gpl']
         files += [e['path'] for e in json.loads((ROOT/'assets/registry.json').read_text(encoding='utf-8')).get('audio', [])]
         for relative in files:
             target=directory/relative
             target.parent.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(ROOT/relative,target)
         assert identity(EXPECTED_ENGINE,directory)==current
-        for relative in ['data/jobs/01_warrior.json','data/catalog.json','data/story_v1.json','scripts/combat/battle_math.gd','world/terrain.json','world/interiors.json','world/map_graph.json','assets/palette/bright.gpl']:
+        for relative in ['data/jobs/01_warrior.json','data/catalog.json','data/story_v1.json','scripts/combat/battle_math.gd','world/terrain.json','world/interiors.json','world/map_graph.json','assets/palette/bright.gpl','assets/palette/natural.gpl']:
             path=directory/relative
             original=path.read_bytes()
             path.write_bytes(original+b'\n')

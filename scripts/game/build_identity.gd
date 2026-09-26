@@ -13,6 +13,7 @@ static func current() -> Dictionary:
 	for entry in registry["assets"]:
 		paths.append(entry["path"])
 	paths.append("assets/palette/bright.gpl")
+	paths.append("assets/palette/natural.gpl")
 	for entry in registry.get("audio",[]):
 		paths.append(entry["path"])
 	paths.sort()

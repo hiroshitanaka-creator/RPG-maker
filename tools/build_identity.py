@@ -12,6 +12,7 @@ def identity(engine: str, root: Path = ROOT) -> dict:
         paths.extend(p.relative_to(root).as_posix() for p in (root/folder).rglob('*') if p.is_file() and p.suffix in ['.gd','.tscn','.json'])
     paths.extend(e['path'] for e in json.loads((root/'assets/registry.json').read_text(encoding='utf-8'))['assets'])
     paths.append('assets/palette/bright.gpl')
+    paths.append('assets/palette/natural.gpl')
     paths.extend(e['path'] for e in json.loads((root/'assets/registry.json').read_text(encoding='utf-8')).get('audio', []))
     paths.sort()
     payload = 'rpg-v1-build-1\n'+engine+'\n'

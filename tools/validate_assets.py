@@ -162,6 +162,27 @@ def collect_png_files() -> set[str]:
     return found
 
 
+def check_autotile(entry: dict) -> list[str]:
+    """新しい47形接続アトラスにだけ、形の欠落とセル数の検査を追加する。"""
+    if 'autotile' not in entry:
+        return []
+    rel=entry['path'];data=entry['autotile'];errors=[]
+    expected=[]
+    for mask in range(256):
+        valid=all(not(mask&(1<<d)) or (mask&(1<<a) and mask&(1<<b)) for d,a,b in [(4,0,1),(5,1,2),(6,2,3),(7,3,0)])
+        if valid:expected.append(mask)
+    if data.get('scheme')!='blob47' or data.get('masks')!=expected:
+        errors.append(f'{rel}: 47種類の接続形が欠落・重複・順序不一致')
+    phases=data.get('phase_cells',[]);grid=entry.get('grid',[])
+    if len(phases)!=2 or not all(isinstance(v,int) and v>0 for v in phases):
+        errors.append(f'{rel}: 模様位相の寸法が不正')
+    elif len(grid)!=2 or grid[0]*grid[1]!=48*phases[0]*phases[1]:
+        errors.append(f'{rel}: 接続形と模様位相の必要セル数が不一致')
+    if entry.get('frame')!=[32,32] or data.get('stride')!=48 or data.get('background_index')!=47:
+        errors.append(f'{rel}: タイル寸法または背景セル番号が不一致')
+    return errors
+
+
 def check_provenance(entry: dict) -> list[str]:
     """2026年9月26日以降の新項目の出典記録を検査する。"""
     rel = entry.get("path", "<pathなし>")
@@ -250,6 +271,7 @@ def main() -> int:
         entry_palette = palette_cache.get(entry.get("palette", palette_rel), palette)
         entry_errors, exists = check_asset(entry, entry_palette)
         errors.extend(entry_errors)
+        errors.extend(check_autotile(entry))
         if entry["path"] not in legacy:
             errors.extend(check_provenance(entry))
         if not exists and entry.get("status", "required") == "placeholder":

@@ -266,3 +266,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
+
+
+## 2026年9月26日：目標画像対応の新規生成素材
+
+今回の新規PNGと自然色への加工は、依頼者の指示によりCodexのimagegenとPython/Pillowで作成した。第三者の素材パック・市販ゲームの素材は取り込んでいない。台帳では `LicenseRef-Generated-Project` で識別する。生成指示・原画ハッシュは `assets/source_records/visual-target-generation.json`、最終ファイルは `assets/registry.json` に記録する。
+
+依頼者が他のAIで作成した参考JPEG10枚は `docs/reference/visual-targets/` に保存した見た目の目標であり、ゲーム素材ではない。原本と同じハッシュを記録し、ゲーム素材台帳へ登録しない。参考画像の絵の切り出し・トレースは行わず、naturalパレットには色値だけを採取した。

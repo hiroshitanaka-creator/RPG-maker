@@ -30,7 +30,7 @@ textures/canvas_textures/default_texture_filter=0   # Nearest
 
 ## 2. 色と透過
 
-2026年9月26日追記：既存素材は `base.gpl`、同日以降の新素材は台帳の `palette` 欄で指定したパレット（通常は `assets/palette/bright.gpl`）を使う。`palette` がない項目は `defaults.palette` に従う。どちらのパレットも64色以内とし、以下の1素材あたりの色数とアルファの規則は変えない。`base.gpl` は変更しない。
+2026年9月26日改訂：旧素材は `base.gpl`、新絵柄の素材は台帳の `palette` 欄で指定する `assets/palette/natural.gpl` を使う。素材スプリント以降の新絵柄は、人物の識別色と輪郭を保って自然色へ再配色する。`bright.gpl` は以前の素材作成記録として残す。`palette` がない項目は `defaults.palette` に従う。各パレットは64色以内とし、以下の1素材あたりの色数とアルファの規則は変えない。`base.gpl` は変更しない。
 
 - 共通パレット: `assets/palette/base.gpl`（GIMP パレット形式。Aseprite / Libresprite / GIMP で読める）
 - パレット全体の上限: **64 色**
@@ -129,6 +129,12 @@ v1 では詠唱・勝利ポーズを作らない。必要になった段階で�
 - 会話窓・メニュー窓：64×64 pxの9分割用画像。四辺各8 pxを固定して拡張する。PNGのアルファは0か255とし、半透明は次の画面実装で表示時に設定する。
 - カーソル：32×32 px、背景透過。
 - 村人・店員・門番：既存の歩行規定（32×48 px、3×4コマ、16色以内、全コマの接地ライン一致）に従う。
+
+2026年9月26日・目標画像対応の追加：
+
+- 自然色の地面は128×128 px（32pxセル4×4）で模様を保ち、繰り返し境界を整える。
+- 自動接続タイルは `assets/tiles/natural_auto_<id>.png`。1セル32×32、8近傍の有効47形と背景1形を模様位相ごとに並べる。台帳の `autotile.masks`・`phase_cells`・`stride`・`background_index` を配置時に使う。対角は隣接する縦横の両セルが同じ地形の場合だけ有効とする。
+- わら家・町家・教会・城・井戸・噴水・屋台・壁・柵・洞窟・遺跡の小物は `assets/objects/natural_<id>.png`。幅と高さを32の倍数にし、複数セルの物は32pxの領域に分割して配置する。人物だけは既存の32×48 pxを維持する。
 
 ## 5. 素材台帳（`assets/registry.json`）
 
