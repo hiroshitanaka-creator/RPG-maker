@@ -44,3 +44,5 @@
 生成指示と原画ハッシュは `assets/source_records/visual-target-generation.json`。生成原画の作業用コピーは検査対象外の `assets/_incoming/visual-targets/`。配布用の減色済みPNGは全件 `assets/` の台帳登録位置に保存した。
 
 今回の順序は `build_natural_palette.py` → `requantize_natural_assets.py` → `import_visual_target_assets.py` → `build_natural_autotiles.py` → `build_visual_target_mocks.py` → `check_visual_target_assets.py`。再配色の原本は開始コミット `3c809e6` から取得する。取込は記録した生成原画が必要。以前の素材取込ツールは当時の再現用であり、今回の自然色を上書きするためには実行しない。
+
+最終画像確認で、旧bright地形の葉の明部はそのまま移すと強すぎたため、自然色への対応前に明度を抑えた。山の青い陰は低彩度へ寄せ、水の青は維持した。世界の散布小物から海のセルを除き、川幅に合わせて橋を延ばした。人物の共通色・輪郭・ポーズにはこの地形用補正を適用していない。

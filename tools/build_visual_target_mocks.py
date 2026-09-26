@@ -187,9 +187,9 @@ def world():
     road=route(m,[(8,14),(9,11),(11,10),(14,10),(18,9),(20,6),(22,5)],1)|route(m,[(18,9),(20,12),(23,13)],1)
     mountain&=~sea;hills&=~sea;forest&=~sea
     m.terrain('hills',hills);m.terrain('forest',forest);m.terrain('mountains',mountain);m.terrain('river',river);m.terrain('dirt',road&~river)
-    m.stamp('assets/tiles/bright_bridge.png',13,9)
+    m.stamp('assets/tiles/bright_bridge.png',13,9);m.stamp('assets/tiles/bright_bridge.png',15,9)
     for name,x,y in [('village',8,13),('castle',22,4),('cave',24,10),('tower',22,13)]:m.stamp(f'assets/ui/icon_{name}.png',x,y)
-    m.stamp('assets/objects/gate.png',18,5,[0,0,96,96]);m.scatter(~(forest|mountain|hills|river|road),55)
+    m.stamp('assets/objects/gate.png',18,5,[0,0,96,96]);m.scatter(~(forest|mountain|hills|river|road|sea),55)
     m.anchors={'village':[8,13],'bridge':[14,10],'gate':[19,7]}
     return m.finish([10,11])
 

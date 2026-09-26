@@ -23,10 +23,20 @@ def main():
             backup.parent.mkdir(parents=True,exist_ok=True)
             backup.write_bytes(subprocess.run(['git','show',BASELINE+':'+entry['path']],cwd=ROOT,capture_output=True,check=True).stdout)
     palette=np.array(sorted(load_palette(ROOT/'assets/palette/natural.gpl')),dtype=np.int32)
-    def match(colors,unique=False,silver=False):
+    def match(colors,unique=False,silver=False,terrain=False):
         colors=np.array(colors,dtype=np.int32)
-        cost=((lab(colors)[:,None,:]-lab(palette)[None,:,:])**2).sum(axis=2)
-        h,s,_=hsv(colors);ph,ps,_=hsv(palette)
+        target=colors.copy()
+        if terrain:
+            # 旧bright地形の蛍光色を明度ごと引き継がず、葉は自然な中間色へ。
+            # 石の青い陰は低彩度に戻し、自然色の灰色に対応させる。
+            th,ts,tv=hsv(target)
+            green=(th>=.16)&(th<.47)&(ts>.3)
+            target[green]=np.rint(target[green]*np.minimum(1,.62/np.maximum(tv[green],.01))[:,None])
+            blue=(th>=.47)&(th<.72)&('mountains' in str(terrain))
+            gray=target[blue].mean(axis=1)
+            target[blue]=np.rint(target[blue]*.18+gray[:,None]*.82)
+        cost=((lab(target)[:,None,:]-lab(palette)[None,:,:])**2).sum(axis=2)
+        h,s,_=hsv(target);ph,ps,_=hsv(palette)
         delta=np.abs(h[:,None]-ph[None,:]);delta=np.minimum(delta,1-delta)
         cost+=((delta>.15)&(s[:,None]>.3)&(ps[None,:]>.3))*10000
         if silver:
@@ -53,7 +63,7 @@ def main():
         after=before.copy();opaque=before[:,:,3]>0
         colors=np.unique(before[:,:,:3][opaque],axis=0)
         actor=Path(rel).parent.name
-        lut=party_luts.get(actor) or match(colors)
+        lut=party_luts.get(actor) or match(colors,terrain=rel if rel.startswith('assets/tiles/') else '')
         for color in colors:
             mask=opaque&np.all(before[:,:,:3]==color,axis=2)
             after[:,:,:3][mask]=lut[tuple(color)]

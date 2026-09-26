@@ -3120,15 +3120,6 @@
       ]
     },
     "t0346": {
-      "path": "assets/objects/natural_dirt_patch.png",
-      "region": [
-        0,
-        0,
-        32,
-        32
-      ]
-    },
-    "t0347": {
       "path": "assets/objects/natural_pebbles.png",
       "region": [
         0,
@@ -3137,8 +3128,17 @@
         32
       ]
     },
+    "t0347": {
+      "path": "assets/objects/natural_flowers_yellow.png",
+      "region": [
+        0,
+        0,
+        32,
+        32
+      ]
+    },
     "t0348": {
-      "path": "assets/objects/natural_tufts.png",
+      "path": "assets/objects/natural_dirt_patch.png",
       "region": [
         0,
         0,
@@ -3156,7 +3156,7 @@
       ]
     },
     "t0350": {
-      "path": "assets/objects/natural_flowers_yellow.png",
+      "path": "assets/objects/natural_tufts.png",
       "region": [
         0,
         0,
@@ -11285,52 +11285,12 @@
       ]
     },
     {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          20,
-          0,
-          "t0348"
-        ]
-      ]
-    },
-    {
       "name": "natural_pebbles",
       "cells": [
         [
-          22,
-          0,
-          "t0347"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          19,
-          0,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          21,
-          1,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
           20,
-          1,
-          "t0348"
+          0,
+          "t0346"
         ]
       ]
     },
@@ -11338,8 +11298,8 @@
       "name": "natural_flowers_white",
       "cells": [
         [
-          22,
-          2,
+          19,
+          0,
           "t0352"
         ]
       ]
@@ -11348,9 +11308,9 @@
       "name": "natural_tufts",
       "cells": [
         [
-          21,
-          2,
-          "t0348"
+          22,
+          0,
+          "t0350"
         ]
       ]
     },
@@ -11359,8 +11319,8 @@
       "cells": [
         [
           20,
-          3,
-          "t0346"
+          1,
+          "t0348"
         ]
       ]
     },
@@ -11369,8 +11329,58 @@
       "cells": [
         [
           22,
-          3,
+          1,
+          "t0346"
+        ]
+      ]
+    },
+    {
+      "name": "natural_flowers_yellow",
+      "cells": [
+        [
+          21,
+          2,
           "t0347"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          22,
+          2,
+          "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          22,
+          3,
+          "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          20,
+          3,
+          "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          21,
+          3,
+          "t0350"
         ]
       ]
     },
@@ -11385,12 +11395,12 @@
       ]
     },
     {
-      "name": "natural_leaves",
+      "name": "natural_pebbles",
       "cells": [
         [
           20,
           4,
-          "t0351"
+          "t0346"
         ]
       ]
     },
@@ -11398,19 +11408,9 @@
       "name": "natural_tufts",
       "cells": [
         [
-          14,
-          5,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_pebbles",
-      "cells": [
-        [
-          17,
-          6,
-          "t0347"
+          9,
+          4,
+          "t0350"
         ]
       ]
     },
@@ -11420,25 +11420,45 @@
         [
           13,
           6,
-          "t0350"
+          "t0347"
         ]
       ]
     },
     {
-      "name": "natural_flowers_yellow",
+      "name": "natural_pebbles",
+      "cells": [
+        [
+          10,
+          6,
+          "t0346"
+        ]
+      ]
+    },
+    {
+      "name": "natural_pebbles",
       "cells": [
         [
           15,
           6,
-          "t0350"
+          "t0346"
         ]
       ]
     },
     {
-      "name": "natural_flowers_yellow",
+      "name": "natural_dirt_patch",
       "cells": [
         [
-          10,
+          17,
+          6,
+          "t0348"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          16,
           6,
           "t0350"
         ]
@@ -11495,32 +11515,22 @@
       ]
     },
     {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          15,
-          7,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_dirt_patch",
-      "cells": [
-        [
-          16,
-          7,
-          "t0346"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
+      "name": "natural_flowers_yellow",
       "cells": [
         [
           14,
           7,
-          "t0348"
+          "t0347"
+        ]
+      ]
+    },
+    {
+      "name": "natural_leaves",
+      "cells": [
+        [
+          16,
+          7,
+          "t0351"
         ]
       ]
     },
@@ -11530,16 +11540,16 @@
         [
           9,
           7,
-          "t0348"
+          "t0350"
         ]
       ]
     },
     {
-      "name": "natural_flowers_yellow",
+      "name": "natural_tufts",
       "cells": [
         [
-          16,
-          8,
+          10,
+          7,
           "t0350"
         ]
       ]
@@ -11548,8 +11558,28 @@
       "name": "natural_flowers_pink",
       "cells": [
         [
-          9,
-          9,
+          15,
+          7,
+          "t0349"
+        ]
+      ]
+    },
+    {
+      "name": "natural_flowers_yellow",
+      "cells": [
+        [
+          11,
+          8,
+          "t0347"
+        ]
+      ]
+    },
+    {
+      "name": "natural_flowers_pink",
+      "cells": [
+        [
+          16,
+          8,
           "t0349"
         ]
       ]
@@ -11560,7 +11590,7 @@
         [
           11,
           9,
-          "t0348"
+          "t0350"
         ]
       ]
     },
@@ -11568,9 +11598,49 @@
       "name": "natural_tufts",
       "cells": [
         [
+          9,
+          9,
+          "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          6,
+          9,
+          "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_pebbles",
+      "cells": [
+        [
+          7,
+          9,
+          "t0346"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          12,
+          9,
+          "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_pebbles",
+      "cells": [
+        [
           8,
           9,
-          "t0348"
+          "t0346"
         ]
       ]
     },
@@ -11600,6 +11670,31 @@
       ]
     },
     {
+      "name": "bright_bridge",
+      "cells": [
+        [
+          15,
+          9,
+          "t0329"
+        ],
+        [
+          16,
+          9,
+          "t0330"
+        ],
+        [
+          15,
+          10,
+          "t0331"
+        ],
+        [
+          16,
+          10,
+          "t0332"
+        ]
+      ]
+    },
+    {
       "name": "icon_cave",
       "cells": [
         [
@@ -11610,7 +11705,7 @@
       ]
     },
     {
-      "name": "natural_tufts",
+      "name": "natural_dirt_patch",
       "cells": [
         [
           7,
@@ -11620,21 +11715,31 @@
       ]
     },
     {
-      "name": "natural_leaves",
-      "cells": [
-        [
-          12,
-          11,
-          "t0351"
-        ]
-      ]
-    },
-    {
-      "name": "natural_pebbles",
+      "name": "natural_dirt_patch",
       "cells": [
         [
           8,
           11,
+          "t0348"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          13,
+          11,
+          "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_flowers_yellow",
+      "cells": [
+        [
+          12,
+          11,
           "t0347"
         ]
       ]
@@ -11643,9 +11748,49 @@
       "name": "natural_pebbles",
       "cells": [
         [
+          17,
           11,
+          "t0346"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          10,
+          11,
+          "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          12,
+          12,
+          "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_flowers_yellow",
+      "cells": [
+        [
+          10,
           12,
           "t0347"
+        ]
+      ]
+    },
+    {
+      "name": "natural_tufts",
+      "cells": [
+        [
+          11,
+          12,
+          "t0350"
         ]
       ]
     },
@@ -11670,31 +11815,41 @@
       ]
     },
     {
-      "name": "natural_dirt_patch",
+      "name": "natural_tufts",
       "cells": [
         [
-          29,
+          9,
           13,
-          "t0346"
+          "t0350"
         ]
       ]
     },
     {
-      "name": "natural_tufts",
+      "name": "natural_leaves",
       "cells": [
         [
-          10,
+          11,
           13,
+          "t0351"
+        ]
+      ]
+    },
+    {
+      "name": "natural_dirt_patch",
+      "cells": [
+        [
+          23,
+          14,
           "t0348"
         ]
       ]
     },
     {
-      "name": "natural_tufts",
+      "name": "natural_dirt_patch",
       "cells": [
         [
-          11,
-          13,
+          10,
+          14,
           "t0348"
         ]
       ]
@@ -11704,8 +11859,8 @@
       "cells": [
         [
           24,
-          13,
-          "t0348"
+          14,
+          "t0350"
         ]
       ]
     },
@@ -11713,69 +11868,9 @@
       "name": "natural_flowers_pink",
       "cells": [
         [
-          30,
-          13,
+          24,
+          15,
           "t0349"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          10,
-          14,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_flowers_white",
-      "cells": [
-        [
-          28,
-          14,
-          "t0352"
-        ]
-      ]
-    },
-    {
-      "name": "natural_pebbles",
-      "cells": [
-        [
-          24,
-          14,
-          "t0347"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          24,
-          15,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_pebbles",
-      "cells": [
-        [
-          26,
-          15,
-          "t0347"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          28,
-          15,
-          "t0348"
         ]
       ]
     },
@@ -11785,67 +11880,7 @@
         [
           9,
           15,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_dirt_patch",
-      "cells": [
-        [
-          29,
-          15,
-          "t0346"
-        ]
-      ]
-    },
-    {
-      "name": "natural_pebbles",
-      "cells": [
-        [
-          23,
-          16,
-          "t0347"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          29,
-          16,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          30,
-          16,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          25,
-          16,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_dirt_patch",
-      "cells": [
-        [
-          31,
-          16,
-          "t0346"
+          "t0350"
         ]
       ]
     },
@@ -11853,19 +11888,39 @@
       "name": "natural_leaves",
       "cells": [
         [
-          28,
-          16,
+          23,
+          15,
           "t0351"
         ]
       ]
     },
     {
-      "name": "natural_flowers_pink",
+      "name": "natural_dirt_patch",
+      "cells": [
+        [
+          10,
+          15,
+          "t0348"
+        ]
+      ]
+    },
+    {
+      "name": "natural_flowers_white",
+      "cells": [
+        [
+          10,
+          16,
+          "t0352"
+        ]
+      ]
+    },
+    {
+      "name": "natural_dirt_patch",
       "cells": [
         [
           24,
           16,
-          "t0349"
+          "t0348"
         ]
       ]
     },
@@ -11873,39 +11928,19 @@
       "name": "natural_tufts",
       "cells": [
         [
-          24,
-          17,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_flowers_pink",
-      "cells": [
-        [
-          29,
-          17,
-          "t0349"
-        ]
-      ]
-    },
-    {
-      "name": "natural_flowers_pink",
-      "cells": [
-        [
-          31,
-          17,
-          "t0349"
-        ]
-      ]
-    },
-    {
-      "name": "natural_flowers_yellow",
-      "cells": [
-        [
-          30,
-          17,
+          8,
+          16,
           "t0350"
+        ]
+      ]
+    },
+    {
+      "name": "natural_pebbles",
+      "cells": [
+        [
+          8,
+          17,
+          "t0346"
         ]
       ]
     },
@@ -11915,17 +11950,7 @@
         [
           10,
           17,
-          "t0348"
-        ]
-      ]
-    },
-    {
-      "name": "natural_tufts",
-      "cells": [
-        [
-          28,
-          17,
-          "t0348"
+          "t0350"
         ]
       ]
     },
@@ -11935,17 +11960,17 @@
         [
           23,
           17,
-          "t0348"
+          "t0350"
         ]
       ]
     },
     {
-      "name": "natural_leaves",
+      "name": "natural_tufts",
       "cells": [
         [
-          27,
+          24,
           17,
-          "t0351"
+          "t0350"
         ]
       ]
     }
