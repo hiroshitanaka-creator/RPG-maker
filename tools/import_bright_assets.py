@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """承認済みの新素材だけを切り出し・減色・登録する。既存画像は上書きしない。"""
 from pathlib import Path
+from collections import deque
 import json
 import hashlib
 import numpy as np
@@ -59,7 +60,13 @@ def save(rel, image, kind, provenance, **extra):
     dest = ROOT / rel
     dest.parent.mkdir(parents=True, exist_ok=True)
     image = quantize(image, extra.get('max_colors', 64))
-    image.save(dest)
+    # 同じ画素なら既存の圧縮バイト列を保ち、PNGライブラリ差による版変更を避ける。
+    same = False
+    if dest.exists():
+        with Image.open(dest) as old:
+            same = old.size == image.size and old.convert('RGBA').tobytes() == image.tobytes()
+    if not same:
+        image.save(dest)
     entry = {'path': rel, 'kind': kind, 'size': list(image.size), 'max_colors': 64,
              'status': 'required', 'palette': PALETTE, **provenance, **extra}
     ENTRIES[:] = [e for e in ENTRIES if e['path'] != rel]
@@ -133,10 +140,15 @@ def import_tiles():
         # 水は水色、道路は明るい土色へ。形状は元部品のまま。
         if id_=='water' or id_.startswith('shore_'):
             a=np.array(image)
-            mask=(a[:,:,2]>a[:,:,0]+15)&(a[:,:,1]>a[:,:,0]+15)
-            a[mask,:3]=np.array([54,179,226]);image=Image.fromarray(a)
+            rgb=a[:,:,:3].astype(int)
+            mask=(rgb[:,:,2]>rgb[:,:,0]+15)&(rgb[:,:,1]>rgb[:,:,0]+15)
+            light=mask&(rgb[:,:,0]>120)
+            a[mask,:3]=[54,179,226];a[light,:3]=[102,208,240];image=Image.fromarray(a)
         if id_=='road':
             a=np.array(image);a[:,:,:3]=np.minimum(a[:,:,:3].astype(int)+[40,40,28],255);image=Image.fromarray(a)
+        if id_=='wood_floor':
+            a=np.array(image);light=a[:,:,0]>=175
+            a[light,:3]=[184,120,74];a[~light,:3]=[151,86,56];image=Image.fromarray(a)
         result[id_]=store(id_,image,[list(pos)])
     forest=Image.new('RGBA',(32,32))
     for xy in [(0,0),(14,0),(7,9)]:
@@ -148,21 +160,23 @@ def import_tiles():
     for y in [0,32]:
         bridge.alpha_composite(tile(45,23),(0,y));bridge.alpha_composite(tile(45,23),(32,y))
     ENTRIES.pop();result['bridge']=store('bridge',bridge,[[8,2],[45,23]])
-    for id_,cells in {'shelf':[[(48,12)],[(48,13)]], 'bed':[[(15,4)],[(15,5)]],
+    for id_,cells in {'shelf':[[(48,12)],[(48,13)]],
                       'rug':[[(10,7),(12,7)],[(10,9),(12,9)]]}.items():
         result[id_]=store(id_,block(cells),cells)
+    result['bed']=store('bed',tile(17,3).resize((32,64),Image.Resampling.NEAREST),[[17,3]])
     # 階段は同じ石材部品を縮めて段状に重ねる。上りは奥へ高く、下りは暗い穴へ低くする。
     for id_,descending in [('stairs_up',False),('stairs_down',True)]:
         out=tile(7,0)
+        if descending:ImageDraw.Draw(out).rectangle((2,2,29,29),fill='#1E3154')
         for i in range(5):
-            width=28-i*4 if not descending else 12+i*4
+            width=28-i*4 if descending else 12+i*4
             step=tile(30,16).resize((width,5),Image.Resampling.NEAREST)
             out.alpha_composite(step,((32-width)//2,3+i*5))
         result[id_]=store(id_,out,[[7,0],[30,16]])
     # 家・宿・二つの店に、個別の屋根色・壁・扉・窓・看板を用意する。
     for id_,roof_color,door,window,sign in [
         ('house',(217,76,85),(38,2),(44,4),None),
-        ('inn',(54,179,226),(38,0),(47,4),(15,4)),
+        ('inn',(54,179,226),(33,5),(47,4),(16,3)),
         ('item_shop',(72,164,73),(38,3),(46,4),(55,14)),
         ('weapon_shop',(223,159,43),(39,2),(45,4),(15,0)),
     ]:
@@ -187,8 +201,8 @@ def import_tiles():
         for x in [0,48]:
             for y in [0,32]:gate.alpha_composite(tile(7,2).resize((16,32),Image.Resampling.NEAREST),(ox+x,y))
         gate.alpha_composite(tile(7,2).resize((64,12),Image.Resampling.NEAREST),(ox,0))
-        if state==0:gate.alpha_composite(block([[(32,3)],[(32,4)]]),(ox+16,0))
-    save('assets/objects/gate.png',gate,'object',imported([[7,2],[32,3],[32,4]]),frame=[64,64],grid=[2,1])
+        if state==0:gate.alpha_composite(tile(33,3).resize((32,52),Image.Resampling.NEAREST),(ox+16,12))
+    save('assets/objects/gate.png',gate,'object',imported([[7,2],[33,3]]),frame=[64,64],grid=[2,1])
     chest=block([[(49,21),(49,22)]])
     # 元部品の接地を状態間でそろえる。
     aligned=Image.new('RGBA',(64,32))
@@ -233,7 +247,24 @@ def detailed_buildings_and_trees():
         scale=min(124/part.width,124/part.height)
         part=part.resize((round(part.width*scale),round(part.height*scale)),Image.Resampling.NEAREST)
         out=Image.new('RGBA',(128,128));out.alpha_composite(part,((128-part.width)//2,128-part.height))
-        saved=save(f'assets/tiles/bright_{id_}_exterior.png',out,'tileset',generated('assets/source_records/generated-bright.json#buildings','2×2分割、128×128へ縮小配置、bright.gplへ減色、アルファ二値化'))
+        # 分割境界に混ざった隣の建物の小片を除く。主要な連結成分は保持する。
+        a=np.array(out);unseen=a[:,:,3]>=128;components=[]
+        for y,x in np.argwhere(unseen):
+            if not unseen[y,x]:continue
+            queue=deque([(int(x),int(y))]);unseen[y,x]=False;component=[]
+            while queue:
+                xx,yy=queue.popleft();component.append((xx,yy))
+                for dx,dy in [(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,1),(1,-1),(-1,-1)]:
+                    nx,ny=xx+dx,yy+dy
+                    if 0<=nx<128 and 0<=ny<128 and unseen[ny,nx]:
+                        unseen[ny,nx]=False;queue.append((nx,ny))
+            components.append(component)
+        minimum=max(20,int(max(map(len,components))*.005))
+        for component in components:
+            if len(component)<minimum:
+                for x,y in component:a[y,x]=0
+        out=Image.fromarray(a)
+        saved=save(f'assets/tiles/bright_{id_}_exterior.png',out,'tileset',generated('assets/source_records/generated-bright.json#buildings','2×2分割、128×128へ縮小配置、隣接コマ由来の小片除去、bright.gplへ減色、アルファ二値化'))
         if id_ in {'house','inn'}:
             icon=saved.resize((32,32),Image.Resampling.NEAREST)
             name='village' if id_=='house' else 'town'

@@ -2992,37 +2992,6 @@
       ]
     },
     {
-      "path": "assets/tiles/bright_bed.png",
-      "kind": "tileset",
-      "size": [
-        32,
-        64
-      ],
-      "max_colors": 64,
-      "status": "required",
-      "palette": "assets/palette/bright.gpl",
-      "source": "imported",
-      "source_url": "https://kenney.nl/assets/roguelike-rpg-pack",
-      "author": "Kenney Vleugels; Lynn Evers",
-      "license": "CC0-1.0",
-      "retrieved_at": "2026-09-26",
-      "modified": "16px部品を最近傍2倍、指定部品を合成、bright.gplへ減色、アルファ二値化",
-      "source_cells": [
-        [
-          [
-            15,
-            4
-          ]
-        ],
-        [
-          [
-            15,
-            5
-          ]
-        ]
-      ]
-    },
-    {
       "path": "assets/tiles/bright_rug.png",
       "kind": "tileset",
       "size": [
@@ -3058,6 +3027,29 @@
             12,
             9
           ]
+        ]
+      ]
+    },
+    {
+      "path": "assets/tiles/bright_bed.png",
+      "kind": "tileset",
+      "size": [
+        32,
+        64
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/bright.gpl",
+      "source": "imported",
+      "source_url": "https://kenney.nl/assets/roguelike-rpg-pack",
+      "author": "Kenney Vleugels; Lynn Evers",
+      "license": "CC0-1.0",
+      "retrieved_at": "2026-09-26",
+      "modified": "16px部品を最近傍2倍、指定部品を合成、bright.gplへ減色、アルファ二値化",
+      "source_cells": [
+        [
+          17,
+          3
         ]
       ]
     },
@@ -3311,8 +3303,8 @@
       "modified": "16px部品を最近傍2倍、指定部品を合成、bright.gplへ減色、アルファ二値化",
       "source_cells": [
         [
-          38,
-          0
+          33,
+          5
         ]
       ]
     },
@@ -3585,12 +3577,8 @@
           2
         ],
         [
-          32,
+          33,
           3
-        ],
-        [
-          32,
-          4
         ]
       ],
       "frame": [
@@ -3734,7 +3722,7 @@
       "tool": "imagegen",
       "generated_at": "2026-09-26",
       "prompt_record": "assets/source_records/generated-bright.json#buildings",
-      "modified": "2×2分割、128×128へ縮小配置、bright.gplへ減色、アルファ二値化"
+      "modified": "2×2分割、128×128へ縮小配置、隣接コマ由来の小片除去、bright.gplへ減色、アルファ二値化"
     },
     {
       "path": "assets/ui/icon_village.png",
@@ -3770,7 +3758,7 @@
       "tool": "imagegen",
       "generated_at": "2026-09-26",
       "prompt_record": "assets/source_records/generated-bright.json#buildings",
-      "modified": "2×2分割、128×128へ縮小配置、bright.gplへ減色、アルファ二値化"
+      "modified": "2×2分割、128×128へ縮小配置、隣接コマ由来の小片除去、bright.gplへ減色、アルファ二値化"
     },
     {
       "path": "assets/ui/icon_town.png",
@@ -3806,7 +3794,7 @@
       "tool": "imagegen",
       "generated_at": "2026-09-26",
       "prompt_record": "assets/source_records/generated-bright.json#buildings",
-      "modified": "2×2分割、128×128へ縮小配置、bright.gplへ減色、アルファ二値化"
+      "modified": "2×2分割、128×128へ縮小配置、隣接コマ由来の小片除去、bright.gplへ減色、アルファ二値化"
     },
     {
       "path": "assets/tiles/bright_weapon_shop_exterior.png",
@@ -3824,7 +3812,7 @@
       "tool": "imagegen",
       "generated_at": "2026-09-26",
       "prompt_record": "assets/source_records/generated-bright.json#buildings",
-      "modified": "2×2分割、128×128へ縮小配置、bright.gplへ減色、アルファ二値化"
+      "modified": "2×2分割、128×128へ縮小配置、隣接コマ由来の小片除去、bright.gplへ減色、アルファ二値化"
     },
     {
       "path": "assets/tiles/bright_tree_oak.png",

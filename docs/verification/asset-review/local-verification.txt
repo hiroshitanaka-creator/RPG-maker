@@ -10,13 +10,13 @@ python tools/check_frozen_files.py
 
 python3 D:/Codex/.codex/scope-lock/scripts/verify_cli.py --quiet .
 PASS R-01  (2.5s)
-PASS R-02  (8.1s)
-PASS R-03  (2.3s)
-PASS R-04  (2.9s)
+PASS R-02  (7.1s)
+PASS R-03  (2.2s)
+PASS R-04  (3.0s)
 PASS R-05  (2.5s)
 PASS R-06  (2.7s)
-PASS R-07  (26.4s)
-PASS R-08  (17.6s)
+PASS R-07  (26.1s)
+PASS R-08  (10.9s)
 
 [scope-lock] all verifiable requirements pass
 
@@ -35,3 +35,5 @@ SCOPE_DIFF_PASS: checker=approved-3-points spec=verbatim-insertion-only
 
 git diff --check は指定文面の末尾空白1件を指摘する。docs/experience-spec-v2.mdへの挿入を原文どおりにするため、その空白を保持した。
 CIはpush後の実行完了を最終報告で示す。ここには未実施のCI成功を書かない。
+
+切り出し補正後も素材191件・音14件、旧108件の不変、保護26件、R-01〜R-08を再確認した。画素が同一だった4画像は元のPNG圧縮バイト列を保持した。
