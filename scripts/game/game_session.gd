@@ -414,6 +414,7 @@ func change_job(actor_id: String, job_id: String) -> bool:
 
 
 func job_unlocked(actor_id: String, job_id: String) -> bool:
+	if first_region_active() and not _state["progress_flags"].get("job_change_unlocked",false):return false
 	var actor := _member(actor_id)
 	if actor.is_empty() or not jobs.has(job_id):
 		return false
@@ -483,6 +484,7 @@ func available_abilities(actor_id: String) -> Array[String]:
 
 
 func equip_ability(actor_id: String, ability_id: String) -> bool:
+	if first_region_active() and not _state["progress_flags"].get("job_change_unlocked",false):return false
 	if _battle != null:
 		return false
 	var actor := _member(actor_id)

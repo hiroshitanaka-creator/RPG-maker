@@ -1,34 +1,17 @@
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-
-
 FIRST_REGION_CHECK: A01 PASS New Game後のstart_village内部・1人以上
-
 FIRST_REGION_CHECK: A02 PASS 全経路・メニューで禁止ラベルなし
-
 FIRST_REGION_CHECK: A03 PASS 村内移動から退出までの戦闘なし
-
 FIRST_REGION_CHECK: A04 PASS 村退出時の人数=3（必要3）
-
 FIRST_REGION_CHECK: A05 PASS 村出口から一つ手前・外向きに遷移
-
 FIRST_REGION_CHECK: A06 PASS 通行証なしでは門セルへ一度も入らず、2歩の試行後も手前にいる
-
 FIRST_REGION_CHECK: A07 PASS 歩行で洞窟1階へ入る
-
 FIRST_REGION_CHECK: A08 PASS 1階→2階→1階→2階を実歩行で確認
-
 FIRST_REGION_CHECK: A09 PASS 洞窟2階分の宝箱定義が重複なしで3個
-
 FIRST_REGION_CHECK: A10 PASS 位置・向き・編成・所持品の変更後ロードが完全一致
-
 FIRST_REGION_CHECK: A11 PASS ボス勝利で通行証取得、離れて再訪しても再戦なし
-
 FIRST_REGION_CHECK: A12 PASS 洞窟出口から一つ手前・外向きに戻り再突入しない
-
 FIRST_REGION_CHECK: A13 PASS 通行証を持って門の向こうのセルへ歩行到達
-
 FIRST_REGION_CHECK: A14 PASS 通常UI・方向キー・既存戦闘操作だけで全経路到達
-
 FIRST_REGION_PASS: checks=14
-

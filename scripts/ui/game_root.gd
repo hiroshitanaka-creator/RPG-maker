@@ -1528,6 +1528,9 @@ func _render_party() -> void:
 	var change := _button(job_row, "この職に転職", func() -> void:
 		var identifier: String = jobs.get_item_metadata(jobs.selected)
 		submit_player_action({"kind":"choose_job","actor":actor["id"],"job":identifier}))
+	change.disabled = not game.job_unlocked(actor["id"],actor["job_id"])
+	if game.first_region_active() and not game.export_state()["progress_flags"].get("job_change_unlocked",false):
+		_body.add_child(_label("転職と技の装着は、まだ解放されていません。",10))
 	var comparison := _label(_job_preview_text(actor, actor["job_id"]), 10)
 	comparison.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(comparison)
@@ -1575,7 +1578,7 @@ func _render_party() -> void:
 		if skills.selected >= 0:
 			_notice = "装着しました。" if game.equip_ability(actor["id"], skills.get_item_metadata(skills.selected)) else "装着枠または習得状態を確認してください。"
 			_refresh())
-	equip.disabled = skills.item_count == 0
+	equip.disabled = skills.item_count == 0 or (game.first_region_active() and not game.export_state()["progress_flags"].get("job_change_unlocked",false))
 	var skill_details := _label("習得した技をここで装着できます。" if skills.item_count == 0 else game.describe_ability(skills.get_item_metadata(skills.selected),actor["id"]), 10)
 	skill_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(skill_details)
