@@ -8,11 +8,11 @@ var elapsed_seconds := 0.0
 var _accumulator := 0.0
 var _next := 0
 
-func begin(path: Array[Vector2i], mode: String) -> bool:
+func begin(path: Array[Vector2i], mode: String, can_enter: Callable = Callable()) -> bool:
 	if path.is_empty():
 		return false
 	for i in range(path.size()):
-		if not WorldTerrain.passable(path[i], mode):
+		if not (can_enter.call(path[i]) if can_enter.is_valid() else WorldTerrain.passable(path[i], mode)):
 			return false
 		if i > 0 and absi(path[i].x-path[i-1].x) + absi(path[i].y-path[i-1].y) != 1:
 			return false

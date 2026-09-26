@@ -1,0 +1,1149 @@
+{
+  "first_region": {
+    "version": 1,
+    "title": "最初の地方（仮）",
+    "start": {
+      "layer": "interior",
+      "node": "start_village",
+      "room": 0,
+      "cell": [
+        3,
+        3
+      ]
+    },
+    "village_exit": {
+      "layer": "interior",
+      "node": "start_village",
+      "room": 1,
+      "cell": [
+        8,
+        8
+      ]
+    },
+    "village_entrance": {
+      "cell": [
+        32,
+        53
+      ],
+      "outward": [
+        0,
+        1
+      ]
+    },
+    "cave_entrance": {
+      "cell": [
+        40,
+        53
+      ],
+      "outward": [
+        0,
+        1
+      ]
+    },
+    "cave_spawn": {
+      "layer": "interior",
+      "node": "first_cave",
+      "room": 0,
+      "cell": [
+        2,
+        7
+      ]
+    },
+    "cave_exit": {
+      "layer": "interior",
+      "node": "first_cave",
+      "room": 0,
+      "cell": [
+        2,
+        8
+      ]
+    },
+    "stairs_down": {
+      "from": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 0,
+        "cell": [
+          12,
+          2
+        ]
+      },
+      "to": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 1,
+        "cell": [
+          2,
+          7
+        ]
+      }
+    },
+    "stairs_up": {
+      "from": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 1,
+        "cell": [
+          2,
+          8
+        ]
+      },
+      "to": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 0,
+        "cell": [
+          12,
+          3
+        ]
+      }
+    },
+    "save_probe": {
+      "layer": "interior",
+      "node": "first_cave",
+      "room": 0,
+      "cell": [
+        3,
+        7
+      ]
+    },
+    "boss": {
+      "point": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 1,
+        "cell": [
+          12,
+          3
+        ]
+      },
+      "encounter_id": "first_boss",
+      "enemies": [
+        "gate_beast"
+      ],
+      "stats": {
+        "hp": 160,
+        "attack": 16,
+        "defense": 10
+      }
+    },
+    "boss_revisit": {
+      "layer": "interior",
+      "node": "first_cave",
+      "room": 1,
+      "cell": [
+        12,
+        5
+      ]
+    },
+    "gate": {
+      "before": {
+        "layer": "world",
+        "node": "",
+        "room": 0,
+        "cell": [
+          35,
+          49
+        ]
+      },
+      "cell": {
+        "layer": "world",
+        "node": "",
+        "room": 0,
+        "cell": [
+          35,
+          48
+        ]
+      },
+      "beyond": {
+        "layer": "world",
+        "node": "",
+        "room": 0,
+        "cell": [
+          35,
+          47
+        ]
+      },
+      "id": "first_gate"
+    },
+    "recruits": [
+      {
+        "stand": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 1,
+          "cell": [
+            5,
+            4
+          ]
+        },
+        "facing": [
+          0,
+          -1
+        ]
+      },
+      {
+        "stand": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 1,
+          "cell": [
+            10,
+            4
+          ]
+        },
+        "facing": [
+          0,
+          -1
+        ]
+      }
+    ],
+    "doors": [
+      {
+        "from": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 0,
+          "cell": [
+            5,
+            5
+          ]
+        },
+        "to": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 1,
+          "cell": [
+            4,
+            5
+          ]
+        }
+      },
+      {
+        "from": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 1,
+          "cell": [
+            4,
+            4
+          ]
+        },
+        "to": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 0,
+          "cell": [
+            5,
+            4
+          ]
+        }
+      }
+    ],
+    "bounds": [
+      28,
+      44,
+      45,
+      59
+    ],
+    "encounters": {
+      "world": {
+        "chance": 0.025,
+        "enemies": [
+          "slime"
+        ]
+      },
+      "first_cave": {
+        "chance": 0.04,
+        "enemies": [
+          "bat"
+        ]
+      }
+    }
+  },
+  "sites": [
+    {
+      "id": "start_village",
+      "type": "village",
+      "name": "はじまりの村（仮）",
+      "rooms": [
+        {
+          "id": "start_house",
+          "title": "家（仮）",
+          "spawn": [
+            3,
+            3
+          ],
+          "layout": [
+            "########",
+            "#......#",
+            "#......#",
+            "#......#",
+            "#......#",
+            "#####.##"
+          ],
+          "events": []
+        },
+        {
+          "id": "village_square",
+          "title": "はじまりの村（仮）",
+          "spawn": [
+            4,
+            5
+          ],
+          "layout": [
+            "################",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "########.#######"
+          ],
+          "events": [
+            {
+              "id": "join_pc_02",
+              "kind": "recruit",
+              "actor": "pc_02",
+              "cell": [
+                5,
+                3
+              ],
+              "text": [
+                "こんにちは。一緒に洞窟まで行こう。"
+              ]
+            },
+            {
+              "id": "join_pc_03",
+              "kind": "recruit",
+              "actor": "pc_03",
+              "cell": [
+                10,
+                3
+              ],
+              "text": [
+                "こんにちは。私も同行します。"
+              ]
+            },
+            {
+              "id": "village_inn",
+              "kind": "rest",
+              "cell": [
+                2,
+                2
+              ],
+              "label": "宿（仮）",
+              "text": [
+                "ここで休めます。"
+              ]
+            },
+            {
+              "id": "village_shop",
+              "kind": "shop",
+              "cell": [
+                12,
+                2
+              ],
+              "label": "道具屋（仮）",
+              "item": "potion",
+              "price": 5,
+              "text": [
+                "回復薬を扱っています。"
+              ]
+            },
+            {
+              "id": "village_weapon",
+              "kind": "weapon_shop",
+              "cell": [
+                12,
+                6
+              ],
+              "label": "武器屋（仮）",
+              "text": [
+                "装備を確認できます。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first_cave",
+      "type": "dungeon",
+      "name": "近くの洞窟（仮）",
+      "rooms": [
+        {
+          "id": "cave_floor_1",
+          "title": "洞窟 地下1階（仮）",
+          "spawn": [
+            2,
+            7
+          ],
+          "layout": [
+            "################",
+            "#..............#",
+            "#..............#",
+            "#......##......#",
+            "#......##......#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "##.#############"
+          ],
+          "events": [
+            {
+              "id": "first_chest_1",
+              "kind": "treasure",
+              "cell": [
+                5,
+                2
+              ],
+              "item": "potion",
+              "amount": 2
+            },
+            {
+              "id": "first_chest_2",
+              "kind": "treasure",
+              "cell": [
+                10,
+                6
+              ],
+              "item": "potion",
+              "amount": 1
+            }
+          ],
+          "floor": 1
+        },
+        {
+          "id": "cave_floor_2",
+          "title": "洞窟 地下2階（仮）",
+          "spawn": [
+            2,
+            7
+          ],
+          "layout": [
+            "################",
+            "#..............#",
+            "#..............#",
+            "#......##......#",
+            "#......##......#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "##.#############"
+          ],
+          "events": [
+            {
+              "id": "first_chest_3",
+              "kind": "treasure",
+              "cell": [
+                11,
+                2
+              ],
+              "item": "potion",
+              "amount": 2
+            }
+          ],
+          "floor": 2
+        }
+      ]
+    }
+  ],
+  "terrain_patch": [
+    {
+      "cell": [
+        28,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        29,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        30,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        31,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        32,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        33,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        34,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        35,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        36,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        37,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        38,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        39,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        40,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        41,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        42,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        43,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        44,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        45,
+        44
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        45
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        35,
+        45
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        45,
+        45
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        46
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        35,
+        46
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        45,
+        46
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        47
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        35,
+        47
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        45,
+        47
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        48
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        29,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        30,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        31,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        32,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        33,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        34,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        35,
+        48
+      ],
+      "tile": "b"
+    },
+    {
+      "cell": [
+        36,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        37,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        38,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        39,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        40,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        41,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        42,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        43,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        44,
+        48
+      ],
+      "tile": "~"
+    },
+    {
+      "cell": [
+        45,
+        48
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        49
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        35,
+        49
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        45,
+        49
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        50
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        35,
+        50
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        45,
+        50
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        51
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        35,
+        51
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        45,
+        51
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        52
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        35,
+        52
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        45,
+        52
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        53
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        32,
+        53
+      ],
+      "tile": "n"
+    },
+    {
+      "cell": [
+        35,
+        53
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        40,
+        53
+      ],
+      "tile": "n"
+    },
+    {
+      "cell": [
+        45,
+        53
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        54
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        32,
+        54
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        33,
+        54
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        34,
+        54
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        35,
+        54
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        36,
+        54
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        37,
+        54
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        38,
+        54
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        39,
+        54
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        40,
+        54
+      ],
+      "tile": "r"
+    },
+    {
+      "cell": [
+        45,
+        54
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        55
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        45,
+        55
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        56
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        45,
+        56
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        57
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        45,
+        57
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        58
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        45,
+        58
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        28,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        29,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        30,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        31,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        32,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        33,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        34,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        35,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        36,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        37,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        38,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        39,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        40,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        41,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        42,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        43,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        44,
+        59
+      ],
+      "tile": "m"
+    },
+    {
+      "cell": [
+        45,
+        59
+      ],
+      "tile": "m"
+    }
+  ]
+}

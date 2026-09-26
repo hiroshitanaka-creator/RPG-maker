@@ -133,6 +133,8 @@ def main() -> None:
             rooms.append(entry)
         sites.append({"id":identifier,"type":node["type"],"legacy":legacy,"rooms":rooms})
     result = {"version":1,"status":"playable_site_content","source_note":"新規41拠点の原稿。既存8拠点の地形はChapterOneから参照し、本編の進行・回収は置換しない。","sites":sites}
+    from build_first_region import patch_interiors
+    patch_interiors(result)
     (ROOT / "world/interiors.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8",newline="\n")
     print(f"WORLD_INTERIORS_BUILT: sites={len(sites)} new={len(new_ids)} rooms={sum(len(s['rooms']) for s in sites)}")
 

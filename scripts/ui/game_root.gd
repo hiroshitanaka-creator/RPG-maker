@@ -51,6 +51,7 @@ var _mechanics_return: Mode = Mode.FIELD
 var _tactic_actor: String = ""
 var _tactic_ability: String = "__observe"
 var _tactic_target: String = ""
+var _region_shop: String = ""
 
 
 func _ready() -> void:
@@ -87,7 +88,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if mode == Mode.WORLD and _world_mover.active():
+	if mode == Mode.WORLD and game.first_region_active() and _world_mover.active():
+		if _world_mover.advance(delta) > 0:
+			var result := game.move_first_region(_world_mover.cell)
+			_world_mover.stop()
+			_world_motion_ms = Time.get_ticks_msec()
+			_walk_frame = (_walk_frame+1)%4
+			_first_region_result(result)
+			_refresh()
+	elif mode == Mode.WORLD and _world_mover.active():
 		var previous := _world_mover.route.find(_world_mover.cell)
 		var moved := _world_mover.advance(delta)
 		for offset in range(1,moved+1):
@@ -177,10 +186,10 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 
 
-func start_new_game(party_size: int = 4) -> void:
+func start_new_game(party_size: int = 4, first_region: bool = false) -> void:
 	_world_mover.stop()
 	var previous_source: String = game.play_metrics.source
-	if not game.new_game(party_size):
+	if not (game.new_first_region() if first_region else game.new_game(party_size)):
 		_notice = "ゲームを開始できません。" + "\n".join(game.errors)
 		_refresh()
 		return
@@ -208,8 +217,8 @@ func start_new_game(party_size: int = 4) -> void:
 		_notice = "必要な素材が揃うと探索を開始できます。"
 		print("ASSET_INPUT_REQUIRED: " + ", ".join(ChapterOne.missing_art()))
 	else:
-		mode = Mode.FIELD
-		_notice = "矢印 / WASDで移動。黄色の印でEnterまたは『調べる』。"
+		mode = Mode.WORLD if first_region else Mode.FIELD
+		_notice = "矢印 / WASDで移動。人に向かってEnterで会話。" if first_region else "矢印 / WASDで移動。黄色の印でEnterまたは『調べる』。"
 	_refresh()
 
 
@@ -245,6 +254,8 @@ func automation_snapshot() -> Dictionary:
 	result["section"] = game.world_state().get("section","")
 	if game.world_exploration_active():
 		result["overworld"] = game.overworld_state()
+	if game.first_region_active():
+		result["walkable_cells"] = FirstRegion.walkable_cells(saved)
 	if not diagnostics.is_empty():
 		result["errors"] = diagnostics
 		return result
@@ -259,6 +270,7 @@ func automation_snapshot() -> Dictionary:
 		var pending := encounter.pending()
 		var targets := encounter.living(Combatant.Team.ENEMY)
 		result["battle_input"] = {"ready": encounter.can_resolve(), "actor": "" if pending.is_empty() else pending[0].id, "enemy": "" if targets.is_empty() else targets[0].id}
+		result["battle_input"]["encounter_id"] = game.current_encounter_id()
 	elif mode == Mode.DIALOGUE:
 		result["line"] = _message_index
 	elif mode == Mode.EROSION_CONFIRMATION:
@@ -859,15 +871,15 @@ func _refresh() -> void:
 
 func _render_menu() -> void:
 	_body.add_child(_label("職を選び、技を組み、自分の姿を決める。", 13))
-	_body.add_child(_label("第1章  閉じた道", 16))
+	_body.add_child(_label("最初の地方（仮）", 16))
 	if not game.export_state().is_empty():
 		var row := HBoxContainer.new()
 		_body.add_child(row)
 		_button(row, "現在の冒険に戻る", _resume_current)
-		var world_button := _action_button(row,"世界地図へ",{"kind":"open_world"})
-		world_button.disabled = game.world_state().get("location","") not in ChapterOne.TOWNS
-	_button(_body, "新しくはじめる（4人）", start_new_game.bind(4))
-	_button(_body, "新しくはじめる（3人）", start_new_game.bind(3))
+		if not game.first_region_active():
+			var world_button := _action_button(row,"世界地図へ",{"kind":"open_world"})
+			world_button.disabled = game.world_state().get("location","") not in ChapterOne.TOWNS
+	_button(_body, "新しくはじめる", start_new_game.bind(3,true))
 	_button(_body, "手動セーブから再開", _load_save)
 	var checkpoint := _action_button(_body,"自動保存した戦闘前から再開",{"kind":"load_checkpoint"})
 	checkpoint.disabled = not FileAccess.file_exists(checkpoint_path)
@@ -959,6 +971,7 @@ func _map_clicked(cell: Vector2i) -> void:
 
 
 func _world_action(action: Dictionary) -> bool:
+	if game.first_region_active():return _first_region_action(action)
 	var kind: String = action.get("kind","")
 	var state := game.overworld_state()
 	if not game.world_exploration_active():
@@ -1077,7 +1090,96 @@ func _world_action(action: Dictionary) -> bool:
 	return false
 
 
+func _first_region_result(result: Dictionary) -> void:
+	_facing = int(game.overworld_state()["facing"])
+	match result.get("kind",""):
+		"battle":
+			_checkpoint = game.export_state()
+			var encounter := game.start_first_region_battle(result)
+			if encounter == null:return
+			_persist_checkpoint()
+			mode = Mode.BATTLE
+			_battle_log = ["洞窟の番人（仮）が現れた。" if result["id"] == "first_boss" else "魔物が現れた。"]
+			_actor = encounter.pending()[0].id
+			_target_action.clear()
+		"dialogue":
+			_show_dialogue(result["text"],false,Mode.WORLD)
+		"shop", "weapon_shop":
+			_region_shop = result["kind"]
+			mode = Mode.WORLD_CHOICE
+
+
+func _first_region_action(action: Dictionary) -> bool:
+	var kind: String = action.get("kind","")
+	if mode == Mode.WORLD_CHOICE:
+		if kind == "back":mode = Mode.WORLD;return true
+		if kind == "buy_potion":
+			var bought := game.buy_first_region_potion()
+			_notice = "回復薬を購入しました。" if bought else "所持金が足りません。"
+			return true
+		if kind == "buy_weapon":
+			var bought := game.buy_first_region_weapon()
+			_notice = "補強剣を購入しました。編成で持ち替えられます。" if bought else "購入済み、または所持金が足りません。"
+			return true
+		return false
+	if mode != Mode.WORLD:return false
+	match kind:
+		"world_move":
+			if _world_mover.active() or Time.get_ticks_msec()-_last_move_ms < 150:return false
+			var direction := Vector2i(int(action.get("dx",0)),int(action.get("dy",0)))
+			if absi(direction.x)+absi(direction.y) != 1:return false
+			game.first_region_face(direction)
+			_facing = int(game.overworld_state()["facing"])
+			var current := WorldExpedition.point(game.overworld_state()["cell"])
+			var target := current+direction
+			if not game.first_region_walkable(target):
+				_notice = "関所（仮）：通行証が必要です。" if game.overworld_state()["layer"] == "world" and [target.x,target.y] == FirstRegion.data()["gate"]["cell"]["cell"] else ""
+				return true
+			var path: Array[Vector2i] = [current,target]
+			if not _world_mover.begin(path,"walk",game.first_region_walkable):return false
+			_last_move_ms = Time.get_ticks_msec()
+			_notice = ""
+			return true
+		"world_interact":
+			if _world_mover.active():return false
+			_first_region_result(game.interact_first_region())
+			return true
+		"save":
+			if _world_mover.active():return false
+			var saved := game.save_game(save_path)
+			_notice = "場所と向きを保存しました。" if saved else "保存できませんでした。"
+			return saved
+		"party":
+			_world_mover.stop()
+			_party_return = Mode.WORLD
+			mode = Mode.PARTY
+			return true
+	return false
+
+
+func _render_first_region() -> void:
+	var state := game.overworld_state()
+	_facing = int(state["facing"])
+	_body.add_child(_label("最初の地方（仮）" if state["layer"] == "world" else FirstRegion.room(state)["title"],12))
+	var map := FirstRegionView.new()
+	map.saved = game.export_state()
+	map.walk_frame = _walk_frame
+	map.custom_minimum_size = Vector2(480,136)
+	map.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_body.add_child(map)
+	var row := HBoxContainer.new()
+	_body.add_child(row)
+	_action_button(row,"話す・調べる",{"kind":"world_interact"})
+	_action_button(row,"編成",{"kind":"party"})
+	_action_button(row,"セーブ",{"kind":"save"})
+	_button(row,"メニュー",_to_menu)
+	_body.add_child(_label("矢印 / WASD：歩く　Enter：会話・調べる　仲間 %d人" % game.export_state()["party"].size(),10))
+
+
 func _render_world() -> void:
+	if game.first_region_active():
+		_render_first_region()
+		return
 	var state := game.overworld_state()
 	var place: String = "世界地図" if state["layer"] == "world" else WorldExpedition.current_room(state)["title"]
 	var modes := {"walk":"徒歩","ship":"船","flight":"飛行"}
@@ -1117,6 +1219,13 @@ func _render_world() -> void:
 
 
 func _render_world_choice() -> void:
+	if game.first_region_active():
+		_body.add_child(_label("道具屋（仮）" if _region_shop == "shop" else "武器屋（仮）",14))
+		_body.add_child(_label("所持金：%d" % game.export_state()["first_region"]["coins"],12))
+		if _region_shop == "shop":_action_button(_body,"回復薬を買う：5",{"kind":"buy_potion"})
+		else:_action_button(_body,"補強剣を買う：15",{"kind":"buy_weapon"})
+		_action_button(_body,"戻る",{"kind":"back"})
+		return
 	var state := game.overworld_state()
 	var event := WorldExpedition.event_at(state)
 	_body.add_child(_label(WorldExpedition.node(state["node"])["name"],15))
@@ -1660,6 +1769,12 @@ func _render_gate() -> void:
 
 func _load_save() -> void:
 	_world_mover.stop()
+	if game.first_region_active():
+		var candidate := GameSession.new()
+		if candidate.load_game(save_path) and not candidate.first_region_active():
+			_notice = "旧本編の保存は、この冒険には引き継ぎません。現在の冒険を続けられます。"
+			_refresh()
+			return
 	if not game.load_game(save_path):
 		_notice = "読み込めるセーブがありません。"
 		_refresh()

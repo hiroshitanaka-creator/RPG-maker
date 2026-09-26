@@ -174,6 +174,8 @@ def main() -> None:
         "rows": ["".join(row) for row in cells],
         "generation_scope": "Phase 3の地形。到達・秒数・単調区間・未使用陸地の合格はPhase 4の別検査で判定。",
     }
+    from build_first_region import patch_terrain
+    patch_terrain(result)
     destination = ROOT / "world/terrain.json"
     destination.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"WORLD_TERRAIN_GENERATED: width={SIZE} height={SIZE} tiles={SIZE*SIZE} regions=4 nodes={len(points)} edges={len(graph['edges'])}", flush=True)

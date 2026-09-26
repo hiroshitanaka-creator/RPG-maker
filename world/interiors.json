@@ -6001,6 +6001,456 @@
           ]
         }
       ]
+    },
+    {
+      "id": "start_village",
+      "type": "village",
+      "name": "はじまりの村（仮）",
+      "rooms": [
+        {
+          "id": "start_house",
+          "title": "家（仮）",
+          "spawn": [
+            3,
+            3
+          ],
+          "layout": [
+            "########",
+            "#......#",
+            "#......#",
+            "#......#",
+            "#......#",
+            "#####.##"
+          ],
+          "events": []
+        },
+        {
+          "id": "village_square",
+          "title": "はじまりの村（仮）",
+          "spawn": [
+            4,
+            5
+          ],
+          "layout": [
+            "################",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "########.#######"
+          ],
+          "events": [
+            {
+              "id": "join_pc_02",
+              "kind": "recruit",
+              "actor": "pc_02",
+              "cell": [
+                5,
+                3
+              ],
+              "text": [
+                "こんにちは。一緒に洞窟まで行こう。"
+              ]
+            },
+            {
+              "id": "join_pc_03",
+              "kind": "recruit",
+              "actor": "pc_03",
+              "cell": [
+                10,
+                3
+              ],
+              "text": [
+                "こんにちは。私も同行します。"
+              ]
+            },
+            {
+              "id": "village_inn",
+              "kind": "rest",
+              "cell": [
+                2,
+                2
+              ],
+              "label": "宿（仮）",
+              "text": [
+                "ここで休めます。"
+              ]
+            },
+            {
+              "id": "village_shop",
+              "kind": "shop",
+              "cell": [
+                12,
+                2
+              ],
+              "label": "道具屋（仮）",
+              "item": "potion",
+              "price": 5,
+              "text": [
+                "回復薬を扱っています。"
+              ]
+            },
+            {
+              "id": "village_weapon",
+              "kind": "weapon_shop",
+              "cell": [
+                12,
+                6
+              ],
+              "label": "武器屋（仮）",
+              "text": [
+                "装備を確認できます。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first_cave",
+      "type": "dungeon",
+      "name": "近くの洞窟（仮）",
+      "rooms": [
+        {
+          "id": "cave_floor_1",
+          "title": "洞窟 地下1階（仮）",
+          "spawn": [
+            2,
+            7
+          ],
+          "layout": [
+            "################",
+            "#..............#",
+            "#..............#",
+            "#......##......#",
+            "#......##......#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "##.#############"
+          ],
+          "events": [
+            {
+              "id": "first_chest_1",
+              "kind": "treasure",
+              "cell": [
+                5,
+                2
+              ],
+              "item": "potion",
+              "amount": 2
+            },
+            {
+              "id": "first_chest_2",
+              "kind": "treasure",
+              "cell": [
+                10,
+                6
+              ],
+              "item": "potion",
+              "amount": 1
+            }
+          ],
+          "floor": 1
+        },
+        {
+          "id": "cave_floor_2",
+          "title": "洞窟 地下2階（仮）",
+          "spawn": [
+            2,
+            7
+          ],
+          "layout": [
+            "################",
+            "#..............#",
+            "#..............#",
+            "#......##......#",
+            "#......##......#",
+            "#..............#",
+            "#..............#",
+            "#..............#",
+            "##.#############"
+          ],
+          "events": [
+            {
+              "id": "first_chest_3",
+              "kind": "treasure",
+              "cell": [
+                11,
+                2
+              ],
+              "item": "potion",
+              "amount": 2
+            }
+          ],
+          "floor": 2
+        }
+      ]
     }
-  ]
+  ],
+  "first_region": {
+    "version": 1,
+    "title": "最初の地方（仮）",
+    "start": {
+      "layer": "interior",
+      "node": "start_village",
+      "room": 0,
+      "cell": [
+        3,
+        3
+      ]
+    },
+    "village_exit": {
+      "layer": "interior",
+      "node": "start_village",
+      "room": 1,
+      "cell": [
+        8,
+        8
+      ]
+    },
+    "village_entrance": {
+      "cell": [
+        32,
+        53
+      ],
+      "outward": [
+        0,
+        1
+      ]
+    },
+    "cave_entrance": {
+      "cell": [
+        40,
+        53
+      ],
+      "outward": [
+        0,
+        1
+      ]
+    },
+    "cave_spawn": {
+      "layer": "interior",
+      "node": "first_cave",
+      "room": 0,
+      "cell": [
+        2,
+        7
+      ]
+    },
+    "cave_exit": {
+      "layer": "interior",
+      "node": "first_cave",
+      "room": 0,
+      "cell": [
+        2,
+        8
+      ]
+    },
+    "stairs_down": {
+      "from": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 0,
+        "cell": [
+          12,
+          2
+        ]
+      },
+      "to": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 1,
+        "cell": [
+          2,
+          7
+        ]
+      }
+    },
+    "stairs_up": {
+      "from": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 1,
+        "cell": [
+          2,
+          8
+        ]
+      },
+      "to": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 0,
+        "cell": [
+          12,
+          3
+        ]
+      }
+    },
+    "save_probe": {
+      "layer": "interior",
+      "node": "first_cave",
+      "room": 0,
+      "cell": [
+        3,
+        7
+      ]
+    },
+    "boss": {
+      "point": {
+        "layer": "interior",
+        "node": "first_cave",
+        "room": 1,
+        "cell": [
+          12,
+          3
+        ]
+      },
+      "encounter_id": "first_boss",
+      "enemies": [
+        "gate_beast"
+      ],
+      "stats": {
+        "hp": 160,
+        "attack": 16,
+        "defense": 10
+      }
+    },
+    "boss_revisit": {
+      "layer": "interior",
+      "node": "first_cave",
+      "room": 1,
+      "cell": [
+        12,
+        5
+      ]
+    },
+    "gate": {
+      "before": {
+        "layer": "world",
+        "node": "",
+        "room": 0,
+        "cell": [
+          35,
+          49
+        ]
+      },
+      "cell": {
+        "layer": "world",
+        "node": "",
+        "room": 0,
+        "cell": [
+          35,
+          48
+        ]
+      },
+      "beyond": {
+        "layer": "world",
+        "node": "",
+        "room": 0,
+        "cell": [
+          35,
+          47
+        ]
+      },
+      "id": "first_gate"
+    },
+    "recruits": [
+      {
+        "stand": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 1,
+          "cell": [
+            5,
+            4
+          ]
+        },
+        "facing": [
+          0,
+          -1
+        ]
+      },
+      {
+        "stand": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 1,
+          "cell": [
+            10,
+            4
+          ]
+        },
+        "facing": [
+          0,
+          -1
+        ]
+      }
+    ],
+    "doors": [
+      {
+        "from": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 0,
+          "cell": [
+            5,
+            5
+          ]
+        },
+        "to": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 1,
+          "cell": [
+            4,
+            5
+          ]
+        }
+      },
+      {
+        "from": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 1,
+          "cell": [
+            4,
+            4
+          ]
+        },
+        "to": {
+          "layer": "interior",
+          "node": "start_village",
+          "room": 0,
+          "cell": [
+            5,
+            4
+          ]
+        }
+      }
+    ],
+    "bounds": [
+      28,
+      44,
+      45,
+      59
+    ],
+    "encounters": {
+      "world": {
+        "chance": 0.025,
+        "enemies": [
+          "slime"
+        ]
+      },
+      "first_cave": {
+        "chance": 0.04,
+        "enemies": [
+          "bat"
+        ]
+      }
+    }
+  }
 }

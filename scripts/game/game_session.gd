@@ -113,6 +113,95 @@ func export_state() -> Dictionary:
 	return _state.duplicate(true)
 
 
+func new_first_region() -> bool:
+	if not new_game(3):return false
+	_state["first_region"] = {"version":1,"reserve":_state["party"].slice(1).duplicate(true),"coins":20}
+	_state["party"] = [_state["party"][0]]
+	_state["overworld"] = {"active":true,"layer":"interior","node":"start_village","room":0,"cell":[],"facing":0,"transport":"walk","cleared":[],"opened":[],"entry_lock":""}
+	FirstRegion.place(_state["overworld"],FirstRegion.data()["start"])
+	return true
+
+
+func first_region_active() -> bool:
+	return _state.has("first_region")
+
+
+func first_region_walkable(cell: Vector2i) -> bool:
+	return first_region_active() and FirstRegion.walkable(_state,cell)
+
+
+func first_region_face(direction: Vector2i) -> void:
+	if first_region_active():_state["overworld"]["facing"] = [Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP].find(direction)
+
+
+func move_first_region(cell: Vector2i) -> Dictionary:
+	if not first_region_active() or _battle != null or party_defeated():return {}
+	var result := FirstRegion.move(_state,cell)
+	if not result.is_empty():play_metrics.mark("moved_cells")
+	return result
+
+
+func interact_first_region() -> Dictionary:
+	if not first_region_active() or _battle != null:return {}
+	var state: Dictionary = _state["overworld"]
+	var target: Vector2i = WorldExpedition.point(state["cell"])+[Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP][state["facing"]]
+	for event in FirstRegion.room(state).get("events",[]):
+		if event["kind"] == "recruit" and FirstRegion.joined(_state,event["actor"]):continue
+		if event["cell"] != [target.x,target.y] and event["cell"] != state["cell"]:continue
+		match event["kind"]:
+			"recruit":
+				for actor in _state["first_region"]["reserve"]:
+					if actor["id"] == event["actor"]:
+						_state["party"].append(actor.duplicate(true))
+						_state["first_region"]["reserve"].erase(actor)
+						return {"kind":"dialogue","text":event["text"]+[actor["name"]+"が仲間になった。"]}
+				return {"kind":"dialogue","text":["準備ができたら出発しよう。"]}
+			"rest":
+				rest()
+				return {"kind":"dialogue","text":["宿で休み、HPとMPが回復しました。"]}
+			"shop":
+				return {"kind":"shop","text":event["text"]}
+			"weapon_shop":
+				return {"kind":"weapon_shop","text":event["text"]}
+			"treasure":
+				if event["id"] in state["opened"]:return {"kind":"dialogue","text":["宝箱は空です。"]}
+				state["opened"].append(event["id"])
+				_state["inventory"][event["item"]] = int(_state["inventory"].get(event["item"],0))+int(event["amount"])
+				return {"kind":"dialogue","text":["回復薬を%d個手に入れた。" % event["amount"]]}
+	return {}
+
+
+func buy_first_region_potion() -> bool:
+	if not first_region_active() or _state["first_region"]["coins"] < 5:return false
+	_state["first_region"]["coins"] -= 5
+	_state["inventory"]["potion"] += 1
+	return true
+
+
+func buy_first_region_weapon() -> bool:
+	if not first_region_active() or _state["first_region"]["coins"] < 15 or "iron_blade" in _state["integrated"]["armory"]:return false
+	_state["first_region"]["coins"] -= 15
+	_state["integrated"]["armory"].append("iron_blade")
+	return true
+
+
+func start_first_region_battle(event: Dictionary) -> BattleState:
+	if not first_region_active() or event.get("kind") != "battle":return null
+	var encounter := start_battle(event["enemies"],int(event["seed"]))
+	if encounter == null:return null
+	_world_battle_id = event["id"]
+	if _world_battle_id == "first_boss":
+		var foe: Combatant = encounter.living(Combatant.Team.ENEMY)[0]
+		for key in FirstRegion.data()["boss"]["stats"]:
+			foe.set("max_hp" if key == "hp" else key,int(FirstRegion.data()["boss"]["stats"][key]))
+		foe.hp = foe.max_hp
+	return encounter
+
+
+func current_encounter_id() -> String:
+	return _world_battle_id if not _world_battle_id.is_empty() else "legacy_encounter"
+
+
 func _member(actor_id: String) -> Dictionary:
 	for actor in _state.get("party", []):
 		if actor["id"] == actor_id:
@@ -142,14 +231,15 @@ func _valid_state(value: Dictionary) -> bool:
 	if value["format_version"]==2 and not IntegratedProgression.valid_world(value.get("integrated")):return false
 	if value["format_version"]==1 and value.has("integrated"):return false
 	var party: Array = value["party"]
-	if party.size() < 3 or party.size() > 4 or not value.get("inventory") is Dictionary or not value.get("progress_flags") is Dictionary or not value.get("world") is Dictionary:
+	if party.size() < (1 if value.has("first_region") else 3) or party.size() > 4 or not value.get("inventory") is Dictionary or not value.get("progress_flags") is Dictionary or not value.get("world") is Dictionary:
 		return false
 	if not IntegratedCampaign.flags_valid(value):return false
 	if not _valid_world(value["world"],value["progress_flags"]):
 		return false
-	if value.has("overworld") and not WorldExpedition.valid(value["overworld"]):
+	if value.has("first_region") and not FirstRegion.valid(value):return false
+	if value.has("overworld") and not value.has("first_region") and not WorldExpedition.valid(value["overworld"]):
 		return false
-	if value.has("overworld") and value["overworld"]["active"] and value["overworld"]["origin"] != value["world"]["location"]:
+	if value.has("overworld") and not value.has("first_region") and value["overworld"]["active"] and value["overworld"]["origin"] != value["world"]["location"]:
 		return false
 	for identifier in value["progress_flags"]:
 		if not identifier is String or not value["progress_flags"][identifier] is bool:
@@ -810,6 +900,8 @@ func finish_battle() -> bool:
 	if _field_battle:
 		_state["field_battles"] = int(_state.get("field_battles", 0)) + 1
 	var won: bool = _battle.phase == BattleState.Phase.VICTORY
+	if won and first_region_active() and _world_battle_id == "first_boss":
+		_state["inventory"]["gate_pass"] = 1
 	if won and not _world_battle_id.is_empty() and _world_battle_id not in _state["overworld"]["cleared"]:
 		_state["overworld"]["cleared"].append(_world_battle_id)
 	if won and _expedition_battle_stage >= 0:
