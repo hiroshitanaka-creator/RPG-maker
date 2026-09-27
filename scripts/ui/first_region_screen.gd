@@ -193,7 +193,7 @@ func _battle() -> void:
 		for member in arena.members:
 			arena.frames[member["id"]]=2 if replay.get("target")==member["id"] and replay.get("code") in ["damage","fallen"] else 1 if replay.get("actor")==member["id"] else 0
 	add_child(arena)
-	var status := _window(Rect2(268,216,240,68),4)
+	var status := _window(Rect2(268,223,240,65),4)
 	status.name="BattlePartyStatus"
 	status.add_theme_constant_override("separation",0)
 	var visible_members: Array=arena.members.duplicate(true)
@@ -213,12 +213,13 @@ func _battle() -> void:
 		var mp := _label("MP%d/%d" % [member["mp"],member["max_mp"]],10);mp.custom_minimum_size.x=50;row.add_child(mp)
 		_battle_bar(row,member_id,"MP",int(member["mp"]),int(member["max_mp"]),Color("5d98c4"))
 	_first_button=null
-	var intent_window := _window(Rect2(156,216,108,68),4)
+	var intent_window := _window(Rect2(156,223,108,65),4)
 	intent_window.name="BattleEnemyList"
-	var enemy_scroll := ScrollContainer.new();enemy_scroll.custom_minimum_size=Vector2(100,60);intent_window.add_child(enemy_scroll)
+	var enemy_scroll := ScrollContainer.new();enemy_scroll.custom_minimum_size=Vector2(100,57);intent_window.add_child(enemy_scroll)
 	var enemy_lines := VBoxContainer.new();enemy_lines.size_flags_horizontal=Control.SIZE_EXPAND_FILL;enemy_scroll.add_child(enemy_lines)
 	var intents: Array=encounter.enemy_intents() if encounter!=null else []
 	var groups: Dictionary={}
+	var details: Dictionary={}
 	for i in range(arena.enemy_ids.size()):
 		var enemy_id := "enemy_%02d" % (i+1)
 		var definition: Dictionary=arena.definitions[arena.enemy_ids[i]]
@@ -226,18 +227,15 @@ func _battle() -> void:
 		for unit in observed:
 			if unit["id"]==enemy_id:enemy_state=unit
 		var key := str(arena.enemy_ids[i])+":"+str(enemy_state["name"])
-		if not groups.has(key):groups[key]={"name":enemy_state["name"],"count":0,"lines":[]}
+		if not groups.has(key):groups[key]={"name":enemy_state["name"],"count":0}
 		if int(enemy_state["hp"])>0:groups[key]["count"]+=1
 		var line := "%s HP%d/%d" % [enemy_state["name"],enemy_state["hp"],enemy_state["max_hp"]]
 		for intent in intents:
 			if intent["actor"]==enemy_id:line+="\n%s→%s" % [intent["action"],intent["target_name"]]
-		groups[key]["lines"].append(line)
+		details[enemy_id]=line
 	for group in groups.values():
 		var summary := _label(str(group["name"])+( " %d" % group["count"] if group["count"]!=1 else ""),10)
 		summary.name="EnemyGroup";enemy_lines.add_child(summary)
-	for group in groups.values():
-		# 個体ごとのHPと行動予定も、同じ窓の下へ残す。
-		for line in group["lines"]:enemy_lines.add_child(_label(line,10))
 	if not replay.is_empty():
 		if replay.get("code")=="ability":
 			var banner := _window(Rect2(156,4,200,24),3);banner.name="BattleSkillName"
@@ -245,24 +243,43 @@ func _battle() -> void:
 		# コマンド窓は作らず、従来のスキップ操作だけを空いた下端に残す。
 		var skip := _button(self,"表示をスキップ  Enter",{"kind":"skip_presentation"});skip.add_theme_font_size_override("font_size",10)
 		skip.position=Vector2(4,264);skip.size=Vector2(148,20)
+		for state in ["normal","hover","pressed","focus"]:
+			var skip_box := StyleBoxFlat.new();skip_box.bg_color=Color("101c50");skip_box.border_color=Color.WHITE
+			skip_box.set_border_width_all(1);skip_box.set_corner_radius_all(3)
+			skip.add_theme_stylebox_override(state,skip_box)
 		skip.tooltip_text=str(replay.get("message",""))
 		return
 	if encounter==null:return
-	var commands := _window(Rect2(4,216,148,68),4);commands.name="BattleCommands"
+	var commands := _window(Rect2(4,223,148,65),4);commands.name="BattleCommands"
 	commands.add_theme_constant_override("separation",0)
-	var scroll := ScrollContainer.new();scroll.custom_minimum_size=Vector2(140,28);scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;commands.add_child(scroll)
+	# 対象名の長さやスクロールバーで下の操作欄を押し広げない固定領域。
+	var content := Control.new();content.custom_minimum_size=Vector2(140,57);commands.add_child(content)
+	var scroll := ScrollContainer.new();scroll.name="BattleActionScroll";scroll.position=Vector2.ZERO;scroll.size=Vector2(140,28)
+	scroll.follow_focus=true
+	if not target_action.is_empty():scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	content.add_child(scroll)
 	var grid := GridContainer.new();grid.columns=2;grid.add_theme_constant_override("v_separation",0);grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(grid)
 	if not target_action.is_empty():
+		grid.columns=1
+		var detail := _label("",10);detail.name="BattleTargetDetails"
+		# 詳細は対象選択中だけ。敵一覧の代わりに同じ下端の窓内へ表示する。
+		enemy_lines.add_child(detail)
+		var focus := func(identifier: String)->void:
+			arena.focus_target(identifier)
+			detail.text=str(details.get(identifier,""))
+			for child in enemy_lines.get_children():child.visible=(child==detail) if details.has(identifier) else (child!=detail)
 		var kind := BattleAction.Kind.ATTACK
 		match target_action["kind"]:
 			"ability":kind=BattleAction.Kind.ABILITY
 			"potion":kind=BattleAction.Kind.ITEM
 			"observe":kind=BattleAction.Kind.OBSERVE
-		for target in encounter.targets_for(actor,kind,target_action.get("ability","")):
+		var targets := encounter.targets_for(actor,kind,target_action.get("ability",""))
+		for target in targets:
 			var chosen := target_action.duplicate();chosen["target"]=target.id
 			var target_button := _button(grid,target.display_name,chosen)
-			target_button.focus_entered.connect(arena.focus_target.bind(target.id))
-			target_button.mouse_entered.connect(arena.focus_target.bind(target.id))
+			target_button.focus_entered.connect(focus.bind(target.id))
+			target_button.mouse_entered.connect(focus.bind(target.id))
+		if not targets.is_empty():focus.call(targets[0].id)
 		_button(grid,"戻る",{"kind":"ui_cancel_target"})
 	elif not actor.is_empty():
 		_button(grid,"攻撃",{"kind":"ui_target","action":"attack"})
@@ -271,7 +288,8 @@ func _battle() -> void:
 		_button(grid,"観察",{"kind":"ui_target","action":"observe"})
 		for ability in encounter.actor_by_id(actor).equipped:
 			if game.abilities[ability]["kind"]!="passive":_button(grid,game.abilities[ability]["name"],{"kind":"ui_target","action":"ability","ability":ability})
-	var row := GridContainer.new();row.columns=2;row.add_theme_constant_override("v_separation",0);commands.add_child(row)
+	var row := GridContainer.new();row.name="BattleRoundActions";row.columns=2;row.add_theme_constant_override("v_separation",0)
+	row.position=Vector2(0,29);row.size=Vector2(140,28);content.add_child(row)
 	_button(row,"ターン実行",{"kind":"resolve_round"},encounter.can_resolve())
 	_button(row,"選び直す",{"kind":"clear_actions"})
 	_button(row,"技の効果を確認",{"kind":"mechanics"})

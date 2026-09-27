@@ -40,9 +40,8 @@ func _impact(identifier: String) -> Vector2:
 	return Vector2(round(sin(_time*70.0)*3.0),0) if identifier==effect_target and effect_code in ["damage","fallen"] else Vector2.ZERO
 
 func party_rect(index: int) -> Rect2:
-	# 透明余白を含む72pxの描画枠も重ねない。人数が少ない場合は列を中央へ寄せる。
-	var offset := (4-members.size())*Vector2(43,14)
-	return Rect2(Vector2(175+index*87,56+index*28)+offset,Vector2(72,72))
+	# 足元だけを後続の人物の後ろへ重ねる。描画順は隊列順で、下の人が手前。
+	return Rect2(Vector2(356+index*20,40+index*34),Vector2(72,72))
 
 func background_offset() -> Vector2:
 	return Vector2.ZERO
@@ -51,16 +50,27 @@ func actor_rect(identifier: String) -> Rect2:
 	for i in range(members.size()):
 		if members[i]["id"]==identifier:
 			var rect := party_rect(i)
-			if identifier==acting_actor:rect.position.x-=12
+			if identifier==acting_actor:rect.position.x-=30
 			return rect
-	var positions: Array[Vector2]=[Vector2(112,184),Vector2(24,212),Vector2(112,204),Vector2(16,184)]
 	for i in range(enemy_ids.size()):
 		if identifier!="enemy_%02d" % (i+1):continue
 		var source := enemy_region(enemy_ids[i])
-		var dimensions := source.size*minf(72.0/source.size.y,96.0/source.size.x)
-		var feet: Vector2=Vector2(116,192) if enemy_ids.size()==1 else positions[mini(i,3)]
-		return Rect2(feet-Vector2(0,dimensions.y),dimensions)
+		var dimensions := source.size*0.75
+		var feet := enemy_feet(i)
+		return Rect2(feet-Vector2(dimensions.x/2.0,dimensions.y),dimensions)
 	return Rect2()
+
+func enemy_feet(index: int) -> Vector2:
+	# 見本の5点。少数編成では中央に近い点から使う。
+	const POINTS := [Vector2(110,120),Vector2(215,134),Vector2(90,178),Vector2(180,200),Vector2(270,186)]
+	const CENTRAL_ORDER := [3,1,0,4,2]
+	return POINTS[index] if enemy_ids.size()==5 else POINTS[CENTRAL_ORDER[index]]
+
+func enemy_draw_order() -> Array[int]:
+	var order: Array[int]=[]
+	for i in range(enemy_ids.size()):order.append(i)
+	order.sort_custom(func(a: int,b: int)->bool:return enemy_feet(a).y<enemy_feet(b).y)
+	return order
 
 func effect_anchor(identifier: String) -> Vector2:
 	return actor_rect(identifier).get_center()+_impact(identifier)
@@ -84,12 +94,14 @@ func _draw() -> void:
 	var backdrop := _texture("res://assets/backgrounds/"+background+".png")
 	# 原寸の全画像を画面全体に描き、右下と半透明の文字窓の後ろまで残す。
 	draw_texture(backdrop,background_offset())
-	for i in range(enemy_ids.size()):
+	for i in enemy_draw_order():
 		var identifier := "enemy_%02d" % (i+1)
 		var rect := actor_rect(identifier)
 		rect.position+=_impact(identifier)
 		var tint := Color.WHITE if int(enemy_hp.get(identifier,1))>0 else Color(1,1,1,0.25)
 		draw_texture_rect_region(_enemy_texture(enemy_ids[i]),rect,enemy_region(enemy_ids[i]),tint)
+	# 演出は味方より奥へ描く。頭や顔へ色を重ねず、対象座標は共通のまま使う。
+	_draw_feedback()
 	for i in range(members.size()):
 		var member: Dictionary=members[i]
 		var identifier: String=member["id"]
@@ -100,10 +112,13 @@ func _draw() -> void:
 		rect.position+=_impact(identifier)
 		if identifier==acting_actor or (acting_actor.is_empty() and identifier==selected_actor):
 			draw_style_box(_highlight(),Rect2(rect.position+Vector2(6,66),Vector2(60,5)))
-		draw_texture_rect_region(_texture(visual["path"]),rect,visual["region"],Color(0.6,0.6,0.6,0.7) if fallen else Color.WHITE)
+		draw_texture_rect_region(_texture(visual["path"]),rect,visual["region"],Color(0.6,0.6,0.6,1.0) if fallen else Color.WHITE)
+	# 対象カーソルは身体の裏へ隠さず、頭・顔の外側に描く。
 	var cursor := target_actor if not target_actor.is_empty() else selected_actor
 	if not actor_rect(cursor).size.is_zero_approx():
 		draw_texture_rect(_texture("res://assets/ui/cursor_bright.png"),cursor_rect(cursor),false)
+
+func _draw_feedback() -> void:
 	if not actor_rect(effect_target).size.is_zero_approx():
 		var center := effect_anchor(effect_target)
 		var radius := minf(actor_rect(effect_target).size.x,actor_rect(effect_target).size.y)*0.35
