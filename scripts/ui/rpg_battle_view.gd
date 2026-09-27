@@ -41,16 +41,18 @@ func _impact(identifier: String) -> Vector2:
 
 func party_rect(index: int) -> Rect2:
 	# 透明余白を含む72pxの描画枠も重ねない。人数が少ない場合は列を中央へ寄せる。
-	var offset := (4-members.size())*Vector2(38,22)
-	var top := mini(80,int(BACKGROUND_LAYOUT.get(background,[0,68])[1]))
-	return Rect2(Vector2(211+index*75,top+index*44)+offset,Vector2(72,72))
+	var offset := (4-members.size())*Vector2(43,14)
+	return Rect2(Vector2(175+index*87,56+index*28)+offset,Vector2(72,72))
 
 func background_offset() -> Vector2:
 	return Vector2.ZERO
 
 func actor_rect(identifier: String) -> Rect2:
 	for i in range(members.size()):
-		if members[i]["id"]==identifier:return party_rect(i)
+		if members[i]["id"]==identifier:
+			var rect := party_rect(i)
+			if identifier==acting_actor:rect.position.x-=12
+			return rect
 	var positions: Array[Vector2]=[Vector2(112,184),Vector2(24,212),Vector2(112,204),Vector2(16,184)]
 	for i in range(enemy_ids.size()):
 		if identifier!="enemy_%02d" % (i+1):continue
@@ -94,7 +96,7 @@ func _draw() -> void:
 		var fallen := int(party_hp.get(identifier,member.get("hp",1)))<=0
 		var visual := CharacterVisuals.appearance(member,"battle",2 if fallen else int(frames.get(identifier,0)))
 		if not visual["available"]:continue
-		var rect := party_rect(i)
+		var rect := actor_rect(identifier)
 		rect.position+=_impact(identifier)
 		if identifier==acting_actor or (acting_actor.is_empty() and identifier==selected_actor):
 			draw_style_box(_highlight(),Rect2(rect.position+Vector2(6,66),Vector2(60,5)))

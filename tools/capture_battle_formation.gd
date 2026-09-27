@@ -1,6 +1,6 @@
 extends SceneTree
 ## 本番の戦闘画面を使う配置見本。物語の加入・転職解放を示すものではない。
-const OUTPUT := "res://docs/verification/battle-layout-target/checks/"
+const OUTPUT := "res://docs/verification/battle-bottom-band/checks/"
 var failures: Array[String] = []
 var checks := 0
 var capture_enabled := false
@@ -47,7 +47,7 @@ func save_frame(name: String) -> void:
 	var backdrop := (load("res://assets/backgrounds/temple.png") as Texture2D).get_image()
 	# 窓・人物のない空と地面で、原画と実描画のピクセルを比較する。
 	var mismatches := 0
-	for area in [Rect2i(196,4,110,64),Rect2i(4,124,56,48)]:
+	for area in [Rect2i(4,4,146,60),Rect2i(370,4,138,46),Rect2i(4,124,12,48)]:
 		for y in range(area.position.y,area.end.y):
 			for x in range(area.position.x,area.end.x):
 				if frame.get_pixel(x*2,y*2)!=backdrop.get_pixel(x,y):mismatches+=1
@@ -60,30 +60,37 @@ func geometry(panel: FirstRegionScreen, count: int) -> void:
 	check(arena!=null,"本番描画の存在")
 	check(arena.background_offset()==Vector2.ZERO,"背景を移動・切り抜きせず全画面へ描く")
 	var boxes: Dictionary={}
-	for name in ["BattleEnemyList","BattleCommands","BattlePartyStatus"]:
+	var required := ["BattleEnemyList","BattlePartyStatus"]
+	if panel.replay.is_empty():required.append("BattleCommands")
+	else:check(panel.find_child("BattleCommands",true,false)==null,"演出中はコマンド窓がない")
+	for name in required:
 		var column := panel.find_child(name,true,false)
 		check(column!=null,"必要な窓: "+name)
-		if column!=null:boxes[name]=(column.get_parent() as Control).get_rect()
-	check(boxes.get("BattleCommands")==Rect2(420,4,88,128),"右上のコマンド窓")
-	check(boxes.get("BattlePartyStatus")==Rect2(4,220,296,64),"左下の能力値窓")
-	check(boxes.get("BattleEnemyList",Rect2()).position==Vector2(4,4),"左上の敵一覧")
+		if column!=null:
+			boxes[name]=(column.get_parent() as Control).get_rect()
+			var style := column.get_parent().get_theme_stylebox("panel") as StyleBoxFlat
+			check(style!=null and style.bg_color==Color("101c50") and style.border_color==Color.WHITE,"濃い青と白の枠: "+name)
+	if panel.replay.is_empty():check(boxes.get("BattleCommands")==Rect2(4,216,148,68),"左下のコマンド窓")
+	check(boxes.get("BattlePartyStatus")==Rect2(268,216,240,68),"右下の能力値窓")
+	check(boxes.get("BattleEnemyList",Rect2()).position==Vector2(156,216),"下端中央の敵一覧")
 	for child in panel.get_children():
-		if child is PanelContainer:check(not child.get_rect().intersects(Rect2(304,220,208,68)),"右下に文字窓を置かない")
+		if child is PanelContainer and not child.find_child("BattleSkillName",true,false):check(child.position.y==216,"窓は下端の帯にまとめる")
 	var expected: Array=panel.replay.get("snapshot",{}).get("actors",[]) if not panel.replay.is_empty() else panel.game.current_battle().snapshot()["actors"]
 	for i in range(count):
 		var id := "pc_%02d" % (i+1)
 		var rect := arena.actor_rect(id)
 		check(CharacterVisuals.appearance(arena.members[i],"battle")["region"].size==Vector2(96,96),"再制作した96px素材を使用する: "+id)
-		check(rect.position.x==211+i*75+(4-count)*38 and rect.size==Vector2(72,72),"承認済みの72px表示と斜めの列: "+id)
+		check(rect.position.x==175+i*87+(4-count)*43-(12 if id==arena.acting_actor else 0) and rect.size==Vector2(72,72),"承認済みの72px表示と斜めの列: "+id)
 		check(Rect2(0,0,512,288).encloses(rect),"画面内: "+id)
 		if i>0:
 			var previous := arena.actor_rect("pc_%02d" % i)
-			check(rect.position.y-previous.position.y==44 and not rect.intersects(previous),"隊列順・等間隔・人物矩形の重なりなし: "+id)
+			check(rect.position.y-previous.position.y==28 and not rect.intersects(previous),"隊列順・等間隔・人物矩形の重なりなし: "+id)
 			check(not rect.intersects(Rect2(previous.position+Vector2(3,0),previous.size)) and not previous.intersects(Rect2(rect.position-Vector2(3,0),rect.size)),"被弾時の最大3pxの揺れでも重ならない: "+id)
 		# 透明余白を含む人物矩形の非重複を維持し、顔の非重複も別に確認する。
 		var face := Rect2(rect.position+Vector2(24,6),Vector2(24,22))
 		for j in range(count):
-			if j!=i:check(not face.intersects(arena.party_rect(j)),"顔がほかの人物に隠れない: "+id)
+			if j!=i:check(not face.intersects(arena.actor_rect("pc_%02d" % (j+1))),"顔がほかの人物に隠れない: "+id)
+		check(rect.position==arena.party_rect(i).position-Vector2(12 if id==arena.acting_actor else 0,0),"行動者だけ左へ一歩進む: "+id)
 		check(arena.effect_anchor(id)==rect.get_center(),"演出の中心: "+id)
 		check(arena.cursor_rect(id).end.x<rect.position.x,"カーソルが人物を覆わない: "+id)
 		for child in panel.get_children():
@@ -93,7 +100,9 @@ func geometry(panel: FirstRegionScreen, count: int) -> void:
 			var actor_button := panel.find_child("Status_"+id,true,false) as Button
 			check(actor_button!=null and actor_button.text.begins_with(str(unit["name"])),"人数分の名前と人物選択ボタンを維持: "+id)
 			if actor_button!=null:
-				check(Rect2(4,220,296,64).encloses(actor_button.get_global_rect()),"名前が左下の窓に収まる")
+				var active := id==(arena.acting_actor if not panel.replay.is_empty() else panel.actor)
+				check(actor_button.get_theme_color("font_disabled_color" if actor_button.disabled else "font_color")== (Color("ffe36b") if active else Color.WHITE),"行動者の名前を黄色で表示: "+id)
+				check(Rect2(268,216,240,68).encloses(actor_button.get_global_rect()),"名前が右下の窓に収まる")
 				for kind in ["HP","MP"]:
 					var value_text := "%s%d/%d" % [kind,unit[kind.to_lower()],unit["max_"+kind.to_lower()]]
 					var found := false
@@ -105,7 +114,7 @@ func geometry(panel: FirstRegionScreen, count: int) -> void:
 				check(bar!=null,"人物別の棒グラフ: "+kind+id)
 				if bar!=null:
 					check(bar.value==int(unit[kind.to_lower()]) and bar.max_value==maxi(1,int(unit["max_"+kind.to_lower()])),"棒グラフが実際の値と一致: "+kind+id)
-					check(Rect2(4,220,296,64).encloses(bar.get_global_rect()),"棒グラフが左下の窓に収まる")
+					check(Rect2(268,216,240,68).encloses(bar.get_global_rect()),"棒グラフが右下の窓に収まる")
 	var labels: Array[String]=[]
 	for control in panel.find_children("*","Control",true,false):
 		if control is Label:
@@ -184,6 +193,36 @@ func run() -> void:
 			check(arena.party_hp["pc_04"]== (0 if code=="fallen" else 12),"描画時点のHP: "+code)
 			await save_frame("state-"+code)
 			panel.queue_free();await process_frame
+	# 同種敵の集約、各行動者の前進、技名の帯を本番表示で追加確認する。
+	var grouped := GameSession.new();check(grouped.new_game(4),"集約表示用の4人開始")
+	var grouped_battle := grouped.start_battle(["slime","slime","shell_guard"],20260927)
+	var grouped_panel := screen(grouped)
+	await process_frame;await process_frame
+	var heading_count := 0
+	for label in grouped_panel.find_child("BattleEnemyList",true,false).find_children("*","Label",true,false):
+		if label.text=="水路スライム 2":heading_count+=1
+	check(heading_count==1,"同じ敵2体は見出し1件に集約する")
+	check(grouped_panel.find_child("BattleSkillName",true,false)==null,"入力中は技名の帯を出さない")
+	grouped_panel.queue_free();await process_frame
+	for i in range(4):
+		var identifier := "pc_%02d" % (i+1)
+		var event := {"code":"ability","actor":identifier,"target":"enemy_01","ability_name":"火球","amount":0,"snapshot":grouped_battle.snapshot()}
+		var panel := screen(grouped,event)
+		await geometry(panel,4)
+		var banner := panel.find_child("BattleSkillName",true,false)
+		check(banner!=null and banner.get_parent().get_rect()==Rect2(156,4,200,24),"技名の帯を上中央だけに表示")
+		if banner!=null:check(banner.get_child(0).text=="火球","発動した技名と一致")
+		var arena := arena_for(panel)
+		for j in range(4):
+			var id := "pc_%02d" % (j+1)
+			arena.focus_target(id)
+			check(arena.cursor_rect(id).get_center().y==arena.actor_rect(id).get_center().y,"前進中も対象カーソルが追従: "+id)
+			check(arena.effect_anchor(id)==arena.actor_rect(id).get_center(),"前進中も演出が追従: "+id)
+		panel.queue_free();await process_frame
+	# 入力画面に戻ると全員が元の列へ戻る。
+	grouped_panel=screen(grouped);await geometry(grouped_panel,4)
+	check(arena_for(grouped_panel).acting_actor.is_empty(),"行動後は前進を解除する")
+	grouped_panel.queue_free();await process_frame
 	var backgrounds := GameSession.new()
 	check(backgrounds.new_game(4),"14背景用の4人開始")
 	var jobs := ["warrior","martial_artist","priest","mage"]

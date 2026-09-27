@@ -63,7 +63,7 @@ func _label(text_value: String, font_size: int = 13) -> Label:
 	var label := Label.new()
 	label.text=text_value
 	label.add_theme_font_size_override("font_size",font_size)
-	label.add_theme_color_override("font_color",Color("f5f3e8"))
+	label.add_theme_color_override("font_color",Color.WHITE if screen_mode=="battle" else Color("f5f3e8"))
 	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	return label
 
@@ -77,7 +77,13 @@ func _window(rect: Rect2, inset: int = 8) -> VBoxContainer:
 		box.set_texture_margin(side,8.0)
 		box.set_content_margin(side,inset)
 	box.modulate_color=Color(1,1,1,0.86 if screen_mode=="battle" else 0.93)
-	panel.add_theme_stylebox_override("panel",box)
+	if screen_mode=="battle":
+		var blue := StyleBoxFlat.new()
+		blue.bg_color=Color("101c50");blue.border_color=Color.WHITE
+		blue.set_border_width_all(1);blue.set_corner_radius_all(3)
+		for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]:blue.set_content_margin(side,inset)
+		panel.add_theme_stylebox_override("panel",blue)
+	else:panel.add_theme_stylebox_override("panel",box)
 	add_child(panel)
 	var column := VBoxContainer.new()
 	column.add_theme_constant_override("separation",3)
@@ -88,6 +94,8 @@ func _button(parent: Node, title: String, action: Dictionary, enabled: bool = tr
 	var button := Button.new()
 	button.text=title
 	button.disabled=not enabled
+	if screen_mode=="battle":
+		for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color","font_disabled_color"]:button.add_theme_color_override(state,Color.WHITE)
 	button.add_theme_font_size_override("font_size",11 if screen_mode=="battle" else 12)
 	for state in ["normal","hover","pressed","focus","disabled"]:
 		var box := StyleBoxFlat.new()
@@ -177,6 +185,7 @@ func _battle() -> void:
 	if not replay.is_empty():
 		arena.effect_target=str(replay.get("target",""));arena.effect_code=str(replay.get("code",""))
 		arena.acting_actor=str(replay.get("actor",""));arena.effect_amount=int(replay.get("amount",0))
+		if replay.get("code")=="fallen":arena.acting_actor=""
 		arena.selected_actor=""
 		for unit in replay.get("snapshot",{}).get("actors",[]):
 			if str(unit["id"]).begins_with("enemy_"):arena.enemy_hp[unit["id"]]=int(unit["hp"])
@@ -184,7 +193,7 @@ func _battle() -> void:
 		for member in arena.members:
 			arena.frames[member["id"]]=2 if replay.get("target")==member["id"] and replay.get("code") in ["damage","fallen"] else 1 if replay.get("actor")==member["id"] else 0
 	add_child(arena)
-	var status := _window(Rect2(4,220,296,64),4)
+	var status := _window(Rect2(268,216,240,68),4)
 	status.name="BattlePartyStatus"
 	status.add_theme_constant_override("separation",0)
 	var visible_members: Array=arena.members.duplicate(true)
@@ -197,34 +206,52 @@ func _battle() -> void:
 		var queued := encounter!=null and encounter.queued.has(member_id)
 		var button := _button(row,str(member["name"])+( " 済" if queued else ""),{"kind":"ui_actor","actor":member_id},int(member["hp"])>0 and replay.is_empty())
 		button.name="Status_"+member_id;button.custom_minimum_size.x=48;button.add_theme_font_size_override("font_size",10)
+		if member_id==(arena.acting_actor if not replay.is_empty() else actor):
+			for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color","font_disabled_color"]:button.add_theme_color_override(state,Color("ffe36b"))
 		var hp := _label("HP%d/%d" % [member["hp"],member["max_hp"]],10);hp.custom_minimum_size.x=58;row.add_child(hp)
 		_battle_bar(row,member_id,"HP",int(member["hp"]),int(member["max_hp"]),Color("73b54a"))
 		var mp := _label("MP%d/%d" % [member["mp"],member["max_mp"]],10);mp.custom_minimum_size.x=50;row.add_child(mp)
 		_battle_bar(row,member_id,"MP",int(member["mp"]),int(member["max_mp"]),Color("5d98c4"))
 	_first_button=null
-	var intent_window := _window(Rect2(4,4,184,10+arena.enemy_ids.size()*24),4)
+	var intent_window := _window(Rect2(156,216,108,68),4)
 	intent_window.name="BattleEnemyList"
+	var enemy_scroll := ScrollContainer.new();enemy_scroll.custom_minimum_size=Vector2(100,60);intent_window.add_child(enemy_scroll)
+	var enemy_lines := VBoxContainer.new();enemy_lines.size_flags_horizontal=Control.SIZE_EXPAND_FILL;enemy_scroll.add_child(enemy_lines)
 	var intents: Array=encounter.enemy_intents() if encounter!=null else []
+	var groups: Dictionary={}
 	for i in range(arena.enemy_ids.size()):
 		var enemy_id := "enemy_%02d" % (i+1)
 		var definition: Dictionary=arena.definitions[arena.enemy_ids[i]]
 		var enemy_state := {"name":definition["name"],"hp":arena.enemy_hp.get(enemy_id,definition["stats"]["hp"]),"max_hp":definition["stats"]["hp"]}
 		for unit in observed:
 			if unit["id"]==enemy_id:enemy_state=unit
+		var key := str(arena.enemy_ids[i])+":"+str(enemy_state["name"])
+		if not groups.has(key):groups[key]={"name":enemy_state["name"],"count":0,"lines":[]}
+		if int(enemy_state["hp"])>0:groups[key]["count"]+=1
 		var line := "%s HP%d/%d" % [enemy_state["name"],enemy_state["hp"],enemy_state["max_hp"]]
 		for intent in intents:
 			if intent["actor"]==enemy_id:line+="\n%s→%s" % [intent["action"],intent["target_name"]]
-		intent_window.add_child(_label(line,10))
+		groups[key]["lines"].append(line)
+	for group in groups.values():
+		var summary := _label(str(group["name"])+( " %d" % group["count"] if group["count"]!=1 else ""),10)
+		summary.name="EnemyGroup";enemy_lines.add_child(summary)
+	for group in groups.values():
+		# 個体ごとのHPと行動予定も、同じ窓の下へ残す。
+		for line in group["lines"]:enemy_lines.add_child(_label(line,10))
 	if not replay.is_empty():
-		var report := _window(Rect2(420,4,88,128),4);report.name="BattleCommands"
-		report.add_child(_label(str(replay.get("message","")),10))
-		var skip := _button(report,"表示をスキップ  Enter",{"kind":"skip_presentation"});skip.add_theme_font_size_override("font_size",10)
-		skip.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		if replay.get("code")=="ability":
+			var banner := _window(Rect2(156,4,200,24),3);banner.name="BattleSkillName"
+			var title := _label(str(replay.get("ability_name","")),12);title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;banner.add_child(title)
+		# コマンド窓は作らず、従来のスキップ操作だけを空いた下端に残す。
+		var skip := _button(self,"表示をスキップ  Enter",{"kind":"skip_presentation"});skip.add_theme_font_size_override("font_size",10)
+		skip.position=Vector2(4,264);skip.size=Vector2(148,20)
+		skip.tooltip_text=str(replay.get("message",""))
 		return
 	if encounter==null:return
-	var commands := _window(Rect2(420,4,88,128),4);commands.name="BattleCommands"
-	var scroll := ScrollContainer.new();scroll.custom_minimum_size=Vector2(78,62);scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;commands.add_child(scroll)
-	var grid := VBoxContainer.new();grid.add_theme_constant_override("separation",1);grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(grid)
+	var commands := _window(Rect2(4,216,148,68),4);commands.name="BattleCommands"
+	commands.add_theme_constant_override("separation",0)
+	var scroll := ScrollContainer.new();scroll.custom_minimum_size=Vector2(140,28);scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;commands.add_child(scroll)
+	var grid := GridContainer.new();grid.columns=2;grid.add_theme_constant_override("v_separation",0);grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(grid)
 	if not target_action.is_empty():
 		var kind := BattleAction.Kind.ATTACK
 		match target_action["kind"]:
@@ -244,7 +271,7 @@ func _battle() -> void:
 		_button(grid,"観察",{"kind":"ui_target","action":"observe"})
 		for ability in encounter.actor_by_id(actor).equipped:
 			if game.abilities[ability]["kind"]!="passive":_button(grid,game.abilities[ability]["name"],{"kind":"ui_target","action":"ability","ability":ability})
-	var row := VBoxContainer.new();row.add_theme_constant_override("separation",0);commands.add_child(row)
+	var row := GridContainer.new();row.columns=2;row.add_theme_constant_override("v_separation",0);commands.add_child(row)
 	_button(row,"ターン実行",{"kind":"resolve_round"},encounter.can_resolve())
 	_button(row,"選び直す",{"kind":"clear_actions"})
 	_button(row,"技の効果を確認",{"kind":"mechanics"})
@@ -253,7 +280,7 @@ func _battle() -> void:
 func _battle_bar(parent: Control, member_id: String, kind: String, value: int, maximum: int, color: Color) -> void:
 	var bar := ProgressBar.new()
 	bar.name=kind+"_"+member_id
-	bar.custom_minimum_size=Vector2(48,7)
+	bar.custom_minimum_size=Vector2(20,7)
 	bar.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 	bar.max_value=maxi(1,maximum);bar.value=value;bar.show_percentage=false
 	bar.mouse_filter=Control.MOUSE_FILTER_IGNORE

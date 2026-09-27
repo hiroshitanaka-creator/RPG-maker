@@ -370,7 +370,11 @@ func _execute(original: BattleAction) -> void:
 			potions-=1
 			var amount:=target.heal(catalog.potion_healing)
 			_log("heal","%sの回復薬: %sのHPが%d回復。" % [actor.display_name,target.display_name,amount],actor.id,target.id,amount)
-		BattleAction.Kind.ABILITY:_use_ability(actor,target,catalog.abilities[action.ability_id])
+		BattleAction.Kind.ABILITY:
+			# 成立した技だけ、演出用の名前を記録する。戦闘計算や消費量は変えない。
+			var title: String=catalog.abilities[action.ability_id]["name"]
+			_events.append({"code":"ability","message":title,"ability_name":title,"actor":actor.id,"target":target.id,"amount":0,"snapshot":snapshot()})
+			_use_ability(actor,target,catalog.abilities[action.ability_id])
 	effects.finish_action(actor,action)
 
 

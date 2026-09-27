@@ -780,7 +780,7 @@ func _battle_action(action: Dictionary) -> bool:
 		_replay_timer = 0.35
 		for event in events:
 			_battle_log.append(event["message"])
-			if event["code"] in ["damage","heal","guard","revive","steal","fallen"]:
+			if event["code"] in ["ability","damage","heal","guard","revive","steal","fallen"]:
 				_replay.append(event.duplicate(true))
 		_target_action.clear()
 		if encounter.phase == BattleState.Phase.VICTORY:
