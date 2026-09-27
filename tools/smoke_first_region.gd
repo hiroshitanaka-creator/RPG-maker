@@ -195,7 +195,7 @@ func _frames(count: int = 2) -> void:
 
 func _key(code: int) -> bool:
 	if not _active():return false
-	if code not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_ENTER]:
+	if code not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_ENTER, KEY_ESCAPE]:
 		_input_violation = true
 		return false
 	_input_log.append("key:" + str(code))
@@ -496,10 +496,12 @@ func _same(a: Variant, b: Variant) -> bool:
 func _save_load() -> bool:
 	var before := _save_observation()
 	if before.is_empty() or before["floor"] != 1 or _at(_definition["save_probe"]):return false
+	if not await _key(KEY_ESCAPE):return false
 	if not await _button(["セーブ"]):return false
+	if not await _button(["現在の冒険に戻る"]):return false
 	if not await _walk(_definition["save_probe"]):return false
 	if _same(before, _save_observation()):return false
-	if not await _button(["メニュー"]):return false
+	if not await _key(KEY_ESCAPE):return false
 	if not await _button(["手動セーブから再開"]):return false
 	if not await _settle():return false
 	return _same(before, _save_observation())
@@ -609,7 +611,7 @@ func _run() -> void:
 	var pose := _pose()
 	_record("A01", _started_by_ui and pose.get("layer") == "interior" and pose.get("node") == "start_village" and _party().size() >= 1, "New Game後のstart_village内部・1人以上" if pose.get("node") == "start_village" else "New Game後にstart_village内部の位置情報がない")
 	# 現行版の禁止ラベルも実際にメニューを開いて検出する。
-	if await _button(["メニュー"]):
+	if await _key(KEY_ESCAPE):
 		_menu_checked = true
 		await _frames()
 		if not await _button(["現在の冒険に戻る"]):
