@@ -1,0 +1,86 @@
+--- a/tools/capture_battle_formation.gd
++++ b/tools/capture_battle_formation.gd
+@@ -3 +3 @@
+-const OUTPUT := "res://docs/verification/battle-bottom-band/checks/"
++const OUTPUT := "res://docs/verification/battle-compact/checks/"
+@@ -65 +65,6 @@
+-	else:check(panel.find_child("BattleCommands",true,false)==null,"演出中はコマンド窓がない")
++	else:
++		check(panel.find_child("BattleCommands",true,false)==null,"演出中はコマンド窓がない")
++		for button in panel.find_children("*","Button",true,false):
++			if button.text=="表示をスキップ  Enter":
++				var style := button.get_theme_stylebox("normal") as StyleBoxFlat
++				check(style!=null and style.bg_color==Color("101c50") and style.border_color==Color.WHITE,"スキップ表示に青地と白枠がある")
+@@ -83 +88 @@
+-		check(rect.position.x==175+i*87+(4-count)*43-(12 if id==arena.acting_actor else 0) and rect.size==Vector2(72,72),"承認済みの72px表示と斜めの列: "+id)
++		check(rect.position.x==388+i*14+(4-count)*7-(30 if id==arena.acting_actor else 0) and rect.size==Vector2(72,72),"承認済みの72px表示と斜めの列: "+id)
+@@ -84,0 +90,3 @@
++		check(arena.party_rect(i).position.x>=384 and arena.party_rect(i).end.x<=512,"右側4分の1に隊列が収まる: "+id)
++		for enemy_index in range(arena.enemy_ids.size()):
++			check(not rect.grow(3).intersects(arena.actor_rect("enemy_%02d" % (enemy_index+1)).grow(3)),"前進と被弾を含め敵に重ならない: "+id)
+@@ -87,3 +95,2 @@
+-			check(rect.position.y-previous.position.y==28 and not rect.intersects(previous),"隊列順・等間隔・人物矩形の重なりなし: "+id)
+-			check(not rect.intersects(Rect2(previous.position+Vector2(3,0),previous.size)) and not previous.intersects(Rect2(rect.position-Vector2(3,0),rect.size)),"被弾時の最大3pxの揺れでも重ならない: "+id)
+-		# 透明余白を含む人物矩形の非重複を維持し、顔の非重複も別に確認する。
++			check(rect.position.y-previous.position.y==28,"隊列順・等間隔: "+id)
++		# 依頼者が許可した足元の重なりだけを許す。顔と前景人物の重なりは認めない。
+@@ -92,2 +99,5 @@
+-			if j!=i:check(not face.intersects(arena.actor_rect("pc_%02d" % (j+1))),"顔がほかの人物に隠れない: "+id)
+-		check(rect.position==arena.party_rect(i).position-Vector2(12 if id==arena.acting_actor else 0,0),"行動者だけ左へ一歩進む: "+id)
++			if j>i:
++				var front := arena.actor_rect("pc_%02d" % (j+1))
++				for shake in [-3,0,3]:
++					check(not face.intersects(Rect2(front.position+Vector2(shake,0),front.size)),"前景の人物や被弾の揺れで顔を隠さない: "+id)
++		check(rect.position==arena.party_rect(i).position-Vector2(30 if id==arena.acting_actor else 0,0),"行動者だけ左へ一歩進む: "+id)
+@@ -129,0 +140,5 @@
++		var action_scroll := panel.find_child("BattleActionScroll",true,false) as ScrollContainer
++		var round_actions := panel.find_child("BattleRoundActions",true,false) as Control
++		check(action_scroll!=null and round_actions!=null,"対象欄と操作欄がある")
++		if action_scroll!=null and round_actions!=null:
++			check(action_scroll.clip_contents and not action_scroll.get_global_rect().intersects(round_actions.get_global_rect()),"対象欄が操作欄と重ならず領域外へ描かれない")
+@@ -135,5 +150,13 @@
+-		var text_value := "\n".join(labels)
+-		for intent in panel.game.current_battle().enemy_intents():
+-			var foe := panel.game.current_battle().actor_by_id(intent["actor"])
+-			check(text_value.contains("%s HP%d/%d" % [foe.display_name,foe.hp,foe.max_hp]),"敵の名前とHPを維持")
+-			check(text_value.contains("%s→%s" % [intent["action"],intent["target_name"]]),"敵の行動予定を維持")
++		if panel.target_action.is_empty():
++			var enemy_window := panel.find_child("BattleEnemyList",true,false)
++			for label in enemy_window.find_children("*","Label",true,false):
++				check(not label.text.contains("HP") and not label.text.contains("→"),"通常の敵一覧は名前と数だけ")
++			check(panel.find_child("BattleTargetDetails",true,false)==null,"入力対象を選ぶ前は個体詳細を出さない")
++	# 敵は足元順に描き、最大5体でも全身が隠れない。
++	var order := arena.enemy_draw_order()
++	for i in range(arena.enemy_ids.size()):
++		var enemy_rect := arena.actor_rect("enemy_%02d" % (i+1))
++		check(enemy_rect.size==arena.enemy_region(arena.enemy_ids[i]).size*0.75,"敵は素材実寸の75%表示")
++		check(Rect2(0,0,350,216).encloses(enemy_rect),"敵は左側の戦場内に収まる")
++		for j in range(i):check(not enemy_rect.grow(3).intersects(arena.actor_rect("enemy_%02d" % (j+1)).grow(3)),"敵同士は被弾の揺れも含めて重ならない")
++		if i>0:check(arena.enemy_feet(order[i]).y>=arena.enemy_feet(order[i-1]).y,"奥の敵から手前の敵の順に描く")
+@@ -225,0 +249,26 @@
++	# 5体は撮影専用入力。通常ゲームの戦闘上限を拡張しない。
++	var five := preload("res://tools/battle_five_enemy_preview.gd").new();five.prepare()
++	var five_panel := screen(five);await geometry(five_panel,4)
++	five_panel.queue_free();await process_frame
++	for game in [grouped,five]:
++		var panel := FirstRegionScreen.new()
++		panel.theme=Theme.new();panel.theme.default_font=RpgFonts.get_font()
++		panel.game=game;panel.screen_mode="battle";panel.actor="pc_01"
++		panel.target_action={"kind":"attack","actor":"pc_01"}
++		root.add_child(panel);await process_frame;await process_frame
++		var buttons := panel.find_child("BattleCommands",true,false).find_children("*","Button",true,false)
++		var checked := 0
++		for button in buttons:
++			if button.text in ["戻る","ターン実行","選び直す","技の効果を確認"]:continue
++			button.grab_focus();await process_frame
++			var identifier := arena_for(panel).target_actor
++			var foe: Combatant=game.current_battle().actor_by_id(identifier)
++			var detail := panel.find_child("BattleTargetDetails",true,false) as Label
++			check(detail!=null and detail.visible,"対象選択中は詳細が見える")
++			if detail!=null:
++				check(detail.text.contains("%s HP%d/%d" % [foe.display_name,foe.hp,foe.max_hp]),"選んだ個体の実際のHPと名前が一致")
++				for intent in game.current_battle().enemy_intents():
++					if intent["actor"]==identifier:check(detail.text.contains("%s→%s" % [intent["action"],intent["target_name"]]),"選んだ個体の行動予定が一致")
++			checked+=1
++		check(checked==game.current_enemy_ids().size(),"同名の敵を含む全対象を選択した")
++		panel.queue_free();await process_frame
