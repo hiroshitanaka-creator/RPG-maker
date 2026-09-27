@@ -227,6 +227,14 @@ jobs:
           timeout 180 ./godot --headless --path . --script res://tools/check_first_region_screen.gd 2>&1 | tee first-region-screen.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" first-region-screen.log; then exit 1; fi
           test "$(grep -c '^REGION_UI_PASS: checks=10' first-region-screen.log)" -eq 1
+      - name: 職業衣装の参照と保存復元を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/capture_job_costumes.gd 2>&1 | tee job-costumes.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" job-costumes.log; then exit 1; fi
+          test "$(grep -c '^JOB_COSTUMES_PASS: jobs=4 actors=4 lookups=32 saves=4' job-costumes.log)" -eq 1
+
       - name: 版識別と保存後の再起動復旧を検査
         if: steps.check.outputs.exists == 'true'
         run: |
@@ -263,6 +271,8 @@ jobs:
             recovery.log
             saved-value-types.log
             first-region-screen.log
+            job-costumes.log
+            docs/verification/sprint3/costume-runtime.json
             docs/verification/first-region/screen-checks.json
             docs/verification/scope-lock-current.json
             .tools/verification/current-*/*.log

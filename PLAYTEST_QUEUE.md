@@ -84,3 +84,9 @@
 - `docs/verification/first-region/15-overlap-review.png` で、地面の小物が人物を覆わず、高さのある物の前後関係が分かるか確認する。
 - リオネの申し出とハルドの包帯巻きの場面について、会話の性格・長さ・手伝った手応えを確認する。全文は `docs/first-region-recruit-scenes.md`。
 - カイナの家の床・家具配置、関所周辺の水際の仕上げは、依頼者の指示によりスプリント5で行う。
+
+## スプリント3・第1回の衣装確認
+
+- `docs/verification/sprint3/costume-overview.png` と原画比較で、戦士・武闘家・僧侶・魔法使いを見分けられるか、顔・髪・体格が同じ4人に見えるかを確認する。
+- `walk-preview.gif` と本番の戦闘描画見本で、歩行・攻撃・被弾の違いと大きさを確認する。
+- 12職のうち4職の区切り。残る8職は `docs/sprint3-costumes.md` に記載。

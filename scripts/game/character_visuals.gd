@@ -15,7 +15,8 @@ static func data() -> Dictionary:
 static func appearance(actor: Dictionary, kind: String, frame: int = 0, facing: int = 0) -> Dictionary:
 	var definition: Dictionary = data().get("actors",{}).get(actor.get("id",""),{})
 	var form: String = actor.get("monster_form","")
-	var path: String = definition.get(kind,"")
+	var costume: Dictionary = definition.get("jobs",{}).get(actor.get("job_id",""),{})
+	var path: String = costume.get(kind,definition.get(kind,""))
 	var signs: bool = int(actor.get("erosion",0)) >= 30
 	if signs and form.is_empty():
 		path = definition.get("erosion_signs",{}).get(kind,"")
