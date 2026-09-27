@@ -12,7 +12,6 @@ var speaking_actor := ""
 var notice := ""
 var place_name := ""
 var walk_frame := 0
-var show_field_buttons := true
 var battle_background := "plains"
 var replay: Dictionary = {}
 var replay_members: Array = []
@@ -102,10 +101,6 @@ func _button(parent: Node, title: String, action: Dictionary, enabled: bool = tr
 	return button
 
 func _world() -> void:
-	# 入力契約を改訂するまでは、現在の一般プレイヤー向け操作を保持する。
-	if show_field_buttons:
-		var save := _button(self,"セーブ",{"kind":"save"});save.position=Vector2(8,262);save.size=Vector2(66,20)
-		var menu := _button(self,"メニュー",{"kind":"ui_menu"});menu.position=Vector2(436,262);menu.size=Vector2(68,20)
 	if not place_name.is_empty():
 		place_label=_label(place_name,16)
 		place_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
