@@ -18,7 +18,7 @@ func _ready() -> void:
 	_map=FirstRegionPresentation.map_for(saved["overworld"])
 	for layer in _map.get("layers",[]):
 		if layer["cells"].is_empty():continue
-		if layer["name"] in ["地面","dirt","shore","hills","forest","mountains","river","壁","64px岩壁・丸い湖・床の自動接続"]:
+		if layer["name"] in ["地面","dirt","shore","hills","forest","mountains","river","壁","敷物","接続水域","64px岩壁・丸い湖・床の自動接続"]:
 			_ground.append(layer)
 		else:
 			var bottom := 0
@@ -34,12 +34,13 @@ func _screen(cell: Vector2) -> Vector2:
 	return ((cell-_camera)*32.0).round()
 
 func _draw_layer(layer: Dictionary) -> void:
+	var cell_size := float(layer.get("cell_size",32))
 	for entry in layer["cells"]:
-		var position_on_map := _screen(Vector2(entry[0],entry[1]))
+		var position_on_map := _screen(Vector2(entry[0],entry[1])*cell_size/32.0)
 		if position_on_map.x < -32 or position_on_map.y < -32 or position_on_map.x > size.x or position_on_map.y > size.y:continue
 		var tile: Dictionary=_map["tiles"][entry[2]]
 		var region: Array=tile["region"]
-		draw_texture_rect_region(_texture("res://"+str(tile["path"])),Rect2(position_on_map,Vector2(32,32)),Rect2(region[0],region[1],region[2],region[3]))
+		draw_texture_rect_region(_texture("res://"+str(tile["path"])),Rect2(position_on_map,Vector2(cell_size,cell_size)),Rect2(region[0],region[1],region[2],region[3]))
 
 func _person(actor: Dictionary, cell: Vector2, facing: int, frame: int, npc: String = "") -> void:
 	var path := "res://assets/characters/"+npc+"/walk.png"
@@ -65,11 +66,16 @@ func _draw() -> void:
 	_camera=here-visible/2.0+Vector2(0.5,0.5)
 	for axis in range(2):
 		_camera[axis]=clampf(_camera[axis],0.0,extent[axis]-visible[axis]) if extent[axis]>=visible[axis] else (extent[axis]-visible[axis])/2.0
-	draw_rect(Rect2(Vector2.ZERO,size),Color("101719"))
+	# 画面より小さい室内の周囲にも壁材を敷き、黒い余白を作らない。
+	var surround := str(_map.get("surround","assets/tiles/natural_grass.png"))
+	draw_texture_rect(_texture("res://"+surround),Rect2(Vector2.ZERO,size),true)
 	for layer in _ground:_draw_layer(layer)
 	var ordered: Array=_objects.duplicate()
 	var definition := FirstRegion.data()
 	if state["layer"]=="world":
+		for entry in [["village_entrance","assets/ui/icon_village.png"],["cave_entrance","assets/objects/first_cave_entrance.png"]]:
+			var entrance := Vector2(WorldExpedition.point(definition[entry[0]]["cell"]))-origin
+			ordered.append({"bottom":entrance.y+1.0,"object":"res://"+entry[1],"cell":entrance,"dimensions":Vector2(64,64)})
 		var gate := Vector2(WorldExpedition.point(definition["gate"]["cell"]["cell"]))-origin
 		ordered.append({"bottom":gate.y+1.0,"object":"res://assets/objects/natural_gate.png","cell":gate,"dimensions":Vector2(96,96),"region":Rect2(128 if saved["inventory"].get("gate_pass",0)>0 else 0,0,128,128)})
 	else:

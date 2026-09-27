@@ -4,8 +4,9 @@ from pathlib import Path
 from collections import deque
 import copy, hashlib, json, math
 import numpy as np
-from PIL import Image
-from build_visual_target_mocks import Map, obj
+from PIL import Image, ImageDraw
+from build_visual_target_mocks import Map, obj, ENTRIES
+from build_natural_autotiles import MASKS, neighbor_mask
 
 ROOT=Path(__file__).resolve().parents[1]
 MOCK=ROOT/'docs/verification/art-review-2/mock-maps'
@@ -33,7 +34,7 @@ def collision(d):
     return mask
 def interior(id_,width,height,kind):
     m=Map(id_,width,height);m.base('assets/tiles/bright_wood_floor.png')
-    door_x=5 if kind=='home' else width//2
+    door_x=width//2
     m.layer('壁',[[x,y,m.tile('assets/tiles/bright_interior_wall.png',(0,0,32,32))] for y in range(height) for x in range(width) if y==0 or x in (0,width-1) or (y==height-1 and x!=door_x)])
     m.stamp('assets/tiles/bright_house_door.png',door_x,height-1,block=False)
     mask=np.ones((height,width),bool);mask[0,:]=False;mask[-1,:]=False;mask[:,[0,-1]]=False;mask[-1,width//2]=True
@@ -41,16 +42,61 @@ def interior(id_,width,height,kind):
         m.stamp(path,x,y);w,h=next(e['size'] for e in REG['assets'] if e['path']==path)
         mask[y:y+h//32,x:x+w//32]=False
     if kind=='home':
-        stamp('assets/tiles/bright_bed.png',1,1);stamp('assets/tiles/bright_table.png',3,2);stamp('assets/tiles/bright_chair.png',4,2)
-        stamp('assets/tiles/bright_shelf.png',6,1);stamp('assets/tiles/bright_pot.png',1,4)
-        mask[-1,:]=False;mask[-1,5]=True
+        # 寝室・食卓・収納を分け、床の上に敷物、壁に窓を置く。
+        m.layer('敷物',[[8+x,4+y,m.tile('assets/tiles/bright_rug.png',(x*32,y*32,32,32))] for y in range(2) for x in range(2)])
+        for x in (3,7,11):m.stamp('assets/tiles/bright_house_window.png',x,0,block=False)
+        stamp('assets/tiles/bright_bed.png',2,2)
+        stamp('assets/tiles/bright_shelf.png',1,1);stamp('assets/tiles/bright_shelf.png',13,1)
+        stamp('assets/tiles/bright_table.png',9,4)
+        for x,y in [(8,4),(10,4),(9,5)]:stamp('assets/tiles/bright_chair.png',x,y)
+        for x,y in [(3,2),(12,5)]:stamp('assets/tiles/bright_pot.png',x,y)
+        stamp(obj('barrels'),1,6);stamp(obj('crates'),12,6)
+        stamp('assets/tiles/bright_shelf.png',5,1)
+        for x in (8,9):stamp('assets/tiles/bright_shop_counter.png',x,1)
     else:
         stamp('assets/tiles/bright_shop_counter.png',3,3);stamp('assets/tiles/bright_shop_counter.png',5,3)
         if kind=='inn':
             for x in (2,5,8):stamp('assets/tiles/bright_bed.png',x,5)
         else:
             stamp('assets/tiles/bright_shelf.png',1,1);stamp('assets/tiles/bright_shelf.png',8,1);stamp('assets/tiles/bright_pot.png',8,5)
-    return payload(m),mask
+    result=payload(m);result['surround']='assets/tiles/bright_house_wall.png'
+    return result,mask
+
+def filled_cave(cave):
+    """旧地形の黒い未使用画素だけを岩上面で埋め、床・壁の境界は保持する。"""
+    old='assets/tiles/cave_thick_wall_autotile.png';new='assets/tiles/cave_filled_wall_autotile.png'
+    pixels=np.array(Image.open(ROOT/old).convert('RGBA'))
+    rock=np.array(Image.open(ROOT/'assets/tiles/cave_wall_top.png').convert('RGBA'))
+    yy,xx=np.indices(pixels.shape[:2]);empty=np.all(pixels[:,:,:3]==1,axis=2)
+    pixels[empty]=rock[yy[empty]%rock.shape[0],xx[empty]%rock.shape[1]]
+    Image.fromarray(pixels).save(ROOT/new)
+    entry=copy.deepcopy(next(e for e in REG['assets'] if e['path']==old))
+    entry.update(path=new,tool='Python/Pillow',modified='本番描画用。元のアトラスのRGB(1,1,1)の未使用画素だけを登録済み岩上面で充填。床・水・64px壁の画素と通行範囲は維持。',component_sources=[old,'assets/tiles/cave_wall_top.png'])
+    REG['assets']=[e for e in REG['assets'] if e['path']!=new]+[entry]
+    write(ROOT/'assets/registry.json',REG)
+    for tile in cave['tiles'].values():
+        if tile['path']==old:tile['path']=new
+    cave['surround']='assets/tiles/cave_wall_top.png'
+    assert all(not np.all(pixels[y:y+32,x:x+32,:3]==1) for y in range(0,pixels.shape[0],32) for x in range(0,pixels.shape[1],32))
+
+def connected_water(world,water):
+    """川と海を一つの水域として、四分セルの47接続タイルで描く。通行セルは変えない。"""
+    # 8px単位で輪郭だけを丸める。素材画像自体をぼかす処理は行わない。
+    field=np.repeat(np.repeat(water,4,axis=0),4,axis=1).astype(float)
+    for _ in range(7):
+        padded=np.pad(field,1,mode='edge')
+        field=sum(padded[dy:dy+field.shape[0],dx:dx+field.shape[1]] for dy in range(3) for dx in range(3))/9
+    fine=field>=0.5
+    assert np.array_equal(fine[2::4,2::4],water),'水際の表示と通行セル中心が不一致'
+    m=Map('connected_water',world['width'],world['height']);m.catalog=world['tiles'];m.reverse={(e['path'],*e['region']):key for key,e in m.catalog.items()}
+    path='assets/tiles/natural_auto_river.png';cols=ENTRIES[path]['grid'][0];cells=[]
+    for y,x in np.argwhere(fine):
+        mask=neighbor_mask(fine,int(x),int(y));j=MASKS.index(mask);index=((int(y)%4)*4+int(x)%4)*48+j
+        tile=m.tile('assets/tiles/natural_water.png',(int(x)*8%128,int(y)*8%128,8,8)) if mask==255 else m.tile(path,(index%cols*32,index//cols*32,32,32))
+        cells.append([int(x),int(y),tile])
+    world['layers'].append(dict(name='接続水域',cell_size=8,cells=cells))
+    world['tiles']=m.catalog
+    return len(cells)
 
 def reachable(mask,start):
     seen={tuple(start)};q=deque(seen)
@@ -62,7 +108,23 @@ def reachable(mask,start):
 
 REG=json.loads((ROOT/'assets/registry.json').read_text(encoding='utf8'))
 
+def cave_entrance_art():
+    """既存の岩上面・側面・床だけで64pxの岩山と開口部を合成する。"""
+    path='assets/objects/first_cave_entrance.png'
+    rock=Image.open(ROOT/'assets/tiles/cave_wall_top.png').convert('RGBA').crop((0,0,64,64))
+    side=Image.open(ROOT/'assets/tiles/cave_wall_side.png').convert('RGBA').crop((0,0,64,64))
+    shape=Image.new('L',(64,64));d=ImageDraw.Draw(shape)
+    d.polygon([(2,61),(4,39),(10,33),(12,20),(20,16),(24,5),(35,2),(43,8),(47,18),(55,22),(57,36),(62,46),(62,63)],fill=255)
+    rock.alpha_composite(side.crop((0,28,64,64)),(0,28));rock.putalpha(shape)
+    d=ImageDraw.Draw(rock)
+    d.polygon([(22,61),(22,42),(24,33),(29,28),(36,28),(41,35),(43,45),(43,63)],fill=(1,1,1,255))
+    floor=Image.open(ROOT/'assets/tiles/cave_quiet_floor.png').convert('RGBA').crop((0,0,20,6))
+    rock.alpha_composite(floor,(23,58));rock.save(ROOT/path)
+    entry=dict(path=path,kind='object',size=[64,64],max_colors=64,status='required',palette='assets/palette/natural.gpl',source='generated',tool='Python/Pillow',author='RPG-maker / Codex',license='LicenseRef-Generated-Project',generated_at='2026-09-27',prompt_record='assets/source_records/sprint0-rock-pixel.json',modified='登録済み岩上面・側面・床を64pxへ切り出し、岩山の輪郭と暗い開口部を二値透過で合成。元の素材は変更しない。',component_sources=['assets/tiles/cave_wall_top.png','assets/tiles/cave_wall_side.png','assets/tiles/cave_quiet_floor.png'])
+    REG['assets']=[e for e in REG['assets'] if e['path']!=path]+[entry]
+
 def main():
+    cave_entrance_art()
     definition=json.loads((ROOT/'world/first_region.json').read_text(encoding='utf8'))
     d=definition['first_region'];d['title']='エルヴァ地方';d['bounds']=[24,40,55,57]
     d['village_entrance']=dict(cell=[32,53],outward=[0,1]);d['cave_entrance']=dict(cell=[48,50],outward=[0,1])
@@ -73,7 +135,8 @@ def main():
     d['save_probe']=point('first_cave',0,[18,21]);d['boss']['point']=point('first_cave',1,[28,17]);d['boss_revisit']=point('first_cave',1,[27,17])
     d['gate']=dict(before=world_point([43,48]),cell=world_point([43,47]),beyond=world_point([43,46]),id='first_gate')
     d['recruits']=[dict(stand=point('start_village',1,[14,12]),facing=[0,-1]),dict(stand=point('start_village',1,[22,15]),facing=[0,-1])]
-    maps={};home,home_mask=interior('kaina_home',8,6,'home');maps['start_village:0']=home
+    maps={};home,home_mask=interior('kaina_home',16,9,'home');maps['start_village:0']=home
+    d['start']=point('start_village',0,[4,4])
     village=source('village-farm-a');maps['start_village:1']=village
     outside=[[8,7],[28,7],[12,19],[28,19]]
     doorway_cells={tuple(p) for p in outside}|{(x,y+1) for x,y in outside}
@@ -96,7 +159,8 @@ def main():
         dict(id='child',kind='npc',sprite='npc_boy',cell=[20,16],label='子ども',text=['世界地図は、どうぐから開けます。']),
         dict(id='elder',kind='npc',sprite='npc_elder_man',cell=[19,20],label='村人',text=['北の関所では通行証が必要です。'])]
     village_rooms=[room('カイナの家',home_mask,[]),room('ミルフェ村',village_mask,events)]
-    d['doors']=[{'from':point('start_village',0,[5,5]),'to':point('start_village',1,[8,8])},{'from':point('start_village',1,[8,7]),'to':point('start_village',0,[5,4])}]
+    d['doors']=[{'from':point('start_village',0,[8,8]),'to':point('start_village',1,[8,8])},{'from':point('start_village',1,[8,7]),'to':point('start_village',0,[8,7])}]
+    assert (8,8) in reachable(home_mask,d['start']['cell'])
     for index,(kind,title,cell,sprite,event_kind) in enumerate([('inn','ミルフェ村・宿屋',[28,7],'npc_innkeeper','rest'),('item','ミルフェ村・道具屋',[12,19],'npc_item_clerk','shop'),('weapon','ミルフェ村・武器屋',[28,19],'npc_weapon_clerk','weapon_shop')],2):
         visual,mask=interior('village_'+kind,12 if kind=='inn' else 10,9 if kind=='inn' else 8,kind);maps[f'start_village:{index}']=visual
         width,height=visual['width'],visual['height'];entry=[width//2,height-2];exit_cell=[width//2,height-1]
@@ -106,6 +170,7 @@ def main():
     village_reachable=reachable(village_mask,[8,8])
     for p in [[17,23],[14,12],[22,15]]+outside:assert tuple(p) in village_reachable,('村の経路',p)
     cave=source('cave-natural');cave['layers']=[l for l in cave['layers'] if not l['name'].startswith('chest')]
+    filled_cave(cave)
     floor=np.array(Image.open(ROOT/'docs/verification/art-review-2/floor-mask.png'),dtype=bool)
     for i in range(1,4):floor &= ~np.array(Image.open(ROOT/f'docs/verification/art-review-2/lake-{i}-mask.png'),dtype=bool)
     cave_mask=floor[16::32,16::32].copy()
@@ -140,6 +205,11 @@ def main():
     edge &= semantics!='~'
     m.layers=[];m.terrain('mountains',edge);world['layers'].extend(m.layers);semantics[edge]='m'
     for x,y in [(19,6),(19,7),(19,8),(8,13),(8,14),(24,10),(24,11)]:semantics[y,x]='r'
+    # 既存の水際の層を重ねず、最終的な川・海岸を一つの接続図から描く。
+    water_count=connected_water(world,semantics=='~')
+    world['layers']=[l for l in world['layers'] if l['name'] not in ('river','shore','icon_cave','icon_village')]
+    world['layers'][0]['cells']=[[x,y,m.tile('assets/tiles/natural_grass.png',((x%4)*32,(y%4)*32,32,32))] for x,y,_ in world['layers'][0]['cells']]
+    world['tiles']=m.catalog
     world['terrain']=[''.join(row) for row in semantics];world['layout']=rows(~np.isin(semantics,['~','m']))
     world['residents']=[dict(id='first_gatekeeper',kind='npc',sprite='npc_gatekeeper',cell=[42,48],label='門番',text=['通行証を確認します。'])]
     mask=~np.isin(semantics,['~','m']);mask[7,19]=False
@@ -157,6 +227,6 @@ def main():
     interiors['sites']=[s for s in interiors['sites'] if s['id'] not in ('start_village','first_cave')]+definition['sites'];interiors['first_region']=d
     write(ROOT/'world/interiors.json',interiors)
     write(ROOT/'world/first_region_visuals.json',dict(version=1,maps=maps,notes='登録済み素材だけの本番描画層。広域256×256地形は変更せず、最初の地方の32×18セルのみ専用の地形層で表示・通行を一致させる。'))
-    print('FIRST_REGION_PRESENTATION_DATA: maps=8 village_rooms=5 cave_floors=2 chests=3 gate_bypass=0 global_terrain_changes=0')
+    print(f'FIRST_REGION_PRESENTATION_DATA: maps=8 village_rooms=5 home=16x9 cave_floors=2 chests=3 gate_bypass=0 connected_water_cells={water_count} global_terrain_changes=0')
 
 if __name__=='__main__':main()

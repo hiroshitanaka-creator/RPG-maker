@@ -13008,6 +13008,72 @@
       "conversion_record": "assets/source_records/owner-walks.json#owner_young_04",
       "modified": "原本は不変。各方向の直立はIMG_1042、歩行は本人の原画を使用。左右反転なし。人物ごとの高さと接地位置をそろえ、既存の演出素材と共通16色へ最近傍変換。",
       "usage": "guest_walk_unplaced"
+    },
+    {
+      "path": "assets/objects/first_cave_entrance.png",
+      "kind": "object",
+      "size": [
+        64,
+        64
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "Python/Pillow",
+      "author": "RPG-maker / Codex",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-27",
+      "prompt_record": "assets/source_records/sprint0-rock-pixel.json",
+      "modified": "登録済み岩上面・側面・床を64pxへ切り出し、岩山の輪郭と暗い開口部を二値透過で合成。元の素材は変更しない。",
+      "component_sources": [
+        "assets/tiles/cave_wall_top.png",
+        "assets/tiles/cave_wall_side.png",
+        "assets/tiles/cave_quiet_floor.png"
+      ]
+    },
+    {
+      "path": "assets/tiles/cave_filled_wall_autotile.png",
+      "kind": "tileset",
+      "size": [
+        768,
+        1056
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "Python/Pillow",
+      "author": "RPG-maker / Codex",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-27",
+      "prompt_record": "assets/source_records/sprint0-rock-pixel.json",
+      "modified": "本番描画用。元のアトラスのRGB(1,1,1)の未使用画素だけを登録済み岩上面で充填。床・水・64px壁の画素と通行範囲は維持。",
+      "tile_size": [
+        32,
+        32
+      ],
+      "autotile_rule": {
+        "type": "distance_band",
+        "wall_depth_px": 64,
+        "top_depth_px": 32,
+        "side_depth_px": 32,
+        "shore_depth_px": 7,
+        "neighbors": "8",
+        "generator": "tools/build_owner_cave.py",
+        "cell_size": 32,
+        "material_sources": [
+          "assets/tiles/cave_wall_top.png",
+          "assets/tiles/cave_wall_side.png",
+          "assets/tiles/cave_quiet_floor.png",
+          "assets/tiles/cave_quiet_water.png"
+        ],
+        "variants": 783
+      },
+      "component_sources": [
+        "assets/tiles/cave_thick_wall_autotile.png",
+        "assets/tiles/cave_wall_top.png"
+      ]
     }
   ],
   "audio": [

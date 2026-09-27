@@ -1,0 +1,118 @@
+{
+  "date": "2026-09-27",
+  "generator": "tools/build_first_region_presentation.py",
+  "sources": [
+    {
+      "path": "assets/tiles/cave_thick_wall_autotile.png",
+      "sha256": "68349fc7fd36a346d5d21a93e9ccfd54f744f9bf16d7f5ebf63488b08de21e8b"
+    },
+    {
+      "path": "assets/tiles/cave_wall_top.png",
+      "sha256": "aa8255aa2911f282e0b033fc93a0a3d6d5ebd89c79f2fdb557f84f92a047aa75"
+    },
+    {
+      "path": "assets/tiles/cave_wall_side.png",
+      "sha256": "ba54a25136901759a2be461e23afcc50736ab800ae9d4ecb78983868b8ac936a"
+    },
+    {
+      "path": "assets/tiles/cave_quiet_floor.png",
+      "sha256": "043b7ed7e399d7737fcf2cb8bc81e1bb81a8652dc01731f4c9fe3aa1c3abdff6"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "assets/objects/first_cave_entrance.png",
+      "sha256": "db2cc57b7b9b11958e7b69dd04ad385ef74b634fe340ff5f69be0837290c8fa1"
+    },
+    {
+      "path": "assets/tiles/cave_filled_wall_autotile.png",
+      "sha256": "d3085e6f3b5876a33436374365446b823e1f32623efb844b90b0ca26b25bf37c"
+    }
+  ],
+  "operations": [
+    "洞窟の未使用黒画素を岩上面で充填。既存の床・湖・壁の画素は保持",
+    "岩上面・側面・床から64x64の洞窟入口を合成。二値透過"
+  ],
+  "maps": [
+    {
+      "map": "start_village:0",
+      "size": [
+        16,
+        9
+      ],
+      "base_cells": 144,
+      "solid_black_base_tiles": 0,
+      "surround": "assets/tiles/bright_house_wall.png"
+    },
+    {
+      "map": "start_village:1",
+      "size": [
+        36,
+        24
+      ],
+      "base_cells": 864,
+      "solid_black_base_tiles": 0,
+      "surround": "assets/tiles/natural_grass.png"
+    },
+    {
+      "map": "start_village:2",
+      "size": [
+        12,
+        9
+      ],
+      "base_cells": 108,
+      "solid_black_base_tiles": 0,
+      "surround": "assets/tiles/bright_house_wall.png"
+    },
+    {
+      "map": "start_village:3",
+      "size": [
+        10,
+        8
+      ],
+      "base_cells": 80,
+      "solid_black_base_tiles": 0,
+      "surround": "assets/tiles/bright_house_wall.png"
+    },
+    {
+      "map": "start_village:4",
+      "size": [
+        10,
+        8
+      ],
+      "base_cells": 80,
+      "solid_black_base_tiles": 0,
+      "surround": "assets/tiles/bright_house_wall.png"
+    },
+    {
+      "map": "first_cave:0",
+      "size": [
+        36,
+        24
+      ],
+      "base_cells": 864,
+      "solid_black_base_tiles": 0,
+      "surround": "assets/tiles/cave_wall_top.png"
+    },
+    {
+      "map": "first_cave:1",
+      "size": [
+        36,
+        24
+      ],
+      "base_cells": 864,
+      "solid_black_base_tiles": 0,
+      "surround": "assets/tiles/cave_wall_top.png"
+    },
+    {
+      "map": "world",
+      "size": [
+        32,
+        18
+      ],
+      "base_cells": 576,
+      "solid_black_base_tiles": 0,
+      "surround": "assets/tiles/natural_grass.png"
+    }
+  ]
+}
