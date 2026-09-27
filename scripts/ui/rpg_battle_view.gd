@@ -16,6 +16,8 @@ var effect_code := ""
 var effect_amount := 0
 var _textures: Dictionary = {}
 var _enemy_regions: Dictionary = {}
+var _layout_ids: Array = []
+var _enemy_feet: Array[Vector2] = []
 var _time := 0.0
 const BACKGROUND_LAYOUT := {
 	"plains": [0,68], "forest": [0,68], "cave": [0,80], "tower": [0,80],
@@ -61,10 +63,70 @@ func actor_rect(identifier: String) -> Rect2:
 	return Rect2()
 
 func enemy_feet(index: int) -> Vector2:
-	# 見本の5点。少数編成では中央に近い点から使う。
-	const POINTS := [Vector2(110,120),Vector2(215,134),Vector2(90,178),Vector2(180,200),Vector2(270,186)]
-	const CENTRAL_ORDER := [3,1,0,4,2]
-	return POINTS[index] if enemy_ids.size()==5 else POINTS[CENTRAL_ORDER[index]]
+	if _layout_ids!=enemy_ids:_arrange_enemies()
+	return _enemy_feet[index]
+
+func _arrange_enemies() -> void:
+	const POINTS := {
+		1:[Vector2(170,196)],
+		2:[Vector2(120,160),Vector2(220,196)],
+		3:[Vector2(215,134),Vector2(90,178),Vector2(180,200)],
+		4:[Vector2(110,120),Vector2(215,134),Vector2(90,178),Vector2(180,200)],
+		5:[Vector2(110,120),Vector2(215,134),Vector2(90,178),Vector2(180,200),Vector2(270,186)]
+	}
+	_layout_ids=enemy_ids.duplicate();_enemy_feet.assign(POINTS[enemy_ids.size()])
+	if enemy_ids.size()==5:return
+	var rectangles: Array[Rect2]=[]
+	var order: Array[int]=[]
+	var collision := false
+	for i in range(enemy_ids.size()):
+		var dimensions := enemy_region(enemy_ids[i]).size*0.75
+		var rectangle := Rect2(_enemy_feet[i]-Vector2(dimensions.x/2,dimensions.y),dimensions)
+		for previous in rectangles:
+			if rectangle.grow(3).intersects(previous.grow(3)):collision=true
+		rectangles.append(rectangle);order.append(i)
+	if not collision:return
+	# 足元の高さと元の左右順を保ち、縦に重なる組だけに必要な横幅を取る。
+	order.sort_custom(func(a: int,b: int)->bool:return _enemy_feet[a].x<_enemy_feet[b].x)
+	var minimum: Array[float]=[]
+	var maximum: Array[float]=[]
+	for rectangle in rectangles:
+		minimum.append(maxf(60,24+rectangle.size.x/2))
+		maximum.append(minf(300,320-rectangle.size.x/2))
+	for rank in range(order.size()):
+		var i: int=order[rank]
+		for earlier in range(rank):
+			var j: int=order[earlier]
+			minimum[i]=maxf(minimum[i],minimum[j]+_enemy_gap(rectangles[j],rectangles[i]))
+	for rank in range(order.size()-1,-1,-1):
+		var i: int=order[rank]
+		for earlier in range(rank):
+			var j: int=order[earlier]
+			maximum[j]=minf(maximum[j],maximum[i]-_enemy_gap(rectangles[j],rectangles[i]))
+	for i in range(order.size()):
+		if minimum[i]>maximum[i]:
+			push_error("敵の表示幅が左側の配置領域に収まりません。編成と原画寸法の確認が必要です。")
+			return
+	var shift_sum := 0.0
+	for rank in range(order.size()):
+		var i: int=order[rank]
+		var lower := minimum[i]
+		for earlier in range(rank):
+			var j: int=order[earlier]
+			lower=maxf(lower,_enemy_feet[j].x+_enemy_gap(rectangles[j],rectangles[i]))
+		var original_x := _enemy_feet[i].x
+		_enemy_feet[i].x=clampf(original_x,lower,maximum[i])
+		shift_sum+=original_x-_enemy_feet[i].x
+	var minimum_shift := -INF;var maximum_shift := INF
+	for i in range(_enemy_feet.size()):
+		minimum_shift=maxf(minimum_shift,maxf(60,24+rectangles[i].size.x/2)-_enemy_feet[i].x)
+		maximum_shift=minf(maximum_shift,minf(300,320-rectangles[i].size.x/2)-_enemy_feet[i].x)
+	var shift := clampf(shift_sum/_enemy_feet.size(),minimum_shift,maximum_shift)
+	for i in range(_enemy_feet.size()):_enemy_feet[i].x+=shift
+
+func _enemy_gap(a: Rect2, b: Rect2) -> float:
+	var outer_a := a.grow(3);var outer_b := b.grow(3)
+	return (a.size.x+b.size.x)/2+6 if outer_a.position.y<outer_b.end.y and outer_b.position.y<outer_a.end.y else 1.0
 
 func enemy_draw_order() -> Array[int]:
 	var order: Array[int]=[]

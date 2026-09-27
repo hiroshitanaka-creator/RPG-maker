@@ -1,0 +1,161 @@
+{
+  "build": {
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 697,
+    "id": "f641673effbe80afb6e6a2488f19b0551cca09e433ea4c78e80979de40447c3a",
+    "version": 1
+  },
+  "files": [
+    "01-enemies-1",
+    "02-enemies-2",
+    "03-enemies-3",
+    "04-enemies-4",
+    "05-target-selection",
+    "06-large-enemies"
+  ],
+  "placements": [
+    {
+      "enemies": [
+        {
+          "feet": [
+            170.0,
+            196.0
+          ],
+          "id": "slime"
+        }
+      ],
+      "file": "01-enemies-1"
+    },
+    {
+      "enemies": [
+        {
+          "feet": [
+            120.0,
+            160.0
+          ],
+          "id": "slime"
+        },
+        {
+          "feet": [
+            220.0,
+            196.0
+          ],
+          "id": "shell_guard"
+        }
+      ],
+      "file": "02-enemies-2"
+    },
+    {
+      "enemies": [
+        {
+          "feet": [
+            215.0,
+            134.0
+          ],
+          "id": "ember_wisp"
+        },
+        {
+          "feet": [
+            90.0,
+            178.0
+          ],
+          "id": "slime"
+        },
+        {
+          "feet": [
+            180.0,
+            200.0
+          ],
+          "id": "shell_guard"
+        }
+      ],
+      "file": "03-enemies-3"
+    },
+    {
+      "enemies": [
+        {
+          "feet": [
+            110.0,
+            120.0
+          ],
+          "id": "bat"
+        },
+        {
+          "feet": [
+            215.0,
+            134.0
+          ],
+          "id": "ember_wisp"
+        },
+        {
+          "feet": [
+            90.0,
+            178.0
+          ],
+          "id": "slime"
+        },
+        {
+          "feet": [
+            180.0,
+            200.0
+          ],
+          "id": "shell_guard"
+        }
+      ],
+      "file": "04-enemies-4"
+    },
+    {
+      "enemies": [
+        {
+          "feet": [
+            110.0,
+            120.0
+          ],
+          "id": "bat"
+        },
+        {
+          "feet": [
+            215.0,
+            134.0
+          ],
+          "id": "ember_wisp"
+        },
+        {
+          "feet": [
+            90.0,
+            178.0
+          ],
+          "id": "slime"
+        },
+        {
+          "feet": [
+            180.0,
+            200.0
+          ],
+          "id": "shell_guard"
+        }
+      ],
+      "file": "05-target-selection"
+    },
+    {
+      "enemies": [
+        {
+          "feet": [
+            101.0,
+            160.0
+          ],
+          "id": "flood_beast"
+        },
+        {
+          "feet": [
+            239.0,
+            196.0
+          ],
+          "id": "flood_beast"
+        }
+      ],
+      "file": "06-large-enemies"
+    }
+  ],
+  "scope": "共通戦闘処理と本番描画を使った配置見本。出現編成は変更しない。"
+}

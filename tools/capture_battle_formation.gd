@@ -1,6 +1,6 @@
 extends SceneTree
 ## 本番の戦闘画面を使う配置見本。物語の加入・転職解放を示すものではない。
-const OUTPUT := "res://docs/verification/battle-layout-exact/checks/"
+const OUTPUT := "res://docs/verification/enemy-groups-20260928/checks/"
 var failures: Array[String] = []
 var checks := 0
 var capture_enabled := false
@@ -150,13 +150,18 @@ func geometry(panel: FirstRegionScreen, count: int) -> void:
 	if panel.replay.is_empty():
 		var action_scroll := panel.find_child("BattleActionScroll",true,false) as ScrollContainer
 		var round_actions := panel.find_child("BattleRoundActions",true,false) as Control
-		check(action_scroll!=null and round_actions!=null,"対象欄と操作欄がある")
-		if action_scroll!=null and round_actions!=null:
+		check(action_scroll!=null,"名前・コマンドの一覧領域がある")
+		if not panel.target_action.is_empty():
+			check(round_actions==null,"対象選択中はターン操作の行を作らない")
+			check(action_scroll.size==Vector2(140,57),"対象一覧に窓の内側全体を使う")
+		else:check(round_actions!=null,"通常のコマンド選択ではターン操作がある")
+		if panel.target_action.is_empty() and action_scroll!=null and round_actions!=null:
 			check(action_scroll.clip_contents and not action_scroll.get_global_rect().intersects(round_actions.get_global_rect()),"対象欄が操作欄と重ならず領域外へ描かれない")
 			check(Rect2(4,223,148,65).encloses(round_actions.get_global_rect()),"ターン実行などの操作欄が65pxの窓内に収まる")
 		var command_labels: Array[String]=[]
 		for button in panel.find_child("BattleCommands",true,false).find_children("*","Button",true,false):command_labels.append(button.text)
-		for name in ["ターン実行","選び直す","技の効果を確認"]:check(name in command_labels,"既存操作を維持: "+name)
+		for name in ["ターン実行","選び直す","技の効果を確認"]:
+			check((name in command_labels)==panel.target_action.is_empty(),"通常時だけターン操作を表示: "+name)
 		if panel.target_action.is_empty():
 			for name in ["攻撃","防御","回復薬","観察"]:check(name in command_labels,"既存コマンドを維持: "+name)
 		if panel.target_action.is_empty():
@@ -169,9 +174,12 @@ func geometry(panel: FirstRegionScreen, count: int) -> void:
 	for i in range(arena.enemy_ids.size()):
 		var enemy_rect := arena.actor_rect("enemy_%02d" % (i+1))
 		check(enemy_rect.size==arena.enemy_region(arena.enemy_ids[i]).size*0.75,"敵は素材実寸の75%表示")
-		var points := [Vector2(110,120),Vector2(215,134),Vector2(90,178),Vector2(180,200),Vector2(270,186)]
-		var priority := [3,1,0,4,2]
-		check(Vector2(enemy_rect.get_center().x,enemy_rect.end.y)==points[i if arena.enemy_ids.size()==5 else priority[i]],"敵の足元は見本の5点と中央優先順に一致")
+		var points := {
+			1:[Vector2(170,196)],2:[Vector2(120,160),Vector2(220,196)],
+			3:[Vector2(215,134),Vector2(90,178),Vector2(180,200)],
+			4:[Vector2(110,120),Vector2(215,134),Vector2(90,178),Vector2(180,200)],
+			5:[Vector2(110,120),Vector2(215,134),Vector2(90,178),Vector2(180,200),Vector2(270,186)]}
+		check(Vector2(enemy_rect.get_center().x,enemy_rect.end.y)==points[arena.enemy_ids.size()][i],"通常敵の足元は指定座標に一致")
 		check(Rect2(0,0,350,216).encloses(enemy_rect),"敵は左側の戦場内に収まる")
 		for j in range(i):check(not enemy_rect.grow(3).intersects(arena.actor_rect("enemy_%02d" % (j+1)).grow(3)),"敵同士は被弾の揺れも含めて重ならない")
 		if i>0:check(arena.enemy_feet(order[i]).y>=arena.enemy_feet(order[i-1]).y,"奥の敵から手前の敵の順に描く")
@@ -201,7 +209,7 @@ func run() -> void:
 		for unit in battle.pending():check(battle.queue_action(BattleAction.guard(unit.id)).is_empty(),"対象選択前の防御入力")
 		battle.resolve_round()
 		panel=screen(game,{},true)
-		await process_frame;await process_frame
+		await geometry(panel,4)
 		var selected_targets := 0
 		for member in game.export_state()["party"]:
 			for button in panel.find_child("BattleCommands",true,false).find_children("*","Button",true,false):
@@ -295,6 +303,32 @@ func run() -> void:
 					if intent["actor"]==identifier:check(detail.text.contains("%s→%s" % [intent["action"],intent["target_name"]]),"選んだ個体の行動予定が一致")
 			checked+=1
 		check(checked==game.current_enemy_ids().size(),"同名の敵を含む全対象を選択した")
+		panel.queue_free();await process_frame
+	# 指定した敵1〜4体を、共通処理で作って検査する。
+	for group in [["slime"],["slime","shell_guard"],["ember_wisp","slime","shell_guard"],["bat","ember_wisp","slime","shell_guard"]]:
+		var game := GameSession.new();game.new_game(4);game.start_battle(group,20260928)
+		var panel := screen(game);await geometry(panel,4)
+		panel.queue_free();await process_frame
+	# 大型2体と大型を含む4体でも、左右順・高さ・非重複を保つ。
+	for group in [["flood_beast","flood_beast"],["slime","flood_beast","slime","gate_beast"]]:
+		var game := GameSession.new();game.new_game(4);game.start_battle(group,20260928)
+		var panel := screen(game);await process_frame;await process_frame
+		var arena := arena_for(panel)
+		var original := [Vector2(120,160),Vector2(220,196)] if group.size()==2 else [Vector2(110,120),Vector2(215,134),Vector2(90,178),Vector2(180,200)]
+		var shifted := false
+		for i in range(group.size()):
+			var rectangle := arena.actor_rect("enemy_%02d" % (i+1))
+			var feet := arena.enemy_feet(i)
+			shifted=shifted or feet.x!=original[i].x
+			check(feet.y==original[i].y,"大型でも足元の高さは維持")
+			check(feet.x>=60 and feet.x<=300 and Rect2(0,0,350,223).encloses(rectangle),"大型も左側の配置領域内")
+			for j in range(i):
+				check(not rectangle.grow(3).intersects(arena.actor_rect("enemy_%02d" % (j+1)).grow(3)),"大型同士も被弾の揺れを含めて重ならない")
+				check((feet.x-arena.enemy_feet(j).x)*(original[i].x-original[j].x)>0,"大型調整後も元の左右順を維持")
+			for actor_index in range(4):
+				var moved := arena.party_rect(actor_index);moved.position.x-=30
+				check(not rectangle.grow(3).intersects(moved.grow(3)),"大型と前進した味方は重ならない")
+		check(shifted,"重なる大型編成では横位置を実際に補正した")
 		panel.queue_free();await process_frame
 	var backgrounds := GameSession.new()
 	check(backgrounds.new_game(4),"14背景用の4人開始")

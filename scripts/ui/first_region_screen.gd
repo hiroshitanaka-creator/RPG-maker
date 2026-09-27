@@ -260,6 +260,7 @@ func _battle() -> void:
 	content.add_child(scroll)
 	var grid := GridContainer.new();grid.columns=2;grid.add_theme_constant_override("v_separation",0);grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(grid)
 	if not target_action.is_empty():
+		scroll.size.y=57
 		grid.columns=1
 		var detail := _label("",10);detail.name="BattleTargetDetails"
 		# 詳細は対象選択中だけ。敵一覧の代わりに同じ下端の窓内へ表示する。
@@ -281,6 +282,7 @@ func _battle() -> void:
 			target_button.mouse_entered.connect(focus.bind(target.id))
 		if not targets.is_empty():focus.call(targets[0].id)
 		_button(grid,"戻る",{"kind":"ui_cancel_target"})
+		return
 	elif not actor.is_empty():
 		_button(grid,"攻撃",{"kind":"ui_target","action":"attack"})
 		_button(grid,"防御",{"kind":"guard","actor":actor})
