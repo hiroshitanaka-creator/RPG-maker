@@ -73,8 +73,7 @@ func _ready() -> void:
 
 func _apply_theme() -> void:
 	var ui_theme := Theme.new()
-	var font := SystemFont.new()
-	font.font_names = PackedStringArray(["Yu Gothic UI", "Meiryo", "Noto Sans CJK JP", "sans-serif"])
+	var font := RpgFonts.get_font()
 	ui_theme.default_font = font
 	ui_theme.default_font_size = 11
 	ui_theme.set_color("font_color", "Label", INK)

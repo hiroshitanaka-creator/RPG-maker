@@ -67,7 +67,7 @@ func _label(text_value: String, font_size: int = 13) -> Label:
 	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	return label
 
-func _window(rect: Rect2) -> VBoxContainer:
+func _window(rect: Rect2, inset: int = 8) -> VBoxContainer:
 	var panel := PanelContainer.new()
 	panel.position=rect.position
 	panel.size=rect.size
@@ -75,7 +75,7 @@ func _window(rect: Rect2) -> VBoxContainer:
 	box.texture=load("res://assets/ui/window_bright.png")
 	for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]:
 		box.set_texture_margin(side,8.0)
-		box.set_content_margin(side,8.0)
+		box.set_content_margin(side,inset)
 	box.modulate_color=Color(1,1,1,0.93)
 	panel.add_theme_stylebox_override("panel",box)
 	add_child(panel)
@@ -88,7 +88,7 @@ func _button(parent: Node, title: String, action: Dictionary, enabled: bool = tr
 	var button := Button.new()
 	button.text=title
 	button.disabled=not enabled
-	button.add_theme_font_size_override("font_size",12)
+	button.add_theme_font_size_override("font_size",11 if screen_mode=="battle" else 12)
 	for state in ["normal","hover","pressed","focus","disabled"]:
 		var box := StyleBoxFlat.new()
 		box.bg_color=Color(1,1,1,0.10) if state in ["hover","pressed"] else Color(0,0,0,0)
@@ -185,16 +185,16 @@ func _battle() -> void:
 			arena.frames[member["id"]]=2 if replay.get("target")==member["id"] and replay.get("code") in ["damage","fallen"] else 1 if replay.get("actor")==member["id"] else 0
 	add_child(arena)
 	if not replay.is_empty():
-		_window(Rect2(0,208,512,80)).add_child(_label(str(replay.get("message","")),14))
+		_window(Rect2(0,220,512,68),4).add_child(_label(str(replay.get("message","")),12))
 		var skip := _button(self,"表示をスキップ  Enter",{"kind":"skip_presentation"});skip.position=Vector2(248,249)
 		return
 	if encounter==null:return
-	var intent_window := _window(Rect2(8,4,330,30+maxi(0,encounter.enemy_intents().size()-1)*17))
+	var intent_window := _window(Rect2(8,4,330,22+maxi(0,encounter.enemy_intents().size()-1)*15),4)
 	for intent in encounter.enemy_intents():
 		var enemy := encounter.actor_by_id(intent["actor"])
-		intent_window.add_child(_label("%s HP%d/%d  %s→%s" % [enemy.display_name,enemy.hp,enemy.max_hp,intent["action"],intent["target_name"]],11))
-	var commands := _window(Rect2(0,208,216,80))
-	var scroll := ScrollContainer.new();scroll.custom_minimum_size=Vector2(196,38);scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;commands.add_child(scroll)
+		intent_window.add_child(_label("%s HP%d/%d  %s→%s" % [enemy.display_name,enemy.hp,enemy.max_hp,intent["action"],intent["target_name"]],10))
+	var commands := _window(Rect2(0,220,216,68),4)
+	var scroll := ScrollContainer.new();scroll.custom_minimum_size=Vector2(204,32);scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;commands.add_child(scroll)
 	var grid := GridContainer.new();grid.columns=2;grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(grid)
 	if not target_action.is_empty():
 		var kind := BattleAction.Kind.ATTACK
@@ -220,9 +220,9 @@ func _battle() -> void:
 	_button(row,"選び直す",{"kind":"clear_actions"})
 	_button(row,"技の効果を確認",{"kind":"mechanics"})
 	for button in row.get_children():button.add_theme_font_size_override("font_size",10)
-	var status := _window(Rect2(216,208,296,80))
+	var status := _window(Rect2(216,220,296,68),4)
 	status.add_theme_constant_override("separation",0)
 	for unit in encounter.actors:
 		if unit.team!=Combatant.Team.PARTY:continue
-		var button := _button(status,"%s  HP%d/%d  MP%d/%d%s" % [unit.display_name,unit.hp,unit.max_hp,unit.mp,unit.max_mp," ✓" if encounter.queued.has(unit.id) else ""],{"kind":"ui_actor","actor":unit.id},unit.is_alive())
+		var button := _button(status,"%s  HP%d/%d  MP%d/%d%s" % [unit.display_name,unit.hp,unit.max_hp,unit.mp,unit.max_mp," 済" if encounter.queued.has(unit.id) else ""],{"kind":"ui_actor","actor":unit.id},unit.is_alive())
 		button.add_theme_font_size_override("font_size",10)

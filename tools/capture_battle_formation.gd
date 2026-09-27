@@ -1,6 +1,6 @@
 extends SceneTree
 ## 本番の戦闘画面を使う配置見本。物語の加入・転職解放を示すものではない。
-const OUTPUT := "res://docs/verification/battle-layout/"
+const OUTPUT := "res://docs/verification/battle-fonts/formation/"
 var failures: Array[String] = []
 var checks := 0
 var capture_enabled := false
@@ -18,12 +18,12 @@ func _initialize() -> void:
 	root.size=Vector2i(1024,576)
 	call_deferred("run")
 
-func screen(game: GameSession, event: Dictionary = {}, targets: bool = false) -> FirstRegionScreen:
+func screen(game: GameSession, event: Dictionary = {}, targets: bool = false, background: String = "plains") -> FirstRegionScreen:
 	var result := FirstRegionScreen.new()
-	var font := SystemFont.new()
-	font.font_names=PackedStringArray(["Yu Gothic UI","Meiryo","Noto Sans CJK JP","sans-serif"])
+	var font := RpgFonts.get_font()
 	result.theme=Theme.new();result.theme.default_font=font;result.theme.default_font_size=11
 	result.game=game;result.screen_mode="battle";result.actor="pc_01"
+	result.battle_background=background
 	if targets:result.target_action={"kind":"potion","actor":"pc_01"}
 	result.replay=event
 	result.replay_members=game.export_state()["party"]
@@ -47,10 +47,10 @@ func save_frame(name: String) -> void:
 	var backdrop := (load("res://assets/backgrounds/plains.png") as Texture2D).get_image()
 	# 窓・人物のない空と地面で、原画と実描画のピクセルを比較する。
 	var mismatches := 0
-	for area in [Rect2i(350,40,60,55),Rect2i(280,140,50,55)]:
+	for area in [Rect2i(8,28,50,30),Rect2i(200,146,90,50)]:
 		for y in range(area.position.y,area.end.y):
 			for x in range(area.position.x,area.end.x):
-				if frame.get_pixel(x*2,y*2)!=backdrop.get_pixel(x,y):mismatches+=1
+				if frame.get_pixel(x*2,y*2)!=backdrop.get_pixel(x,y+64):mismatches+=1
 	check(mismatches==0,"背景の原寸描画: "+name+" 不一致="+str(mismatches))
 	check(frame.save_png(OUTPUT+name+".png")==OK,"画像保存: "+name)
 
@@ -58,25 +58,30 @@ func geometry(panel: FirstRegionScreen, count: int) -> void:
 	await process_frame;await process_frame
 	var arena := arena_for(panel)
 	check(arena!=null,"本番描画の存在")
+	check(arena.background_offset().x==0 and arena.background_offset().y>=-64 and arena.background_offset().y<=0,"背景は横移動なし・上移動は64px以内")
+	check(288+arena.background_offset().y>=220,"背景の下に空白が露出しない")
 	for i in range(count):
 		var id := "pc_%02d" % (i+1)
 		var rect := arena.actor_rect(id)
-		check(rect.position.x==416 and rect.size==Vector2(24,24),"横位置と承認済みの表示寸法: "+id)
+		check(rect.position.x==304+i*48+(4-count)*24 and rect.size==Vector2(48,48),"承認済みの48px原寸と右下へ進む配置: "+id)
 		check(Rect2(0,0,512,288).encloses(rect),"画面内: "+id)
-		check(rect.end.y>=128 and rect.end.y<=208,"足元が地面にあり下端の窓より上: "+id)
+		check(rect.end.y>=76 and rect.end.y<=220,"足元が地面にあり下端の窓より上: "+id)
 		if i>0:
 			var previous := arena.actor_rect("pc_%02d" % i)
-			check(rect.position.y-previous.position.y==26 and not rect.intersects(previous),"隊列順・等間隔・重なりなし: "+id)
+			check(rect.position.y-previous.position.y==28 and not rect.intersects(previous),"隊列順・等間隔・重なりなし: "+id)
+		var face := Rect2(rect.position+Vector2(12,2),Vector2(24,22))
+		for j in range(count):
+			if j!=i:check(not face.intersects(arena.party_rect(j)),"顔がほかの人物に隠れない: "+id)
 		check(arena.effect_anchor(id)==rect.get_center(),"演出の中心: "+id)
 		check(arena.cursor_rect(id).end.x<rect.position.x,"カーソルが人物を覆わない: "+id)
 		for child in panel.get_children():
 			if child is PanelContainer:check(not child.get_rect().intersects(rect),"文字窓が人物を覆わない: "+id)
 	var bottom_windows: Array[Rect2] = []
 	for child in panel.get_children():
-		if child is PanelContainer and child.position.y==208:bottom_windows.append(child.get_rect())
+		if child is PanelContainer and child.position.y==220:bottom_windows.append(child.get_rect())
 	if panel.replay.is_empty():
-		check(bottom_windows==[Rect2(0,208,216,80),Rect2(216,208,296,80)],"コマンド・能力値の窓が下端を横いっぱいに占める")
-	else:check(bottom_windows==[Rect2(0,208,512,80)],"戦闘結果の窓が下端に収まる")
+		check(bottom_windows==[Rect2(0,220,216,68),Rect2(216,220,296,68)],"コマンド・能力値の窓が下端を横いっぱいに占める")
+	else:check(bottom_windows==[Rect2(0,220,512,68)],"戦闘結果の窓が下端に収まる")
 	var detail_buttons := 0
 	var status_buttons := 0
 	for button in panel.find_children("*","Button",true,false):
@@ -84,7 +89,10 @@ func geometry(panel: FirstRegionScreen, count: int) -> void:
 		if button.text=="技の効果を確認":detail_buttons+=1
 		if button.text.contains("HP") and button.text.contains("MP"):
 			status_buttons+=1
-			check(Rect2(216,208,296,80).encloses(button.get_global_rect()),"HP・MPの全行が窓内に収まる")
+			check(Rect2(216,220,296,68).encloses(button.get_global_rect()),"HP・MPの全行が窓内に収まる")
+		check(button.get_theme_font("font")==RpgFonts.get_font(),"同梱Noto Sans JPを使用する")
+		for letter in button.text:
+			check(RpgFonts.get_font().has_char(letter.unicode_at(0)),"同梱字体の欠字なし: "+letter)
 	if panel.replay.is_empty():check(detail_buttons==1 and status_buttons==count,"技の確認操作と人数分の能力値を維持")
 
 func run() -> void:
@@ -142,7 +150,15 @@ func run() -> void:
 			check(arena.party_hp["pc_04"]== (0 if code=="fallen" else 12),"描画時点のHP: "+code)
 			await save_frame("state-"+code)
 			panel.queue_free();await process_frame
-	var record := {"status":"PASS" if failures.is_empty() else "FAIL","checks":checks,"failures":failures,"native_render":capture_enabled,"scope":"本番描画による配置見本。物語の進行記録ではない。state画像は表示状態の見本","build":BuildIdentity.current()}
+	var backgrounds := GameSession.new()
+	check(backgrounds.new_game(4),"14背景用の4人開始")
+	check(backgrounds.start_battle(["slime"],20260927)!=null,"14背景用の通常戦闘")
+	check(RpgBattleView.BACKGROUND_LAYOUT.size()==14,"14背景をすべて検査する")
+	for background in RpgBattleView.BACKGROUND_LAYOUT:
+		var panel := screen(backgrounds,{},false,background)
+		await geometry(panel,4)
+		panel.queue_free();await process_frame
+	var record := {"status":"PASS" if failures.is_empty() else "FAIL","checks":checks,"failures":failures,"native_render":capture_enabled,"backgrounds":14,"font":"Noto Sans JP","scope":"本番描画による配置見本。物語の進行記録ではない。state画像は表示状態の見本","build":BuildIdentity.current()}
 	PlaySessionMetrics.write_json(OUTPUT+"checks.json",record)
 	for failure in failures:printerr("FORMATION_FAIL: "+failure)
 	print("FORMATION_PASS: checks=%d" % checks if failures.is_empty() else "FORMATION_FAIL: failures=%d" % failures.size())

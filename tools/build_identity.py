@@ -14,6 +14,8 @@ def identity(engine: str, root: Path = ROOT) -> dict:
     paths.append('assets/palette/bright.gpl')
     paths.append('assets/palette/natural.gpl')
     paths.extend(e['path'] for e in json.loads((root/'assets/registry.json').read_text(encoding='utf-8')).get('audio', []))
+    for entry in json.loads((root/'assets/registry.json').read_text(encoding='utf-8')).get('fonts', []):
+        paths.extend([entry['path'], entry['license_path']])
     paths.sort()
     payload = 'rpg-v1-build-1\n'+engine+'\n'
     payload += ''.join(p+'\t'+hashlib.sha256((root/p).read_bytes()).hexdigest()+'\n' for p in paths)

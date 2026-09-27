@@ -16,6 +16,9 @@ static func current() -> Dictionary:
 	paths.append("assets/palette/natural.gpl")
 	for entry in registry.get("audio",[]):
 		paths.append(entry["path"])
+	for entry in registry.get("fonts",[]):
+		paths.append(entry["path"])
+		paths.append(entry["license_path"])
 	paths.sort()
 	var version := Engine.get_version_info()
 	var engine: String = version["string"]+" ["+str(version["hash"]).left(9)+"]"

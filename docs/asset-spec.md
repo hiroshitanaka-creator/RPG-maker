@@ -196,6 +196,8 @@ v1 では詠唱・勝利ポーズを作らない。必要になった段階で�
 
 ## 9. ライセンスの記録（2026年9月26日追加）
 
+2026年9月27日・依頼者承認：同梱する字体に限りSIL Open Font License 1.1（OFL-1.1）を追加で許可する。字体と著作権表示・ライセンス原文を `assets/fonts/` に保存し、台帳の `fonts` 一覧に出所・固定版・取得日・加工の有無・字体とライセンスのSHA-256を記録する。画像・音への許可範囲は変えない。Noto Sans JPを正式採用する（2026年9月27日、依頼者決定）。DotGothic16は比較記録として保持する。
+
 新しい外部素材には `source_url`（原作者の配布ページ）、`author`、`license`（SPDX ID）、`retrieved_at`（取得日）、`modified`（変換内容）を必ず記録する。許可する外部ライセンスはCC0・MIT・BSD・Apache-2.0・Unlicense。転載サイトの表示だけでは確認済みにしない。ライセンス文と作者表記は `THIRD_PARTY_NOTICES.md` に残す。
 
 生成素材は `source: "generated"`、`tool`、`generated_at`、生成指示の記録先を記載する。外部から取り込んだ素材のようにCC0等を推測して付けない。`license: "LicenseRef-Generated-Project"` はこのリポジトリ内で生成した素材を識別する記録であり、第三者素材の独自ライセンスを許すものではない。

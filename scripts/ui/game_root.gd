@@ -82,8 +82,7 @@ func _ready() -> void:
 	game.enable_recording("user://playthroughs" if qa_prefix.is_empty() else "user://qa_playthroughs/"+qa_prefix)
 	_rpg_audio=RpgAudio.new()
 	add_child(_rpg_audio)
-	var font := SystemFont.new()
-	font.font_names = PackedStringArray(["Yu Gothic UI", "Meiryo", "Noto Sans CJK JP", "sans-serif"])
+	var font := RpgFonts.get_font()
 	var ui_theme := Theme.new()
 	ui_theme.default_font = font
 	ui_theme.default_font_size = 11

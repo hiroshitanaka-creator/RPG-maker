@@ -14002,6 +14002,108 @@
       "conversion_record": "assets/source_records/sprint3-costumes.json",
       "actor_id": "pc_04",
       "job_id": "mage"
+    },
+    {
+      "path": "assets/backgrounds/snowfield.png",
+      "kind": "battle_background",
+      "size": [
+        512,
+        288
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "owner",
+      "author": "依頼者",
+      "license": "LicenseRef-Owner-Provided",
+      "provided_at": "2026-09-27",
+      "original_file": "assets/_incoming/owner-2026-09-26/background-replacement-2026-09-27/Z0Wjp.jpg",
+      "modified": "新原画全体を512×288へ最近傍変換。レベル黒75/白250、ガンマ1.05、彩度1.3、コントラスト1.05で白い霞を調整し、natural.gplへ減色。原本・既存8背景は不変。後続地方への接続は未実施。"
+    },
+    {
+      "path": "assets/backgrounds/volcano.png",
+      "kind": "battle_background",
+      "size": [
+        512,
+        288
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "owner",
+      "author": "依頼者",
+      "license": "LicenseRef-Owner-Provided",
+      "provided_at": "2026-09-27",
+      "original_file": "assets/_incoming/owner-2026-09-26/background-replacement-2026-09-27/gFbVF.jpg",
+      "modified": "新原画全体を512×288へ最近傍変換。レベル黒20/白240、ガンマ1.0、彩度1.1、コントラスト1.05で白い霞を調整し、natural.gplへ減色。原本・既存8背景は不変。後続地方への接続は未実施。"
+    },
+    {
+      "path": "assets/backgrounds/ruins.png",
+      "kind": "battle_background",
+      "size": [
+        512,
+        288
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "owner",
+      "author": "依頼者",
+      "license": "LicenseRef-Owner-Provided",
+      "provided_at": "2026-09-27",
+      "original_file": "assets/_incoming/owner-2026-09-26/background-replacement-2026-09-27/zBjGj.jpg",
+      "modified": "新原画全体を512×288へ最近傍変換。レベル黒65/白245、ガンマ1.15、彩度1.25、コントラスト1.08で白い霞を調整し、natural.gplへ減色。原本・既存8背景は不変。後続地方への接続は未実施。"
+    },
+    {
+      "path": "assets/backgrounds/underworld.png",
+      "kind": "battle_background",
+      "size": [
+        512,
+        288
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "owner",
+      "author": "依頼者",
+      "license": "LicenseRef-Owner-Provided",
+      "provided_at": "2026-09-27",
+      "original_file": "assets/_incoming/owner-2026-09-26/background-replacement-2026-09-27/lYiti.jpg",
+      "modified": "新原画全体を512×288へ最近傍変換。レベル黒100/白255、ガンマ1.3、彩度0.9、コントラスト1.07で白い霞を調整し、natural.gplへ減色。原本・既存8背景は不変。後続地方への接続は未実施。"
+    },
+    {
+      "path": "assets/backgrounds/temple.png",
+      "kind": "battle_background",
+      "size": [
+        512,
+        288
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "owner",
+      "author": "依頼者",
+      "license": "LicenseRef-Owner-Provided",
+      "provided_at": "2026-09-27",
+      "original_file": "assets/_incoming/owner-2026-09-26/background-replacement-2026-09-27/mUou6.jpg",
+      "modified": "新原画全体を512×288へ最近傍変換。レベル黒12/白245、ガンマ1.12、彩度1.2、コントラスト1.1で白い霞を調整し、natural.gplへ減色。原本・既存8背景は不変。後続地方への接続は未実施。"
+    },
+    {
+      "path": "assets/backgrounds/final_land.png",
+      "kind": "battle_background",
+      "size": [
+        512,
+        288
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "owner",
+      "author": "依頼者",
+      "license": "LicenseRef-Owner-Provided",
+      "provided_at": "2026-09-27",
+      "original_file": "assets/_incoming/owner-2026-09-26/background-replacement-2026-09-27/edM34.jpg",
+      "modified": "新原画全体を512×288へ最近傍変換。レベル黒145/白255、ガンマ1.05、彩度1.22、コントラスト1.03で白い霞を調整し、natural.gplへ減色。原本・既存8背景は不変。後続地方への接続は未実施。"
     }
   ],
   "audio": [
@@ -14218,6 +14320,42 @@
       "modified": "44100HzステレオPCM16 WAV、ピーク-6dB",
       "source_sha256": "fd3e75e1de2f2fda90aceeacaeb0427ac8bddd3b07a6ce2a8f9ba923df3771f9",
       "description": "回復を知らせる上向きの電子音。"
+    }
+  ],
+  "fonts": [
+    {
+      "id": "notosansjp",
+      "name": "Noto Sans JP",
+      "usage": "game_default",
+      "path": "assets/fonts/notosansjp/NotoSansJP.ttf",
+      "kind": "font",
+      "source": "external",
+      "source_url": "https://github.com/google/fonts/tree/23e54b51ddffbc7713c583748e3bd86f62b1fa4a/ofl/notosansjp",
+      "download_url": "https://raw.githubusercontent.com/google/fonts/23e54b51ddffbc7713c583748e3bd86f62b1fa4a/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
+      "author": "Copyright 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'",
+      "license": "OFL-1.1",
+      "license_path": "assets/fonts/notosansjp/OFL.txt",
+      "retrieved_at": "2026-09-27",
+      "modified": "なし。字体・ライセンス原文のバイト列を保持。",
+      "sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",
+      "license_sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "id": "dotgothic16",
+      "name": "DotGothic16",
+      "usage": "comparison_archive",
+      "path": "assets/fonts/dotgothic16/DotGothic16-Regular.ttf",
+      "kind": "font",
+      "source": "external",
+      "source_url": "https://github.com/google/fonts/tree/23e54b51ddffbc7713c583748e3bd86f62b1fa4a/ofl/dotgothic16",
+      "download_url": "https://raw.githubusercontent.com/google/fonts/23e54b51ddffbc7713c583748e3bd86f62b1fa4a/ofl/dotgothic16/DotGothic16-Regular.ttf",
+      "author": "Copyright 2020 The DotGothic16 Project Authors (https://github.com/fontworks-fonts/DotGothic16)",
+      "license": "OFL-1.1",
+      "license_path": "assets/fonts/dotgothic16/OFL.txt",
+      "retrieved_at": "2026-09-27",
+      "modified": "なし。字体・ライセンス原文のバイト列を保持。",
+      "sha256": "3ad9af88726d42b40f7f365f0dcac785af73cf20ea6f1d5b44e57cc21150b8f1",
+      "license_sha256": "b6630c61ea078cacd7fabe37d14ffe557a0b45b06683374a9aa9e24262993e33"
     }
   ]
 }

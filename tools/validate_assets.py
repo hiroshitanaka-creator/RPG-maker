@@ -21,6 +21,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 import wave
@@ -237,6 +238,30 @@ def check_audio(entry: dict) -> list[str]:
     return errors
 
 
+def check_font(entry: dict) -> list[str]:
+    """同梱字体だけにOFLを許可し、原本・ライセンスの欠落と改変を検出する。"""
+    errors = []
+    rel = entry.get('path', '')
+    for key in ['source_url', 'author', 'license', 'retrieved_at', 'modified', 'sha256', 'license_path', 'license_sha256']:
+        if not entry.get(key): errors.append(f'{rel}: 字体の出典記録 {key} がない')
+    if entry.get('kind') != 'font' or entry.get('license') != 'OFL-1.1':
+        errors.append(f'{rel}: 同梱字体の種別またはライセンスが不正')
+    for key, hash_key in [('path','sha256'), ('license_path','license_sha256')]:
+        value = entry.get(key, '')
+        path = REPO_ROOT / value
+        if not value.startswith('assets/fonts/') or '..' in Path(value).parts or not path.is_file():
+            errors.append(f'{rel}: 字体またはライセンス原文が存在しない、または配置が不正: {key}')
+            continue
+        data = path.read_bytes()
+        if hashlib.sha256(data).hexdigest() != entry.get(hash_key):
+            errors.append(f'{value}: 取得記録のSHA-256と一致しない')
+        if key == 'path' and (path.suffix.lower() not in {'.ttf','.otf'} or data[:4] not in [b'\x00\x01\x00\x00',b'OTTO']):
+            errors.append(f'{value}: OpenType/TrueType字体ではない')
+        if key == 'license_path' and (b'SIL OPEN FONT LICENSE Version 1.1' not in data or b'Copyright' not in data):
+            errors.append(f'{value}: OFL原文または著作権表示がない')
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="素材台帳に従って画像を検査する")
     parser.add_argument("--strict", action="store_true", help="台帳外のファイルもエラーにする")
@@ -313,6 +338,19 @@ def main() -> int:
         if rel not in audio_registered:
             errors.append(f"{rel}: 音の台帳に登録されていない")
     print(f"音の検査対象: {len(audio_entries)} 件 / パレット: {len(palette_cache)} 件")
+
+    font_entries = registry.get('fonts', [])
+    font_paths = set()
+    for entry in font_entries:
+        if entry.get('path') in font_paths:
+            errors.append(f"{entry.get('path')}: 字体の台帳登録が重複")
+        font_paths.add(entry.get('path'))
+        errors.extend(check_font(entry))
+    for path in (REPO_ROOT / 'assets').rglob('*'):
+        if path.suffix.lower() in {'.ttf','.otf'} and not IGNORED_DIRS & set(path.parts):
+            if path.relative_to(REPO_ROOT).as_posix() not in font_paths:
+                errors.append(f'{path.relative_to(REPO_ROOT).as_posix()}: 字体の台帳に登録されていない')
+    print(f'字体の検査対象: {len(font_entries)} 件')
 
     if missing:
         print(f"\n--- 不足素材 ({len(missing)} 件) ---")
