@@ -141,6 +141,11 @@ static func valid(saved: Dictionary) -> bool:
 	var region: Variant = saved.get("first_region")
 	var state: Variant = saved.get("overworld")
 	if not region is Dictionary or region.get("version") != 1 or not region.get("reserve") is Array or not region.get("coins") is int or region["coins"] < 0:return false
+	var errands: Variant=region.get("errands",{})
+	if not errands is Dictionary:return false
+	for key in errands:
+		if key!="haldo" or errands[key] not in ["requested","holding","wrapped","complete"]:return false
+	if errands.get("haldo")=="complete" and not saved["party"].any(func(actor:Variant)->bool:return actor is Dictionary and actor.get("id")=="pc_03"):return false
 	if not state is Dictionary or not state.has_all(["active","layer","node","room","cell","facing","cleared","opened","entry_lock"]):return false
 	if state["active"] != true or state["layer"] not in ["world","interior"] or not state["node"] is String or not state["room"] is int:return false
 	if not state["cell"] is Array or state["cell"].size() != 2 or not state["cell"][0] is int or not state["cell"][1] is int:return false

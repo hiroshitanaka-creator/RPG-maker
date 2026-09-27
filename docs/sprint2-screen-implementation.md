@@ -92,3 +92,13 @@ python3 D:/Codex/.codex/scope-lock/scripts/verify_cli.py --quiet .
 8マップの地面層で全面が黒いタイルは0件。素材の出所・変換と地図ごとの数値は `assets/source_records/sprint2-visual-fixes.json` に記録した。原画と既存素材は変更していない。
 
 再生成は `python tools/build_first_region_presentation.py`。撮影は `godot --path . --rendering-method gl_compatibility --script res://tools/capture_first_region_entrance.gd`。従来の9場面に加え、通常歩行で洞窟へ入る直前を `14-cave-entrance.png` に保存する。保護されたR-07と既存の撮影スクリプトは変更していない。
+
+## 人物と地面の重なり・加入場面の追加修正
+
+土・小石・花・草・落ち葉・畑・敷物・橋を地面層へ分け、人物より先に描く。木・家・大きな岩・柵・井戸は、物の足元と人物の足元の位置で前後を決める。村・世界マップ・洞窟・関所を通常操作で実撮影した。比較画像は `docs/verification/first-region/15-overlap-review.png`。
+
+リオネは洞窟へ行くカイナに同行を申し出る。ハルドは包帯巻きを手伝ってもらい、お礼に同行を申し出る。二人とも会話冒頭では加入せず、同行の合意後に加入する。ハルドの「包帯の端を押さえる」「合図に合わせて手を離す」は通常の決定キーまたは表示中のボタンで操作し、その順序をゲーム状態へ記録する。会話全文は `docs/first-region-recruit-scenes.md`。
+
+依頼者は実配達案ではなく、その場の包帯巻きを選択した。R-07・受入文書・凍結ハッシュは変更しない。不採用の改訂案は `docs/proposals/haldo-delivery-r07.md` に経緯を明記して保持する。
+
+スイナは依頼者の承認どおり会話案のみ。森の塔への実装・接続はスプリント5で行う。原画対応表を `docs/roadmap-v2.md` 付録Bへ保存した。同計画のスプリント5に、カイナの家の床・家具配置と関所周辺の水際を目標画像に近づける仕上げを追記した。

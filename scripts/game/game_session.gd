@@ -22,6 +22,7 @@ var _story_wave_step: int = -1
 var _story_wave_number: int = 0
 var _expedition_battle_stage: int = -1
 var _world_battle_id: String = ""
+var _pending_region_recruit := ""
 
 
 func _init() -> void:
@@ -115,6 +116,7 @@ func export_state() -> Dictionary:
 
 func new_first_region() -> bool:
 	if not new_game(3):return false
+	_pending_region_recruit=""
 	_state["first_region"] = {"version":1,"reserve":_state["party"].slice(1).duplicate(true),"coins":20}
 	_state["party"] = [_state["party"][0]]
 	_state["inventory"]["world_map"] = 1
@@ -166,8 +168,16 @@ func interact_first_region() -> Dictionary:
 		FirstRegion.face_event(_state,event)
 		match event["kind"]:
 			"npc":
+				if event.get("after_errand","")=="haldo" and _state["first_region"].get("errands",{}).get("haldo")=="complete":
+					return {"kind":"dialogue","speaker":event.get("label","村人"),"text":event["after_text"]}
 				return {"kind":"dialogue","speaker":event.get("label","村人"),"text":event["text"]}
 			"recruit":
+				if event.get("join_on_last_line",false):
+					_pending_region_recruit=event["actor"]
+					if event["actor"]=="pc_03":
+						if not _state["first_region"].has("errands"):_state["first_region"]["errands"]={}
+						_state["first_region"]["errands"]["haldo"]="requested"
+					return {"kind":"dialogue","speaker_actor":event["actor"],"text":event["text"],"speakers":event["speakers"],"join_actor":event["actor"],"line_actions":event.get("line_actions",[]),"line_prompts":event.get("line_prompts",[])}
 				for actor in _state["first_region"]["reserve"]:
 					if actor["id"] == event["actor"]:
 						_state["party"].append(actor.duplicate(true))
@@ -187,6 +197,29 @@ func interact_first_region() -> Dictionary:
 				_state["inventory"][event["item"]] = int(_state["inventory"].get(event["item"],0))+int(event["amount"])
 				return {"kind":"dialogue","speaker":"宝箱","sound":"chest","text":["回復薬を%d個手に入れた。" % event["amount"]]}
 	return {}
+
+func finish_first_region_recruit(actor_id: String) -> bool:
+	if not first_region_active() or actor_id.is_empty() or actor_id!=_pending_region_recruit:return false
+	if actor_id=="pc_03" and _state["first_region"].get("errands",{}).get("haldo")!="wrapped":return false
+	for actor in _state["first_region"]["reserve"]:
+		if actor["id"]!=actor_id:continue
+		_state["party"].append(actor.duplicate(true))
+		_state["first_region"]["reserve"].erase(actor)
+		_pending_region_recruit=""
+		if actor_id=="pc_03":_state["first_region"]["errands"]["haldo"]="complete"
+		return true
+	return false
+
+func help_first_region_bandage(action: String) -> bool:
+	if not first_region_active() or _pending_region_recruit!="pc_03":return false
+	var stage: String=str(_state["first_region"].get("errands",{}).get("haldo",""))
+	if action=="hold_bandage" and stage=="requested":
+		_state["first_region"]["errands"]["haldo"]="holding"
+		return true
+	if action=="release_bandage" and stage=="holding":
+		_state["first_region"]["errands"]["haldo"]="wrapped"
+		return true
+	return false
 
 
 func buy_first_region_potion() -> bool:
@@ -235,6 +268,7 @@ func import_state(value: Dictionary) -> bool:
 	if not _valid_state(normalized):
 		return false
 	_state = normalized.duplicate(true)
+	_pending_region_recruit=""
 	_world_battle_id = ""
 	_battle = null
 	_claimed = true

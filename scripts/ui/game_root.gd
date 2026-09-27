@@ -55,6 +55,10 @@ var _region_shop: String = ""
 var _region_screen: FirstRegionScreen
 var _rpg_audio: RpgAudio
 var _region_speaker := ""
+var _region_line_speakers: Array = []
+var _region_join_actor := ""
+var _region_line_actions: Array = []
+var _region_line_prompts: Array = []
 var _region_speaking_actor := ""
 var _region_place_key := ""
 var _region_place_ms := 0
@@ -449,7 +453,15 @@ func submit_player_action(action: Dictionary) -> bool:
 				_message_index = 0
 				accepted = true
 			elif kind == "confirm":
+				if game.first_region_active() and _message_index<_region_line_actions.size():
+					var work_action := str(_region_line_actions[_message_index])
+					if not work_action.is_empty() and not game.help_first_region_bandage(work_action):return false
 				_message_index += 1
+				if game.first_region_active() and not _region_join_actor.is_empty() and _message_index==_messages.size()-1:
+					if not game.finish_first_region_recruit(_region_join_actor):
+						_message_index-=1
+						return false
+					_region_join_actor=""
 				accepted = true
 				if _message_index >= _messages.size():
 					if _advance_after_dialogue:
@@ -733,6 +745,10 @@ func _advance_step() -> void:
 
 
 func _show_dialogue(lines: Array, advance: bool, return_mode: Mode = Mode.FIELD, past: bool = false) -> void:
+	_region_line_speakers=[]
+	_region_join_actor=""
+	_region_line_actions=[]
+	_region_line_prompts=[]
 	_messages.assign(lines)
 	_message_index = 0
 	_advance_after_dialogue = advance
@@ -1163,6 +1179,10 @@ func _first_region_result(result: Dictionary) -> void:
 			_show_dialogue(result["text"],false,Mode.WORLD)
 			_region_speaker=str(result.get("speaker","カイナ"))
 			_region_speaking_actor=str(result.get("speaker_actor",""))
+			_region_line_speakers=result.get("speakers",[])
+			_region_join_actor=str(result.get("join_actor",""))
+			_region_line_actions=result.get("line_actions",[])
+			_region_line_prompts=result.get("line_prompts",[])
 		"shop", "weapon_shop":
 			_region_shop = result["kind"]
 			mode = Mode.WORLD_CHOICE
@@ -2289,8 +2309,10 @@ func _render_region_screen() -> void:
 	_region_screen.walk_frame=_walk_frame
 	_region_screen.battle_background=_region_background()
 	_region_screen.speaker=_region_speaker
+	if mode==Mode.DIALOGUE and _message_index<_region_line_speakers.size():_region_screen.speaker=str(_region_line_speakers[_message_index])
 	_region_screen.speaking_actor=_region_speaking_actor if mode==Mode.DIALOGUE else ""
 	if mode==Mode.DIALOGUE:_region_screen.message=_messages[_message_index]
+	if mode==Mode.DIALOGUE and _message_index<_region_line_prompts.size() and not str(_region_line_prompts[_message_index]).is_empty():_region_screen.dialogue_prompt=str(_region_line_prompts[_message_index])
 	if mode==Mode.WORLD_CHOICE:_region_screen.speaker="道具屋" if _region_shop=="shop" else "武器屋"
 	if Time.get_ticks_msec()-_region_place_ms<2200:_region_screen.place_name=FirstRegionPresentation.place_name(state)
 	if not _replay.is_empty():

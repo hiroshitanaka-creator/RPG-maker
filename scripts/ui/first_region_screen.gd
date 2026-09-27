@@ -7,6 +7,7 @@ var screen_mode := "world"
 var actor := ""
 var target_action: Dictionary = {}
 var message := ""
+var dialogue_prompt := "▼"
 var speaker := ""
 var speaking_actor := ""
 var notice := ""
@@ -113,7 +114,9 @@ func _world() -> void:
 func _dialogue() -> void:
 	var name_box := _window(Rect2(16,165,180,28));name_box.add_child(_label(speaker if not speaker.is_empty() else "カイナ",12))
 	var dialogue := _window(Rect2(8,191,496,88));dialogue.add_child(_label(message,14))
-	var next := _button(self,"▼",{"kind":"confirm"});next.position=Vector2(474,251);next.size=Vector2(24,20)
+	var next := _button(self,dialogue_prompt,{"kind":"confirm"})
+	next.position=Vector2(474,251) if dialogue_prompt=="▼" else Vector2(270,251)
+	next.size=Vector2(24,20) if dialogue_prompt=="▼" else Vector2(228,20)
 
 func _commands() -> void:
 	var column := _window(Rect2(12,12,220,264))

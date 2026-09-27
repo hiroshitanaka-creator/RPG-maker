@@ -12,13 +12,17 @@ var _map: Dictionary = {}
 var _ground: Array = []
 var _objects: Array = []
 
+static func ground_layer(layer: Dictionary) -> bool:
+	var kind := str(layer["name"]).trim_prefix("natural_").trim_prefix("bright_")
+	return kind in ["地面","dirt","shore","hills","forest","mountains","river","壁","敷物","接続水域","64px岩壁・丸い湖・床の自動接続","dirt_patch","pebbles","flowers_white","flowers_yellow","flowers_pink","tufts","leaves","overgrown_grass","flowerbed","cabbage","carrots","wheat","mushrooms","floor_pattern","bridge","rope_bridge"]
+
 func _ready() -> void:
 	clip_contents=true
 	mouse_filter=Control.MOUSE_FILTER_IGNORE
 	_map=FirstRegionPresentation.map_for(saved["overworld"])
 	for layer in _map.get("layers",[]):
 		if layer["cells"].is_empty():continue
-		if layer["name"] in ["地面","dirt","shore","hills","forest","mountains","river","壁","敷物","接続水域","64px岩壁・丸い湖・床の自動接続"]:
+		if ground_layer(layer):
 			_ground.append(layer)
 		else:
 			var bottom := 0
@@ -82,7 +86,7 @@ func _draw() -> void:
 		var stair: Dictionary=definition["stairs_down"]["from"] if state["room"]==0 else definition["stairs_up"]["from"]
 		if state["node"]=="first_cave":
 			var stairs := Vector2(WorldExpedition.point(stair["cell"]))
-			ordered.append({"bottom":stairs.y+1.0,"object":"res://assets/objects/natural_stairs_down.png" if state["room"]==0 else "res://assets/objects/natural_stairs_up.png","cell":stairs,"dimensions":Vector2(64,64)})
+			_object("res://assets/objects/natural_stairs_down.png" if state["room"]==0 else "res://assets/objects/natural_stairs_up.png",stairs,Vector2(64,64))
 		var boss: Dictionary=definition["boss"]["point"]
 		if state["node"]==boss["node"] and state["room"]==boss["room"] and "first_boss" not in state["cleared"]:
 			var position_on_map := Vector2(WorldExpedition.point(boss["cell"]))

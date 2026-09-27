@@ -1,0 +1,22 @@
+--- a/tools/smoke_first_region.gd
++++ b/tools/smoke_first_region.gd
+@@ -516,0 +517,15 @@
++	var delivery: Variant = _definition.get("haldo_delivery")
++	if not delivery is Dictionary or not _point(delivery.get("stand")) or not _cell(delivery.get("facing")):return
++	_blocker = "ハルドの頼みごとの受領・配達・報告が未成立"
++	if _state().get("first_region",{}).get("errands",{}).get("haldo") != "requested" or _party().size() != 2:return
++	if not await _walk(delivery["stand"]):return
++	if not await _step_direction(Vector2i(int(delivery["facing"][0]),int(delivery["facing"][1]))):return
++	if not _at(delivery["stand"]):return
++	if not await _key(KEY_ENTER) or not await _settle():return
++	if _state().get("first_region",{}).get("errands",{}).get("haldo") != "delivered" or _party().size() != 2:return
++	var haldo: Dictionary = _definition["recruits"][1]
++	if not await _walk(haldo["stand"]):return
++	if not await _step_direction(Vector2i(int(haldo["facing"][0]),int(haldo["facing"][1]))):return
++	if not _at(haldo["stand"]):return
++	if not await _key(KEY_ENTER) or not await _settle():return
++	if _state().get("first_region",{}).get("errands",{}).get("haldo") != "complete" or _party().size() != 3:return
+--- a/docs/first-region-acceptance.md
++++ b/docs/first-region-acceptance.md
+@@ -70,0 +71 @@
++| `first_region.haldo_delivery` | `{stand:Point, facing:[dx,dy]}`。村内の届け先。リオネとの会話、ハルドからの依頼、届け先との会話、ハルドへの報告の順に通常歩行・決定キーで進む。`export_state().first_region.errands.haldo` は受領後 `requested`、配達後 `delivered`、報告後 `complete`。配達後までは2人、報告後に3人であることを確認する。 |
