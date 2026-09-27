@@ -185,16 +185,16 @@ func _battle() -> void:
 			arena.frames[member["id"]]=2 if replay.get("target")==member["id"] and replay.get("code") in ["damage","fallen"] else 1 if replay.get("actor")==member["id"] else 0
 	add_child(arena)
 	if not replay.is_empty():
-		_window(Rect2(8,194,410,84)).add_child(_label(str(replay.get("message","")),14))
+		_window(Rect2(0,208,512,80)).add_child(_label(str(replay.get("message","")),14))
 		var skip := _button(self,"表示をスキップ  Enter",{"kind":"skip_presentation"});skip.position=Vector2(248,249)
 		return
 	if encounter==null:return
-	var intent_window := _window(Rect2(100,6,318,34+maxi(0,encounter.enemy_intents().size()-1)*17))
+	var intent_window := _window(Rect2(8,4,330,30+maxi(0,encounter.enemy_intents().size()-1)*17))
 	for intent in encounter.enemy_intents():
 		var enemy := encounter.actor_by_id(intent["actor"])
 		intent_window.add_child(_label("%s HP%d/%d  %s→%s" % [enemy.display_name,enemy.hp,enemy.max_hp,intent["action"],intent["target_name"]],11))
-	var commands := _window(Rect2(8,189,188,92))
-	var scroll := ScrollContainer.new();scroll.custom_minimum_size=Vector2(168,46);scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;commands.add_child(scroll)
+	var commands := _window(Rect2(0,208,216,80))
+	var scroll := ScrollContainer.new();scroll.custom_minimum_size=Vector2(196,38);scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;commands.add_child(scroll)
 	var grid := GridContainer.new();grid.columns=2;grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(grid)
 	if not target_action.is_empty():
 		var kind := BattleAction.Kind.ATTACK
@@ -218,9 +218,11 @@ func _battle() -> void:
 	var row := HBoxContainer.new();commands.add_child(row)
 	_button(row,"ターン実行",{"kind":"resolve_round"},encounter.can_resolve())
 	_button(row,"選び直す",{"kind":"clear_actions"})
-	var status := _window(Rect2(202,189,216,92))
+	_button(row,"技の効果を確認",{"kind":"mechanics"})
+	for button in row.get_children():button.add_theme_font_size_override("font_size",10)
+	var status := _window(Rect2(216,208,296,80))
+	status.add_theme_constant_override("separation",0)
 	for unit in encounter.actors:
 		if unit.team!=Combatant.Team.PARTY:continue
 		var button := _button(status,"%s  HP%d/%d  MP%d/%d%s" % [unit.display_name,unit.hp,unit.max_hp,unit.mp,unit.max_mp," ✓" if encounter.queued.has(unit.id) else ""],{"kind":"ui_actor","actor":unit.id},unit.is_alive())
-		button.add_theme_font_size_override("font_size",11)
-	var details := _button(self,"機構・予測",{"kind":"mechanics"});details.position=Vector2(8,7);details.size=Vector2(80,22)
+		button.add_theme_font_size_override("font_size",10)

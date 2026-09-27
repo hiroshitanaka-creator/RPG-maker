@@ -1,6 +1,6 @@
 class_name RpgBattleView
 extends Control
-## 登録された実寸の敵と48pxの味方を、場所に合う背景へ描く。
+## 背景を原寸で表示し、味方は保存された48pxの絵を表示時だけ縮小する。
 var members: Array = []
 var enemy_ids: Array = []
 var definitions: Dictionary = {}
@@ -33,9 +33,9 @@ func _impact(identifier: String) -> Vector2:
 	return Vector2(round(sin(_time*70.0)*3.0),0) if identifier==effect_target and effect_code in ["damage","fallen"] else Vector2.ZERO
 
 func party_rect(index: int) -> Rect2:
-	# 48pxの絵を縮小せず、3人・4人とも隊列順で56px間隔にする。
-	var top := 36.0 + (4 - members.size()) * 28.0
-	return Rect2(448,top+index*56,48,48)
+	# 地平線より下の足元と、下端208pxからの文字窓の間に縦隊を収める。
+	var top := 104.0 + (4 - members.size()) * 13.0
+	return Rect2(416,top+index*26,24,24)
 
 func actor_rect(identifier: String) -> Rect2:
 	for i in range(members.size()):
@@ -64,9 +64,8 @@ func _enemy_texture(identifier: String) -> Texture2D:
 
 func _draw() -> void:
 	var backdrop := _texture("res://assets/backgrounds/"+background+".png")
-	# 縦隊の足元を草地に置くため、空と前景の花を避けた範囲を表示する。
-	if background=="plains":draw_texture_rect_region(backdrop,Rect2(Vector2.ZERO,size),Rect2(180,128,512.0/3.0,96))
-	else:draw_texture_rect(backdrop,Rect2(Vector2.ZERO,size),false)
+	# 512×288の全画像を原寸で描く。切り抜き・引き伸ばしは行わない。
+	draw_texture(backdrop,Vector2.ZERO)
 	for i in range(enemy_ids.size()):
 		var identifier := "enemy_%02d" % (i+1)
 		var rect := actor_rect(identifier)
@@ -82,18 +81,20 @@ func _draw() -> void:
 		var rect := party_rect(i)
 		rect.position+=_impact(identifier)
 		if identifier==acting_actor or (acting_actor.is_empty() and identifier==selected_actor):
-			draw_style_box(_highlight(),Rect2(rect.position+Vector2(3,42),Vector2(42,5)))
+			draw_style_box(_highlight(),Rect2(rect.position+Vector2(2,21),Vector2(20,3)))
 		draw_texture_rect_region(_texture(visual["path"]),rect,visual["region"],Color(0.6,0.6,0.6,0.7) if fallen else Color.WHITE)
 	var cursor := target_actor if not target_actor.is_empty() else selected_actor
 	if not actor_rect(cursor).size.is_zero_approx():
 		draw_texture_rect(_texture("res://assets/ui/cursor_bright.png"),cursor_rect(cursor),false)
 	if not actor_rect(effect_target).size.is_zero_approx():
 		var center := effect_anchor(effect_target)
-		if effect_code in ["heal","revive"]:draw_circle(center,17,Color(0.6,1,0.65,0.35))
-		if effect_code=="damage":draw_line(center+Vector2(-13,13),center+Vector2(13,-13),Color(1,0.96,0.65),3)
+		var radius := minf(actor_rect(effect_target).size.x,actor_rect(effect_target).size.y)*0.35
+		if effect_code in ["heal","revive"]:draw_circle(center,radius,Color(0.6,1,0.65,0.35))
+		if effect_code=="damage":draw_line(center+Vector2(-radius,radius),center+Vector2(radius,-radius),Color(1,0.96,0.65),2)
 		if effect_code in ["damage","heal","revive"]:
 			var number := str(effect_amount)
 			var point := center+Vector2(-8,-10)
+			if effect_target.begins_with("pc_"):point=Vector2(actor_rect(effect_target).position.x-38,center.y+5)
 			draw_string_outline(ThemeDB.fallback_font,point,number,HORIZONTAL_ALIGNMENT_LEFT,-1,14,3,Color.BLACK)
 			draw_string(ThemeDB.fallback_font,point,number,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color.WHITE)
 

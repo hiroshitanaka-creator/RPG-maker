@@ -1,6 +1,6 @@
 extends SceneTree
 ## 本番の戦闘画面を使う配置見本。物語の加入・転職解放を示すものではない。
-const OUTPUT := "res://docs/verification/battle-formation/"
+const OUTPUT := "res://docs/verification/battle-layout/"
 var failures: Array[String] = []
 var checks := 0
 var capture_enabled := false
@@ -44,6 +44,14 @@ func save_frame(name: String) -> void:
 	RenderingServer.force_draw(false);RenderingServer.force_sync()
 	var frame := root.get_texture().get_image()
 	check(not frame.is_empty() and frame.get_pixel(0,0)!=Color.WHITE,"白画面ではない: "+name)
+	var backdrop := (load("res://assets/backgrounds/plains.png") as Texture2D).get_image()
+	# 窓・人物のない空と地面で、原画と実描画のピクセルを比較する。
+	var mismatches := 0
+	for area in [Rect2i(350,40,60,55),Rect2i(280,140,50,55)]:
+		for y in range(area.position.y,area.end.y):
+			for x in range(area.position.x,area.end.x):
+				if frame.get_pixel(x*2,y*2)!=backdrop.get_pixel(x,y):mismatches+=1
+	check(mismatches==0,"背景の原寸描画: "+name+" 不一致="+str(mismatches))
 	check(frame.save_png(OUTPUT+name+".png")==OK,"画像保存: "+name)
 
 func geometry(panel: FirstRegionScreen, count: int) -> void:
@@ -53,15 +61,31 @@ func geometry(panel: FirstRegionScreen, count: int) -> void:
 	for i in range(count):
 		var id := "pc_%02d" % (i+1)
 		var rect := arena.actor_rect(id)
-		check(rect.position.x==448 and rect.size==Vector2(48,48),"横位置と衣装の原寸: "+id)
+		check(rect.position.x==416 and rect.size==Vector2(24,24),"横位置と承認済みの表示寸法: "+id)
 		check(Rect2(0,0,512,288).encloses(rect),"画面内: "+id)
+		check(rect.end.y>=128 and rect.end.y<=208,"足元が地面にあり下端の窓より上: "+id)
 		if i>0:
 			var previous := arena.actor_rect("pc_%02d" % i)
-			check(rect.position.y-previous.position.y==56 and not rect.intersects(previous),"隊列順・等間隔・重なりなし: "+id)
+			check(rect.position.y-previous.position.y==26 and not rect.intersects(previous),"隊列順・等間隔・重なりなし: "+id)
 		check(arena.effect_anchor(id)==rect.get_center(),"演出の中心: "+id)
 		check(arena.cursor_rect(id).end.x<rect.position.x,"カーソルが人物を覆わない: "+id)
 		for child in panel.get_children():
 			if child is PanelContainer:check(not child.get_rect().intersects(rect),"文字窓が人物を覆わない: "+id)
+	var bottom_windows: Array[Rect2] = []
+	for child in panel.get_children():
+		if child is PanelContainer and child.position.y==208:bottom_windows.append(child.get_rect())
+	if panel.replay.is_empty():
+		check(bottom_windows==[Rect2(0,208,216,80),Rect2(216,208,296,80)],"コマンド・能力値の窓が下端を横いっぱいに占める")
+	else:check(bottom_windows==[Rect2(0,208,512,80)],"戦闘結果の窓が下端に収まる")
+	var detail_buttons := 0
+	var status_buttons := 0
+	for button in panel.find_children("*","Button",true,false):
+		check(button.text!="機構・予測","旧名称の表示がない")
+		if button.text=="技の効果を確認":detail_buttons+=1
+		if button.text.contains("HP") and button.text.contains("MP"):
+			status_buttons+=1
+			check(Rect2(216,208,296,80).encloses(button.get_global_rect()),"HP・MPの全行が窓内に収まる")
+	if panel.replay.is_empty():check(detail_buttons==1 and status_buttons==count,"技の確認操作と人数分の能力値を維持")
 
 func run() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUTPUT))
