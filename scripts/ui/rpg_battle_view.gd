@@ -20,7 +20,7 @@ const BACKGROUND_LAYOUT := {
 	"plains": [64,28], "forest": [56,40], "cave": [56,44], "tower": [48,48],
 	"desert": [48,34], "sea": [48,48], "sky": [48,54], "castle": [48,64],
 	"snowfield": [16,28], "volcano": [8,28], "ruins": [12,28],
-	"underworld": [8,28], "temple": [12,60], "final_land": [0,28],
+	"underworld": [8,28], "temple": [44,84], "final_land": [0,28],
 }
 
 func _ready() -> void:

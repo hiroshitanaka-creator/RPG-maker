@@ -11,7 +11,7 @@ BACKGROUNDS = {
     'gFbVF.jpg': ('volcano', '火山', 20,240,1.00,1.10,1.05),
     'zBjGj.jpg': ('ruins', '遺跡', 65,245,1.15,1.25,1.08),
     'lYiti.jpg': ('underworld', '死者の国', 100,255,1.30,0.90,1.07),
-    'mUou6.jpg': ('temple', '神殿の中', 12,245,1.12,1.20,1.10),
+    'IMG_1040.PNG': ('temple', '神殿の中', 0,255,1.00,1.00,1.00),
     'edM34.jpg': ('final_land', '最後の地', 145,255,1.05,1.22,1.03),
 }
 
@@ -26,6 +26,8 @@ def main():
     records = []
     for filename, (identifier, title, black, white, gamma, saturation, contrast) in BACKGROUNDS.items():
         original = f'assets/_incoming/owner-2026-09-26/background-replacement-2026-09-27/{filename}'
+        if identifier == 'temple':
+            original = 'assets/_incoming/owner-2026-09-26/reference-pack-2/IMG_1040.PNG'
         source = ROOT / original
         before = hashlib.sha256(source.read_bytes()).hexdigest()
         destination = f'assets/backgrounds/{identifier}.png'
@@ -43,6 +45,8 @@ def main():
                  'source': 'owner', 'author': '依頼者', 'license': 'LicenseRef-Owner-Provided',
                  'provided_at': '2026-09-27', 'original_file': original,
                  'modified': f'新原画全体を512×288へ最近傍変換。レベル黒{black}/白{white}、ガンマ{gamma}、彩度{saturation}、コントラスト{contrast}で白い霞を調整し、natural.gplへ減色。原本・既存8背景は不変。後続地方への接続は未実施。'}
+        if identifier == 'temple':
+            entry['modified'] = '2026年9月27日、依頼者が神殿に限りIMG_1040.PNGの再使用を承認。原画全体を512×288へ最近傍変換しnatural.gplへ減色。色調補正は追加せず、原本は不変。絵画調のmUou6.jpgから差し替え。'
         index = next((i for i, e in enumerate(registry['assets']) if e['path'] == destination), None)
         if index is None: registry['assets'].append(entry)
         else: registry['assets'][index] = entry
