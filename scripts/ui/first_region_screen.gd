@@ -76,7 +76,7 @@ func _window(rect: Rect2, inset: int = 8) -> VBoxContainer:
 	for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]:
 		box.set_texture_margin(side,8.0)
 		box.set_content_margin(side,inset)
-	box.modulate_color=Color(1,1,1,0.93)
+	box.modulate_color=Color(1,1,1,0.86 if screen_mode=="battle" else 0.93)
 	panel.add_theme_stylebox_override("panel",box)
 	add_child(panel)
 	var column := VBoxContainer.new()
@@ -184,18 +184,47 @@ func _battle() -> void:
 		for member in arena.members:
 			arena.frames[member["id"]]=2 if replay.get("target")==member["id"] and replay.get("code") in ["damage","fallen"] else 1 if replay.get("actor")==member["id"] else 0
 	add_child(arena)
+	var status := _window(Rect2(4,220,296,64),4)
+	status.name="BattlePartyStatus"
+	status.add_theme_constant_override("separation",0)
+	var visible_members: Array=arena.members.duplicate(true)
+	var observed: Array=replay.get("snapshot",{}).get("actors",[]) if not replay.is_empty() else encounter.snapshot()["actors"] if encounter!=null else []
+	for member in visible_members:
+		for unit in observed:
+			if unit["id"]==member["id"]:member.merge(unit,true)
+		var row := HBoxContainer.new();row.add_theme_constant_override("separation",3);status.add_child(row)
+		var member_id: String=member["id"]
+		var queued := encounter!=null and encounter.queued.has(member_id)
+		var button := _button(row,str(member["name"])+( " 済" if queued else ""),{"kind":"ui_actor","actor":member_id},int(member["hp"])>0 and replay.is_empty())
+		button.name="Status_"+member_id;button.custom_minimum_size.x=48;button.add_theme_font_size_override("font_size",10)
+		var hp := _label("HP%d/%d" % [member["hp"],member["max_hp"]],10);hp.custom_minimum_size.x=58;row.add_child(hp)
+		_battle_bar(row,member_id,"HP",int(member["hp"]),int(member["max_hp"]),Color("73b54a"))
+		var mp := _label("MP%d/%d" % [member["mp"],member["max_mp"]],10);mp.custom_minimum_size.x=50;row.add_child(mp)
+		_battle_bar(row,member_id,"MP",int(member["mp"]),int(member["max_mp"]),Color("5d98c4"))
+	_first_button=null
+	var intent_window := _window(Rect2(4,4,184,10+arena.enemy_ids.size()*24),4)
+	intent_window.name="BattleEnemyList"
+	var intents: Array=encounter.enemy_intents() if encounter!=null else []
+	for i in range(arena.enemy_ids.size()):
+		var enemy_id := "enemy_%02d" % (i+1)
+		var definition: Dictionary=arena.definitions[arena.enemy_ids[i]]
+		var enemy_state := {"name":definition["name"],"hp":arena.enemy_hp.get(enemy_id,definition["stats"]["hp"]),"max_hp":definition["stats"]["hp"]}
+		for unit in observed:
+			if unit["id"]==enemy_id:enemy_state=unit
+		var line := "%s HP%d/%d" % [enemy_state["name"],enemy_state["hp"],enemy_state["max_hp"]]
+		for intent in intents:
+			if intent["actor"]==enemy_id:line+="\n%s→%s" % [intent["action"],intent["target_name"]]
+		intent_window.add_child(_label(line,10))
 	if not replay.is_empty():
-		_window(Rect2(0,220,512,68),4).add_child(_label(str(replay.get("message","")),12))
-		var skip := _button(self,"表示をスキップ  Enter",{"kind":"skip_presentation"});skip.position=Vector2(248,249)
+		var report := _window(Rect2(420,4,88,128),4);report.name="BattleCommands"
+		report.add_child(_label(str(replay.get("message","")),10))
+		var skip := _button(report,"表示をスキップ  Enter",{"kind":"skip_presentation"});skip.add_theme_font_size_override("font_size",10)
+		skip.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 		return
 	if encounter==null:return
-	var intent_window := _window(Rect2(8,4,330,22+maxi(0,encounter.enemy_intents().size()-1)*15),4)
-	for intent in encounter.enemy_intents():
-		var enemy := encounter.actor_by_id(intent["actor"])
-		intent_window.add_child(_label("%s HP%d/%d  %s→%s" % [enemy.display_name,enemy.hp,enemy.max_hp,intent["action"],intent["target_name"]],10))
-	var commands := _window(Rect2(0,220,216,68),4)
-	var scroll := ScrollContainer.new();scroll.custom_minimum_size=Vector2(204,32);scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;commands.add_child(scroll)
-	var grid := GridContainer.new();grid.columns=2;grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(grid)
+	var commands := _window(Rect2(420,4,88,128),4);commands.name="BattleCommands"
+	var scroll := ScrollContainer.new();scroll.custom_minimum_size=Vector2(78,62);scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;commands.add_child(scroll)
+	var grid := VBoxContainer.new();grid.add_theme_constant_override("separation",1);grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(grid)
 	if not target_action.is_empty():
 		var kind := BattleAction.Kind.ATTACK
 		match target_action["kind"]:
@@ -215,14 +244,21 @@ func _battle() -> void:
 		_button(grid,"観察",{"kind":"ui_target","action":"observe"})
 		for ability in encounter.actor_by_id(actor).equipped:
 			if game.abilities[ability]["kind"]!="passive":_button(grid,game.abilities[ability]["name"],{"kind":"ui_target","action":"ability","ability":ability})
-	var row := HBoxContainer.new();commands.add_child(row)
+	var row := VBoxContainer.new();row.add_theme_constant_override("separation",0);commands.add_child(row)
 	_button(row,"ターン実行",{"kind":"resolve_round"},encounter.can_resolve())
 	_button(row,"選び直す",{"kind":"clear_actions"})
 	_button(row,"技の効果を確認",{"kind":"mechanics"})
 	for button in row.get_children():button.add_theme_font_size_override("font_size",10)
-	var status := _window(Rect2(216,220,296,68),4)
-	status.add_theme_constant_override("separation",0)
-	for unit in encounter.actors:
-		if unit.team!=Combatant.Team.PARTY:continue
-		var button := _button(status,"%s  HP%d/%d  MP%d/%d%s" % [unit.display_name,unit.hp,unit.max_hp,unit.mp,unit.max_mp," 済" if encounter.queued.has(unit.id) else ""],{"kind":"ui_actor","actor":unit.id},unit.is_alive())
-		button.add_theme_font_size_override("font_size",10)
+
+func _battle_bar(parent: Control, member_id: String, kind: String, value: int, maximum: int, color: Color) -> void:
+	var bar := ProgressBar.new()
+	bar.name=kind+"_"+member_id
+	bar.custom_minimum_size=Vector2(48,7)
+	bar.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	bar.max_value=maxi(1,maximum);bar.value=value;bar.show_percentage=false
+	bar.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	bar.tooltip_text="%s %d/%d" % [kind,value,maximum]
+	var track := StyleBoxFlat.new();track.bg_color=Color("18212b");track.border_color=Color("b5aa95");track.set_border_width_all(1)
+	var fill := StyleBoxFlat.new();fill.bg_color=color
+	bar.add_theme_stylebox_override("background",track);bar.add_theme_stylebox_override("fill",fill)
+	parent.add_child(bar)

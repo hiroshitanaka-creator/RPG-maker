@@ -2,6 +2,7 @@ class_name CharacterVisuals
 extends RefCounted
 
 static var _source: Dictionary = {}
+static var _battle_sizes: Dictionary = {}
 
 
 static func data() -> Dictionary:
@@ -26,6 +27,12 @@ static func appearance(actor: Dictionary, kind: String, frame: int = 0, facing: 
 			path = data().get("shared_forms",{}).get(form,{}).get(kind,"")
 	var exists := not path.is_empty() and ResourceLoader.exists("res://"+path)
 	var region := Rect2(clampi(frame,0,2)*48,0,48,48)
+	if exists and kind=="battle":
+		if not _battle_sizes.has(path):
+			var texture := load("res://"+path) as Texture2D
+			_battle_sizes[path]=Vector2(texture.get_width()/3.0,texture.get_height())
+		var frame_size: Vector2=_battle_sizes[path]
+		region=Rect2(Vector2(clampi(frame,0,2)*frame_size.x,0),frame_size)
 	if kind == "walk":
 		region = Rect2([0,1,0,2][posmod(frame,4)]*32,clampi(facing,0,3)*48,32,48)
 	return {"path":"res://"+path if exists else "","available":exists,"region":region,"form":form,"kind":kind,"erosion_signs":signs}

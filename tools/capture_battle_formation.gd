@@ -1,6 +1,6 @@
 extends SceneTree
 ## 本番の戦闘画面を使う配置見本。物語の加入・転職解放を示すものではない。
-const OUTPUT := "res://docs/verification/battle-fonts/formation/"
+const OUTPUT := "res://docs/verification/battle-layout-target/checks/"
 var failures: Array[String] = []
 var checks := 0
 var capture_enabled := false
@@ -18,7 +18,7 @@ func _initialize() -> void:
 	root.size=Vector2i(1024,576)
 	call_deferred("run")
 
-func screen(game: GameSession, event: Dictionary = {}, targets: bool = false, background: String = "plains") -> FirstRegionScreen:
+func screen(game: GameSession, event: Dictionary = {}, targets: bool = false, background: String = "temple") -> FirstRegionScreen:
 	var result := FirstRegionScreen.new()
 	var font := RpgFonts.get_font()
 	result.theme=Theme.new();result.theme.default_font=font;result.theme.default_font_size=11
@@ -44,13 +44,13 @@ func save_frame(name: String) -> void:
 	RenderingServer.force_draw(false);RenderingServer.force_sync()
 	var frame := root.get_texture().get_image()
 	check(not frame.is_empty() and frame.get_pixel(0,0)!=Color.WHITE,"白画面ではない: "+name)
-	var backdrop := (load("res://assets/backgrounds/plains.png") as Texture2D).get_image()
+	var backdrop := (load("res://assets/backgrounds/temple.png") as Texture2D).get_image()
 	# 窓・人物のない空と地面で、原画と実描画のピクセルを比較する。
 	var mismatches := 0
-	for area in [Rect2i(8,28,50,30),Rect2i(200,146,90,50)]:
+	for area in [Rect2i(196,4,110,64),Rect2i(4,124,56,48)]:
 		for y in range(area.position.y,area.end.y):
 			for x in range(area.position.x,area.end.x):
-				if frame.get_pixel(x*2,y*2)!=backdrop.get_pixel(x,y+64):mismatches+=1
+				if frame.get_pixel(x*2,y*2)!=backdrop.get_pixel(x,y):mismatches+=1
 	check(mismatches==0,"背景の原寸描画: "+name+" 不一致="+str(mismatches))
 	check(frame.save_png(OUTPUT+name+".png")==OK,"画像保存: "+name)
 
@@ -58,42 +58,76 @@ func geometry(panel: FirstRegionScreen, count: int) -> void:
 	await process_frame;await process_frame
 	var arena := arena_for(panel)
 	check(arena!=null,"本番描画の存在")
-	check(arena.background_offset().x==0 and arena.background_offset().y>=-64 and arena.background_offset().y<=0,"背景は横移動なし・上移動は64px以内")
-	check(288+arena.background_offset().y>=220,"背景の下に空白が露出しない")
+	check(arena.background_offset()==Vector2.ZERO,"背景を移動・切り抜きせず全画面へ描く")
+	var boxes: Dictionary={}
+	for name in ["BattleEnemyList","BattleCommands","BattlePartyStatus"]:
+		var column := panel.find_child(name,true,false)
+		check(column!=null,"必要な窓: "+name)
+		if column!=null:boxes[name]=(column.get_parent() as Control).get_rect()
+	check(boxes.get("BattleCommands")==Rect2(420,4,88,128),"右上のコマンド窓")
+	check(boxes.get("BattlePartyStatus")==Rect2(4,220,296,64),"左下の能力値窓")
+	check(boxes.get("BattleEnemyList",Rect2()).position==Vector2(4,4),"左上の敵一覧")
+	for child in panel.get_children():
+		if child is PanelContainer:check(not child.get_rect().intersects(Rect2(304,220,208,68)),"右下に文字窓を置かない")
+	var expected: Array=panel.replay.get("snapshot",{}).get("actors",[]) if not panel.replay.is_empty() else panel.game.current_battle().snapshot()["actors"]
 	for i in range(count):
 		var id := "pc_%02d" % (i+1)
 		var rect := arena.actor_rect(id)
-		check(rect.position.x==304+i*48+(4-count)*24 and rect.size==Vector2(48,48),"承認済みの48px原寸と右下へ進む配置: "+id)
+		check(CharacterVisuals.appearance(arena.members[i],"battle")["region"].size==Vector2(96,96),"再制作した96px素材を使用する: "+id)
+		check(rect.position.x==211+i*75+(4-count)*38 and rect.size==Vector2(72,72),"承認済みの72px表示と斜めの列: "+id)
 		check(Rect2(0,0,512,288).encloses(rect),"画面内: "+id)
-		check(rect.end.y>=76 and rect.end.y<=220,"足元が地面にあり下端の窓より上: "+id)
 		if i>0:
 			var previous := arena.actor_rect("pc_%02d" % i)
-			check(rect.position.y-previous.position.y==28 and not rect.intersects(previous),"隊列順・等間隔・重なりなし: "+id)
-		var face := Rect2(rect.position+Vector2(12,2),Vector2(24,22))
+			check(rect.position.y-previous.position.y==44 and not rect.intersects(previous),"隊列順・等間隔・人物矩形の重なりなし: "+id)
+			check(not rect.intersects(Rect2(previous.position+Vector2(3,0),previous.size)) and not previous.intersects(Rect2(rect.position-Vector2(3,0),rect.size)),"被弾時の最大3pxの揺れでも重ならない: "+id)
+		# 透明余白を含む人物矩形の非重複を維持し、顔の非重複も別に確認する。
+		var face := Rect2(rect.position+Vector2(24,6),Vector2(24,22))
 		for j in range(count):
 			if j!=i:check(not face.intersects(arena.party_rect(j)),"顔がほかの人物に隠れない: "+id)
 		check(arena.effect_anchor(id)==rect.get_center(),"演出の中心: "+id)
 		check(arena.cursor_rect(id).end.x<rect.position.x,"カーソルが人物を覆わない: "+id)
 		for child in panel.get_children():
 			if child is PanelContainer:check(not child.get_rect().intersects(rect),"文字窓が人物を覆わない: "+id)
-	var bottom_windows: Array[Rect2] = []
-	for child in panel.get_children():
-		if child is PanelContainer and child.position.y==220:bottom_windows.append(child.get_rect())
-	if panel.replay.is_empty():
-		check(bottom_windows==[Rect2(0,220,216,68),Rect2(216,220,296,68)],"コマンド・能力値の窓が下端を横いっぱいに占める")
-	else:check(bottom_windows==[Rect2(0,220,512,68)],"戦闘結果の窓が下端に収まる")
-	var detail_buttons := 0
-	var status_buttons := 0
+		for unit in expected:
+			if unit["id"]!=id:continue
+			var actor_button := panel.find_child("Status_"+id,true,false) as Button
+			check(actor_button!=null and actor_button.text.begins_with(str(unit["name"])),"人数分の名前と人物選択ボタンを維持: "+id)
+			if actor_button!=null:
+				check(Rect2(4,220,296,64).encloses(actor_button.get_global_rect()),"名前が左下の窓に収まる")
+				for kind in ["HP","MP"]:
+					var value_text := "%s%d/%d" % [kind,unit[kind.to_lower()],unit["max_"+kind.to_lower()]]
+					var found := false
+					for child in actor_button.get_parent().get_children():
+						if child is Label and child.text==value_text:found=true
+					check(found,"人物の数値表記も維持: "+kind+id)
+			for kind in ["HP","MP"]:
+				var bar := panel.find_child(kind+"_"+id,true,false) as ProgressBar
+				check(bar!=null,"人物別の棒グラフ: "+kind+id)
+				if bar!=null:
+					check(bar.value==int(unit[kind.to_lower()]) and bar.max_value==maxi(1,int(unit["max_"+kind.to_lower()])),"棒グラフが実際の値と一致: "+kind+id)
+					check(Rect2(4,220,296,64).encloses(bar.get_global_rect()),"棒グラフが左下の窓に収まる")
+	var labels: Array[String]=[]
+	for control in panel.find_children("*","Control",true,false):
+		if control is Label:
+			labels.append(control.text)
+			check(control.get_theme_font("font")==RpgFonts.get_font(),"表示文字にも同梱字体を使用する")
+			for letter in control.text:
+				if letter not in ["\n","\r","\t"]:check(RpgFonts.get_font().has_char(letter.unicode_at(0)),"表示文字の欠字なし: "+letter)
 	for button in panel.find_children("*","Button",true,false):
 		check(button.text!="機構・予測","旧名称の表示がない")
-		if button.text=="技の効果を確認":detail_buttons+=1
-		if button.text.contains("HP") and button.text.contains("MP"):
-			status_buttons+=1
-			check(Rect2(216,220,296,68).encloses(button.get_global_rect()),"HP・MPの全行が窓内に収まる")
 		check(button.get_theme_font("font")==RpgFonts.get_font(),"同梱Noto Sans JPを使用する")
-		for letter in button.text:
-			check(RpgFonts.get_font().has_char(letter.unicode_at(0)),"同梱字体の欠字なし: "+letter)
-	if panel.replay.is_empty():check(detail_buttons==1 and status_buttons==count,"技の確認操作と人数分の能力値を維持")
+		for letter in button.text:check(RpgFonts.get_font().has_char(letter.unicode_at(0)),"同梱字体の欠字なし: "+letter)
+	if panel.replay.is_empty():
+		var command_labels: Array[String]=[]
+		for button in panel.find_child("BattleCommands",true,false).find_children("*","Button",true,false):command_labels.append(button.text)
+		for name in ["ターン実行","選び直す","技の効果を確認"]:check(name in command_labels,"既存操作を維持: "+name)
+		if panel.target_action.is_empty():
+			for name in ["攻撃","防御","回復薬","観察"]:check(name in command_labels,"既存コマンドを維持: "+name)
+		var text_value := "\n".join(labels)
+		for intent in panel.game.current_battle().enemy_intents():
+			var foe := panel.game.current_battle().actor_by_id(intent["actor"])
+			check(text_value.contains("%s HP%d/%d" % [foe.display_name,foe.hp,foe.max_hp]),"敵の名前とHPを維持")
+			check(text_value.contains("%s→%s" % [intent["action"],intent["target_name"]]),"敵の行動予定を維持")
 
 func run() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUTPUT))
@@ -116,7 +150,7 @@ func run() -> void:
 		await process_frame;await process_frame
 		var selected_targets := 0
 		for member in game.export_state()["party"]:
-			for button in panel.find_children("*","Button",true,false):
+			for button in panel.find_child("BattleCommands",true,false).find_children("*","Button",true,false):
 				if button.text==member["name"]:
 					button.grab_focus();await process_frame
 					check(arena_for(panel).target_actor==member["id"],"通常の対象ボタンとカーソルの一致: "+member["id"])
@@ -152,6 +186,8 @@ func run() -> void:
 			panel.queue_free();await process_frame
 	var backgrounds := GameSession.new()
 	check(backgrounds.new_game(4),"14背景用の4人開始")
+	var jobs := ["warrior","martial_artist","priest","mage"]
+	for i in range(4):check(backgrounds.choose_job("pc_%02d" % (i+1),jobs[i]),"14背景でも新しい4職の素材を確認")
 	check(backgrounds.start_battle(["slime"],20260927)!=null,"14背景用の通常戦闘")
 	check(RpgBattleView.BACKGROUND_LAYOUT.size()==14,"14背景をすべて検査する")
 	for background in RpgBattleView.BACKGROUND_LAYOUT:

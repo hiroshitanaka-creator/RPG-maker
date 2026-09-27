@@ -1,6 +1,6 @@
 class_name RpgBattleView
 extends Control
-## 背景も味方も原寸で表示する。背景の上移動で足元の地面を確保する。
+## 目標画像の配置。背景は全画面、96px素材の味方は高さの1/4に当たる72px表示。
 var members: Array = []
 var enemy_ids: Array = []
 var definitions: Dictionary = {}
@@ -15,12 +15,13 @@ var effect_target := ""
 var effect_code := ""
 var effect_amount := 0
 var _textures: Dictionary = {}
+var _enemy_regions: Dictionary = {}
 var _time := 0.0
 const BACKGROUND_LAYOUT := {
-	"plains": [64,28], "forest": [56,40], "cave": [56,44], "tower": [48,48],
-	"desert": [48,34], "sea": [48,48], "sky": [48,54], "castle": [48,64],
-	"snowfield": [16,28], "volcano": [8,28], "ruins": [12,28],
-	"underworld": [8,28], "temple": [44,84], "final_land": [0,28],
+	"plains": [0,68], "forest": [0,68], "cave": [0,80], "tower": [0,80],
+	"desert": [0,68], "sea": [0,80], "sky": [0,80], "castle": [0,88],
+	"snowfield": [0,68], "volcano": [0,68], "ruins": [0,68],
+	"underworld": [0,68], "temple": [0,104], "final_land": [0,68],
 }
 
 func _ready() -> void:
@@ -39,24 +40,24 @@ func _impact(identifier: String) -> Vector2:
 	return Vector2(round(sin(_time*70.0)*3.0),0) if identifier==effect_target and effect_code in ["damage","fallen"] else Vector2.ZERO
 
 func party_rect(index: int) -> Rect2:
-	# 48pxのまま下の人を右へ寄せる。背景ごとの床面に足を置き、顔を隠さない。
-	var offset := (4-members.size())*Vector2(24,14)
-	var top: int = BACKGROUND_LAYOUT.get(background,[48,48])[1]
-	return Rect2(Vector2(304+index*48,top+index*28)+offset,Vector2(48,48))
+	# 透明余白を含む72pxの描画枠も重ねない。人数が少ない場合は列を中央へ寄せる。
+	var offset := (4-members.size())*Vector2(38,22)
+	var top := mini(80,int(BACKGROUND_LAYOUT.get(background,[0,68])[1]))
+	return Rect2(Vector2(211+index*75,top+index*44)+offset,Vector2(72,72))
 
 func background_offset() -> Vector2:
-	return Vector2(0,-int(BACKGROUND_LAYOUT.get(background,[48,48])[0]))
+	return Vector2.ZERO
 
 func actor_rect(identifier: String) -> Rect2:
 	for i in range(members.size()):
 		if members[i]["id"]==identifier:return party_rect(i)
-	var positions: Array[Vector2]=[Vector2(24,145),Vector2(124,110),Vector2(200,151)]
+	var positions: Array[Vector2]=[Vector2(112,184),Vector2(24,212),Vector2(112,204),Vector2(16,184)]
 	for i in range(enemy_ids.size()):
 		if identifier!="enemy_%02d" % (i+1):continue
-		var texture := _enemy_texture(enemy_ids[i])
-		var feet: Vector2=Vector2(64,142) if enemy_ids.size()==1 else positions[mini(i,2)]
-		feet.y=maxf(feet.y,maxf(party_rect(0).end.y+4,texture.get_height()+28))
-		return Rect2(feet-Vector2(0,texture.get_height()),texture.get_size())
+		var source := enemy_region(enemy_ids[i])
+		var dimensions := source.size*minf(72.0/source.size.y,96.0/source.size.x)
+		var feet: Vector2=Vector2(116,192) if enemy_ids.size()==1 else positions[mini(i,3)]
+		return Rect2(feet-Vector2(0,dimensions.y),dimensions)
 	return Rect2()
 
 func effect_anchor(identifier: String) -> Vector2:
@@ -73,16 +74,20 @@ func focus_target(identifier: String) -> void:
 func _enemy_texture(identifier: String) -> Texture2D:
 	return _texture("res://assets/monsters/%s/idle.png" % definitions[identifier].get("sprite_id",identifier))
 
+func enemy_region(identifier: String) -> Rect2:
+	if not _enemy_regions.has(identifier):_enemy_regions[identifier]=Rect2(_enemy_texture(identifier).get_image().get_used_rect())
+	return _enemy_regions[identifier]
+
 func _draw() -> void:
 	var backdrop := _texture("res://assets/backgrounds/"+background+".png")
-	# 原寸で背景別に上へ移す。下端は文字窓の裏に収まり、空や天井の一部を残す。
+	# 原寸の全画像を画面全体に描き、右下と半透明の文字窓の後ろまで残す。
 	draw_texture(backdrop,background_offset())
 	for i in range(enemy_ids.size()):
 		var identifier := "enemy_%02d" % (i+1)
 		var rect := actor_rect(identifier)
 		rect.position+=_impact(identifier)
 		var tint := Color.WHITE if int(enemy_hp.get(identifier,1))>0 else Color(1,1,1,0.25)
-		draw_texture_rect(_enemy_texture(enemy_ids[i]),rect,false,tint)
+		draw_texture_rect_region(_enemy_texture(enemy_ids[i]),rect,enemy_region(enemy_ids[i]),tint)
 	for i in range(members.size()):
 		var member: Dictionary=members[i]
 		var identifier: String=member["id"]
@@ -92,7 +97,7 @@ func _draw() -> void:
 		var rect := party_rect(i)
 		rect.position+=_impact(identifier)
 		if identifier==acting_actor or (acting_actor.is_empty() and identifier==selected_actor):
-			draw_style_box(_highlight(),Rect2(rect.position+Vector2(3,42),Vector2(42,5)))
+			draw_style_box(_highlight(),Rect2(rect.position+Vector2(6,66),Vector2(60,5)))
 		draw_texture_rect_region(_texture(visual["path"]),rect,visual["region"],Color(0.6,0.6,0.6,0.7) if fallen else Color.WHITE)
 	var cursor := target_actor if not target_actor.is_empty() else selected_actor
 	if not actor_rect(cursor).size.is_zero_approx():
