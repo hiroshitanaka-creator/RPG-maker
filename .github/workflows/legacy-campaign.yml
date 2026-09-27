@@ -138,3 +138,339 @@ jobs:
           path: |
             long-*.log
             docs/verification/long-integration-*.json
+
+  legacy-preplay:
+    name: 旧本編の配置・画面・区画・80話検査
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      RPG_QA_SAVE_PREFIX: ci-preplay
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 固定版Godotを取得してインポート
+        run: |
+          set -o pipefail
+          curl -fL -o godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  godot.zip" | sha256sum --check
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot
+          chmod +x godot
+          ./godot --headless --import 2>&1 | tee preplay-import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" preplay-import.log; then exit 1; fi
+      - name: 旧80話・49拠点の配分と長編検査の再開記録を検査
+        run: |
+          set -o pipefail
+          python tools/check_original_acceptance_inputs.py
+          for kind in campaign; do
+            timeout 240 ./godot --headless --path . --script res://tools/check_integrated_${kind}.gd 2>&1 | tee integrated-${kind}.log
+            if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" integrated-${kind}.log; then exit 1; fi
+          done
+          ./godot --headless --path . --script res://tools/check_long_audit_checkpoint.gd 2>&1 | tee integrated-audit-checkpoint.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" integrated-audit-checkpoint.log; then exit 1; fi
+      - name: 全49拠点の3人・4人通し操作と保存・本番UIを検査
+        run: |
+          set -o pipefail
+          ./godot --headless --path . --script res://tools/check_world_integration.gd 2>&1 | tee world-integration.log
+          ./godot --headless --path . --script res://tools/check_world_integration.gd -- --party=3 2>&1 | tee world-integration-3.log
+          ./godot --headless --path . --script res://tools/check_world_state_boundaries.gd 2>&1 | tee world-state-boundaries.log
+          ./godot --headless --path . --script res://tools/check_world_ui.gd 2>&1 | tee world-ui.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" world-integration.log world-integration-3.log world-state-boundaries.log world-ui.log; then exit 1; fi
+          test "$(grep -c '^WORLD_INTEGRATION_PASS: sites=49 battles=22 saves=72 moved=9194 errors=0' world-integration.log)" -eq 1
+          test "$(grep -c '^WORLD_INTEGRATION_PASS: sites=49 battles=22 saves=72 moved=9194 errors=0' world-integration-3.log)" -eq 1
+          test "$(grep -c '^WORLD_STATE_PASS: inputs=392 accepted=224 rejected=168 malformed=8 recoveries=4 errors=0' world-state-boundaries.log)" -eq 1
+          test "$(grep -c '^WORLD_UI_PASS:' world-ui.log)" -eq 1
+      - name: 旧本編の全画面・案内・帰還と長編記録集計を検査
+        run: |
+          set -o pipefail
+          python tools/check_long_record_summary.py
+          ./godot --headless --path . --script res://tools/check_preplay_ui.gd 2>&1 | tee -a preplay.log
+          ./godot --headless --path . --script res://tools/check_preplay_recovery.gd 2>&1 | tee -a preplay.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" preplay.log; then exit 1; fi
+          test "$(grep -c '^PREPLAY_UI_RESULT:.*failures=0' preplay.log)" -eq 1
+          test "$(grep -c '^PREPLAY_RECOVERY_PASS:' preplay.log)" -eq 1
+      - name: 通常戦闘・補給・行動前全滅82,000試行を検査
+        run: |
+          set -o pipefail
+          ./godot --headless --path . --script res://tools/check_preplay_combat.gd 2>&1 | tee preplay-normal.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" preplay-normal.log; then exit 1; fi
+          test "$(grep -c '^PREPLAY_COMBAT_RESULT: trials=82000 T04=PASS T05=PASS T07=PASS errors=0' preplay-normal.log)" -eq 1
+      - name: 旧25区画の報酬と無帰還連戦を検査
+        run: |
+          set -o pipefail
+          ./godot --headless --path . --script res://tools/check_field_recovery.gd 2>&1 | tee field-recovery.log
+          ./godot --headless --path . --script res://tools/check_route_counterplay.gd 2>&1 | tee route-counterplay.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" field-recovery.log route-counterplay.log; then exit 1; fi
+          test "$(grep -c '^FIELD_RECOVERY_PASS:' field-recovery.log)" -eq 1
+          test "$(grep -c '^ROUTE_COUNTERPLAY_PASS:' route-counterplay.log)" -eq 1
+      - name: 長編全80話の定義・既読境界・現地操作・履歴を検査
+        run: |
+          set -o pipefail
+          python tools/build_long_campaign.py
+          python tools/check_long_authoring.py
+          git diff --exit-code -- data/long_campaign_v1.json docs/long-campaign-clue-ledger.md
+          for kind in content geometry past clues ui record device_ui device_boundaries recovery capacity; do
+            ./godot --headless --path . --script res://tools/check_long_${kind}.gd 2>&1 | tee long-${kind}.log
+            if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" long-${kind}.log; then exit 1; fi
+            grep -E '^LONG_[A-Z_]+PASS:' long-${kind}.log
+          done
+      - name: 保護対象を照合
+        if: always()
+        run: python tools/check_frozen_files.py
+      - name: 試遊前検査の結果を保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-preplay-checks
+          path: |
+            preplay*.log
+            integrated-*.log
+            docs/verification/integrated-*.json
+            map-graph-*.log
+            world-*.log
+            docs/verification/world-*.json
+            docs/verification/world-map-phase2.json
+            docs/verification/duration-target-60h.json
+            docs/verification/preplay-ui-headless.json
+            docs/verification/preplay-recovery.json
+            docs/verification/preplay-normal-combat.json
+            docs/verification/preplay-combat.json
+            docs/verification/provisional-battle-acceptance.json
+            docs/verification/reaction-rules.json
+            docs/verification/battle-counterplay.json
+            docs/verification/field-recovery.json
+            battle-acceptance.log
+            reaction-rules.log
+            counterplay.log
+            field-recovery.log
+            route-counterplay.log
+            docs/verification/route-counterplay.json
+            long-*.log
+            docs/verification/long-*.json
+            long-ui.log
+            long-record.log
+            long-past.log
+            long-clues.log
+            long-geometry.log
+            docs/verification/long-ui.json
+            docs/verification/long-clues-current.json
+            docs/verification/long-geometry-current.json
+            docs/verification/long-integration-*.json
+
+  legacy-save:
+    name: 旧保存・旧章UIの互換検査
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      RPG_QA_SAVE_PREFIX: ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 凍結ファイルのハッシュを確認
+        run: python tools/check_frozen_files.py
+      - name: Godot プロジェクトの有無を確認
+        id: check
+        run: |
+          if [ -f project.godot ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::project.godot がまだ無いため、この検査を省略しました。"
+          fi
+      - name: Godot を取得
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          # ダウンロードが 404 になる場合は、下記ページで実際のファイル名を確認して合わせること
+          # https://github.com/godotengine/godot-builds/releases
+          URL="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          curl -fL -o godot.zip "$URL"
+          echo "${GODOT_LINUX_SHA256}  godot.zip" | sha256sum --check
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot
+          chmod +x godot
+          ./godot --version
+      - name: インポートしてエラーを検出
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          # インポートは初回に時間がかかるため上限を設ける
+          timeout 600 ./godot --headless --import 2>&1 | tee import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" import.log; then
+            echo "::error::Godot のインポートでエラーが出ました。上のログを確認してください。"
+            exit 1
+          fi
+          echo "インポートは正常に完了しました。"
+      - name: 全718状態の保存契約を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 300 ./godot --headless --path . --script res://tools/check_save_contract.gd 2>&1 | tee save-contract.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" save-contract.log; then exit 1; fi
+          test "$(grep -c '^SAVE_COMPLETE_PASS:' save-contract.log)" -eq 2
+      - name: 帰還・任意戦闘・解除確認の操作検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_progression_paths.gd 2>&1 | tee progression.log
+          timeout 180 ./godot --headless --path . --script res://tools/check_progression_paths.gd -- --three-member-party 2>&1 | tee -a progression.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" progression.log; then
+            exit 1
+          fi
+      - name: 侵蝕の加算と不可逆操作の確認を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_erosion_choices.gd 2>&1 | tee erosion.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" erosion.log; then
+            exit 1
+          fi
+      - name: 探索設備・補給箱・開通した近道の保存を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_exploration_devices.gd 2>&1 | tee exploration.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" exploration.log; then
+            exit 1
+          fi
+          test "$(grep -c '^EXPLORATION_PASS:' exploration.log)" -eq 1
+      - name: 人物表示・魔物化外見・試遊記録の検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_party_playtest.gd 2>&1 | tee party-playtest.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" party-playtest.log; then
+            exit 1
+          fi
+          test "$(grep -c '^PARTY_PLAYTEST_PASS:' party-playtest.log)" -eq 1
+      - name: 試遊履歴・版識別・上級職・兆候・画面の検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_v1_finish.gd 2>&1 | tee v1-finish.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" v1-finish.log; then exit 1; fi
+          test "$(grep -c '^V1_FINISH_PASS:' v1-finish.log)" -eq 1
+      - name: 検証後も保護ファイルが不変であることを確認
+        if: always()
+        run: python tools/check_frozen_files.py
+      - name: ログを保存
+        if: always() && steps.check.outputs.exists == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-save-log
+          path: |
+            import.log
+            progression.log
+            erosion.log
+            encounters.log
+            exploration.log
+            party-playtest.log
+            recovery.log
+            content-boundaries.log
+            story.log
+            saved-value-types.log
+            save-contract.log
+            docs/verification/save-contract-current.json
+            docs/verification/save-complete-3.json
+            docs/verification/save-complete-4.json
+            v1-finish.log
+            docs/verification/nonhuman-v1-checks.json
+            docs/verification/scope-lock-current.json
+            .tools/verification/current-*/*.log
+          if-no-files-found: ignore
+
+  legacy-story:
+    name: 旧本編の再訪順・結末・保存全変数の通し検査
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      RPG_QA_SAVE_PREFIX: ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 凍結ファイルのハッシュを確認
+        run: python tools/check_frozen_files.py
+      - name: Godot プロジェクトの有無を確認
+        id: check
+        run: |
+          if [ -f project.godot ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::project.godot がまだ無いため、この検査を省略しました。"
+          fi
+      - name: Godot を取得
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          # ダウンロードが 404 になる場合は、下記ページで実際のファイル名を確認して合わせること
+          # https://github.com/godotengine/godot-builds/releases
+          URL="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          curl -fL -o godot.zip "$URL"
+          echo "${GODOT_LINUX_SHA256}  godot.zip" | sha256sum --check
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot
+          chmod +x godot
+          ./godot --version
+      - name: インポートしてエラーを検出
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          # インポートは初回に時間がかかるため上限を設ける
+          timeout 600 ./godot --headless --import 2>&1 | tee import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" import.log; then
+            echo "::error::Godot のインポートでエラーが出ました。上のログを確認してください。"
+            exit 1
+          fi
+          echo "インポートは正常に完了しました。"
+      - name: v1物語の二つの再訪順・結末・保存全変数を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_campaign_boundaries.gd 2>&1 | tee content-boundaries.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" content-boundaries.log; then
+            exit 1
+          fi
+          test "$(grep -c '^CONTENT_BOUNDARY_PASS:' content-boundaries.log)" -eq 1
+          timeout 60 ./godot --headless --path . --script res://tools/check_saved_value_types.gd 2>&1 | tee saved-value-types.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" saved-value-types.log; then exit 1; fi
+          test "$(grep -c '^SAVED_VALUE_TYPES_PASS:' saved-value-types.log)" -eq 1
+          timeout 600 ./godot --headless --path . --script res://tools/check_save_complete.gd -- --automated-playtest 2>&1 | tee story.log
+          timeout 600 ./godot --headless --path . --script res://tools/check_save_complete.gd -- --three-member-party --teaching-first --automated-playtest 2>&1 | tee -a story.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" story.log; then
+            exit 1
+          fi
+          test "$(grep -c '^STORY_PASS:' story.log)" -eq 2
+          test "$(grep -c '^SAVE_COMPLETE_PASS:' story.log)" -eq 2
+      - name: 検証後も保護ファイルが不変であることを確認
+        if: always()
+        run: python tools/check_frozen_files.py
+      - name: ログを保存
+        if: always() && steps.check.outputs.exists == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-story-log
+          path: |
+            import.log
+            progression.log
+            erosion.log
+            encounters.log
+            exploration.log
+            party-playtest.log
+            recovery.log
+            content-boundaries.log
+            story.log
+            saved-value-types.log
+            save-contract.log
+            docs/verification/save-contract-current.json
+            docs/verification/save-complete-3.json
+            docs/verification/save-complete-4.json
+            v1-finish.log
+            docs/verification/nonhuman-v1-checks.json
+            docs/verification/scope-lock-current.json
+            .tools/verification/current-*/*.log
+          if-no-files-found: ignore

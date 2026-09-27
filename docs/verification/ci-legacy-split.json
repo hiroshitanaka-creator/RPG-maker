@@ -1,0 +1,31 @@
+{
+  "baseline_commit": "13518300ac64954268ff3ee7249662b7313ac859",
+  "old_check_commands": 76,
+  "old_success_assertions": 32,
+  "old_warning_log_pairs": 56,
+  "missing_commands": 0,
+  "missing_assertions": 0,
+  "missing_warning_log_pairs": 0,
+  "locked_verify_step_unchanged": true,
+  "matrix_jobs_unchanged": true,
+  "normal_jobs": [
+    "preplay",
+    "assets",
+    "godot-import"
+  ],
+  "manual_job_definitions": [
+    "worst-case",
+    "long-full",
+    "long-branches",
+    "legacy-preplay",
+    "legacy-save",
+    "legacy-story"
+  ],
+  "manual_trigger": "workflow_dispatch only",
+  "godot_timeout_minutes": 25,
+  "status": "PASS",
+  "workflow_sha256": {
+    "ci.yml": "a8094f0f420c9b6b2bc8dbf16752e80621ca4c34a98e70c9976a503f6fe9e57c",
+    "legacy-campaign.yml": "a9f4bd9619401bb8986de6af08caf1d790130f9f43f09d140748c9cda400a7d5"
+  }
+}
