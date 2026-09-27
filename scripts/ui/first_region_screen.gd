@@ -173,19 +173,23 @@ func _battle() -> void:
 	if encounter!=null:
 		for unit in encounter.actors:
 			if unit.team==Combatant.Team.ENEMY:arena.enemy_hp[unit.id]=unit.hp
+			else:arena.party_hp[unit.id]=unit.hp
 	if not replay.is_empty():
 		arena.effect_target=str(replay.get("target",""));arena.effect_code=str(replay.get("code",""))
+		arena.acting_actor=str(replay.get("actor",""));arena.effect_amount=int(replay.get("amount",0))
+		arena.selected_actor=""
 		for unit in replay.get("snapshot",{}).get("actors",[]):
 			if str(unit["id"]).begins_with("enemy_"):arena.enemy_hp[unit["id"]]=int(unit["hp"])
+			else:arena.party_hp[unit["id"]]=int(unit["hp"])
 		for member in arena.members:
 			arena.frames[member["id"]]=2 if replay.get("target")==member["id"] and replay.get("code") in ["damage","fallen"] else 1 if replay.get("actor")==member["id"] else 0
 	add_child(arena)
 	if not replay.is_empty():
-		_window(Rect2(8,194,496,84)).add_child(_label(str(replay.get("message","")),14))
-		var skip := _button(self,"表示をスキップ  Enter",{"kind":"skip_presentation"});skip.position=Vector2(340,249)
+		_window(Rect2(8,194,410,84)).add_child(_label(str(replay.get("message","")),14))
+		var skip := _button(self,"表示をスキップ  Enter",{"kind":"skip_presentation"});skip.position=Vector2(248,249)
 		return
 	if encounter==null:return
-	var intent_window := _window(Rect2(292,6,212,34+maxi(0,encounter.enemy_intents().size()-1)*17))
+	var intent_window := _window(Rect2(100,6,318,34+maxi(0,encounter.enemy_intents().size()-1)*17))
 	for intent in encounter.enemy_intents():
 		var enemy := encounter.actor_by_id(intent["actor"])
 		intent_window.add_child(_label("%s HP%d/%d  %s→%s" % [enemy.display_name,enemy.hp,enemy.max_hp,intent["action"],intent["target_name"]],11))
@@ -199,7 +203,10 @@ func _battle() -> void:
 			"potion":kind=BattleAction.Kind.ITEM
 			"observe":kind=BattleAction.Kind.OBSERVE
 		for target in encounter.targets_for(actor,kind,target_action.get("ability","")):
-			var chosen := target_action.duplicate();chosen["target"]=target.id;_button(grid,target.display_name,chosen)
+			var chosen := target_action.duplicate();chosen["target"]=target.id
+			var target_button := _button(grid,target.display_name,chosen)
+			target_button.focus_entered.connect(arena.focus_target.bind(target.id))
+			target_button.mouse_entered.connect(arena.focus_target.bind(target.id))
 		_button(grid,"戻る",{"kind":"ui_cancel_target"})
 	elif not actor.is_empty():
 		_button(grid,"攻撃",{"kind":"ui_target","action":"attack"})
@@ -211,7 +218,7 @@ func _battle() -> void:
 	var row := HBoxContainer.new();commands.add_child(row)
 	_button(row,"ターン実行",{"kind":"resolve_round"},encounter.can_resolve())
 	_button(row,"選び直す",{"kind":"clear_actions"})
-	var status := _window(Rect2(202,189,302,92))
+	var status := _window(Rect2(202,189,216,92))
 	for unit in encounter.actors:
 		if unit.team!=Combatant.Team.PARTY:continue
 		var button := _button(status,"%s  HP%d/%d  MP%d/%d%s" % [unit.display_name,unit.hp,unit.max_hp,unit.mp,unit.max_mp," ✓" if encounter.queued.has(unit.id) else ""],{"kind":"ui_actor","actor":unit.id},unit.is_alive())
