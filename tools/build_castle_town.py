@@ -10,6 +10,10 @@ from build_first_region_presentation import payload, point, room, rows, reachabl
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'docs/verification/sprint5-castle-town'
 NODE='first_castle'
+# 城下町の見た目の案。0=初版、A/B/C=2026年9月28日の仕上げ案。環境変数 CASTLE_TOWN_VARIANT で選ぶ。
+import os,sys
+VARIANT=os.environ.get('CASTLE_TOWN_VARIANT','B')
+if VARIANT!='0':OUT=ROOT/'docs/verification/castle-town-polish'/('variant-'+VARIANT)
 
 def write(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
 
@@ -57,32 +61,8 @@ def furnished(id_,kind):
     p.stamp('assets/objects/castle_banner.png',14,1,False)
     return p
 
-def render(document,events):
-    canvas=Image.new('RGBA',(document['width']*32,document['height']*32));cache={}
-    for layer in document['layers']:
-        for x,y,key in layer['cells']:
-            t=document['tiles'][key];path=t['path']
-            if path not in cache:cache[path]=Image.open(ROOT/path).convert('RGBA')
-            sx,sy,w,h=t['region'];im=cache[path].crop((sx,sy,sx+w,sy+h));cell=layer.get('cell_size',32)
-            if im.size!=(cell,cell):im=im.resize((cell,cell),Image.Resampling.NEAREST)
-            canvas.alpha_composite(im,(x*cell,y*cell))
-    for event in events:
-        if event['kind']=='treasure':
-            im=Image.open(ROOT/'assets/objects/chest.png').convert('RGBA').crop((0,0,32,32));offset=0
-        else:
-            sprite=event.get('sprite','npc_castle_guard');im=Image.open(ROOT/f'assets/characters/{sprite}/walk.png').convert('RGBA').crop((0,0,32,48));offset=-16
-        canvas.alpha_composite(im,(event['cell'][0]*32,event['cell'][1]*32+offset))
-    return canvas.convert('RGB')
-
-def main():
-    OUT.mkdir(parents=True,exist_ok=True)
-    names_path=ROOT/'world/castle_town_names.json'
-    names=json.loads(names_path.read_text(encoding='utf8')) if names_path.exists() else {'town':'第1地方の城下町（仮）','castle':'第1地方の城（仮）'}
-    definition=json.loads((ROOT/'world/first_region.json').read_text(encoding='utf8'))
-    visual=json.loads((ROOT/'world/first_region_visuals.json').read_text(encoding='utf8'))
-    maps={};rooms=[];links=[]
-    def add(p,title,events):
-        d,r=p.finish(title,events);index=len(rooms);maps[f'{NODE}:{index}']=d;rooms.append(r);return index
+def legacy_town():
+    """2026年9月28日に採用された初版の城下町。比較用に残す。"""
     town=Place('castle_town',36,26,tex('grass'))
     road=ellipse(town.m,18,13,7,5)|route(town.m,[(18,0),(18,8),(18,15),(18,25)],4)
     for points in [[(6,8),(10,9),(14,12)],[(29,9),(25,10),(22,12)],[(6,16),(12,16),(16,15)],[(30,17),(25,17),(21,15)],[(7,24),(12,22),(17,20)],[(29,24),(24,22),(19,20)]]:road|=route(town.m,points,3)
@@ -114,6 +94,41 @@ def main():
         npc('town_farmer',[11,11],'荷を届けた人',['村から野菜を届けに来たんだ。関所を通れるようになって助かったよ。'],'npc_farmer')]
     doors=[([6,7],4),([6,15],5),([30,15],6),([7,22],7),([29,8],8),([29,22],9)]
     for cell,index in doors:town.door(*cell);town.door(cell[0],cell[1]+1)
+    return town,events,doors
+
+from castle_town_variants import build_town_variant
+
+def build_town(variant):
+    if variant=='0':return legacy_town()
+    return build_town_variant(variant,Place,npc)
+
+def render(document,events):
+    canvas=Image.new('RGBA',(document['width']*32,document['height']*32));cache={}
+    for layer in document['layers']:
+        for x,y,key in layer['cells']:
+            t=document['tiles'][key];path=t['path']
+            if path not in cache:cache[path]=Image.open(ROOT/path).convert('RGBA')
+            sx,sy,w,h=t['region'];im=cache[path].crop((sx,sy,sx+w,sy+h));cell=layer.get('cell_size',32)
+            if im.size!=(cell,cell):im=im.resize((cell,cell),Image.Resampling.NEAREST)
+            canvas.alpha_composite(im,(x*cell,y*cell))
+    for event in events:
+        if event['kind']=='treasure':
+            im=Image.open(ROOT/'assets/objects/chest.png').convert('RGBA').crop((0,0,32,32));offset=0
+        else:
+            sprite=event.get('sprite','npc_castle_guard');im=Image.open(ROOT/f'assets/characters/{sprite}/walk.png').convert('RGBA').crop((0,0,32,48));offset=-16
+        canvas.alpha_composite(im,(event['cell'][0]*32,event['cell'][1]*32+offset))
+    return canvas.convert('RGB')
+
+def main():
+    OUT.mkdir(parents=True,exist_ok=True)
+    names_path=ROOT/'world/castle_town_names.json'
+    names=json.loads(names_path.read_text(encoding='utf8')) if names_path.exists() else {'town':'第1地方の城下町（仮）','castle':'第1地方の城（仮）'}
+    definition=json.loads((ROOT/'world/first_region.json').read_text(encoding='utf8'))
+    visual=json.loads((ROOT/'world/first_region_visuals.json').read_text(encoding='utf8'))
+    maps={};rooms=[];links=[]
+    def add(p,title,events):
+        d,r=p.finish(title,events);index=len(rooms);maps[f'{NODE}:{index}']=d;rooms.append(r);return index
+    town,events,doors=build_town(VARIANT)
     add(town,names['town'],events)
     court=Place('castle_court',32,18,tex('grass'))
     court.m.terrain('cobble',route(court.m,[(16,17),(16,10),(16,1)],5)|route(court.m,[(3,13),(16,13),(28,13)],3))
@@ -163,9 +178,10 @@ def main():
     visual['maps'].update(maps)
     write(ROOT/'world/first_region.json',definition);write(ROOT/'world/first_region_visuals.json',visual)
     interiors=json.loads((ROOT/'world/interiors.json').read_text(encoding='utf8'));interiors['sites']=[s for s in interiors['sites'] if s['id']!=NODE]+[definition['sites'][-1]];interiors['first_region']=d;write(ROOT/'world/interiors.json',interiors)
-    for index in [0,1,2,3,4,8,10]:render(maps[f'{NODE}:{index}'],rooms[index]['events']).save(OUT/f'map-{index:02}.png')
+    # 見た目の案では城下町だけを描く（城内・店は初版のまま。目標との比較は build_castle_town_polish_review.py が実画面で作る）
+    for index in ([0,1,2,3,4,8,10] if VARIANT=='0' else [0]):render(maps[f'{NODE}:{index}'],rooms[index]['events']).save(OUT/f'map-{index:02}.png')
     font=ImageFont.truetype(str(ROOT/'assets/fonts/notosansjp/NotoSansJP.ttf'),22)
-    for name,index,reference in [('town',0,'first-castle-town.png'),('hall',2,'first-castle-hall.png')]:
+    for name,index,reference in [('town',0,'first-castle-town.png'),('hall',2,'first-castle-hall.png')][:2 if VARIANT=='0' else 0]:
         canvas=Image.new('RGB',(1536,620),'#d6d2bb');draw=ImageDraw.Draw(canvas)
         for i,path in enumerate([ROOT/'docs/reference/visual-targets'/reference,OUT/f'map-{index:02}.png']):
             im=Image.open(path);im.thumbnail((752,562),Image.Resampling.NEAREST);canvas.paste(im,(i*768+(768-im.width)//2,45));draw.text((i*768+12,8),'依頼者の目標画像' if i==0 else '本番配置データから描画',font=font,fill='#14212b')
