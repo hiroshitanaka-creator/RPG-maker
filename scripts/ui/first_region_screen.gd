@@ -95,6 +95,7 @@ func _button(parent: Node, title: String, action: Dictionary, enabled: bool = tr
 	button.text=title
 	button.disabled=not enabled
 	if screen_mode=="battle":
+		button.alignment=HORIZONTAL_ALIGNMENT_LEFT
 		for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color","font_disabled_color"]:button.add_theme_color_override(state,Color.WHITE)
 	button.add_theme_font_size_override("font_size",11 if screen_mode=="battle" else 12)
 	for state in ["normal","hover","pressed","focus","disabled"]:
