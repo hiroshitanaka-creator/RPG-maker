@@ -16,7 +16,7 @@ BEFORE = OUT / 'before-full-town.png'
 FONT = ImageFont.truetype(str(ROOT / 'assets/fonts/notosansjp/NotoSansJP.ttf'), 22)
 SMALL = ImageFont.truetype(str(ROOT / 'assets/fonts/notosansjp/NotoSansJP.ttf'), 18)
 TITLES = {
-    'B': '案B（採用）を修正：切妻屋根・大きな木の固まり・細い道・花で埋めたL字花壇',
+    'B': '案B（採用）を修正：町家・大きな木の固まり・細い道・花で埋めたL字花壇',
 }
 ADOPTED = OUT / 'variant-B/adopted-full-town.png'  # 依頼者が採用した時点（20fdaab）の本番描画
 BG = '#d6d2bb'

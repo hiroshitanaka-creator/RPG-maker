@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""城下町の見た目の仕上げ（2026年9月28日の依頼6項目と、案B採用後の修正4点）を、本番配置データから機械検査する。
+"""城下町の見た目の仕上げ（2026年9月28日の依頼6項目と、案B採用後の修正）を、本番配置データから機械検査する。
+
+(4)の「木造の家を中心に」は、依頼者の決定により家を登録済みの町家・館の素材へ戻したため検査しない。
 
 比較の相手は、この作業の直前のコミット 07ac451（城下町・城の採用後の最終コミット）に固定する。
 修正4点の「道幅を細く」は、依頼者が見た案Bのコミット 20fdaab と比べる。
@@ -61,12 +63,21 @@ def main():
     check(near == len(trees), f'(1) 木はすべて家の周りか町の縁: {near}/{len(trees)}')
     large = named('tree_round_large')
     check(len(large) >= 6, f'修正2 大きな丸い木（3×3セル）が6本以上: {len(large)}本')
-    lonely = []
-    for tree in trees:
-        others = [o for o in trees if o is not tree]
-        if not any(abs(x - ox) <= 1 and abs(y - oy) <= 1 for x, y in cells(tree) for o in others for ox, oy in cells(o)):
-            lonely.append(min(cells(tree)))
-    check(not lonely, f'修正2 どの木も隣り合う木を持つ（2〜3本の固まり）: 孤立 {lonely}')
+    # 隣り合う（セル間の距離1以内の）木をつないだ固まりを求め、どの固まりも2本か3本であることを確かめる
+    def touching(a, b):
+        return any(abs(x - ox) <= 1 and abs(y - oy) <= 1 for x, y in cells(a) for ox, oy in cells(b))
+    groups, left = [], list(range(len(trees)))
+    while left:
+        group, queue = [], [left.pop(0)]
+        while queue:
+            i = queue.pop()
+            group.append(i)
+            for j in [j for j in left if touching(trees[i], trees[j])]:
+                left.remove(j)
+                queue.append(j)
+        groups.append(sorted(min(cells(trees[i])) for i in group))
+    wrong = [g for g in groups if len(g) not in (2, 3)]
+    check(not wrong, f'修正2 木は2〜3本ずつの固まり: 固まり{len(groups)}個、2〜3本でないもの {wrong}')
     rows = {}
     for tree in trees:
         rows.setdefault(min(y for _, y in cells(tree)), []).append(tree)
@@ -107,9 +118,14 @@ def main():
     kinds = [l['name'].removeprefix('natural_') for l in houses]
     check(all(k in roof_of for k in kinds) and len(kinds) == 6, f'(4) 6棟の屋根が赤・茶・青のどれか: {kinds}')
     check(not any('farm_house' in l['name'] for l in layers), '(4) わら屋根の家を置かない')
-    wooden = sum(k.startswith('gable_house') for k in kinds)
-    check(wooden >= 3, f'(4) 教会以外の5棟のうち過半（3棟以上）が木造の大屋根の家: {wooden}棟')
-    check(wooden == 5, f'修正1 教会以外の5棟すべてが三角の切妻屋根の木造の家: {wooden}棟')
+    # 修正1（2026年9月28日の依頼者決定）：スクリプトで描いた家は使わず、登録済みの町家・館の素材に戻す。
+    # 家の種類と位置は初版（07ac451）と同じ
+    base_town = base_visual['maps'][f'{NODE}:0']
+    def placed(document):
+        return sorted((l['name'], min(c[0] for c in l['cells']), min(c[1] for c in l['cells'])) for l in document['layers']
+                      if 'house' in l['name'] or l['name'] in ('natural_church', 'natural_manor'))
+    check(placed(town) == placed(base_town), f'修正1 家は登録済みの町家・館の素材で、種類と位置は初版と同じ: {placed(town)}')
+    check(not any(l['name'].startswith(('natural_gable_house', 'natural_wood_house')) for l in layers), '修正1 スクリプトで描いた家の素材を使わない')
 
     # (5) 家ごとの庭：各家から5セル以内に樽・木箱・井戸・花のどれかがある。井戸が1つ以上
     props = [l for l in layers if l['name'].removeprefix('natural_') in ('barrels', 'crates', 'well', 'flowers_pink', 'flowers_white', 'flowers_yellow', 'flowerbed')]
@@ -147,6 +163,7 @@ def main():
     check(door_rooms(first['castle_doors']) == door_rooms(base_def['castle_doors']), '扉と部屋の対応（どの扉がどの部屋へ）は07ac451と同じ')
     check(outside_town(first['castle_doors']) == outside_town(base_def['castle_doors']), '城内・店の中の出入口セルは07ac451と同じ')
     check(town_side(first['castle_doors']) == town_side(base_def['castle_doors']), '北門から城の中庭への出入口セルは07ac451と同じ')
+    check(first['castle_doors'] == base_def['castle_doors'], '城下町の扉セルも含め、出入口はすべて07ac451と同じ')
     moved = sorted({tuple(l['from']['cell']) for l in first['castle_doors'] if l['from']['room'] == 0} - {tuple(l['from']['cell']) for l in base_def['castle_doors'] if l['from']['room'] == 0})
     print(f'INFO 家の絵に合わせて移した城下町側の扉セル: {moved}')
     for key in ('castle_entrance', 'castle_exit', 'castle_spawn'):

@@ -94,4 +94,5 @@
 ## スプリント5：城下町の見た目の仕上げ
 
 - 2026年9月28日、依頼者が案Bを採用し、屋根・木・道幅・花壇の4点の修正と、南門で主人公が隠れる点の修正を指示した。
-- 修正後の `docs/verification/castle-town-polish/overview.png`・`variant-B/comparison.png`・`variant-B/runtime-sheet.png` を目標画像 IMG_0997 と見比べ、切妻屋根の形、木の固まり方、道幅、花壇の見え方を確認する。
+- 依頼者は木の固まり方・道幅・L字の花壇・南門・仕様書の書き分けを採用し、家は町家の素材に戻すと決めた。修正後の `docs/verification/castle-town-polish/overview.png`・`variant-B/comparison.png`・`variant-B/runtime-sheet.png` を確認して main へ取り込む。
+- 木造の大屋根の家（目標画像の台形の屋根の面と棟の線）は、新しい原画が用意できたときに改めて扱う。
