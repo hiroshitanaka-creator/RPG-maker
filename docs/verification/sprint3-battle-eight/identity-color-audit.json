@@ -1,0 +1,278 @@
+{
+  "scope": "完成済み戦士4人の待機コマの髪・顔・目を読む。衣装を避けた部分領域だけで共通16色すべての使用を確認。元画像は変更しない。",
+  "regions": [
+    {
+      "part": "hair",
+      "box": [
+        28,
+        4,
+        72,
+        26
+      ]
+    },
+    {
+      "part": "face",
+      "box": [
+        38,
+        28,
+        62,
+        43
+      ]
+    }
+  ],
+  "fixed_colors": [
+    "#0B1824",
+    "#153550",
+    "#254A63",
+    "#3A2317",
+    "#53335F",
+    "#657B2A",
+    "#68422F",
+    "#728593",
+    "#90422D",
+    "#9A6048",
+    "#BDC7D3",
+    "#BF694D",
+    "#CE9F54",
+    "#D09279",
+    "#D7B778",
+    "#EEF6EB"
+  ],
+  "count": 16,
+  "remaining_under_shared_16": 0,
+  "witnesses": {
+    "#0B1824": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "hair",
+      "pixel": [
+        51,
+        14
+      ]
+    },
+    "#153550": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "hair",
+      "pixel": [
+        45,
+        15
+      ]
+    },
+    "#254A63": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "hair",
+      "pixel": [
+        46,
+        15
+      ]
+    },
+    "#53335F": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "hair",
+      "pixel": [
+        47,
+        16
+      ]
+    },
+    "#728593": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "hair",
+      "pixel": [
+        43,
+        18
+      ]
+    },
+    "#BDC7D3": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "hair",
+      "pixel": [
+        40,
+        24
+      ]
+    },
+    "#68422F": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        47,
+        30
+      ]
+    },
+    "#BF694D": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        48,
+        30
+      ]
+    },
+    "#3A2317": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        49,
+        30
+      ]
+    },
+    "#CE9F54": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        47,
+        31
+      ]
+    },
+    "#D7B778": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        48,
+        31
+      ]
+    },
+    "#D09279": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        49,
+        32
+      ]
+    },
+    "#90422D": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        39,
+        33
+      ]
+    },
+    "#9A6048": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        52,
+        33
+      ]
+    },
+    "#EEF6EB": {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        50,
+        38
+      ]
+    },
+    "#657B2A": {
+      "actor": "pc_02",
+      "path": "assets/characters/pc_02/jobs/warrior/battle.png",
+      "region": "face",
+      "pixel": [
+        46,
+        38
+      ]
+    }
+  },
+  "actors": [
+    {
+      "actor": "pc_01",
+      "path": "assets/characters/pc_01/jobs/warrior/battle.png",
+      "sha256": "1b86c203f112bb4b7411ae554c88a89fee68ee8393807faaa97a388d2bbe0379",
+      "colors": [
+        "#0B1824",
+        "#153550",
+        "#254A63",
+        "#3A2317",
+        "#53335F",
+        "#68422F",
+        "#728593",
+        "#90422D",
+        "#9A6048",
+        "#BDC7D3",
+        "#BF694D",
+        "#CE9F54",
+        "#D09279",
+        "#D7B778",
+        "#EEF6EB"
+      ]
+    },
+    {
+      "actor": "pc_02",
+      "path": "assets/characters/pc_02/jobs/warrior/battle.png",
+      "sha256": "b6ed9b220755139433913c6c0d8c1acee943c6789c13b8c3283ded52ea4106f2",
+      "colors": [
+        "#0B1824",
+        "#153550",
+        "#254A63",
+        "#3A2317",
+        "#53335F",
+        "#657B2A",
+        "#68422F",
+        "#728593",
+        "#90422D",
+        "#9A6048",
+        "#BDC7D3",
+        "#BF694D",
+        "#CE9F54",
+        "#D09279",
+        "#D7B778",
+        "#EEF6EB"
+      ]
+    },
+    {
+      "actor": "pc_03",
+      "path": "assets/characters/pc_03/jobs/warrior/battle.png",
+      "sha256": "7da3d9b7a2cc6c8af00b546643e61d034b36f0cb3836bf629548d406f4b1f0b2",
+      "colors": [
+        "#0B1824",
+        "#3A2317",
+        "#53335F",
+        "#68422F",
+        "#728593",
+        "#90422D",
+        "#9A6048",
+        "#BDC7D3",
+        "#BF694D",
+        "#CE9F54",
+        "#D09279",
+        "#D7B778",
+        "#EEF6EB"
+      ]
+    },
+    {
+      "actor": "pc_04",
+      "path": "assets/characters/pc_04/jobs/warrior/battle.png",
+      "sha256": "78d59493aa7992d60969d823b21ef674218df941dca4d96f026556484132f23e",
+      "colors": [
+        "#0B1824",
+        "#153550",
+        "#254A63",
+        "#3A2317",
+        "#53335F",
+        "#68422F",
+        "#728593",
+        "#90422D",
+        "#9A6048",
+        "#BDC7D3",
+        "#BF694D",
+        "#CE9F54",
+        "#D09279",
+        "#D7B778",
+        "#EEF6EB"
+      ]
+    }
+  ]
+}
