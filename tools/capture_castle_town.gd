@@ -1,6 +1,7 @@
 extends "res://tools/smoke_first_region.gd"
 ## 保護済みの最初の地方を通常操作で通過し、その続きの城下町・城を追加確認する。
-const OUTPUT := "res://docs/verification/sprint5-castle-town/runtime/"
+## 環境変数 CASTLE_CAPTURE_OUTPUT で保存先を変えられる（城下町の見た目の案ごとの撮影用）。既定は初版の記録先。
+var OUTPUT: String = OS.get_environment("CASTLE_CAPTURE_OUTPUT") if not OS.get_environment("CASTLE_CAPTURE_OUTPUT").is_empty() else "res://docs/verification/sprint5-castle-town/runtime/"
 var castle_failures: Array[String]=[]
 var castle_checks := 0
 var castle_started := false
@@ -60,8 +61,16 @@ func _castle_route() -> void:
 	if not castle_check(await _walk(_outside(_definition["castle_entrance"])),"関所から城下町前へ歩行"):return
 	await picture("01-world-entrance")
 	if not castle_check(await _walk(_world_point(_definition["castle_entrance"]["cell"]),_definition["castle_spawn"]),"城下町へ通常入場"):return
+	var variant_views := not OS.get_environment("CASTLE_CAPTURE_OUTPUT").is_empty()
+	# 入場位置(18,24)は南門のアーチの下。門を人物より奥に描くため、主人公の画素が90%以上見えることをここで確かめる
+	if variant_views:await picture("02a-town-gate")
 	if not castle_check(await _walk(castle_point(0,[20,14])),"広場へ歩行"):return
 	await picture("02-town-plaza")
+	if variant_views:
+		# 見た目の案の比較用に、南西の庭と北東の教会前も通常歩行で撮る
+		for view in [[[11,23],"02b-town-southwest"],[[26,9],"02c-town-northeast"],[[20,14],"02d-town-plaza-return"]]:
+			if not castle_check(await _walk(castle_point(0,view[0])),"城下町の案の撮影位置へ歩行: "+view[1]):return
+			if view[1]!="02d-town-plaza-return":await picture(view[1])
 	var state_before := _state()
 	castle_check(not state_before["progress_flags"].get("job_change_unlocked",false),"謁見前は転職未解放")
 	castle_check(not _session().choose_job("pc_01","thief"),"解放前の転職拒否")

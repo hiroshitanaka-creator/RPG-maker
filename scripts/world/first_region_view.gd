@@ -14,7 +14,8 @@ var _objects: Array = []
 
 static func ground_layer(layer: Dictionary) -> bool:
 	var kind := str(layer["name"]).trim_prefix("natural_").trim_prefix("bright_")
-	return kind in ["地面","dirt","cobble","shore","hills","forest","mountains","river","壁","敷物","接続水域","64px岩壁・丸い湖・床の自動接続","dirt_patch","pebbles","flowers_white","flowers_yellow","flowers_pink","tufts","leaves","overgrown_grass","flowerbed","cabbage","carrots","wheat","mushrooms","floor_pattern","bridge","rope_bridge"]
+	# 城下町の門（gate_open）は通り抜ける場所なので、人物より奥に描く（2026年9月28日、依頼者決定）
+	return kind in ["gate_open","地面","dirt","cobble","shore","hills","forest","mountains","river","壁","敷物","接続水域","64px岩壁・丸い湖・床の自動接続","dirt_patch","pebbles","flowers_white","flowers_yellow","flowers_pink","tufts","leaves","overgrown_grass","flowerbed","cabbage","carrots","wheat","mushrooms","floor_pattern","bridge","rope_bridge"]
 
 func _ready() -> void:
 	clip_contents=true

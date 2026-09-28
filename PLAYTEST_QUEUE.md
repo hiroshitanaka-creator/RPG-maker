@@ -90,3 +90,9 @@
 - `docs/verification/sprint3/costume-overview.png` と原画比較で、戦士・武闘家・僧侶・魔法使いを見分けられるか、顔・髪・体格が同じ4人に見えるかを確認する。
 - `walk-preview.gif` と本番の戦闘描画見本で、歩行・攻撃・被弾の違いと大きさを確認する。
 - 12職のうち4職の区切り。残る8職は `docs/sprint3-costumes.md` に記載。
+
+## スプリント5：城下町の見た目の仕上げ
+
+- 2026年9月28日、依頼者が案Bを採用し、屋根・木・道幅・花壇の4点の修正と、南門で主人公が隠れる点の修正を指示した。
+- 依頼者は木の固まり方・道幅・L字の花壇・南門・仕様書の書き分けを採用し、家は町家の素材に戻すと決めた。修正後の `docs/verification/castle-town-polish/overview.png`・`variant-B/comparison.png`・`variant-B/runtime-sheet.png` を確認して main へ取り込む。
+- 木造の大屋根の家（目標画像の台形の屋根の面と棟の線）は、新しい原画が用意できたときに改めて扱う。
