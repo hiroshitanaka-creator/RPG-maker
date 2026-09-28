@@ -10,7 +10,7 @@ from build_first_region_presentation import payload, point, room, rows, reachabl
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'docs/verification/sprint5-castle-town'
 NODE='first_castle'
-# 城下町の見た目の案。0=初版、A/B/C=2026年9月28日の仕上げ案。環境変数 CASTLE_TOWN_VARIANT で選ぶ。
+# 城下町の見た目。0=初版（07ac451）、B=依頼者が採用し修正した仕上げ（既定）。環境変数 CASTLE_TOWN_VARIANT で選ぶ。案A・Cは 20fdaab に記録。
 import os,sys
 VARIANT=os.environ.get('CASTLE_TOWN_VARIANT','B')
 if VARIANT!='0':OUT=ROOT/'docs/verification/castle-town-polish'/('variant-'+VARIANT)
