@@ -31,7 +31,7 @@ func _ready() -> void:
 	for tile in _map.get("tiles",{}).values():_texture("res://"+str(tile["path"]))
 
 func _texture(path: String) -> Texture2D:
-	if not _textures.has(path):_textures[path]=load(path)
+	if not _textures.has(path):_textures[path]=WorldShoreline.texture() if path=="res://assets/tiles/world_connected_water.png" else load(path)
 	return _textures[path]
 
 func _screen(cell: Vector2) -> Vector2:

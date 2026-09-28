@@ -32,11 +32,17 @@ func _draw() -> void:
 		for x in range(columns+1):
 			var cell := _camera+Vector2i(x,y)
 			var tile_index := 0
+			var terrain_kind := ""
 			if state["layer"] == "world":
-				tile_index = indices.get(WorldTerrain.tile(cell),2)
+				terrain_kind=WorldTerrain.tile(cell)
+				tile_index = indices.get(terrain_kind,2)
+				if terrain_kind in ["~","b"]:tile_index=0
 			else:
 				tile_index = 6 if WorldExpedition.walkable_room(definition,cell) else 1
 			draw_texture_rect_region(_tiles,Rect2(x*32,y*32,32,32),Rect2(tile_index*32,0,32,32))
+			if state["layer"]=="world":
+				WorldShoreline.draw_at(self,cell,Rect2(x*32,y*32,32,32))
+				if terrain_kind=="b":draw_texture_rect_region(_tiles,Rect2(x*32,y*32,32,32),Rect2(5*32,0,32,32))
 	if state["layer"] == "world":
 		for entry in WorldTerrain.data()["nodes"]:
 			var cell := WorldTerrain.cell_of(entry["id"])

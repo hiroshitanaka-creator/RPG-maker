@@ -1,0 +1,64 @@
+--- a/tools/validate_assets.py
++++ b/tools/validate_assets.py
+@@ -138,7 +138,7 @@
+             )
+ 
+     # コマ分割が成立する場合のみ実施（サイズ不一致のときは分割できない）
+-    if frame and grid and list(img.size) == [frame[0] * grid[0], frame[1] * grid[1]]:
++    if frame and grid and not is_water_overlay(entry) and list(img.size) == [frame[0] * grid[0], frame[1] * grid[1]]:
+         bottoms = frame_bottoms(img, frame, grid)
+         values = {b for (_, _, b) in bottoms if b is not None}
+         if len(values) > 1:
+@@ -161,6 +161,44 @@
+             continue
+         found.add(path.relative_to(REPO_ROOT).as_posix())
+     return found
++
++
++def is_water_overlay(entry: dict) -> bool:
++    return entry.get("kind") == "terrain_water_overlay" and entry.get("path") == "assets/tiles/world_connected_water.png"
++
++
++def check_water_overlay(entry: dict) -> list[str]:
++    """新規の水際だけは、接地行の代わりに全コマの透過輪郭を整数計算で照合する。"""
++    if entry.get("kind") != "terrain_water_overlay":
++        return []
++    rel = entry.get("path", "")
++    if not is_water_overlay(entry):
++        return [f"{rel}: 水際専用の種類を別素材へ使うことはできない"]
++    if entry.get("size") != [1024,8192] or entry.get("frame") != [32,32] or entry.get("grid") != [32,256]:
++        return [f"{rel}: 水際の512形×16模様位置の寸法が不一致"]
++    if not (REPO_ROOT / rel).is_file():
++        return [f"{rel}: 水際画像が存在しない"]
++    alpha = Image.open(REPO_ROOT / rel).convert("RGBA").getchannel("A")
++    if alpha.size != (1024,8192):
++        return [f"{rel}: 水際画像の寸法が不一致"]
++    for mask in range(512):
++        expected = bytearray()
++        for y in range(32):
++            for x in range(32):
++                dx,dy = abs(2*x+1-32),abs(2*y+1-32)
++                side_x,side_y = (3 if x<16 else 5),(1 if y<16 else 7)
++                diagonal = (0 if x<16 else 2) if y<16 else (6 if x<16 else 8)
++                value = int(bool(mask&16))*(64-dx)*(64-dy)
++                value += int(bool(mask&(1<<side_x)))*dx*(64-dy)
++                value += int(bool(mask&(1<<side_y)))*(64-dx)*dy
++                value += int(bool(mask&(1<<diagonal)))*dx*dy
++                expected.append(255 if value>=2048 else 0)
++        for phase in range(16):
++            index = phase*512+mask
++            x,y = index%32*32,index//32*32
++            if alpha.crop((x,y,x+32,y+32)).tobytes() != bytes(expected):
++                return [f"{rel}: 水際の輪郭不一致（接続形{mask}、模様位置{phase}）"]
++    return []
+ 
+ 
+ def check_autotile(entry: dict) -> list[str]:
+@@ -306,6 +344,7 @@
+         entry_errors, exists = check_asset(entry, entry_palette)
+         errors.extend(entry_errors)
+         errors.extend(check_autotile(entry))
++        errors.extend(check_water_overlay(entry))
+         if entry["path"] not in legacy or entry.get('source') == 'owner':
+             errors.extend(check_provenance(entry))
+         if not exists and entry.get("status", "required") == "placeholder":
