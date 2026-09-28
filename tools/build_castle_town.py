@@ -97,7 +97,7 @@ def main():
     town.stamp(obj('bench'),22,14);town.stamp(obj('well'),10,20)
     for x in range(0,36,3):
         if not 15<=x<=18:town.stamp(obj('wall_horizontal'),x,0);town.stamp(obj('wall_horizontal'),x,24)
-    for y in range(2,24,3):town.stamp(obj('wall_vertical'),0,y);town.stamp(obj('wall_vertical'),34,y)
+    for y in range(2,24,3):town.stamp('assets/objects/castle_low_wall_vertical.png',0,y);town.stamp('assets/objects/castle_low_wall_vertical.png',34,y)
     town.stamp(obj('gate_open'),16,0,False);town.stamp(obj('gate_open'),16,22,False)
     for y in range(0,26):
         if y<4 or y>21:
@@ -121,7 +121,7 @@ def main():
     for x in [2,6,24,28]:court.stamp(obj('flowerbed'),x,13,False)
     for x in range(0,32,3):
         if not 12<=x<=18:court.stamp(obj('wall_horizontal'),x,0);court.stamp(obj('wall_horizontal'),x,16)
-    for y in range(2,16,3):court.stamp(obj('wall_vertical'),0,y);court.stamp(obj('wall_vertical'),30,y)
+    for y in range(2,16,3):court.stamp('assets/objects/castle_low_wall_vertical.png',0,y);court.stamp('assets/objects/castle_low_wall_vertical.png',30,y)
     for y in range(10,18):court.door(16,y)
     add(court,names['castle']+' 中庭',[npc('court_guard_left',[13,11],'城の兵士',['正面の扉が謁見の間です。']),npc('court_guard_right',[19,11],'城の兵士',['王がお待ちです。通行証を見せてください。'])])
     hall=enclosed('castle_hall',32,22)

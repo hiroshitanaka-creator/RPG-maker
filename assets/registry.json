@@ -16212,6 +16212,27 @@
       "prompt_record": "assets/source_records/castle-town-generation.json",
       "conversion_record": "assets/source_records/castle-town-conversion.json",
       "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。"
+    },
+    {
+      "path": "assets/objects/castle_low_wall_vertical.png",
+      "kind": "object",
+      "size": [
+        64,
+        96
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "Python/Pillow",
+      "author": "RPG-maker / Codex",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/visual-target-generation.json#wall_kit",
+      "modified": "承認済みの水平壁から直線の石積み領域(0,24,96,64)を切り出し、90度回転して左右用の低い石垣へ配置。元画像・通行領域は不変。",
+      "component_sources": [
+        "assets/objects/natural_wall_horizontal.png"
+      ]
     }
   ],
   "audio": [
