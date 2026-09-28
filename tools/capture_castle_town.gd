@@ -62,10 +62,8 @@ func _castle_route() -> void:
 	await picture("01-world-entrance")
 	if not castle_check(await _walk(_world_point(_definition["castle_entrance"]["cell"]),_definition["castle_spawn"]),"城下町へ通常入場"):return
 	var variant_views := not OS.get_environment("CASTLE_CAPTURE_OUTPUT").is_empty()
-	if variant_views:
-		# 入場位置(18,24)は南門のアーチの下で、主人公が門の絵に隠れる（初版から同じ）。門の内側へ3歩進んで撮る
-		if not castle_check(await _walk(castle_point(0,[18,21])),"南門の内側へ歩行"):return
-		await picture("02a-town-gate")
+	# 入場位置(18,24)は南門のアーチの下。門を人物より奥に描くため、主人公の画素が90%以上見えることをここで確かめる
+	if variant_views:await picture("02a-town-gate")
 	if not castle_check(await _walk(castle_point(0,[20,14])),"広場へ歩行"):return
 	await picture("02-town-plaza")
 	if variant_views:
