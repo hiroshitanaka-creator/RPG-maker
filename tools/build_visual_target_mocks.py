@@ -13,7 +13,8 @@ OUT=ROOT/'docs/verification/art-review-2'
 MAPS=OUT/'mock-maps'
 REG=json.loads((ROOT/'assets/registry.json').read_text(encoding='utf-8'))
 ENTRIES={e['path']:e for e in REG['assets']}
-FONT=ImageFont.truetype('C:/Windows/Fonts/meiryo.ttc',16)
+try:FONT=ImageFont.truetype('C:/Windows/Fonts/meiryo.ttc',16)
+except OSError:FONT=ImageFont.truetype(str(ROOT/'assets/fonts/notosansjp/NotoSansJP.ttf'),16)  # Windows以外ではゲーム同梱の字体で描く
 
 def obj(name):return f'assets/objects/natural_{name}.png'
 def tex(name):return f'assets/tiles/natural_{name}.png'
