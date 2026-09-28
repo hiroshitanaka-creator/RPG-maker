@@ -1,91 +1,15 @@
 {
   "tool": "tools/build_castle_town_polish_assets.py",
   "generated_at": "2026-09-28",
-  "method": "画像生成なし。登録済み素材の画素を natural.gpl 内の色へ置換・切り貼りした決定論的な派生素材。",
+  "method": "画像生成なし。登録済み素材の画素を切り貼りし、natural.gpl 内の色で描き足した決定論的な派生素材。",
   "outputs": {
-    "assets/objects/natural_wood_house_brown.png": {
-      "source_colors": [
-        [
-          58,
-          35,
-          23
-        ],
-        [
-          93,
-          39,
-          23
-        ],
-        [
-          75,
-          55,
-          28
-        ],
-        [
-          104,
-          66,
-          47
-        ],
-        [
-          89,
-          75,
-          47
-        ],
-        [
-          144,
-          66,
-          45
-        ],
-        [
-          116,
-          90,
-          50
-        ],
-        [
-          127,
-          110,
-          69
-        ],
-        [
-          154,
-          96,
-          72
-        ],
-        [
-          139,
-          127,
-          85
-        ],
-        [
-          191,
-          105,
-          77
-        ],
-        [
-          169,
-          131,
-          71
-        ],
-        [
-          206,
-          159,
-          84
-        ],
-        [
-          214,
-          170,
-          97
-        ],
-        [
-          237,
-          187,
-          91
-        ],
-        [
-          246,
-          210,
-          117
-        ]
+    "assets/objects/natural_gable_house_brown.png": {
+      "base": "assets/objects/natural_farm_house_a.png",
+      "apex": [
+        111.5,
+        14
       ],
+      "eave": 134,
       "ramp": [
         [
           37,
@@ -123,129 +47,24 @@
           71
         ]
       ],
-      "shingle_base": 2,
-      "roof_pixels": 11782,
-      "base": "assets/objects/natural_farm_house_a.png",
-      "roof_polygon": [
-        [
-          0,
-          0
-        ],
-        [
-          224,
-          0
-        ],
-        [
-          224,
-          131
-        ],
-        [
-          210,
-          131
-        ],
-        [
-          143,
-          78
-        ],
-        [
-          102,
-          127
-        ],
-        [
-          0,
-          127
-        ]
+      "faces": [
+        3,
+        4
       ],
       "size": [
         224,
         192
       ],
       "colors": 51,
-      "sha256": "1b96ff7d2a03e185f0278f248aa3d730c5dcfb5c3ca460a9fb51e7af38b88d15"
+      "sha256": "58517f0417fdbc73df912046e5777e9a0633c3321f3c1ac38ab94b543d1fa148"
     },
-    "assets/objects/natural_wood_house_red.png": {
-      "source_colors": [
-        [
-          58,
-          35,
-          23
-        ],
-        [
-          93,
-          39,
-          23
-        ],
-        [
-          75,
-          55,
-          28
-        ],
-        [
-          104,
-          66,
-          47
-        ],
-        [
-          89,
-          75,
-          47
-        ],
-        [
-          144,
-          66,
-          45
-        ],
-        [
-          116,
-          90,
-          50
-        ],
-        [
-          127,
-          110,
-          69
-        ],
-        [
-          154,
-          96,
-          72
-        ],
-        [
-          139,
-          127,
-          85
-        ],
-        [
-          191,
-          105,
-          77
-        ],
-        [
-          169,
-          131,
-          71
-        ],
-        [
-          206,
-          159,
-          84
-        ],
-        [
-          214,
-          170,
-          97
-        ],
-        [
-          237,
-          187,
-          91
-        ],
-        [
-          246,
-          210,
-          117
-        ]
+    "assets/objects/natural_gable_house_red.png": {
+      "base": "assets/objects/natural_farm_house_a.png",
+      "apex": [
+        111.5,
+        14
       ],
+      "eave": 134,
       "ramp": [
         [
           37,
@@ -283,129 +102,24 @@
           77
         ]
       ],
-      "shingle_base": 2,
-      "roof_pixels": 11782,
-      "base": "assets/objects/natural_farm_house_a.png",
-      "roof_polygon": [
-        [
-          0,
-          0
-        ],
-        [
-          224,
-          0
-        ],
-        [
-          224,
-          131
-        ],
-        [
-          210,
-          131
-        ],
-        [
-          143,
-          78
-        ],
-        [
-          102,
-          127
-        ],
-        [
-          0,
-          127
-        ]
+      "faces": [
+        3,
+        4
       ],
       "size": [
         224,
         192
       ],
       "colors": 54,
-      "sha256": "094f4619d8d24d5a9de36877e589d802f8a6771b6ce2d2b46efcb3ffceff9aed"
+      "sha256": "2d0fee5d83faefc84da7dbf7319ddf503b1fc156e78eb3fe4f3a1c2341ceee4f"
     },
-    "assets/objects/natural_wood_house_blue.png": {
-      "source_colors": [
-        [
-          58,
-          35,
-          23
-        ],
-        [
-          93,
-          39,
-          23
-        ],
-        [
-          75,
-          55,
-          28
-        ],
-        [
-          104,
-          66,
-          47
-        ],
-        [
-          89,
-          75,
-          47
-        ],
-        [
-          144,
-          66,
-          45
-        ],
-        [
-          116,
-          90,
-          50
-        ],
-        [
-          127,
-          110,
-          69
-        ],
-        [
-          154,
-          96,
-          72
-        ],
-        [
-          139,
-          127,
-          85
-        ],
-        [
-          191,
-          105,
-          77
-        ],
-        [
-          169,
-          131,
-          71
-        ],
-        [
-          206,
-          159,
-          84
-        ],
-        [
-          214,
-          170,
-          97
-        ],
-        [
-          237,
-          187,
-          91
-        ],
-        [
-          246,
-          210,
-          117
-        ]
+    "assets/objects/natural_gable_house_blue.png": {
+      "base": "assets/objects/natural_farm_house_a.png",
+      "apex": [
+        111.5,
+        14
       ],
+      "eave": 134,
       "ramp": [
         [
           11,
@@ -443,61 +157,87 @@
           211
         ]
       ],
-      "shingle_base": 1,
-      "roof_pixels": 11782,
-      "base": "assets/objects/natural_farm_house_a.png",
-      "roof_polygon": [
-        [
-          0,
-          0
-        ],
-        [
-          224,
-          0
-        ],
-        [
-          224,
-          131
-        ],
-        [
-          210,
-          131
-        ],
-        [
-          143,
-          78
-        ],
-        [
-          102,
-          127
-        ],
-        [
-          0,
-          127
-        ]
+      "faces": [
+        3,
+        4
       ],
       "size": [
         224,
         192
       ],
       "colors": 55,
-      "sha256": "7414b862f7371f775c9bb7902492e81b8706d985659b984dcb7a9be49c00d7df"
+      "sha256": "f065871ebd99a067601b73631eabe6100dcf4bea9bba6d00b1b3348e47eb162f"
     },
-    "assets/objects/natural_fenced_flowerbed.png": {
+    "assets/objects/natural_tree_round_large.png": {
       "components": [
-        "assets/objects/natural_fence_corner.png",
-        "assets/tiles/natural_dirt.png",
-        "assets/objects/natural_flowerbed.png",
-        "assets/objects/natural_flowers_pink.png",
-        "assets/objects/natural_flowers_white.png",
-        "assets/objects/natural_flowers_yellow.png"
+        "assets/tiles/bright_tree_oak.png"
       ],
       "size": [
         96,
         96
       ],
-      "colors": 50,
-      "sha256": "decfb96e736d1aee3ff98141c7f76ea265a321ec3f8fe04f45005325f7e3aae5"
+      "colors": 12,
+      "sha256": "c3f6396b88dc0ac3f369d1458348af2b12c1fd84be7a3a6427afffa03c4cd0dc"
+    },
+    "assets/objects/natural_fenced_flowerbed_nw.png": {
+      "components": [
+        "assets/objects/natural_flowerbed.png",
+        "assets/objects/natural_flowers_pink.png",
+        "assets/objects/natural_flowers_white.png",
+        "assets/objects/natural_flowers_yellow.png",
+        "assets/objects/natural_fence_corner.png"
+      ],
+      "size": [
+        96,
+        96
+      ],
+      "colors": 49,
+      "sha256": "974d484682f48c910b013d3f4a8abcc161a0389b4171a28c7b773b47fd78164c"
+    },
+    "assets/objects/natural_fenced_flowerbed_ne.png": {
+      "components": [
+        "assets/objects/natural_flowerbed.png",
+        "assets/objects/natural_flowers_pink.png",
+        "assets/objects/natural_flowers_white.png",
+        "assets/objects/natural_flowers_yellow.png",
+        "assets/objects/natural_fence_corner.png"
+      ],
+      "size": [
+        96,
+        96
+      ],
+      "colors": 49,
+      "sha256": "4af4fd66c591039ce9aaa2b3ee98d02b607eb33ac6df0ebeea2a82d76e223400"
+    },
+    "assets/objects/natural_fenced_flowerbed_sw.png": {
+      "components": [
+        "assets/objects/natural_flowerbed.png",
+        "assets/objects/natural_flowers_pink.png",
+        "assets/objects/natural_flowers_white.png",
+        "assets/objects/natural_flowers_yellow.png",
+        "assets/objects/natural_fence_corner.png"
+      ],
+      "size": [
+        96,
+        96
+      ],
+      "colors": 49,
+      "sha256": "8fe9e05b7819908498190811a3ee24d24d30434ed8ddaa82e720f5d87d0b2124"
+    },
+    "assets/objects/natural_fenced_flowerbed_se.png": {
+      "components": [
+        "assets/objects/natural_flowerbed.png",
+        "assets/objects/natural_flowers_pink.png",
+        "assets/objects/natural_flowers_white.png",
+        "assets/objects/natural_flowers_yellow.png",
+        "assets/objects/natural_fence_corner.png"
+      ],
+      "size": [
+        96,
+        96
+      ],
+      "colors": 49,
+      "sha256": "f628c4bd8acbfc05414ff4d590d75023299e7465df73b0c5c0b5f143061558c7"
     },
     "assets/objects/natural_fence_low_horizontal.png": {
       "components": [
@@ -592,185 +332,6 @@
       ],
       "colors": 22,
       "sha256": "a313891dc52b2acc9bfbe211d28e36cc89ddf54cff8001cb219e60eddf65a3bb"
-    },
-    "assets/tiles/natural_grass_meadow_light.png": {
-      "table": [
-        [
-          [
-            18,
-            28,
-            15
-          ],
-          [
-            91,
-            107,
-            41
-          ]
-        ],
-        [
-          [
-            33,
-            47,
-            20
-          ],
-          [
-            91,
-            107,
-            41
-          ]
-        ],
-        [
-          [
-            49,
-            70,
-            25
-          ],
-          [
-            101,
-            123,
-            42
-          ]
-        ],
-        [
-          [
-            70,
-            79,
-            35
-          ],
-          [
-            101,
-            123,
-            42
-          ]
-        ],
-        [
-          [
-            80,
-            95,
-            38
-          ],
-          [
-            101,
-            123,
-            42
-          ]
-        ],
-        [
-          [
-            91,
-            107,
-            41
-          ],
-          [
-            127,
-            142,
-            57
-          ]
-        ],
-        [
-          [
-            101,
-            123,
-            42
-          ],
-          [
-            134,
-            155,
-            64
-          ]
-        ],
-        [
-          [
-            117,
-            127,
-            54
-          ],
-          [
-            134,
-            155,
-            64
-          ]
-        ],
-        [
-          [
-            127,
-            142,
-            57
-          ],
-          [
-            136,
-            164,
-            65
-          ]
-        ],
-        [
-          [
-            134,
-            155,
-            64
-          ],
-          [
-            136,
-            164,
-            65
-          ]
-        ],
-        [
-          [
-            136,
-            164,
-            65
-          ],
-          [
-            163,
-            182,
-            84
-          ]
-        ],
-        [
-          [
-            153,
-            162,
-            78
-          ],
-          [
-            163,
-            182,
-            84
-          ]
-        ],
-        [
-          [
-            163,
-            182,
-            84
-          ],
-          [
-            178,
-            202,
-            96
-          ]
-        ],
-        [
-          [
-            178,
-            202,
-            96
-          ],
-          [
-            200,
-            219,
-            127
-          ]
-        ]
-      ],
-      "base": "assets/tiles/natural_grass_2.png",
-      "size": [
-        128,
-        128
-      ],
-      "colors": 19,
-      "sha256": "28f5db9050e9ae9f369deeeff22b794e1e27b679a0f45fcbd618ff16f9af3897"
     }
   }
 }
