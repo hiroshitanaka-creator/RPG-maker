@@ -2,15 +2,13 @@
 """城下町の見た目の仕上げ用に、登録済み素材から派生素材を決定論的に作る。
 
 画像生成は使わない。元画像の画素を切り貼りし、natural.gpl 内の色で描き足すだけで作る。
-- natural_gable_house_{red,brown,blue}: わら屋根の家Aの壁・扉・小物はそのまま使い、屋根を
-  三角のはっきりした切妻屋根（棟が縦に通り、左右の面で明暗を分けた板葺き）に描き替える
+家の絵は、依頼者の決定（2026年9月28日）により登録済みの町家・館の素材を使うため、ここでは作らない。
 - natural_tree_round_large: 丸い木の葉の塊5つと幹を組んだ、96×96の大きな丸い木
 - natural_fenced_flowerbed_{nw,ne,sw,se}: 噴水に向いた角を丸く欠いたL字の花壇。木の縁と杭で囲み、
   中を葉と花でびっしり埋める。4方向は北西の絵の左右・上下反転
 - natural_fence_low_horizontal: 柵の角材から組んだ、庭を区切る細い横の柵
 - natural_grass_meadow: 草地2の暗い粒を中間の緑へ寄せ、目標画像の草地の明るさへ合わせた128×128の地面
 """
-import colorsys
 import hashlib
 import json
 from pathlib import Path
@@ -23,20 +21,6 @@ TILE = ROOT / 'assets/tiles'
 RECORD = ROOT / 'assets/source_records/castle-town-polish.json'
 PALETTE = [tuple(map(int, l.split()[:3])) for l in (ROOT / 'assets/palette/natural.gpl').read_text(encoding='utf8').splitlines() if l.strip()[:1].isdigit()]
 
-# 屋根の色段（暗→明）。すべて natural.gpl の色。
-RAMPS = {
-    'brown': [(37, 15, 7), (58, 35, 23), (75, 55, 28), (104, 66, 47), (116, 90, 50), (154, 96, 72), (169, 131, 71)],
-    'red': [(37, 15, 7), (61, 11, 20), (93, 39, 23), (116, 40, 27), (144, 66, 45), (179, 67, 63), (191, 105, 77)],
-    'blue': [(11, 24, 36), (22, 40, 53), (21, 53, 80), (37, 74, 99), (51, 108, 149), (114, 133, 147), (189, 199, 211)],
-}
-# 屋根の面の基本段（左の面・右の面）
-FACE = {'brown': (3, 4), 'red': (3, 4), 'blue': (3, 4)}
-# 切妻屋根の形（224×192の画像の画素座標）。頂点・軒の高さ・軒の左右端
-APEX = (111.5, 14)
-EAVE = 134
-EAVE_X = (1, 222)
-# 煙突（わら屋根の家Aの石の煙突）を切り出す範囲と、貼る位置
-CHIMNEY = ((58, 16, 88, 64), (132, 36))
 # 草地の置換表。花の色は変えない。暗い粒を中間色へ寄せてざらつきを消し、
 # 明るさを目標画像の草地（中央値 RGB 80,108,26 付近）へ合わせる。
 MEADOW = {
@@ -45,58 +29,6 @@ MEADOW = {
 }
 WOOD = [(42, 33, 19), (75, 55, 28), (116, 90, 50), (139, 127, 85)]  # 花壇の木の縁（暗→明）
 LEAF = [(33, 47, 20), (49, 70, 25), (80, 95, 38)]  # 花壇の葉の下地
-
-
-def hsv(c):
-    h, s, v = colorsys.rgb_to_hsv(*[x / 255 for x in c])
-    return h * 360, s, v
-
-
-def gable_house(color):
-    """わら屋根の家Aの壁より上を消し、三角の切妻屋根を描く。"""
-    src = np.array(Image.open(OBJ / 'natural_farm_house_a.png').convert('RGBA'))
-    h, w = src.shape[:2]
-    out = src.copy()
-    out[:EAVE] = 0
-    ramp = RAMPS[color]
-    left_base, right_base = FACE[color]
-    ax, ay = APEX
-    half = lambda y: (y - ay) / (EAVE - ay) * ((EAVE_X[1] - EAVE_X[0]) / 2)
-    inside = np.zeros((h, w), bool)
-    for y in range(int(ay), EAVE + 1):
-        for x in range(w):
-            inside[y, x] = abs(x + 0.5 - ax) <= half(y + 0.5)
-    for y, x in zip(*np.nonzero(inside)):
-        left = x + 0.5 < ax
-        i = left_base if left else right_base
-        band = (y - int(ay)) // 5
-        row = (y - int(ay)) % 5
-        col = (x + (band % 2) * 3) % 6
-        if y > EAVE - 26:
-            i -= 1          # 軒に近い下の帯は一段暗く（上から光が当たる）
-        if row == 4:
-            i -= 2          # 段の影
-        elif col == 0:
-            i -= 1          # 板の継ぎ目
-        elif row == 0:
-            i += 1          # 段の上端の光
-        if abs(x + 0.5 - ax) < 1.5:
-            i = 1 if left else right_base + 2   # 棟（縦に通る稜線）
-        edge = not (inside[y, x - 1] and inside[y, x + 1] and inside[y - 1, x]) if 0 < x < w - 1 else True
-        if edge:
-            i = 0           # 屋根の輪郭
-        elif y >= EAVE - 2:
-            i = 1 if y == EAVE - 2 else 0   # 軒先の板
-        out[y, x, :3] = ramp[max(0, min(len(ramp) - 1, i))]
-        out[y, x, 3] = 255
-    # 煙突（石の部分だけ）を右の面に立てる
-    (x0, y0, x1, y1), (px, py) = CHIMNEY
-    for y in range(y0, y1):
-        for x in range(x0, x1):
-            r, g, b, a = (int(t) for t in src[y, x])
-            if a and hsv((r, g, b))[1] < 0.25:
-                out[py + y - y0, px + x - x0] = (r, g, b, 255)
-    return Image.fromarray(out), {'base': 'assets/objects/natural_farm_house_a.png', 'apex': list(APEX), 'eave': EAVE, 'ramp': [list(c) for c in ramp], 'faces': list(FACE[color])}
 
 
 def large_tree():
@@ -206,8 +138,6 @@ def binarize_check(image, name):
 
 def main():
     built = {}
-    for color in RAMPS:
-        built[f'assets/objects/natural_gable_house_{color}.png'] = gable_house(color)
     built['assets/objects/natural_tree_round_large.png'] = large_tree()
     for side, value in flowerbeds().items():
         built[f'assets/objects/natural_fenced_flowerbed_{side}.png'] = value

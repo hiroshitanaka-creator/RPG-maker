@@ -2,11 +2,12 @@
 
 依頼者原画 IMG_0997（docs/reference/visual-targets/first-castle-town.png）を目標にする。
 2026年9月28日の1回目の依頼（6項目）で案A/B/Cを作り、依頼者が案Bを採用した（案A・Cの確認画像は 20fdaab に残る）。
-同日の2回目の依頼で、次の4点を直した。
-- 屋根：三角のはっきりした切妻屋根の家（natural_gable_house_*）にする
+同日の2回目の依頼で、木・道幅・花壇を直した（87b7e17 で採用）。
 - 木：大きな丸い木（3×3セル）を中心に2〜3本ずつ固め、家の周りと町の縁を囲む
 - 道幅：噴水の広場を 14×11 から 12×8 セルへ縮め、空いた分を庭と木に使う
 - 花壇：噴水側の角を丸く欠いたL字の花壇を、木の縁と杭で囲み、中を花で埋める
+スクリプトで描いた切妻屋根の家はテントのように見えたため、3回目の依頼で使わないことになり、
+家は案Aと同じ登録済みの町家・館の素材（初版と同じ種類と位置）に戻した。
 
 壁・門・噴水・6棟の位置、扉と部屋の対応、住人の役と台詞は初版のまま。
 """
@@ -93,8 +94,8 @@ def fence_row(t, x0, x1, y):
 
 # 6棟（左上：宿屋、左中：道具屋、左下：防具屋、右上：祠（教会）、右中：武器屋、右下：民家）。
 # 扉の位置は各絵の扉の列・最下段。台詞「西の赤い屋根は宿屋。その下の青い屋根が道具屋」「祠は東の青い屋根」と合わせる。
-HOUSES = [('gable_house_red', 2, 2, (4, 5)), ('gable_house_blue', 2, 10, (4, 5)), ('gable_house_brown', 3, 17, (4, 5)),
-          ('church', 26, 1, (3, 7)), ('gable_house_red', 27, 10, (4, 5)), ('gable_house_brown', 26, 17, (4, 5))]
+HOUSES = [('town_house_red', 3, 2, (3, 5)), ('town_house_blue', 3, 10, (3, 5)), ('manor', 4, 17, (3, 5)),
+          ('church', 26, 1, (3, 7)), ('town_house_red', 27, 10, (3, 5)), ('town_house_blue', 26, 17, (3, 5))]
 ROOMS = [4, 5, 7, 8, 6, 9]  # 上の順の建物に対応する室内の部屋番号
 # 噴水の斜め四方のL字花壇（噴水側の角が丸く欠けている）
 BEDS = [('nw', 12, 10), ('ne', 21, 10), ('sw', 12, 15), ('se', 21, 15)]
@@ -106,10 +107,10 @@ YARDS = [
     # 北東：教会の前庭
     ('big', 20, 2), ('tree', 23, 3), ('tree', 21, 5), ('barrels', 24, 5), ('fence_row', 20, 25, 7),
     # 西の中段・東の中段：道具屋と武器屋の脇
-    ('big', 9, 10), ('tree', 9, 13), ('big', 24, 10), ('tree', 25, 13),
+    ('big', 9, 10), ('tree', 9, 13), ('big', 24, 10), ('flowers_yellow', 25, 13), ('flowers_pink', 26, 14),
     # 南西・南東：井戸のある裏庭
-    ('big', 10, 18), ('well', 13, 18), ('tree', 10, 21), ('flowers_pink', 12, 21), ('flowers_yellow', 13, 21), ('flowers_white', 14, 22),
-    ('well', 20, 18), ('big', 23, 18), ('tree', 24, 21), ('flowers_white', 21, 21), ('flowers_pink', 22, 22), ('flowers_yellow', 23, 22),
+    ('big', 11, 18), ('tree', 14, 19), ('tree', 12, 21), ('flowers_pink', 11, 21), ('flowers_yellow', 14, 21), ('flowers_white', 15, 22),
+    ('well', 20, 18), ('big', 23, 18), ('flowers_white', 24, 21), ('flowers_white', 21, 21), ('flowers_pink', 22, 22), ('flowers_yellow', 23, 22),
     # 家の後ろの大きな木（町の縁を囲む）。家ごとに2本を段違いに寄せ、一列に並べない
     ('behind_big', 2, 3), ('behind_big', 5, 2), ('behind_big', 2, 11), ('behind_big', 5, 10), ('behind_big', 3, 18),
     ('behind_big', 6, 17), ('behind_big', 27, 11), ('behind_big', 30, 10), ('behind_big', 26, 18), ('behind_big', 29, 17),
@@ -123,9 +124,11 @@ def build_town_variant(variant, Place, npc):
     # 十字の石畳：南北の門を結ぶ4マス幅の道、東西へ2マス幅の道、噴水を囲む12×8セルの広場
     road = rect(16, 0, 19, 25) | rect(2, 8, 33, 9) | rect(12, 10, 23, 17)
     doors = [([x + dx, y + dy], index) for (name, x, y, (dx, dy)), index in zip(HOUSES, ROOMS)]
+    by_room = sorted(doors, key=lambda d: d[1])  # 扉のつながりは初版と同じ部屋番号の順に記録する
     # 扉から道への小道（土）。中段の家は広場の花壇の間へ、下段の家は最下段の道へつなぐ。
     left_mid, right_mid = doors[1][0], doors[4][0]
     left_low, right_low = doors[2][0], doors[5][0]
+    doors = by_room
     paths = (rect(left_mid[0], left_mid[1] + 1, 11, left_mid[1] + 1) | rect(11, 13, 11, left_mid[1] + 1)
              | rect(24, right_mid[1] + 1, right_mid[0], right_mid[1] + 1) | rect(24, 13, 24, right_mid[1] + 1)
              | rect(left_low[0], 23, 16, 23) | rect(19, 23, right_low[0], 23))
