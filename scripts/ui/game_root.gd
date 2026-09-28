@@ -57,6 +57,7 @@ var _rpg_audio: RpgAudio
 var _region_speaker := ""
 var _region_line_speakers: Array = []
 var _region_join_actor := ""
+var _region_audience := false
 var _region_line_actions: Array = []
 var _region_line_prompts: Array = []
 var _region_speaking_actor := ""
@@ -463,6 +464,9 @@ func submit_player_action(action: Dictionary) -> bool:
 					_region_join_actor=""
 				accepted = true
 				if _message_index >= _messages.size():
+					if game.first_region_active() and _region_audience:
+						if not game.finish_first_region_audience():_message_index-=1;return false
+						_region_audience=false
 					if _advance_after_dialogue:
 						_advance_step()
 					mode = _dialogue_return
@@ -491,7 +495,7 @@ func submit_player_action(action: Dictionary) -> bool:
 				_purify_actor = ""
 				accepted = true
 			elif kind == "confirm_purify" and not _purify_actor.is_empty():
-				accepted = game.world_state()["location"] == "town" and game.release_monster_form(_purify_actor, "purification_shrine")
+				accepted = game.at_purification_shrine() and game.release_monster_form(_purify_actor, "purification_shrine")
 				_notice = "魔物の技を手放し、姿を戻しました。" if accepted else "解除条件を満たしていません。"
 				_purify_actor = ""
 		Mode.COMPLETE:
@@ -746,6 +750,7 @@ func _advance_step() -> void:
 func _show_dialogue(lines: Array, advance: bool, return_mode: Mode = Mode.FIELD, past: bool = false) -> void:
 	_region_line_speakers=[]
 	_region_join_actor=""
+	_region_audience=false
 	_region_line_actions=[]
 	_region_line_prompts=[]
 	_messages.assign(lines)
@@ -1180,6 +1185,7 @@ func _first_region_result(result: Dictionary) -> void:
 			_region_speaking_actor=str(result.get("speaker_actor",""))
 			_region_line_speakers=result.get("speakers",[])
 			_region_join_actor=str(result.get("join_actor",""))
+			_region_audience=bool(result.get("audience",false))
 			_region_line_actions=result.get("line_actions",[])
 			_region_line_prompts=result.get("line_prompts",[])
 		"shop", "weapon_shop":
@@ -1668,7 +1674,7 @@ func _render_party() -> void:
 		if not str(actor["monster_form"]).is_empty():
 			_body.add_child(_label("魔物化: " + game.jobs[actor["monster_form"]]["name"], 11))
 		var release := _action_button(_body, "町の祠で清める（魔物専用技を全消去）", {"kind":"request_purify", "actor":actor["id"]})
-		release.disabled = game.world_state()["location"] != "town" or actor["irreversible"]
+		release.disabled = not game.at_purification_shrine() or actor["irreversible"]
 	_body = outer
 	_action_button(_body, "探索へ戻る", {"kind":"back"})
 
@@ -1702,7 +1708,7 @@ func _unequip(actor_id: String, identifier: String) -> void:
 
 
 func _request_purify(actor_id: String) -> bool:
-	if game.world_state()["location"] != "town":
+	if not game.at_purification_shrine():
 		return false
 	for actor in game.export_state()["party"]:
 		if actor["id"] == actor_id and (not str(actor["monster_form"]).is_empty() or int(actor["erosion"]) > 0) and not actor["irreversible"]:

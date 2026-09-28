@@ -23,6 +23,7 @@ var _story_wave_number: int = 0
 var _expedition_battle_stage: int = -1
 var _world_battle_id: String = ""
 var _pending_region_recruit := ""
+var _pending_region_audience := false
 
 
 func _init() -> void:
@@ -117,6 +118,7 @@ func export_state() -> Dictionary:
 func new_first_region() -> bool:
 	if not new_game(3):return false
 	_pending_region_recruit=""
+	_pending_region_audience=false
 	_state["first_region"] = {"version":1,"reserve":_state["party"].slice(1).duplicate(true),"coins":20}
 	_state["party"] = [_state["party"][0]]
 	_state["inventory"]["world_map"] = 1
@@ -168,6 +170,12 @@ func interact_first_region() -> Dictionary:
 		FirstRegion.face_event(_state,event)
 		match event["kind"]:
 			"npc":
+				if event.get("audience",false):
+					if _state["progress_flags"].get("job_change_unlocked",false):
+						return {"kind":"dialogue","speaker":"王","text":["仲間の役目を確かめ、準備を整えて進むがよい。北の森へ向かう許しは出してある。"]}
+					if int(_state["inventory"].get("gate_pass",0))!=1:return {}
+					_pending_region_audience=true
+					return {"kind":"dialogue","audience":true,"speakers":["王","カイナ","王","側近","王"],"text":["ベルナの通行証を持っているのだな。洞窟から無事に戻ったと聞いた。","仲間に助けられました。先へ進む前に、もっと備えを整えたいんです。","よい心がけだ。城の教練で、各々の役目に合った修練を受けることを許そう。","メニューの編成から職業を変え、覚えた技を装着できます。上級の職は、さらに先の修練が必要です。","北の森へ向かう許しも出しておく。急がず、互いの力を確かめて進むがよい。"]}
 				if event.get("after_errand","")=="haldo" and _state["first_region"].get("errands",{}).get("haldo")=="complete":
 					return {"kind":"dialogue","speaker":event.get("label","村人"),"text":event["after_text"]}
 				return {"kind":"dialogue","speaker":event.get("label","村人"),"text":event["text"]}
@@ -197,6 +205,15 @@ func interact_first_region() -> Dictionary:
 				_state["inventory"][event["item"]] = int(_state["inventory"].get(event["item"],0))+int(event["amount"])
 				return {"kind":"dialogue","speaker":"宝箱","sound":"chest","text":["回復薬を%d個手に入れた。" % event["amount"]]}
 	return {}
+
+func finish_first_region_audience() -> bool:
+	if not first_region_active() or not _pending_region_audience or _battle!=null:return false
+	var location: Dictionary=_state["overworld"]
+	if location["node"]!="first_castle" or location["room"]!=2 or int(_state["inventory"].get("gate_pass",0))!=1:return false
+	_state["progress_flags"]["job_change_unlocked"]=true
+	_state["progress_flags"]["castle_north_permission"]=true
+	_pending_region_audience=false
+	return true
 
 func finish_first_region_recruit(actor_id: String) -> bool:
 	if not first_region_active() or actor_id.is_empty() or actor_id!=_pending_region_recruit:return false
@@ -269,6 +286,7 @@ func import_state(value: Dictionary) -> bool:
 		return false
 	_state = normalized.duplicate(true)
 	_pending_region_recruit=""
+	_pending_region_audience=false
 	_world_battle_id = ""
 	_battle = null
 	_claimed = true
@@ -471,6 +489,10 @@ func job_unlocked(actor_id: String, job_id: String) -> bool:
 	var actor := _member(actor_id)
 	if actor.is_empty() or not jobs.has(job_id):
 		return false
+	# 世界マップ型の解放時期だけを制限する。旧本編の職業条件は維持する。
+	if first_region_active():
+		if jobs[job_id]["type"]=="monster" and not _state["progress_flags"].get("monster_jobs_unlocked",false):return false
+		if job_progression["advanced"].has(job_id) and not _state["progress_flags"].get("advanced_jobs_unlocked",false):return false
 	# 過去の保存で既に使った職は取り上げない。
 	if actor["job_id"] == job_id or int(actor["jp"].get(job_id,0)) > 0 or job_id in actor["mastered_jobs"] or job_id in actor.get("unlocked_jobs",[]):
 		return true
@@ -780,9 +802,14 @@ func _learn_form(actor: Dictionary, job_id: String) -> void:
 			actor["learned_abilities"].append(identifier)
 
 
+func at_purification_shrine() -> bool:
+	if not first_region_active():return world_state()["location"]=="town"
+	return _state["overworld"]["node"]=="first_castle" and _state["overworld"]["room"]==8
+
 func release_monster_form(actor_id: String, event: String) -> bool:
 	if _battle != null:
 		return false
+	if first_region_active() and not at_purification_shrine():return false
 	var actor := _member(actor_id)
 	if actor.is_empty() or (str(actor["monster_form"]).is_empty() and int(actor["erosion"]) == 0):
 		return false

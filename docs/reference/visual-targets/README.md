@@ -27,3 +27,7 @@
 # 戦闘配置の座標指定見本（2026年9月27日追加）
 
 `battle-layout-mock.png` は依頼者が添付した通常状態と2人目の行動状態の配置見本。原本のバイトをそのまま保存し、配置比較に使う。対応する実装・頭部保護範囲の記録は `docs/battle-layout-exact.md`、SHA-256は `docs/verification/battle-layout-exact/head-regions.json` に記載する。他社作品の参考写真である `local-reference/battle/` とは別に扱う。
+
+## スプリント5：城下町と城（2026年9月28日追加）
+
+`first-castle-town.png` は付録BのIMG_0997.PNG、`first-castle-hall.png` はIMG_1010.PNGを、保管済み原本から1バイトも変えず複製した。依頼者がGrokで生成したオリジナルで、公開とゲームでの使用は依頼者承認済み。配置・色・質感の目標として使い、画像そのものを背景や地形へ貼り付けない。ゲーム用には登録済み素材と、この原画を参考に別途生成した城内素材を使う。

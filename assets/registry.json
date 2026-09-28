@@ -15952,6 +15952,266 @@
       "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
       "actor_id": "pc_04",
       "job_id": "shaman"
+    },
+    {
+      "path": "assets/characters/npc_castle_king/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。",
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ]
+    },
+    {
+      "path": "assets/characters/npc_castle_advisor/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。",
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ]
+    },
+    {
+      "path": "assets/characters/npc_castle_guard/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。",
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ]
+    },
+    {
+      "path": "assets/characters/npc_castle_merchant/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。",
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ]
+    },
+    {
+      "path": "assets/objects/castle_throne.png",
+      "kind": "object",
+      "size": [
+        64,
+        96
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。"
+    },
+    {
+      "path": "assets/objects/castle_banner.png",
+      "kind": "object",
+      "size": [
+        32,
+        64
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。"
+    },
+    {
+      "path": "assets/objects/castle_candelabrum.png",
+      "kind": "object",
+      "size": [
+        32,
+        64
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。"
+    },
+    {
+      "path": "assets/objects/castle_bookcase.png",
+      "kind": "object",
+      "size": [
+        96,
+        96
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。"
+    },
+    {
+      "path": "assets/tiles/castle_runner.png",
+      "kind": "tile",
+      "size": [
+        96,
+        96
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。"
+    },
+    {
+      "path": "assets/tiles/castle_floor.png",
+      "kind": "tile",
+      "size": [
+        128,
+        128
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。"
+    },
+    {
+      "path": "assets/tiles/castle_wall.png",
+      "kind": "tile",
+      "size": [
+        128,
+        128
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。"
+    },
+    {
+      "path": "assets/objects/castle_column.png",
+      "kind": "object",
+      "size": [
+        64,
+        128
+      ],
+      "max_colors": 64,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（参照原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/castle-town-generation.json",
+      "conversion_record": "assets/source_records/castle-town-conversion.json",
+      "modified": "原画を透明領域で分割、最近傍縮小、自然色パレットへ減色、二値透過。原本は保持。"
     }
   ],
   "audio": [

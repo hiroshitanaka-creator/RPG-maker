@@ -32,7 +32,9 @@ func _draw() -> void:
 	draw_string(get_theme_default_font(),Vector2(12,27),"世界地図",HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color.WHITE)
 	var state: Dictionary=saved["overworld"]
 	var cell := WorldExpedition.point(state["cell"])
-	if state["layer"]=="interior":cell=WorldExpedition.point(FirstRegion.data()["cave_entrance" if state["node"]=="first_cave" else "village_entrance"]["cell"])
+	if state["layer"]=="interior":
+		var entrance := "castle_entrance" if state["node"]=="first_castle" else "cave_entrance" if state["node"]=="first_cave" else "village_entrance"
+		cell=WorldExpedition.point(FirstRegion.data()[entrance]["cell"])
 	var center := origin+Vector2(cell)
 	draw_rect(Rect2(center-Vector2(3,3),Vector2(7,7)),Color("152236"))
 	if fmod(_time,0.8)<0.5:draw_rect(Rect2(center-Vector2(2,2),Vector2(5,5)),Color("fff1a9"))

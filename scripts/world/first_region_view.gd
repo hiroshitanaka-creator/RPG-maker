@@ -14,7 +14,7 @@ var _objects: Array = []
 
 static func ground_layer(layer: Dictionary) -> bool:
 	var kind := str(layer["name"]).trim_prefix("natural_").trim_prefix("bright_")
-	return kind in ["地面","dirt","shore","hills","forest","mountains","river","壁","敷物","接続水域","64px岩壁・丸い湖・床の自動接続","dirt_patch","pebbles","flowers_white","flowers_yellow","flowers_pink","tufts","leaves","overgrown_grass","flowerbed","cabbage","carrots","wheat","mushrooms","floor_pattern","bridge","rope_bridge"]
+	return kind in ["地面","dirt","cobble","shore","hills","forest","mountains","river","壁","敷物","接続水域","64px岩壁・丸い湖・床の自動接続","dirt_patch","pebbles","flowers_white","flowers_yellow","flowers_pink","tufts","leaves","overgrown_grass","flowerbed","cabbage","carrots","wheat","mushrooms","floor_pattern","bridge","rope_bridge"]
 
 func _ready() -> void:
 	clip_contents=true
@@ -77,6 +77,9 @@ func _draw() -> void:
 	var ordered: Array=_objects.duplicate()
 	var definition := FirstRegion.data()
 	if state["layer"]=="world":
+		if definition.has("castle_entrance"):
+			var castle := Vector2(WorldExpedition.point(definition["castle_entrance"]["cell"]))-origin
+			ordered.append({"bottom":castle.y+1.0,"object":"res://assets/ui/icon_castle.png","cell":castle,"dimensions":Vector2(64,64)})
 		for entry in [["village_entrance","assets/ui/icon_village.png"],["cave_entrance","assets/objects/first_cave_entrance.png"]]:
 			var entrance := Vector2(WorldExpedition.point(definition[entry[0]]["cell"]))-origin
 			ordered.append({"bottom":entrance.y+1.0,"object":"res://"+entry[1],"cell":entrance,"dimensions":Vector2(64,64)})
