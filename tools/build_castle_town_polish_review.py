@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""城下町の仕上げ案 A/B/C の比較画像を作る。
+"""城下町の仕上げ（採用した案Bと、その修正）の比較画像を作る。
 
 入力はすべて実際のゲームで撮った画像：
 - variant-X/full-town.png : 本番の描画クラス FirstRegionView で城下町全体を1枚に描いたもの（tools/capture_castle_town_full.gd）
@@ -16,10 +16,9 @@ BEFORE = OUT / 'before-full-town.png'
 FONT = ImageFont.truetype(str(ROOT / 'assets/fonts/notosansjp/NotoSansJP.ttf'), 22)
 SMALL = ImageFont.truetype(str(ROOT / 'assets/fonts/notosansjp/NotoSansJP.ttf'), 18)
 TITLES = {
-    'A': '案A：登録済み素材だけで配置を直す',
-    'B': '案B：木造の大屋根の家・目標の明るさの草地（おすすめ）',
-    'C': '案C：宿屋・道具屋は町家、ほか3棟は木造・一段明るい草地',
+    'B': '案B（採用）を修正：切妻屋根・大きな木の固まり・細い道・花で埋めたL字花壇',
 }
+ADOPTED = OUT / 'variant-B/adopted-full-town.png'  # 依頼者が採用した時点（20fdaab）の本番描画
 BG = '#d6d2bb'
 INK = '#14212b'
 
@@ -43,7 +42,7 @@ def pair(left, left_label, right, right_label, title, out):
 
 
 def main():
-    variants = [v for v in 'ABC' if (OUT / f'variant-{v}/full-town.png').exists()]
+    variants = [v for v in 'B' if (OUT / f'variant-{v}/full-town.png').exists()]
     pair(TARGET, '依頼者の目標画像 IMG_0997', BEFORE, '変更前（07ac451）の本番描画', '変更前と目標', OUT / 'before-comparison.png')
     for v in variants:
         d = OUT / f'variant-{v}'
@@ -53,13 +52,14 @@ def main():
         if shots:
             canvas = Image.new('RGB', (1040, 60 + 300 * ((len(shots) + 1) // 2)), BG)
             draw = ImageDraw.Draw(canvas)
-            draw.text((12, 12), TITLES[v] + ' — 通常操作で歩いた実ゲーム画面（512×288を等倍）', font=SMALL, fill=INK)
+            draw.text((12, 12), '修正後の案B — 通常操作で歩いた実ゲーム画面（512×288を等倍）', font=SMALL, fill=INK)
             for i, s in enumerate(shots):
                 im = Image.open(s).convert('RGB').resize((512, 288), Image.Resampling.BOX)
                 canvas.paste(im, (8 + (i % 2) * 520, 48 + (i // 2) * 300))
             canvas.save(d / 'runtime-sheet.png')
-    # 3案と目標・変更前の一覧
-    cells = [(TARGET, '目標 IMG_0997'), (BEFORE, '変更前')] + [(OUT / f'variant-{v}/full-town.png', TITLES[v]) for v in variants]
+    pair(ADOPTED, '採用時の案B（20fdaab）', OUT / 'variant-B/full-town.png', '修正後', '採用時と修正後', OUT / 'variant-B/adopted-vs-revised.png')
+    # 目標・変更前・採用時・修正後の一覧
+    cells = [(TARGET, '目標 IMG_0997'), (BEFORE, '変更前（07ac451）'), (ADOPTED, '採用時の案B（20fdaab）'), (OUT / 'variant-B/full-town.png', '修正後')]
     cw, ch = 760, 580
     canvas = Image.new('RGB', (cw * 2, 30 + ch * ((len(cells) + 1) // 2)), BG)
     draw = ImageDraw.Draw(canvas)
