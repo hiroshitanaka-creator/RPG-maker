@@ -15024,6 +15024,934 @@
       "modified": "付録Bの衣装原画・採用済み人物設定・完成済み戦闘絵を参照して3動作を生成。既存手順で分割、最近傍縮小、固定16色＋衣装最大4色、二値透過、接地行95へ変換。歩行と完成済み4職は不変。",
       "actor_id": "pc_04",
       "job_id": "shaman"
+    },
+    {
+      "path": "assets/characters/pc_01/jobs/thief/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_01",
+      "job_id": "thief"
+    },
+    {
+      "path": "assets/characters/pc_02/jobs/thief/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_02",
+      "job_id": "thief"
+    },
+    {
+      "path": "assets/characters/pc_03/jobs/thief/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_03",
+      "job_id": "thief"
+    },
+    {
+      "path": "assets/characters/pc_04/jobs/thief/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_04",
+      "job_id": "thief"
+    },
+    {
+      "path": "assets/characters/pc_01/jobs/hunter/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_01",
+      "job_id": "hunter"
+    },
+    {
+      "path": "assets/characters/pc_02/jobs/hunter/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_02",
+      "job_id": "hunter"
+    },
+    {
+      "path": "assets/characters/pc_03/jobs/hunter/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_03",
+      "job_id": "hunter"
+    },
+    {
+      "path": "assets/characters/pc_04/jobs/hunter/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_04",
+      "job_id": "hunter"
+    },
+    {
+      "path": "assets/characters/pc_01/jobs/apothecary/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_01",
+      "job_id": "apothecary"
+    },
+    {
+      "path": "assets/characters/pc_02/jobs/apothecary/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_02",
+      "job_id": "apothecary"
+    },
+    {
+      "path": "assets/characters/pc_03/jobs/apothecary/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_03",
+      "job_id": "apothecary"
+    },
+    {
+      "path": "assets/characters/pc_04/jobs/apothecary/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_04",
+      "job_id": "apothecary"
+    },
+    {
+      "path": "assets/characters/pc_01/jobs/bard/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_01",
+      "job_id": "bard"
+    },
+    {
+      "path": "assets/characters/pc_02/jobs/bard/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_02",
+      "job_id": "bard"
+    },
+    {
+      "path": "assets/characters/pc_03/jobs/bard/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_03",
+      "job_id": "bard"
+    },
+    {
+      "path": "assets/characters/pc_04/jobs/bard/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_04",
+      "job_id": "bard"
+    },
+    {
+      "path": "assets/characters/pc_01/jobs/knight/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_01",
+      "job_id": "knight"
+    },
+    {
+      "path": "assets/characters/pc_02/jobs/knight/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_02",
+      "job_id": "knight"
+    },
+    {
+      "path": "assets/characters/pc_03/jobs/knight/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_03",
+      "job_id": "knight"
+    },
+    {
+      "path": "assets/characters/pc_04/jobs/knight/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_04",
+      "job_id": "knight"
+    },
+    {
+      "path": "assets/characters/pc_01/jobs/sage/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_01",
+      "job_id": "sage"
+    },
+    {
+      "path": "assets/characters/pc_02/jobs/sage/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_02",
+      "job_id": "sage"
+    },
+    {
+      "path": "assets/characters/pc_03/jobs/sage/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_03",
+      "job_id": "sage"
+    },
+    {
+      "path": "assets/characters/pc_04/jobs/sage/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_04",
+      "job_id": "sage"
+    },
+    {
+      "path": "assets/characters/pc_01/jobs/swordsman/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_01",
+      "job_id": "swordsman"
+    },
+    {
+      "path": "assets/characters/pc_02/jobs/swordsman/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_02",
+      "job_id": "swordsman"
+    },
+    {
+      "path": "assets/characters/pc_03/jobs/swordsman/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_03",
+      "job_id": "swordsman"
+    },
+    {
+      "path": "assets/characters/pc_04/jobs/swordsman/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_04",
+      "job_id": "swordsman"
+    },
+    {
+      "path": "assets/characters/pc_01/jobs/shaman/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_01",
+      "job_id": "shaman"
+    },
+    {
+      "path": "assets/characters/pc_02/jobs/shaman/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_02",
+      "job_id": "shaman"
+    },
+    {
+      "path": "assets/characters/pc_03/jobs/shaman/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_03",
+      "job_id": "shaman"
+    },
+    {
+      "path": "assets/characters/pc_04/jobs/shaman/walk.png",
+      "kind": "character_walk",
+      "size": [
+        96,
+        192
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        3,
+        4
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "imagegen + Python/Pillow",
+      "author": "RPG-maker / Codex（衣装原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-09-28",
+      "prompt_record": "assets/source_records/walk-eight-generation.json",
+      "conversion_record": "assets/source_records/walk-eight-conversion.json",
+      "modified": "指定衣装と設定画から4方向3コマを生成。最近傍縮小、顔色固定、16色以内、二値透過、接地行47。左右は別作画。",
+      "actor_id": "pc_04",
+      "job_id": "shaman"
     }
   ],
   "audio": [
