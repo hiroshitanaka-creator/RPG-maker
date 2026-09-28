@@ -90,3 +90,9 @@
 - `docs/verification/sprint3/costume-overview.png` と原画比較で、戦士・武闘家・僧侶・魔法使いを見分けられるか、顔・髪・体格が同じ4人に見えるかを確認する。
 - `walk-preview.gif` と本番の戦闘描画見本で、歩行・攻撃・被弾の違いと大きさを確認する。
 - 12職のうち4職の区切り。残る8職は `docs/sprint3-costumes.md` に記載。
+
+## スプリント5：城下町の見た目の仕上げ（3案）
+
+- `docs/verification/castle-town-polish/overview.png` と各案の `comparison.png`・`runtime-sheet.png` を目標画像 IMG_0997 と見比べ、1案を選ぶ。おすすめは案B。選ぶまで main へ取り込まない。
+- 板葺きに塗り替えた木造の家の屋根、明るい草地の色、柵つき花壇の見え方が、目標の絵柄として受け入れられるかを確認する。
+- 城下町へ入った直後に主人公が南門のアーチの下で隠れる点（初版から同じ）を直すかどうか。詳細は `docs/castle-town-polish.md`。
