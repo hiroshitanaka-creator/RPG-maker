@@ -114,7 +114,7 @@ func _process(delta: float) -> void:
 			if before_region["layer"] != after_region["layer"] or before_region["node"] != after_region["node"]:
 				_rpg_audio.effect("door")
 			elif before_region["room"] != after_region["room"]:
-				_rpg_audio.effect("stairs" if after_region["node"] == "first_cave" else "door")
+				_rpg_audio.effect("stairs" if after_region["node"] in ["first_cave","first_forest_tower"] else "door")
 			_world_mover.stop()
 			_world_motion_ms = Time.get_ticks_msec()
 			_walk_frame = (_walk_frame+1)%4
@@ -2278,14 +2278,15 @@ func _sync_region_music() -> void:
 	var track := "village"
 	var state := game.overworld_state()
 	if state["layer"]=="world":track="world"
-	elif state["node"]=="first_cave":track="cave"
-	if mode==Mode.BATTLE:track="boss" if game.current_encounter_id()=="first_boss" else "battle"
+	elif state["node"] in ["first_cave","first_forest_tower"]:track="cave"
+	if mode==Mode.BATTLE:track="boss" if game.current_encounter_id() in ["first_boss","forest_tower_boss"] else "battle"
 	elif _region_victory:track="victory"
 	_rpg_audio.play_music(track)
 
 func _region_background() -> String:
 	var state := game.overworld_state()
 	if state["node"]=="first_cave":return "cave"
+	if state["node"]=="first_forest_tower":return "tower"
 	if state["layer"]=="world":
 		var map: Dictionary=FirstRegionPresentation.data()["maps"]["world"]
 		var local := WorldExpedition.point(state["cell"])-WorldExpedition.point(map["origin"])

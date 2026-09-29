@@ -78,6 +78,9 @@ func _draw() -> void:
 	var ordered: Array=_objects.duplicate()
 	var definition := FirstRegion.data()
 	if state["layer"]=="world":
+		if definition.has("tower_entrance"):
+			var tower := Vector2(WorldExpedition.point(definition["tower_entrance"]["cell"]))-origin
+			ordered.append({"bottom":tower.y+1.0,"object":"res://assets/ui/icon_tower.png","cell":tower,"dimensions":Vector2(64,64)})
 		if definition.has("castle_entrance"):
 			var castle := Vector2(WorldExpedition.point(definition["castle_entrance"]["cell"]))-origin
 			ordered.append({"bottom":castle.y+1.0,"object":"res://assets/ui/icon_castle.png","cell":castle,"dimensions":Vector2(64,64)})
@@ -87,6 +90,8 @@ func _draw() -> void:
 		var gate := Vector2(WorldExpedition.point(definition["gate"]["cell"]["cell"]))-origin
 		ordered.append({"bottom":gate.y+1.0,"object":"res://assets/objects/natural_gate.png","cell":gate,"dimensions":Vector2(96,96),"region":Rect2(128 if saved["inventory"].get("gate_pass",0)>0 else 0,0,128,128)})
 	else:
+		if state["node"]=="first_forest_tower" and "forest_tower_boss" not in state["cleared"] and state["room"]==definition["tower_boss"]["point"]["room"]:
+			ordered.append({"bottom":float(definition["tower_boss"]["point"]["cell"][1])+1.0,"object":"res://"+str(definition["tower_boss"]["sprite"]),"cell":Vector2(WorldExpedition.point(definition["tower_boss"]["point"]["cell"])),"dimensions":Vector2(72,72)})
 		var stair: Dictionary=definition["stairs_down"]["from"] if state["room"]==0 else definition["stairs_up"]["from"]
 		if state["node"]=="first_cave":
 			var stairs := Vector2(WorldExpedition.point(stair["cell"]))

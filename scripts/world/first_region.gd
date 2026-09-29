@@ -30,6 +30,8 @@ static func outside(key: String) -> Dictionary:
 static func walkable(saved: Dictionary, cell: Vector2i) -> bool:
 	var state: Dictionary = saved["overworld"]
 	if state["layer"] == "world":
+		if data().has("tower_entrance") and [cell.x,cell.y]==data()["tower_entrance"]["cell"] and not saved["progress_flags"].get("castle_north_permission",false):return false
+		if [cell.x,cell.y] in data().get("tower_mountain_path",[]) and not saved["progress_flags"].get("mountain_path_open",false):return false
 		if [cell.x,cell.y] == data()["gate"]["cell"]["cell"] and int(saved["inventory"].get("gate_pass",0)) == 0:return false
 		if data().has("castle_entrance") and [cell.x,cell.y]==data()["castle_entrance"]["cell"] and int(saved["inventory"].get("gate_pass",0))==0:return false
 		for event in FirstRegionPresentation.residents(state):
@@ -66,6 +68,9 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 	state["entry_lock"] = ""
 	var definition := data()
 	if state["layer"] == "world":
+		if definition.has("tower_entrance") and state["cell"]==definition["tower_entrance"]["cell"]:
+			place(state,definition["tower_spawn"])
+			return {"kind":"moved"}
 		if definition.has("castle_entrance") and state["cell"]==definition["castle_entrance"]["cell"]:
 			place(state,definition["castle_spawn"])
 			return {"kind":"moved"}
@@ -76,6 +81,9 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		if at(state,definition["gate"]["cell"]):
 			return {"kind":"dialogue","speaker":"門番","sound":"door","text":["通行証を確認しました。お通りください。"]}
 	else:
+		if definition.has("tower_exit") and at(state,definition["tower_exit"]):
+			place(state,outside("tower_entrance"));state["facing"]=0;state["entry_lock"]="tower_entrance"
+			return {"kind":"moved"}
 		if definition.has("castle_exit") and at(state,definition["castle_exit"]):
 			place(state,outside("castle_entrance"));state["facing"]=0;state["entry_lock"]="castle_entrance"
 			return {"kind":"moved"}
@@ -90,16 +98,19 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 				return {"kind":"moved"}
 		var links: Array = definition["doors"].duplicate()
 		links.append_array(definition.get("castle_doors",[]))
+		links.append_array(definition.get("tower_doors",[]))
 		links.append(definition["stairs_down"])
 		links.append(definition["stairs_up"])
 		for link in links:
 			if at(state,link["from"]):
 				place(state,link["to"])
 				return {"kind":"moved"}
+		if definition.has("tower_boss") and at(state,definition["tower_boss"]["point"]) and "forest_tower_boss" not in state["cleared"]:
+			return {"kind":"battle","id":"forest_tower_boss","enemies":definition["tower_boss"]["enemies"],"seed":randi()}
 		if at(state,definition["boss"]["point"]) and "first_boss" not in state["cleared"]:
 			return {"kind":"battle","id":"first_boss","enemies":definition["boss"]["enemies"],"seed":randi()}
 	if state["node"] not in ["start_village","first_castle"]:
-		var rule: Dictionary = definition["encounters"]["world" if state["layer"] == "world" else "first_cave"]
+		var rule: Dictionary = definition["encounters"]["world" if state["layer"] == "world" else state["node"]]
 		if randf() < float(rule["chance"]):
 			return {"kind":"battle","id":"first_region_encounter","enemies":rule["enemies"],"seed":randi()}
 	return {"kind":"moved"}
@@ -167,7 +178,9 @@ static func valid(saved: Dictionary) -> bool:
 		var cell: Variant=record.get("cell")
 		if not cell is Array or cell.size()!=2 or not cell[0] is int or not cell[1] is int:return false
 		if not record.get("facing") is int or record["facing"] not in [0,1,2,3]:return false
-	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle"] or room(state).is_empty()):return false
+	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle","first_forest_tower"] or room(state).is_empty()):return false
+	if state["node"]=="first_forest_tower" and not saved["progress_flags"].get("castle_north_permission",false):return false
+	if saved["progress_flags"].get("mountain_path_open",false) and ("forest_tower_boss" not in state["cleared"] or not joined(saved,"pc_04")):return false
 	if state["node"]=="first_castle" and int(saved["inventory"].get("gate_pass",0))!=1:return false
 	if state["layer"] == "world" and (state["node"] != "" or state["room"] != 0):return false
 	if not saved["inventory"].get("gate_pass",0) is int or saved["inventory"].get("gate_pass",0) not in [0,1]:return false

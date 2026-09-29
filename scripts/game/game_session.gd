@@ -116,7 +116,7 @@ func export_state() -> Dictionary:
 
 
 func new_first_region() -> bool:
-	if not new_game(3):return false
+	if not new_game(4):return false
 	_pending_region_recruit=""
 	_pending_region_audience=false
 	_state["first_region"] = {"version":1,"reserve":_state["party"].slice(1).duplicate(true),"coins":20}
@@ -170,6 +170,8 @@ func interact_first_region() -> Dictionary:
 		FirstRegion.face_event(_state,event)
 		match event["kind"]:
 			"npc":
+				if event.get("tower_path",false) and _state["progress_flags"].get("mountain_path_open",false):
+					return {"kind":"dialogue","speaker":event.get("label","兵士"),"text":event["after_text"]}
 				if event.get("audience",false):
 					if _state["progress_flags"].get("job_change_unlocked",false):
 						return {"kind":"dialogue","speaker":"王","text":["仲間の役目を確かめ、準備を整えて進むがよい。北の森へ向かう許しは出してある。"]}
@@ -180,6 +182,13 @@ func interact_first_region() -> Dictionary:
 					return {"kind":"dialogue","speaker":event.get("label","村人"),"text":event["after_text"]}
 				return {"kind":"dialogue","speaker":event.get("label","村人"),"text":event["text"]}
 			"recruit":
+				if event.has("requires_clear") and event["requires_clear"] not in state["cleared"]:
+					return {"kind":"dialogue","speaker":"スイナ","text":["気をつけて。中央の翼獣が、こちらを見ているわ。まずは身を守りましょう。"]}
+				# 塔の実装前の保存には4人目の待機データがない。加入時に初期状態を用意する。
+				if event["actor"]=="pc_04" and not _state["first_region"]["reserve"].any(func(a:Dictionary)->bool:return a["id"]=="pc_04"):
+					var initial := GameSession.new()
+					if not initial.new_game(4):return {}
+					_state["first_region"]["reserve"].append(initial.export_state()["party"][3])
 				if event.get("join_on_last_line",false):
 					_pending_region_recruit=event["actor"]
 					if event["actor"]=="pc_03":
@@ -217,6 +226,7 @@ func finish_first_region_audience() -> bool:
 
 func finish_first_region_recruit(actor_id: String) -> bool:
 	if not first_region_active() or actor_id.is_empty() or actor_id!=_pending_region_recruit:return false
+	if actor_id=="pc_04" and (_state["overworld"]["node"]!="first_forest_tower" or "forest_tower_boss" not in _state["overworld"]["cleared"]):return false
 	if actor_id=="pc_03" and _state["first_region"].get("errands",{}).get("haldo")!="wrapped":return false
 	for actor in _state["first_region"]["reserve"]:
 		if actor["id"]!=actor_id:continue
@@ -224,6 +234,7 @@ func finish_first_region_recruit(actor_id: String) -> bool:
 		_state["first_region"]["reserve"].erase(actor)
 		_pending_region_recruit=""
 		if actor_id=="pc_03":_state["first_region"]["errands"]["haldo"]="complete"
+		if actor_id=="pc_04":_state["progress_flags"]["mountain_path_open"]=true
 		return true
 	return false
 
