@@ -1,0 +1,63 @@
+{
+  "build": {
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 803,
+    "id": "bdba6cb94b5c323cbb2d7ea32a5de15a9436359336ef2f952529741ae55d8220",
+    "version": 1
+  },
+  "checks": 36,
+  "draft_mode": true,
+  "examples": [
+    {
+      "background": "plains",
+      "jobs": [
+        "warrior",
+        "mage",
+        "knight",
+        "slime"
+      ],
+      "name": "mixed-1-plains",
+      "stages": [
+        0,
+        30,
+        60,
+        90
+      ]
+    },
+    {
+      "background": "cave",
+      "jobs": [
+        "hunter",
+        "priest",
+        "bard",
+        "shaman"
+      ],
+      "name": "mixed-2-cave",
+      "stages": [
+        60,
+        0,
+        30,
+        60
+      ]
+    },
+    {
+      "background": "underworld",
+      "jobs": [
+        "slime",
+        "swordsman",
+        "sage",
+        "thief"
+      ],
+      "name": "mixed-3-underworld",
+      "stages": [
+        90,
+        60,
+        30,
+        0
+      ]
+    }
+  ],
+  "failures": [],
+  "scope": "素材確認用の明示入力による本番戦闘描画・保存復元・段階印。本編での到達を証明するものではない。",
+  "status": "PASS"
+}
