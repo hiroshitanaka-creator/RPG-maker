@@ -168,7 +168,10 @@ func interact_first_region() -> Dictionary:
 		if event["kind"] == "recruit" and FirstRegion.joined(_state,event["actor"]):continue
 		var event_position := FirstRegion.event_cell(_state,event)
 		var direction: Vector2i = [Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP][state["facing"]]
-		var across_counter: bool = int(event.get("reach",1)) == 2 and event_position == target+direction
+		# reach=2 は台1つ分、reach=3 は奥行き2マスの台の向こうまで話しかけられる。
+		var across_counter := false
+		for step in range(1,int(event.get("reach",1))):
+			if event_position == target+direction*step:across_counter = true
 		if event_position != target and event_position != WorldExpedition.point(state["cell"]) and not across_counter:continue
 		FirstRegion.face_event(_state,event)
 		match event["kind"]:
