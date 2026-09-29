@@ -20,7 +20,10 @@ static func appearance(actor: Dictionary, kind: String, frame: int = 0, facing: 
 	var path: String = costume.get(kind,definition.get(kind,""))
 	var signs: bool = int(actor.get("erosion",0)) >= 30
 	if signs and form.is_empty():
-		path = definition.get("erosion_signs",{}).get(kind,"")
+		var sign_definition: Dictionary = definition.get("erosion_signs",{})
+		var job_stages: Dictionary = sign_definition.get("jobs",{}).get(actor.get("job_id",""),{})
+		var stage_key := "60" if int(actor.get("erosion",0))>=60 else "30"
+		path = job_stages.get(stage_key,{}).get(kind,sign_definition.get(kind,""))
 	if not form.is_empty():
 		path = definition.get("forms",{}).get(form,{}).get(kind,"")
 		if path.is_empty():
