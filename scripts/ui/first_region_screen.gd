@@ -209,6 +209,9 @@ func _battle() -> void:
 		button.name="Status_"+member_id;button.custom_minimum_size.x=48;button.add_theme_font_size_override("font_size",10)
 		if member_id==(arena.acting_actor if not replay.is_empty() else actor):
 			for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color","font_disabled_color"]:button.add_theme_color_override(state,Color("ffe36b"))
+		var erosion_mark := ErosionStageMark.new()
+		erosion_mark.name="ErosionStage_"+member_id;erosion_mark.member=member.duplicate(true)
+		row.add_child(erosion_mark)
 		var hp := _label("HP%d/%d" % [member["hp"],member["max_hp"]],10);hp.custom_minimum_size.x=58;row.add_child(hp)
 		_battle_bar(row,member_id,"HP",int(member["hp"]),int(member["max_hp"]),Color("73b54a"))
 		var mp := _label("MP%d/%d" % [member["mp"],member["max_mp"]],10);mp.custom_minimum_size.x=50;row.add_child(mp)

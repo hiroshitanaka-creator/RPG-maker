@@ -3,21 +3,22 @@ import json,hashlib
 from pathlib import Path
 import numpy as np
 from PIL import Image,ImageDraw,ImageFont
+from scipy import ndimage
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'docs/verification/erosion-pattern-preview'
-COLORS=['153550','254A63','728593','BDC7D3','5D98C4']
+COLORS=['5D98C4','BDC7D3','EEF6EB']
 RGB=[tuple(int(c[i:i+2],16) for i in (0,2,4)) for c in COLORS]
 NODES={
 'battle':[
- {'cheek':[(48,43),(50,45),(53,42)],'arm':[(35,57),(33,61),(36,64),(33,68)],'extra':[(37,53),(39,57),(35,60)]},
- {'cheek':[(48,45),(50,47),(53,44)],'arm':[(29,52),(33,55),(36,52),(40,55)],'extra':[(40,53),(44,56),(45,58)]},
- {'cheek':[(40,50),(42,52),(45,50)],'arm':[(30,64),(27,67),(30,70),(28,73)],'extra':[(33,60),(35,64),(30,67)]}],
+ {'cheek':[(44,42),(47,44),(49,42),(52,43)],'arm':[(38,52),(35,56),(37,60),(32,64),(34,69)],'neck':[(45,47),(46,50),(51,50),(53,48)],'other_arm':[(59,50),(63,54),(61,58),(65,62)]},
+ {'cheek':[(47,44),(50,46),(52,43),(55,43)],'arm':[(42,53),(37,55),(34,52),(29,54),(25,52)],'neck':[(48,48),(49,51),(54,53),(55,50)],'other_arm':[(61,50),(64,53),(63,57),(66,60)]},
+ {'cheek':[(39,49),(41,51),(44,49),(46,50)],'arm':[(33,59),(29,64),(31,68),(27,72),(29,75)],'neck':[(43,53),(45,55),(50,55),(52,52)],'other_arm':[(55,52),(57,56),(55,60),(60,64)]}],
 'walk':[
- {'cheek':[(17,17),(18,18),(20,17)],'arm':[(9,26),(8,29),(9,31)],'extra':[(10,24),(11,26),(9,28)]},
- {'cheek':[(11,17),(12,19)],'arm':[(15,27),(16,29),(15,32)],'extra':[(15,25),(17,27),(16,30)]},
- {'cheek':[(21,17),(20,19)],'arm':[(17,27),(16,29),(17,32)],'extra':[(17,25),(15,27),(16,30)]},
- {'cheek':[],'arm':[(8,28),(7,30),(8,32)],'extra':[(24,28),(25,30),(24,32)]}]
+ {'cheek':[(14,16),(16,18),(19,17)],'arm':[(10,24),(8,27),(10,29),(8,33)],'neck':[(14,20),(16,22),(18,20)],'other_arm':[(22,24),(24,27),(22,30),(24,33)]},
+ {'cheek':[(10,16),(12,18),(13,19)],'arm':[(15,24),(16,27),(14,30),(16,33)],'neck':[(12,21),(14,22),(16,22)],'other_arm':[(11,26),(10,29),(11,32)]},
+ {'cheek':[(22,16),(20,18),(19,19)],'arm':[(17,24),(16,27),(18,30),(16,33)],'neck':[(20,21),(18,22),(16,22)],'other_arm':[(21,26),(22,29),(21,32)]},
+ {'cheek':[],'arm':[(8,25),(7,28),(9,30),(7,33)],'neck':[(14,20),(16,21),(18,20)],'other_arm':[(24,25),(25,28),(23,30),(25,33)]}]
 }
 
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -35,17 +36,21 @@ def main():
             for row in range(rows):
                 for col in range(3):
                     local=Image.new('RGBA',(w,h));draw=ImageDraw.Draw(local);nodes=NODES[kind][col if kind=='battle' else row]
-                    for part in ['cheek','arm']+(['extra'] if stage==60 else []):
+                    body=np.array(base.crop((col*w,row*h,(col+1)*w,(row+1)*h)))
+                    body_mask=body[:,:,3]>0
+                    if stage==60:
+                        # 内側の輪郭光なら元の大きさ・透過・足元を維持できる。
+                        outer=body_mask&~ndimage.binary_erosion(body_mask,iterations=1,border_value=0)
+                        rim=body_mask&~ndimage.binary_erosion(body_mask,iterations=2 if kind=='battle' else 1,border_value=0)
+                        a=np.array(local);a[rim]=RGB[1]+(255,);a[outer]=(RGB[0] if kind=='battle' else RGB[1])+(255,)
+                        local=Image.fromarray(a);draw=ImageDraw.Draw(local)
+                    for part in ['cheek','arm']+(['neck','other_arm'] if stage==60 else []):
                         points=nodes[part]
                         if not points:continue
-                        glow=RGB[4] if kind=='battle' else RGB[3]
-                        width=(4 if stage==60 and part!='cheek' else 3) if kind=='battle' else (3 if stage==60 and part!='cheek' else 2)
-                        draw.line(points,fill=glow+(255,),width=width)
-                        draw.line(points,fill=RGB[0]+(255,),width=1)
-                        if stage==60:
-                            x,y=points[len(points)//2];draw.point((x+1,y),fill=RGB[3]+(255,))
-                    a=np.array(local);body=np.array(base.crop((col*w,row*h,(col+1)*w,(row+1)*h)))
-                    a[body[:,:,3]==0]=0;mask.alpha_composite(Image.fromarray(a),(col*w,row*h))
+                        # 近白色の芯を太めにし、暗い鎧と髪に埋もれない発光模様にする。
+                        draw.line(points,fill=(RGB[0] if kind=='battle' else RGB[1])+(255,),width=5 if kind=='battle' else 3)
+                        draw.line(points,fill=RGB[2]+(255,),width=2 if kind=='battle' else 1)
+                    a=np.array(local);a[~body_mask]=0;mask.alpha_composite(Image.fromarray(a),(col*w,row*h))
             if stage==60:mask=Image.alpha_composite(previous_masks[kind],mask)
             previous_masks[kind]=mask.copy()
             composite=Image.alpha_composite(base,mask)
@@ -53,13 +58,13 @@ def main():
             combined_path=f'assets/characters/pc_01/erosion_signs/jobs/warrior/{stage}/{kind}.png'
             for path,image,overlay in [(overlay_path,mask,True),(combined_path,composite,False)]:
                 dest=ROOT/path;dest.parent.mkdir(parents=True,exist_ok=True);image.save(dest)
-                entry=dict(path=path,kind='erosion_pattern_overlay' if overlay else ('character_battle' if kind=='battle' else 'character_walk'),size=list(image.size),max_colors=5 if overlay else (20 if kind=='battle' else 16),status='required',palette='assets/palette/natural.gpl',source='generated',tool='Python/Pillow',author='RPG-maker / Codex',license='LicenseRef-Generated-Project',generated_at='2026-09-29',prompt_record='assets/source_records/erosion-pattern-preview.json',conversion_record='assets/source_records/erosion-pattern-preview.json',modified='独立した腕・頬の模様。衣装の原本は無変更。'+('重ね絵のため接地行を持たない。' if overlay else '同じ大きさの衣装と重ね絵を合成。'))
+                entry=dict(path=path,kind='erosion_pattern_overlay' if overlay else ('character_battle' if kind=='battle' else 'character_walk'),size=list(image.size),max_colors=3 if overlay else (20 if kind=='battle' else 16),status='required',palette='assets/palette/natural.gpl',source='generated',tool='Python/Pillow',author='RPG-maker / Codex',license='LicenseRef-Generated-Project',generated_at='2026-09-29',prompt_record='assets/source_records/erosion-pattern-preview.json',conversion_record='assets/source_records/erosion-pattern-preview.json',modified='近白色の発光模様。30は片腕・頬、60は両腕・首・頬と内側の輪郭光。衣装の原本は無変更。'+('重ね絵のため接地行を持たない。' if overlay else '同じ大きさの衣装と重ね絵を合成。'))
                 if overlay:entry.update(cell_size=[w,h],layout=[3,rows])
                 else:entry.update(frame=[w,h],grid=[3,rows])
                 entries[path]=entry
             assert np.array_equal(np.array(base)[:,:,3],np.array(composite)[:,:,3])
             stages[str(stage)][kind]=combined_path
-            records.append(dict(request='依頼者採用の案2。腕と頬に紺の細い模様を重ね、少し光らせる。侵蝕30から60で模様を増やす。まず戦士の見本。',tool='Python/Pillowによる決定論的な重ね絵。画像生成モデルは未使用。',actor='pc_01',job='warrior',stage=stage,kind=kind,base=base_path,base_sha256=digest(ROOT/base_path),overlay=overlay_path,overlay_sha256=digest(ROOT/overlay_path),composite=combined_path,composite_sha256=digest(ROOT/combined_path),colors=COLORS,nodes=NODES[kind],opaque_overlay_pixels=int((np.array(mask)[:,:,3]>0).sum())))
+            records.append(dict(contour_inside_pixels=(2 if kind=='battle' else 1) if stage==60 else 0,request='依頼者修正：白に近い明るい水色で発光。兆候は片腕と頬。変異は両腕・首・頬に拡大し、輪郭に1〜2画素の光を沿わせる。まずカイナ戦士。',tool='Python/Pillowによる決定論的な重ね絵。画像生成モデルは未使用。',actor='pc_01',job='warrior',stage=stage,kind=kind,base=base_path,base_sha256=digest(ROOT/base_path),overlay=overlay_path,overlay_sha256=digest(ROOT/overlay_path),composite=combined_path,composite_sha256=digest(ROOT/combined_path),colors=COLORS,nodes=NODES[kind],opaque_overlay_pixels=int((np.array(mask)[:,:,3]>0).sum())))
     visuals['actors']['pc_01']['erosion_signs'].setdefault('jobs',{})['warrior']=stages
     registry['assets']=list(entries.values());registry_path.write_text(json.dumps(registry,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     visual_path.write_text(json.dumps(visuals,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
