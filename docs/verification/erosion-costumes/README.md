@@ -1,8 +1,8 @@
-# 4人×12職の侵蝕模様：反映前の確認
+# 4人×12職の侵蝕模様：本番登録後の確認
 
 2026年9月29日。平常・兆候（30〜59）・変異（60〜89）の比較。
 
-**本番への反映は未実施。スプリント4は未完了。** 元の衣装を変えず、人物別の発光色を重ねた合成画像41シートが現行の色数上限を1色超える。規約変更の承認を待っている。以下は準備した画像を一時的に読み込んだ撮影であり、通常のゲームに接続済みという意味ではない。
+2026年9月29日、依頼者は侵蝕の合成素材に限る発光色1色の追加を承認した。素材規約に戦闘21色・歩行17色の限定例外を記録し、4人×12職の戦闘・歩行を本番へ登録した。以下の一覧8枚と混在画面3枚は、通常の人物素材参照を使って撮り直したもの。下書きの一時接続は使っていない。
 
 ## 一覧と画面
 
@@ -31,7 +31,17 @@
 
 採用済みのカイナ戦士の模様・合成画像8枚はそのまま使う。その他の衣装も原本のPNGは変更せず、模様を重ねる場所の外側は画素単位で保持する。
 
-## 検査結果の区別
+## 本番登録後の検査
+
+- `registered-checks.json`：192合成シート・1,440コマ・追加376画像の検査が成功。既存673画像などの原本と台帳、共通パレットは採用済みコミットから不変。寸法、色数、パレット所属、二値透過、接地、部位、輪郭光、兆候から変異への範囲の増加、合成の一致を確認した。
+- `board-checks.json`：本番の素材参照と全動作・4方向を含む4,616項目が成功。撮影行を拡縮せず転記したことも確認。
+- `mixed-checks.json`：本番登録での保存状態・職業・段階・印など36項目が成功。
+- `prepared-color-limits.json`：承認後の上限への違反は0件。
+- `python tools/validate_assets.py --strict`：1,049画像・14音・3パレット・2字体が成功。既存検査プログラムは変更していない。
+
+## 反映前の記録
+
+以下は前回の下書き時点の検査記録。承認後の現状は上の本番登録後の結果を参照する。
 
 - `preparation-checks.json`：192合成シート・1,440コマの寸法、二値透過、接地、部位の描画、変異の輪郭光、兆候から変異への範囲の増加、原本と模様外の画素保持は成功。
 - `board-checks.json`：下書きの撮影296項目が成功。撮影した行の画素と一覧の画素も一致。
@@ -43,24 +53,24 @@
 - `python3 D:/Codex/.codex/scope-lock/scripts/verify_cli.py --quiet .`：R-01〜R-08すべて成功。R-07は52.0秒、R-08は17.6秒。
 - Godotのインポートと撮影が終了コード0で完了。CIの終了結果は、この差分のpush後に確認する。
 
-## 再現コマンド
+## 本番登録・撮影の再現コマンド
 
 PythonではPillow・NumPy・SciPy、撮影では固定版Godotを使用する。
 
 ```powershell
 . ./tools/prepare_scope_env.ps1
 python tools/prepare_erosion_costume_anchors.py
-python tools/build_erosion_costumes.py
-python tools/check_erosion_costume_preparation.py
+python tools/build_erosion_costumes.py --apply --approved-extra-color
+python tools/check_erosion_costumes_registered.py
 godot --headless --editor --import --quit
-godot --path . --rendering-method gl_compatibility --script res://tools/capture_erosion_costume_boards.gd -- --draft
-godot --path . --rendering-method gl_compatibility --script res://tools/capture_erosion_mixed.gd -- --draft
+godot --path . --rendering-method gl_compatibility --script res://tools/capture_erosion_costume_boards.gd
+godot --path . --rendering-method gl_compatibility --script res://tools/capture_erosion_mixed.gd
 ```
 
-## 残作業と停止理由
+## 反映前に確認した判断と解決
 
-色数の扱いの決定後、合成素材を本番へ登録し、通常の素材参照で撮影・検査・CIを行う。未承認の上限変更や、指定の発光色を職業ごとに変える処理は実施していない。
+色数の扱いは案1を依頼者が承認し、本番登録・再撮影を実施した。元衣装や他の素材の上限は変更していない。
 
 [承認案](../../proposals/erosion-composite-colors.md)は、侵蝕の合成だけ戦闘21色・歩行17色を認める案を推奨する。元衣装と発光色を両方保てるため。もう一つは現行上限を保ち、光の縁の色を衣装ごとの既存色へ寄せる案。どちらもGitで戻せる。
 
-確認が必要な根拠は `AGENTS.md` の「テスト・契約ファイル・保護ファイルの変更」は実行前に確認する規則と、`docs/asset-spec.md` の戦闘20色・歩行16色の規約。依存しない位置調整・一覧・混在画面の準備を終えてから、この判断のために止める。スプリント5には進まない。
+確認が必要だった根拠は `AGENTS.md` の「テスト・契約ファイル・保護ファイルの変更」は実行前に確認する規則と、`docs/asset-spec.md` の戦闘20色・歩行16色の規約。依頼者は本番登録後の検査をもってスプリント4を完了し、次にスプリント5の森の塔とスイナ加入へ戻ることを指示した。
