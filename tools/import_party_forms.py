@@ -9,7 +9,7 @@ from validate_assets import load_palette
 COLORS={
 'pc_02':['250F07','3A2317','5D2717','68422F','90422D','9A6048','BF694D','D09279','3D0B14','74281B','B3433F','314619','657B2A','88A441','B2CA60','C8DB7F','D9CCB4','E9E7CB','EEF6EB','CE9F54'],
 'pc_03':['0B1824','162835','254A63','728593','BDC7D3','EEF6EB','3C3B35','58544C','726C61','8A8374','A49A88','B5AA95','C4BAA4','D9CCB4','E9E7CB','3A2317','68422F','CE9F54','EDBB5B','F6D275'],
-'pc_04':['27172A','53335F','8C5996','D991B5','0B1824','153550','254A63','728593','BDC7D3','EEF6EB','3A2317','68422F','CE9F54','D7B778','EDBB5B','F6D275','22221E','58544C','B5AA95','E9E7CB']}
+'pc_04':['2C1251','4D267F','7342B7','A778DE','0B1824','153550','254A63','728593','BDC7D3','EEF6EB','3A2317','68422F','CE9F54','D7B778','EDBB5B','F6D275','22221E','58544C','B5AA95','E9E7CB']}
 WALK_COLORS={
 'pc_02':['250F07','3A2317','68422F','90422D','9A6048','BF694D','D09279','B3433F','314619','657B2A','88A441','C8DB7F','D9CCB4','E9E7CB','EEF6EB','CE9F54'],
 'pc_03':['0B1824','254A63','728593','BDC7D3','EEF6EB','3C3B35','58544C','8A8374','B5AA95','C4BAA4','D9CCB4','E9E7CB','3A2317','68422F','CE9F54','F6D275'],
@@ -43,7 +43,7 @@ def paint(frame,actor,form,pose,kind,palette):
     if actor=='pc_04':
         # 青紫をRGB距離だけで選ぶと淡い桃色へ偏る。紫の段階から明度が近い色を選ぶ。
         purple=(rgb[:,:,2]>rgb[:,:,1]*1.3)&(rgb[:,:,0]>rgb[:,:,1]*1.15)&(rgb[:,:,0]>rgb[:,:,2]*.5)
-        ramp=np.array([[39,23,42],[83,51,95],[140,89,150],[217,145,181],[238,246,235]])
+        ramp=np.array([[44,18,81],[77,38,127],[115,66,183],[167,120,222],[238,246,235]]) if kind=='battle' else np.array([[39,23,42],[83,51,95],[140,89,150],[217,145,181],[238,246,235]])
         lum=(target*[.2126,.7152,.0722]).sum(2)
         levels=(ramp*[.2126,.7152,.0722]).sum(1)
         indices=abs(lum[:,:,None]-levels).argmin(2)
@@ -76,13 +76,13 @@ def paint(frame,actor,form,pose,kind,palette):
     return Image.fromarray(a),dict(gamma=gamma,light_cores=cores,source_glow_pixels=int(glow.sum()))
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--actors',nargs='+',default=list(ACTORS));parser.add_argument('--forms',nargs='+',default=FORMS);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--actors',nargs='+',default=list(ACTORS));parser.add_argument('--forms',nargs='+',default=FORMS);parser.add_argument('--kinds',nargs='+',choices=['battle','walk'],default=['battle','walk']);args=parser.parse_args()
     registry_path=ROOT/'assets/registry.json';registry=json.loads(registry_path.read_text(encoding='utf-8'));entries={e['path']:e for e in registry['assets']}
     visuals=json.loads((ROOT/'data/character_visuals.json').read_text(encoding='utf-8'))
     sources={(r['actor'],r['form']):r for r in json.loads((ROOT/'assets/source_records/party-form-cutouts.json').read_text(encoding='utf-8'))}
     record_path=ROOT/'assets/source_records/party-form-conversion.json'
     records=json.loads(record_path.read_text(encoding='utf-8')) if record_path.exists() else []
-    records=[r for r in records if not(r['actor'] in args.actors and r['form'] in args.forms)]
+    records=[r for r in records if not(r['actor'] in args.actors and r['form'] in args.forms and r['kind'] in args.kinds)]
     full_palette=load_palette(ROOT/'assets/palette/natural.gpl')
     for actor in args.actors:
         for form in args.forms:
@@ -94,6 +94,7 @@ def main():
                 all_frames=[all_frames[i] for i in order]
             source=sources[actor,form]
             for kind,frames,width,height,grid in [('battle',all_frames[:3],96,96,[3,1]),('walk',all_frames[3:],32,48,[3,4])]:
+                if kind not in args.kinds:continue
                 codes=COLORS[actor] if kind=='battle' else WALK_COLORS[actor]
                 palette=np.array([[int(c[i:i+2],16) for i in (0,2,4)] for c in codes],dtype=np.int32)
                 assert len(codes)<=(20 if kind=='battle' else 16) and set(map(tuple,palette.tolist()))<=full_palette
@@ -116,6 +117,7 @@ def main():
             prompt_path.write_text(json.dumps(prompt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
             print('PARTY_FORM_IMPORTED:',actor,form,flush=True)
     registry_path.write_text(json.dumps(registry,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+    records.sort(key=lambda r:(r['actor'],FORMS.index(r['form']),0 if r['kind']=='battle' else 1))
     record_path.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 
 if __name__=='__main__':main()
