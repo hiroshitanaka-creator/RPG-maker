@@ -75,6 +75,9 @@ func _draw() -> void:
 	# 画面より小さい室内の周囲にも壁材を敷き、黒い余白を作らない。
 	var surround := str(_map.get("surround","assets/tiles/natural_grass.png"))
 	draw_texture_rect(_texture("res://"+surround),Rect2(Vector2.ZERO,size),true)
+	# 一枚絵の背景を敷く部屋では、通行は見えない地図（layout）だけで決める。
+	var backdrop: Dictionary=_map.get("backdrop",{})
+	if not backdrop.is_empty():draw_texture(_texture("res://"+str(backdrop["path"])),_screen(Vector2(WorldExpedition.point(backdrop["offset"]))/32.0))
 	for layer in _ground:_draw_layer(layer)
 	var ordered: Array=_objects.duplicate()
 	var definition := FirstRegion.data()
