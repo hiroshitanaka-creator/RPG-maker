@@ -1,0 +1,95 @@
+{
+  "build": {
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 1185,
+    "id": "d39e9b761aac5777d4961e6deec0a5b2d82d285b2650ac48bdc20f47efa19977",
+    "version": 1
+  },
+  "checks": 80,
+  "failures": [],
+  "images": [
+    "01-bay-docked-ship.png",
+    "02-before-boarding.png",
+    "03-sailing.png",
+    "04-sea-battle.png",
+    "05-shallows-before-landing.png",
+    "06-shallows-on-foot.png",
+    "07-shallows-reboarding.png",
+    "08-return-caster-selection.png",
+    "09-return-destination-selection.png",
+    "10-returned-to-port.png",
+    "11-ship-returned-to-pier.png",
+    "12-port-disembarked.png"
+  ],
+  "inputs": 353,
+  "limits": {
+    "inputs": 3000,
+    "milliseconds": 180000,
+    "moves": 600
+  },
+  "moves": 278,
+  "source": "prepare_port_departure.gdが通常到達から作った保存を、未編集のままタイトル画面から再開。",
+  "status": "PASS",
+  "visible_pixels": [
+    {
+      "image": "01-bay-docked-ship",
+      "matched": 722,
+      "opaque": 722
+    },
+    {
+      "image": "01-bay-docked-ship",
+      "matched": 3545,
+      "opaque": 3545,
+      "subject": "docked_ship"
+    },
+    {
+      "image": "02-before-boarding",
+      "matched": 707,
+      "opaque": 707
+    },
+    {
+      "image": "03-sailing",
+      "matched": 2636,
+      "opaque": 2636,
+      "subject": "ship"
+    },
+    {
+      "image": "05-shallows-before-landing",
+      "matched": 3545,
+      "opaque": 3545,
+      "subject": "ship"
+    },
+    {
+      "image": "06-shallows-on-foot",
+      "matched": 722,
+      "opaque": 722
+    },
+    {
+      "image": "07-shallows-reboarding",
+      "matched": 3529,
+      "opaque": 3529,
+      "subject": "ship"
+    },
+    {
+      "image": "10-returned-to-port",
+      "matched": 599,
+      "opaque": 599
+    },
+    {
+      "image": "11-ship-returned-to-pier",
+      "matched": 743,
+      "opaque": 743
+    },
+    {
+      "image": "11-ship-returned-to-pier",
+      "matched": 3545,
+      "opaque": 3545,
+      "subject": "docked_ship"
+    },
+    {
+      "image": "12-port-disembarked",
+      "matched": 743,
+      "opaque": 743
+    }
+  ]
+}

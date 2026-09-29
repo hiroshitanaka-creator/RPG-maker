@@ -18,6 +18,7 @@ static func ground_layer(layer: Dictionary) -> bool:
 	return kind in ["gate_open","地面","dirt","cobble","shore","hills","forest","mountains","river","壁","敷物","接続水域","64px岩壁・丸い湖・床の自動接続","dirt_patch","pebbles","flowers_white","flowers_yellow","flowers_pink","tufts","leaves","overgrown_grass","flowerbed","cabbage","carrots","wheat","mushrooms","floor_pattern","bridge","rope_bridge"]
 
 func _ready() -> void:
+	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	clip_contents=true
 	mouse_filter=Control.MOUSE_FILTER_IGNORE
 	_map=FirstRegionPresentation.map_for(saved["overworld"])

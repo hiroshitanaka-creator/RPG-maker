@@ -33,7 +33,7 @@ def main():
                 sx,sy,w,h=tile['region'];sw,sh=entries[tile['path']]['size']
                 assert w==h==32 and 0<=sx<=sw-w and 0<=sy<=sh-h
         if index==0:
-            for p in [(25,16),(26,23),(29,7),(29,5)]:assert p in found,p
+            for p in [(25,13),(26,25),(29,7),(29,5),(30,18)]:assert p in found,p
             assert not mask[21,26]
     assert site['rooms'][1]['events'][0]['kind']=='rest'
     assert site['rooms'][2]['events'][0]['kind']=='shop'
@@ -44,6 +44,6 @@ def main():
     assert hashlib.sha256(raw).hexdigest()==record['sha256']
     assert (ROOT/'docs/reference/visual-targets/port-town.png').read_bytes()==raw
     result=dict(status='PASS',rooms=9,exterior_residents=len(site['rooms'][0]['events']),door_links=16,all_doors_reachable=True,sea_not_walkable=True,reference_sha256=record['sha256'])
-    (ROOT/'docs/verification/sprint5-port-town/layout-checks.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+    (ROOT/'docs/verification/sprint5-travel/port-layout-checks.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     print('PORT_LAYOUT_PASS: rooms=9 exterior_residents=9 links=16')
 if __name__=='__main__':main()

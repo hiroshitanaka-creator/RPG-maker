@@ -17,7 +17,7 @@ func _trigger_points() -> Array:
 	return points
 
 func _run() -> void:
-	OUTPUT="res://docs/verification/sprint5-port-town/runtime/"
+	OUTPUT=OS.get_environment("PORT_CAPTURE_OUTPUT") if not OS.get_environment("PORT_CAPTURE_OUTPUT").is_empty() else "res://docs/verification/sprint5-travel/port-runtime/"
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUTPUT))
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	root.min_size=Vector2i(1024,576);root.max_size=Vector2i(1024,576);root.size=Vector2i(1024,576)
@@ -56,7 +56,7 @@ func port_route() -> void:
 	castle_check(_state()["party"].all(func(a:Dictionary)->bool:return a["hp"]==a["max_hp"] and a["mp"]==a["max_mp"]),"宿で戦闘不能を含む4人が回復")
 	await picture("03-inn")
 	save_check("宿")
-	if not castle_check(await _walk(port_point(0,[18,12])),"露店の広場へ"):return
+	if not castle_check(await _walk(port_point(0,[18,7])),"露店の広場へ"):return
 	await picture("04-market")
 	for entry in [[2,"05-item-shop"],[3,"06-weapon-shop"],[4,"07-armor-shop"],[5,"08-shrine"],[6,"09-home"],[7,"10-harbor-office"],[8,"11-lighthouse-room"]]:
 		var index: int=entry[0]
@@ -75,7 +75,7 @@ func port_route() -> void:
 			elif index>=6:await talk(KEY_RIGHT)
 			if index==5:castle_check(_session().at_purification_shrine(),"港町の祠として認識")
 			await picture(entry[1])
-	for shot in [[[29,5],"12-lighthouse-coast"],[[25,16],"13-upper-pier"],[[26,23],"14-lower-pier"]]:
+	for shot in [[[29,5],"12-lighthouse-coast"],[[25,13],"13-upper-pier"],[[26,25],"14-lower-pier"]]:
 		if not castle_check(await _walk(port_point(0,shot[0])),"桟橋と海岸へ通常歩行"):return
 		await picture(shot[1])
 	save_check("桟橋")
@@ -86,7 +86,7 @@ func port_route() -> void:
 	await picture("15-return-world")
 	save_check("退出後")
 	castle_check(not port_battle_seen,"町と施設内に戦闘なし")
-	castle_check(_state()["overworld"]["transport"]=="walk","船を解放していない")
+	castle_check(_state()["overworld"]["transport"]=="walk","町の施設確認後は徒歩のまま")
 
 func finish_port() -> void:
 	PlaySessionMetrics.write_json(OUTPUT+"checks.json",{"status":"PASS" if castle_failures.is_empty() else "FAIL","checks":castle_checks,"failures":castle_failures,"images":castle_images,"visible_pixels":visible_pixels,"moves":_moves,"inputs":_input_log.size(),"limits":{"milliseconds":LIMIT_MS,"inputs":LIMIT_INPUTS,"moves":LIMIT_MOVES},"source":"prepare_port_departure.gdが通常到達から作った保存を、未編集のままタイトル画面から再開。","build":BuildIdentity.current()})
