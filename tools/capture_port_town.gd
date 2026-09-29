@@ -6,6 +6,9 @@ func _watch() -> void:
 	super._watch()
 	if is_instance_valid(_main) and _state().get("overworld",{}).get("node")=="first_port" and _battle()!=null:port_battle_seen=true
 
+# 一枚絵の背景へ変更した建物（2026年9月29日）の、店員・住人へ話しかける立ち位置。店員は台の裏。
+const INTERIOR_STAND := {2:[8,5],3:[8,5],4:[8,5],5:[8,7],6:[8,7],7:[8,5],8:[9,7]}
+
 func port_point(index: int, cell: Array) -> Dictionary:
 	return {"layer":"interior","node":"first_port","room":index,"cell":cell}
 
@@ -61,7 +64,7 @@ func port_route() -> void:
 	await picture("04-market")
 	for entry in [[2,"05-item-shop"],[3,"06-weapon-shop"],[4,"07-armor-shop"],[5,"08-shrine"],[6,"09-home"],[7,"10-harbor-office"],[8,"11-lighthouse-room"]]:
 		var index: int=entry[0]
-		if not castle_check(await _walk(port_point(index,[7,6] if index<=4 else [9,7])),"建物の通常入場: "+entry[1]):return
+		if not castle_check(await _walk(port_point(index,INTERIOR_STAND[index])),"建物の通常入場: "+entry[1]):return
 		if index==2 or index==3:
 			var before := _state()
 			await _key(KEY_UP);await _key(KEY_ENTER)
@@ -72,8 +75,8 @@ func port_route() -> void:
 			else:castle_check("iron_blade" in _state()["integrated"]["armory"] and _state()["first_region"]["coins"]==before["first_region"]["coins"]-15,"既存武器と代金")
 			if not castle_check(await _button(["やめる"]),"買い物から戻る"):return
 		else:
-			if index==4:await talk(KEY_UP)
-			elif index>=6:await talk(KEY_RIGHT)
+			if index in [4,7]:await talk(KEY_UP)
+			elif index==6 or index==8:await talk(KEY_RIGHT)
 			if index==5:castle_check(_session().at_purification_shrine(),"港町の祠として認識")
 			await picture(entry[1])
 	for shot in [[[29,5],"12-lighthouse-coast"],[[25,13],"13-upper-pier"],[[26,25],"14-lower-pier"]]:

@@ -81,16 +81,16 @@ func check_docked_ship(name: String) -> void:
 
 func port_route() -> void:
 	if not castle_check(await _walk(_world_point(_definition["port_entrance"]["cell"]),_definition["port_spawn"]),"港町へ通常入場"):return
-	if not castle_check(await _walk(port_point(1,[7,6])),"出航前の宿"):return
+	if not castle_check(await _walk(port_point(1,[11,9])),"出航前の宿"):return
 	await talk(KEY_UP)
 	castle_check(_state()["party"].all(func(a:Dictionary)->bool:return a["hp"]==a["max_hp"] and a["mp"]==a["max_mp"]),"4人を通常の宿で回復")
 	castle_check(not FirstRegionTravel.snapshot(_state()).get("return_learned",false) and not FirstRegionTravel.snapshot(_state()).get("ship_owned",false),"習得・借用前")
-	if not castle_check(await _walk(port_point(5,[8,6])),"祠へ通常入場"):return
+	if not castle_check(await _walk(port_point(5,[8,7])),"祠へ通常入場"):return
 	await _key(KEY_UP);await _key(KEY_ENTER)
 	castle_check(not FirstRegionTravel.snapshot(_state()).get("return_learned",false),"会話の途中では未習得")
 	await _settle();castle_check(FirstRegionTravel.snapshot(_state())["return_learned"],"会話を終えて習得")
-	if not castle_check(await _walk(port_point(7,[9,7])),"荷受け所へ通常入場"):return
-	await _key(KEY_RIGHT);await _key(KEY_ENTER)
+	if not castle_check(await _walk(port_point(7,[8,5])),"荷受け所へ通常入場"):return
+	await _key(KEY_UP);await _key(KEY_ENTER)
 	castle_check(not FirstRegionTravel.snapshot(_state())["ship_owned"],"会話の途中では未借用")
 	await _settle();castle_check(FirstRegionTravel.snapshot(_state())["ship_owned"],"会話を終えて借用")
 	var ship_before: Array=FirstRegionTravel.snapshot(_state())["ship_cell"].duplicate()
