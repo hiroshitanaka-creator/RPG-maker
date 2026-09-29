@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "return_name": "帰還の風",
+  "return_mp": 2,
+  "sea_bounds": [
+    24,
+    40,
+    95,
+    79
+  ],
+  "docks": [
+    {
+      "id": "port",
+      "name": "港町の桟橋",
+      "land": {
+        "layer": "interior",
+        "node": "first_port",
+        "room": 0,
+        "cell": [
+          30,
+          18
+        ]
+      },
+      "ship_cell": [
+        59,
+        48
+      ],
+      "display_cell": [
+        30,
+        17
+      ]
+    },
+    {
+      "id": "shallows",
+      "name": "第1地方の浅瀬",
+      "land": {
+        "layer": "world",
+        "node": "",
+        "room": 0,
+        "cell": [
+          48,
+          56
+        ]
+      },
+      "ship_cell": [
+        49,
+        56
+      ]
+    }
+  ],
+  "destinations": [
+    {
+      "id": "start_village",
+      "name": "ミルフェ村",
+      "entrance": "village_entrance"
+    },
+    {
+      "id": "first_castle",
+      "name": "エルヴァ城下町・城",
+      "entrance": "castle_entrance"
+    },
+    {
+      "id": "first_port",
+      "name": "港町",
+      "entrance": "port_entrance"
+    }
+  ],
+  "encounter": {
+    "chance": 0.025,
+    "enemies": [
+      "river_beast"
+    ]
+  }
+}

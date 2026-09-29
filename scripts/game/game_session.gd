@@ -24,6 +24,7 @@ var _expedition_battle_stage: int = -1
 var _world_battle_id: String = ""
 var _pending_region_recruit := ""
 var _pending_region_audience := false
+var _pending_region_travel := ""
 
 
 func _init() -> void:
@@ -119,6 +120,7 @@ func new_first_region() -> bool:
 	if not new_game(4):return false
 	_pending_region_recruit=""
 	_pending_region_audience=false
+	_pending_region_travel=""
 	_state["first_region"] = {"version":1,"reserve":_state["party"].slice(1).duplicate(true),"coins":20}
 	_state["party"] = [_state["party"][0]]
 	_state["inventory"]["world_map"] = 1
@@ -159,6 +161,7 @@ func use_first_region_potion(actor_id: String) -> bool:
 
 func interact_first_region() -> Dictionary:
 	if not first_region_active() or _battle != null:return {}
+	if FirstRegionTravel.board_or_land(_state):return {"kind":"moved"}
 	var state: Dictionary = _state["overworld"]
 	var target: Vector2i = WorldExpedition.point(state["cell"])+[Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP][state["facing"]]
 	for event in FirstRegion.residents_for(_state):
@@ -170,6 +173,14 @@ func interact_first_region() -> Dictionary:
 		FirstRegion.face_event(_state,event)
 		match event["kind"]:
 			"npc":
+				if state["node"]=="first_port" and event["id"] in ["port_shrine","harbor_keeper"]:
+					var travel := FirstRegionTravel.ensure(_state)
+					if event["id"]=="port_shrine" and not travel["return_learned"]:
+						_pending_region_travel="return"
+						return {"kind":"dialogue","speaker":"祠の世話役","travel_lesson":"return","text":["帰り道も、旅の備えです。一度訪れた町へ戻る術をお教えしましょう。","名は『帰還の風』。仲間の誰でも、MPを2使えば唱えられます。洞窟や塔の中では使えません。","船で出かけているときも、船は港へ戻ります。どうか、無事に帰ってきてください。"]}
+					if event["id"]=="harbor_keeper" and not travel["ship_owned"]:
+						_pending_region_travel="ship"
+						return {"kind":"dialogue","speaker":"荷受けの係","travel_lesson":"ship","text":["沿岸へ出るなら、あの桟橋の船を使っていい。乗り込む前に、荷物と仲間を確かめてくれ。","中央の桟橋の船のそばで、決定キーを押すと乗れる。港や浅瀬に着いたら、同じように降りられるよ。","海にも魔物はいる。遠出の前に、宿で休んでおくといい。"]}
 				if event.get("tower_path",false) and _state["progress_flags"].get("mountain_path_open",false):
 					return {"kind":"dialogue","speaker":event.get("label","兵士"),"text":event["after_text"]}
 				if event.get("audience",false):
@@ -223,6 +234,27 @@ func finish_first_region_audience() -> bool:
 	_state["progress_flags"]["castle_north_permission"]=true
 	_pending_region_audience=false
 	return true
+
+func finish_first_region_travel(lesson: String) -> bool:
+	if not first_region_active() or _battle!=null or lesson!=_pending_region_travel or lesson not in ["return","ship"]:return false
+	var here: Dictionary=_state["overworld"]
+	if here["node"]!="first_port" or here["room"]!=(5 if lesson=="return" else 7):return false
+	var travel := FirstRegionTravel.ensure(_state)
+	if lesson=="return":travel["return_learned"]=true
+	else:
+		travel["ship_owned"]=true
+		travel["ship_cell"]=FirstRegionTravel.data()["docks"][0]["ship_cell"].duplicate()
+	_pending_region_travel=""
+	return true
+
+func first_region_boarding_label() -> String:
+	return FirstRegionTravel.boarding_label(_state) if first_region_active() and _battle==null else ""
+
+func board_first_region_ship() -> bool:
+	return first_region_active() and _battle==null and FirstRegionTravel.board_or_land(_state)
+
+func cast_first_region_return(actor_id: String, destination: String) -> bool:
+	return first_region_active() and _battle==null and FirstRegionTravel.return_to(_state,actor_id,destination)
 
 func finish_first_region_recruit(actor_id: String) -> bool:
 	if not first_region_active() or actor_id.is_empty() or actor_id!=_pending_region_recruit:return false
@@ -1125,7 +1157,7 @@ func move_overworld(cell: Vector2i) -> bool:
 
 
 func change_world_transport(mode: String) -> bool:
-	return world_exploration_active() and _battle == null and WorldExpedition.change_transport(_state["overworld"],mode)
+	return not first_region_active() and world_exploration_active() and _battle == null and WorldExpedition.change_transport(_state["overworld"],mode)
 
 
 func interact_overworld() -> Dictionary:

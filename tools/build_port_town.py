@@ -1,4 +1,4 @@
-"""IMG_1008を目標に、登録済み素材から港町と桟橋を作る。船・転移は接続しない。"""
+"""IMG_1008を目標に、右下の大きな入り江と複数の桟橋を持つ港町を作る。"""
 import copy,hashlib,json
 from pathlib import Path
 import numpy as np
@@ -8,7 +8,7 @@ from build_first_region_presentation import payload,point,room,rows,reachable
 from build_castle_town import Place,furnished,npc,render
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'docs/verification/sprint5-port-town'
+OUT=ROOT/'docs/verification/sprint5-travel'
 NODE='first_port'
 def write(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
 
@@ -37,29 +37,29 @@ def main():
     OUT.mkdir(parents=True,exist_ok=True);source=pier_assets()
     document=json.loads((ROOT/'world/first_region.json').read_text(encoding='utf8'));d=document['first_region']
     visuals=json.loads((ROOT/'world/first_region_visuals.json').read_text(encoding='utf8'))
-    town=Place('port_town',36,26,tex('grass'));m=town.m
-    shape=Image.new('1',(36,26));ImageDraw.Draw(shape).polygon([(0,0),(33,0),(33,7),(30,10),(28,15),(24,16),(22,19),(19,21),(17,24),(14,25),(0,25)],fill=1)
+    town=Place('port_town',40,28,tex('grass'));m=town.m
+    shape=Image.new('1',(40,28));ImageDraw.Draw(shape).polygon([(0,0),(33,0),(33,7),(30,10),(18,11),(18,16),(16,18),(16,25),(0,25)],fill=1)
     land=np.array(shape,dtype=bool);town.mask=land.copy();town.mask[[0,-1],:]=False;town.mask[:,[0,-1]]=False
     m.terrain('river',~land)
-    streets=route(m,[(9,0),(9,8),(19,8),(19,17),(17,18),(8,18),(8,24)],3)
-    for path in [[(4,7),(9,8),(14,7)],[(9,9),(4,16),(9,18)],[(19,8),(24,8),(24,15)],[(8,18),(13,25)],[(19,17),(24,17)],[(24,8),(31,7)]]:streets|=route(m,path,2)
+    streets=route(m,[(9,0),(9,8),(18,8),(18,11),(17,17),(8,17),(8,24)],3)
+    for path in [[(4,7),(9,8),(14,7)],[(9,9),(4,16),(9,18)],[(18,8),(24,7),(31,7)],[(8,18),(13,25)],[(17,17),(19,13)]]:streets|=route(m,path,2)
     m.terrain('cobble',streets&land)
-    pier=np.zeros((26,36),bool);pier[15:23,22:24]=True;pier[15:17,23:33]=True;pier[22:24,22:34]=True;pier[20:22,16:23]=True
+    pier=np.zeros((28,40),bool);pier[11:12,16:31]=True;pier[12:25,17:19]=True;pier[12:14,18:29]=True;pier[18:20,18:31]=True;pier[24:26,15:29]=True
     m.layer('地面',[[int(x),int(y),m.tile('assets/objects/port_pier_deck.png',(0,0,32,32))] for y,x in np.argwhere(pier)])
     town.mask|=pier
     for y,x in np.argwhere(pier):
-        if y+1<26 and not pier[y+1,x] and not land[y+1,x]:m.stamp('assets/objects/port_pier_edge.png',int(x),int(y+1),block=False)
+        if y+1<28 and not pier[y+1,x] and not land[y+1,x]:m.stamp('assets/objects/port_pier_edge.png',int(x),int(y+1),block=False)
     # 建物の正面の扉だけを通行可能にし、内部と一対一に対応させる。
-    buildings=[('natural_farm_house_a',1,1,1,[4,6]),('natural_town_house_red',12,1,2,[15,6]),('natural_town_house_blue',1,10,3,[4,15]),('natural_town_house_red',20,9,4,[23,14]),('natural_church',1,17,5,[4,24]),('natural_farm_house_b',10,19,6,[13,24]),('natural_farm_house_b',21,1,7,[24,6]),('natural_watchtower',30,2,8,[31,5])]
+    buildings=[('natural_farm_house_a',1,1,1,[4,6]),('natural_town_house_red',12,1,2,[15,6]),('natural_town_house_blue',1,9,3,[4,14]),('natural_town_house_red',10,9,4,[13,14]),('natural_church',1,17,5,[4,24]),('natural_farm_house_b',9,19,6,[12,24]),('natural_farm_house_b',21,1,7,[24,6]),('natural_watchtower',30,2,8,[31,5])]
     for name,x,y,index,door in buildings:
         town.stamp('assets/objects/'+name+'.png',x,y)
         town.door(*door)
-    for name,x,y in [('market_purple',9,10),('market_blue',13,10),('market_red',9,14),('market_ochre',13,14)]:town.stamp(obj(name),x,y)
+    for name,x,y in [('market_purple',19,8),('market_blue',23,8),('market_red',27,8),('market_ochre',16,8)]:town.stamp(obj(name),x,y)
     town.stamp(obj('well'),18,1)
-    for x,y in [(0,7),(18,4),(27,1),(0,15),(17,23)]:town.stamp('assets/tiles/bright_tree_oak.png',x,y)
-    for x,y in [(28,8),(27,12),(17,24)]:
+    for x,y in [(0,7),(18,4),(27,1),(0,15)]:town.stamp('assets/tiles/bright_tree_oak.png',x,y)
+    for x,y in [(31,8),(16,22)]:
         if not pier[y:y+2,x:x+2].any():town.stamp('assets/objects/natural_rubble.png',x,y)
-    for x,y in [(23,18),(28,22),(32,15)]:town.stamp('assets/tiles/bright_barrel.png',x,y)
+    for x,y in [(18,16),(29,18),(28,24)]:town.stamp('assets/tiles/bright_barrel.png',x,y)
     for name,x,y in [('sign_inn',8,6),('sign_item',18,6),('sign_weapon',7,15)]:town.stamp(obj(name),x,y,False)
     for y in range(3):town.door(9,y)
     for x in range(4,15):town.door(x,25)
@@ -73,10 +73,17 @@ def main():
         npc('port_child',[8,21],'港の子',['灯台の上からは、ずっと遠くまで見えるんだって。'],'npc_boy'),
         npc('port_resident',[18,17],'港の住人',['山道を越えてきたのかい。まず宿で身体を休めるといい。'],'npc_woman'),
         npc('pier_watcher',[30,23],'見張りの人',['沖の天気を見ているんだ。雲が低くなる日は、風向きにも気をつける。'],'npc_castle_guard')]
+    event_cells={'fishmonger':[20,11],'cloth_seller':[24,11],'fruit_seller':[28,11],'rope_seller':[17,11],'dock_worker':[16,16],'port_resident':[16,15],'pier_watcher':[27,25]}
+    for event in events:
+        if event['id'] in event_cells:event['cell']=event_cells[event['id']]
     maps={};rooms=[]
     def add(place,title,residents):
         display,r=place.finish(title,residents);maps[NODE+':'+str(len(rooms))]=display;rooms.append(r)
     add(town,'港町',events)
+    sailing=~land&~pier
+    maps[NODE+':0']['ship_layout']=rows(sailing)
+    ratio=float(sailing.sum())/(40*28)
+    assert .30<=ratio<=.42,ratio
     descriptions=[
         ('inn','港町の宿屋',[dict(id='port_inn',kind='rest',sprite='npc_innkeeper',cell=[7,4],reach=2,label='宿の主人',text=['潮の音を聞きながら、ゆっくり休んでいってください。'])]),
         ('item','港町の道具屋',[dict(id='port_item_shop',kind='shop',sprite='npc_castle_merchant',cell=[7,4],reach=2,label='道具屋',text=['回復薬を用意しています。山道に戻るときも、忘れずに。'])]),
@@ -118,6 +125,7 @@ def main():
     for i,path in enumerate([reference,OUT/'map-00.png']):
         im=Image.open(path).convert('RGB');im.thumbnail((700,550),Image.Resampling.NEAREST);canvas.paste(im,(i*720+(720-im.width)//2,48));draw.text((i*720+12,10),'目標 IMG_1008' if i==0 else '本番配置データから描画・港町',font=font,fill='white')
     canvas.save(OUT/'target-comparison.png')
-    print('PORT_TOWN_BUILD_PASS: rooms=9 residents=17 links=16')
+    write(OUT/'bay-layout.json',dict(width=40,height=28,sea_cells=int(sailing.sum()),sea_ratio=ratio,pier_cells=int(pier.sum()),dock_land=point(NODE,0,[30,18]),dock_ship=point(NODE,0,[30,17])))
+    print('PORT_TOWN_BUILD_PASS: rooms=9 residents=17 links=16 sea_ratio=%.3f'%ratio)
 
 if __name__=='__main__':main()

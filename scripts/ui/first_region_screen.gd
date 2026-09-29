@@ -23,6 +23,7 @@ var map_view: FirstRegionView
 var place_label: Label
 var _first_button: Button
 var recovery_available := false
+var return_actor := ""
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -40,6 +41,7 @@ func _ready() -> void:
 			"dialogue":_dialogue()
 			"commands":_commands()
 			"items":_items()
+			"travel":_travel()
 			"shop":_shop()
 			"defeat":_defeat()
 	if flash_alpha>0.0:
@@ -119,6 +121,7 @@ func _world() -> void:
 		place_label.add_theme_constant_override("shadow_offset_y",1)
 		place_label.position=Vector2(90,12);place_label.size=Vector2(332,24);add_child(place_label)
 	if not notice.is_empty():_window(Rect2(72,228,368,34)).add_child(_label(notice,12))
+	elif not game.first_region_boarding_label().is_empty():_window(Rect2(12,248,174,28)).add_child(_label("決定："+game.first_region_boarding_label(),12))
 
 func _dialogue() -> void:
 	var name_box := _window(Rect2(16,165,180,28));name_box.add_child(_label(speaker if not speaker.is_empty() else "カイナ",12))
@@ -131,6 +134,11 @@ func _commands() -> void:
 	var column := _window(Rect2(12,12,220,264))
 	column.add_child(_label("メニュー",15))
 	_button(column,"どうぐ",{"kind":"ui_items"})
+	var saved := game.export_state()
+	if FirstRegionTravel.snapshot(saved).get("return_learned",false):
+		_button(column,"帰還の風",{"kind":"ui_return_menu"},FirstRegionTravel.can_return(saved))
+	var boarding := game.first_region_boarding_label()
+	if not boarding.is_empty():_button(column,boarding,{"kind":"ui_board_ship"})
 	_button(column,"じょうたい・そうび・へんせい",{"kind":"party"})
 	_button(column,"手帳",{"kind":"journal"})
 	_button(column,"セーブ",{"kind":"save"})
@@ -141,6 +149,23 @@ func _commands() -> void:
 	var status := _window(Rect2(248,12,252,160))
 	for member in game.export_state()["party"]:
 		status.add_child(_label("%s  HP %d/%d  MP %d/%d" % [member["name"],member["hp"],member["max_hp"],member["mp"],member["max_mp"]],12))
+
+func _travel() -> void:
+	var saved := game.export_state()
+	var people := _window(Rect2(12,24,214,238))
+	people.add_child(_label("帰還の風　MP2",15));people.add_child(_label("使う仲間",12))
+	for member in saved["party"]:
+		_button(people,"%s MP %d" % [member["name"],member["mp"]],{"kind":"ui_return_actor","actor":member["id"]},member["hp"]>0 and member["mp"]>=2)
+	_button(people,"戻る",{"kind":"ui_back"})
+	var destinations := _window(Rect2(238,24,262,238));destinations.add_child(_label("訪れた場所へ戻る",15))
+	var selected := "左から仲間を選んでください。"
+	for member in saved["party"]:
+		if member["id"]==return_actor:selected="使う人："+str(member["name"])
+	destinations.add_child(_label(selected,12))
+	for destination in FirstRegionTravel.data()["destinations"]:
+		if destination["id"] in FirstRegionTravel.snapshot(saved).get("visited",[]):
+			_button(destinations,destination["name"],{"kind":"ui_cast_return","destination":destination["id"]},not return_actor.is_empty())
+	destinations.add_child(_label("船も港へ戻ります。",11))
 
 func _items() -> void:
 	var state := game.export_state()

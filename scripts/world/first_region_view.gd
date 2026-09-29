@@ -77,6 +77,14 @@ func _draw() -> void:
 	for layer in _ground:_draw_layer(layer)
 	var ordered: Array=_objects.duplicate()
 	var definition := FirstRegion.data()
+	var travel := FirstRegionTravel.snapshot(saved)
+	if travel.get("ship_owned",false) and state.get("transport","walk")=="walk":
+		if state["layer"]=="world":
+			var ship := Vector2(WorldExpedition.point(travel["ship_cell"]))-origin
+			ordered.append({"bottom":ship.y+1.0,"object":"res://assets/vehicles/owner_ship.png","cell":ship,"dimensions":Vector2(96,96),"region":Rect2(96,0,96,96)})
+		elif state["node"]=="first_port" and state["room"]==0 and travel["ship_cell"]==FirstRegionTravel.data()["docks"][0]["ship_cell"]:
+			var ship := Vector2(WorldExpedition.point(FirstRegionTravel.data()["docks"][0]["display_cell"]))
+			ordered.append({"bottom":ship.y+1.0,"object":"res://assets/vehicles/owner_ship.png","cell":ship,"dimensions":Vector2(192,192),"region":Rect2(96,0,96,96)})
 	if state["layer"]=="world":
 		if definition.has("port_entrance"):
 			var port := Vector2(WorldExpedition.point(definition["port_entrance"]["cell"]))-origin
@@ -118,8 +126,10 @@ func _draw() -> void:
 		if item.has("layer"):_draw_layer(item["layer"])
 		elif item.has("object"):_object(item["object"],item["cell"],item["dimensions"],item.get("region",Rect2()))
 		elif item.has("player"):
-			for actor in saved["party"]:
-				if actor["id"]==saved.get("leader_id","pc_01"):_person(actor,item["cell"],int(state["facing"]),walk_frame)
+			if state.get("transport","walk")=="ship":_object("res://assets/vehicles/owner_ship.png",item["cell"],Vector2(96,96),Rect2(int(state["facing"])*96,0,96,96))
+			else:
+				for actor in saved["party"]:
+					if actor["id"]==saved.get("leader_id","pc_01"):_person(actor,item["cell"],int(state["facing"]),walk_frame)
 		else:
 			var event: Dictionary=item["event"]
 			_person({},item["cell"],item["facing"],1 if npc_offsets.has(FirstRegion.event_key(state,event)) else 0,str(event.get("sprite",event.get("actor","npc_farmer"))))

@@ -29,6 +29,7 @@ static func outside(key: String) -> Dictionary:
 
 static func walkable(saved: Dictionary, cell: Vector2i) -> bool:
 	var state: Dictionary = saved["overworld"]
+	if state.get("transport","walk")=="ship":return state["layer"]=="world" and FirstRegionTravel.ship_water(cell)
 	if state["layer"] == "world":
 		if data().has("port_entrance") and [cell.x,cell.y]==data()["port_entrance"]["cell"] and not saved["progress_flags"].get("mountain_path_open",false):return false
 		if data().has("tower_entrance") and [cell.x,cell.y]==data()["tower_entrance"]["cell"] and not saved["progress_flags"].get("castle_north_permission",false):return false
@@ -56,6 +57,7 @@ static func walkable_cells(saved: Dictionary) -> Array:
 	var state: Dictionary = saved["overworld"]
 	var layout: Array = room(state).get("layout",[])
 	var bounds: Array = data()["bounds"] if state["layer"] == "world" else [0,0,str(layout[0]).length()-1,layout.size()-1]
+	if state.get("transport","walk")=="ship":bounds=FirstRegionTravel.data()["sea_bounds"]
 	for y in range(bounds[1],bounds[3]+1):
 		for x in range(bounds[0],bounds[2]+1):
 			if walkable(saved,Vector2i(x,y)):cells.append([x,y])
@@ -67,20 +69,28 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 	if absi(cell.x-before.x)+absi(cell.y-before.y) != 1 or not walkable(saved,cell):return {}
 	state["cell"] = [cell.x,cell.y]
 	state["entry_lock"] = ""
+	if state.get("transport","walk")=="ship":
+		FirstRegionTravel.ensure(saved)["ship_cell"]=state["cell"].duplicate()
+		var sea: Dictionary=FirstRegionTravel.data()["encounter"]
+		if randf()<float(sea["chance"]):return {"kind":"battle","id":"coastal_encounter","enemies":sea["enemies"],"seed":randi()}
+		return {"kind":"moved"}
 	var definition := data()
 	if state["layer"] == "world":
 		if definition.has("port_entrance") and state["cell"]==definition["port_entrance"]["cell"]:
 			place(state,definition["port_spawn"])
+			FirstRegionTravel.visit(saved,"first_port")
 			return {"kind":"moved"}
 		if definition.has("tower_entrance") and state["cell"]==definition["tower_entrance"]["cell"]:
 			place(state,definition["tower_spawn"])
 			return {"kind":"moved"}
 		if definition.has("castle_entrance") and state["cell"]==definition["castle_entrance"]["cell"]:
 			place(state,definition["castle_spawn"])
+			FirstRegionTravel.visit(saved,"first_castle")
 			return {"kind":"moved"}
 		for entry in [["village_entrance","start_village",1,definition["village_spawn"]["cell"]],["cave_entrance","first_cave",0,definition["cave_spawn"]["cell"]]]:
 			if state["cell"] == definition[entry[0]]["cell"]:
 				place(state,{"layer":"interior","node":entry[1],"room":entry[2],"cell":entry[3]})
+				FirstRegionTravel.visit(saved,str(entry[1]))
 				return {"kind":"moved"}
 		if at(state,definition["gate"]["cell"]):
 			return {"kind":"dialogue","speaker":"門番","sound":"door","text":["通行証を確認しました。お通りください。"]}
@@ -194,4 +204,5 @@ static func valid(saved: Dictionary) -> bool:
 	if state["layer"] == "world" and (state["node"] != "" or state["room"] != 0):return false
 	if not saved["inventory"].get("gate_pass",0) is int or saved["inventory"].get("gate_pass",0) not in [0,1]:return false
 	if ("first_boss" in state["cleared"]) != (saved["inventory"].get("gate_pass",0) == 1):return false
+	if not FirstRegionTravel.valid(saved):return false
 	return walkable(saved,WorldExpedition.point(state["cell"]))

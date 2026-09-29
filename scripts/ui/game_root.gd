@@ -1,6 +1,6 @@
 extends Control
 
-enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS, WORLD, WORLD_CHOICE, WORLD_ATLAS, JOURNEY_DEVICE, MECHANICS, RULE_UPGRADE, REGION_COMMANDS, REGION_ITEMS }
+enum Mode { MENU, FIELD, DIALOGUE, BATTLE, PARTY, COMPLETE, DEFEAT, ASSETS_MISSING, EROSION_CONFIRMATION, JOURNAL, VISITS, GATE, EXPLORATION, REVIEW, CHALLENGE, JOB_LORE, JOURNEYS, WORLD, WORLD_CHOICE, WORLD_ATLAS, JOURNEY_DEVICE, MECHANICS, RULE_UPGRADE, REGION_COMMANDS, REGION_ITEMS, REGION_TRAVEL }
 
 var game: GameSession
 var mode: Mode = Mode.MENU
@@ -58,6 +58,8 @@ var _region_speaker := ""
 var _region_line_speakers: Array = []
 var _region_join_actor := ""
 var _region_audience := false
+var _region_travel_lesson := ""
+var _region_return_actor := ""
 var _region_line_actions: Array = []
 var _region_line_prompts: Array = []
 var _region_speaking_actor := ""
@@ -185,7 +187,7 @@ func _input(event: InputEvent) -> void:
 	if game.first_region_active() and event.keycode==KEY_ESCAPE:
 		if mode==Mode.WORLD:_region_ui_action({"kind":"ui_menu"})
 		elif mode==Mode.REGION_COMMANDS:_region_ui_action({"kind":"ui_resume"})
-		elif mode in [Mode.REGION_ITEMS,Mode.WORLD_ATLAS,Mode.WORLD_CHOICE]:_region_ui_action({"kind":"ui_back"})
+		elif mode in [Mode.REGION_ITEMS,Mode.WORLD_ATLAS,Mode.WORLD_CHOICE,Mode.REGION_TRAVEL]:_region_ui_action({"kind":"ui_back"})
 		elif mode in [Mode.PARTY,Mode.JOURNAL,Mode.MECHANICS,Mode.RULE_UPGRADE]:_region_ui_action({"kind":"back"})
 		elif mode==Mode.EROSION_CONFIRMATION:_region_ui_action({"kind":"cancel_erosion"})
 		get_viewport().set_input_as_handled()
@@ -290,6 +292,7 @@ func automation_snapshot() -> Dictionary:
 	names[Mode.WORLD_ATLAS] = "world_atlas"
 	names[Mode.REGION_COMMANDS]="menu"
 	names[Mode.REGION_ITEMS]="items"
+	names[Mode.REGION_TRAVEL]="travel"
 	var result := {"mode": "error" if not diagnostics.is_empty() else names[mode],
 		"chapter1_cleared": diagnostics.is_empty() and saved.get("progress_flags", {}).get("chapter1_cleared", false)}
 	result["story_complete"] = diagnostics.is_empty() and game.story_complete()
@@ -464,6 +467,9 @@ func submit_player_action(action: Dictionary) -> bool:
 					_region_join_actor=""
 				accepted = true
 				if _message_index >= _messages.size():
+					if game.first_region_active() and not _region_travel_lesson.is_empty():
+						if not game.finish_first_region_travel(_region_travel_lesson):_message_index-=1;return false
+						_region_travel_lesson=""
 					if game.first_region_active() and _region_audience:
 						if not game.finish_first_region_audience():_message_index-=1;return false
 						_region_audience=false
@@ -751,6 +757,7 @@ func _show_dialogue(lines: Array, advance: bool, return_mode: Mode = Mode.FIELD,
 	_region_line_speakers=[]
 	_region_join_actor=""
 	_region_audience=false
+	_region_travel_lesson=""
 	_region_line_actions=[]
 	_region_line_prompts=[]
 	_messages.assign(lines)
@@ -874,7 +881,7 @@ func _refresh() -> void:
 	_region_screen=null
 	if game.first_region_active():
 		_sync_region_music()
-		if mode in [Mode.WORLD,Mode.DIALOGUE,Mode.BATTLE,Mode.WORLD_CHOICE,Mode.WORLD_ATLAS,Mode.REGION_COMMANDS,Mode.REGION_ITEMS,Mode.DEFEAT]:
+		if mode in [Mode.WORLD,Mode.DIALOGUE,Mode.BATTLE,Mode.WORLD_CHOICE,Mode.WORLD_ATLAS,Mode.REGION_COMMANDS,Mode.REGION_ITEMS,Mode.DEFEAT,Mode.REGION_TRAVEL]:
 			_render_region_screen()
 			return
 		if mode in [Mode.PARTY,Mode.JOURNAL,Mode.MECHANICS,Mode.EROSION_CONFIRMATION,Mode.RULE_UPGRADE]:
@@ -1186,6 +1193,7 @@ func _first_region_result(result: Dictionary) -> void:
 			_region_line_speakers=result.get("speakers",[])
 			_region_join_actor=str(result.get("join_actor",""))
 			_region_audience=bool(result.get("audience",false))
+			_region_travel_lesson=str(result.get("travel_lesson",""))
 			_region_line_actions=result.get("line_actions",[])
 			_region_line_prompts=result.get("line_prompts",[])
 		"shop", "weapon_shop":
@@ -1220,7 +1228,7 @@ func _first_region_action(action: Dictionary) -> bool:
 				_notice = "門番：通行証が必要です。" if game.overworld_state()["layer"] == "world" and [target.x,target.y] == FirstRegion.data()["gate"]["cell"]["cell"] else ""
 				return true
 			var path: Array[Vector2i] = [current,target]
-			if not _world_mover.begin(path,"walk",game.first_region_walkable):return false
+			if not _world_mover.begin(path,str(game.overworld_state().get("transport","walk")),game.first_region_walkable):return false
 			_last_move_ms = Time.get_ticks_msec()
 			_notice = ""
 			return true
@@ -2285,6 +2293,7 @@ func _sync_region_music() -> void:
 
 func _region_background() -> String:
 	var state := game.overworld_state()
+	if state.get("transport","walk")=="ship":return "sea"
 	if state["node"]=="first_cave":return "cave"
 	if state["node"]=="first_forest_tower":return "tower"
 	if state["layer"]=="world":
@@ -2305,7 +2314,8 @@ func _render_region_screen() -> void:
 	if key!=_region_place_key:_region_place_key=key;_region_place_ms=Time.get_ticks_msec()
 	_region_screen=FirstRegionScreen.new()
 	_region_screen.game=game
-	_region_screen.screen_mode={Mode.WORLD:"world",Mode.DIALOGUE:"dialogue",Mode.BATTLE:"battle",Mode.WORLD_CHOICE:"shop",Mode.REGION_COMMANDS:"commands",Mode.REGION_ITEMS:"items",Mode.DEFEAT:"defeat"}[mode]
+	_region_screen.screen_mode={Mode.WORLD:"world",Mode.DIALOGUE:"dialogue",Mode.BATTLE:"battle",Mode.WORLD_CHOICE:"shop",Mode.REGION_COMMANDS:"commands",Mode.REGION_ITEMS:"items",Mode.DEFEAT:"defeat",Mode.REGION_TRAVEL:"travel"}[mode]
+	_region_screen.return_actor=_region_return_actor
 	_region_screen.recovery_available=recovery_available()
 	_region_screen.actor=_actor
 	_region_screen.focus_label=_region_focus_label
@@ -2372,10 +2382,19 @@ func _region_ui_action(action: Dictionary) -> void:
 		"ui_resume":_resume_current();return
 		"ui_title":_to_menu();return
 		"ui_items":mode=Mode.REGION_ITEMS
+		"ui_return_menu":
+			if not FirstRegionTravel.can_return(game.export_state()):return
+			_region_return_actor="";mode=Mode.REGION_TRAVEL
+		"ui_return_actor":_region_return_actor=action["actor"]
+		"ui_cast_return":
+			if game.cast_first_region_return(_region_return_actor,str(action["destination"])):
+				_world_mover.stop();mode=Mode.WORLD;_notice="帰還の風で戻りました。";_rpg_audio.effect("heal")
+		"ui_board_ship":
+			if game.board_first_region_ship():_world_mover.stop();mode=Mode.WORLD;_notice=""
 		"ui_atlas":
 			if int(game.export_state()["inventory"].get("world_map",0))<=0:return
 			mode=Mode.WORLD_ATLAS
-		"ui_back":mode=Mode.REGION_ITEMS if mode==Mode.WORLD_ATLAS else Mode.REGION_COMMANDS if mode==Mode.REGION_ITEMS else Mode.WORLD
+		"ui_back":mode=Mode.REGION_ITEMS if mode==Mode.WORLD_ATLAS else Mode.REGION_COMMANDS if mode in [Mode.REGION_ITEMS,Mode.REGION_TRAVEL] else Mode.WORLD
 		"ui_load":_load_save();return
 		"ui_potion":
 			if game.use_first_region_potion(action["actor"]):_rpg_audio.effect("heal")
