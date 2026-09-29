@@ -30,6 +30,7 @@ static func outside(key: String) -> Dictionary:
 static func walkable(saved: Dictionary, cell: Vector2i) -> bool:
 	var state: Dictionary = saved["overworld"]
 	if state["layer"] == "world":
+		if data().has("port_entrance") and [cell.x,cell.y]==data()["port_entrance"]["cell"] and not saved["progress_flags"].get("mountain_path_open",false):return false
 		if data().has("tower_entrance") and [cell.x,cell.y]==data()["tower_entrance"]["cell"] and not saved["progress_flags"].get("castle_north_permission",false):return false
 		if [cell.x,cell.y] in data().get("tower_mountain_path",[]) and not saved["progress_flags"].get("mountain_path_open",false):return false
 		if [cell.x,cell.y] == data()["gate"]["cell"]["cell"] and int(saved["inventory"].get("gate_pass",0)) == 0:return false
@@ -68,6 +69,9 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 	state["entry_lock"] = ""
 	var definition := data()
 	if state["layer"] == "world":
+		if definition.has("port_entrance") and state["cell"]==definition["port_entrance"]["cell"]:
+			place(state,definition["port_spawn"])
+			return {"kind":"moved"}
 		if definition.has("tower_entrance") and state["cell"]==definition["tower_entrance"]["cell"]:
 			place(state,definition["tower_spawn"])
 			return {"kind":"moved"}
@@ -81,6 +85,9 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		if at(state,definition["gate"]["cell"]):
 			return {"kind":"dialogue","speaker":"門番","sound":"door","text":["通行証を確認しました。お通りください。"]}
 	else:
+		if definition.has("port_exit") and at(state,definition["port_exit"]):
+			place(state,outside("port_entrance"));state["facing"]=1;state["entry_lock"]="port_entrance"
+			return {"kind":"moved"}
 		if definition.has("tower_exit") and at(state,definition["tower_exit"]):
 			place(state,outside("tower_entrance"));state["facing"]=0;state["entry_lock"]="tower_entrance"
 			return {"kind":"moved"}
@@ -99,6 +106,7 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		var links: Array = definition["doors"].duplicate()
 		links.append_array(definition.get("castle_doors",[]))
 		links.append_array(definition.get("tower_doors",[]))
+		links.append_array(definition.get("port_doors",[]))
 		links.append(definition["stairs_down"])
 		links.append(definition["stairs_up"])
 		for link in links:
@@ -109,7 +117,7 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 			return {"kind":"battle","id":"forest_tower_boss","enemies":definition["tower_boss"]["enemies"],"seed":randi()}
 		if at(state,definition["boss"]["point"]) and "first_boss" not in state["cleared"]:
 			return {"kind":"battle","id":"first_boss","enemies":definition["boss"]["enemies"],"seed":randi()}
-	if state["node"] not in ["start_village","first_castle"]:
+	if state["node"] not in ["start_village","first_castle","first_port"]:
 		var rule: Dictionary = definition["encounters"]["world" if state["layer"] == "world" else state["node"]]
 		if randf() < float(rule["chance"]):
 			return {"kind":"battle","id":"first_region_encounter","enemies":rule["enemies"],"seed":randi()}
@@ -178,7 +186,8 @@ static func valid(saved: Dictionary) -> bool:
 		var cell: Variant=record.get("cell")
 		if not cell is Array or cell.size()!=2 or not cell[0] is int or not cell[1] is int:return false
 		if not record.get("facing") is int or record["facing"] not in [0,1,2,3]:return false
-	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle","first_forest_tower"] or room(state).is_empty()):return false
+	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle","first_forest_tower","first_port"] or room(state).is_empty()):return false
+	if state["node"]=="first_port" and not saved["progress_flags"].get("mountain_path_open",false):return false
 	if state["node"]=="first_forest_tower" and not saved["progress_flags"].get("castle_north_permission",false):return false
 	if saved["progress_flags"].get("mountain_path_open",false) and ("forest_tower_boss" not in state["cleared"] or not joined(saved,"pc_04")):return false
 	if state["node"]=="first_castle" and int(saved["inventory"].get("gate_pass",0))!=1:return false

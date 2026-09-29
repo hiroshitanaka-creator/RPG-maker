@@ -78,6 +78,9 @@ func _draw() -> void:
 	var ordered: Array=_objects.duplicate()
 	var definition := FirstRegion.data()
 	if state["layer"]=="world":
+		if definition.has("port_entrance"):
+			var port := Vector2(WorldExpedition.point(definition["port_entrance"]["cell"]))-origin
+			ordered.append({"bottom":port.y+1.0,"object":"res://assets/ui/icon_town.png","cell":port,"dimensions":Vector2(64,64)})
 		if definition.has("tower_entrance"):
 			var tower := Vector2(WorldExpedition.point(definition["tower_entrance"]["cell"]))-origin
 			ordered.append({"bottom":tower.y+1.0,"object":"res://assets/ui/icon_tower.png","cell":tower,"dimensions":Vector2(64,64)})

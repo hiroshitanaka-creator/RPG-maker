@@ -815,7 +815,7 @@ func _learn_form(actor: Dictionary, job_id: String) -> void:
 
 func at_purification_shrine() -> bool:
 	if not first_region_active():return world_state()["location"]=="town"
-	return _state["overworld"]["node"]=="first_castle" and _state["overworld"]["room"]==8
+	return (_state["overworld"]["node"]=="first_castle" and _state["overworld"]["room"]==8) or (_state["overworld"]["node"]=="first_port" and _state["overworld"]["room"]==5)
 
 func release_monster_form(actor_id: String, event: String) -> bool:
 	if _battle != null:

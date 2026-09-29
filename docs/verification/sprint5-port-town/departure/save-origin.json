@@ -1,0 +1,119 @@
+{
+  "location": {
+    "active": true,
+    "cell": [
+      50,
+      41
+    ],
+    "cleared": [
+      "first_region_encounter",
+      "first_boss",
+      "forest_tower_boss"
+    ],
+    "entry_lock": "",
+    "facing": 3,
+    "layer": "world",
+    "node": "",
+    "opened": [
+      "forest_tower_chest_1",
+      "forest_tower_chest_2",
+      "forest_tower_chest_3"
+    ],
+    "residents": {
+      "first_castle:0:town_child": {
+        "cell": [
+          20,
+          17
+        ],
+        "facing": 0
+      },
+      "first_castle:0:town_woman": {
+        "cell": [
+          22,
+          9
+        ],
+        "facing": 2
+      },
+      "first_castle:2:king": {
+        "cell": [
+          16,
+          5
+        ],
+        "facing": 0
+      },
+      "first_forest_tower:0:forest_tower_chest_1": {
+        "cell": [
+          7,
+          9
+        ],
+        "facing": 0
+      },
+      "first_forest_tower:1:collapsed_east_stair": {
+        "cell": [
+          15,
+          8
+        ],
+        "facing": 1
+      },
+      "first_forest_tower:1:forest_tower_chest_2": {
+        "cell": [
+          7,
+          9
+        ],
+        "facing": 0
+      },
+      "first_forest_tower:2:forest_tower_chest_3": {
+        "cell": [
+          7,
+          9
+        ],
+        "facing": 0
+      },
+      "first_forest_tower:2:recruit_suina": {
+        "cell": [
+          11,
+          5
+        ],
+        "facing": 0
+      },
+      "start_village:1:farmer": {
+        "cell": [
+          13,
+          12
+        ],
+        "facing": 3
+      },
+      "start_village:1:join_pc_02": {
+        "cell": [
+          14,
+          11
+        ],
+        "facing": 0
+      },
+      "start_village:1:join_pc_03": {
+        "cell": [
+          22,
+          14
+        ],
+        "facing": 0
+      },
+      "start_village:1:resident": {
+        "cell": [
+          21,
+          13
+        ],
+        "facing": 1
+      }
+    },
+    "room": 0,
+    "transport": "walk"
+  },
+  "method": "新規開始から通常操作で村・洞窟・城・森の塔を通過し、山道でGameSession.save_gameを実行。保存内容の編集なし。",
+  "party": [
+    "pc_01",
+    "pc_02",
+    "pc_03",
+    "pc_04"
+  ],
+  "sha256": "91b059cc9001ada1942b864962c7f2a18e04a28c1363aaf8faada33ac830b4de"
+}
