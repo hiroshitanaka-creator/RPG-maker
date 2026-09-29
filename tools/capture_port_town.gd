@@ -51,7 +51,8 @@ func port_route() -> void:
 	if not castle_check(await _walk(_world_point(_definition["port_entrance"]["cell"]),_definition["port_spawn"]),"山道から港町へ通常入場"):return
 	await picture("02-town-entrance")
 	# まず宿へ行き、塔で消耗した4人を休ませる。
-	if not castle_check(await _walk(port_point(1,[7,6])),"宿へ通常入場"):return
+	# 宿は一枚絵の背景へ変更（2026年9月29日）。受付台の前(11,9)から、台越しに宿の主人へ話す。
+	if not castle_check(await _walk(port_point(1,[11,9])),"宿へ通常入場"):return
 	await talk(KEY_UP)
 	castle_check(_state()["party"].all(func(a:Dictionary)->bool:return a["hp"]==a["max_hp"] and a["mp"]==a["max_mp"]),"宿で戦闘不能を含む4人が回復")
 	await picture("03-inn")

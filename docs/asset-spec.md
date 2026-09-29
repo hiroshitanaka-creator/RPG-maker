@@ -70,6 +70,8 @@ assets/
 
 2026年9月26日追加のディレクトリ：戦闘背景は `assets/backgrounds/<id>.png`、物は `assets/objects/<id>.png`、拠点アイコン・会話窓・カーソルは `assets/ui/<id>.png` に置く。音は後述の「音」に従う。IDの命名規則は既存と同じ。
 
+2026年9月29日追加（試作・港町の宿屋のみ）：建物の中を一枚絵で描く背景は `assets/interiors/<id>.png`、台帳の `kind` は `interior_backdrop`。幅・高さは32の倍数（部屋のマス数×32）、1枚64色以内、パレットは `natural.gpl`、不透明（アルファ255のみ）。原画からは最近傍の縮小と最近傍の減色だけで作り、拡大・ぼかし・半透明は使わない。記録は `docs/port-inn-backdrop.md`。
+
 ## 4. フレーム規定
 
 ### 4.1 歩行（`walk.png`）
