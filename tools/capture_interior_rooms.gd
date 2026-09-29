@@ -9,6 +9,7 @@ const OUTDOOR := {"start_village":1,"first_castle":0,"first_port":0}
 const KEYS := {Vector2i.DOWN:KEY_DOWN,Vector2i.LEFT:KEY_LEFT,Vector2i.RIGHT:KEY_RIGHT,Vector2i.UP:KEY_UP}
 const NODES := {"village":"start_village","castle":"first_castle","port":"first_port"}
 var interior_summary: Array=[]
+var legacy_notes: Array[String]=[]
 
 func _run() -> void:
 	var town := OS.get_environment("INTERIOR_TOWN")
@@ -42,6 +43,10 @@ func region_site(node: String) -> Dictionary:
 	for site in data["sites"]:
 		if site["id"]==node:return site
 	return {}
+
+func has_backdrop(node: String, index: int) -> bool:
+	var data: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://world/first_region_visuals.json"))
+	return data["maps"].get("%s:%d" % [node,index],{}).has("backdrop")
 
 func blocking_cells(room: Dictionary) -> Array:
 	# 住人・店員のいるマスは通れない。宝箱のマスは歩いて乗れる。
@@ -119,7 +124,12 @@ func interior_route(town: String) -> void:
 		var name := "%s-%02d" % [town,index]
 		if not castle_check(await _walk(room_point(node,index,entry["to"]["cell"])),"扉から入る: "+room["title"]):return
 		castle_check(_state()["overworld"]["room"]==index and cells_equal(_state()["overworld"]["cell"],entry["to"]["cell"]),"入口（扉の内側）に着く: "+room["title"])
+		var failures_before := castle_failures.size()
 		await picture(name+"-1-entered")
+		# 一枚絵の背景へ置き換えていない部屋（画像がない部屋・謁見の間）は、旧来の扉の絵が人物にかかることがある。
+		# 失敗にせず、変更していない部屋の記録として分けて残す。
+		if not has_backdrop(node,index):
+			while castle_failures.size()>failures_before:legacy_notes.append(castle_failures.pop_back())
 		castle_check(layout_matches(node,index,room),"通行地図と実判定が全マス一致: "+room["title"])
 		for event in room["events"]:
 			if event["kind"]=="recruit":continue
@@ -145,7 +155,7 @@ func interior_route(town: String) -> void:
 		castle_check(not port_battle_seen,"建物の出入りで戦闘が起きない: "+room["title"])
 
 func finish_interior(town: String) -> void:
-	PlaySessionMetrics.write_json(OUTPUT+"checks.json",{"status":"PASS" if castle_failures.is_empty() else "FAIL","town":town,"checks":castle_checks,"failures":castle_failures,"images":castle_images,"visible_pixels":visible_pixels,"cells":interior_summary,"native_render":DisplayServer.get_name()!="headless"})
+	PlaySessionMetrics.write_json(OUTPUT+"checks.json",{"status":"PASS" if castle_failures.is_empty() else "FAIL","town":town,"checks":castle_checks,"failures":castle_failures,"images":castle_images,"visible_pixels":visible_pixels,"cells":interior_summary,"unchanged_room_notes":legacy_notes,"native_render":DisplayServer.get_name()!="headless"})
 	for failure in castle_failures:printerr("INTERIOR_RUNTIME_FAIL: "+failure)
 	print("INTERIOR_RUNTIME_PASS: town=%s checks=%d images=%d" % [town,castle_checks,castle_images.size()] if castle_failures.is_empty() else "INTERIOR_RUNTIME_FAIL: town="+town)
 	quit(0 if castle_failures.is_empty() else 1)

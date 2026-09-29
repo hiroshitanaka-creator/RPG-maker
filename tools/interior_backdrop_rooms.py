@@ -54,7 +54,7 @@ ROOMS={
  'castle_treasury':dict(node='first_castle',room=3,title='城の宝物庫',file='IMG_1140.png',cap=0.34,
    rows={3:'3-13',4:'3-13',5:'3-13',6:'3-13',7:'3-13',8:'3-13',9:'6-13',10:'3-6,10-13'},events={'castle_supplies':[8,5],'treasury_keeper':[10,7]}),
  'castle_court':dict(node='first_castle',room=1,title='エルヴァ城 中庭',file='IMG_1136.png',cap=0.34,
-   rows={1:'8',2:'6-11',3:'5-12',4:'4-13',5:'4-6,10-13',6:'4-6,10-13',7:'4-6,10-13',8:'4-12',9:'6-11',10:'6-11'},
+   rows={1:'8',2:'6-11',3:'5-12',4:'4-13',5:'4-6,10-13',6:'4-6,10-13',7:'4-6,10-13',8:'4-12',9:'6-11',10:'6-11',11:'8'},
    events={'court_guard_left':[7,2],'court_guard_right':[9,2]},court=True),
  'port_item':dict(node='first_port',room=2,title='港町の道具屋',file='IMG_1141.png',cap=0.50,
    rows={3:'8',4:'3,13',5:'3-13',6:'4-13',7:'3-13',8:'3-13',9:'3-13'},events={'port_item_shop':[8,3]}),
