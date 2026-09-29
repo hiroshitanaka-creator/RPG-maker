@@ -1,0 +1,231 @@
+{
+  "rooms": {
+    "kaina_home": {
+      "node": "start_village",
+      "room": 0,
+      "title": "カイナの家",
+      "original": "assets/_incoming/owner-2026-09-29-interiors/IMG_1123.png",
+      "sha256": "302708762f9b97a1e2346e66c5b85497b7dfe2da47678f9e515331ee20587fd3",
+      "output": "assets/interiors/kaina_home.png",
+      "room_size_before": [
+        16,
+        9
+      ],
+      "room_size": [
+        16,
+        12
+      ],
+      "layout": [
+        "################",
+        "################",
+        "################",
+        "################",
+        "#####..###..####",
+        "#####.....###.##",
+        "#####.....###.##",
+        "#####.....##..##",
+        "#####.........##",
+        "#####.........##",
+        "########.#######",
+        "########.#######"
+      ],
+      "events": {},
+      "source_size": [
+        1712,
+        1152
+      ],
+      "content_box": [
+        261,
+        1462,
+        59,
+        1072
+      ],
+      "scale": 0.34,
+      "scaled_size": [
+        582,
+        392
+      ],
+      "offset": [
+        -19,
+        20
+      ],
+      "colors": 47,
+      "merged_colors": 0
+    },
+    "milfe_inn": {
+      "node": "start_village",
+      "room": 2,
+      "title": "ミルフェ村・宿屋",
+      "original": "assets/_incoming/owner-2026-09-29-interiors/IMG_1124.png",
+      "sha256": "d6ae67730ff943c7321a7b24ac48cf71b03b23a71f6ccf2aca14cd040bbc3b3f",
+      "output": "assets/interiors/milfe_inn.png",
+      "room_size_before": [
+        12,
+        9
+      ],
+      "room_size": [
+        16,
+        12
+      ],
+      "layout": [
+        "################",
+        "################",
+        "################",
+        "#####.##...##.##",
+        "#####.##...##.##",
+        "####..........##",
+        "########..######",
+        "#####.....##..##",
+        "#####.....######",
+        "###...........##",
+        "###...........##",
+        "########.#######"
+      ],
+      "events": {
+        "village_inn": [
+          12,
+          7
+        ]
+      },
+      "source_size": [
+        1712,
+        1152
+      ],
+      "content_box": [
+        288,
+        1424,
+        56,
+        1077
+      ],
+      "scale": 0.34,
+      "scaled_size": [
+        582,
+        392
+      ],
+      "offset": [
+        -19,
+        18
+      ],
+      "colors": 46,
+      "merged_colors": 0
+    },
+    "milfe_item": {
+      "node": "start_village",
+      "room": 3,
+      "title": "ミルフェ村・道具屋",
+      "original": "assets/_incoming/owner-2026-09-29-interiors/IMG_1125.png",
+      "sha256": "d78795d5cfafb84d5ffc8254bb6ecda91101c53d1bac1ded560f4a122f4d7e22",
+      "output": "assets/interiors/milfe_item.png",
+      "room_size_before": [
+        10,
+        8
+      ],
+      "room_size": [
+        16,
+        12
+      ],
+      "layout": [
+        "################",
+        "################",
+        "################",
+        "################",
+        "########.#######",
+        "###..#######..##",
+        "###..#######..##",
+        "###...........##",
+        "###...........##",
+        "##............##",
+        "########.#######",
+        "########.#######"
+      ],
+      "events": {
+        "village_item": [
+          8,
+          4
+        ]
+      },
+      "source_size": [
+        1712,
+        1152
+      ],
+      "content_box": [
+        144,
+        1567,
+        70,
+        1060
+      ],
+      "scale": 0.33732,
+      "scaled_size": [
+        577,
+        389
+      ],
+      "offset": [
+        -17,
+        26
+      ],
+      "colors": 64,
+      "merged_colors": 1
+    },
+    "milfe_weapon": {
+      "node": "start_village",
+      "room": 4,
+      "title": "ミルフェ村・武器屋",
+      "original": "assets/_incoming/owner-2026-09-29-interiors/IMG_1126.png",
+      "sha256": "1ff7a5da830cb9c99610c12ccb8692c9779c7c2298b1f896c7ef6fc135e176f5",
+      "output": "assets/interiors/milfe_weapon.png",
+      "room_size_before": [
+        10,
+        8
+      ],
+      "room_size": [
+        16,
+        12
+      ],
+      "layout": [
+        "################",
+        "################",
+        "################",
+        "################",
+        "########.#######",
+        "#############.##",
+        "#####.........##",
+        "#####.........##",
+        "##............##",
+        "##.............#",
+        "########.#######",
+        "########.#######"
+      ],
+      "events": {
+        "village_weapon": [
+          8,
+          4
+        ]
+      },
+      "source_size": [
+        1712,
+        1152
+      ],
+      "content_box": [
+        93,
+        1619,
+        56,
+        1081
+      ],
+      "scale": 0.31455,
+      "scaled_size": [
+        539,
+        362
+      ],
+      "offset": [
+        3,
+        44
+      ],
+      "colors": 42,
+      "merged_colors": 0
+    }
+  },
+  "unused_originals": {
+    "IMG_1133.png": "城の謁見の間。絵の扉は下辺の1つだけで、ゲームの謁見の間にある西の扉（宝物庫）と東の扉（書庫）がない。扉の接続を切らないため使わず、原画のまま保管する。"
+  },
+  "note": "原画は assets/_incoming/owner-2026-09-29-interiors/ に依頼者の原本のまま保管。倍率・外接矩形・通行地図は部屋ごとに記録。"
+}
