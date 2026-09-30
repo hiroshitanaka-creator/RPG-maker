@@ -25,7 +25,8 @@ func _process(delta: float) -> void:
 	_time+=delta;queue_redraw()
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO,size),Color("0b1925"))
+	if has_theme_stylebox("panel","FirstRegionAtlas"):draw_style_box(get_theme_stylebox("panel","FirstRegionAtlas"),Rect2(Vector2.ZERO,size))
+	else:draw_rect(Rect2(Vector2.ZERO,size),Color("0b1925"))
 	if _map==null:return
 	var origin := Vector2(122,16)
 	draw_texture(_map,origin)
