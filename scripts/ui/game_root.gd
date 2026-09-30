@@ -1831,6 +1831,7 @@ func _render_journal() -> void:
 		var body := RichTextLabel.new()
 		body.text = text
 		body.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		body.custom_minimum_size.y = 128
 		body.add_theme_font_size_override("normal_font_size",12)
 		_body.add_child(body)
 	var row := HBoxContainer.new()
@@ -2241,6 +2242,7 @@ func _render_mechanics() -> void:
 	var b:=game.current_battle()
 	if b==null:
 		var text:=RichTextLabel.new();text.size_flags_vertical=Control.SIZE_EXPAND_FILL;text.add_theme_font_size_override("normal_font_size",12)
+		text.custom_minimum_size.y=128
 		var lines: Array[String]=[]
 		for rule in game.catalog.integration["enemy_rules"]:
 			var known: Dictionary=game.integration_knowledge().get(rule["id"],{})
@@ -2293,6 +2295,7 @@ func _render_mechanics() -> void:
 func _render_rule_upgrade() -> void:
 	_body.add_child(_label("新しいルールへ引き継ぐ",14))
 	var text:=RichTextLabel.new();text.size_flags_vertical=Control.SIZE_EXPAND_FILL;text.add_theme_font_size_override("normal_font_size",12)
+	text.custom_minimum_size.y=128
 	text.text="現在地、所持技、解決済みの出来事、魔物化と不可逆の履歴を保持します。取得済みマスターは維持し、未取得の職はJPと職別修練の両条件が必要になります。未記録の修練回数は0から開始します。\n以前の育成形式1から更新する場合だけ、JPを新しい必要量へ換算しEXPはLv1から開始します。形式2のEXP・JPはそのままです。侵蝕は戦闘0.2・専用技1行動0.1、祠後は技の再習得が必要です。\n更新は確認した場合だけ行います。"
 	_body.add_child(text)
 	_action_button(_body,"引き継ぐ",{"kind":"confirm_rule_upgrade"});_action_button(_body,"今は戻る",{"kind":"back"})
