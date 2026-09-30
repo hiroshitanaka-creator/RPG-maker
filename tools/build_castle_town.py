@@ -138,7 +138,7 @@ def main():
         if not 12<=x<=18:court.stamp(obj('wall_horizontal'),x,0);court.stamp(obj('wall_horizontal'),x,16)
     for y in range(2,16,3):court.stamp('assets/objects/castle_low_wall_vertical.png',0,y);court.stamp('assets/objects/castle_low_wall_vertical.png',30,y)
     for y in range(10,18):court.door(16,y)
-    add(court,names['castle']+' 中庭',[npc('court_guard_left',[13,11],'城の兵士',['正面の扉が謁見の間です。']),npc('court_guard_right',[19,11],'城の兵士',['王がお待ちです。通行証を見せてください。'])])
+    add(court,names['castle']+' 中庭',[npc('court_guard_left',[13,11],'城の兵士',['正面の扉が大広間です。奥の中央の扉が謁見の間です。']),npc('court_guard_right',[19,11],'城の兵士',['王がお待ちです。通行証を見せてください。'])])
     hall=enclosed('castle_hall',32,22)
     hall.m.layer('敷物',[[x,y,hall.m.tile('assets/tiles/castle_runner.png',((x-15)*32,y%3*32,32,32))] for y in range(4,22) for x in range(15,18)])
     for x,y in [(5,3),(25,3),(5,10),(25,10),(5,16),(25,16)]:hall.stamp('assets/objects/castle_column.png',x,y)
@@ -147,8 +147,7 @@ def main():
     for x in [13,18]:hall.stamp('assets/objects/castle_candelabrum.png',x,3)
     for x in range(14,19):hall.door(x,5);hall.door(x,6)
     hall.door(16,21);hall.door(16,20)
-    for x,y in [(0,10),(1,10),(30,10),(31,10)]:hall.door(x,y)
-    royal=[npc('king',[16,5],'王',['ベルナの通行証を持っているのだな。洞窟から無事に戻ったと聞いた。','先へ進むなら、仲間の得意なことを確かめておくとよい。'],sprite='npc_castle_king',audience=True),npc('advisor',[19,6],'側近',['役目を変えても、身につけた技は失われません。仲間と相談して組み合わせてください。'],sprite='npc_castle_advisor'),npc('hall_guard_left',[13,18],'城の兵士',['王には、正面から話しかけてください。']),npc('hall_guard_right',[19,18],'城の兵士',['西に宝物庫、東に書庫があります。'])]
+    royal=[npc('king',[16,5],'王',['ベルナの通行証を持っているのだな。洞窟から無事に戻ったと聞いた。','先へ進むなら、仲間の得意なことを確かめておくとよい。'],sprite='npc_castle_king',audience=True),npc('advisor',[19,6],'側近',['役目を変えても、身につけた技は失われません。仲間と相談して組み合わせてください。'],sprite='npc_castle_advisor'),npc('hall_guard_left',[13,18],'城の兵士',['王には、正面から話しかけてください。']),npc('hall_guard_right',[19,18],'城の兵士',['宝物庫と書庫へは、大広間の奥の左右の扉からどうぞ。'])]
     add(hall,names['castle']+' 謁見の間',royal)
     treasury=enclosed('castle_treasury',16,12);treasury.door(8,11);treasury.door(8,10)
     for x in [2,5,11]:treasury.stamp(obj('crates'),x,4)
@@ -162,14 +161,20 @@ def main():
         ('home','城下町の民家',npc('castle_home_resident',[10,7],'町の人',['城の北の門は、王の許しを得た人にだけ開かれます。'],'npc_woman')),
         ('library','城の書庫',npc('castle_librarian',[10,7],'書庫の係',['学んだ技の使いどころは、仲間の役目によって変わります。'],'npc_castle_advisor'))]:
         add(furnished('castle_'+kind,kind),title,[event])
+    # 大広間（部屋番号11。既存の部屋番号を変えないため末尾に追加）。中庭→大広間→謁見の間・宝物庫・書庫。
+    # 実際の絵と通行地図は tools/build_castle_hall_backdrops.py が一枚絵の背景で置き換える（実行順は docs/castle-hall-backdrops.md）。
+    great=enclosed('castle_great_hall',18,12)
+    for x,y in [(8,2),(9,2),(5,2),(12,2),(8,9),(9,9)]:great.door(x,y)
+    add(great,names['castle']+' 大広間',[])
     def link(a,ac,b,bc):links.append({'from':point(NODE,a,ac),'to':point(NODE,b,bc)})
     link(0,[18,2],1,[16,15]);link(1,[16,17],0,[18,3])
-    link(1,[16,10],2,[16,20]);link(2,[16,21],1,[16,11])
-    link(2,[0,10],3,[8,10]);link(3,[8,11],2,[1,10])
-    link(2,[31,10],10,[8,10]);link(10,[8,11],2,[30,10])
+    link(1,[16,10],11,[8,8]);link(11,[8,9],1,[16,11]);link(11,[9,9],1,[16,11])
+    link(11,[8,2],2,[16,20]);link(11,[9,2],2,[16,20]);link(2,[16,21],11,[8,3])
+    link(11,[5,2],3,[8,10]);link(3,[8,11],11,[5,3])
+    link(11,[12,2],10,[8,10]);link(10,[8,11],11,[12,3])
     for cell,index in doors:link(0,cell,index,[8,10]);link(index,[8,11],0,[cell[0],cell[1]+1])
     for index,r in enumerate(rooms):
-        events=r['events'];mask=np.array([[v=='.' for v in row] for row in r['layout']]);start=[18,24] if index==0 else [16,15] if index==1 else [16,20] if index==2 else [8,10]
+        events=r['events'];mask=np.array([[v=='.' for v in row] for row in r['layout']]);start=[18,24] if index==0 else [16,15] if index==1 else [16,20] if index==2 else [8,8] if index==11 else [8,10]
         found=reachable(mask,start)
         for door in [l['from']['cell'] for l in links if l['from']['room']==index]:assert tuple(door) in found,('出口へ到達不可',index,door)
         for event in events:assert any((event['cell'][0]+dx,event['cell'][1]+dy) in found for dx,dy in [(1,0),(-1,0),(0,1),(0,-1),(0,2)]),('人物へ到達不可',index,event['id'])
@@ -186,6 +191,6 @@ def main():
         for i,path in enumerate([ROOT/'docs/reference/visual-targets'/reference,OUT/f'map-{index:02}.png']):
             im=Image.open(path);im.thumbnail((752,562),Image.Resampling.NEAREST);canvas.paste(im,(i*768+(768-im.width)//2,45));draw.text((i*768+12,8),'依頼者の目標画像' if i==0 else '本番配置データから描画',font=font,fill='#14212b')
         canvas.save(OUT/(name+'-comparison.png'))
-    print('CASTLE_MAPS_PASS: rooms=11 town_residents=8 linked_doors='+str(len(links)))
+    print('CASTLE_MAPS_PASS: rooms=12 town_residents=8 linked_doors='+str(len(links)))
 
 if __name__=='__main__':main()

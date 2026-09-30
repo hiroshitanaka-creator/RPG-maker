@@ -97,9 +97,8 @@ def main():
     doors=d['castle_doors']
     def touches(l,rooms):return l['from']['room'] in rooms or l['to']['room'] in rooms
     kept=[l for l in doors if not (touches(l,{THRONE,TREASURY,LIBRARY,HALL}) or (l['from']['room']==COURT and l['to']['room']==THRONE))]
-    kept=[l for l in kept if not (l['from']['room']==COURT and l['from']['cell']==[16,10])]
     new=[]
-    new+=[link(CASTLE,COURT,(16,10),HALL,(8,8)),link(CASTLE,HALL,(8,9),COURT,(16,11)),link(CASTLE,HALL,(9,9),COURT,(16,11))]
+    new+=[link(CASTLE,COURT,(8,1),HALL,(8,8)),link(CASTLE,HALL,(8,9),COURT,(8,2)),link(CASTLE,HALL,(9,9),COURT,(8,2))]
     new+=[link(CASTLE,HALL,(8,2),THRONE,(11,13)),link(CASTLE,HALL,(9,2),THRONE,(12,13)),link(CASTLE,THRONE,(11,14),HALL,(8,3)),link(CASTLE,THRONE,(12,14),HALL,(9,3))]
     new+=[link(CASTLE,HALL,(5,2),TREASURY,(8,10)),link(CASTLE,TREASURY,(8,11),HALL,(5,3))]
     new+=[link(CASTLE,HALL,(12,2),LIBRARY,(8,10)),link(CASTLE,LIBRARY,(8,11),HALL,(12,3))]

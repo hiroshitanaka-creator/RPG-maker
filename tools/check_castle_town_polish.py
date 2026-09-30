@@ -3,6 +3,7 @@
 
 (4)の「木造の家を中心に」は、依頼者の決定により家を登録済みの町家・館の素材へ戻したため検査しない。
 
+検査の対象はこのスプリントの最後のコミット 0ba8d85 に固定する（作業ツリーは読まない）。
 比較の相手は、この作業の直前のコミット 07ac451（城下町・城の採用後の最終コミット）に固定する。
 修正4点の「道幅を細く」は、依頼者が見た案Bのコミット 20fdaab と比べる。
 城下町（first_castle の部屋0）以外の部屋・地図、扉と部屋の対応、人物の役と台詞が変わっていないことも確かめる。
@@ -16,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE = '07ac451'
 ADOPTED = '20fdaab'  # 依頼者が採用した案Bの提出時点
+SPRINT_END = '0ba8d85'  # このスプリントの最後のコミット。検査の対象（「今の状態」）はここに固定する。
 NODE = 'first_castle'
 
 
@@ -24,7 +26,9 @@ def at_base(path, commit=BASE):
 
 
 def now(path):
-    return json.loads((ROOT / path).read_text(encoding='utf8'))
+    # 作業ツリーではなく、このスプリントの最後のコミットの内容を読む。
+    # 後のスプリント（建物の中の一枚絵の背景、城のつながりの作り直しなど）で部屋が変わっても、この検査は影響を受けない。
+    return at_base(path, SPRINT_END)
 
 
 def cells(layer):
