@@ -1,0 +1,140 @@
+{
+  "received_file": "assets/_incoming/owner-2026-09-30-interiors/IMG_1183.png",
+  "archive_copy": "assets/_incoming/owner-2026-09-26/supplement-2026-09-30/IMG_1183.png",
+  "source_sha256": "d812496d505273e10868813813cde4f4bd970c1a2a74a4a74ec4c4a80b10fa50",
+  "source_bytes": 999023,
+  "author": "依頼者",
+  "authorization": "2026年9月30日の依頼者指示で敵3体をゲーム用に取り込む。今回の原画の生成サービス・共有会話URLは未指定。",
+  "storage_note": "受領ファイルを元の場所に保持。従来の台帳の取り込みルートにも同一バイトの保管コピーを置き、双方のSHA-256を照合。",
+  "imported": [
+    {
+      "id": "desert_scorpion",
+      "name": "サソリ（仮）",
+      "slot": 1,
+      "received_file": "assets/_incoming/owner-2026-09-30-interiors/IMG_1183.png",
+      "original_file": "assets/_incoming/owner-2026-09-26/supplement-2026-09-30/IMG_1183.png",
+      "original_sha256": "d812496d505273e10868813813cde4f4bd970c1a2a74a4a74ec4c4a80b10fa50",
+      "split_rect": [
+        0,
+        0,
+        447,
+        784
+      ],
+      "body_box_in_slot": [
+        20,
+        120,
+        436,
+        596
+      ],
+      "background": {
+        "minimum_channel": 185,
+        "maximum_channel_difference": 16,
+        "connected_to_edge": true
+      },
+      "resampling": "nearest",
+      "mirror": false,
+      "palette": "assets/palette/natural.gpl",
+      "max_colors": 32,
+      "actual_colors": 32,
+      "size_class": "medium",
+      "target_extent": 80,
+      "size": [
+        96,
+        96
+      ],
+      "visible_size": [
+        70,
+        80
+      ],
+      "path": "assets/monsters/desert_scorpion/idle.png",
+      "output_sha256": "b24f7a02a8da1e36ec478c68c5714696287131630a7b4798dbd9061fdedd66a1",
+      "use": "沿岸の通常遭遇"
+    },
+    {
+      "id": "sand_worm",
+      "name": "砂の虫（仮）",
+      "slot": 2,
+      "received_file": "assets/_incoming/owner-2026-09-30-interiors/IMG_1183.png",
+      "original_file": "assets/_incoming/owner-2026-09-26/supplement-2026-09-30/IMG_1183.png",
+      "original_sha256": "d812496d505273e10868813813cde4f4bd970c1a2a74a4a74ec4c4a80b10fa50",
+      "split_rect": [
+        447,
+        0,
+        777,
+        784
+      ],
+      "body_box_in_slot": [
+        1,
+        154,
+        316,
+        602
+      ],
+      "background": {
+        "minimum_channel": 185,
+        "maximum_channel_difference": 16,
+        "connected_to_edge": true
+      },
+      "resampling": "nearest",
+      "mirror": false,
+      "palette": "assets/palette/natural.gpl",
+      "max_colors": 32,
+      "actual_colors": 32,
+      "size_class": "large",
+      "target_extent": 96,
+      "size": [
+        96,
+        96
+      ],
+      "visible_size": [
+        67,
+        96
+      ],
+      "path": "assets/monsters/sand_worm/idle.png",
+      "output_sha256": "5e2b33266c760e803fbda4b97117b0775816e6b066a1d3745c603074ffc54a82",
+      "use": "沿岸の通常遭遇"
+    },
+    {
+      "id": "desert_mummy",
+      "name": "ミイラ（仮）",
+      "slot": 3,
+      "received_file": "assets/_incoming/owner-2026-09-30-interiors/IMG_1183.png",
+      "original_file": "assets/_incoming/owner-2026-09-26/supplement-2026-09-30/IMG_1183.png",
+      "original_sha256": "d812496d505273e10868813813cde4f4bd970c1a2a74a4a74ec4c4a80b10fa50",
+      "split_rect": [
+        777,
+        0,
+        1168,
+        784
+      ],
+      "body_box_in_slot": [
+        12,
+        226,
+        381,
+        581
+      ],
+      "background": {
+        "minimum_channel": 185,
+        "maximum_channel_difference": 16,
+        "connected_to_edge": true
+      },
+      "resampling": "nearest",
+      "mirror": false,
+      "palette": "assets/palette/natural.gpl",
+      "max_colors": 32,
+      "actual_colors": 32,
+      "size_class": "medium",
+      "target_extent": 80,
+      "size": [
+        96,
+        96
+      ],
+      "visible_size": [
+        80,
+        77
+      ],
+      "path": "assets/monsters/desert_mummy/idle.png",
+      "output_sha256": "e5dec2194a73cf6109c5964872678bdbe8dd692f2764f7bb83fda2d626a83d06",
+      "use": "遺跡の候補・通常遭遇へ未登録"
+    }
+  ]
+}
