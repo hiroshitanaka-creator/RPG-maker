@@ -37,7 +37,7 @@ func _castle_route() -> void:
 	castle_check(not _session().choose_job("pc_01","thief"),"解放前の転職拒否")
 	castle_check(layout_matches(11) and layout_matches(2),"大広間・謁見の間の通行地図が実判定と全マス一致")
 	# 中庭 → 大広間
-	if not castle_check(await _walk(castle_point(1,[16,13])),"城の中庭へ歩行"):return
+	if not castle_check(await _walk(castle_point(1,[8,4])),"城の中庭へ歩行"):return
 	await picture("01-court")
 	if not castle_check(await _walk(castle_point(11,[8,8])),"中庭の扉から大広間へ入る"):return
 	castle_check(_state()["overworld"]["room"]==11 and _state()["overworld"]["cell"]==[8,8],"大広間の入口（下の両開きの扉の内側）に着く")
@@ -89,7 +89,7 @@ func _castle_route() -> void:
 	if not castle_check(await _walk(castle_point(10,[8,8])),"奥の右の扉から書庫へ入る"):return
 	await picture("11-library")
 	castle_check(_state()["overworld"]["room"]==10,"書庫に入った")
-	if not castle_check(await _walk(castle_point(10,[10,8])),"書庫の係の前へ"):return
+	if not castle_check(await _walk(castle_point(10,[11,7])),"書庫の係の前へ"):return
 	await _key(KEY_UP);await _key(KEY_ENTER)
 	castle_check(_snapshot().get("mode")=="dialogue","書庫の係に話しかけられる")
 	await _settle()
@@ -100,8 +100,8 @@ func _castle_route() -> void:
 	castle_check(_session().save_game(save_path),"大広間で保存")
 	var loaded := GameSession.new()
 	castle_check(loaded.load_game(save_path) and loaded.export_state()==_state(),"場所・向き・転職・進行の保存復元")
-	if not castle_check(await _walk(castle_point(1,[16,11])),"大広間の下の扉から中庭へ戻る"):return
-	castle_check(_state()["overworld"]["room"]==1 and _state()["overworld"]["cell"]==[16,11],"中庭の扉の前に着く")
+	if not castle_check(await _walk(castle_point(1,[8,2])),"大広間の下の扉から中庭へ戻る"):return
+	castle_check(_state()["overworld"]["room"]==1 and _state()["overworld"]["cell"]==[8,2],"中庭の扉の前に着く")
 	await picture("13-court-again")
 	if not castle_check(await _walk(_definition["castle_exit"],_outside(_definition["castle_entrance"])),"城下町から世界マップへ戻る"):return
 	castle_check(_outward(_definition["castle_entrance"]),"出口の一歩手前・外向き")
