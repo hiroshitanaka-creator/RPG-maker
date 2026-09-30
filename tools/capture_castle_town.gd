@@ -78,7 +78,7 @@ func _castle_route() -> void:
 	await picture("03-castle-court")
 	if not castle_check(await _walk(castle_point(1,[6,3])),"城の外観を見渡す位置へ歩行"):return
 	await picture("03b-castle-exterior")
-	if not castle_check(await _walk(castle_point(2,[16,6])),"玉座の前へ歩行"):return
+	if not castle_check(await _walk(castle_point(2,[12,6])),"玉座の前へ歩行"):return
 	await picture("04-throne-hall")
 	if not castle_check(await _key(KEY_UP),"王の方を向く"):return
 	if not castle_check(await _key(KEY_ENTER),"王と会話"):return

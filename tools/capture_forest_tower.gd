@@ -70,7 +70,7 @@ func _castle_route() -> void:
 	_definition["doors"].append_array(_definition["castle_doors"])
 	castle_check(not FirstRegion.walkable(_state(),WorldExpedition.point(_definition["tower_entrance"]["cell"])),"謁見前に塔へ入れない")
 	if not castle_check(await _walk(_world_point(_definition["castle_entrance"]["cell"]),_definition["castle_spawn"]),"城下町へ通常入場"):return
-	if not castle_check(await _walk(castle_point(2,[16,6])),"謁見の間へ通常歩行"):return
+	if not castle_check(await _walk(castle_point(2,[12,6])),"謁見の間へ通常歩行"):return
 	await _key(KEY_UP);await _key(KEY_ENTER);await _settle()
 	castle_check(_state()["progress_flags"].get("castle_north_permission",false),"謁見で森への許可")
 	if not castle_check(await _walk(_definition["castle_exit"],_outside(_definition["castle_entrance"])),"城下町から外へ"):return

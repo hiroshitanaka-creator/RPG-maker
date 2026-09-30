@@ -47,6 +47,38 @@ static func walkable(saved: Dictionary, cell: Vector2i) -> bool:
 		if event["kind"] in ["recruit","rest","shop","weapon_shop","npc"] and event_cell(saved,event) == cell:return false
 	return true
 
+## 部屋の入口の扉の前のマス。入口がなければ空の配列。
+## 町・洞窟・塔などの入口（*_spawn）を先に探し、なければ扉の接続（doors 系）で「その部屋へ入る」着地マスを使う。
+static func entrance_landing(node: String, room_index: int) -> Array:
+	var definition := data()
+	for key in ["village_spawn","cave_spawn","castle_spawn","tower_spawn","port_spawn"]:
+		var spawn: Variant = definition.get(key)
+		if spawn is Dictionary and spawn["layer"] == "interior" and spawn["node"] == node and spawn["room"] == room_index:return spawn["cell"].duplicate()
+	var links: Array = []
+	for key in ["doors","castle_doors","tower_doors","port_doors"]:links.append_array(definition.get(key,[]))
+	for key in ["stairs_down","stairs_up"]:
+		if definition.get(key) is Dictionary:links.append(definition[key])
+	for link in links:
+		var to: Dictionary = link["to"]
+		if to["layer"] == "interior" and to["node"] == node and to["room"] == room_index:return to["cell"].duplicate()
+	return []
+
+## 保存を読み込むとき、部屋の作りが変わって歩けなくなったマス（壁・家具・人物のマス、部屋の外）に立っている保存を、
+## その部屋の入口の扉の前へ置き直す。saved は整数化済みの保存。置き直したら true。
+## 部屋がなくなった保存、入口のない部屋、入口自体が歩けない場合は何もしない（読み込みは従来どおり拒否される）。
+static func relocate_unwalkable(saved: Dictionary) -> bool:
+	var state: Variant = saved.get("overworld")
+	if not saved.get("first_region") is Dictionary or not state is Dictionary:return false
+	if state.get("layer") != "interior" or state.get("transport","walk") != "walk" or not state.get("node") is String or not state.get("room") is int:return false
+	var cell: Variant = state.get("cell")
+	if not cell is Array or cell.size() != 2 or not cell[0] is int or not cell[1] is int:return false
+	if room(state).is_empty() or walkable(saved,Vector2i(cell[0],cell[1])):return false
+	var landing := entrance_landing(state["node"],state["room"])
+	if landing.is_empty() or not walkable(saved,Vector2i(landing[0],landing[1])):return false
+	state["cell"] = landing
+	state["entry_lock"] = ""
+	return true
+
 static func joined(saved: Dictionary, id: String) -> bool:
 	for actor in saved["party"]:
 		if actor["id"] == id:return true
