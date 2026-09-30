@@ -89,7 +89,7 @@ static func walkable_cells(saved: Dictionary) -> Array:
 	var state: Dictionary = saved["overworld"]
 	var layout: Array = room(state).get("layout",[])
 	var bounds: Array = data()["bounds"] if state["layer"] == "world" else [0,0,str(layout[0]).length()-1,layout.size()-1]
-	if state.get("transport","walk")=="ship":bounds=FirstRegionTravel.data()["sea_bounds"]
+	if state["layer"]=="world":bounds=FirstRegionTravel.sea_bounds()
 	for y in range(bounds[1],bounds[3]+1):
 		for x in range(bounds[0],bounds[2]+1):
 			if walkable(saved,Vector2i(x,y)):cells.append([x,y])
@@ -103,8 +103,10 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 	state["entry_lock"] = ""
 	if state.get("transport","walk")=="ship":
 		FirstRegionTravel.ensure(saved)["ship_cell"]=state["cell"].duplicate()
-		var sea: Dictionary=FirstRegionTravel.data()["encounter"]
-		if randf()<float(sea["chance"]):return {"kind":"battle","id":"coastal_encounter","enemies":sea["enemies"],"seed":randi()}
+		var sea: Dictionary=FirstRegionTravel.encounter(cell)
+		if randf()<float(sea["chance"]):
+			var group: Array=sea["groups"].pick_random() if sea.has("groups") else sea["enemies"]
+			return {"kind":"battle","id":"second_coast_encounter" if sea.has("groups") else "coastal_encounter","enemies":group,"seed":randi()}
 		return {"kind":"moved"}
 	var definition := data()
 	if state["layer"] == "world":
@@ -159,6 +161,10 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 			return {"kind":"battle","id":"forest_tower_boss","enemies":definition["tower_boss"]["enemies"],"seed":randi()}
 		if at(state,definition["boss"]["point"]) and "first_boss" not in state["cleared"]:
 			return {"kind":"battle","id":"first_boss","enemies":definition["boss"]["enemies"],"seed":randi()}
+	if state["layer"]=="world" and SecondRegionCoast.on_land(cell):
+		var coast: Dictionary=SecondRegionCoast.data()["ground_encounter"]
+		if randf()<float(coast["chance"]):return {"kind":"battle","id":"second_coast_ground_encounter","enemies":coast["groups"].pick_random(),"seed":randi()}
+		return {"kind":"moved"}
 	if state["node"] not in ["start_village","first_castle","first_port"]:
 		var rule: Dictionary = definition["encounters"]["world" if state["layer"] == "world" else state["node"]]
 		if randf() < float(rule["chance"]):

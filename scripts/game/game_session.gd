@@ -38,8 +38,8 @@ func _init() -> void:
 	errors.append_array(ExplorationSites.audit(abilities,jobs))
 	errors.append_array(CampaignContent.audit(enemy_definitions))
 	if LongCampaign.enabled():errors.append_array(LongCampaign.audit(abilities,enemy_definitions))
-	if enemy_definitions.size() != 30:
-		errors.append("v1の敵データは30種類です。")
+	if enemy_definitions.size() != 36:
+		errors.append("敵データは既存30種類と第2地方の海3種類・地上3種類、計36種類です。")
 	for index in range(StoryCampaign.total_steps()):
 		var step := StoryCampaign.step(index)
 		for wave in StoryCampaign.battle_waves(step):

@@ -227,6 +227,13 @@ jobs:
           timeout 120 ./godot --headless --path . --script res://tools/check_saved_position_relocation.gd 2>&1 | tee saved-position-relocation.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" saved-position-relocation.log; then exit 1; fi
           test "$(grep -c '^SAVED_POSITION_RELOCATION_PASS:' saved-position-relocation.log)" -eq 1
+      - name: 第2地方の航路と岸の境界を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_second_region_coast.gd 2>&1 | tee second-region-coast.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" second-region-coast.log; then exit 1; fi
+          test "$(grep -c '^SECOND_COAST_PASS:' second-region-coast.log)" -eq 1
       - name: 最初の地方の画面と通常保存操作を検査
         if: steps.check.outputs.exists == 'true'
         run: |

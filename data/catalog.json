@@ -1373,6 +1373,177 @@
         "focus_variation": 100
       },
       "design_status": "v1調整案。利用者が提供した追加画像を割り当てる。 攻撃技の集中への反応・共鳴防御を予告し、通常攻撃・回復・防御で対処できる調整案。"
+    },
+    {
+      "id": "coast_water_blob",
+      "name": "青い水滴（仮）",
+      "sprite_id": "blue_water_blob",
+      "family": "slime",
+      "role": "接近型",
+      "stats": {
+        "hp": 60,
+        "mp": 0,
+        "attack": 10,
+        "defense": 6,
+        "magic": 0,
+        "resistance": 5,
+        "speed": 5
+      },
+      "abilities": [],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 10,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "第2地方の依頼者指定の配置。能力・技・弱点・報酬は既存slimeと同値。遭遇率0.025は既存海域・世界地図と同じ。"
+    },
+    {
+      "id": "coast_redfin",
+      "name": "赤びれの牙魚（仮）",
+      "sprite_id": "redfin_biter",
+      "family": "bat",
+      "role": "接近型",
+      "stats": {
+        "hp": 75,
+        "mp": 0,
+        "attack": 13,
+        "defense": 4,
+        "magic": 0,
+        "resistance": 8,
+        "speed": 21
+      },
+      "abilities": [],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 12,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "第2地方の依頼者指定の配置。能力・技・弱点・報酬は既存batと同値。遭遇率0.025は既存海域・世界地図と同じ。"
+    },
+    {
+      "id": "coast_red_crab",
+      "name": "赤爪ガニ（仮）",
+      "sprite_id": "red_claw_crab",
+      "family": "shell_guard",
+      "role": "接近型",
+      "stats": {
+        "hp": 150,
+        "mp": 0,
+        "attack": 18,
+        "defense": 28,
+        "magic": 0,
+        "resistance": 4,
+        "speed": 4
+      },
+      "abilities": [],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 16,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "第2地方の依頼者指定の配置。能力・技・弱点・報酬は既存shell_guardと同値。遭遇率0.025は既存海域・世界地図と同じ。"
+    },
+    {
+      "id": "coast_thorn_cactus",
+      "name": "花咲く刺サボテン（仮）",
+      "sprite_id": "thorn_cactus",
+      "family": "shell_guard",
+      "role": "接近型",
+      "stats": {
+        "hp": 150,
+        "mp": 0,
+        "attack": 18,
+        "defense": 28,
+        "magic": 0,
+        "resistance": 4,
+        "speed": 4
+      },
+      "abilities": [],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 16,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "第2地方の依頼者指定の配置。能力・技・弱点・報酬は既存shell_guardと同値。遭遇率0.025は既存海域・世界地図と同じ。"
+    },
+    {
+      "id": "coast_scorpion",
+      "name": "サソリ（仮）",
+      "sprite_id": "desert_scorpion",
+      "family": "bat",
+      "role": "接近型",
+      "stats": {
+        "hp": 75,
+        "mp": 0,
+        "attack": 13,
+        "defense": 4,
+        "magic": 0,
+        "resistance": 8,
+        "speed": 21
+      },
+      "abilities": [],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 12,
+      "tactics": {
+        "profile": "legacy",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "第2地方の依頼者指定の配置。能力・技・弱点・報酬は既存batと同値。遭遇率0.025は既存海域・世界地図と同じ。"
+    },
+    {
+      "id": "coast_worm",
+      "name": "砂の虫（仮）",
+      "sprite_id": "sand_worm",
+      "family": "slime",
+      "role": "防御交替型",
+      "stats": {
+        "hp": 140,
+        "mp": 9,
+        "attack": 12,
+        "defense": 16,
+        "magic": 6,
+        "resistance": 9,
+        "speed": 5
+      },
+      "abilities": [
+        "firm_guard",
+        "acid"
+      ],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 14,
+      "tactics": {
+        "profile": "guardian",
+        "focus": "random",
+        "heal_below": 65,
+        "guard_every": 2
+      },
+      "design_status": "第2地方の依頼者指定の配置。能力・技・弱点・報酬は既存ward_slimeと同値。遭遇率0.025は既存海域・世界地図と同じ。"
     }
   ],
   "encounters": [

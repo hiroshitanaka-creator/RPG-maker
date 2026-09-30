@@ -6,6 +6,7 @@ static var _data: Dictionary = {}
 static func data() -> Dictionary:
 	if _data.is_empty():
 		_data = WorldExpedition._integers(JSON.parse_string(FileAccess.get_file_as_string("res://world/first_region_visuals.json")))
+		_data["maps"]["world"]=SecondRegionCoast.extend_world(_data["maps"]["world"])
 	return _data
 
 static func map_for(state: Dictionary) -> Dictionary:
@@ -18,6 +19,8 @@ static func world_walkable(cell: Vector2i) -> bool:
 	return local.x >= 0 and local.y >= 0 and local.x < document["width"] and local.y < document["height"] and str(document["layout"][local.y]).substr(local.x,1) == "."
 
 static func place_name(state: Dictionary) -> String:
+	if state["layer"]=="world" and state["cell"][0]>=96:
+		return "第2地方の沿岸（仮）" if SecondRegionCoast.on_land(WorldExpedition.point(state["cell"])) else "第2地方への航路（仮）"
 	return "エルヴァ地方" if state["layer"] == "world" else str(FirstRegion.room(state).get("title",""))
 
 static func residents(state: Dictionary) -> Array:

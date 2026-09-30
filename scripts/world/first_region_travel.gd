@@ -21,8 +21,19 @@ static func visit(saved: Dictionary, id: String) -> void:
 static func snapshot(saved: Dictionary) -> Dictionary:
 	return saved.get("first_region",{}).get("travel",{})
 
+static func sea_bounds() -> Array:
+	return SecondRegionCoast.data()["bounds"]
+
+static func docks() -> Array:
+	return data()["docks"]+SecondRegionCoast.data()["docks"]
+
+static func encounter(cell: Vector2i) -> Dictionary:
+	var b: Array=data()["sea_bounds"]
+	if cell.x>=b[0] and cell.y>=b[1] and cell.x<=b[2] and cell.y<=b[3]:return data()["encounter"]
+	return SecondRegionCoast.data()["sea_encounter"]
+
 static func ship_water(cell: Vector2i) -> bool:
-	var bounds: Array=data()["sea_bounds"]
+	var bounds: Array=sea_bounds()
 	if cell.x<bounds[0] or cell.y<bounds[1] or cell.x>bounds[2] or cell.y>bounds[3]:return false
 	var m: Dictionary=FirstRegionPresentation.data()["maps"]["world"]
 	var p := cell-WorldExpedition.point(m["origin"])
@@ -31,7 +42,7 @@ static func ship_water(cell: Vector2i) -> bool:
 static func dock_for(saved: Dictionary) -> Dictionary:
 	var travel := snapshot(saved)
 	if not travel.get("ship_owned",false):return {}
-	for dock in data()["docks"]:
+	for dock in docks():
 		if travel["ship_cell"]!=dock["ship_cell"]:continue
 		if saved["overworld"].get("transport","walk")=="ship":
 			if saved["overworld"]["cell"]==dock["ship_cell"]:return dock

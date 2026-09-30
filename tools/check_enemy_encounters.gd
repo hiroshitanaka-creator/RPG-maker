@@ -15,7 +15,7 @@ func _check(condition: bool, message: String) -> void:
 func _run() -> void:
 	var game: Variant = GameSession.new()
 	_check(game.new_game(4), "新規状態を開始できる")
-	_check(game.enemy_definitions.size() == 30, "敵30種類を定義する")
+	_check(game.enemy_definitions.size() == 36, "既存30種類と第2地方の海3種・地上3種、計36種類を定義する")
 	_check(game.enemy_definitions.has("balm_slime"), "回復役を独立した敵として定義する")
 	_check(game.has_method("start_story_battle"), "連戦の開始と保存状態を接続する")
 	var encounter: Variant = game.start_battle(["slime"],111)
@@ -30,17 +30,22 @@ func _run() -> void:
 				seen[identifier] = true
 	_check(seen.size() == 30, "30種類すべてを本編の遭遇に配置する")
 	var counts: Dictionary = {}
+	var added: Array[String] = []
 	for definition in game.enemy_definitions.values():
 		var family: String = definition["family"]
-		counts[family] = int(counts.get(family,0)) + 1
+		if seen.has(definition["id"]):counts[family] = int(counts.get(family,0)) + 1
+		else:added.append(definition["id"])
 		_check(FileAccess.file_exists("res://assets/monsters/%s/idle.png" % definition["sprite_id"]), "実在する画像を参照する")
+	_check(counts.size()==5,"旧本編の30種は5系統を維持する")
 	for count in counts.values():
 		_check(count == 6, "5系統それぞれに6種類を定義する")
+	added.sort()
+	_check(added==["coast_red_crab","coast_redfin","coast_scorpion","coast_thorn_cactus","coast_water_blob","coast_worm"],"第2地方へ追加した海3種と地上3種を全件照合")
 	_check_ai()
 	_check_waves()
 	await _check_ui()
 	if _failures.is_empty():
-		print("ENCOUNTER_PASS: 敵30種・回復/防御/蘇生・予定の再現性・連戦保存を検証")
+		print("ENCOUNTER_PASS: 旧30種と追加6種・回復/防御/蘇生・予定の再現性・連戦保存を検証")
 	_finish()
 
 
