@@ -31,14 +31,14 @@ def cut_grey(im):
     a[seen]=0;a[~seen,3]=255
     return Image.fromarray(a)
 
-def convert_cutout(clean,box,extent):
+def convert_cutout(clean,box,extent,bank=PAL):
     # 灰背景で確定した透過を維持する。黒背景用の再切り抜きで暗い体を削らない。
     body=clean.crop(box);scale=extent/max(body.size)
     body=body.resize((max(1,round(body.width*scale)),max(1,round(body.height*scale))),Image.Resampling.NEAREST)
     a=np.array(body);opaque=a[:,:,3]>0
     colors,counts=np.unique(a[:,:,:3][opaque],axis=0,return_counts=True)
-    near=((colors.astype(np.int32)[:,None,:]-PAL[None,:,:])**2).sum(axis=2).argmin(axis=1)
-    weights=np.bincount(near,weights=counts,minlength=len(PAL));palette=PAL[np.argsort(-weights,kind='stable')[:32]]
+    near=((colors.astype(np.int32)[:,None,:]-bank[None,:,:])**2).sum(axis=2).argmin(axis=1)
+    weights=np.bincount(near,weights=counts,minlength=len(bank));palette=bank[np.argsort(-weights,kind='stable')[:32]]
     values,inverse=np.unique(a[:,:,:3].reshape(-1,3),axis=0,return_inverse=True)
     near=((values.astype(np.int32)[:,None,:]-palette[None,:,:])**2).sum(axis=2).argmin(axis=1)
     a[:,:,:3]=palette[near[inverse]].reshape(a.shape[:2]+(3,));a[~opaque]=0
@@ -52,11 +52,18 @@ def main():
     source=Image.open(ROOT/RECEIVED).convert('RGBA');assert source.size==(1168,784)
     registry_path=ROOT/'assets/registry.json';registry=json.loads(registry_path.read_text(encoding='utf8'))
     entries={e['path']:e for e in registry['assets']};rows=[];pieces=[]
+    extension_path=ROOT/'assets/source_records/natural-teal-extension.json'
+    extension=json.loads(extension_path.read_text(encoding='utf8')) if extension_path.exists() else None
     OUT.mkdir(parents=True,exist_ok=True)
     for slot,(identifier,name,left,right,category,extent,use) in enumerate(DEFS,1):
         original=source.crop((left,0,right,source.height));clean=cut_grey(original)
         box=clean.getbbox();assert box
-        body=convert_cutout(clean,box,extent);picture=Image.new('RGBA',(96,96))
+        bank=PAL
+        if extension:
+            # ミイラは従来の72色に固定し、将来のパレット拡張でも今回以外の素材を変えない。
+            colors=extension['original_colors']+([r['rgb'] for r in extension['selected']] if identifier!='desert_mummy' else [])
+            bank=np.array(sorted(map(tuple,colors)),dtype=np.int32)
+        body=convert_cutout(clean,box,extent,bank);picture=Image.new('RGBA',(96,96))
         bottom=96-min(2,96-body.height);picture.alpha_composite(body,((96-body.width)//2,bottom-body.height))
         dest=f'assets/monsters/{identifier}/idle.png';(ROOT/dest).parent.mkdir(parents=True,exist_ok=True);picture.save(ROOT/dest)
         clean.save(OUT/(identifier+'-cutout.png'))
@@ -67,6 +74,7 @@ def main():
                  resampling='nearest',mirror=False,palette='assets/palette/natural.gpl',max_colors=32,actual_colors=len(colors),
                  size_class=category,target_extent=extent,size=[96,96],visible_size=[bounds[2]-bounds[0],bounds[3]-bounds[1]],path=dest,
                  output_sha256=sha((ROOT/dest).read_bytes()),use=use)
+        if extension and identifier!='desert_mummy':row['palette_extension_record']='assets/source_records/natural-teal-extension.json'
         rows.append(row);pieces.append((original,clean,picture,box))
         entries[dest]=dict(path=dest,kind='monster_idle',size=[96,96],max_colors=32,status='optional' if identifier=='desert_mummy' else 'required',
                            palette='assets/palette/natural.gpl',source='owner',license='LicenseRef-Owner-Provided',author='依頼者',provided_at='2026-09-30',
@@ -94,6 +102,7 @@ def main():
         draw.text((x+110,764),'戦闘画面の大きさ',font=small,fill='white')
         draw.text((x,847),row['use'],font=small,fill='#ede0be')
     sheet.save(OUT/'source-comparison.png')
+    if extension:sheet.crop((0,0,960,900)).save(OUT/'teal-source-comparison.png')
     print('DESERT_MONSTERS_IMPORT: '+', '.join(f"{r['id']}={r['visible_size']}/{r['actual_colors']}色" for r in rows))
 
 if __name__=='__main__':main()
