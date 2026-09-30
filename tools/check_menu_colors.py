@@ -7,6 +7,37 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'docs/verification/menu-colors'
 EXPECTED=[f'{i:02}' for i in range(1,24)]
 BLUE='101c50ff';WHITE='ffffffff';MUTED='9aa6c4ff'
+BODY_BASELINES={
+    '12-mechanics':('main/1/1/0/0/0/1',[16,38,480,128]),
+    '14-upgrade':('main/1/1/0/0/0/1',[16,38,480,128]),
+    '22-journal-filled':('main/1/1/0/0/0/2',[16,62,480,128]),
+    '23-journal-list':('main/1/1/0/0/0/2',[16,62,480,128]),
+}
+
+def expected_body_layout(screen_id,rows):
+    """承認された本文高さだけを基準にし、既存VBoxの後続配置を導出する。"""
+    expected=copy.deepcopy(rows)
+    if screen_id not in BODY_BASELINES:return expected
+    path,new_rect=BODY_BASELINES[screen_id]
+    body=next(r for r in expected if r['path']==path)
+    assert body['kind']=='RichTextLabel' and body['rect']==new_rect[:3]+[0], '変更前の本文領域が想定と異なる'
+    delta=new_rect[3]-body['rect'][3]
+    parent,index=path.rsplit('/',1)
+    container=next(r for r in expected if r['path']==parent)
+    assert container['kind']=='VBoxContainer', '既存の縦配置を維持'
+    container['rect'][3]+=delta
+    body['rect']=list(new_rect)
+    # 高さ0の本文に出ていた内部バーは、本文が128pxに収まる場合だけ不要になる。
+    bars=[r for r in expected if r['path']==path+'/0']
+    assert len(bars)==1 and bars[0]['kind']=='VScrollBar', '変更前の本文内部バーを確認'
+    scroll=bars[0]['range']
+    assert scroll[0]==0 and 0<scroll[1]<=delta and scroll[2:]==[0,0], '本文全体が新しい高さに収まる'
+    expected.remove(bars[0])
+    for row in expected:
+        if row['path'].startswith(parent+'/'):
+            sibling=row['path'][len(parent)+1:].split('/')[0]
+            if int(sibling)>int(index):row['rect'][1]+=delta
+    return expected
 
 def content(rows):
     result=copy.deepcopy(rows)
@@ -75,6 +106,7 @@ def main():
         mode_by_id.update({'22':'JOURNAL','23':'JOURNAL'})
         if a['mode']!=mode_by_id[a['id'][:2]] or b['mode']!=a['mode']:errors.append(a['id']+' 対象画面の表示状態が不一致')
         ar,br=content(a['controls']),content(b['controls'])
+        ar=expected_body_layout(a['id'],ar)
         if ar!=br:
             differences=[]
             for index,(x,y) in enumerate(zip(ar,br)):
@@ -92,7 +124,8 @@ def main():
     if not before_errors:errors.append('変更前の色を不成立として検出できない')
     if not all(counts[k]>0 for k in counts):errors.append('窓・ボタン・リスト・無効項目・スクロール・字体の観測が不足')
     result={'status':'PASS' if not errors else 'FAIL','screens':len(after['screens']),'before_color_failures':len(before_errors),'observed':counts,'failures':errors,
-            'method':'同じ表示用状態の本番画面。文言・順序・矩形・使用可否は完全一致。試遊の経過時間のみ文型で照合。'}
+            'body_height_baselines':{key:{'path':value[0],'rect':value[1]} for key,value in BODY_BASELINES.items()},
+            'method':'同じ表示用状態の本番画面。文言・順序・使用可否は完全一致。承認済み3画面（手帳の一覧展開を含む4状態）の本文だけ高さ128px。親と後続要素はその高さ差から自動配置を導出し厳密照合。本文が収まる内部バーだけ消失を確認。他の矩形は完全一致。試遊の経過時間のみ文型で照合。'}
     (OUT/'checks.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
     for stage,doc in [('before',before),('after',after)]:gallery(doc,stage)
     print(json.dumps(result,ensure_ascii=False))
