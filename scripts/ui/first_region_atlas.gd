@@ -10,7 +10,7 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var extent := WorldTerrain.size_tiles()
 	var image := Image.create(extent.x,extent.y,false,Image.FORMAT_RGB8)
-	var colors := {"~":Color("4079a4"),"g":Color("78954a"),"f":Color("3e633d"),"m":Color("787466"),"r":Color("bea272"),"b":Color("ad855a"),"n":Color("e1d2a6")}
+	var colors := {"~":Color("4079a4"),"g":Color("78954a"),"f":Color("3e633d"),"m":Color("787466"),"r":Color("bea272"),"b":Color("ad855a"),"n":Color("e1d2a6"),"s":Color("d3b578")}
 	for y in range(extent.y):
 		for x in range(extent.x):image.set_pixel(x,y,colors.get(WorldTerrain.tile(Vector2i(x,y)),Color("859265")))
 	var local: Dictionary=FirstRegionPresentation.data()["maps"]["world"]

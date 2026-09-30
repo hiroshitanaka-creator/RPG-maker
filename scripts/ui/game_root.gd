@@ -2294,6 +2294,7 @@ func _sync_region_music() -> void:
 func _region_background() -> String:
 	var state := game.overworld_state()
 	if state.get("transport","walk")=="ship":return "sea"
+	if state["layer"]=="world" and SecondRegionCoast.on_land(WorldExpedition.point(state["cell"])):return "desert"
 	if state["node"]=="first_cave":return "cave"
 	if state["node"]=="first_forest_tower":return "tower"
 	if state["layer"]=="world":
@@ -2310,7 +2311,7 @@ func _render_region_screen() -> void:
 		add_child(atlas)
 		return
 	var state := game.overworld_state()
-	var key := "%s:%s:%d" % [state["layer"],state["node"],state["room"]]
+	var key := "%s:%s:%d:%s" % [state["layer"],state["node"],state["room"],FirstRegionPresentation.place_name(state)]
 	if key!=_region_place_key:_region_place_key=key;_region_place_ms=Time.get_ticks_msec()
 	_region_screen=FirstRegionScreen.new()
 	_region_screen.game=game

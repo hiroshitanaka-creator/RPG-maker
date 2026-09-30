@@ -1,0 +1,51 @@
+{
+  "build": {
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "files": 1210,
+    "id": "c96ae3a772d0605c77c235285464c46cf60f38586c100ee77caf26a957d68569",
+    "version": 1
+  },
+  "checks": 46,
+  "failures": [],
+  "images": [
+    "00-first-region-sea-battle.png",
+    "03-second-region-sea-battle.png",
+    "01-crossing-to-second-region.png",
+    "02-landed-on-sand-coast.png",
+    "04-coast-walking.png",
+    "05-returned-to-first-region.png",
+    "06-ground-candidates-desert.png"
+  ],
+  "inputs": 479,
+  "limits": {
+    "inputs": 3000,
+    "milliseconds": 180000,
+    "moves": 600
+  },
+  "moves": 355,
+  "source": "prepare_port_departure.gdが通常到達から作った保存を、未編集のままタイトル画面から再開。",
+  "status": "PASS",
+  "visible_pixels": [
+    {
+      "image": "01-crossing-to-second-region",
+      "matched": 2636,
+      "opaque": 2636,
+      "subject": "ship"
+    },
+    {
+      "image": "02-landed-on-sand-coast",
+      "matched": 743,
+      "opaque": 743
+    },
+    {
+      "image": "04-coast-walking",
+      "matched": 707,
+      "opaque": 707
+    },
+    {
+      "image": "05-returned-to-first-region",
+      "matched": 558,
+      "opaque": 599
+    }
+  ]
+}
