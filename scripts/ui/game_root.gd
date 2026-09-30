@@ -69,6 +69,8 @@ var _region_resident_time := 0.0
 var _region_resident_ms := 0
 var _region_resident_from: Dictionary = {}
 var _region_victory := false
+var _base_ui_theme: Theme
+var _menu_flat_background := false
 var _region_focus_label := ""
 var _region_flash_ms := -1000
 
@@ -104,6 +106,7 @@ func _ready() -> void:
 		ui_theme.set_stylebox(state, "Button", box)
 		ui_theme.set_stylebox(state, "OptionButton", box)
 	theme = ui_theme
+	_base_ui_theme=ui_theme
 	_refresh()
 
 
@@ -871,7 +874,18 @@ func _battle_action(action: Dictionary) -> bool:
 	return true
 
 
+func _menu_colors_active() -> bool:
+	if mode in [Mode.MENU,Mode.REVIEW]:return true
+	if not game.first_region_active():return false
+	return mode in [Mode.REGION_COMMANDS,Mode.REGION_ITEMS,Mode.REGION_TRAVEL,Mode.WORLD_ATLAS,Mode.PARTY,Mode.JOURNAL,Mode.JOB_LORE,Mode.MECHANICS,Mode.RULE_UPGRADE] or (mode==Mode.DIALOGUE and _dialogue_return==Mode.JOURNAL)
+
+func _draw() -> void:
+	if _menu_flat_background:draw_style_box(RpgMenuColors.window(),Rect2(Vector2.ZERO,size))
+
 func _refresh() -> void:
+	theme=_base_ui_theme
+	_menu_flat_background=_menu_colors_active() and mode in [Mode.MENU,Mode.REVIEW,Mode.JOB_LORE]
+	queue_redraw()
 	var focused := get_viewport().gui_get_focus_owner()
 	_region_focus_label=focused.text if mode==Mode.BATTLE and focused is Button and is_instance_valid(_region_screen) and _region_screen.is_ancestor_of(focused) else ""
 	for child in get_children():
@@ -883,9 +897,11 @@ func _refresh() -> void:
 		_sync_region_music()
 		if mode in [Mode.WORLD,Mode.DIALOGUE,Mode.BATTLE,Mode.WORLD_CHOICE,Mode.WORLD_ATLAS,Mode.REGION_COMMANDS,Mode.REGION_ITEMS,Mode.DEFEAT,Mode.REGION_TRAVEL]:
 			_render_region_screen()
+			if _menu_colors_active():RpgMenuColors.apply(self)
 			return
 		if mode in [Mode.PARTY,Mode.JOURNAL,Mode.MECHANICS,Mode.EROSION_CONFIRMATION,Mode.RULE_UPGRADE]:
 			_render_region_panel()
+			if _menu_colors_active():RpgMenuColors.apply(self)
 			return
 	var margin := MarginContainer.new()
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -948,6 +964,7 @@ func _refresh() -> void:
 		_body.add_child(warning)
 	if not _replay.is_empty():
 		_render_presentation()
+	if _menu_colors_active():RpgMenuColors.apply(self)
 
 
 func _render_menu() -> void:
