@@ -1754,7 +1754,21 @@ func save_game(path: String, record_id: String = "") -> bool:
 	return DirAccess.rename_absolute(temporary, path) == OK
 
 
+## 直近の load_game で、歩けなくなった立ち位置を部屋の入口の扉の前へ置き直したか。
+var position_relocated := false
+
+## 部屋の作りが変わり、保存の立ち位置が歩けないマスになっていたら、部屋の入口の扉の前へ置き直す（FirstRegion.relocate_unwalkable）。
+func _relocate_saved_position(candidate: Dictionary) -> bool:
+	if not candidate.get("overworld") is Dictionary or not candidate.get("first_region") is Dictionary:return false
+	var probe: Dictionary = _normalize_numbers(candidate)
+	if not FirstRegion.relocate_unwalkable(probe):return false
+	candidate["overworld"]["cell"] = probe["overworld"]["cell"].duplicate()
+	candidate["overworld"]["entry_lock"] = probe["overworld"]["entry_lock"]
+	return true
+
+
 func load_game(path: String) -> bool:
+	position_relocated = false
 	if _battle != null or not path.begins_with("user://") or ".." in path or not FileAccess.file_exists(path):
 		return false
 	var document := JSON.new()
@@ -1766,6 +1780,7 @@ func load_game(path: String) -> bool:
 	var saved_types: Variant = candidate.get("_saved_value_types",null)
 	var has_saved_types := candidate.has("_saved_value_types")
 	candidate.erase("_saved_value_types")
+	position_relocated = _relocate_saved_position(candidate)
 	var metrics := PlaySessionMetrics.new()
 	var raw_metrics: Variant = candidate.get("_play_session",{})
 	if not raw_metrics is Dictionary or not metrics.restore(raw_metrics):

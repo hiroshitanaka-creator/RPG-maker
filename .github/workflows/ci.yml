@@ -220,6 +220,13 @@ jobs:
           timeout 60 ./godot --headless --path . --script res://tools/check_saved_value_types.gd 2>&1 | tee saved-value-types.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" saved-value-types.log; then exit 1; fi
           test "$(grep -c '^SAVED_VALUE_TYPES_PASS:' saved-value-types.log)" -eq 1
+      - name: 部屋の作りが変わった後の保存の置き直しを検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 120 ./godot --headless --path . --script res://tools/check_saved_position_relocation.gd 2>&1 | tee saved-position-relocation.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" saved-position-relocation.log; then exit 1; fi
+          test "$(grep -c '^SAVED_POSITION_RELOCATION_PASS:' saved-position-relocation.log)" -eq 1
       - name: 最初の地方の画面と通常保存操作を検査
         if: steps.check.outputs.exists == 'true'
         run: |
