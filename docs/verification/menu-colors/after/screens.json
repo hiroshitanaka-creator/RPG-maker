@@ -1,6 +1,6 @@
 {
 	"baseline": "d5833dbbdb5ff725aeb545eacd8966f7b04410e6",
-	"elapsed_ms": 6085,
+	"elapsed_ms": 6397,
 	"errors": [],
 	"limit_ms": 180000,
 	"root_source_sha256": "c91e956827e5f8aa4c0115f17c2da627a9b23b676f259f97fa3f7f3a53b3b609",
@@ -15443,6 +15443,1048 @@
 			"id": "21-menu-ship",
 			"mode": "REGION_COMMANDS",
 			"title": "習得済みの帰還・乗船案内"
+		},
+		{
+			"controls": [
+				{
+					"colors": {},
+					"kind": "Control",
+					"path": "main",
+					"rect": [
+						0.0,
+						0.0,
+						512.0,
+						288.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "Control",
+					"path": "main/1",
+					"rect": [
+						0.0,
+						0.0,
+						512.0,
+						288.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "Control",
+					"path": "main/1/0",
+					"rect": [
+						0.0,
+						0.0,
+						512.0,
+						288.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "PanelContainer",
+					"path": "main/1/1",
+					"rect": [
+						8.0,
+						8.0,
+						496.0,
+						238.0
+					],
+					"styles": {
+						"panel": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								8.0,
+								8.0,
+								8.0,
+								8.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						}
+					}
+				},
+				{
+					"colors": {},
+					"kind": "VBoxContainer",
+					"path": "main/1/1/0",
+					"rect": [
+						16.0,
+						16.0,
+						480.0,
+						222.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "ScrollContainer",
+					"path": "main/1/1/0/0",
+					"rect": [
+						16.0,
+						16.0,
+						480.0,
+						220.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "VBoxContainer",
+					"path": "main/1/1/0/0/0",
+					"rect": [
+						16.0,
+						16.0,
+						480.0,
+						73.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {
+						"font": "ffffffff"
+					},
+					"font": "Noto Sans JP Thin",
+					"font_size": 15,
+					"kind": "Label",
+					"path": "main/1/1/0/0/0/0",
+					"rect": [
+						16.0,
+						16.0,
+						480.0,
+						19.0
+					],
+					"styles": {},
+					"text": "旅の手帳  2 / 8件"
+				},
+				{
+					"colors": {
+						"disabled": "9aa6c4ff",
+						"font": "ffffffff"
+					},
+					"disabled": false,
+					"focus_mode": 2,
+					"font": "Noto Sans JP Thin",
+					"font_size": 11,
+					"items": [
+						{
+							"disabled": false,
+							"metadata": "<null>",
+							"text": "R01 表示確認用の記録1（調査中）"
+						},
+						{
+							"disabled": false,
+							"metadata": "<null>",
+							"text": "R02 表示確認用の記録2（調査中）"
+						}
+					],
+					"kind": "OptionButton",
+					"path": "main/1/1/0/0/0/1",
+					"rect": [
+						16.0,
+						39.0,
+						480.0,
+						19.0
+					],
+					"selected": 0,
+					"styles": {
+						"disabled": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"focus": {
+							"background": "00000000",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						},
+						"normal": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						}
+					},
+					"text": "R01 表示確認用の記録1（調査中）"
+				},
+				{
+					"colors": {
+						"font": "ffffffff"
+					},
+					"font": "Noto Sans JP Thin",
+					"font_size": 12,
+					"kind": "RichTextLabel",
+					"path": "main/1/1/0/0/0/2",
+					"rect": [
+						16.0,
+						62.0,
+						480.0,
+						0.0
+					],
+					"styles": {},
+					"text": "見たこと\n物語の本文は、この表示確認では伏せています。\n\nその時の見立て\n物語の本文は、この表示確認では伏せています。"
+				},
+				{
+					"colors": {},
+					"kind": "VScrollBar",
+					"path": "main/1/1/0/0/0/2/0",
+					"range": [
+						0.0,
+						70.0,
+						0.0,
+						0.0
+					],
+					"rect": [
+						488.0,
+						62.0,
+						8.0,
+						8.0
+					],
+					"styles": {
+						"grabber": {
+							"background": "bdc7d3ff",
+							"border": "ffffffff",
+							"margins": [
+								4.0,
+								4.0,
+								4.0,
+								4.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"grabber_highlight": {
+							"background": "ffffffff",
+							"border": "ffffffff",
+							"margins": [
+								4.0,
+								4.0,
+								4.0,
+								4.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"scroll": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								4.0,
+								0.0,
+								4.0,
+								0.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						}
+					}
+				},
+				{
+					"colors": {},
+					"kind": "HBoxContainer",
+					"path": "main/1/1/0/0/0/3",
+					"rect": [
+						16.0,
+						66.0,
+						480.0,
+						0.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {
+						"disabled": "9aa6c4ff",
+						"font": "ffffffff"
+					},
+					"disabled": false,
+					"focus_mode": 2,
+					"font": "Noto Sans JP Thin",
+					"font_size": 11,
+					"kind": "Button",
+					"path": "main/1/1/0/0/0/4",
+					"rect": [
+						16.0,
+						70.0,
+						480.0,
+						19.0
+					],
+					"styles": {
+						"disabled": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"focus": {
+							"background": "00000000",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						},
+						"normal": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						}
+					},
+					"text": "戻る"
+				},
+				{
+					"colors": {
+						"disabled": "9aa6c4ff",
+						"font": "ffffffff"
+					},
+					"disabled": false,
+					"focus_mode": 2,
+					"font": "Noto Sans JP Thin",
+					"font_size": 11,
+					"kind": "Button",
+					"path": "main/1/2",
+					"rect": [
+						384.0,
+						254.0,
+						120.0,
+						31.0
+					],
+					"styles": {
+						"disabled": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"focus": {
+							"background": "00000000",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						},
+						"normal": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						}
+					},
+					"text": "戻る"
+				}
+			],
+			"corner": "9a6048ff",
+			"display_fixture": true,
+			"id": "22-journal-filled",
+			"mode": "JOURNAL",
+			"title": "記録のある手帳・本文は表示用"
+		},
+		{
+			"controls": [
+				{
+					"colors": {},
+					"kind": "Control",
+					"path": "main",
+					"rect": [
+						0.0,
+						0.0,
+						512.0,
+						288.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "Control",
+					"path": "main/1",
+					"rect": [
+						0.0,
+						0.0,
+						512.0,
+						288.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "Control",
+					"path": "main/1/0",
+					"rect": [
+						0.0,
+						0.0,
+						512.0,
+						288.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "PanelContainer",
+					"path": "main/1/1",
+					"rect": [
+						8.0,
+						8.0,
+						496.0,
+						238.0
+					],
+					"styles": {
+						"panel": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								8.0,
+								8.0,
+								8.0,
+								8.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						}
+					}
+				},
+				{
+					"colors": {},
+					"kind": "VBoxContainer",
+					"path": "main/1/1/0",
+					"rect": [
+						16.0,
+						16.0,
+						480.0,
+						222.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "ScrollContainer",
+					"path": "main/1/1/0/0",
+					"rect": [
+						16.0,
+						16.0,
+						480.0,
+						220.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "VBoxContainer",
+					"path": "main/1/1/0/0/0",
+					"rect": [
+						16.0,
+						16.0,
+						480.0,
+						73.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {
+						"font": "ffffffff"
+					},
+					"font": "Noto Sans JP Thin",
+					"font_size": 15,
+					"kind": "Label",
+					"path": "main/1/1/0/0/0/0",
+					"rect": [
+						16.0,
+						16.0,
+						480.0,
+						19.0
+					],
+					"styles": {},
+					"text": "旅の手帳  2 / 8件"
+				},
+				{
+					"colors": {
+						"disabled": "9aa6c4ff",
+						"font": "ffffffff"
+					},
+					"disabled": false,
+					"focus_mode": 2,
+					"font": "Noto Sans JP Thin",
+					"font_size": 11,
+					"items": [
+						{
+							"disabled": false,
+							"metadata": "<null>",
+							"text": "R01 表示確認用の記録1（調査中）"
+						},
+						{
+							"disabled": false,
+							"metadata": "<null>",
+							"text": "R02 表示確認用の記録2（調査中）"
+						}
+					],
+					"kind": "OptionButton",
+					"path": "main/1/1/0/0/0/1",
+					"rect": [
+						16.0,
+						39.0,
+						480.0,
+						19.0
+					],
+					"selected": 0,
+					"styles": {
+						"disabled": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"focus": {
+							"background": "00000000",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						},
+						"normal": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						}
+					},
+					"text": "R01 表示確認用の記録1（調査中）"
+				},
+				{
+					"colors": {
+						"disabled": "9aa6c4ff",
+						"font": "ffffffff"
+					},
+					"font": "Noto Sans JP Thin",
+					"font_size": 11,
+					"items": [
+						{
+							"disabled": false,
+							"metadata": "<null>",
+							"text": "R01 表示確認用の記録1（調査中）"
+						},
+						{
+							"disabled": false,
+							"metadata": "<null>",
+							"text": "R02 表示確認用の記録2（調査中）"
+						}
+					],
+					"kind": "PopupMenu",
+					"path": "main/1/1/0/0/0/1/0",
+					"rect": [
+						16,
+						58,
+						480,
+						48
+					],
+					"styles": {
+						"hover": {
+							"background": "ffffff1a",
+							"border": "ffffffff",
+							"margins": [
+								4.0,
+								4.0,
+								4.0,
+								4.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						},
+						"panel": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								4.0,
+								4.0,
+								4.0,
+								4.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						}
+					}
+				},
+				{
+					"colors": {},
+					"kind": "PanelContainer",
+					"path": "main/1/1/0/0/0/1/0/0",
+					"rect": [
+						0.0,
+						0.0,
+						480.0,
+						48.0
+					],
+					"styles": {
+						"panel": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								4.0,
+								4.0,
+								4.0,
+								4.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						}
+					}
+				},
+				{
+					"colors": {},
+					"kind": "VBoxContainer",
+					"path": "main/1/1/0/0/0/1/0/0/0",
+					"rect": [
+						4.0,
+						4.0,
+						472.0,
+						40.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "ScrollContainer",
+					"path": "main/1/1/0/0/0/1/0/0/0/1",
+					"rect": [
+						4.0,
+						4.0,
+						472.0,
+						40.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {},
+					"kind": "PopupMenuItems",
+					"path": "main/1/1/0/0/0/1/0/0/0/1/0",
+					"rect": [
+						4.0,
+						4.0,
+						472.0,
+						40.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {
+						"font": "ffffffff"
+					},
+					"font": "Noto Sans JP Thin",
+					"font_size": 12,
+					"kind": "RichTextLabel",
+					"path": "main/1/1/0/0/0/2",
+					"rect": [
+						16.0,
+						62.0,
+						480.0,
+						0.0
+					],
+					"styles": {},
+					"text": "見たこと\n物語の本文は、この表示確認では伏せています。\n\nその時の見立て\n物語の本文は、この表示確認では伏せています。"
+				},
+				{
+					"colors": {},
+					"kind": "VScrollBar",
+					"path": "main/1/1/0/0/0/2/0",
+					"range": [
+						0.0,
+						70.0,
+						0.0,
+						0.0
+					],
+					"rect": [
+						488.0,
+						62.0,
+						8.0,
+						8.0
+					],
+					"styles": {
+						"grabber": {
+							"background": "bdc7d3ff",
+							"border": "ffffffff",
+							"margins": [
+								4.0,
+								4.0,
+								4.0,
+								4.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"grabber_highlight": {
+							"background": "ffffffff",
+							"border": "ffffffff",
+							"margins": [
+								4.0,
+								4.0,
+								4.0,
+								4.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"scroll": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								4.0,
+								0.0,
+								4.0,
+								0.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						}
+					}
+				},
+				{
+					"colors": {},
+					"kind": "HBoxContainer",
+					"path": "main/1/1/0/0/0/3",
+					"rect": [
+						16.0,
+						66.0,
+						480.0,
+						0.0
+					],
+					"styles": {}
+				},
+				{
+					"colors": {
+						"disabled": "9aa6c4ff",
+						"font": "ffffffff"
+					},
+					"disabled": false,
+					"focus_mode": 2,
+					"font": "Noto Sans JP Thin",
+					"font_size": 11,
+					"kind": "Button",
+					"path": "main/1/1/0/0/0/4",
+					"rect": [
+						16.0,
+						70.0,
+						480.0,
+						19.0
+					],
+					"styles": {
+						"disabled": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"focus": {
+							"background": "00000000",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						},
+						"normal": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						}
+					},
+					"text": "戻る"
+				},
+				{
+					"colors": {
+						"disabled": "9aa6c4ff",
+						"font": "ffffffff"
+					},
+					"disabled": false,
+					"focus_mode": 2,
+					"font": "Noto Sans JP Thin",
+					"font_size": 11,
+					"kind": "Button",
+					"path": "main/1/2",
+					"rect": [
+						384.0,
+						254.0,
+						120.0,
+						31.0
+					],
+					"styles": {
+						"disabled": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						},
+						"focus": {
+							"background": "00000000",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								1,
+								1,
+								1,
+								1
+							]
+						},
+						"normal": {
+							"background": "101c50ff",
+							"border": "ffffffff",
+							"margins": [
+								5.0,
+								3.0,
+								5.0,
+								3.0
+							],
+							"type": "StyleBoxFlat",
+							"widths": [
+								0,
+								0,
+								0,
+								0
+							]
+						}
+					},
+					"text": "戻る"
+				}
+			],
+			"corner": "9a6048ff",
+			"display_fixture": true,
+			"id": "23-journal-list",
+			"mode": "JOURNAL",
+			"title": "手帳の記録選択一覧・表示用"
 		}
 	],
 	"sources": {

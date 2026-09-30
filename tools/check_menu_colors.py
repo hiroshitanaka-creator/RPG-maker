@@ -5,7 +5,7 @@ from PIL import Image,ImageDraw,ImageFont
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'docs/verification/menu-colors'
-EXPECTED=[f'{i:02}' for i in range(1,22)]
+EXPECTED=[f'{i:02}' for i in range(1,24)]
 BLUE='101c50ff';WHITE='ffffffff';MUTED='9aa6c4ff'
 
 def content(rows):
@@ -60,7 +60,7 @@ def main():
     before=json.loads((OUT/'before/screens.json').read_text(encoding='utf8'))
     after=json.loads((OUT/'after/screens.json').read_text(encoding='utf8'))
     errors=[]
-    if [s['id'][:2] for s in before['screens']]!=EXPECTED or [s['id'] for s in before['screens']]!=[s['id'] for s in after['screens']]:errors.append('対象21画面の不足または順序変更')
+    if [s['id'][:2] for s in before['screens']]!=EXPECTED or [s['id'] for s in before['screens']]!=[s['id'] for s in after['screens']]:errors.append('対象23画面の不足または順序変更')
     if before['save_sha256']!=after['save_sha256']:errors.append('開始保存が異なる')
     if before['sources']!=after['sources']:errors.append('変更前後で共有する描画コードが異なる')
     for doc in [before,after]:
@@ -72,6 +72,7 @@ def main():
         if hashlib.sha256((ROOT/path).read_bytes()).hexdigest()!=digest:errors.append('変更後の記録が古い: '+path)
     for a,b in zip(before['screens'],after['screens']):
         mode_by_id={'01':'REGION_COMMANDS','02':'REGION_COMMANDS','03':'REGION_ITEMS','04':'WORLD_ATLAS','05':'REGION_TRAVEL','06':'REGION_TRAVEL','07':'PARTY','08':'PARTY','09':'PARTY','10':'PARTY','11':'JOB_LORE','12':'MECHANICS','13':'PARTY','14':'RULE_UPGRADE','15':'JOURNAL','16':'DIALOGUE','17':'MENU','18':'REVIEW','19':'REVIEW','20':'REVIEW','21':'REGION_COMMANDS'}
+        mode_by_id.update({'22':'JOURNAL','23':'JOURNAL'})
         if a['mode']!=mode_by_id[a['id'][:2]] or b['mode']!=a['mode']:errors.append(a['id']+' 対象画面の表示状態が不一致')
         ar,br=content(a['controls']),content(b['controls'])
         if ar!=br:
@@ -81,6 +82,12 @@ def main():
             errors.append(a['id']+' 文言・順番・矩形・使用可否の不一致')
             (OUT/(a['id']+'-differences.json')).write_text(json.dumps({'before_count':len(ar),'after_count':len(br),'differences':differences},ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     before_errors,_=palette_failures(before)
+    for doc in [before,after]:
+        journal=next(s for s in doc['screens'] if s['id']=='22-journal-filled')
+        opened=next(s for s in doc['screens'] if s['id']=='23-journal-list')
+        if not any(r['kind']=='OptionButton' and len(r.get('items',[]))==2 for r in journal['controls']):errors.append('手帳の記録選択欄が未観測')
+        if not any(r['kind']=='RichTextLabel' and '物語の本文' in r.get('text','') for r in journal['controls']):errors.append('手帳の本文が未観測')
+        if not any(r['kind']=='PopupMenu' and len(r.get('items',[]))==2 for r in opened['controls']):errors.append('手帳の開いた記録一覧が未観測')
     color_errors,counts=palette_failures(after);errors.extend(color_errors)
     if not before_errors:errors.append('変更前の色を不成立として検出できない')
     if not all(counts[k]>0 for k in counts):errors.append('窓・ボタン・リスト・無効項目・スクロール・字体の観測が不足')

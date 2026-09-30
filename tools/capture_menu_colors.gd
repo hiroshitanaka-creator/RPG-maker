@@ -164,6 +164,24 @@ func run() -> void:
 	if not main.game.import_state(ready):printerr("MENU_CAPTURE_FAIL: 乗船の表示用状態");quit(1);return
 	main.call("_region_ui_action",{"kind":"ui_menu"});await settle()
 	await shot("21-menu-ship","習得済みの帰還・乗船案内",true)
+	# 手帳を生成する本番処理を通す。物語の文章だけをこのプロセス内の表示用データへ置き換える。
+	var original_story := StoryCampaign.data().duplicate(true)
+	var display_story := original_story.duplicate(true)
+	var journal_state: Dictionary=main.game.export_state()
+	for i in range(2):
+		var clue: Dictionary=display_story["clues"][i]
+		journal_state["progress_flags"]["clue_"+str(clue["id"])+"_seeded"]=true
+		clue["title"]="表示確認用の記録"+str(i+1)
+		for key in ["observation","first","resolved"]:clue[key]="物語の本文は、この表示確認では伏せています。"
+	if not main.game.import_state(journal_state):printerr("MENU_CAPTURE_FAIL: 手帳の表示用状態");quit(1);return
+	StoryCampaign._data=display_story
+	main.call("_region_ui_action",{"kind":"journal"});await settle()
+	await shot("22-journal-filled","記録のある手帳・本文は表示用",true)
+	var journals := main.find_children("*","OptionButton",true,false)
+	if not journals.is_empty():journals[0].show_popup();await settle();journals[0].get_popup().set_focused_item(0)
+	await shot("23-journal-list","手帳の記録選択一覧・表示用",true)
+	if not journals.is_empty():journals[0].get_popup().hide()
+	StoryCampaign._data=original_story
 	document["elapsed_ms"]=Time.get_ticks_msec()-started
 	document["limit_ms"]=LIMIT_MS
 	var output := FileAccess.open(out+"screens.json",FileAccess.WRITE);output.store_string(JSON.stringify(document,"\t")+"\n");output.close()
