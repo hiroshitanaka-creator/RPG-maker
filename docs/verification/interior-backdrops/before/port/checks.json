@@ -1,0 +1,109 @@
+{
+  "cells": [
+    {
+      "cells": 216,
+      "room": "港町の宿屋"
+    },
+    {
+      "cells": 192,
+      "room": "港町の道具屋"
+    },
+    {
+      "cells": 192,
+      "room": "港町の武器屋"
+    },
+    {
+      "cells": 192,
+      "room": "港町の防具屋"
+    },
+    {
+      "cells": 192,
+      "room": "港町の祠"
+    },
+    {
+      "cells": 192,
+      "room": "港町の民家"
+    },
+    {
+      "cells": 192,
+      "room": "港の荷受け所"
+    },
+    {
+      "cells": 192,
+      "room": "灯台の見張り部屋"
+    }
+  ],
+  "checks": 117,
+  "failures": [
+    "本番画面の人物画素が90%以上見える: port-02-1-entered / 経路の前提が未成立",
+    "本番画面の人物画素が90%以上見える: port-03-1-entered / 経路の前提が未成立",
+    "本番画面の人物画素が90%以上見える: port-04-1-entered / 経路の前提が未成立",
+    "本番画面の人物画素が90%以上見える: port-05-1-entered / 経路の前提が未成立",
+    "本番画面の人物画素が90%以上見える: port-06-1-entered / 経路の前提が未成立",
+    "本番画面の人物画素が90%以上見える: port-07-1-entered / 経路の前提が未成立",
+    "本番画面の人物画素が90%以上見える: port-08-1-entered / 経路の前提が未成立"
+  ],
+  "images": [
+    "port-01-1-entered.png",
+    "port-01-2-talk-port_inn.png",
+    "port-02-1-entered.png",
+    "port-02-2-talk-port_item_shop.png",
+    "port-03-1-entered.png",
+    "port-03-2-talk-port_weapon_shop.png",
+    "port-04-1-entered.png",
+    "port-04-2-talk-port_armor_clerk.png",
+    "port-05-1-entered.png",
+    "port-05-2-talk-port_shrine.png",
+    "port-06-1-entered.png",
+    "port-06-2-talk-port_home.png",
+    "port-07-1-entered.png",
+    "port-07-2-talk-harbor_keeper.png",
+    "port-08-1-entered.png",
+    "port-08-2-talk-lighthouse_keeper.png"
+  ],
+  "native_render": true,
+  "status": "FAIL",
+  "town": "port",
+  "visible_pixels": [
+    {
+      "image": "port-01-1-entered",
+      "matched": 707,
+      "opaque": 707
+    },
+    {
+      "image": "port-02-1-entered",
+      "matched": 166,
+      "opaque": 688
+    },
+    {
+      "image": "port-03-1-entered",
+      "matched": 171,
+      "opaque": 707
+    },
+    {
+      "image": "port-04-1-entered",
+      "matched": 171,
+      "opaque": 707
+    },
+    {
+      "image": "port-05-1-entered",
+      "matched": 171,
+      "opaque": 707
+    },
+    {
+      "image": "port-06-1-entered",
+      "matched": 171,
+      "opaque": 707
+    },
+    {
+      "image": "port-07-1-entered",
+      "matched": 171,
+      "opaque": 707
+    },
+    {
+      "image": "port-08-1-entered",
+      "matched": 171,
+      "opaque": 707
+    }
+  ]
+}
