@@ -74,9 +74,9 @@ func _castle_route() -> void:
 	var state_before := _state()
 	castle_check(not state_before["progress_flags"].get("job_change_unlocked",false),"謁見前は転職未解放")
 	castle_check(not _session().choose_job("pc_01","thief"),"解放前の転職拒否")
-	if not castle_check(await _walk(castle_point(1,[16,13])),"城の中庭へ歩行"):return
+	if not castle_check(await _walk(castle_point(1,[8,4])),"城の中庭へ歩行"):return
 	await picture("03-castle-court")
-	if not castle_check(await _walk(castle_point(1,[8,6])),"城の外観を見渡す位置へ歩行"):return
+	if not castle_check(await _walk(castle_point(1,[6,3])),"城の外観を見渡す位置へ歩行"):return
 	await picture("03b-castle-exterior")
 	if not castle_check(await _walk(castle_point(2,[12,6])),"玉座の前へ歩行"):return
 	await picture("04-throne-hall")
@@ -100,12 +100,13 @@ func _castle_route() -> void:
 	castle_check(_session().save_game(save_path),"城内で保存")
 	var loaded := GameSession.new()
 	castle_check(loaded.load_game(save_path) and loaded.export_state()==_state(),"場所・向き・転職・進行の保存復元")
-	for entry in [[3,[8,6],"08-treasury"],[10,[8,8],"09-library"],[4,[7,6],"10-inn"],[5,[7,6],"11-item-shop"],[6,[7,6],"12-weapon-shop"],[8,[8,6],"13-shrine"]]:
+	# 一枚絵の背景へ変更した建物（2026年9月29日）。店員・住人は台の裏や祠の奥にいるので、話しかける立ち位置と向きを持つ。
+	for entry in [[3,[8,6],"08-treasury",Vector2i.UP],[10,[8,8],"09-library",Vector2i.UP],[4,[11,7],"10-inn",Vector2i.RIGHT],[5,[8,5],"11-item-shop",Vector2i.UP],[6,[8,5],"12-weapon-shop",Vector2i.UP],[8,[11,4],"13-shrine",Vector2i.LEFT]]:
 		if not castle_check(await _walk(castle_point(entry[0],entry[1])),"各建物へ通常出入り: "+entry[2]):return
 		await picture(entry[2])
 		if entry[0] in [3,4,5,6,8]:
 			var before_service := _state()
-			await _step_direction(Vector2i.UP);await _key(KEY_ENTER)
+			await _step_direction(entry[3]);await _key(KEY_ENTER)
 			if entry[0] in [5,6]:
 				await picture(entry[2]+"-counter")
 				var label := "回復薬を買う　5" if entry[0]==5 else "補強剣を買う　15"
