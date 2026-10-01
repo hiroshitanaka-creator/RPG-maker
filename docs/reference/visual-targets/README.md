@@ -28,6 +28,12 @@
 
 `battle-layout-mock.png` は依頼者が添付した通常状態と2人目の行動状態の配置見本。原本のバイトをそのまま保存し、配置比較に使う。対応する実装・頭部保護範囲の記録は `docs/battle-layout-exact.md`、SHA-256は `docs/verification/battle-layout-exact/head-regions.json` に記載する。他社作品の参考写真である `local-reference/battle/` とは別に扱う。
 
+## 第2地方の港町（2026年10月1日追加）
+
+`region2-port-town.png` は `assets/_incoming/owner-2026-10-01-region2-port/FE4B1B12-C9B1-4DB0-B374-81F51D061BA6.PNG` の無加工複製。依頼者がChatGPTの画像生成で作った原画で、これまでの依頼者原画と同じ扱いで使用する指示を受けた。生成元は今回ChatGPTであり、以前のGrok共有会話の画像として扱わない。
+
+町全体を一枚絵背景にはせず、外観の目標として配置3案と比較する。依頼者はこの外観原画から不足する建物等の部品を作ることを明示的に許可している。本文冒頭の参考画像に対する切り出し禁止は、この依頼者原画の許可範囲には適用しない。原本と室内6枚のSHA-256は `assets/source_records/region2-port-originals.json`、提案は `docs/proposals/region2-port-layout.md`。配置選択前はゲームへの接続・部品化を行わない。
+
 ## スプリント5：城下町と城（2026年9月28日追加）
 
 `first-castle-town.png` は付録BのIMG_0997.PNG、`first-castle-hall.png` はIMG_1010.PNGを、保管済み原本から1バイトも変えず複製した。依頼者がGrokで生成したオリジナルで、公開とゲームでの使用は依頼者承認済み。配置・色・質感の目標として使い、画像そのものを背景や地形へ貼り付けない。ゲーム用には登録済み素材と、この原画を参考に別途生成した城内素材を使う。
