@@ -66,7 +66,7 @@ def main():
       'weapon':dict(blocks=[(2,2,5,6),(8,4,15,6)],clerk=[11,3],stand=[11,6],reach=3,kind='weapon_shop',text=['砂が刃の継ぎ目に入ったら、その日のうちに落とすんだ。','手に合うものを、落ち着いて選んでくれ。']),
       'armor':dict(blocks=[(3,2,5,5),(12,2,14,5),(3,6,5,9),(12,6,14,9),(5,3,12,5)],clerk=[11,6],stand=[10,6],reach=1,kind='npc',text=['日ざしを避ける布と、身体を守る鎧。重ね方にも工夫がいるぞ。','品の手入れをしているところだ。今は売買を休んでおる。']),
       'shrine':dict(blocks=[(3,2,5,6),(12,2,14,6),(6,1,10,4)],clerk=[10,4],stand=[10,5],reach=1,kind='npc',text=['遠い旅、お疲れさまです。ここで少し息を整えてください。','奥の石板の模様は、この建物の飾りとして残されています。'],shrine=True),
-      'harbor':dict(blocks=[(4,3,6,5),(4,5,6,7),(4,7,6,9),(9,4,14,7)],clerk=[11,3],stand=[11,6],reach=3,kind='npc',text=['船は中央の桟橋に着けてある。乗るときは帆船のそばへ来てくれ。','戻る港を決めたら、風向きと荷物を確かめるんだ。'])}
+      'harbor':dict(blocks=[(4,3,6,5),(4,5,6,7),(4,7,6,9),(9,4,14,7)],clerk=[11,3],stand=[11,6],reach=3,kind='npc',text=['この入り江では、船は中央の桟橋へ着けてくれ。乗るときは船のそばで声をかけてくれ。','戻る港を決めたら、風向きと荷物を確かめるんだ。'])}
     font=ImageFont.truetype(str(ROOT/'assets/fonts/notosansjp/NotoSansJP.ttf'),12)
     for index,kind in enumerate(ROOMS,1):
         spec=specs[kind];grid=np.zeros((12,16),bool);grid[2:9,2:15]=True
