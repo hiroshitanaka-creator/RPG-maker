@@ -241,6 +241,13 @@ jobs:
           timeout 180 ./godot --headless --path . --script res://tools/check_first_region_screen.gd 2>&1 | tee first-region-screen.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" first-region-screen.log; then exit 1; fi
           test "$(grep -c '^REGION_UI_PASS: checks=10' first-region-screen.log)" -eq 1
+      - name: 第2地方の港町と6室・船・帰還・保存を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 180 ./godot --headless --path . --script res://tools/check_region2_port.gd 2>&1 | tee region2-port.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" region2-port.log; then exit 1; fi
+          test "$(grep -c '^REGION2_PORT_PASS:' region2-port.log)" -eq 1
       - name: 職業衣装の参照と保存復元を検査
         if: steps.check.outputs.exists == 'true'
         run: |
@@ -285,6 +292,8 @@ jobs:
             recovery.log
             saved-value-types.log
             first-region-screen.log
+            region2-port.log
+            docs/verification/region2-port/checks.json
             job-costumes.log
             docs/verification/sprint3/costume-runtime.json
             docs/verification/first-region/screen-checks.json
