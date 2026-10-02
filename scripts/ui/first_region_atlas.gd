@@ -37,6 +37,7 @@ func _draw() -> void:
 		var entrance := "castle_entrance" if state["node"]=="first_castle" else "cave_entrance" if state["node"]=="first_cave" else "village_entrance"
 		if state["node"]=="first_forest_tower":entrance="tower_entrance"
 		if state["node"]=="first_port":entrance="port_entrance"
+		if state["node"]=="brine_port":entrance="second_port_entrance"
 		cell=WorldExpedition.point(FirstRegion.data()[entrance]["cell"])
 	var center := origin+Vector2(cell)
 	draw_rect(Rect2(center-Vector2(3,3),Vector2(7,7)),Color("152236"))

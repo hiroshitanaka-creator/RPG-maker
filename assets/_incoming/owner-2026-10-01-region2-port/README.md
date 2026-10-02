@@ -14,4 +14,8 @@
 
 寸法とSHA-256の全件一覧は `assets/source_records/region2-port-originals.json`。外観の無加工複製は `docs/reference/visual-targets/region2-port-town.png`、配置の提案は `docs/proposals/region2-port-layout.md`。
 
-同じフォルダのほかの画像と、フォルダ作成用の空ファイル `.keep` は、今回の作業では使用しない。削除・変更もしない。
+2026年10月2日の追加指示で、`9BC9CFCF-2A63-4939-83E5-0886F820494B.PNG`（住人10人）も使用する。正面の原画を基準に横・後ろ・歩行動作を生成し、原画自体は変更しない。生成記録は `assets/source_records/region2-port-generation.json`、変換記録は `assets/source_records/region2-port-assets.json`。
+
+オアシスの村・第2地方の世界マップ・遺跡4階層・砂岩の巨像の7枚は、`docs/roadmap-v2.md` 付録Bへ将来用途を記録し、今回の港町では使わない。フォルダ作成用の空ファイル `.keep` は無視し、変更しない。
+
+部品と室内背景の台帳は、既存の依頼者素材と同じ取り込み経路に合わせ、`assets/_incoming/owner-2026-09-26/supplement-2026-10-02-region2-port/` に置く同一バイトの保管コピーを原本として参照する。実際の受領場所はこのフォルダ、受領日は2026年10月1日である。元ファイルの移動・改変は行わない。
