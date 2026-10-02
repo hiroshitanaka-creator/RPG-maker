@@ -89,7 +89,12 @@ func _draw() -> void:
 		elif state["node"]=="first_port" and state["room"]==0 and travel["ship_cell"]==FirstRegionTravel.data()["docks"][0]["ship_cell"]:
 			var ship := Vector2(WorldExpedition.point(FirstRegionTravel.data()["docks"][0]["display_cell"]))
 			ordered.append({"bottom":ship.y+1.0,"object":"res://assets/vehicles/owner_ship.png","cell":ship,"dimensions":Vector2(192,192),"region":Rect2(96,0,96,96)})
+		elif state["node"]=="brine_port" and state["room"]==0 and travel["ship_cell"]==Region2Port.data()["docks"][0]["ship_cell"]:
+			var ship := Vector2(WorldExpedition.point(Region2Port.data()["docks"][0]["display_cell"]))
+			ordered.append({"bottom":ship.y+1.0,"object":"res://assets/vehicles/owner_ship.png","cell":ship,"dimensions":Vector2(192,192),"region":Rect2(96,0,96,96)})
 	if state["layer"]=="world":
+		var second_port := Vector2(WorldExpedition.point(definition["second_port_entrance"]["cell"]))-origin
+		ordered.append({"bottom":second_port.y+1.0,"object":"res://assets/ui/icon_town.png","cell":second_port,"dimensions":Vector2(64,64)})
 		if definition.has("port_entrance"):
 			var port := Vector2(WorldExpedition.point(definition["port_entrance"]["cell"]))-origin
 			ordered.append({"bottom":port.y+1.0,"object":"res://assets/ui/icon_town.png","cell":port,"dimensions":Vector2(64,64)})
