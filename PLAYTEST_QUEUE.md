@@ -120,6 +120,6 @@
 
 - `docs/verification/region2-port-backdrop/comparison-target-before-after.png` で、目標の絵・部品を並べた港町・今回の港町を見比べ、採用するかを決める（記録は `docs/region2-port-backdrop.md`）。
 - `walking-scenes.png` で、建物の奥・ヤシの葉の下・露店の日よけの奥で人物が自然に隠れ、手前では隠れないかを確認する。
-- 絵に描かれた船は動かない背景のため、出航後も桟橋に残る。許容するか、船を除いた背景を用意するかを決める。
+- 船を消した部分の海と桟橋の板（`ship-erase-before-after.png`）に、不自然な繰返しや境目がないかを確認する。動く船の絵が桟橋・人物と自然に重なるか（`ship-scenes.png`）も確認する。
 - 扉の中心がマスの中心からずれる（home_a は格子の境目）。気になる扉があるか確認する。
 

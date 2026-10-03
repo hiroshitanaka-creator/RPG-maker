@@ -44,11 +44,20 @@ def main():
     outside=set(used)-palette()
     if outside:errors.append(f'natural.gpl にない色: {sorted(outside)[:5]}')
     colors=list(used);cache={};bad=0;first=None
+    # 船を消した画素：写し元（縮小後の絵の座標）の1画素の色だけから決まる
+    emap=Image.open(ROOT/record['ship_erase']['source_map']).convert('RGB');ep=emap.load();ex0,ey0=record['ship_erase']['bbox'][:2]
+    def scaled(sx,sy):return sp[min(source.width-1,(2*sx+1)*den//(2*num)),min(source.height-1,(2*sy+1)*den//(2*num))]
+    edited=0
     for y in range(H):
         sy=min(source.height-1,(2*y+1)*den//(2*num))
         for x in range(W):
             sx=min(source.width-1,(2*x+1)*den//(2*num))
-            c=sp[sx,sy];n=cache.get(c)
+            c=sp[sx,sy]
+            if ex0<=x<ex0+emap.width and ey0<=y<ey0+emap.height:
+                r,g,b=ep[x-ex0,y-ey0];v=(r<<16)|(g<<8)|b
+                if v:
+                    c=scaled((v>>10)-1,v&1023);edited+=1
+            n=cache.get(c)
             if n is None:
                 n=min(colors,key=lambda k:(k[0]-c[0])**2+(k[1]-c[1])**2+(k[2]-c[2])**2);cache[c]=n
             got=bp[x,y][:3]
@@ -68,13 +77,14 @@ def main():
                 if pa:
                     pixels+=1
                     if (pr,pg,pb)!=bp[x+i,y+j][:3]:diff+=1
+    if edited!=record['ship_erase']['pixels']:errors.append('船を消した画素の数が記録と合わない')
     if diff or not pixels:errors.append(f'上の層の画素が背景と異なる: {diff} / {pixels}')
-    return finish(errors,len(used),pixels,len(cache))
+    return finish(errors,len(used),pixels,len(cache),edited)
 
-def finish(errors,colors=0,pixels=0,sources=0):
+def finish(errors,colors=0,pixels=0,sources=0,edited=0):
     for e in errors:print('REGION2_BACKDROP_PY_FAIL:',e)
     if errors:return 1
-    print(f'REGION2_BACKDROP_PY_PASS: 背景は原画の最近傍縮小+最近傍減色のみ（使用{colors}色、原画の色{sources}種を確認）、上の層{pixels}画素が背景と同一')
+    print(f'REGION2_BACKDROP_PY_PASS: 背景は原画の最近傍縮小+最近傍減色のみ（使用{colors}色、原画の色{sources}種を確認）、上の層{pixels}画素が背景と同一、船を消した{edited}画素は写し元の1画素の色だけ')
     return 0
 
 if __name__=='__main__':sys.exit(main())

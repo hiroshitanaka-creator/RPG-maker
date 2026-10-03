@@ -1,7 +1,7 @@
 {
  "note": "矩形（32×48）で数えた上限値。人物の実画素ではない。人物が部品の足元より奥にいるときだけ隠れる。",
- "walkable_cells": 457,
- "cells_with_hidden_pixels": 134,
+ "walkable_cells": 460,
+ "cells_with_hidden_pixels": 132,
  "by_object": {
   "palm_nw": {
    "cells": 3,
@@ -93,11 +93,6 @@
    "max_pixels": 1349,
    "head_cells": 4
   },
-  "ship_masts": {
-   "cells": 3,
-   "max_pixels": 720,
-   "head_cells": 3
-  },
   "home_a": {
    "cells": 3,
    "max_pixels": 132,
@@ -106,6 +101,11 @@
   "home_b": {
    "cells": 3,
    "max_pixels": 174,
+   "head_cells": 0
+  },
+  "harbor": {
+   "cells": 1,
+   "max_pixels": 7,
    "head_cells": 0
   },
   "palm_sw2": {
@@ -980,18 +980,6 @@
   },
   {
    "cell": [
-    29,
-    14
-   ],
-   "hidden": {
-    "ship_masts": {
-     "pixels": 275,
-     "head_pixels": 11
-    }
-   }
-  },
-  {
-   "cell": [
     1,
     15
    ],
@@ -1064,13 +1052,13 @@
   },
   {
    "cell": [
-    31,
+    32,
     15
    ],
    "hidden": {
-    "ship_masts": {
-     "pixels": 312,
-     "head_pixels": 24
+    "harbor": {
+     "pixels": 7,
+     "head_pixels": 0
     }
    }
   },
@@ -1147,18 +1135,6 @@
     "palm_home": {
      "pixels": 143,
      "head_pixels": 0
-    }
-   }
-  },
-  {
-   "cell": [
-    31,
-    16
-   ],
-   "hidden": {
-    "ship_masts": {
-     "pixels": 720,
-     "head_pixels": 288
     }
    }
   },

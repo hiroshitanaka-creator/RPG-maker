@@ -1,0 +1,67 @@
+{
+  "checks": 24,
+  "elapsed_ms": 81375,
+  "failures": [],
+  "images": [
+    "02-first-sea-battle.png",
+    "01-ship-at-pier-before-sailing.png",
+    "02-just-after-sailing-out.png",
+    "03-pier-without-ship-readonly-copy.png",
+    "04-returned-ship-at-pier.png"
+  ],
+  "inputs": 317,
+  "method": "船取得後の無編集保存をタイトルから再開し、通常入力で航行・下船・乗船・帰還の風・徒歩。03は読み取り専用コピーの描画。",
+  "moves": 207,
+  "scenic": [
+    {
+      "cell": [
+        34,
+        21
+      ],
+      "expect": "front",
+      "head_opaque": 270,
+      "head_visible": 270,
+      "image": "01-ship-at-pier-before-sailing.png",
+      "opaque": 743,
+      "visible": 743,
+      "visible_ratio": 1.0
+    },
+    {
+      "cell": [
+        155,
+        110
+      ],
+      "expect": "ship",
+      "head_opaque": 200,
+      "head_visible": 3,
+      "image": "02-just-after-sailing-out.png",
+      "opaque": 592,
+      "visible": 45,
+      "visible_ratio": 0.076
+    },
+    {
+      "cell": [
+        34,
+        21
+      ],
+      "expect": "readonly-copy-ship-away",
+      "image": "03-pier-without-ship-readonly-copy.png",
+      "note": "船が出航して不在のときの桟橋。到達後の状態の読み取り専用コピーを本番のFirstRegionViewで描いた画像"
+    },
+    {
+      "cell": [
+        34,
+        21
+      ],
+      "expect": "front",
+      "head_opaque": 270,
+      "head_visible": 270,
+      "image": "04-returned-ship-at-pier.png",
+      "opaque": 743,
+      "visible": 743,
+      "visible_ratio": 1.0
+    }
+  ],
+  "source_sha256": "47d1dd0e1e02d6ec30b7295d059f277b465ad5511617d12c96ed902b766665ee",
+  "status": "PASS"
+}

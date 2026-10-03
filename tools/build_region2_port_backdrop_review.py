@@ -79,8 +79,26 @@ def scenic_sheet():
         d.text((x,y+22),f"マス{tuple(s['cell'])}　人物の見える画素 {s['visible']}/{s['opaque']}（頭 {s['head_visible']}/{s['head_opaque']}）",font=font,fill=(70,70,70))
     sheet.save(OUT/'walking-scenes.png')
 
+def erase_sheet():
+    """船を消した部分の拡大（消す前・消した後）。縮小後の絵の同じ範囲を3倍の最近傍で並べる。"""
+    before=Image.open(OUT/'ship-erase-before.png').convert('RGB');after=Image.open(OUT/'ship-erase-after.png').convert('RGB')
+    font=ImageFont.truetype(FONT,20)
+    sheet=Image.new('RGB',(before.width*2+60,before.height+60),(232,222,200));d=ImageDraw.Draw(sheet)
+    d.text((20,14),'消す前（縮小後の絵、3倍）',font=font,fill=(30,30,30));d.text((before.width+40,14),'消した後（減色後の背景、3倍）',font=font,fill=(30,30,30))
+    sheet.paste(before,(20,50));sheet.paste(after,(before.width+40,50));sheet.save(OUT/'ship-erase-before-after.png')
+
+def ship_sheet():
+    shots=json.loads((OUT/'ship/checks.json').read_text(encoding='utf8'))['scenic']
+    names={'01-ship-at-pier-before-sailing':'出航前：船が中央の桟橋に着いている','02-just-after-sailing-out':'出航した直後（世界マップ）','03-pier-without-ship-readonly-copy':'出航後の桟橋に船がない（読み取り専用コピーの描画）','04-returned-ship-at-pier':'帰還の風で港に戻り、桟橋まで歩いた画面：船が戻っている'}
+    ims=[(Image.open(OUT/'ship'/s['image']).convert('RGB'),s['image'][:-4]) for s in shots]
+    tw,th=640,360;font=ImageFont.truetype(FONT,16)
+    sheet=Image.new('RGB',(2*(tw+12)+12,2*(th+34)+12),(232,222,200));d=ImageDraw.Draw(sheet)
+    for i,(im,key) in enumerate(ims):
+        x=12+i%2*(tw+12);y=12+i//2*(th+34);d.text((x,y),names.get(key,key),font=font,fill=(30,30,30));sheet.paste(im.resize((tw,th),Image.Resampling.LANCZOS),(x,y+26))
+    sheet.save(OUT/'ship-scenes.png')
+
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
-    comparison();overlay_on_original();scenic_sheet()
+    comparison();overlay_on_original();scenic_sheet();erase_sheet();ship_sheet()
     print('REGION2_BACKDROP_REVIEW_BUILT')
 if __name__=='__main__':main()

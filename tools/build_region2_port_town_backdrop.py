@@ -16,6 +16,7 @@ import hashlib,json
 from collections import deque
 from pathlib import Path
 import numpy as np
+from scipy import ndimage as ndi   # 船を消すときの見本の選別に使う（pip install scipy）
 from PIL import Image,ImageDraw,ImageFont
 import region2_port_town_defs as D
 from import_region2_port_assets import CUTS
@@ -32,6 +33,7 @@ W,H=D.COLUMNS*32,D.ROWS*32
 SPAWN=(4,4)   # 石のアーチの南。世界マップから入ったとき着く
 EXIT=(4,1)    # アーチの下。ここへ入ると世界マップへ出る
 DOCK=(34,21)  # 中央桟橋の板。船のすぐ隣で乗り降りする
+SHIP_CELL=(30,22)  # 動く船の絵（192px）の足元のマス。船体が桟橋のすぐ西の水面に収まる
 NPCS={'fisher':dict(cell=[30,24]),'merchant':dict(cell=[15,11]),
       'child':dict(cell=[17,13],patrol=[[17,13],[18,13],[18,14],[17,14]]),
       'traveller':dict(cell=[6,4],patrol=[[6,4],[7,4],[7,5],[6,5]])}
@@ -40,12 +42,13 @@ def write(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent
 
 # ---------------------------------------------------------------- 絵 ----
 def scaled_and_quantized():
-    raw=(ROOT/ORIGINAL).read_bytes();assert hashlib.sha256(raw).hexdigest()==ORIGINAL_SHA,'原本が記録と一致しない'
+    raw_bytes=(ROOT/ORIGINAL).read_bytes();assert hashlib.sha256(raw_bytes).hexdigest()==ORIGINAL_SHA,'原本が記録と一致しない'
     source=Image.open(ROOT/ORIGINAL).convert('RGB');assert source.size==(1536,1024)
     # 最近傍：出力の (x,y) は原画の ((2x+1)*16//30, (2y+1)*16//30) の1画素そのもの。整数だけで決める（平均化・補間なし）。
     columns=(2*np.arange(W)+1)*D.SCALE_DEN//(2*D.SCALE_NUM);rows=(2*np.arange(H)+1)*D.SCALE_DEN//(2*D.SCALE_NUM)
-    small=np.array(source)[rows][:,columns]
-    pal=palette();flat=small.reshape(-1,3).astype(float)
+    raw=np.array(source)[rows][:,columns]
+    small,source_map=erase_ship(raw)   # 絵に描かれていた船を、周りの海と桟橋の画素で埋める
+    flat=small.reshape(-1,3).astype(float);pal=palette()
     nearest=((flat[:,None,:]-pal[None])**2).sum(2).argmin(1)
     counts=np.bincount(nearest,minlength=len(pal)).astype(float);keep=[int(i) for i in np.flatnonzero(counts)]
     pp=((pal[:,None]-pal[None])**2).sum(2);dropped=[]
@@ -55,7 +58,63 @@ def scaled_and_quantized():
     chosen=pal[keep]
     index=((flat[:,None,:]-chosen[None])**2).sum(2).argmin(1)
     out=chosen[index].astype('uint8').reshape(H,W,3)
-    return small,out,[tuple(int(v) for v in c) for c in chosen],dropped,hashlib.sha256(raw).hexdigest()
+    return small,out,[tuple(int(v) for v in c) for c in chosen],dropped,hashlib.sha256(raw_bytes).hexdigest(),raw,source_map
+
+def mirror(i,n):
+    r=i%(2*n);return r if r<n else 2*n-1-r
+
+def polygon_px(points):
+    m=Image.new('L',(W,H));ImageDraw.Draw(m).polygon(points,fill=255);return np.array(m)>0
+
+def erase_ship(raw):
+    """縮小後の絵から船（船体・帆柱・帆・綱）を消し、周りの画素をそのまま写して埋める。ぼかし・混ぜ合わせはしない。
+    戻り値 (船を消した絵, 写し元の座標 (H,W,2)。-1は手を入れていない画素)。"""
+    im=raw;r,g,b=[im[:,:,i].astype(int) for i in range(3)]
+    ship=polygon_px(D.SHIP_POLY)&~polygon_px(D.SHIP_KEEP);plank=polygon_px(D.SHIP_PLANKS)&ship
+    blue=(b>r+60)&(b>g+20);white=(r>150)&(g>150)&(b>150);brown=(r>b+25)&~white
+    clean=(~ndi.binary_dilation(brown|ship,iterations=5)&(ndi.uniform_filter(blue.astype(float),9)>.6)
+           &(ndi.uniform_filter(white.astype(float),11)<.05)&~ndi.binary_dilation(blue&(b<125),iterations=4))
+    yy=np.arange(H)[:,None];xx=np.arange(W)[None]
+    qx0,qy0,qx1,qy1=D.SHIP_QUAY
+    quay=ship&~plank&(yy>=qy0)&(yy<qy1)&(xx>=qx0)&(xx<qx1)
+    sand=ship&~plank&(yy<D.SHIP_SAND_Y)
+    hx,hy=D.SHIP_HPLANK
+    hplank=ship&~plank&~quay&(yy>=hy)&(xx>=hx)
+    water=ship&~plank&~quay&~sand&~hplank
+    out=im.copy();src=np.full((H,W,2),-1,int);todo=water.copy()
+    for _ in range(8):   # 海：船のない海の塊を、ずらしてそのまま写す（最も多く埋まるずらしから順に）
+        ty,tx=np.nonzero(todo)
+        if len(ty)==0:break
+        best=None
+        for dx in range(150,520,6):
+            for dy in range(-140,141,6):
+                sy=ty+dy;sx=tx+dx;ok=(sy>=0)&(sy<H)&(sx>=0)&(sx<W)
+                n=int(clean[sy[ok],sx[ok]].sum())
+                if best is None or n>best[0]:best=(n,dx,dy)
+        n,dx,dy=best
+        sy=ty+dy;sx=tx+dx;ok=(sy>=0)&(sy<H)&(sx>=0)&(sx<W);ok[ok]=clean[sy[ok],sx[ok]]
+        if not ok.any():break
+        out[ty[ok],tx[ok]]=im[sy[ok],sx[ok]];src[ty[ok],tx[ok]]=np.stack([sx[ok],sy[ok]],1);todo[ty[ok],tx[ok]]=False
+    assert not todo.any() or todo.sum()<50,int(todo.sum())
+    for y,x in zip(*np.nonzero(todo)):out[y,x]=im[560,1000];src[y,x]=(1000,560)
+    def put(y,x,sy,sx):out[y,x]=im[sy,sx];src[y,x]=(sx,sy)
+    px0,py0,px1,py1=D.SRC_PLANK_V
+    for y,x in zip(*np.nonzero(plank)):put(y,x,py0+mirror(y,py1-py0),px0+mirror(x,px1-px0))
+    for y,x in zip(*np.nonzero(sand)):put(y,x,y,x+D.SRC_SAND_DX)
+    ux0,uy0,ux1,uy1=D.SRC_QUAY_UP;lx0,ly0,lx1,ly1=D.SRC_QUAY_LOW
+    for y,x in zip(*np.nonzero(quay)):
+        if y<ly0:put(y,x,uy0+mirror(y-qy0,uy1-uy0),ux0+mirror(x-qx0,ux1-ux0))
+        else:put(y,x,ly0+mirror(y-ly0,ly1-ly0),lx0+mirror(x-qx0,lx1-lx0))
+    gx0,gy0,gx1,gy1=D.SRC_PLANK_H
+    for y,x in zip(*np.nonzero(hplank)):put(y,x,gy0+mirror(y-hy,gy1-gy0),gx0+mirror(x-hx,gx1-gx0))
+    sx0,sy0,sx1,sy1=D.SRC_SAND
+    for x0,y0,x1,y1,kind in D.ENTRANCE_CLEAR:
+        for y in range(y0,y1+1):
+            for x in range(x0,x1+1):
+                if kind=='sand':put(y,x,sy0+mirror(y-y0,sy1-sy0),sx0+mirror(x-x0,sx1-sx0))
+                elif kind=='quay':put(y,x,uy0+mirror(y-y0,uy1-uy0),ux0+mirror(x-x0,ux1-ux0))
+                else:put(y,x,py0+mirror(y,py1-py0),px0+mirror(x,px1-px0))
+    return out,src
 
 def sand_like(small):
     s=small.astype(float)/255;r,g,b=s[...,0],s[...,1],s[...,2];mx=s.max(2);mn=s.min(2)
@@ -225,6 +284,19 @@ def pack(pieces,image):
     return Image.fromarray(atlas),table
 
 # ---------------------------------------------------------------- 確認図 ----
+def ship_erase_report(raw,image,source_map):
+    """船を消した部分の記録：写し元の座標の地図（検査用）と、消す前・消した後の拡大図。"""
+    mask=source_map[:,:,0]>=0
+    packed=np.zeros((H,W,3),'uint8')
+    value=((source_map[:,:,0]+1)<<10)|source_map[:,:,1]
+    value=np.where(mask,value,0)
+    packed[:,:,0]=(value>>16)&255;packed[:,:,1]=(value>>8)&255;packed[:,:,2]=value&255
+    x0,y0,x1,y1=830,430,1140,790
+    Image.fromarray(packed[y0:y1,x0:x1]).save(VERIFY/'ship-erase-source-map.png')
+    quant=np.array(Image.open(ROOT/BACKDROP).convert('RGB'))
+    Image.fromarray(raw[y0:y1,x0:x1]).resize(((x1-x0)*3,(y1-y0)*3),Image.Resampling.NEAREST).save(VERIFY/'ship-erase-before.png')
+    Image.fromarray(quant[y0:y1,x0:x1]).resize(((x1-x0)*3,(y1-y0)*3),Image.Resampling.NEAREST).save(VERIFY/'ship-erase-after.png')
+
 def rows_of(walk):return [''.join('.' if walk[y,x] else '#' for x in range(D.COLUMNS)) for y in range(D.ROWS)]
 
 def collision_overlay(image,walk,marks,pieces_mask=None,zoom=2):
@@ -272,7 +344,7 @@ def integrate(walk,table):
             doors.append({'from':point(0,door),'to':point(index[name],[8,10])})
             doors.append({'from':point(index[name],[8,11]),'to':point(0,front)})
     definition['second_port_doors']=doors
-    dock=data['docks'][0];dock['land']=point(0,DOCK);dock['display_cell']=list(DOCK)
+    dock=data['docks'][0];dock['land']=point(0,DOCK);dock['display_cell']=list(SHIP_CELL)
     data['note']='外観は依頼者の原画1枚の背景＋見えない通行地図＋上の層（tools/build_region2_port_town_backdrop.py）。部品を並べた旧外観は tools/build_region2_port.py で再生成できる。'
     write(path,data)
 
@@ -286,8 +358,9 @@ def register(small_info):
 
 def main():
     VERIFY.mkdir(parents=True,exist_ok=True);(ROOT/BACKDROP).parent.mkdir(parents=True,exist_ok=True)
-    small,image,colors,dropped,sha=scaled_and_quantized()
+    small,image,colors,dropped,sha,raw,source_map=scaled_and_quantized()
     Image.fromarray(image).convert('RGBA').save(ROOT/BACKDROP)
+    ship_erase_report(raw,image,source_map)
     walk,foot=layout(small);cut=prune(walk)
     masks,feet=build_objects(small,foot)
     pieces=upper_layer(masks,feet,walk)
@@ -310,7 +383,7 @@ def main():
         colors=len(colors),palette_used=[list(c) for c in colors],dropped_for_64=[dict(rgb=list(c),pixels=n) for c,n in dropped],
         palette_extension='assets/source_records/natural-water-extension.json',
         spawn=list(SPAWN),exit=list(EXIT),dock=list(DOCK),doors={n:list(d) for n,_,d,_ in D.BUILDINGS},
-        pruned_isolated_cells=[list(c) for c in cut],layout=rows_of(walk),
+        pruned_isolated_cells=[list(c) for c in cut],ship_erase=dict(bbox=[830,430,1140,790],source_map='docs/verification/region2-port-backdrop/ship-erase-source-map.png',encoding='値=((写し元x+1)<<10)|写し元y を R,G,B の24bit。0は手を入れていない画素。写し元は縮小後の絵の座標',pixels=int((source_map[:,:,0]>=0).sum())),ship_cell=list(SHIP_CELL),layout=rows_of(walk),
         upper_layer=dict(path=OVERLAY,size=list(atlas.size),pieces=len(table),objects=sorted({t[7] for t in table}))))
     print('REGION2_TOWN_BACKDROP_BUILD_PASS: colors=%d walkable=%d pieces=%d atlas=%s pruned=%d dropped_colors=%d'%(len(colors),walk.sum(),len(table),atlas.size,len(cut),len(dropped)))
 

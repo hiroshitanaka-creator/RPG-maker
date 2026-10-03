@@ -16,8 +16,9 @@
 - 港町の外観は、原画の見た目にほぼ一致した（比較：[comparison-target-before-after.png](verification/region2-port-backdrop/comparison-target-before-after.png)）。
 - 今の港町の仕組み（アーチの出入り・6室の出入り・中央桟橋の乗り降り・住人・帰還の風・保存と再開）は、通常入力の撮影で全て動いた。
 - 上の層は、建物の屋根の縁・ヤシの葉・石柱の上・露店の日よけ・アーチの上・船の帆柱で働いた。
-- **1点、既存の検査 `tools/check_region2_port.gd` の項目「8棟の部品」だけが、この方式では成立しない**（部品タイルを並べないため）。
-  依頼文の4により、座標の値以外の検査の変更が必要になったので、検査は変更せず、置き換え案を `docs/proposals/region2-port-backdrop-check-patch.diff` に置いた（「判断が必要な事項」参照）。
+- 既存の検査 `tools/check_region2_port.gd` の項目「8棟の部品」は、部品タイルを並べないこの方式では成立しなかった。依頼者の承認（2026年10月3日）で、
+  `docs/proposals/region2-port-backdrop-check-patch.diff` の案どおりに置き換えた（外観が一枚絵の背景であること、8棟それぞれの扉が通れて扉の奥が壁であること）。ほかの検査の条件は変えていない。
+- 同日の依頼者の指示で、絵に描かれていた船を背景から消し、第1地方と同じ動く船の絵を桟橋のそばに重ねる方式に直した（下の「船」）。
 
 ## 計画（作業前に決めたこと）
 
@@ -40,7 +41,7 @@
 
 ## 作り方
 
-`python tools/build_region2_port_town_backdrop.py`（前提：`python tools/extend_natural_water.py` を実行済み）で再現できる。
+`python tools/build_region2_port_town_backdrop.py`（前提：`python tools/extend_natural_water.py` を実行済み、`pip install scipy numpy pillow`）で再現できる。
 手書きの定義は `tools/region2_port_town_defs.py`。
 
 1. 原画（`assets/_incoming/owner-2026-10-01-region2-port/FE4B1B12-C9B1-4DB0-B374-81F51D061BA6.PNG`、SHA-256 `996ecd98…5712`）は1バイトも変えない。
@@ -60,6 +61,28 @@
 4. 背景は `assets/town_backdrops/region2_port.png`（1440×960、不透明、64色）、上の層は `assets/town_backdrops/region2_port_overlay.png`（1024×226、アルファ0/255のみ）。
    台帳（`assets/registry.json`）の種別は `town_backdrop`・`town_overlay`。生成記録は `assets/source_records/region2-port-town-backdrop.json`。
 5. 通行地図は `world/region2_port.json` の外観の部屋（`site.rooms[0].layout`）と地図（`maps["brine_port:0"].layout`）に同じものを置く。
+
+## 船（2026年10月3日の修正）
+
+最初の版では、原画に描かれた船を背景に残していたため、出航しても船の絵が桟橋に残った。次のように直した。
+
+- 背景から船（船体・帆柱・帆・綱）を消した。消した範囲は `tools/region2_port_town_defs.py` の `SHIP_POLY`（杭と係船柱は `SHIP_KEEP` などで残す）。
+  埋めた画素はすべて**周りの船のない画素をそのまま写したもの**で、ぼかし・混ぜ合わせはしない。
+  - 海：船のない海の塊を、ずらしてそのまま写した（ずらし量は、船のない海の画素が最も多く埋まるものから順に8回まで。ぼかしなし）。
+  - 桟橋の縦板（斜めの渡し板・中央桟橋の縁）：中央桟橋の船のない縦板を鏡像に敷いた。
+  - 長い桟橋の上の縁（船体の下に隠れていた部分）：長い桟橋の船のない横板を鏡像に敷いた。
+  - 岸壁の板の側面（帆柱が横切っていた部分）：同じ側面の船のない部分を鏡像に敷いた。前の帆柱の先は、左隣の砂を写した。
+- 写し元の座標は全画素について `docs/verification/region2-port-backdrop/ship-erase-source-map.png` に記録した（形式はファイル内の `assets/source_records/region2-port-town-backdrop.json` の `ship_erase.encoding`）。
+  `tools/check_region2_port_backdrop.py` が、消した画素のすべてが、記録した写し元の**1画素の色だけ**から決まっていることを確かめる。
+- 上の層の帆柱の部品は外した。
+- 船は第1地方と同じ動く船の絵（`assets/vehicles/owner_ship.png`、192×192px）を、足元のマス(30,22)で桟橋のすぐ西の水面に重ねる。船が着いている間だけ描き、出航すると消え、帰還の風で港に戻ると桟橋に戻る
+  （描画条件は第1港と同じ：`first_region_view.gd`）。中央桟橋の乗り降りのマス(34,21)は、船の東隣。
+- 消した部分の拡大（消す前・消した後）：[ship-erase-before-after.png](verification/region2-port-backdrop/ship-erase-before-after.png)。実画面：[ship-scenes.png](verification/region2-port-backdrop/ship-scenes.png)。
+
+### 渡し板の入口 (31,14)
+
+樽と木箱が渡し板の入口をふさいでいて、人物が樽の上に立って見えた。歩きにくいので、入口の樽1つと小さな木箱1つの2つだけを背景から消し（砂と岸壁の板と渡し板を写して埋めた。記録は同じ写し元の地図に含まれる）、
+残る木箱2つの間を入口にした。サボテンは通れないままである。
 
 ## 上の層の仕組み
 
@@ -82,7 +105,6 @@
 | 露店の日よけ | stall_red、stall_blue、stall_gold、stall_sand | |
 | ヤシの葉と幹 | palm_nw、palm_arch、palm_inn、palm_west、palm_shrine_r、palm_armor、palm_stall、palm_sw1、palm_sw2、palm_home、palm_south、palm_south2 | palm_shrine_l は到達できない窪みの中のため部品なし |
 | 石柱の上 | pillar_d、pillar_e、pillar_f、pillar_g | pillar_a〜c、tower_n、tower_ne は奥を歩けるマスがなく部品なし |
-| 船の帆柱 | ship_masts | 渡し板のマスに重なる前後の帆柱だけ |
 
 背景を敷く井戸は `well` を定義しているが、奥を歩くマスがないため部品は出ない（上の層は必要なぶんだけ出る）。
 
@@ -116,6 +138,7 @@
 - `tools/check_region2_port_backdrop.gd`（新規）：地図の大きさ・通行地図の一致（部屋と地図と生成記録）・**通行地図と実際の通り抜け判定が全1350マスで一致**・外周・8棟の扉と扉の奥の壁・アーチの出口・桟橋・住人・巡回の道・上の層の画素が背景と同一・背景の色数。
 - `tools/check_region2_port_backdrop.py`（新規、Pillowのみ）：原本のSHA-256、**背景の全画素が原画の1画素の色だけから決まる**（平均化・補間がない）、natural.gplにある色だけ、64色以内、上の層の画素が背景と同一。
 - `tools/capture_region2_port.gd`：既存の通常入力の撮影（船の取得・航行・下船・徒歩・6室の出入り・購入・宿泊・保存と再開・帰還・アーチからの入場）が、新しい外観で成功した。
+- `tools/capture_region2_port_ship.gd`（新規）：出航前・出航直後・帰還の風で港に戻った後の船を、通常入力で撮る（出航後の桟橋に船がない画面だけは、到達後の状態の読み取り専用コピーを本番の描画クラスで描いた画像）。
 - `tools/capture_region2_port_backdrop.gd`（新規）：主人公が奥・手前を歩く画面と桟橋の乗船を、通常入力だけで撮る。人物の見える画素を実画面で数え、手前では全て見え、奥では一部が隠れることを確かめる。
 
 ## 自己点検（提出前）
@@ -134,10 +157,8 @@
 
 ## 分かったこと・残る違い
 
-- **絵に描かれた船は動かない背景**。船が出航して不在のあとに徒歩で町へ入っても、絵の船が桟橋に残る。旧外観は船を重ねて描いていたため、
-  船が着いているときだけ見えた。第2港の船の動的な描画は外した（`first_region_view.gd`）。回避するには、船を除いた背景（船の下の水と桟橋の続きを描き足す）と、船だけの部品が要る。
+- 船は動く船の絵で、背景から船を消してある（上の「船」）。消した水面は周りの海を写しただけなので、元の絵に比べて波の並びが少し単調で、写し元の境目にごくうすい線が見える所がある。
 - 扉の位置と32pxの格子は一致しない。扉の中心が扉のマスの中心からずれる量（右が＋、マス）は、宿−0.06・武器屋＋0.08・祠−0.08・港務所−0.12・道具屋＋0.30・防具屋−0.34・home_b−0.34・home_a−0.50。home_a は格子の境目にある。
-- 港務所の渡し板の入口は樽と帆柱の先端の横を通る（(31,14)）。絵の上で樽が入口に置かれているため、人物が樽の上に立って見える。
 - サボテンも通れない扱いにした（依頼文の通れない一覧にない）。
 - 北東の遺跡の窪み（祠の左の砂地）と、遺跡の石柱3本（祠の東）は、入口から歩いて行けないため通れない扱い（絵の飾り）。上の層の石柱は南西の4本だけ働く。
 - 以前の保存で、旧外観の歩ける場所に立っていて新外観では歩けない場所の保存は、既存の仕組み（`FirstRegion.relocate_unwalkable`）で入口(4,4)の前へ置き直される。
