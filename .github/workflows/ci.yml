@@ -139,6 +139,9 @@ jobs:
       - name: 素材台帳に従って検査
         run: python tools/validate_assets.py --strict
 
+      - name: 第2港の背景が最近傍縮小と最近傍減色だけで作られていることを検査
+        run: python tools/check_region2_port_backdrop.py
+
       - name: 進捗文書と検証結果の集計を検査
         run: |
           python tools/check_progress_docs.py
@@ -241,6 +244,13 @@ jobs:
           timeout 180 ./godot --headless --path . --script res://tools/check_first_region_screen.gd 2>&1 | tee first-region-screen.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" first-region-screen.log; then exit 1; fi
           test "$(grep -c '^REGION_UI_PASS: checks=10' first-region-screen.log)" -eq 1
+      - name: 第2港の外観（一枚絵の背景・通行地図・上の層）を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 120 ./godot --headless --path . --script res://tools/check_region2_port_backdrop.gd 2>&1 | tee region2-port-backdrop.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" region2-port-backdrop.log; then exit 1; fi
+          test "$(grep -c '^REGION2_BACKDROP_PASS:' region2-port-backdrop.log)" -eq 1
       - name: 第2地方の港町と6室・船・帰還・保存を検査
         if: steps.check.outputs.exists == 'true'
         run: |
@@ -293,7 +303,9 @@ jobs:
             saved-value-types.log
             first-region-screen.log
             region2-port.log
+            region2-port-backdrop.log
             docs/verification/region2-port/checks.json
+            docs/verification/region2-port-backdrop/checks.json
             job-costumes.log
             docs/verification/sprint3/costume-runtime.json
             docs/verification/first-region/screen-checks.json

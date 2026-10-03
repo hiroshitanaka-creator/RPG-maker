@@ -90,6 +90,7 @@ func _draw() -> void:
 			var ship := Vector2(WorldExpedition.point(FirstRegionTravel.data()["docks"][0]["display_cell"]))
 			ordered.append({"bottom":ship.y+1.0,"object":"res://assets/vehicles/owner_ship.png","cell":ship,"dimensions":Vector2(192,192),"region":Rect2(96,0,96,96)})
 		elif state["node"]=="brine_port" and state["room"]==0 and travel["ship_cell"]==Region2Port.data()["docks"][0]["ship_cell"]:
+			# 一枚絵の背景には船を描かない。船が着いているときだけ、第1地方と同じ動く船の絵を桟橋のそばの水面に重ねる。
 			var ship := Vector2(WorldExpedition.point(Region2Port.data()["docks"][0]["display_cell"]))
 			ordered.append({"bottom":ship.y+1.0,"object":"res://assets/vehicles/owner_ship.png","cell":ship,"dimensions":Vector2(192,192),"region":Rect2(96,0,96,96)})
 	if state["layer"]=="world":
@@ -130,10 +131,19 @@ func _draw() -> void:
 			cell+=npc_offsets.get(key,Vector2.ZERO)
 			ordered.append({"bottom":cell.y+1.0,"event":event,"cell":cell,"facing":FirstRegion.event_facing(saved,event)})
 	ordered.append({"bottom":here.y+1.0,"player":true,"cell":here})
+	# 一枚絵の町の「上の層」：人物の足元がこの部品の足元より奥（北）にいる間だけ、人物より手前に描く。足元は人物と同じ bottom で比べる。
+	var overlays: Dictionary=_map.get("overlays",{})
+	if not overlays.is_empty():
+		for piece in overlays["pieces"]:ordered.append({"bottom":float(piece[6])-0.5,"overlay":piece})
 	ordered.sort_custom(func(a:Dictionary,b:Dictionary)->bool:return float(a["bottom"])<float(b["bottom"]))
 	for item in ordered:
 		if item.has("layer"):_draw_layer(item["layer"])
 		elif item.has("object"):_object(item["object"],item["cell"],item["dimensions"],item.get("region",Rect2()))
+		elif item.has("overlay"):
+			var piece: Array=item["overlay"]
+			var at := _screen(Vector2(piece[4],piece[5])/32.0)
+			if at.x<size.x and at.y<size.y and at.x+piece[2]>0 and at.y+piece[3]>0:
+				draw_texture_rect_region(_texture("res://"+str(overlays["path"])),Rect2(at,Vector2(piece[2],piece[3])),Rect2(piece[0],piece[1],piece[2],piece[3]))
 		elif item.has("player"):
 			if state.get("transport","walk")=="ship":_object("res://assets/vehicles/owner_ship.png",item["cell"],Vector2(96,96),Rect2(int(state["facing"])*96,0,96,96))
 			else:
