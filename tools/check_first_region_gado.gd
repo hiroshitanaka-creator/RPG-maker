@@ -194,8 +194,8 @@ func check_dialogue_layout() -> void:
 		var font: Font=label.get_theme_font("font")
 		check(label.get_line_count()*font.get_height(label.get_theme_font_size("font_size"))<=label.size.y+1.0,"表示された行が文字領域に収まる")
 
-func capture_layout(name: String) -> void:
-	if "--capture-layout" not in OS.get_cmdline_user_args():return
+func capture_layout(name: String, capture_flag: String = "--capture-layout") -> void:
+	if capture_flag not in OS.get_cmdline_user_args():return
 	if DisplayServer.get_name()=="headless":check(false,"確認画像には実レンダラーが必要");return
 	await RenderingServer.frame_post_draw
 	var image := main.get_viewport().get_texture().get_image()
@@ -262,5 +262,46 @@ func ui_checks() -> void:
 	check(inputs<100 and main.automation_snapshot()["mode"]=="world","連続決定で補完から通常探索へ戻る")
 	check(without_intro(main.game.export_state())==without_intro(state),"4人の旧保存も位置・編成・所持品を保持")
 	check(main.game.require_first_region_intro().get("kind")=="ready","補完の最終入力でだけ後続条件を満たす")
+	await load_notice_checks()
 	main.queue_free()
 	await process_frame
+
+func load_from_menu() -> void:
+	await key(KEY_ESCAPE)
+	var clicked := false
+	for button in main.find_children("*","Button",true,false):
+		if button.text=="手動セーブから再開" and button.is_visible_in_tree() and not button.disabled:
+			var event := InputEventMouseButton.new()
+			event.button_index=MOUSE_BUTTON_LEFT;event.button_mask=MOUSE_BUTTON_MASK_LEFT;event.position=button.get_global_rect().get_center();event.pressed=true
+			main.get_viewport().push_input(event,true)
+			event=event.duplicate();event.pressed=false;event.button_mask=0;main.get_viewport().push_input(event,true)
+			clicked=true;break
+	await process_frame
+	await process_frame
+	check(clicked and main.automation_snapshot()["mode"]=="world","通常メニューのロードボタンから探索へ戻る")
+
+func check_load_notice(expected: String) -> void:
+	var screen: FirstRegionScreen=main.get("_region_screen")
+	check(screen.find_children("*","Label",true,false).any(func(label:Label)->bool:return label.text==expected and label.is_visible_in_tree()),"ロード通知が画面の可視ラベルへ表示される: "+expected)
+	check_dialogue_layout()
+
+func load_notice_checks() -> void:
+	var saved := fixture({"layer":"interior","node":"first_cave","room":1,"cell":[30,15]},false)
+	check(main.game.import_state(saved) and main.game.save_game(main.save_path),"UIロード通知用の歩ける位置を実保存")
+	main._refresh()
+	await process_frame
+	await load_from_menu()
+	check(not main.game.position_relocated and main.game.overworld_state()["cell"]==[30,15],"通常ロードは現在地を補正しない")
+	check_load_notice("冒険の記録を読み込みました。")
+	var raw: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(main.save_path))
+	raw["overworld"]["cell"]=[30,14]
+	check(PlaySessionMetrics.write_json(main.save_path,raw),"旧保存の人物重なりを実ファイルで再現")
+	await load_from_menu()
+	check(main.game.position_relocated and main.game.overworld_state()["cell"]==FirstRegion.entrance_landing("first_cave",1),"UIロードで重なった位置を安全な入口へ補正")
+	check_load_notice("冒険の記録を読み込みました。安全な入口へ移動しました。")
+	await capture_layout("load-relocated-notice","--capture-load-notice")
+	check(main.game.save_game(main.save_path),"補正後の位置を再保存")
+	await load_from_menu()
+	check(not main.game.position_relocated,"次の通常ロードへ補正通知を持ち越さない")
+	check_load_notice("冒険の記録を読み込みました。")
+	await capture_layout("load-normal-notice","--capture-load-notice")

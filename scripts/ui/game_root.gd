@@ -1925,6 +1925,8 @@ func _load_save() -> void:
 	if not ChapterOne.missing_art().is_empty():
 		mode = Mode.ASSETS_MISSING
 	_notice = "冒険の記録を読み込みました。"
+	if game.position_relocated:
+		_notice += "安全な入口へ移動しました。"
 	_refresh()
 
 

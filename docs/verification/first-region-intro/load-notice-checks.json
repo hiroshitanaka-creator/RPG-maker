@@ -1,0 +1,137 @@
+{
+  "base_commit": "b850ae7560dc73e3d35fe9a8845a5a4de8f9640f",
+  "recorded_at": "2026-10-03T15:49:18.612342+00:00",
+  "status": "LOCAL_CHECKS_PASS",
+  "change": "ロード成功時に位置補正があれば安全な入口への移動を通知する。通常ロードの成功表示は保持する。",
+  "regression_before_fix": {
+    "exit_code": 1,
+    "failures": 1,
+    "reason": "補正時の可視通知ラベルがない"
+  },
+  "headless": {
+    "command": "godot --headless --path . --script res://tools/check_first_region_gado.gd",
+    "exit_code": 0,
+    "checks": 1988
+  },
+  "native": {
+    "command": "godot --path . --display-driver windows --rendering-method gl_compatibility --resolution 512x288 --position -32000,-32000 --script res://tools/check_first_region_gado.gd -- --capture-load-notice",
+    "exit_code": 0,
+    "checks": 1992,
+    "stderr": ""
+  },
+  "import": {
+    "command": "godot --headless --editor --path . --import --quit",
+    "exit_code": 0
+  },
+  "related_commands": [
+    {
+      "id": "saved-types",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_value_types.gd"
+      ],
+      "limit_sec": 60,
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 1.25
+    },
+    {
+      "id": "saved-relocation",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_position_relocation.gd"
+      ],
+      "limit_sec": 120,
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 2.73
+    },
+    {
+      "id": "battle-recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_battle_recovery.gd"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 11.44
+    },
+    {
+      "id": "intro-data",
+      "command": [
+        "python",
+        "tools/check_first_region_gado_data.py"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 0.64
+    },
+    {
+      "id": "frozen",
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "limit_sec": 60,
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 0.1
+    },
+    {
+      "id": "assets",
+      "command": [
+        "python",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "seconds": 7.66
+    }
+  ],
+  "asset_reporting_note": "集計側の期待文字列を実際の成功文言へ訂正して素材strict検査を再実行。本体の条件・終了コード・時間上限は変更していない。",
+  "protected_changes": [],
+  "frozen_files_matched": 26,
+  "captures": [
+    {
+      "actual": "docs/verification/first-region-intro/load-relocated-notice-layout.png",
+      "actual_sha256": "17a77f6da1fbb2e3c83840bbb38d606ec89b2a0d3ae0987fcc7f13d6227f3785",
+      "reference": "docs/reference/visual-targets/cave-natural.jpg",
+      "reference_sha256": "39b039d476fcbed0e0669a0a43f83f7a7cae7d651f9513703af5c2275f19ed1e",
+      "comparison": "docs/verification/first-region-intro/load-relocated-notice-reference-comparison.png"
+    },
+    {
+      "actual": "docs/verification/first-region-intro/load-normal-notice-layout.png",
+      "actual_sha256": "77ad63da86c5fb4328d63f55cb5ba055c171652c4811861c5ae613e0eaf8eb4c",
+      "reference": "docs/reference/visual-targets/cave-natural.jpg",
+      "reference_sha256": "39b039d476fcbed0e0669a0a43f83f7a7cae7d651f9513703af5c2275f19ed1e",
+      "comparison": "docs/verification/first-region-intro/load-normal-notice-reference-comparison.png"
+    }
+  ],
+  "changed_files": [
+    "docs/verification/first-region-intro/load-normal-notice-layout.png",
+    "docs/verification/first-region-intro/load-normal-notice-reference-comparison.png",
+    "docs/verification/first-region-intro/load-notice-checks.json",
+    "docs/verification/first-region-intro/load-relocated-notice-layout.png",
+    "docs/verification/first-region-intro/load-relocated-notice-reference-comparison.png",
+    "docs/verification/first-region-intro/runtime-checks.json",
+    "scripts/ui/game_root.gd",
+    "tools/check_first_region_gado.gd"
+  ],
+  "scope": "通常のロードボタンを操作し、補正・非補正・次回の通常ロードの可視通知と文字領域を機械検証。物語・素材・契約・保護検査は変更しない。"
+}
