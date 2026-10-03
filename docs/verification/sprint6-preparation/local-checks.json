@@ -1,0 +1,68 @@
+{
+  "recorded_at": "2026-10-03T23:43:55.634548+00:00",
+  "baseline_commit": "0674954be1b953abd241c3281a269fcb29463d7f",
+  "branch": "codex/sprint6-oasis-preparation",
+  "scope": "実装前準備のみ。村のゲーム実装成功という記録ではない",
+  "local_checks": [
+    {
+      "command": "python -B tools/check_sprint6_preparation.py",
+      "exit_code": 0,
+      "stdout": "PREPARATION_PASS: originals=12 candidates=78 errors=0"
+    },
+    {
+      "command": "python -B tools/check_progress_docs.py",
+      "exit_code": 0,
+      "stdout": "PROGRESS_DOCS: history=26 errors=0"
+    },
+    {
+      "command": "python -B tools/check_frozen_files.py",
+      "exit_code": 0,
+      "stdout": "保護対象26件、一致26件。"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout": ""
+    }
+  ],
+  "import_check": {
+    "command": "godot --headless --editor --import --quit",
+    "exit_code": 0,
+    "engine": "4.7.2.stable.official.ed1daf0bf",
+    "errors_and_warnings": 0
+  },
+  "assets_check": {
+    "command": "python -B tools/validate_assets.py --strict",
+    "exit_code": 0,
+    "images": 1124,
+    "audio": 15,
+    "fonts": 2,
+    "palettes": 3
+  },
+  "locked_check": {
+    "command": "python -B tools/run_locked_checks.py",
+    "exit_code": 0,
+    "report": "docs/verification/scope-lock-current.json",
+    "recorded_at": "2026-10-03T23:42:53.856142+00:00",
+    "statuses": {
+      "R-01": "PASS",
+      "R-02": "PASS",
+      "R-03": "PASS",
+      "R-04": "PASS",
+      "R-05": "PASS",
+      "R-06": "PASS",
+      "R-07": "PASS",
+      "R-08": "PASS"
+    }
+  },
+  "changes_in_runtime_assets_protected_and_ci": [],
+  "new_game_scenes": 0,
+  "source_image_changes": 0,
+  "palette_additions": 0,
+  "remaining": [
+    "村・4室の派生素材と本番接続は未実施（今回の準備範囲外）",
+    "村向け専用検査器と実画面比較は受入設計のみ",
+    "未確定の具体的な解放場面・人物・台詞・販売品は補完していない",
+    "約60時間の実測と人間の評価は未実施"
+  ]
+}

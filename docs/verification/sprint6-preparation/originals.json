@@ -1,0 +1,1131 @@
+{
+  "version": 1,
+  "recorded_at": "2026-10-03T23:39:42.710279+00:00",
+  "baseline_commit": "0674954be1b953abd241c3281a269fcb29463d7f",
+  "plan_commit": "5da1d44ca02d88c90840991a7f0957e78b7c5584",
+  "stage": "原画確認と実装前の技術準備のみ",
+  "coordinate_system": "原画の左上が(0,0)、単位px、bboxは左・上を含み右・下を含まない。すべて候補であり採用済み通行地図ではない",
+  "files": [
+    {
+      "role": "村外観",
+      "path": "assets/_incoming/owner-2026-10-01-region2-port/51294233-3D3D-4A6A-A54F-D8429C67CACF.PNG",
+      "approval": "村外観の採用済み参照原画",
+      "entrances": [
+        {
+          "label": "宿の扉候補",
+          "point": [
+            550,
+            282
+          ]
+        },
+        {
+          "label": "道具屋の扉候補",
+          "point": [
+            913,
+            269
+          ]
+        },
+        {
+          "label": "武器屋の扉候補",
+          "point": [
+            1202,
+            505
+          ]
+        },
+        {
+          "label": "祠の扉候補",
+          "point": [
+            1153,
+            281
+          ]
+        },
+        {
+          "label": "西アーチ候補",
+          "point": [
+            104,
+            482
+          ]
+        },
+        {
+          "label": "東アーチ候補",
+          "point": [
+            1437,
+            482
+          ]
+        }
+      ],
+      "walk": [
+        {
+          "label": "池の北側から施設へ",
+          "points": [
+            [
+              104,
+              534
+            ],
+            [
+              326,
+              551
+            ],
+            [
+              500,
+              458
+            ],
+            [
+              550,
+              311
+            ],
+            [
+              913,
+              308
+            ],
+            [
+              1040,
+              352
+            ],
+            [
+              1084,
+              528
+            ],
+            [
+              1312,
+              562
+            ],
+            [
+              1437,
+              535
+            ]
+          ]
+        },
+        {
+          "label": "池の南側の道",
+          "points": [
+            [
+              326,
+              551
+            ],
+            [
+              522,
+              738
+            ],
+            [
+              843,
+              686
+            ],
+            [
+              1037,
+              749
+            ],
+            [
+              1312,
+              562
+            ]
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "label": "池と岸の岩・植物の外接候補",
+          "bbox": [
+            554,
+            353,
+            1008,
+            645
+          ]
+        },
+        {
+          "label": "南の柵と水槽の外接候補",
+          "bbox": [
+            580,
+            690,
+            983,
+            862
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "label": "宿の建物・屋根",
+          "bbox": [
+            433,
+            75,
+            655,
+            290
+          ]
+        },
+        {
+          "label": "道具屋の建物・屋根",
+          "bbox": [
+            763,
+            76,
+            1008,
+            288
+          ]
+        },
+        {
+          "label": "武器屋の建物・屋根",
+          "bbox": [
+            1090,
+            331,
+            1317,
+            528
+          ]
+        },
+        {
+          "label": "祠の建物・屋根",
+          "bbox": [
+            1065,
+            86,
+            1247,
+            296
+          ]
+        },
+        {
+          "label": "西アーチ（柱と通り抜けを別判定）",
+          "bbox": [
+            22,
+            355,
+            186,
+            494
+          ]
+        },
+        {
+          "label": "東アーチ（柱と通り抜けを別判定）",
+          "bbox": [
+            1358,
+            355,
+            1535,
+            497
+          ]
+        },
+        {
+          "label": "池周囲の葉・幹（足元を個別採取）",
+          "bbox": [
+            516,
+            289,
+            1061,
+            662
+          ]
+        }
+      ],
+      "bytes": 3630767,
+      "sha256": "859b4a76150157167a3c1aa624bcffeb6fa583bb9ad4fa927c466f4f32c07f4f",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 537044,
+      "registry_references": []
+    },
+    {
+      "role": "世界配置の参照",
+      "path": "assets/_incoming/owner-2026-10-01-region2-port/FD957627-8A7F-4F3A-B774-A0C15E046FB2.PNG",
+      "approval": "記録済み配置参照。世界地形の作り直しは今回対象外",
+      "entrances": [],
+      "walk": [],
+      "blocks": [],
+      "overlays": [],
+      "bytes": 3717829,
+      "sha256": "21763d647acd54d70e548fbf161cee0cd32a29ea554d3542737d78d68ebec79e",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 504852,
+      "registry_references": []
+    },
+    {
+      "role": "村の宿室内",
+      "path": "assets/_incoming/owner-2026-10-03-region3-port/01-oasis-inn.png",
+      "approval": "この村向けに依頼・保存された採用済み室内原画。保存フォルダ名から別地方用と再解釈しない",
+      "crop_candidate": [
+        430,
+        90,
+        1490,
+        995
+      ],
+      "entrances": [
+        {
+          "label": "下中央の出口候補",
+          "point": [
+            960,
+            971
+          ]
+        },
+        {
+          "label": "出口手前の着地候補",
+          "point": [
+            960,
+            907
+          ]
+        }
+      ],
+      "walk": [
+        {
+          "label": "下中央から台・祭壇の手前まで",
+          "points": [
+            [
+              960,
+              947
+            ],
+            [
+              960,
+              851
+            ],
+            [
+              960,
+              700
+            ],
+            [
+              960,
+              599
+            ]
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "label": "寝台・受付台",
+          "bbox": [
+            651,
+            205,
+            1397,
+            521
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "label": "寝台・受付台",
+          "bbox": [
+            651,
+            205,
+            1397,
+            521
+          ]
+        }
+      ],
+      "bytes": 1176070,
+      "sha256": "3bec585c4bfe1fda0401b18b084832d51733bbfbe3cbffb6ec55a6eb7d9c3301",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 157692,
+      "registry_references": []
+    },
+    {
+      "role": "村の道具屋室内",
+      "path": "assets/_incoming/owner-2026-10-03-region3-port/02-oasis-item-shop.png",
+      "approval": "この村向けに依頼・保存された採用済み室内原画。保存フォルダ名から別地方用と再解釈しない",
+      "crop_candidate": [
+        430,
+        90,
+        1490,
+        995
+      ],
+      "entrances": [
+        {
+          "label": "下中央の出口候補",
+          "point": [
+            960,
+            971
+          ]
+        },
+        {
+          "label": "出口手前の着地候補",
+          "point": [
+            960,
+            907
+          ]
+        }
+      ],
+      "walk": [
+        {
+          "label": "下中央から台・祭壇の手前まで",
+          "points": [
+            [
+              960,
+              947
+            ],
+            [
+              960,
+              851
+            ],
+            [
+              960,
+              700
+            ],
+            [
+              960,
+              599
+            ]
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "label": "棚",
+          "bbox": [
+            654,
+            209,
+            1284,
+            365
+          ]
+        },
+        {
+          "label": "受付台",
+          "bbox": [
+            715,
+            431,
+            1211,
+            557
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "label": "棚",
+          "bbox": [
+            654,
+            209,
+            1284,
+            365
+          ]
+        },
+        {
+          "label": "受付台",
+          "bbox": [
+            715,
+            431,
+            1211,
+            557
+          ]
+        }
+      ],
+      "bytes": 1219147,
+      "sha256": "d3aa84f6557603f4e363c62de94b1f5f6b2afb4f33243f84a24ab459dd620e40",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 145324,
+      "registry_references": []
+    },
+    {
+      "role": "村の武器屋室内",
+      "path": "assets/_incoming/owner-2026-10-03-region3-port/03-oasis-weapon-shop.png",
+      "approval": "この村向けに依頼・保存された採用済み室内原画。保存フォルダ名から別地方用と再解釈しない",
+      "crop_candidate": [
+        430,
+        90,
+        1490,
+        995
+      ],
+      "entrances": [
+        {
+          "label": "下中央の出口候補",
+          "point": [
+            960,
+            971
+          ]
+        },
+        {
+          "label": "出口手前の着地候補",
+          "point": [
+            960,
+            907
+          ]
+        }
+      ],
+      "walk": [
+        {
+          "label": "下中央から台・祭壇の手前まで",
+          "points": [
+            [
+              960,
+              947
+            ],
+            [
+              960,
+              851
+            ],
+            [
+              960,
+              700
+            ],
+            [
+              960,
+              599
+            ]
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "label": "武器棚",
+          "bbox": [
+            651,
+            209,
+            1280,
+            366
+          ]
+        },
+        {
+          "label": "受付台",
+          "bbox": [
+            684,
+            439,
+            1237,
+            572
+          ]
+        },
+        {
+          "label": "右の作業台",
+          "bbox": [
+            1306,
+            329,
+            1431,
+            581
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "label": "武器棚",
+          "bbox": [
+            651,
+            209,
+            1280,
+            366
+          ]
+        },
+        {
+          "label": "受付台",
+          "bbox": [
+            684,
+            439,
+            1237,
+            572
+          ]
+        },
+        {
+          "label": "右の作業台",
+          "bbox": [
+            1306,
+            329,
+            1431,
+            581
+          ]
+        }
+      ],
+      "bytes": 1208702,
+      "sha256": "81a4fa6e5f68c494bef92bd67a0c400193a2c30711472f6ce1704775968495d9",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 137666,
+      "registry_references": []
+    },
+    {
+      "role": "村の祠室内",
+      "path": "assets/_incoming/owner-2026-10-03-region3-port/04-oasis-shrine.png",
+      "approval": "この村向けに依頼・保存された採用済み室内原画。保存フォルダ名から別地方用と再解釈しない",
+      "crop_candidate": [
+        430,
+        90,
+        1490,
+        995
+      ],
+      "entrances": [
+        {
+          "label": "下中央の出口候補",
+          "point": [
+            960,
+            971
+          ]
+        },
+        {
+          "label": "出口手前の着地候補",
+          "point": [
+            960,
+            907
+          ]
+        }
+      ],
+      "walk": [
+        {
+          "label": "下中央から台・祭壇の手前まで",
+          "points": [
+            [
+              960,
+              947
+            ],
+            [
+              960,
+              851
+            ],
+            [
+              960,
+              700
+            ],
+            [
+              960,
+              599
+            ]
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "label": "祭壇",
+          "bbox": [
+            825,
+            274,
+            1104,
+            449
+          ]
+        },
+        {
+          "label": "左右の植物・燭台の外接候補",
+          "bbox": [
+            648,
+            209,
+            1320,
+            478
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "label": "祭壇",
+          "bbox": [
+            825,
+            274,
+            1104,
+            449
+          ]
+        },
+        {
+          "label": "左右の植物・燭台の外接候補",
+          "bbox": [
+            648,
+            209,
+            1320,
+            478
+          ]
+        }
+      ],
+      "bytes": 1309724,
+      "sha256": "f11b155262f4660c833c376bd77480604be4a3550a91ea9b67f797e940af2d7d",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 123481,
+      "registry_references": []
+    },
+    {
+      "role": "遺跡の第1原画",
+      "path": "assets/_incoming/owner-2026-10-01-region2-port/chat-image-1-dad87f69.png",
+      "approval": "記録済み階層原画。接続・イベントは計画案であり未採用",
+      "entrances": [
+        {
+          "label": "出入口・階段候補1",
+          "point": [
+            770,
+            944
+          ]
+        },
+        {
+          "label": "出入口・階段候補2",
+          "point": [
+            771,
+            176
+          ]
+        }
+      ],
+      "walk": [
+        {
+          "label": "床の経路候補（線分全体の通行は未検証）",
+          "points": [
+            [
+              770,
+              921
+            ],
+            [
+              770,
+              705
+            ],
+            [
+              593,
+              604
+            ],
+            [
+              588,
+              423
+            ],
+            [
+              770,
+              387
+            ],
+            [
+              770,
+              211
+            ]
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "label": "中央の倒れた石像・瓦礫",
+          "bbox": [
+            611,
+            412,
+            939,
+            649
+          ]
+        },
+        {
+          "label": "東の穴",
+          "bbox": [
+            1305,
+            444,
+            1480,
+            578
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "label": "中央・側室の柱と壁の前面",
+          "bbox": [
+            491,
+            289,
+            1054,
+            777
+          ]
+        }
+      ],
+      "bytes": 2088035,
+      "sha256": "6e7dd2bff05dd8bd8885f01407fc8671ce6987dcc0636a3b5cbddfc459654797",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 129297,
+      "registry_references": []
+    },
+    {
+      "role": "遺跡の第2原画",
+      "path": "assets/_incoming/owner-2026-10-01-region2-port/chat-image-2-8e31e9c4.png",
+      "approval": "記録済み階層原画。接続・イベントは計画案であり未採用",
+      "entrances": [
+        {
+          "label": "出入口・階段候補1",
+          "point": [
+            768,
+            163
+          ]
+        },
+        {
+          "label": "出入口・階段候補2",
+          "point": [
+            1276,
+            715
+          ]
+        }
+      ],
+      "walk": [
+        {
+          "label": "床の経路候補（線分全体の通行は未検証）",
+          "points": [
+            [
+              768,
+              173
+            ],
+            [
+              768,
+              340
+            ],
+            [
+              768,
+              526
+            ],
+            [
+              768,
+              774
+            ],
+            [
+              1146,
+              795
+            ],
+            [
+              1165,
+              867
+            ],
+            [
+              1405,
+              868
+            ],
+            [
+              1410,
+              645
+            ]
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "label": "中央北西の柱",
+          "bbox": [
+            562,
+            340,
+            651,
+            455
+          ]
+        },
+        {
+          "label": "中央北東の柱",
+          "bbox": [
+            886,
+            337,
+            978,
+            455
+          ]
+        },
+        {
+          "label": "中央南西の柱",
+          "bbox": [
+            562,
+            535,
+            651,
+            637
+          ]
+        },
+        {
+          "label": "中央南東の柱",
+          "bbox": [
+            886,
+            535,
+            978,
+            638
+          ]
+        },
+        {
+          "label": "南東の穴",
+          "bbox": [
+            1210,
+            731,
+            1350,
+            816
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "label": "柱・壁の前面",
+          "bbox": [
+            490,
+            268,
+            1062,
+            688
+          ]
+        }
+      ],
+      "bytes": 1656173,
+      "sha256": "03c8a7f5aef3d9e55610931a5c362f722e0cd458bc39268771b2120fe3647bc2",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 171536,
+      "registry_references": []
+    },
+    {
+      "role": "遺跡の第3原画",
+      "path": "assets/_incoming/owner-2026-10-01-region2-port/chat-image-3-09332a31.png",
+      "approval": "記録済み階層原画。接続・イベントは計画案であり未採用",
+      "entrances": [
+        {
+          "label": "出入口・階段候補1",
+          "point": [
+            224,
+            171
+          ]
+        },
+        {
+          "label": "出入口・階段候補2",
+          "point": [
+            1347,
+            792
+          ]
+        }
+      ],
+      "walk": [
+        {
+          "label": "床の経路候補（線分全体の通行は未検証）",
+          "points": [
+            [
+              249,
+              244
+            ],
+            [
+              249,
+              491
+            ],
+            [
+              757,
+              491
+            ],
+            [
+              1348,
+              491
+            ],
+            [
+              1348,
+              316
+            ],
+            [
+              751,
+              223
+            ],
+            [
+              249,
+              227
+            ]
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "label": "中央上の水面",
+          "bbox": [
+            550,
+            381,
+            991,
+            468
+          ]
+        },
+        {
+          "label": "中央下の水面",
+          "bbox": [
+            550,
+            537,
+            991,
+            632
+          ]
+        },
+        {
+          "label": "北西の穴",
+          "bbox": [
+            187,
+            140,
+            283,
+            213
+          ]
+        },
+        {
+          "label": "南西の石・瓦礫",
+          "bbox": [
+            66,
+            728,
+            311,
+            881
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "label": "中央上下の壁・柱",
+          "bbox": [
+            453,
+            307,
+            1061,
+            684
+          ]
+        }
+      ],
+      "bytes": 1790041,
+      "sha256": "ce82c3e460d43e861cdd7a063e98efcebdaef482bcd0e58cd630e8a8f592ed00",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 239434,
+      "registry_references": []
+    },
+    {
+      "role": "遺跡の第4原画",
+      "path": "assets/_incoming/owner-2026-10-01-region2-port/chat-image-4-b9450909.png",
+      "approval": "記録済み階層原画。接続・イベントは計画案であり未採用",
+      "entrances": [
+        {
+          "label": "出入口・階段候補1",
+          "point": [
+            201,
+            203
+          ]
+        }
+      ],
+      "walk": [
+        {
+          "label": "床の経路候補（線分全体の通行は未検証）",
+          "points": [
+            [
+              201,
+              222
+            ],
+            [
+              201,
+              701
+            ],
+            [
+              439,
+              722
+            ],
+            [
+              650,
+              721
+            ],
+            [
+              650,
+              575
+            ],
+            [
+              934,
+              575
+            ],
+            [
+              1133,
+              690
+            ]
+          ]
+        }
+      ],
+      "blocks": [
+        {
+          "label": "広間の左の柱列",
+          "bbox": [
+            943,
+            340,
+            1053,
+            666
+          ]
+        },
+        {
+          "label": "広間の右の柱列",
+          "bbox": [
+            1220,
+            340,
+            1329,
+            666
+          ]
+        },
+        {
+          "label": "広間北の台",
+          "bbox": [
+            1092,
+            247,
+            1184,
+            311
+          ]
+        }
+      ],
+      "overlays": [
+        {
+          "label": "広間の壁・柱の前面",
+          "bbox": [
+            816,
+            117,
+            1484,
+            816
+          ]
+        }
+      ],
+      "bytes": 1577712,
+      "sha256": "83efc5347c0b4fb345d22a2fd8a1267cc539707c51229821fb4aebfea0bd1765",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 203440,
+      "registry_references": []
+    },
+    {
+      "role": "敵原画候補",
+      "path": "assets/_incoming/owner-2026-10-01-region2-port/chat-image-5-aa5c2020.png",
+      "approval": "保管済み。敵登録・戦闘採用は今回行わない",
+      "entrances": [],
+      "walk": [],
+      "blocks": [],
+      "overlays": [],
+      "bytes": 1505571,
+      "sha256": "560358d71d33cfafda538d7abf2dd2d1879b3163d9a4484dbbeaaedfd48f215a",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_nonbinary_pixels": 575022,
+      "colors": 238289,
+      "registry_references": []
+    },
+    {
+      "role": "戦闘背景候補",
+      "path": "assets/_incoming/owner-2026-10-03-region3-port/05-ruins-battle.png",
+      "approval": "保管済み。用途の採否と変換は今回行わない",
+      "entrances": [],
+      "walk": [],
+      "blocks": [],
+      "overlays": [],
+      "bytes": 2764697,
+      "sha256": "58ce32be5d7749e0f35c06e9a4e65b79b3af46994110bab29a879e91d4f2de31",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "mode": "RGB",
+      "alpha_nonbinary_pixels": 0,
+      "colors": 161881,
+      "registry_references": []
+    }
+  ],
+  "existing_paths": [
+    "docs/experience-spec-v2.md",
+    "docs/roadmap-v2.md",
+    "docs/asset-spec.md",
+    "tools/build_region2_port_town_backdrop.py",
+    "tools/region2_port_town_defs.py",
+    "tools/import_region2_port_assets.py",
+    "scripts/world/first_region_view.gd",
+    "scripts/world/first_region_travel.gd",
+    "scripts/world/region2_port.gd",
+    "tools/check_region2_port.gd",
+    "tools/check_region2_port_backdrop.gd",
+    "tools/check_saved_position_relocation.gd",
+    "tools/check_first_region_gado.gd",
+    "tools/check_frozen_files.py",
+    "PLAYTEST_QUEUE.md"
+  ]
+}

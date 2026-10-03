@@ -1,5 +1,7 @@
 # 導入追加の最終レビュー途中記録
 
+> 履歴資料：以下はレビュー途中の時点を残したもの。現在は素材追送・組込み、導入・通知修正のcommit/push/main統合、基準main `0674954` のCI全3ジョブ成功が済んでいる。現在の未検証は [技術記録](../../first-region-intro-implementation.md) を参照。
+
 2026年10月3日。基準main f6434d5d188449c24dcba935bf1ae92d80080d27、作業ブランチ codex/first-region-intro。素材の追送前につき未コミット。
 
 ## レビュー対象と修正

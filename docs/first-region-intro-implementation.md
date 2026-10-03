@@ -1,5 +1,8 @@
 # 第1地方の導入追加・技術記録
 
+> 現在の状態（2026-10-03 UTC）：導入追加と保存位置補正の通知はmainへ統合済み。基準main `0674954` の [CI 37158729305](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37158729305) は全3ジョブ成功。以下の未実装・追送待ち・push禁止・CI未実行は、それぞれ記録時点の履歴。最新の検査は [通知修正の記録](verification/first-region-intro/load-notice-checks.json) を参照。大きい生成原画の画素照合と人間の聴感・テンポ評価は未実施。
+
+
 基準mainは f6434d5d188449c24dcba935bf1ae92d80080d27。作業ブランチは codex/first-region-intro。承認済みの導入3場面、未見回収、旧保存互換、専用検査に限定する。採用本文はdata/first_region_gado_scenes.jsonへ分離し、後続地方や旧本編の本文は追加しない。
 
 ## 状態・保存・操作
@@ -38,3 +41,7 @@ python tools/check_frozen_files.py
 未検証は実際の聴感、人間によるテンポ・読みやすさ、未受領の大きい生成原画の画素照合。人間評価はPLAYTEST_QUEUE.mdに分離する。作業はローカルcommitまでとし、push・PR・mergeは行わない。
 
 最終の専用検査はheadless 1,963チェック、実描画1,971チェックでPASS。追加データ・素材・保存互換など関連10コマンドもすべてPASS。破損と補修の4画面を確認画像として保存した。音の再生経路・音量-8dB・最大同時数1・連打抑制を通常UIで確認し、未割当スロットは0。R-01〜R-08と凍結検査の最終結果はscope-lock-current.jsonへ記録する。
+
+## 2026-10-03・main統合後の状態
+
+`b850ae7` の追加導入に `c30530c` の保存位置補正通知を加え、mainへ統合・通常push済み。通知修正後の専用検査はheadless 1,988、実描画1,992チェックPASS。値は今回再実行した結果ではなく、load-notice-checks.jsonの実行履歴を示す。基準main `0674954` のCI全3ジョブ成功を確認済み。旧段落のpush禁止・CI未実行は当初の段階の制約であり現在の状態ではない。後続地方の実装はこの記録の対象外。
