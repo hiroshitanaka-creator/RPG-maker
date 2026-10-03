@@ -81,22 +81,7 @@ def erase_ship(raw):
     hx,hy=D.SHIP_HPLANK
     hplank=ship&~plank&~quay&(yy>=hy)&(xx>=hx)
     water=ship&~plank&~quay&~sand&~hplank
-    out=im.copy();src=np.full((H,W,2),-1,int);todo=water.copy()
-    for _ in range(8):   # 海：船のない海の塊を、ずらしてそのまま写す（最も多く埋まるずらしから順に）
-        ty,tx=np.nonzero(todo)
-        if len(ty)==0:break
-        best=None
-        for dx in range(150,520,6):
-            for dy in range(-140,141,6):
-                sy=ty+dy;sx=tx+dx;ok=(sy>=0)&(sy<H)&(sx>=0)&(sx<W)
-                n=int(clean[sy[ok],sx[ok]].sum())
-                if best is None or n>best[0]:best=(n,dx,dy)
-        n,dx,dy=best
-        sy=ty+dy;sx=tx+dx;ok=(sy>=0)&(sy<H)&(sx>=0)&(sx<W);ok[ok]=clean[sy[ok],sx[ok]]
-        if not ok.any():break
-        out[ty[ok],tx[ok]]=im[sy[ok],sx[ok]];src[ty[ok],tx[ok]]=np.stack([sx[ok],sy[ok]],1);todo[ty[ok],tx[ok]]=False
-    assert not todo.any() or todo.sum()<50,int(todo.sum())
-    for y,x in zip(*np.nonzero(todo)):out[y,x]=im[560,1000];src[y,x]=(1000,560)
+    out=im.copy();src=np.full((H,W,2),-1,int)
     def put(y,x,sy,sx):out[y,x]=im[sy,sx];src[y,x]=(sx,sy)
     px0,py0,px1,py1=D.SRC_PLANK_V
     for y,x in zip(*np.nonzero(plank)):put(y,x,py0+mirror(y,py1-py0),px0+mirror(x,px1-px0))
@@ -114,7 +99,64 @@ def erase_ship(raw):
                 if kind=='sand':put(y,x,sy0+mirror(y-y0,sy1-sy0),sx0+mirror(x-x0,sx1-sx0))
                 elif kind=='quay':put(y,x,uy0+mirror(y-y0,uy1-uy0),ux0+mirror(x-x0,ux1-ux0))
                 else:put(y,x,py0+mirror(y,py1-py0),px0+mirror(x,px1-px0))
+    # 海：船の画素だけを、船のない海の画素から1画素ずつ写して埋める（周りの海の続きになるように）。
+    # 船の形に沿った不規則な範囲になり、船のすきまから見えていた本物の海はそのまま残す。
+    bm=ndi.uniform_filter((b*blue).astype(float),9)/np.maximum(ndi.uniform_filter(blue.astype(float),9),1e-6)
+    clear=blue&(b>=125)&(bm>=150)   # 船の影になった暗い海は船の一部として埋め直す
+    shipish=water&~clear
+    # 船の影（船の外へはみ出した暗い灰青の海）も船の一部として埋める。板（茶色）と杭には触れない。
+    shadow=(~brown)&(~white)&(b<150)&(r<110)&(b>r+5)&ndi.binary_dilation(polygon_px(D.SHIP_POLY),iterations=D.SHIP_SHADOW_REACH)&(yy>=D.SHIP_SAND_Y+24)
+    shadow&=~ndi.binary_dilation(brown,iterations=1)
+    shadow&=(yy<D.SHIP_HPLANK[1])                      # 長い桟橋の板の隙間の暗い青は触らない
+    for ex0,ey0,ex1,ey1 in D.SHIP_SHADOW_SKIP:shadow[ey0:ey1,ex0:ex1]=False   # 杭と綱のそば
+    fill=(ndi.binary_dilation(shipish,iterations=2)&water)|(shadow&~plank&~polygon_px(D.SHIP_KEEP))
+    near_brown=ndi.uniform_filter(brown.astype(float),7)>0
+    pool=(blue|white)&~near_brown&~ndi.binary_dilation(polygon_px(D.SHIP_POLY),iterations=10+D.SHIP_SHADOW_REACH)&~fill
+    pool[:4]=pool[-4:]=False;pool[:,:4]=pool[:,-4:]=False
+    inpaint_sea(im,out,src,fill,pool)
     return out,src
+
+def inpaint_sea(im,out,src,fill,pool):
+    """Ashikhminの方法：すでに埋めた隣の画素の写し元の隣を第一候補にし（波の並びを続ける）、海の画素をいくつか加え、
+    周りの確定した画素（7×7）と最もよく合う候補の1画素をそのまま写す。ぼかし・混ぜ合わせはしない。"""
+    rng=np.random.RandomState(7);R=3
+    offs=np.array([(dy,dx) for dy in range(-R,R+1) for dx in range(-R,R+1) if (dy,dx)!=(0,0)])
+    known=~fill;synth=np.zeros((H,W),bool)
+    oc=out.astype(int);wl=((oc[:,:,2]>oc[:,:,0]+60)&(oc[:,:,2]>oc[:,:,1]+20))|((oc[:,:,0]>150)&(oc[:,:,1]>150)&(oc[:,:,2]>150))   # 比べる相手は海の画素だけ（板や岸の色に引きずられて暗くなるのを防ぐ）
+    py,px=np.nonzero(pool);pool_xy=np.stack([py,px],1)
+    steps=[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+    unknown=fill.copy();ones=np.ones((3,3),bool)
+    total=int(fill.sum())
+    while unknown.any():
+        edge=ndi.binary_dilation(known,structure=ones)&unknown
+        ys,xs=np.nonzero(edge)
+        if len(ys)==0:ys,xs=np.nonzero(unknown)[0][:1],np.nonzero(unknown)[1][:1]
+        score=ndi.uniform_filter(known.astype(float),7)[ys,xs]
+        for i in np.argsort(-score,kind='stable'):
+            y,x=int(ys[i]),int(xs[i])
+            cands=[]
+            for dy,dx in steps:
+                ny,nx=y+dy,x+dx
+                if 0<=ny<H and 0<=nx<W and synth[ny,nx]:
+                    sx,sy=src[ny,nx];cands.append((sy-dy,sx-dx))
+            for j in rng.randint(0,len(pool_xy),24):cands.append(tuple(pool_xy[j]))
+            if 500<=y<=545:
+                for ddx in range(66,134,8):cands.append((y,x-ddx))
+            c=np.array(cands);ok=(c[:,0]>=R)&(c[:,0]<H-R)&(c[:,1]>=R)&(c[:,1]<W-R)
+            c=c[ok]
+            if len(c)==0:c=pool_xy[rng.randint(0,len(pool_xy),8)]
+            c=c[pool[c[:,0],c[:,1]]]
+            if len(c)==0:c=pool_xy[rng.randint(0,len(pool_xy),8)]
+            wy=y+offs[:,0];wx=x+offs[:,1];inside=(wy>=0)&(wy<H)&(wx>=0)&(wx<W)
+            wy=np.clip(wy,0,H-1);wx=np.clip(wx,0,W-1);k=known[wy,wx]&inside&wl[wy,wx]
+            target=out[wy,wx].astype(np.int32)
+            cy=c[:,0:1]+offs[None,:,0];cx=c[:,1:2]+offs[None,:,1]
+            diff=im[cy,cx].astype(np.int32)-target[None]
+            cost=((diff**2).sum(2)*k[None]).sum(1)
+            best=c[int(np.argmin(cost))]
+            out[y,x]=im[best[0],best[1]];src[y,x]=(best[1],best[0])
+            known[y,x]=True;unknown[y,x]=False;synth[y,x]=True;wl[y,x]=True
+    return total
 
 def sand_like(small):
     s=small.astype(float)/255;r,g,b=s[...,0],s[...,1],s[...,2];mx=s.max(2);mn=s.min(2)
@@ -291,8 +333,9 @@ def ship_erase_report(raw,image,source_map):
     value=((source_map[:,:,0]+1)<<10)|source_map[:,:,1]
     value=np.where(mask,value,0)
     packed[:,:,0]=(value>>16)&255;packed[:,:,1]=(value>>8)&255;packed[:,:,2]=value&255
+    mx0,my0,mx1,my1=D.SHIP_MAP_BOX   # 写し元の地図は、影の範囲まで含む広い範囲で記録する
+    Image.fromarray(packed[my0:my1,mx0:mx1]).save(VERIFY/'ship-erase-source-map.png')
     x0,y0,x1,y1=830,430,1140,790
-    Image.fromarray(packed[y0:y1,x0:x1]).save(VERIFY/'ship-erase-source-map.png')
     quant=np.array(Image.open(ROOT/BACKDROP).convert('RGB'))
     Image.fromarray(raw[y0:y1,x0:x1]).resize(((x1-x0)*3,(y1-y0)*3),Image.Resampling.NEAREST).save(VERIFY/'ship-erase-before.png')
     Image.fromarray(quant[y0:y1,x0:x1]).resize(((x1-x0)*3,(y1-y0)*3),Image.Resampling.NEAREST).save(VERIFY/'ship-erase-after.png')
@@ -383,7 +426,7 @@ def main():
         colors=len(colors),palette_used=[list(c) for c in colors],dropped_for_64=[dict(rgb=list(c),pixels=n) for c,n in dropped],
         palette_extension='assets/source_records/natural-water-extension.json',
         spawn=list(SPAWN),exit=list(EXIT),dock=list(DOCK),doors={n:list(d) for n,_,d,_ in D.BUILDINGS},
-        pruned_isolated_cells=[list(c) for c in cut],ship_erase=dict(bbox=[830,430,1140,790],source_map='docs/verification/region2-port-backdrop/ship-erase-source-map.png',encoding='値=((写し元x+1)<<10)|写し元y を R,G,B の24bit。0は手を入れていない画素。写し元は縮小後の絵の座標',pixels=int((source_map[:,:,0]>=0).sum())),ship_cell=list(SHIP_CELL),layout=rows_of(walk),
+        pruned_isolated_cells=[list(c) for c in cut],ship_erase=dict(bbox=list(D.SHIP_MAP_BOX),source_map='docs/verification/region2-port-backdrop/ship-erase-source-map.png',encoding='値=((写し元x+1)<<10)|写し元y を R,G,B の24bit。0は手を入れていない画素。写し元は縮小後の絵の座標',pixels=int((source_map[:,:,0]>=0).sum())),ship_cell=list(SHIP_CELL),layout=rows_of(walk),
         upper_layer=dict(path=OVERLAY,size=list(atlas.size),pieces=len(table),objects=sorted({t[7] for t in table}))))
     print('REGION2_TOWN_BACKDROP_BUILD_PASS: colors=%d walkable=%d pieces=%d atlas=%s pruned=%d dropped_colors=%d'%(len(colors),walk.sum(),len(table),atlas.size,len(cut),len(dropped)))
 

@@ -79,13 +79,39 @@ def scenic_sheet():
         d.text((x,y+22),f"マス{tuple(s['cell'])}　人物の見える画素 {s['visible']}/{s['opaque']}（頭 {s['head_visible']}/{s['head_opaque']}）",font=font,fill=(70,70,70))
     sheet.save(OUT/'walking-scenes.png')
 
+ERASE_BOX=(830,430,1140,790)
+V0_COMMIT='79a43a5'   # 船を消す前（船が背景に描かれていた版）
+V1_COMMIT='eb9fd83'   # 船を消した最初の版（今回の修正前）
+
+def backdrop_at(commit):
+    if commit is None:return Image.open(ROOT/'assets/town_backdrops/region2_port.png').convert('RGB')
+    raw=subprocess.check_output(['git','show',f'{commit}:assets/town_backdrops/region2_port.png'],cwd=ROOT)
+    tmp=OUT/('_tmp_%s.png'%commit);tmp.write_bytes(raw);im=Image.open(tmp).convert('RGB');im.load();tmp.unlink();return im
+
 def erase_sheet():
-    """船を消した部分の拡大（消す前・消した後）。縮小後の絵の同じ範囲を3倍の最近傍で並べる。"""
-    before=Image.open(OUT/'ship-erase-before.png').convert('RGB');after=Image.open(OUT/'ship-erase-after.png').convert('RGB')
-    font=ImageFont.truetype(FONT,20)
-    sheet=Image.new('RGB',(before.width*2+60,before.height+60),(232,222,200));d=ImageDraw.Draw(sheet)
-    d.text((20,14),'消す前（縮小後の絵、3倍）',font=font,fill=(30,30,30));d.text((before.width+40,14),'消した後（減色後の背景、3倍）',font=font,fill=(30,30,30))
-    sheet.paste(before,(20,50));sheet.paste(after,(before.width+40,50));sheet.save(OUT/'ship-erase-before-after.png')
+    """船を消した部分の拡大：消す前・今回の修正前・今回の修正後。縮小後の同じ範囲を3倍の最近傍で並べる。"""
+    panels=[('消す前（船が背景に描かれた版）',backdrop_at(V0_COMMIT)),('今回の修正前（船を消した最初の版）',backdrop_at(V1_COMMIT)),('今回の修正後',backdrop_at(None))]
+    x0,y0,x1,y1=ERASE_BOX;font=ImageFont.truetype(FONT,20);w=(x1-x0)*3;h=(y1-y0)*3
+    sheet=Image.new('RGB',(w*3+80,h+60),(232,222,200));d=ImageDraw.Draw(sheet)
+    for i,(title,im) in enumerate(panels):
+        x=20+i*(w+20);d.text((x,14),title,font=font,fill=(30,30,30))
+        sheet.paste(im.crop(ERASE_BOX).resize((w,h),Image.Resampling.NEAREST),(x,50))
+    sheet.save(OUT/'ship-erase-before-after.png')
+
+def ship_coverage():
+    """消して埋めた画素のうち、動く船の絵（不透明画素）で隠れる割合。隠れない部分は周りの海と区別がつかないことを目で確かめる。"""
+    record=json.loads((ROOT/'assets/source_records/region2-port-town-backdrop.json').read_text(encoding='utf8'))
+    emap=np.array(Image.open(OUT/'ship-erase-source-map.png').convert('RGB')).astype(int)
+    value=(emap[:,:,0]<<16)|(emap[:,:,1]<<8)|emap[:,:,2];edited=value>0
+    x0,y0=record['ship_erase']['bbox'][:2]   # 写し元の地図の左上
+    sprite=Image.open(ROOT/'assets/vehicles/owner_ship.png').convert('RGBA').crop((96,0,192,96)).resize((192,192),Image.Resampling.NEAREST)
+    alpha=np.array(sprite)[:,:,3]>0
+    cx,cy=record['ship_cell'];sx=cx*32+16-96;sy=(cy+1)*32-192
+    covered=0;total=int(edited.sum())
+    for yy,xx in zip(*np.nonzero(edited)):
+        px,py=xx+x0-sx,yy+y0-sy
+        if 0<=px<192 and 0<=py<192 and alpha[py,px]:covered+=1
+    return dict(edited_pixels=total,hidden_by_ship_sprite=covered,ratio=round(covered/total,3))
 
 def ship_sheet():
     shots=json.loads((OUT/'ship/checks.json').read_text(encoding='utf8'))['scenic']
@@ -97,8 +123,11 @@ def ship_sheet():
         x=12+i%2*(tw+12);y=12+i//2*(th+34);d.text((x,y),names.get(key,key),font=font,fill=(30,30,30));sheet.paste(im.resize((tw,th),Image.Resampling.LANCZOS),(x,y+26))
     sheet.save(OUT/'ship-scenes.png')
 
+def write_json(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
+
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
     comparison();overlay_on_original();scenic_sheet();erase_sheet();ship_sheet()
+    write_json(OUT/'ship-erase-coverage.json',ship_coverage())
     print('REGION2_BACKDROP_REVIEW_BUILT')
 if __name__=='__main__':main()

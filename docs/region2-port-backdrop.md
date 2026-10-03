@@ -67,17 +67,22 @@
 最初の版では、原画に描かれた船を背景に残していたため、出航しても船の絵が桟橋に残った。次のように直した。
 
 - 背景から船（船体・帆柱・帆・綱）を消した。消した範囲は `tools/region2_port_town_defs.py` の `SHIP_POLY`（杭と係船柱は `SHIP_KEEP` などで残す）。
-  埋めた画素はすべて**周りの船のない画素をそのまま写したもの**で、ぼかし・混ぜ合わせはしない。
-  - 海：船のない海の塊を、ずらしてそのまま写した（ずらし量は、船のない海の画素が最も多く埋まるものから順に8回まで。ぼかしなし）。
+  埋めた画素はすべて**周りの船のない画素を1画素ずつそのまま写したもの**で、ぼかし・混ぜ合わせはしない。
+  - 海（2026年10月3日に直した）：最初の版は、船のない海の1か所の塊を、船の領域全体へずらして写していた。そのため上と左の端がまっすぐな線で区切られ、波の並びが単調で、写し元の境目に薄い線が出た。
+    今は、**船の画素と船の影だけ**を埋める（船のすきまから見えていた本物の海はそのまま残す。範囲は船の形に沿った不規則な形になる）。
+    埋めかたは Ashikhmin の画素合成：埋める画素ごとに、すでに決まった周り7×7の海の画素と最もよく合う画素を、原画の海の中から候補（①すでに埋めた隣の写し元の隣＝波の並びを続ける、②船から離れた海の画素24個、③同じ高さの左側の海）から選び、その1画素をそのまま写す。
+    比べる相手は海の画素だけ（板や杭の色に引きずられない）。明るさと波の向きが近い場所が画素ごとに選ばれるので、同じ並びのくり返しや、1か所の写し元の境目の線は出ない。
+    船の影（船の外へはみ出した暗い灰青）も埋める。板（茶色）と杭と綱のそばは触らない。
   - 桟橋の縦板（斜めの渡し板・中央桟橋の縁）：中央桟橋の船のない縦板を鏡像に敷いた。
   - 長い桟橋の上の縁（船体の下に隠れていた部分）：長い桟橋の船のない横板を鏡像に敷いた。
   - 岸壁の板の側面（帆柱が横切っていた部分）：同じ側面の船のない部分を鏡像に敷いた。前の帆柱の先は、左隣の砂を写した。
-- 写し元の座標は全画素について `docs/verification/region2-port-backdrop/ship-erase-source-map.png` に記録した（形式はファイル内の `assets/source_records/region2-port-town-backdrop.json` の `ship_erase.encoding`）。
+- 写し元の座標は全画素について `docs/verification/region2-port-backdrop/ship-erase-source-map.png` に記録した（形式は `assets/source_records/region2-port-town-backdrop.json` の `ship_erase.encoding`）。
   `tools/check_region2_port_backdrop.py` が、消した画素のすべてが、記録した写し元の**1画素の色だけ**から決まっていることを確かめる。
 - 上の層の帆柱の部品は外した。
 - 船は第1地方と同じ動く船の絵（`assets/vehicles/owner_ship.png`、192×192px）を、足元のマス(30,22)で桟橋のすぐ西の水面に重ねる。船が着いている間だけ描き、出航すると消え、帰還の風で港に戻ると桟橋に戻る
   （描画条件は第1港と同じ：`first_region_view.gd`）。中央桟橋の乗り降りのマス(34,21)は、船の東隣。
-- 消した部分の拡大（消す前・消した後）：[ship-erase-before-after.png](verification/region2-port-backdrop/ship-erase-before-after.png)。実画面：[ship-scenes.png](verification/region2-port-backdrop/ship-scenes.png)。
+- 消した部分の拡大（消す前・今回の修正前・今回の修正後の3つ）：[ship-erase-before-after.png](verification/region2-port-backdrop/ship-erase-before-after.png)。
+- 動く船の絵が着いている間に、消した範囲が船の絵からはみ出して見えないか：消した55576画素のうち、船の絵の不透明画素で隠れるのは13925画素（25%）。残りは船の絵の外に見える海の画素で、周りの海と同じ原画の海の画素から写してあるので、はみ出しとしては見えない（[ship-scenes.png](verification/region2-port-backdrop/ship-scenes.png) の出航前の画面）。記録は `ship-erase-coverage.json`。実画面：[ship-scenes.png](verification/region2-port-backdrop/ship-scenes.png)。
 
 ### 渡し板の入口 (31,14)
 
