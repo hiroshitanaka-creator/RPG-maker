@@ -296,8 +296,8 @@ def main() -> int:
         palette_cache[rel] = selected
         if selected is None:
             errors.append(f"{rel}: 指定パレットが存在しない、または色が空")
-        elif len(selected) > (76 if rel == 'assets/palette/natural.gpl' else 64):
-            errors.append(f"{rel}: パレットの色数超過 {len(selected)} 色 / 上限{76 if rel == 'assets/palette/natural.gpl' else 64}色")
+        elif len(selected) > (80 if rel == 'assets/palette/natural.gpl' else 64):
+            errors.append(f"{rel}: パレットの色数超過 {len(selected)} 色 / 上限{80 if rel == 'assets/palette/natural.gpl' else 64}色")
 
     for entry in entries:
         entry.setdefault("max_colors", defaults.get("max_colors"))

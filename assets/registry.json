@@ -29275,6 +29275,46 @@
         4
       ],
       "generated_at": "2026-10-02"
+    },
+    {
+      "path": "assets/town_backdrops/region2_port.png",
+      "kind": "town_backdrop",
+      "size": [
+        1440,
+        960
+      ],
+      "modified": "港町の外観：依頼者の原画全体を倍率15/16で最近傍縮小し、natural.gplへ最近傍減色（64色以内）。切り抜き・描き足し・色調補正・ぼかしなし。",
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "Python/Pillow",
+      "author": "RPG-maker / Claude Code（原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-10-03",
+      "original_file": "assets/_incoming/owner-2026-10-01-region2-port/FE4B1B12-C9B1-4DB0-B374-81F51D061BA6.PNG",
+      "prompt_record": "assets/source_records/region2-port-town-backdrop.json",
+      "conversion_record": "assets/source_records/region2-port-town-backdrop.json",
+      "max_colors": 64
+    },
+    {
+      "path": "assets/town_backdrops/region2_port_overlay.png",
+      "kind": "town_overlay",
+      "size": [
+        1024,
+        226
+      ],
+      "modified": "港町の「上の層」：背景と同じ画素のうち、人物より手前に見える部分（屋根・ヤシの葉・石柱の上・アーチ・帆柱）だけを切り出して並べた素材。背景と同じ画素で、アルファは0/255のみ。",
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "Python/Pillow",
+      "author": "RPG-maker / Claude Code（原画：依頼者）",
+      "license": "LicenseRef-Generated-Project",
+      "generated_at": "2026-10-03",
+      "original_file": "assets/_incoming/owner-2026-10-01-region2-port/FE4B1B12-C9B1-4DB0-B374-81F51D061BA6.PNG",
+      "prompt_record": "assets/source_records/region2-port-town-backdrop.json",
+      "conversion_record": "assets/source_records/region2-port-town-backdrop.json",
+      "max_colors": 64
     }
   ],
   "audio": [

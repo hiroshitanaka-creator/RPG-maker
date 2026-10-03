@@ -51,13 +51,13 @@ func _initialize() -> void:
 	var exterior: Dictionary=data["maps"]["brine_port:0"]
 	for id in ["inn","item","weapon","armor","shrine","harbor","home_a","home_b"]:
 		check(exterior["tiles"].values().any(func(t:Dictionary)->bool:return t["path"]=="assets/objects/region2_"+id+".png"),"8棟の部品: "+id)
-	var town := placed(0,[5,6]);var cells := reach(town,[5,6])
+	var town := placed(0,[4,4]);var cells := reach(town,[4,4])
 	for link in data["definition"]["second_port_doors"]:
 		if link["from"]["room"]==0:
 			check(cells.has(WorldExpedition.point(link["from"]["cell"])),"入口から建物へ: "+str(link["to"]["room"]))
-	check(cells.has(Vector2i(36,28)),"入口から中央桟橋へ")
-	check(not FirstRegion.walkable(town,Vector2i(46,30)),"海へ歩いて入れない")
-	check(not FirstRegion.walkable(town,Vector2i(19,4)),"建物の壁へ入れない")
+	check(cells.has(Vector2i(34,21)),"入口から中央桟橋へ")
+	check(not FirstRegion.walkable(town,Vector2i(41,27)),"海へ歩いて入れない")
+	check(not FirstRegion.walkable(town,Vector2i(13,3)),"建物の壁へ入れない")
 	for cell in cells:
 		for direction in [Vector2i.UP,Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT]:
 			var probe := placed(0,[cell.x,cell.y])

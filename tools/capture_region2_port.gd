@@ -121,7 +121,7 @@ func visit_port() -> void:
 	castle_check(FirstRegionTravel.snapshot(_state())["visited"].has("brine_port"),"訪問済み記録")
 	await picture("03-central-pier")
 	await full_town()
-	if not castle_check(await _walk(p(0,[22,17])),"井戸の広場へ歩行"):return
+	if not castle_check(await _walk(p(0,[19,11])),"井戸の広場へ歩行"):return
 	await picture("05-well-market")
 	for entry in [[1,"inn"],[2,"item"],[3,"weapon"],[4,"armor"],[5,"shrine"],[6,"harbor"]]:
 		var index: int=entry[0];var position: Dictionary=Region2Port.data()["interaction_positions"][str(index)]

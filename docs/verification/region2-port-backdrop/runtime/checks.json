@@ -1,0 +1,142 @@
+{
+  "checks": 37,
+  "elapsed_ms": 122266,
+  "failures": [],
+  "images": [
+    "02-first-sea-battle.png",
+    "00-full-town.png",
+    "01-front-of-palm-trunk.png",
+    "02-behind-palm-crown.png",
+    "03-behind-stall-awning.png",
+    "04-front-of-stall.png",
+    "05-under-stone-arch.png",
+    "06-behind-building-roof-home-b.png",
+    "07-front-of-building-door-home-b.png",
+    "08-pier-before-boarding.png",
+    "09-after-boarding.png"
+  ],
+  "inputs": 422,
+  "method": "船取得後の無編集保存をタイトルから再開し、通常入力で第2港へ航行・下船・徒歩。奥で隠れ手前で見える人物画素を実画面で数える。",
+  "moves": 316,
+  "scenic": [
+    {
+      "cell": [
+        19,
+        6
+      ],
+      "expect": "front",
+      "head_opaque": 249,
+      "head_visible": 249,
+      "image": "01-front-of-palm-trunk.png",
+      "opaque": 707,
+      "visible": 707,
+      "visible_ratio": 1.0
+    },
+    {
+      "cell": [
+        19,
+        4
+      ],
+      "expect": "behind",
+      "head_opaque": 203,
+      "head_visible": 21,
+      "image": "02-behind-palm-crown.png",
+      "opaque": 599,
+      "visible": 300,
+      "visible_ratio": 0.501
+    },
+    {
+      "cell": [
+        13,
+        8
+      ],
+      "expect": "behind",
+      "head_opaque": 203,
+      "head_visible": 202,
+      "image": "03-behind-stall-awning.png",
+      "opaque": 599,
+      "visible": 216,
+      "visible_ratio": 0.361
+    },
+    {
+      "cell": [
+        14,
+        14
+      ],
+      "expect": "front",
+      "head_opaque": 200,
+      "head_visible": 200,
+      "image": "04-front-of-stall.png",
+      "opaque": 592,
+      "visible": 592,
+      "visible_ratio": 1.0
+    },
+    {
+      "cell": [
+        4,
+        2
+      ],
+      "expect": "any",
+      "head_opaque": 249,
+      "head_visible": 249,
+      "image": "05-under-stone-arch.png",
+      "opaque": 707,
+      "visible": 707,
+      "visible_ratio": 1.0
+    },
+    {
+      "cell": [
+        12,
+        15
+      ],
+      "expect": "behind",
+      "head_opaque": 270,
+      "head_visible": 270,
+      "image": "06-behind-building-roof-home-b.png",
+      "opaque": 743,
+      "visible": 681,
+      "visible_ratio": 0.917
+    },
+    {
+      "cell": [
+        13,
+        20
+      ],
+      "expect": "front",
+      "head_opaque": 249,
+      "head_visible": 249,
+      "image": "07-front-of-building-door-home-b.png",
+      "opaque": 707,
+      "visible": 707,
+      "visible_ratio": 1.0
+    },
+    {
+      "cell": [
+        34,
+        21
+      ],
+      "expect": "front",
+      "head_opaque": 270,
+      "head_visible": 270,
+      "image": "08-pier-before-boarding.png",
+      "opaque": 743,
+      "visible": 743,
+      "visible_ratio": 1.0
+    },
+    {
+      "cell": [
+        155,
+        110
+      ],
+      "expect": "ship",
+      "head_opaque": 200,
+      "head_visible": 3,
+      "image": "09-after-boarding.png",
+      "opaque": 592,
+      "visible": 45,
+      "visible_ratio": 0.076
+    }
+  ],
+  "source_sha256": "591743ed060f49f894f2c9a645dab3207c12f0d43364a91f5c16e21fe17d5303",
+  "status": "PASS"
+}

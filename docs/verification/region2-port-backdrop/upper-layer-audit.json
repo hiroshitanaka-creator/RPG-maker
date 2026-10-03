@@ -1,0 +1,1798 @@
+{
+ "note": "矩形（32×48）で数えた上限値。人物の実画素ではない。人物が部品の足元より奥にいるときだけ隠れる。",
+ "walkable_cells": 457,
+ "cells_with_hidden_pixels": 134,
+ "by_object": {
+  "palm_nw": {
+   "cells": 3,
+   "max_pixels": 1536,
+   "head_cells": 3
+  },
+  "arch": {
+   "cells": 2,
+   "max_pixels": 888,
+   "head_cells": 2
+  },
+  "palm_arch": {
+   "cells": 4,
+   "max_pixels": 1437,
+   "head_cells": 4
+  },
+  "inn": {
+   "cells": 5,
+   "max_pixels": 276,
+   "head_cells": 2
+  },
+  "palm_inn": {
+   "cells": 8,
+   "max_pixels": 1156,
+   "head_cells": 5
+  },
+  "item": {
+   "cells": 3,
+   "max_pixels": 376,
+   "head_cells": 2
+  },
+  "palm_shrine_r": {
+   "cells": 9,
+   "max_pixels": 1512,
+   "head_cells": 7
+  },
+  "palm_west": {
+   "cells": 5,
+   "max_pixels": 1521,
+   "head_cells": 4
+  },
+  "shrine": {
+   "cells": 2,
+   "max_pixels": 91,
+   "head_cells": 1
+  },
+  "weapon": {
+   "cells": 2,
+   "max_pixels": 154,
+   "head_cells": 1
+  },
+  "stall_blue": {
+   "cells": 5,
+   "max_pixels": 618,
+   "head_cells": 3
+  },
+  "armor": {
+   "cells": 3,
+   "max_pixels": 122,
+   "head_cells": 0
+  },
+  "stall_red": {
+   "cells": 7,
+   "max_pixels": 741,
+   "head_cells": 4
+  },
+  "palm_armor": {
+   "cells": 4,
+   "max_pixels": 1370,
+   "head_cells": 2
+  },
+  "stall_gold": {
+   "cells": 3,
+   "max_pixels": 211,
+   "head_cells": 1
+  },
+  "stall_sand": {
+   "cells": 2,
+   "max_pixels": 58,
+   "head_cells": 0
+  },
+  "palm_stall": {
+   "cells": 3,
+   "max_pixels": 765,
+   "head_cells": 2
+  },
+  "palm_sw1": {
+   "cells": 5,
+   "max_pixels": 1349,
+   "head_cells": 4
+  },
+  "ship_masts": {
+   "cells": 3,
+   "max_pixels": 720,
+   "head_cells": 3
+  },
+  "home_a": {
+   "cells": 3,
+   "max_pixels": 132,
+   "head_cells": 1
+  },
+  "home_b": {
+   "cells": 3,
+   "max_pixels": 174,
+   "head_cells": 0
+  },
+  "palm_sw2": {
+   "cells": 3,
+   "max_pixels": 1464,
+   "head_cells": 2
+  },
+  "palm_home": {
+   "cells": 13,
+   "max_pixels": 1536,
+   "head_cells": 9
+  },
+  "pillar_d": {
+   "cells": 5,
+   "max_pixels": 1116,
+   "head_cells": 4
+  },
+  "pillar_f": {
+   "cells": 7,
+   "max_pixels": 956,
+   "head_cells": 5
+  },
+  "pillar_e": {
+   "cells": 3,
+   "max_pixels": 995,
+   "head_cells": 1
+  },
+  "palm_south": {
+   "cells": 14,
+   "max_pixels": 1468,
+   "head_cells": 11
+  },
+  "palm_south2": {
+   "cells": 8,
+   "max_pixels": 1306,
+   "head_cells": 6
+  },
+  "pillar_g": {
+   "cells": 6,
+   "max_pixels": 1492,
+   "head_cells": 4
+  }
+ },
+ "cells": [
+  {
+   "cell": [
+    1,
+    1
+   ],
+   "hidden": {
+    "palm_nw": {
+     "pixels": 1335,
+     "head_pixels": 710
+    }
+   }
+  },
+  {
+   "cell": [
+    2,
+    1
+   ],
+   "hidden": {
+    "palm_nw": {
+     "pixels": 1416,
+     "head_pixels": 648
+    }
+   }
+  },
+  {
+   "cell": [
+    4,
+    1
+   ],
+   "hidden": {
+    "arch": {
+     "pixels": 888,
+     "head_pixels": 653
+    }
+   }
+  },
+  {
+   "cell": [
+    8,
+    1
+   ],
+   "hidden": {
+    "palm_arch": {
+     "pixels": 1437,
+     "head_pixels": 669
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    1
+   ],
+   "hidden": {
+    "palm_arch": {
+     "pixels": 807,
+     "head_pixels": 360
+    }
+   }
+  },
+  {
+   "cell": [
+    11,
+    1
+   ],
+   "hidden": {
+    "inn": {
+     "pixels": 87,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    2,
+    2
+   ],
+   "hidden": {
+    "palm_nw": {
+     "pixels": 1536,
+     "head_pixels": 768
+    }
+   }
+  },
+  {
+   "cell": [
+    4,
+    2
+   ],
+   "hidden": {
+    "arch": {
+     "pixels": 13,
+     "head_pixels": 13
+    }
+   }
+  },
+  {
+   "cell": [
+    8,
+    2
+   ],
+   "hidden": {
+    "palm_arch": {
+     "pixels": 1406,
+     "head_pixels": 768
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    2
+   ],
+   "hidden": {
+    "palm_arch": {
+     "pixels": 688,
+     "head_pixels": 436
+    }
+   }
+  },
+  {
+   "cell": [
+    11,
+    2
+   ],
+   "hidden": {
+    "inn": {
+     "pixels": 276,
+     "head_pixels": 119
+    }
+   }
+  },
+  {
+   "cell": [
+    18,
+    2
+   ],
+   "hidden": {
+    "inn": {
+     "pixels": 120,
+     "head_pixels": 0
+    },
+    "palm_inn": {
+     "pixels": 163,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    19,
+    2
+   ],
+   "hidden": {
+    "palm_inn": {
+     "pixels": 193,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    20,
+    2
+   ],
+   "hidden": {
+    "palm_inn": {
+     "pixels": 21,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    22,
+    2
+   ],
+   "hidden": {
+    "item": {
+     "pixels": 113,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    18,
+    3
+   ],
+   "hidden": {
+    "inn": {
+     "pixels": 262,
+     "head_pixels": 120
+    },
+    "palm_inn": {
+     "pixels": 808,
+     "head_pixels": 240
+    }
+   }
+  },
+  {
+   "cell": [
+    19,
+    3
+   ],
+   "hidden": {
+    "palm_inn": {
+     "pixels": 1156,
+     "head_pixels": 445
+    }
+   }
+  },
+  {
+   "cell": [
+    20,
+    3
+   ],
+   "hidden": {
+    "palm_inn": {
+     "pixels": 239,
+     "head_pixels": 86
+    }
+   }
+  },
+  {
+   "cell": [
+    22,
+    3
+   ],
+   "hidden": {
+    "item": {
+     "pixels": 344,
+     "head_pixels": 168
+    }
+   }
+  },
+  {
+   "cell": [
+    34,
+    3
+   ],
+   "hidden": {
+    "palm_shrine_r": {
+     "pixels": 35,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    35,
+    3
+   ],
+   "hidden": {
+    "palm_shrine_r": {
+     "pixels": 166,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    4
+   ],
+   "hidden": {
+    "palm_west": {
+     "pixels": 103,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    19,
+    4
+   ],
+   "hidden": {
+    "inn": {
+     "pixels": 40,
+     "head_pixels": 0
+    },
+    "palm_inn": {
+     "pixels": 1016,
+     "head_pixels": 695
+    }
+   }
+  },
+  {
+   "cell": [
+    20,
+    4
+   ],
+   "hidden": {
+    "palm_inn": {
+     "pixels": 161,
+     "head_pixels": 161
+    }
+   }
+  },
+  {
+   "cell": [
+    22,
+    4
+   ],
+   "hidden": {
+    "item": {
+     "pixels": 376,
+     "head_pixels": 184
+    }
+   }
+  },
+  {
+   "cell": [
+    34,
+    4
+   ],
+   "hidden": {
+    "palm_shrine_r": {
+     "pixels": 609,
+     "head_pixels": 127
+    },
+    "shrine": {
+     "pixels": 3,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    35,
+    4
+   ],
+   "hidden": {
+    "palm_shrine_r": {
+     "pixels": 1101,
+     "head_pixels": 369
+    }
+   }
+  },
+  {
+   "cell": [
+    36,
+    4
+   ],
+   "hidden": {
+    "palm_shrine_r": {
+     "pixels": 151,
+     "head_pixels": 8
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    5
+   ],
+   "hidden": {
+    "palm_west": {
+     "pixels": 1042,
+     "head_pixels": 288
+    }
+   }
+  },
+  {
+   "cell": [
+    2,
+    5
+   ],
+   "hidden": {
+    "palm_west": {
+     "pixels": 327,
+     "head_pixels": 52
+    }
+   }
+  },
+  {
+   "cell": [
+    34,
+    5
+   ],
+   "hidden": {
+    "palm_shrine_r": {
+     "pixels": 1165,
+     "head_pixels": 525
+    },
+    "shrine": {
+     "pixels": 91,
+     "head_pixels": 13
+    }
+   }
+  },
+  {
+   "cell": [
+    35,
+    5
+   ],
+   "hidden": {
+    "palm_shrine_r": {
+     "pixels": 1512,
+     "head_pixels": 744
+    }
+   }
+  },
+  {
+   "cell": [
+    36,
+    5
+   ],
+   "hidden": {
+    "palm_shrine_r": {
+     "pixels": 886,
+     "head_pixels": 186
+    }
+   }
+  },
+  {
+   "cell": [
+    37,
+    5
+   ],
+   "hidden": {
+    "palm_shrine_r": {
+     "pixels": 185,
+     "head_pixels": 16
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    6
+   ],
+   "hidden": {
+    "palm_west": {
+     "pixels": 1521,
+     "head_pixels": 766
+    }
+   }
+  },
+  {
+   "cell": [
+    7,
+    6
+   ],
+   "hidden": {
+    "weapon": {
+     "pixels": 48,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    7
+   ],
+   "hidden": {
+    "palm_west": {
+     "pixels": 1410,
+     "head_pixels": 736
+    }
+   }
+  },
+  {
+   "cell": [
+    7,
+    7
+   ],
+   "hidden": {
+    "weapon": {
+     "pixels": 154,
+     "head_pixels": 64
+    }
+   }
+  },
+  {
+   "cell": [
+    20,
+    7
+   ],
+   "hidden": {
+    "stall_blue": {
+     "pixels": 5,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    21,
+    7
+   ],
+   "hidden": {
+    "stall_blue": {
+     "pixels": 13,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    27,
+    7
+   ],
+   "hidden": {
+    "armor": {
+     "pixels": 56,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    31,
+    7
+   ],
+   "hidden": {
+    "armor": {
+     "pixels": 122,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    11,
+    8
+   ],
+   "hidden": {
+    "stall_red": {
+     "pixels": 6,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    12,
+    8
+   ],
+   "hidden": {
+    "stall_red": {
+     "pixels": 448,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    13,
+    8
+   ],
+   "hidden": {
+    "stall_red": {
+     "pixels": 741,
+     "head_pixels": 24
+    }
+   }
+  },
+  {
+   "cell": [
+    14,
+    8
+   ],
+   "hidden": {
+    "stall_red": {
+     "pixels": 603,
+     "head_pixels": 12
+    }
+   }
+  },
+  {
+   "cell": [
+    15,
+    8
+   ],
+   "hidden": {
+    "stall_red": {
+     "pixels": 49,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    22,
+    8
+   ],
+   "hidden": {
+    "stall_blue": {
+     "pixels": 618,
+     "head_pixels": 4
+    }
+   }
+  },
+  {
+   "cell": [
+    25,
+    8
+   ],
+   "hidden": {
+    "palm_armor": {
+     "pixels": 91,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    26,
+    8
+   ],
+   "hidden": {
+    "palm_armor": {
+     "pixels": 350,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    11,
+    9
+   ],
+   "hidden": {
+    "stall_red": {
+     "pixels": 128,
+     "head_pixels": 20
+    }
+   }
+  },
+  {
+   "cell": [
+    15,
+    9
+   ],
+   "hidden": {
+    "stall_red": {
+     "pixels": 178,
+     "head_pixels": 107
+    }
+   }
+  },
+  {
+   "cell": [
+    19,
+    9
+   ],
+   "hidden": {
+    "stall_blue": {
+     "pixels": 67,
+     "head_pixels": 1
+    }
+   }
+  },
+  {
+   "cell": [
+    23,
+    9
+   ],
+   "hidden": {
+    "stall_blue": {
+     "pixels": 35,
+     "head_pixels": 16
+    }
+   }
+  },
+  {
+   "cell": [
+    25,
+    9
+   ],
+   "hidden": {
+    "palm_armor": {
+     "pixels": 511,
+     "head_pixels": 148
+    }
+   }
+  },
+  {
+   "cell": [
+    26,
+    9
+   ],
+   "hidden": {
+    "armor": {
+     "pixels": 3,
+     "head_pixels": 0
+    },
+    "palm_armor": {
+     "pixels": 1370,
+     "head_pixels": 606
+    }
+   }
+  },
+  {
+   "cell": [
+    13,
+    11
+   ],
+   "hidden": {
+    "stall_gold": {
+     "pixels": 211,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    14,
+    11
+   ],
+   "hidden": {
+    "stall_gold": {
+     "pixels": 105,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    19,
+    11
+   ],
+   "hidden": {
+    "stall_sand": {
+     "pixels": 58,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    20,
+    11
+   ],
+   "hidden": {
+    "palm_stall": {
+     "pixels": 531,
+     "head_pixels": 44
+    }
+   }
+  },
+  {
+   "cell": [
+    21,
+    11
+   ],
+   "hidden": {
+    "palm_stall": {
+     "pixels": 765,
+     "head_pixels": 40
+    }
+   }
+  },
+  {
+   "cell": [
+    22,
+    11
+   ],
+   "hidden": {
+    "palm_stall": {
+     "pixels": 312,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    12,
+    12
+   ],
+   "hidden": {
+    "stall_gold": {
+     "pixels": 172,
+     "head_pixels": 16
+    }
+   }
+  },
+  {
+   "cell": [
+    18,
+    12
+   ],
+   "hidden": {
+    "stall_sand": {
+     "pixels": 37,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    13
+   ],
+   "hidden": {
+    "palm_sw1": {
+     "pixels": 492,
+     "head_pixels": 6
+    }
+   }
+  },
+  {
+   "cell": [
+    2,
+    13
+   ],
+   "hidden": {
+    "palm_sw1": {
+     "pixels": 62,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    14
+   ],
+   "hidden": {
+    "palm_sw1": {
+     "pixels": 1349,
+     "head_pixels": 599
+    }
+   }
+  },
+  {
+   "cell": [
+    29,
+    14
+   ],
+   "hidden": {
+    "ship_masts": {
+     "pixels": 275,
+     "head_pixels": 11
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    15
+   ],
+   "hidden": {
+    "palm_sw1": {
+     "pixels": 1180,
+     "head_pixels": 748
+    }
+   }
+  },
+  {
+   "cell": [
+    2,
+    15
+   ],
+   "hidden": {
+    "palm_sw1": {
+     "pixels": 376,
+     "head_pixels": 260
+    }
+   }
+  },
+  {
+   "cell": [
+    3,
+    15
+   ],
+   "hidden": {
+    "home_a": {
+     "pixels": 132,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    15
+   ],
+   "hidden": {
+    "home_a": {
+     "pixels": 19,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    10,
+    15
+   ],
+   "hidden": {
+    "home_b": {
+     "pixels": 78,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    12,
+    15
+   ],
+   "hidden": {
+    "home_b": {
+     "pixels": 174,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    31,
+    15
+   ],
+   "hidden": {
+    "ship_masts": {
+     "pixels": 312,
+     "head_pixels": 24
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    16
+   ],
+   "hidden": {
+    "palm_sw2": {
+     "pixels": 32,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    16
+   ],
+   "hidden": {
+    "home_a": {
+     "pixels": 107,
+     "head_pixels": 32
+    }
+   }
+  },
+  {
+   "cell": [
+    15,
+    16
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 66,
+     "head_pixels": 0
+    },
+    "home_b": {
+     "pixels": 133,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    16,
+    16
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 75,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    17,
+    16
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 31,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    18,
+    16
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 143,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    31,
+    16
+   ],
+   "hidden": {
+    "ship_masts": {
+     "pixels": 720,
+     "head_pixels": 288
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    17
+   ],
+   "hidden": {
+    "palm_sw2": {
+     "pixels": 749,
+     "head_pixels": 203
+    }
+   }
+  },
+  {
+   "cell": [
+    16,
+    17
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 969,
+     "head_pixels": 209
+    }
+   }
+  },
+  {
+   "cell": [
+    17,
+    17
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 890,
+     "head_pixels": 134
+    }
+   }
+  },
+  {
+   "cell": [
+    18,
+    17
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 1021,
+     "head_pixels": 357
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    18
+   ],
+   "hidden": {
+    "palm_sw2": {
+     "pixels": 1464,
+     "head_pixels": 706
+    }
+   }
+  },
+  {
+   "cell": [
+    16,
+    18
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 1536,
+     "head_pixels": 768
+    }
+   }
+  },
+  {
+   "cell": [
+    17,
+    18
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 1228,
+     "head_pixels": 740
+    }
+   }
+  },
+  {
+   "cell": [
+    18,
+    18
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 804,
+     "head_pixels": 651
+    }
+   }
+  },
+  {
+   "cell": [
+    15,
+    19
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 20,
+     "head_pixels": 19
+    }
+   }
+  },
+  {
+   "cell": [
+    17,
+    19
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 385,
+     "head_pixels": 333
+    }
+   }
+  },
+  {
+   "cell": [
+    18,
+    19
+   ],
+   "hidden": {
+    "palm_home": {
+     "pixels": 52,
+     "head_pixels": 52
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    20
+   ],
+   "hidden": {
+    "pillar_d": {
+     "pixels": 441,
+     "head_pixels": 185
+    }
+   }
+  },
+  {
+   "cell": [
+    2,
+    20
+   ],
+   "hidden": {
+    "pillar_d": {
+     "pixels": 611,
+     "head_pixels": 173
+    }
+   }
+  },
+  {
+   "cell": [
+    3,
+    20
+   ],
+   "hidden": {
+    "pillar_d": {
+     "pixels": 238,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    7,
+    20
+   ],
+   "hidden": {
+    "pillar_f": {
+     "pixels": 339,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    8,
+    20
+   ],
+   "hidden": {
+    "pillar_f": {
+     "pixels": 589,
+     "head_pixels": 58
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    20
+   ],
+   "hidden": {
+    "pillar_f": {
+     "pixels": 89,
+     "head_pixels": 6
+    }
+   }
+  },
+  {
+   "cell": [
+    1,
+    21
+   ],
+   "hidden": {
+    "pillar_d": {
+     "pixels": 487,
+     "head_pixels": 247
+    }
+   }
+  },
+  {
+   "cell": [
+    2,
+    21
+   ],
+   "hidden": {
+    "pillar_d": {
+     "pixels": 1116,
+     "head_pixels": 573
+    }
+   }
+  },
+  {
+   "cell": [
+    5,
+    21
+   ],
+   "hidden": {
+    "pillar_e": {
+     "pixels": 36,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    6,
+    21
+   ],
+   "hidden": {
+    "pillar_e": {
+     "pixels": 253,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    7,
+    21
+   ],
+   "hidden": {
+    "pillar_f": {
+     "pixels": 880,
+     "head_pixels": 509
+    }
+   }
+  },
+  {
+   "cell": [
+    8,
+    21
+   ],
+   "hidden": {
+    "pillar_f": {
+     "pixels": 956,
+     "head_pixels": 499
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    21
+   ],
+   "hidden": {
+    "pillar_f": {
+     "pixels": 64,
+     "head_pixels": 64
+    }
+   }
+  },
+  {
+   "cell": [
+    6,
+    22
+   ],
+   "hidden": {
+    "pillar_e": {
+     "pixels": 995,
+     "head_pixels": 443
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    22
+   ],
+   "hidden": {
+    "pillar_f": {
+     "pixels": 94,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    10,
+    24
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 17,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    11,
+    24
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 45,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    5,
+    25
+   ],
+   "hidden": {
+    "palm_south2": {
+     "pixels": 303,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    6,
+    25
+   ],
+   "hidden": {
+    "palm_south2": {
+     "pixels": 78,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    25
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 326,
+     "head_pixels": 28
+    }
+   }
+  },
+  {
+   "cell": [
+    10,
+    25
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 817,
+     "head_pixels": 111
+    }
+   }
+  },
+  {
+   "cell": [
+    11,
+    25
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 752,
+     "head_pixels": 162
+    }
+   }
+  },
+  {
+   "cell": [
+    12,
+    25
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 51,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    4,
+    26
+   ],
+   "hidden": {
+    "palm_south2": {
+     "pixels": 326,
+     "head_pixels": 121
+    }
+   }
+  },
+  {
+   "cell": [
+    5,
+    26
+   ],
+   "hidden": {
+    "palm_south2": {
+     "pixels": 1306,
+     "head_pixels": 559
+    }
+   }
+  },
+  {
+   "cell": [
+    6,
+    26
+   ],
+   "hidden": {
+    "palm_south2": {
+     "pixels": 422,
+     "head_pixels": 158
+    },
+    "pillar_g": {
+     "pixels": 9,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    7,
+    26
+   ],
+   "hidden": {
+    "pillar_g": {
+     "pixels": 625,
+     "head_pixels": 2
+    }
+   }
+  },
+  {
+   "cell": [
+    8,
+    26
+   ],
+   "hidden": {
+    "pillar_g": {
+     "pixels": 122,
+     "head_pixels": 0
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    26
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 458,
+     "head_pixels": 263
+    }
+   }
+  },
+  {
+   "cell": [
+    10,
+    26
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 1468,
+     "head_pixels": 736
+    }
+   }
+  },
+  {
+   "cell": [
+    11,
+    26
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 1324,
+     "head_pixels": 681
+    }
+   }
+  },
+  {
+   "cell": [
+    12,
+    26
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 136,
+     "head_pixels": 51
+    }
+   }
+  },
+  {
+   "cell": [
+    4,
+    27
+   ],
+   "hidden": {
+    "palm_south2": {
+     "pixels": 201,
+     "head_pixels": 197
+    }
+   }
+  },
+  {
+   "cell": [
+    5,
+    27
+   ],
+   "hidden": {
+    "palm_south2": {
+     "pixels": 996,
+     "head_pixels": 700
+    }
+   }
+  },
+  {
+   "cell": [
+    6,
+    27
+   ],
+   "hidden": {
+    "palm_south2": {
+     "pixels": 529,
+     "head_pixels": 235
+    },
+    "pillar_g": {
+     "pixels": 189,
+     "head_pixels": 9
+    }
+   }
+  },
+  {
+   "cell": [
+    7,
+    27
+   ],
+   "hidden": {
+    "pillar_g": {
+     "pixels": 1492,
+     "head_pixels": 748
+    }
+   }
+  },
+  {
+   "cell": [
+    8,
+    27
+   ],
+   "hidden": {
+    "pillar_g": {
+     "pixels": 410,
+     "head_pixels": 156
+    }
+   }
+  },
+  {
+   "cell": [
+    9,
+    27
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 149,
+     "head_pixels": 130
+    }
+   }
+  },
+  {
+   "cell": [
+    10,
+    27
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 1064,
+     "head_pixels": 654
+    }
+   }
+  },
+  {
+   "cell": [
+    11,
+    27
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 1315,
+     "head_pixels": 613
+    }
+   }
+  },
+  {
+   "cell": [
+    12,
+    27
+   ],
+   "hidden": {
+    "palm_south": {
+     "pixels": 534,
+     "head_pixels": 138
+    }
+   }
+  }
+ ]
+}
