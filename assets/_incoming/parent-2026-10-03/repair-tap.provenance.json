@@ -1,0 +1,79 @@
+{
+  "asset": "repair-tap.wav",
+  "asset_type": "original synthesized nonvoice one-shot sound effect",
+  "created_utc": "2026-10-03T14:25:05.251745+00:00",
+  "purpose": "A modest, dry, single small-hammer-on-metal repair tap candidate for an RPG workshop action.",
+  "method": "Deterministic additive damped inharmonic resonances with low-pass seeded noise contact and a damped low body mode; raised-cosine 1.5 ms attack; 25 ms end fade; peak normalization; direct 16-bit PCM encoding.",
+  "external_sources": [],
+  "external_samples_used": false,
+  "source_origin": "New mathematical synthesis made for this task; no sampled or copied recording or musical work.",
+  "speech": false,
+  "music": false,
+  "loop": false,
+  "reverb_or_delay": false,
+  "seed": 20261003,
+  "parameters": {
+    "sample_rate_hz": 44100,
+    "duration_seconds": 0.48,
+    "onset_seconds": 0.005,
+    "attack_seconds": 0.0015,
+    "end_fade_seconds": 0.025,
+    "target_peak_dbfs": -15.0,
+    "modes_hz_amplitude_decay_seconds_phase_radians": [
+      [
+        760.0,
+        0.58,
+        0.07,
+        0.0
+      ],
+      [
+        1387.0,
+        0.29,
+        0.052,
+        0.37
+      ],
+      [
+        2189.0,
+        0.12,
+        0.036,
+        0.81
+      ],
+      [
+        3310.0,
+        0.035,
+        0.021,
+        1.2
+      ]
+    ],
+    "noise_cutoff_hz": 2400.0,
+    "noise_amplitude": 0.065,
+    "noise_decay_seconds": 0.006,
+    "body_hz": 180.0,
+    "body_amplitude": 0.085,
+    "body_decay_seconds": 0.013,
+    "normalization_gain": 0.20314526733560961
+  },
+  "original_sha256": "6e36c4de5352a0fd39baa26110fac6069e8ee2d917821b901e5815a0c83739ee",
+  "generation_code_file": "synthesize-repair-tap.py",
+  "generation_code_sha256": "fcba6cc29038f9f4f83f9d0f8468e0dd7fcebd6e1455253fff4759ead59e4b12",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "validation": {
+    "container": "RIFF WAVE",
+    "encoding": "PCM signed 16-bit little-endian",
+    "channels": 1,
+    "sample_rate_hz": 44100,
+    "bits_per_sample": 16,
+    "frames": 21168,
+    "duration_seconds": 0.48,
+    "peak_sample_absolute": 5827,
+    "peak_dbfs": -15.000098337391359,
+    "rms_dbfs": -32.23145843872442,
+    "clipped_sample_count": 0,
+    "dc_offset_normalized": 1.3732045145532171e-05,
+    "first_sample": 0,
+    "last_sample": 0,
+    "file_bytes": 42380,
+    "listened": false,
+    "listening_limitation": "No audio audition/listening tool was available. Perceptual quality and in-game mix are unverified; waveform metrics do not establish these."
+  }
+}

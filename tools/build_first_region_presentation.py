@@ -3,10 +3,6 @@
 from pathlib import Path
 from collections import deque
 import copy, hashlib, json, math
-import numpy as np
-from PIL import Image, ImageDraw
-from build_visual_target_mocks import Map, obj, ENTRIES
-from build_natural_autotiles import MASKS, neighbor_mask
 
 ROOT=Path(__file__).resolve().parents[1]
 MOCK=ROOT/'docs/verification/art-review-2/mock-maps'
@@ -124,6 +120,23 @@ def cave_entrance_art():
     REG['assets']=[e for e in REG['assets'] if e['path']!=path]+[entry]
 
 def main():
+    # 後続のスプリントを含む現在の地図では、古い全面再構築を行わず導入だけを局所反映する。
+    from first_region_story_data import apply as apply_story
+    current = json.loads((ROOT/'world/first_region.json').read_text(encoding='utf8'))
+    if current['first_region'].get('castle_entrance'):
+        apply_story(current)
+        write(ROOT/'world/first_region.json', current)
+        from build_first_region import patch_interiors
+        interiors = json.loads((ROOT/'world/interiors.json').read_text(encoding='utf8'))
+        patch_interiors(interiors)
+        write(ROOT/'world/interiors.json', interiors)
+        print('FIRST_REGION_STORY_DATA: 局所反映・既存の地形と後続拠点を保持')
+        return
+    global np, Image, ImageDraw, Map, obj, ENTRIES, MASKS, neighbor_mask
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from build_visual_target_mocks import Map, obj, ENTRIES
+    from build_natural_autotiles import MASKS, neighbor_mask
     cave_entrance_art()
     definition=json.loads((ROOT/'world/first_region.json').read_text(encoding='utf8'))
     d=definition['first_region'];d['title']='エルヴァ地方';d['bounds']=[24,40,55,57]
@@ -229,6 +242,7 @@ def main():
     previous_sites['start_village']['rooms']=village_rooms
     previous_sites['first_cave']['rooms']=cave_rooms
     definition['sites']=[previous_sites['start_village'],previous_sites['first_cave']]
+    apply_story(definition)
     write(ROOT/'world/first_region.json',definition)
     interiors=json.loads((ROOT/'world/interiors.json').read_text(encoding='utf8'))
     interiors['sites']=[s for s in interiors['sites'] if s['id'] not in ('start_village','first_cave')]+definition['sites'];interiors['first_region']=d

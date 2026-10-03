@@ -1,0 +1,466 @@
+{
+  "status": "source_provenance_for_two_generated_character_static_assets",
+  "reference_repository": "hiroshitanaka-creator/RPG-maker",
+  "reference_commit": "f6434d5d188449c24dcba935bf1ae92d80080d27",
+  "generated_at": "2026-10-03 UTC",
+  "image_generation_calls": 2,
+  "records": [
+    {
+      "form": "human",
+      "source": "generated",
+      "tool": "image_gen.imagegen built-in",
+      "generated_at": "2026-10-03 UTC",
+      "license": "LicenseRef-Generated-Project",
+      "author": "RPG-maker project; generated for approved character artwork",
+      "original_file": "gado-human-candidate-v1.png",
+      "original_sha256": "569bcde4611363e03ece8aeb71d7a9c71969e0ba4a2e305c6a712039acbbf9d9",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_library": {
+        "local_path": "/workspace/scratch/83888f397ac2/rpg-story-review/art-candidates/gado-human-candidate-v1.png",
+        "file_id": "file_000000008d0881f5aa9d6d0e7ffc1cf2",
+        "library_file_id": "libfile_1996508dbf2c8191a0af1ceb651b7723",
+        "file_name": "gado-human-candidate-v1.png",
+        "library_path": "/gado-human-candidate-v1.png",
+        "current_version_number": 0,
+        "local_metadata_applied": true
+      },
+      "prompt": "Use case: style-transfer. Asset type: candidate original art for a top-down Japanese RPG NPC event sprite, to be reduced later into one 32x48 front-facing standing frame.\nUse the supplied sprite sheet ONLY as the pixel-art style and scale-language reference. Replace its depicted young shopkeeper with a completely new, distinct middle-aged male village repair artisan named Gado. Output exactly ONE full-body front-facing standing character, no sprite sheet, no text, no labels, no additional characters.\nThe character should be compact around 3 heads tall, seen at a very slight top-down RPG view like the reference. Stocky broad shoulders and thick working forearms, weathered square cheeks, heavy calm brows, short charcoal hair with gray temples, short squared gray-black beard. Distinctly middle aged, capable, gruff but kind, composed closed mouth; no aggressive expression.\nWardrobe: muted olive short-sleeved rolled work shirt, worn ochre/tan leather bib apron reaching below knees, dark brown belt with simple tool loops, dark sturdy trousers and low work boots. ONE clear pale ochre diagonal repair seam on the upper left of the apron bib, an identifiable small patch with 3-4 stitches, not random tiny texture. A short unadorned wooden-handled repair mallet lowered in HIS RIGHT hand (viewer's LEFT); other hand relaxed. The mallet is a small repair tool, never raised like a weapon. Keep the apron silhouette and mallet very legible.\nStyle: authentic crisp Japanese RPG sprite pixel clusters; firm dark brown charcoal outlines, warm muted natural colors, 3-tone cluster shading; readable simplified facial features, no smooth painting, no gradients, no antialiasing, no dithering, no painterly noise, no over-detailed miniature illustration. Match the inspected reference's approximate head size, blocky feet, restrained palette and top-down angle, while creating a visibly different person and clothing. Concept art may be generated large but every feature should survive a 32x48 sprite conversion.\nComposition: front-facing upright relaxed static pose, centered full body, both boots and all tool ends visible with generous blank transparent margins on all sides. Even neutral upper-left lighting. No background, floor, shadow, glow, checkerboard drawing, border or panel. Real transparent alpha background. Avoid hero armor, hats, capes, red hair, identical shopkeeper facial features, weapons, combat stance, blood, scars, logos and letters.",
+      "prompt_file": "human-prompt.txt",
+      "references": [
+        {
+          "local_reference": "/workspace/scratch/83888f397ac2/rpg-story-review/art-references/assets/characters/npc_weapon_clerk/walk.png",
+          "sha256": "8ee380170adf7f67398b2dcaa22ed46350ac52cf253ec77d78dd67e5239b2f66",
+          "role": "RPG style/anatomy reference"
+        }
+      ],
+      "conversion": {
+        "form": "human",
+        "status": "candidate_pending_actual_game_UI",
+        "path": "/workspace/scratch/83888f397ac2/rpg-story-review/art-candidates/static-candidates/human/event_standing.png",
+        "suggested_repo_path": "assets/characters/gado_human/event_standing.png",
+        "source_original": "/workspace/scratch/83888f397ac2/rpg-story-review/art-candidates/gado-human-candidate-v1.png",
+        "source_sha256": "569bcde4611363e03ece8aeb71d7a9c71969e0ba4a2e305c6a712039acbbf9d9",
+        "output_sha256": "9ac1325542ae8240facda778e6fc1354ab8274687e707c9d0f2f59c3bcc14a7c",
+        "source_size": [
+          1024,
+          1536
+        ],
+        "source_crop_alpha128_bbox": [
+          230,
+          192,
+          798,
+          1343
+        ],
+        "crop_resized_size": [
+          21,
+          43
+        ],
+        "resize": "Pillow NEAREST; aspect ratio preserved to nearest integer output dimension",
+        "quantization": "nearest RGB squared distance; shared fixed 16-color subset of existing natural.gpl",
+        "alpha": "source threshold >=128 -> 255; otherwise 0; transparent RGB normalized to zero",
+        "placement_offset": [
+          6,
+          5
+        ],
+        "size": [
+          32,
+          48
+        ],
+        "frame": [
+          32,
+          48
+        ],
+        "grid": [
+          1,
+          1
+        ],
+        "kind": "character_event",
+        "facing": "front/down",
+        "anchor": [
+          16,
+          48
+        ],
+        "foot_pixel_y": 47,
+        "actual_opaque_bbox": [
+          6,
+          5,
+          27,
+          48
+        ],
+        "max_colors": 16,
+        "actual_colors": 16,
+        "used_rgb": [
+          [
+            16,
+            15,
+            13
+          ],
+          [
+            58,
+            35,
+            23
+          ],
+          [
+            70,
+            79,
+            35
+          ],
+          [
+            88,
+            84,
+            76
+          ],
+          [
+            104,
+            66,
+            47
+          ],
+          [
+            116,
+            90,
+            50
+          ],
+          [
+            117,
+            127,
+            54
+          ],
+          [
+            138,
+            131,
+            116
+          ],
+          [
+            154,
+            96,
+            72
+          ],
+          [
+            169,
+            131,
+            71
+          ],
+          [
+            178,
+            150,
+            98
+          ],
+          [
+            181,
+            170,
+            149
+          ],
+          [
+            208,
+            146,
+            121
+          ],
+          [
+            215,
+            183,
+            120
+          ],
+          [
+            217,
+            204,
+            180
+          ],
+          [
+            233,
+            231,
+            203
+          ]
+        ],
+        "alpha_values": [
+          0,
+          255
+        ],
+        "palette_path": "assets/palette/natural.gpl",
+        "palette_reference_sha256": "1b1c00dd929b96b64703972a0ae9368c36636b96c8f717dded78524e57913088",
+        "repainted_pixels": false,
+        "checks": {
+          "rgba": true,
+          "size": true,
+          "binary_alpha": true,
+          "colors_within_16": true,
+          "outside_palette_colors": 0,
+          "lowest_opaque_row_47": true,
+          "silhouette_sides_and_top_have_margin": true
+        },
+        "not_verified": [
+          "actual game rendering",
+          "NPC interaction rendering",
+          "registry entry acceptance",
+          "project validate_assets.py --strict",
+          "owner visual adoption"
+        ],
+        "suggested_registry_entry": {
+          "path": "assets/characters/gado_human/event_standing.png",
+          "kind": "character_event",
+          "size": [
+            32,
+            48
+          ],
+          "frame": [
+            32,
+            48
+          ],
+          "grid": [
+            1,
+            1
+          ],
+          "max_colors": 16,
+          "status": "required",
+          "palette": "assets/palette/natural.gpl",
+          "source": "generated",
+          "tool": "image_gen.imagegen + deterministic Python/Pillow import",
+          "license": "LicenseRef-Generated-Project",
+          "generated_at": "2026-10-03",
+          "prompt_record": "TBD: actual committed source record",
+          "conversion_record": "TBD: actual committed conversion record"
+        }
+      },
+      "notes": "Original generated image retained without overwriting. Static conversion does not repaint or generate new pixels by hand; deterministic nearest resize, existing-palette quantization, binary alpha and placement. Artwork adopted for integration is separate from human visual adoption.",
+      "final_library": {
+        "local_path": "/workspace/scratch/83888f397ac2/rpg-story-review/art-candidates/static-candidates/library-handoff/gado-human-event-standing-candidate.png",
+        "purpose": "create_library_file",
+        "status": "succeeded",
+        "file_id": "file_00000000d28c820c870bd6ebe915d62e",
+        "library_file_id": "libfile_a4d3a2c4181c8191930d98ceae607cb1",
+        "file_name": "gado-human-event-standing-candidate.png",
+        "local_metadata_applied": true,
+        "path": "/gado-human-event-standing-candidate.png",
+        "current_version_number": 0
+      }
+    },
+    {
+      "form": "shell",
+      "source": "generated",
+      "tool": "image_gen.imagegen built-in",
+      "generated_at": "2026-10-03 UTC",
+      "license": "LicenseRef-Generated-Project",
+      "author": "RPG-maker project; generated for approved character artwork",
+      "original_file": "gado-shell-candidate-v1.png",
+      "original_sha256": "69d552cc8fe9ab1f73a8b9a451f99fa1691928c315fc7328bdcb3d8b8aa35c16",
+      "original_size": [
+        1024,
+        1536
+      ],
+      "original_library": {
+        "local_path": "/workspace/scratch/83888f397ac2/rpg-story-review/art-candidates/gado-shell-candidate-v1.png",
+        "file_id": "file_000000002f0081f59119a47978420ece",
+        "library_file_id": "libfile_6d35b0a7a39081918155263fc66cfcd8",
+        "file_name": "gado-shell-candidate-v1.png",
+        "library_path": "/gado-shell-candidate-v1.png",
+        "current_version_number": 0,
+        "local_metadata_applied": true
+      },
+      "prompt": "Use case: identity-preserve transformation edit. Asset type: candidate original art for one front-facing static event sprite of a non-hostile character in a top-down Japanese RPG, eventually converted to 32x48.\nINPUT IMAGE 1 is the new human Gado original. Preserve this specific character's identity markers. INPUT IMAGE 2 is only a secondary reference for the RPG world's shell-creature anatomy and pixel-art simplification. Do NOT copy its blue color, exact scorpion body, tail or identity.\nTransform image 1 into the SAME middle-aged repair artisan after a permanent natural crustacean-like bodily change. He retains intelligence, personality and dexterity for repair work. Output exactly one full-body front-facing relaxed static figure, no comparisons, sheet, labels or writing.\nMake a real changed creature body, not a man wearing metal armor: broad low hunched organic gray-brown carapace curving over shoulders and head, layered irregular shell plates with natural segmented joints, large low-hanging pincer forearms replacing both hands. No human fingers. A stable compact lower body with four short articulated crustacean legs planted on the same ground plane, and no oversized tail raised over his head. A calm weathered central face partly framed by shell, small warm brown eyes with the same heavy brows and short gray chin-beard motif from image 1, showing recognition and awareness. Shell should look biological, non-metallic, muted gray-brown with subdued lighter edges. No helmet straps, no mechanical joints, no bolts, no steel armor, no red glowing eyes.\nMaintain identity continuity from image 1 clearly: the EXACT same ochre leather bib apron with pale patch/diagonal repair stitches on HIS LEFT upper chest (viewer's RIGHT), leather straps adjusted around the shell, dark brown tool belt, olive rolled work-shirt fabric visible at torso sides. Retain his small wooden-handled mallet lowered in HIS RIGHT pincer (viewer's LEFT), held carefully and competently. No weapon display. Keep these motifs large and simple enough to read in a 32x48 frame.\nMood: gruff but gentle capable village artisan, calm and unthreatening, slightly self-contained posture, pincers resting low. Do not present an enemy, boss, combat unit, villain, victim or grotesque horror. No blood, open wounds, chains or aggressive mouth.\nStyle: match the first image's crisp JRPG pixel clusters, around 3-head-tall scale language, firm charcoal/brown outlines, muted natural olive/ochre/brown/gray palette, minimal 3-tone shading, clear large clusters. Do not introduce smooth rendering, gradients, photographic textures, dense dithering or miniature detail. Preserve upper-left light and the very slight top-down view; front-facing face and torso.\nComposition: isolate full figure at center with all leg tips, pincers and tool visible, generous true transparent margins on every side. Creature may be broader and shorter than human; never stretch it vertically to match human. No background, no painted black backdrop, no floor, no drop shadow, no glow, no semitransparent haze or halo, no checkerboard texture, no panel, no border, no letters. True transparent alpha beyond the crisp silhouette.",
+      "prompt_file": "shell-prompt.txt",
+      "references": [
+        {
+          "local_reference": "/workspace/scratch/83888f397ac2/rpg-story-review/art-candidates/gado-human-candidate-v1.png",
+          "sha256": "569bcde4611363e03ece8aeb71d7a9c71969e0ba4a2e305c6a712039acbbf9d9",
+          "role": "primary identity reference"
+        },
+        {
+          "local_reference": "/workspace/scratch/83888f397ac2/rpg-story-review/art-references/assets/characters/pc_01/forms/shell/walk.png",
+          "sha256": "0ed3b183e45eecfc69292a4a64e2e6a021dad386ad2c827a93599b9a68dc9d84",
+          "role": "RPG style/anatomy reference"
+        }
+      ],
+      "conversion": {
+        "form": "shell",
+        "status": "candidate_pending_actual_game_UI",
+        "path": "/workspace/scratch/83888f397ac2/rpg-story-review/art-candidates/static-candidates/shell/event_standing.png",
+        "suggested_repo_path": "assets/characters/gado_shell/event_standing.png",
+        "source_original": "/workspace/scratch/83888f397ac2/rpg-story-review/art-candidates/gado-shell-candidate-v1.png",
+        "source_sha256": "69d552cc8fe9ab1f73a8b9a451f99fa1691928c315fc7328bdcb3d8b8aa35c16",
+        "output_sha256": "895f4a223dbac494f7cf20993364ec1f7b07eb0daa155289ce81e136f89d9cb0",
+        "source_size": [
+          1024,
+          1536
+        ],
+        "source_crop_alpha128_bbox": [
+          55,
+          177,
+          971,
+          1320
+        ],
+        "crop_resized_size": [
+          28,
+          35
+        ],
+        "resize": "Pillow NEAREST; aspect ratio preserved to nearest integer output dimension",
+        "quantization": "nearest RGB squared distance; shared fixed 16-color subset of existing natural.gpl",
+        "alpha": "source threshold >=128 -> 255; otherwise 0; transparent RGB normalized to zero",
+        "placement_offset": [
+          2,
+          13
+        ],
+        "size": [
+          32,
+          48
+        ],
+        "frame": [
+          32,
+          48
+        ],
+        "grid": [
+          1,
+          1
+        ],
+        "kind": "character_event",
+        "facing": "front/down",
+        "anchor": [
+          16,
+          48
+        ],
+        "foot_pixel_y": 47,
+        "actual_opaque_bbox": [
+          2,
+          13,
+          30,
+          48
+        ],
+        "max_colors": 16,
+        "actual_colors": 14,
+        "used_rgb": [
+          [
+            16,
+            15,
+            13
+          ],
+          [
+            58,
+            35,
+            23
+          ],
+          [
+            70,
+            79,
+            35
+          ],
+          [
+            88,
+            84,
+            76
+          ],
+          [
+            104,
+            66,
+            47
+          ],
+          [
+            116,
+            90,
+            50
+          ],
+          [
+            117,
+            127,
+            54
+          ],
+          [
+            138,
+            131,
+            116
+          ],
+          [
+            154,
+            96,
+            72
+          ],
+          [
+            169,
+            131,
+            71
+          ],
+          [
+            178,
+            150,
+            98
+          ],
+          [
+            181,
+            170,
+            149
+          ],
+          [
+            208,
+            146,
+            121
+          ],
+          [
+            215,
+            183,
+            120
+          ]
+        ],
+        "alpha_values": [
+          0,
+          255
+        ],
+        "palette_path": "assets/palette/natural.gpl",
+        "palette_reference_sha256": "1b1c00dd929b96b64703972a0ae9368c36636b96c8f717dded78524e57913088",
+        "repainted_pixels": false,
+        "checks": {
+          "rgba": true,
+          "size": true,
+          "binary_alpha": true,
+          "colors_within_16": true,
+          "outside_palette_colors": 0,
+          "lowest_opaque_row_47": true,
+          "silhouette_sides_and_top_have_margin": true
+        },
+        "not_verified": [
+          "actual game rendering",
+          "NPC interaction rendering",
+          "registry entry acceptance",
+          "project validate_assets.py --strict",
+          "owner visual adoption"
+        ],
+        "suggested_registry_entry": {
+          "path": "assets/characters/gado_shell/event_standing.png",
+          "kind": "character_event",
+          "size": [
+            32,
+            48
+          ],
+          "frame": [
+            32,
+            48
+          ],
+          "grid": [
+            1,
+            1
+          ],
+          "max_colors": 16,
+          "status": "required",
+          "palette": "assets/palette/natural.gpl",
+          "source": "generated",
+          "tool": "image_gen.imagegen + deterministic Python/Pillow import",
+          "license": "LicenseRef-Generated-Project",
+          "generated_at": "2026-10-03",
+          "prompt_record": "TBD: actual committed source record",
+          "conversion_record": "TBD: actual committed conversion record"
+        }
+      },
+      "notes": "Original generated image retained without overwriting. Static conversion does not repaint or generate new pixels by hand; deterministic nearest resize, existing-palette quantization, binary alpha and placement. Artwork adopted for integration is separate from human visual adoption.",
+      "final_library": {
+        "local_path": "/workspace/scratch/83888f397ac2/rpg-story-review/art-candidates/static-candidates/library-handoff/gado-shell-event-standing-candidate.png",
+        "purpose": "create_library_file",
+        "status": "succeeded",
+        "file_id": "file_00000000107c81f5866e201a547fa3dc",
+        "library_file_id": "libfile_ee15d68486688191b43781a5f09d1425",
+        "file_name": "gado-shell-event-standing-candidate.png",
+        "local_metadata_applied": true,
+        "path": "/gado-shell-event-standing-candidate.png",
+        "current_version_number": 0
+      }
+    }
+  ]
+}

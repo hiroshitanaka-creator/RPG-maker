@@ -1,0 +1,362 @@
+{
+  "status": "candidate_ready_for_game_UI_review",
+  "generated_at": "2026-10-03 UTC",
+  "tool": "image_gen.imagegen built-in + deterministic Python/Pillow normalization",
+  "license": "LicenseRef-Generated-Project",
+  "image_generation_calls": 3,
+  "reference_commit": "f6434d5d188449c24dcba935bf1ae92d80080d27",
+  "shared_palette_hex": [
+    "#100F0D",
+    "#3A2317",
+    "#68422F",
+    "#3C3B35",
+    "#58544C",
+    "#726C61",
+    "#8A8374",
+    "#B5AA95",
+    "#D9CCB4",
+    "#E9E7CB",
+    "#594B2F",
+    "#745A32",
+    "#A98347",
+    "#B29662",
+    "#D7B778",
+    "#F6D275"
+  ],
+  "shared_source_crop": [
+    280,
+    220,
+    845,
+    1195
+  ],
+  "shared_resize": [
+    16,
+    28
+  ],
+  "shared_offset": [
+    8,
+    2
+  ],
+  "alpha_threshold": 128,
+  "resample": "Pillow NEAREST",
+  "quantization": "nearest existing palette RGB squared distance",
+  "repair_patch_rect": [
+    13,
+    16,
+    20,
+    22
+  ],
+  "repair_assembly": "Use broken original for all unchanged pixels; copy only repair-joint rectangle from generated repaired original. No hand repainting. Both normalized identically before this exact pixel-copy assembly.",
+  "checks": {
+    "size_32x32": true,
+    "rgba": true,
+    "binary_alpha": true,
+    "colors_at_most_16": true,
+    "outside_palette": 0,
+    "same_orientation_and_placement": true,
+    "head_pixel_identical": true,
+    "outside_repair_joint_pixel_identical": true,
+    "broken_empty_rows": [
+      19
+    ],
+    "repaired_bridges_all_break_rows": true,
+    "no_main_silhouette_clipping": true
+  },
+  "assets": [
+    {
+      "form": "broken",
+      "path": "/workspace/scratch/83888f397ac2/rpg-story-review/prop-candidates/gado_tool_broken.png",
+      "suggested_repo_path": "assets/objects/gado_tool_broken.png",
+      "source": {
+        "original_file": "gado-tool-broken-original-v1.png",
+        "original_sha256": "3e4f21ec4ced3749e882bea1098ac1273c286bdcb4eae75fa41674ab6d417fc3",
+        "original_size": [
+          1122,
+          1402
+        ],
+        "main_alpha128_bbox": [
+          294,
+          232,
+          829,
+          1180
+        ]
+      },
+      "output_sha256": "e3640897e199c9594161aa256350fec396cf1378780e38e55901310f85805ba4",
+      "size": [
+        32,
+        32
+      ],
+      "frame": [
+        32,
+        32
+      ],
+      "grid": [
+        1,
+        1
+      ],
+      "kind": "object",
+      "palette": "assets/palette/natural.gpl",
+      "max_colors": 16,
+      "actual_colors": 14,
+      "used_rgb": [
+        [
+          16,
+          15,
+          13
+        ],
+        [
+          58,
+          35,
+          23
+        ],
+        [
+          60,
+          59,
+          53
+        ],
+        [
+          88,
+          84,
+          76
+        ],
+        [
+          104,
+          66,
+          47
+        ],
+        [
+          114,
+          108,
+          97
+        ],
+        [
+          116,
+          90,
+          50
+        ],
+        [
+          138,
+          131,
+          116
+        ],
+        [
+          169,
+          131,
+          71
+        ],
+        [
+          178,
+          150,
+          98
+        ],
+        [
+          181,
+          170,
+          149
+        ],
+        [
+          215,
+          183,
+          120
+        ],
+        [
+          217,
+          204,
+          180
+        ],
+        [
+          233,
+          231,
+          203
+        ]
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "opaque_bbox": [
+        8,
+        2,
+        24,
+        30
+      ],
+      "anchor": [
+        16,
+        30
+      ],
+      "orientation": "metal head horizontal, wooden shaft vertical",
+      "status": "candidate_ready_for_game_UI_review"
+    },
+    {
+      "form": "repaired",
+      "path": "/workspace/scratch/83888f397ac2/rpg-story-review/prop-candidates/gado_tool_repaired.png",
+      "suggested_repo_path": "assets/objects/gado_tool_repaired.png",
+      "source": {
+        "original_file": "gado-tool-repaired-original-v2.png",
+        "original_sha256": "64a0d968c21fa3d0ff0e8e24806dff35f89351129c3d3ccf235444304c28b7a7",
+        "original_size": [
+          1122,
+          1402
+        ],
+        "main_alpha128_bbox": [
+          290,
+          228,
+          831,
+          1184
+        ]
+      },
+      "output_sha256": "c98982f4ded016b48d4c854bdd00f2ff480ce00870d4c4d9de94a9485937bf3d",
+      "size": [
+        32,
+        32
+      ],
+      "frame": [
+        32,
+        32
+      ],
+      "grid": [
+        1,
+        1
+      ],
+      "kind": "object",
+      "palette": "assets/palette/natural.gpl",
+      "max_colors": 16,
+      "actual_colors": 15,
+      "used_rgb": [
+        [
+          16,
+          15,
+          13
+        ],
+        [
+          58,
+          35,
+          23
+        ],
+        [
+          60,
+          59,
+          53
+        ],
+        [
+          88,
+          84,
+          76
+        ],
+        [
+          104,
+          66,
+          47
+        ],
+        [
+          114,
+          108,
+          97
+        ],
+        [
+          116,
+          90,
+          50
+        ],
+        [
+          138,
+          131,
+          116
+        ],
+        [
+          169,
+          131,
+          71
+        ],
+        [
+          178,
+          150,
+          98
+        ],
+        [
+          181,
+          170,
+          149
+        ],
+        [
+          215,
+          183,
+          120
+        ],
+        [
+          217,
+          204,
+          180
+        ],
+        [
+          233,
+          231,
+          203
+        ],
+        [
+          246,
+          210,
+          117
+        ]
+      ],
+      "alpha_values": [
+        0,
+        255
+      ],
+      "opaque_bbox": [
+        8,
+        2,
+        24,
+        30
+      ],
+      "anchor": [
+        16,
+        30
+      ],
+      "orientation": "metal head horizontal, wooden shaft vertical",
+      "status": "candidate_ready_for_game_UI_review"
+    }
+  ],
+  "prompts": [
+    {
+      "stage": "broken",
+      "text": "Use case: style-transfer. Asset type: one small environmental repair-tool prop for the same top-down Japanese pixel-art RPG as the reference artisan. Create only a tool, not the person.\nThe supplied image is ONLY a reference for restrained pixel shading, old olive/ochre/brown village-workshop color language and the humble scale of a craftsman's mallet. Make ONE modest ordinary small iron-headed repair hammer with a broken wooden handle, front/near-top view, isolated on a true transparent background. It must read as a familiar household workshop hand tool, not a battle hammer, equipment pickup, treasure or magic item.\nExact composition for eventual 32x32 sprite: a short horizontal rectangular dull gray iron hammer head across the upper part; a simple tan-brown wooden handle runs straight vertically downward from its center. The handle has snapped across its middle: upper wooden stub remains attached to the head; lower wooden grip lies directly below it on the SAME centerline and in the SAME vertical orientation. Leave an obvious open transparent gap between two jagged pale split ends. Do not rotate or displace the lower fragment sideways. The broken gap should remain about 3 native pixels tall when the tool is reduced to 32x32. No tiny splinter particles.\nThe hammer head and both aligned wooden fragments together form ONE centered tool composition, all clearly separated from the canvas edges by generous transparent margins. Head should be about 18 native pixels wide by 6 pixels tall, overall composition about 25 native pixels tall, shaft about 4 pixels wide. Very simple chunky pixel clusters designed on a 32x32 logical grid, enlarged cleanly for this original. Dark charcoal/brown crisp outline, two gray iron tones plus one light gray edge, two or three warm tan wood tones, large readable shape. No decorative engraving, nails, leather loops, oversized spikes, red markings or text.\nThe broken state must be unambiguous through the missing center section, not just a hairline crack. Front-facing symmetric hammer head, handle centerline exactly vertical, upper-left lighting. All iron head edges and lower wooden end visible. No scene, hands, floor, cast shadow, glow, backdrop, halo, checkerboard graphic, labels, border, second tool or comparison panels. True transparent alpha outside the tool. No smooth painting, gradients, antialiasing, photorealism, dense detail or dithering.",
+      "reference": "../art-candidates/gado-human-candidate-v1.png"
+    },
+    {
+      "stage": "repaired_first_attempt",
+      "text": "Use case: precise-object-edit. This is the AFTER-REPAIR version of exactly the small humble workshop hammer in the input image. Preserve the exact canvas, scale, position, silhouette, orientation, gray metal hammer head, upper wooden handle, lower wooden grip, wood colors, dark outlines and lighting. Do not redesign or restyle the tool.\nChange ONLY the broken section halfway down its vertical wooden handle: bridge the small empty gap with repaired wooden shaft, and wrap the repair joint with a conspicuous short band of pale cream/tan cord. The repair binding should span enough height to read as 3-4 pixels in a final 32x32 sprite, with 2-3 broad simple wraps. It should look like a practical modest repair, not magical restoration. Keep the lower wooden segment in exactly the same place on the same centerline, and preserve the overall tool length. The head must remain pixel-for-pixel unchanged in shape and color.\nExactly one repaired tool, centered and vertical as in the input. No second tool, hands, labels, text, comparison, new accessories, metal reinforcements or weapon decoration. All object ends remain within the original canvas. Preserve true transparent alpha background outside the existing solid tool; remove any faint surrounding halo or shadow so the result is a clean isolated prop. No floor, glow, checkerboard, smooth painting or gradients. Crisp chunky RPG pixel-art clusters matching the input.",
+      "reference": "gado-tool-broken-original-v1.png",
+      "adoption": "retained for provenance but not used in final output; binding was too high"
+    },
+    {
+      "stage": "repaired_corrected",
+      "text": "Precise local correction to this repaired workshop hammer. The previous repair wrap sits TOO HIGH: the jagged pale broken ends are still visible BELOW the band. Fix that one defect.\nThe canvas is 1122x1402. The broken joining point is around image x=560, y=855. Move the pale cream cord binding DOWN so its CENTER is at approximately (560,855), spanning roughly y=775 to y=940. The cord must directly COVER and bridge the old break. Remove the exposed jagged pale splinter ends beneath the former wrap, and make one continuous joined wooden shaft beneath the cord. There must be NO black gap, exposed broken edge or detached handle segment in the repaired version. Show three broad simple cream/tan wraps across the actual joined section. No extra repair band higher up.\nKeep everything else unchanged: same metal hammer head in exactly the same position, same overall dimensions and outline, same handle axis and lower endpoint, same upper wood and lower grip, same pixel-art style and colors. Do not add metal clamps, glue, tools, hands or text. Retain crisp edges and genuine transparent background. Exactly one vertically oriented modest repair hammer.",
+      "reference": "gado-tool-repaired-original-v1.png",
+      "adoption": "repair joint used in final output"
+    }
+  ],
+  "unverified": [
+    "actual game UI",
+    "repository validate_assets.py --strict",
+    "commit and CI"
+  ],
+  "original_lineage": [
+    {
+      "file": "gado-tool-broken-original-v1.png",
+      "sha256": "3e4f21ec4ced3749e882bea1098ac1273c286bdcb4eae75fa41674ab6d417fc3"
+    },
+    {
+      "file": "gado-tool-repaired-original-v1.png",
+      "sha256": "a3536b6d9fa9fb31086a78cf664d3a88e2195a9e21590c7f6900bb3c6afbeee9"
+    },
+    {
+      "file": "gado-tool-repaired-original-v2.png",
+      "sha256": "64a0d968c21fa3d0ff0e8e24806dff35f89351129c3d3ccf235444304c28b7a7"
+    }
+  ],
+  "reference_original": {
+    "file": "../art-candidates/gado-human-candidate-v1.png",
+    "sha256": "569bcde4611363e03ece8aeb71d7a9c71969e0ba4a2e305c6a712039acbbf9d9"
+  }
+}

@@ -26,6 +26,7 @@ var _confirmed_erosion_actors: Array[String] = []
 var _risk_bypass: bool = false
 var _dialogue_return: Mode = Mode.FIELD
 var _dialogue_past: bool = false
+var _region_story_id := ""
 var _dialogue_summary: Array = []
 var _party_return: Mode = Mode.FIELD
 var _gate_team: Array = []
@@ -210,6 +211,9 @@ func _input(event: InputEvent) -> void:
 		if movement != Vector2i.ZERO:
 			submit_player_action({"kind":"world_move","dx":movement.x,"dy":movement.y})
 			get_viewport().set_input_as_handled()
+		return
+	if mode == Mode.DIALOGUE and not _region_story_id.is_empty() and event.echo and event.keycode in [KEY_ENTER, KEY_SPACE, KEY_E]:
+		get_viewport().set_input_as_handled()
 		return
 	if mode == Mode.DIALOGUE and event.keycode in [KEY_ENTER, KEY_SPACE, KEY_E]:
 		if game.first_region_active():_rpg_audio.effect("confirm")
@@ -458,6 +462,15 @@ func submit_player_action(action: Dictionary) -> bool:
 				_dialogue_summary = []
 				_message_index = 0
 				accepted = true
+			elif kind == "confirm" and not _region_story_id.is_empty():
+				var story_result := game.confirm_first_region_story(_region_story_id,_message_index)
+				if story_result.is_empty():return false
+				if story_result.get("kind")=="story_page":_message_index+=1
+				else:
+					_region_story_id=""
+					mode=Mode.WORLD
+					_first_region_result(story_result)
+				accepted=true
 			elif kind == "confirm":
 				if game.first_region_active() and _message_index<_region_line_actions.size():
 					var work_action := str(_region_line_actions[_message_index])
@@ -757,6 +770,7 @@ func _advance_step() -> void:
 
 
 func _show_dialogue(lines: Array, advance: bool, return_mode: Mode = Mode.FIELD, past: bool = false) -> void:
+	_region_story_id=""
 	_region_line_speakers=[]
 	_region_join_actor=""
 	_region_audience=false
@@ -1205,6 +1219,10 @@ func _first_region_result(result: Dictionary) -> void:
 			_target_action.clear()
 		"dialogue":
 			_show_dialogue(result["text"],false,Mode.WORLD)
+			_region_story_id=str(result.get("story_scene",""))
+			if not _region_story_id.is_empty():
+				var sound: Variant=game.first_region_story_presentation().get("repair_sound")
+				if sound is String:_rpg_audio.effect_path(sound)
 			_region_speaker=str(result.get("speaker","カイナ"))
 			_region_speaking_actor=str(result.get("speaker_actor",""))
 			_region_line_speakers=result.get("speakers",[])
@@ -2335,6 +2353,7 @@ func _render_region_screen() -> void:
 	if key!=_region_place_key:_region_place_key=key;_region_place_ms=Time.get_ticks_msec()
 	_region_screen=FirstRegionScreen.new()
 	_region_screen.game=game
+	_region_screen.story_view=game.first_region_story_presentation() if mode==Mode.DIALOGUE and not _region_story_id.is_empty() else {}
 	_region_screen.screen_mode={Mode.WORLD:"world",Mode.DIALOGUE:"dialogue",Mode.BATTLE:"battle",Mode.WORLD_CHOICE:"shop",Mode.REGION_COMMANDS:"commands",Mode.REGION_ITEMS:"items",Mode.DEFEAT:"defeat",Mode.REGION_TRAVEL:"travel"}[mode]
 	_region_screen.return_actor=_region_return_actor
 	_region_screen.recovery_available=recovery_available()
@@ -2402,6 +2421,9 @@ func _region_ui_action(action: Dictionary) -> void:
 			mode=Mode.REGION_COMMANDS;_notice=""
 		"ui_resume":_resume_current();return
 		"ui_title":_to_menu();return
+		"ui_intro":
+			if mode!=Mode.REGION_COMMANDS:return
+			_first_region_result(game.begin_first_region_intro())
 		"ui_items":mode=Mode.REGION_ITEMS
 		"ui_return_menu":
 			if not FirstRegionTravel.can_return(game.export_state()):return

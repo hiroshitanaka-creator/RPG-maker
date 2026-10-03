@@ -45,7 +45,7 @@ static func walkable(saved: Dictionary, cell: Vector2i) -> bool:
 	if str(layout[cell.y]).substr(cell.x,1) != ".":return false
 	for event in room(state).get("events",[]):
 		if event["kind"] == "recruit" and joined(saved,event["actor"]):continue
-		if event["kind"] in ["recruit","rest","shop","weapon_shop","npc"] and event_cell(saved,event) == cell:return false
+		if event["kind"] in ["recruit","rest","shop","weapon_shop","npc","story"] and event_cell(saved,event) == cell:return false
 	return true
 
 ## 部屋の入口の扉の前のマス。入口がなければ空の配列。
@@ -164,6 +164,7 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		links.append(definition["stairs_up"])
 		for link in links:
 			if at(state,link["from"]):
+				if link==definition["stairs_up"] and FirstRegionStory.needs_return(saved):return {"kind":"story_request"}
 				place(state,link["to"])
 				return {"kind":"moved"}
 		if definition.has("tower_boss") and at(state,definition["tower_boss"]["point"]) and "forest_tower_boss" not in state["cleared"]:

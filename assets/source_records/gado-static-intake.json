@@ -1,0 +1,42 @@
+{
+  "received_at": "2026-10-03",
+  "source_thread_id": "01a0f423-5e1d-71e9-a232-80d6dd6ee018",
+  "source": "generated",
+  "delivery": "Library取得処理のWindows属性エラー後、親タスクが同一PNGのbase64を提供。bytesとSHA-256を照合。",
+  "generation_details": "生成ツール・日付・詳細指示・参照・変換条件・原画ハッシュを親タスクから受領。gado-character-generation.jsonを参照。大きい生成原画はLibrary所在だけを記録し、今回未受領・画素未照合。",
+  "accepted_spec": "正面静止32×48、1枚、RGBA、二値透過、16色以内、既存natural.gpl、足元行47・接地座標(16,48)。歩行・左右反転なし。",
+  "modified": "適合済み画素は不変。tools/import_gado_static_art.pyでPNG再符号化のみ。パレット追加なし。",
+  "images": [
+    {
+      "form": "human",
+      "original_file": "assets/_incoming/parent-2026-10-03/gado-human-event-standing-candidate.png",
+      "bytes": 1590,
+      "sha256": "9ac1325542ae8240facda778e6fc1354ab8274687e707c9d0f2f59c3bcc14a7c",
+      "library_file_id": "libfile_a4d3a2c4181c8191930d98ceae607cb1",
+      "path": "assets/characters/gado/human_standing_front.png",
+      "target_sha256": "679f4313cac5dffe9ca0aaac22f390d7afce99a80e12af8e6d892f8b40db8d61",
+      "colors": 16,
+      "foot_row": 47,
+      "anchor": [
+        16,
+        48
+      ]
+    },
+    {
+      "form": "shell",
+      "original_file": "assets/_incoming/parent-2026-10-03/gado-shell-event-standing-candidate.png",
+      "bytes": 1854,
+      "sha256": "895f4a223dbac494f7cf20993364ec1f7b07eb0daa155289ce81e136f89d9cb0",
+      "library_file_id": "libfile_ee15d68486688191b43781a5f09d1425",
+      "path": "assets/characters/gado/shell_standing_front.png",
+      "target_sha256": "2f410cbfb9ee7b05e1f24b6751af032ebff71a667e4ef8c73bb32206ee06a917",
+      "colors": 14,
+      "foot_row": 47,
+      "anchor": [
+        16,
+        48
+      ]
+    }
+  ],
+  "generation_record": "assets/source_records/gado-character-generation.json"
+}

@@ -29315,6 +29315,116 @@
       "prompt_record": "assets/source_records/region2-port-town-backdrop.json",
       "conversion_record": "assets/source_records/region2-port-town-backdrop.json",
       "max_colors": 64
+    },
+    {
+      "path": "assets/characters/gado/human_standing_front.png",
+      "kind": "character_event_static",
+      "size": [
+        32,
+        48
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        1,
+        1
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "image_gen.imagegen built-in + Python/Pillow",
+      "generated_at": "2026-10-03",
+      "author": "RPG-maker / 親タスク",
+      "license": "LicenseRef-Generated-Project",
+      "prompt_record": "assets/source_records/gado-character-generation.json",
+      "original_file": "assets/_incoming/parent-2026-10-03/gado-human-event-standing-candidate.png",
+      "modified": "適合済み画素は不変。tools/import_gado_static_art.pyでPNG再符号化のみ。パレット追加なし。",
+      "conversion_record": "assets/source_records/gado-static-intake.json"
+    },
+    {
+      "path": "assets/characters/gado/shell_standing_front.png",
+      "kind": "character_event_static",
+      "size": [
+        32,
+        48
+      ],
+      "frame": [
+        32,
+        48
+      ],
+      "grid": [
+        1,
+        1
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "image_gen.imagegen built-in + Python/Pillow",
+      "generated_at": "2026-10-03",
+      "author": "RPG-maker / 親タスク",
+      "license": "LicenseRef-Generated-Project",
+      "prompt_record": "assets/source_records/gado-character-generation.json",
+      "original_file": "assets/_incoming/parent-2026-10-03/gado-shell-event-standing-candidate.png",
+      "modified": "適合済み画素は不変。tools/import_gado_static_art.pyでPNG再符号化のみ。パレット追加なし。",
+      "conversion_record": "assets/source_records/gado-static-intake.json"
+    },
+    {
+      "path": "assets/objects/gado_tool_broken.png",
+      "kind": "object",
+      "size": [
+        32,
+        32
+      ],
+      "frame": [
+        32,
+        32
+      ],
+      "grid": [
+        1,
+        1
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "image_gen.imagegen built-in + deterministic Python/Pillow normalization",
+      "generated_at": "2026-10-03",
+      "author": "RPG-maker / 親タスク",
+      "license": "LicenseRef-Generated-Project",
+      "prompt_record": "assets/source_records/gado-prop-generation.json",
+      "original_file": "assets/_incoming/parent-2026-10-03/gado_tool_broken.png",
+      "modified": "親タスクが生成原画から最近傍縮小・既存パレット減色・二値透過・補修部分の画素組立を実施。受領した規格適合PNGはバイト不変で使用。"
+    },
+    {
+      "path": "assets/objects/gado_tool_repaired.png",
+      "kind": "object",
+      "size": [
+        32,
+        32
+      ],
+      "frame": [
+        32,
+        32
+      ],
+      "grid": [
+        1,
+        1
+      ],
+      "max_colors": 16,
+      "status": "required",
+      "palette": "assets/palette/natural.gpl",
+      "source": "generated",
+      "tool": "image_gen.imagegen built-in + deterministic Python/Pillow normalization",
+      "generated_at": "2026-10-03",
+      "author": "RPG-maker / 親タスク",
+      "license": "LicenseRef-Generated-Project",
+      "prompt_record": "assets/source_records/gado-prop-generation.json",
+      "original_file": "assets/_incoming/parent-2026-10-03/gado_tool_repaired.png",
+      "modified": "親タスクが生成原画から最近傍縮小・既存パレット減色・二値透過・補修部分の画素組立を実施。受領した規格適合PNGはバイト不変で使用。"
     }
   ],
   "audio": [
@@ -29531,6 +29641,19 @@
       "modified": "44100HzステレオPCM16 WAV、ピーク-6dB",
       "source_sha256": "fd3e75e1de2f2fda90aceeacaeb0427ac8bddd3b07a6ce2a8f9ba923df3771f9",
       "description": "回復を知らせる上向きの電子音。"
+    },
+    {
+      "path": "assets/audio/se/gado_repair.wav",
+      "kind": "se",
+      "status": "required",
+      "source": "generated",
+      "tool": "Python標準ライブラリによる決定論的PCM合成",
+      "generated_at": "2026-10-03",
+      "author": "RPG-maker / 親タスク",
+      "license": "LicenseRef-Generated-Project",
+      "prompt_record": "assets/source_records/gado-repair-provenance.json",
+      "original_file": "assets/_incoming/parent-2026-10-03/repair-tap.wav",
+      "modified": "親タスクのSHA-256照合済み再現コードを別の一時フォルダで実行し、原音とバイト一致を確認。音の加工なし。外部録音・音声なし。"
     }
   ],
   "fonts": [

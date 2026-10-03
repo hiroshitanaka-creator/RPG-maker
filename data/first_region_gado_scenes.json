@@ -1,0 +1,400 @@
+{
+  "version": 1,
+  "event": {
+    "id": "gado_meeting",
+    "kind": "story",
+    "cell": [
+      30,
+      14
+    ],
+    "label": "ガド"
+  },
+  "scenes": [
+    {
+      "id": "workshop",
+      "flag": "gado_workshop_seen",
+      "title": "以前、ミルフェ村の作業場",
+      "party": [
+        "pc_01"
+      ],
+      "form": "human",
+      "lines": [
+        {
+          "speaker": "状況",
+          "text": "柄の壊れた道具を持って、カイナが作業場を訪ねた。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "もう駄目かと",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "勝手に終わらせるな。まだ直せる。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "じゃあ、頼むよ。",
+          "action": "leave_tool"
+        },
+        {
+          "speaker": "ガド",
+          "text": "道具より先に休め。お前の腕までは直してやれん。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "分かった。直してもらってる間は、休んでおく。",
+          "action": ""
+        }
+      ]
+    },
+    {
+      "id": "encounter",
+      "flag": "gado_encounter_seen",
+      "title": "ソルダ洞窟の横穴",
+      "party": [
+        "pc_01",
+        "pc_02",
+        "pc_03"
+      ],
+      "form": "shell",
+      "lines": [
+        {
+          "speaker": "状況",
+          "text": "横穴の奥で、金属を直す小さな音がする。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "そこ踏むな。まだ直せる",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "その声……ガド？",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "……お前には見られたくなかった。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "作業場にいなかったから、気になってた。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "近づかずに、ここに道具を置いていいか？",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "そこならいい。足元に気をつけろ。",
+          "action": "leave_tool"
+        },
+        {
+          "speaker": "ハルド",
+          "text": "傷の手当てをしてもいいですか。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "この手は戻らんぞ。",
+          "action": ""
+        },
+        {
+          "speaker": "ハルド",
+          "text": "今は傷のことを聞いています。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "……傷なら、頼む。",
+          "action": "tend_wound"
+        },
+        {
+          "speaker": "カイナ",
+          "text": "村を守るために、魔物職を使っていたのか。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "ああ。使い続けても、戻れると思っていた。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "今はもう、人間職には戻れん。",
+          "action": ""
+        },
+        {
+          "speaker": "リオネ",
+          "text": "道はあったよ。通れる所まで、ちゃんと確かめてきた。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "道があっても、戻れない夜がある。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "今すぐ戻れとは言わない。ここを離れる時は、声をかけるよ。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "好きにしろ。足元だけは見ていけ。",
+          "action": ""
+        }
+      ]
+    },
+    {
+      "id": "encounter_after",
+      "flag": "gado_encounter_seen",
+      "title": "ソルダ洞窟の横穴・帰り道",
+      "party": [
+        "pc_01",
+        "pc_02",
+        "pc_03"
+      ],
+      "form": "shell",
+      "lines": [
+        {
+          "speaker": "状況",
+          "text": "横穴の奥で、金属を直す小さな音がする。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "そこ踏むな。まだ直せる",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "その声……ガド？",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "……お前には見られたくなかった。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "作業場にいなかったから、気になってた。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "近づかずに、ここに道具を置いていいか？",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "そこならいい。足元に気をつけろ。",
+          "action": "leave_tool"
+        },
+        {
+          "speaker": "ハルド",
+          "text": "傷の手当てをしてもいいですか。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "この手は戻らんぞ。",
+          "action": ""
+        },
+        {
+          "speaker": "ハルド",
+          "text": "今は傷のことを聞いています。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "……傷なら、頼む。",
+          "action": "tend_wound"
+        },
+        {
+          "speaker": "カイナ",
+          "text": "村を守るために、魔物職を使っていたのか。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "ああ。使い続けても、戻れると思っていた。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "今はもう、人間職には戻れん。",
+          "action": ""
+        },
+        {
+          "speaker": "リオネ",
+          "text": "道はあったよ。通れる所まで、ちゃんと確かめてきた。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "道があっても、戻れない夜がある。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "俺たちは洞窟の奥から戻るところなんだ。今すぐ村へ戻れとは言わない。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "好きにしろ。足元だけは見ていけ。",
+          "action": ""
+        }
+      ]
+    },
+    {
+      "id": "promise",
+      "flag": "gado_promise_seen",
+      "title": "ソルダ洞窟の横穴・再会",
+      "party": [
+        "pc_01",
+        "pc_02",
+        "pc_03"
+      ],
+      "form": "shell",
+      "lines": [
+        {
+          "speaker": "ガド",
+          "text": "一人、二人……三人。全員いるな。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "道具より先に休め、だったよな。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "覚えてるなら、そうしろ。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "ガドが戻る方法を探してみたい。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "見つかる保証はないぞ。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "分かってる。確かめたことを、伝えに来る。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "見つからなくても来てくれ。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "うん。見つからなくても、また来るよ。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "工具は置いてこい。毎回修理じゃかなわん。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "分かった。まずは俺たちも休んでくる。",
+          "action": ""
+        }
+      ]
+    },
+    {
+      "id": "promise_after",
+      "flag": "gado_promise_seen",
+      "title": "ソルダ洞窟の横穴・帰り道",
+      "party": [
+        "pc_01",
+        "pc_02",
+        "pc_03"
+      ],
+      "form": "shell",
+      "lines": [
+        {
+          "speaker": "ガド",
+          "text": "一人、二人……三人。全員いるな。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "前に、道具より先に休めって言ってくれたよな。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "覚えてるなら、そうしろ。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "ガドが戻る方法を探してみたい。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "見つかる保証はないぞ。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "分かってる。確かめたことを、伝えに来る。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "見つからなくても来てくれ。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "うん。見つからなくても、また来るよ。",
+          "action": ""
+        },
+        {
+          "speaker": "ガド",
+          "text": "工具は置いてこい。毎回修理じゃかなわん。",
+          "action": ""
+        },
+        {
+          "speaker": "カイナ",
+          "text": "分かった。まずは俺たちも休んでくる。",
+          "action": ""
+        }
+      ]
+    }
+  ],
+  "art": {
+    "human_standing_front": "assets/characters/gado/human_standing_front.png",
+    "shell_standing_front": "assets/characters/gado/shell_standing_front.png",
+    "tool_broken": "assets/objects/gado_tool_broken.png",
+    "tool_repaired": "assets/objects/gado_tool_repaired.png",
+    "repair_sound": "assets/audio/se/gado_repair.wav"
+  },
+  "repeat": {
+    "speaker": "ガド",
+    "text": [
+      "工具は置いてこい。毎回修理じゃかなわん。"
+    ]
+  }
+}

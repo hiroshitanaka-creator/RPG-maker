@@ -1,0 +1,77 @@
+{
+  "recorded_at": "2026-10-03T15:19:54.088111+00:00",
+  "base_commit": "f6434d5d188449c24dcba935bf1ae92d80080d27",
+  "branch": "codex/first-region-intro",
+  "status": "LOCAL_CHECKS_PASS",
+  "headless": {
+    "command": "godot --headless --path . --script res://tools/check_first_region_gado.gd",
+    "checks": 1963,
+    "exit_code": 0
+  },
+  "native": {
+    "command": "godot --path . --display-driver windows --rendering-method gl_compatibility --resolution 512x288 --position -32000,-32000 --script res://tools/check_first_region_gado.gd -- --capture-layout",
+    "checks": 1971,
+    "exit_code": 0,
+    "resolution": [
+      512,
+      288
+    ]
+  },
+  "media": {
+    "status": "PASS",
+    "received_files_sha256": 6,
+    "reproduced_wav_sha256": "MATCH",
+    "prop_colors": [
+      14,
+      15
+    ],
+    "duration_seconds": 0.48,
+    "peak_dbfs": -15.000098337391357,
+    "clipped_samples": 0,
+    "generation_records_received": true,
+    "large_originals_received": false,
+    "large_original_pixels_verified": false,
+    "listened": false,
+    "scope": "受領規格と原音バイト一致。大きい生成原画はLibrary所在だけを追跡。実際の聴感は未確認。"
+  },
+  "related_commands": {
+    "passed": 10,
+    "record": "docs/verification/first-region-intro/related-checks.json"
+  },
+  "requirements": {
+    "ids": [
+      "R-01",
+      "R-02",
+      "R-03",
+      "R-04",
+      "R-05",
+      "R-06",
+      "R-07",
+      "R-08"
+    ],
+    "run_locked_checks_record": "docs/verification/scope-lock-current.json",
+    "final_verify_command": "python3 D:/Codex/.codex/scope-lock/scripts/verify_cli.py .",
+    "final_verify_exit_code": 0
+  },
+  "frozen_files": {
+    "matched": 26,
+    "protected_changes": []
+  },
+  "additional_checks": {
+    "progress_docs": "PASS",
+    "locked_check_reporting": "23 tests OK",
+    "acceptance_proposal": "11 requirements / 0 errors",
+    "ci_structure": "3 existing jobs and steps preserved",
+    "git_diff_check": "PASS"
+  },
+  "remote_ci": {
+    "status": "NOT_RUN",
+    "reason": "依頼者の指示でpush・PR・mergeを行わない"
+  },
+  "unverified": [
+    "実際の聴感",
+    "人間によるテンポ・読みやすさの評価",
+    "未受領の大きい生成原画の画素照合"
+  ],
+  "scope": "最終のローカル機械検証の記録。人間評価・リモートCIの成功を意味しない。"
+}

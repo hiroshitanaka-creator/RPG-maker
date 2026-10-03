@@ -198,6 +198,15 @@ jobs:
         run: |
           export PATH="$PWD:$PATH"
           python tools/run_locked_checks.py
+      - name: 第1地方の追加導入・見逃し・旧保存補完を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          python -m pip install pillow
+          python tools/check_first_region_gado_data.py
+          timeout 180 ./godot --headless --path . --script res://tools/check_first_region_gado.gd 2>&1 | tee first-region-intro.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" first-region-intro.log; then exit 1; fi
+          test "$(grep -c '^INTRO_RUNTIME_PASS:' first-region-intro.log)" -eq 1
       - name: 敵の行動予定と連戦の保存を検査
         if: steps.check.outputs.exists == 'true'
         run: |
@@ -298,6 +307,9 @@ jobs:
           name: godot-import-log
           path: |
             import.log
+            first-region-intro.log
+            docs/verification/first-region-intro/data-checks.json
+            docs/verification/first-region-intro/runtime-checks.json
             encounters.log
             recovery.log
             saved-value-types.log

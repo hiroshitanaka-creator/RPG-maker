@@ -6,6 +6,7 @@ var walk_frame := 0
 var movement_offset := Vector2.ZERO
 var npc_offsets: Dictionary = {}
 var speaking_actor := ""
+var story: Dictionary = {}
 var _camera := Vector2.ZERO
 var _textures: Dictionary = {}
 var _map: Dictionary = {}
@@ -63,6 +64,9 @@ func _object(path: String, cell: Vector2, dimensions: Vector2, region: Rect2 = R
 	else:draw_texture_rect_region(_texture(path),Rect2(position_on_map,dimensions),region)
 
 func _draw() -> void:
+	if not story.is_empty():
+		_draw_story()
+		return
 	if saved.is_empty() or _map.is_empty():return
 	var state: Dictionary=saved["overworld"]
 	var origin := Vector2(WorldExpedition.point(_map.get("origin",[0,0])))
@@ -122,6 +126,10 @@ func _draw() -> void:
 			var position_on_map := Vector2(WorldExpedition.point(boss["cell"]))
 			ordered.append({"bottom":position_on_map.y+1.0,"object":"res://assets/monsters/gate_beast/idle.png","cell":position_on_map,"dimensions":Vector2(96,80)})
 	for event in FirstRegion.residents_for(saved):
+		if event["kind"]=="story":
+			var texture: Variant=FirstRegionStory.data()["art"]["shell_standing_front"]
+			if texture is String and ResourceLoader.exists("res://"+texture):ordered.append({"bottom":float(event["cell"][1])+1.0,"object":"res://"+texture,"cell":Vector2(WorldExpedition.point(event["cell"])),"dimensions":Vector2(32,48)})
+			continue
 		if event["kind"]=="recruit" and FirstRegion.joined(saved,event["actor"]) and event["actor"]!=speaking_actor:continue
 		var cell := Vector2(FirstRegion.event_cell(saved,event))-origin
 		if event["kind"]=="treasure":
@@ -152,3 +160,22 @@ func _draw() -> void:
 		else:
 			var event: Dictionary=item["event"]
 			_person({},item["cell"],item["facing"],1 if npc_offsets.has(FirstRegion.event_key(state,event)) else 0,str(event.get("sprite",event.get("actor","npc_farmer"))))
+
+## 場面の配置は表示だけに使い、現在の位置・編成・外見を変更しない。
+func _draw_story() -> void:
+	_camera=Vector2(WorldExpedition.point(story["camera"]))
+	if story["workshop"]:
+		draw_texture_rect(_texture("res://assets/tiles/natural_stone_floor.png"),Rect2(Vector2.ZERO,size),true)
+		_object("res://assets/objects/natural_bench.png",Vector2(8,4),Vector2(64,32))
+		_object("res://assets/objects/natural_crates.png",Vector2(10,2),Vector2(64,64))
+	else:
+		_map=FirstRegionPresentation.map_for({"layer":"interior","node":"first_cave","room":1})
+		draw_texture_rect(_texture("res://"+str(_map.get("surround","assets/tiles/natural_cave_floor.png"))),Rect2(Vector2.ZERO,size),true)
+		for layer in _map["layers"]:_draw_layer(layer)
+	var people: Array=story["actors"].duplicate(true)
+	people.append({"texture":story["npc_texture"],"cell":story["npc_cell"]})
+	people.sort_custom(func(a:Dictionary,b:Dictionary)->bool:return a["cell"][1]<b["cell"][1])
+	for person in people:
+		if person.has("npc"):_person({},Vector2(WorldExpedition.point(person["cell"])),int(person["facing"]),0,person["npc"])
+		elif person["texture"] is String and ResourceLoader.exists("res://"+person["texture"]):_object("res://"+person["texture"],Vector2(WorldExpedition.point(person["cell"])),Vector2(32,48))
+	if story["tool_texture"] is String and ResourceLoader.exists("res://"+story["tool_texture"]):_object("res://"+story["tool_texture"],Vector2(WorldExpedition.point(story["tool_cell"])),Vector2(32,32))

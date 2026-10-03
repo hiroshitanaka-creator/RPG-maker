@@ -1,0 +1,95 @@
+{
+  "recorded_at": "2026-10-03T14:33:57.870830+00:00",
+  "base_commit": "f6434d5d188449c24dcba935bf1ae92d80080d27",
+  "branch": "codex/first-region-intro",
+  "status": "PASS_WITH_ASSETS_PENDING",
+  "changed_review_files": [
+    "scripts/world/first_region_story.gd",
+    "scripts/ui/game_root.gd",
+    "tools/first_region_story_data.py",
+    "tools/check_first_region_gado_data.py",
+    "tools/check_first_region_gado.gd",
+    "docs/first-region-intro-implementation.md",
+    "docs/verification/first-region-intro/review-notes.md"
+  ],
+  "checks": [
+    {
+      "command": [
+        "godot",
+        "--headless",
+        "--editor",
+        "--path",
+        ".",
+        "--import",
+        "--quit"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tools/check_first_region_gado_data.py"
+      ],
+      "exit_code": 0,
+      "generator_runs": 2,
+      "id_conflict_cases": 2
+    },
+    {
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_first_region_gado.gd"
+      ],
+      "exit_code": 0,
+      "checks": 1769,
+      "partial_flag_combinations": 8,
+      "gate_combinations": 4,
+      "echo_input": "PASS"
+    },
+    {
+      "command": [
+        "python3",
+        "D:/Codex/.codex/scope-lock/scripts/verify_cli.py"
+      ],
+      "exit_code": 0,
+      "requirements": 8
+    },
+    {
+      "command": [
+        "python",
+        "tools/run_locked_checks.py"
+      ],
+      "exit_code": 0,
+      "requirements": 8,
+      "record": "docs/verification/scope-lock-current.json"
+    },
+    {
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "exit_code": 0,
+      "matched": 26
+    }
+  ],
+  "related_commands": "docs/verification/first-region-intro/related-checks.json",
+  "ci_definition": "既存3ジョブ・既存ステップ・時間上限不変。専用検査ステップのみ追加。",
+  "remote_ci": "NOT_RUN_NO_PUSH_AUTHORIZED",
+  "pending_art": [
+    "tool_broken",
+    "tool_repaired",
+    "repair_sound"
+  ],
+  "unverified": [
+    "残素材3点の取り込みと最終実画面・実音再生",
+    "人物の生成原本・詳細指示・変換記録の照合",
+    "PLAYTEST_QUEUE.mdの人間評価"
+  ],
+  "out_of_scope": [
+    "後続本文へのAPI統合"
+  ],
+  "git": "追送を受領するまでcommit待機。push・PR・merge未実施。"
+}

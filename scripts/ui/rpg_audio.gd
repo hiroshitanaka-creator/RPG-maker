@@ -8,6 +8,7 @@ var _current := ""
 var _slot := 0
 var _effect_slot := 0
 var _fade: Tween
+var _scene_effect: AudioStreamPlayer
 
 func _ready() -> void:
 	for i in range(2):
@@ -19,6 +20,11 @@ func _ready() -> void:
 		player.volume_db=-8.0
 		add_child(player)
 		_effects.append(player)
+	# 修理音は1つの固定再生器へ分け、決定音の連打で中断・多重化しない。
+	_scene_effect=AudioStreamPlayer.new()
+	_scene_effect.volume_db=-8.0
+	_scene_effect.max_polyphony=1
+	add_child(_scene_effect)
 
 func play_music(identifier: String) -> void:
 	if identifier == _current or _music.is_empty():return
@@ -45,14 +51,27 @@ func effect(identifier: String) -> void:
 	player.stream=load("res://assets/audio/se/"+identifier+".wav")
 	player.play()
 
+## 登録済みの場面効果音を再生する。未割当の素材へは呼び出さない。
+func effect_path(path: String) -> bool:
+	if not is_instance_valid(_scene_effect) or not path.begins_with("assets/audio/se/") or not ResourceLoader.exists("res://"+path):return false
+	# 再生中の同じ場面音を繰り返し開始しない。最大同時数は常に1。
+	if _scene_effect.playing:return false
+	var stream := load("res://"+path) as AudioStream
+	if stream == null:return false
+	_scene_effect.stream=stream
+	_scene_effect.play()
+	return true
+
 func snapshot() -> Dictionary:
-	return {"music":_current,"music_players":_music.size(),"effect_players":_effects.size(),"playing":not _music.is_empty() and _music[_slot].playing}
+	return {"music":_current,"music_players":_music.size(),"effect_players":_effects.size(),"scene_effect_players":1 if is_instance_valid(_scene_effect) else 0,"scene_effect_playing":is_instance_valid(_scene_effect) and _scene_effect.playing,"playing":not _music.is_empty() and _music[_slot].playing}
 
 func shutdown() -> void:
 	if is_instance_valid(_fade):_fade.kill()
 	_fade=null
 	var had_stream := false
-	for player in _music+_effects:
+	var players: Array[AudioStreamPlayer]=_music+_effects
+	if is_instance_valid(_scene_effect):players.append(_scene_effect)
+	for player in players:
 		had_stream=had_stream or player.stream!=null
 		player.stop()
 		player.stream=null

@@ -1,0 +1,196 @@
+{
+  "base_commit": "f6434d5d188449c24dcba935bf1ae92d80080d27",
+  "status": "PASS",
+  "results": [
+    {
+      "id": "intro-data",
+      "command": [
+        "python",
+        "tools/check_first_region_gado_data.py"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 0.62,
+      "log": ".tools/verification/first-region-intro/intro-data.log"
+    },
+    {
+      "id": "intro-runtime",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_first_region_gado.gd"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 5.81,
+      "log": ".tools/verification/first-region-intro/intro-runtime.log"
+    },
+    {
+      "id": "saved-types",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_value_types.gd"
+      ],
+      "limit_sec": 60,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 1.24,
+      "log": ".tools/verification/first-region-intro/saved-types.log"
+    },
+    {
+      "id": "saved-relocation",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_position_relocation.gd"
+      ],
+      "limit_sec": 120,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 2.74,
+      "log": ".tools/verification/first-region-intro/saved-relocation.log"
+    },
+    {
+      "id": "region-screen",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_first_region_screen.gd"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 3.19,
+      "log": ".tools/verification/first-region-intro/region-screen.log"
+    },
+    {
+      "id": "tower-session",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_forest_tower_session.gd"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 1.17,
+      "log": ".tools/verification/first-region-intro/tower-session.log"
+    },
+    {
+      "id": "battle-recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_battle_recovery.gd"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 11.53,
+      "log": ".tools/verification/first-region-intro/battle-recovery.log"
+    },
+    {
+      "id": "field-recovery",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_field_recovery.gd"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 8.56,
+      "log": ".tools/verification/first-region-intro/field-recovery.log"
+    },
+    {
+      "id": "assets",
+      "command": [
+        "python",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "limit_sec": 180,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 7.71,
+      "log": ".tools/verification/first-region-intro/assets.log"
+    },
+    {
+      "id": "frozen",
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "limit_sec": 60,
+      "exit_code": 0,
+      "status": "PASS",
+      "timed_out": false,
+      "seconds": 0.1,
+      "log": ".tools/verification/first-region-intro/frozen.log"
+    }
+  ],
+  "remote_ci": "NOT_RUN_NO_PUSH_AUTHORIZED",
+  "scope": "追加導入・関連検査。凍結R-01〜R-08はscope-lock-current.jsonへ別途記録。",
+  "phase": "素材5点・音の連打制限を組み込んだ後の最終関連検査",
+  "final_runtime": {
+    "headless": {
+      "checks": 1963,
+      "exit_code": 0
+    },
+    "native": {
+      "checks": 1971,
+      "exit_code": 0,
+      "command": [
+        "godot",
+        "--path",
+        ".",
+        "--display-driver",
+        "windows",
+        "--rendering-method",
+        "gl_compatibility",
+        "--resolution",
+        "512x288",
+        "--position",
+        "-32000,-32000",
+        "--script",
+        "res://tools/check_first_region_gado.gd",
+        "--",
+        "--capture-layout"
+      ],
+      "log": ".tools/verification/first-region-intro/native-layout-final.log"
+    }
+  }
+}

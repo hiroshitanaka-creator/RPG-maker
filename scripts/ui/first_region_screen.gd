@@ -24,6 +24,7 @@ var place_label: Label
 var _first_button: Button
 var recovery_available := false
 var return_actor := ""
+var story_view: Dictionary = {}
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -32,6 +33,7 @@ func _ready() -> void:
 	else:
 		map_view=FirstRegionView.new()
 		map_view.saved=game.export_state()
+		map_view.story=story_view
 		map_view.walk_frame=walk_frame
 		map_view.speaking_actor=speaking_actor
 		map_view.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -124,6 +126,9 @@ func _world() -> void:
 	elif not game.first_region_boarding_label().is_empty():_window(Rect2(12,248,174,28)).add_child(_label("決定："+game.first_region_boarding_label(),12))
 
 func _dialogue() -> void:
+	if not story_view.is_empty():
+		var title := _label(story_view["title"],12)
+		title.position=Vector2(16,12);title.size=Vector2(480,38);add_child(title)
 	var name_box := _window(Rect2(16,165,180,28));name_box.add_child(_label(speaker if not speaker.is_empty() else "カイナ",12))
 	var dialogue := _window(Rect2(8,191,496,88));dialogue.add_child(_label(message,14))
 	var next := _button(self,dialogue_prompt,{"kind":"confirm"})
@@ -149,6 +154,7 @@ func _commands() -> void:
 	var status := _window(Rect2(248,12,252,160))
 	for member in game.export_state()["party"]:
 		status.add_child(_label("%s  HP %d/%d  MP %d/%d" % [member["name"],member["hp"],member["max_hp"],member["mp"],member["max_mp"]],12))
+	if game.first_region_intro_available():_button(status,"追加された導入を見る",{"kind":"ui_intro"})
 
 func _travel() -> void:
 	var saved := game.export_state()

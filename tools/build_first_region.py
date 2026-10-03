@@ -1,12 +1,15 @@
 """最初の地方の手作業配置を既存データへ局所適用する。全地形は再生成しない。"""
 import json
+from first_region_story_data import apply as apply_story
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
 
 def definition():
-    return json.loads((ROOT / "world/first_region.json").read_text(encoding="utf-8"))
+    source = json.loads((ROOT / "world/first_region.json").read_text(encoding="utf-8"))
+    apply_story(source)
+    return source
 
 
 def patch_terrain(terrain):
