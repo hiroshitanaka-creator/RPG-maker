@@ -27,5 +27,7 @@ static func find(saved: Dictionary, room_index: int, id: String) -> Dictionary:
 		for distance in range(1,int(event.get("reach",1))+1):
 			var approach: Vector2i=cell+direction*distance
 			if found.has(approach):
+				# 宿は受付台越しに話す。受付内へ回り込む隣接会話でreach欠落を隠さない。
+				if event["kind"]=="rest" and (distance<2 or layout[cell.y+direction.y][cell.x+direction.x]=="."):continue
 				return {"cell":[cell.x,cell.y],"approach":[approach.x,approach.y],"facing":-direction,"reach":int(event.get("reach",1)),"distance":distance,"entrance":landing}
 	return {}
