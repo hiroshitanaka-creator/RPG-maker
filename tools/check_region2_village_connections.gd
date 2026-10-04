@@ -92,7 +92,7 @@ func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
 	if "--restart" in args:
 		restart(int(args[args.find("--restart")+1]));return
-	connections();maps();saves();invalid_saves();interactions();returns();finish()
+	connections();maps();saves();growth_saves();invalid_saves();interactions();returns();finish()
 
 func connections() -> void:
 	section="1"
@@ -193,6 +193,25 @@ func saves() -> void:
 			leave(restored)
 			check(restored.export_state()["overworld"]["layer"]=="world","20状態の読込後歩行・退出")
 			if facing==0:PlaySessionMetrics.write_json("user://village006_expected_%d.json" % index,saved)
+
+func growth_saves() -> void:
+	section="5"
+	# 保存領域の欠落を空配列だけの一致で見逃さず、既存の数値・マスター済み状態も保存する。
+	var template := game_for(base)
+	for index in range(5):
+		var saved := placed(index,[4,15] if index==0 else [8,10]);FirstRegionTravel.visit(saved,"region2_village")
+		var actor: Dictionary=saved["party"][0]
+		actor["jp"]["warrior"]=IntegratedProgression.cost(template.jobs["warrior"],true)
+		actor["integrated"]["mastery"]["counts"]["warrior"]=int(template.jobs["warrior"]["mastery_action"]["required"])
+		actor["mastered_jobs"]=["warrior"];actor["erosion"]=30
+		var stats := template._compute_stats(actor,true)
+		actor["max_hp"]=stats["hp"];actor["max_mp"]=stats["mp"]
+		actor["hp"]=actor["max_hp"]-3;actor["mp"]=actor["max_mp"]-2
+		saved["first_region"]["coins"]=31;saved["inventory"]["potion"]=2
+		var game := game_for(saved);var file := "user://village006_growth_%d.json" % index
+		check(game.save_game(file),"村5マップの修練・マスター・侵蝕・消耗状態を通常保存")
+		var restored := GameSession.new()
+		check(restored.load_game(file) and restored.export_state()==saved,"非初期値のJP・成功回数・マスター・侵蝕30・HP/MP・所持金・品も全一致")
 
 func restart(index: int) -> void:
 	section="4"
