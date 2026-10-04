@@ -21,6 +21,15 @@ func check(ok: bool, message: String) -> bool:
 		failures.append(message);results[section]["failures"].append(message)
 	return ok
 
+func preserve_save(source: String) -> void:
+	var directory := OUT+"saved-inputs/"
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(directory))
+	var target := directory+source.get_file()
+	var file := FileAccess.open(target,FileAccess.WRITE)
+	if not check(file!=null,"通常保存の実ファイルを006証拠へ保管"):return
+	file.store_buffer(FileAccess.get_file_as_bytes(source));file.close()
+	check(FileAccess.get_sha256(source)==FileAccess.get_sha256(target),"保管した通常保存の全バイト一致")
+
 func p(index: int, cell: Array) -> Dictionary:
 	return {"layer":"interior","node":"region2_village","room":index,"cell":cell}
 
@@ -100,6 +109,7 @@ func connections() -> void:
 	FirstRegion.place(saved["overworld"],{"layer":"interior","node":"brine_port","room":0,"cell":[4,2]})
 	var game := game_for(saved)
 	check(game.save_game("user://village006_port-start.json"),"人工開始状態を通常保存（港からの撮影起点）")
+	preserve_save("user://village006_port-start.json")
 	check(game.move_first_region(Vector2i(4,1)).get("kind")=="moved" and FirstRegion.at(game.export_state()["overworld"],world([169,99])),"既存港出口から世界へ")
 	var route: Array[Vector2i]=[Vector2i(168,99)]
 	for y in range(98,87,-1):route.append(Vector2i(168,y))
@@ -185,6 +195,7 @@ func saves() -> void:
 			var game := game_for(saved)
 			var filename := "user://village006_%d_%d.json" % [index,facing]
 			check(game.save_game(filename),"通常保存: "+filename)
+			preserve_save(filename)
 			var restored := GameSession.new()
 			check(restored.load_game(filename) and restored.export_state()==saved,"20状態の別セッション完全復元: "+filename)
 			check(not restored.position_relocated,"正常保存は補正しない")
@@ -210,6 +221,7 @@ func growth_saves() -> void:
 		saved["first_region"]["coins"]=31;saved["inventory"]["potion"]=2
 		var game := game_for(saved);var file := "user://village006_growth_%d.json" % index
 		check(game.save_game(file),"村5マップの修練・マスター・侵蝕・消耗状態を通常保存")
+		preserve_save(file)
 		var restored := GameSession.new()
 		check(restored.load_game(file) and restored.export_state()==saved,"非初期値のJP・成功回数・マスター・侵蝕30・HP/MP・所持金・品も全一致")
 
@@ -231,6 +243,7 @@ func invalid_saves() -> void:
 		var original: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(file))
 		var relocation := original.duplicate(true);relocation["overworld"]["cell"]=[0,0]
 		check(PlaySessionMetrics.write_json("user://village006_relocation_%d.json" % index,relocation),"本番UIの補正通知用入力を保存")
+		preserve_save("user://village006_relocation_%d.json" % index)
 		var map: Dictionary=Region2Village.data()["maps"]["region2_village:%d" % index]
 		var blocked: Array=[0,0]
 		for y in range(1,map["height"]-1):

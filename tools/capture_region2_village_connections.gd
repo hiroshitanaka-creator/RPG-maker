@@ -86,6 +86,7 @@ func _run() -> void:
 	var source := "user://village006_port-start.json" if mode=="journey" else ("user://village006_0_0.json" if mode=="details" else "user://village006_%s_0.json" % args[args.find("--restart")+1])
 	if not castle_check(FileAccess.file_exists(source),"本番save_gameで作られた開始保存"):finish();return
 	source_sha=FileAccess.get_sha256(source)
+	castle_check(source_sha==FileAccess.get_sha256(DIR+"saved-inputs/"+source.get_file()),"撮影起点がリポジトリの保管済み通常保存と全バイト一致")
 	var destination := "user://qa_"+OS.get_environment("RPG_QA_SAVE_PREFIX")+"_save.json"
 	var file := FileAccess.open(destination,FileAccess.WRITE);file.store_buffer(FileAccess.get_file_as_bytes(source));file.close()
 	castle_check(FileAccess.get_sha256(destination)==source_sha,"開始保存の無編集コピー")
