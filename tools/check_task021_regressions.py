@@ -47,7 +47,11 @@ def verify(exe, sha, target):
             data = json.loads(village_bytes)
             events = [event for room in data['site']['rooms'] for event in room.get('events', [])]
             inn = [event for event in events if event['id'] == 'oasis_innkeeper']
-            assert len(inn) == 1 and inn[0]['cell'] == [12, 3] and inn[0]['reach'] == 2
+            assert len(inn) == 1
+            # 再現入力はコピー上で作る。最新本番の初期セル・reachは固定しない。
+            inn[0]['cell'], inn[0]['reach'] = [12, 3], 2
+            village.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+            services('inn-fixture')
             inn[0]['cell'] = [11, 3]
             village.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
             observed = services('inn-relocated')
@@ -67,7 +71,7 @@ def verify(exe, sha, target):
             # 11,3では10,3から隣接会話できる。届かない負例は020と同じ12,3で作る。
             data = json.loads(village_bytes)
             inn = [event for room in data['site']['rooms'] for event in room.get('events', []) if event['id'] == 'oasis_innkeeper']
-            inn[0]['reach'] = 1
+            inn[0]['cell'], inn[0]['reach'] = [12, 3], 1
             village.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
             services('inn-unreachable', '宿IDの床・占有・reach・入口到達')
             village.write_bytes(village_bytes)
