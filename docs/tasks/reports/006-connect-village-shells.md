@@ -3,7 +3,7 @@
 ## 開始・提出対象と前提
 
 - 開始main：`552261345f68a4916ddeefad959896b44da2fcbf`。依頼書：`3ddbbc14289599f529421a3587a5b7973a000545`。
-- 実装提出：`8ac824f316aea69954c459409087c9d42bead942`。監督指定mainを取り込んだ検証対象：`927cd60579f08415b27ceab69b4315085fef272f`。報告登録・main統合の最終SHAと対象CIは最終応答にも記録する。最終コードのCIは [37188213052](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37188213052) 全3ジョブ、[37188213012](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37188213012) 追加1ジョブとも終了・成功。
+- 実装提出：`8ac824f316aea69954c459409087c9d42bead942`。監督指定mainを取り込んだ検証対象：`927cd60579f08415b27ceab69b4315085fef272f`。報告提出・初回main統合：`37b16815492ca2922fd2850d2e1bae4283bdb3c2`。統合結果だけの報告追記コミットと、その最終CIは最終応答にも記録する。最終コードのCIは [37188213052](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37188213052) 全3ジョブ、[37188213012](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37188213012) 追加1ジョブとも終了・成功。
 - 両005は確認済み。開始CI [37183938648](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37183938648) は全3ジョブ成功。開始時の未コミット・未push変更は0件。調査基準345e78eから開始mainへの変更は素材対応依頼書の状態行のみ。
 - 指定の同PC作業コピーとして `D:\codex\Documents-Codex\2026-10-04\task-3\repo` に隔離。元 `C:\Users\tanak\RPGゲーム` の35候補は読取・ハッシュ照合だけを行い、状態と全35件のバイトは不変。
 - 読んだ正本・入力：AGENTS、伝言板README、006、両005報告、体験仕様、ロードマップ、002報告、村背景・準備・素材規約・建物背景記録、契約・保護一覧、台帳、村・港・海岸JSON、村定義器、本番移動・表示・帰還・保存・UIコード。checkoutに `.agents/skills` は存在しない。
@@ -54,6 +54,12 @@
 - 実装8ac824fの [既存CI 37186479569](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37186479569) 全3成功、[追加CI 37186479624](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37186479624) 成功。
 
 検査コード最終SHAは `cbae42a517911e4d7e3c4d48c9690a4219acd548`。本番6ファイルのblobは927cd60と同一。取込み後R-01〜R-08全8件、保護26件、素材strictは再実行終了0。保存の通し経路は4人・3人それぞれ359状態・差分0、正式600秒内で成功。`acceptance-summary.json` に受入1〜10と現行回帰を集計。旧任意検査2件の未達は別記し、全コマンド成功とは記載しない。実行していない検査や未終了CIを成功扱いしない。
+
+## main統合の実記録
+
+報告提出37b1681の [既存CI 37189194673](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189194673) 全3ジョブ、[追加CI 37189194669](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189194669) 1ジョブの終了・成功を確認。R-01〜R-08成功、保護26件一致、検査不変、許可範囲内の5条件をそろえ、677e5a7から37b1681へ通常fast-forwardでmainに反映した。統合後は検査より先に固定版のimportを実行し、終了0・エラー／警告0件。その後の保護照合も26件一致。
+
+mainの [既存CI 37189466363](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189466363) 全3ジョブ、[追加CI 37189466355](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189466355) 1ジョブもすべて終了・成功。実SHAと5条件・全ジョブの結果は [main-integration37b.json](../../verification/region2-village-connections/main-integration37b.json) に記録した。固定比較対象37b1681でも許可範囲のみ、保護・既存検査など2,015件のblobが不変。元PC35候補の内容とGit状態、開始素材等1,559件も再照合して不変。追記は報告と証拠だけで本番コードを変更しない。
 
 ## 失敗した試行と担当外の不整合
 
