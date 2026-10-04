@@ -58,7 +58,7 @@
 - `assets/registry.json` の6項目追加、`assets/characters/npc_oasis_{water_keeper,date_farmer,innkeeper,camel_keeper,elder,child}/walk.png`
 - `assets/source_records/task007-residents.json`、`task007-residents-generation.json`
 - 新規 `tools/import_task007_residents.py`、`check_task007_assets.py`、`check_task007_services.gd`とuid、`capture_task007_services.gd`とuid、`check_task007.py`、`make_task007_review.py`
-- `.github/workflows/ci.yml`（次の検査コミットで1ステップ追加）、`docs/region2-village-backdrops.md`、`docs/decision-log.md`、依頼書の状態、本報告書、`docs/verification/task-007/` の出所・ログ・画像・JSON一覧
+- `.github/workflows/ci.yml`（1ステップ追加のみ）、`docs/region2-village-backdrops.md`、`docs/decision-log.md`、依頼書の状態、本報告書、`docs/verification/task-007/` の出所・ログ・画像・JSON一覧
 
 `docs/STATUS.md`、発注管理・全体計画、親の014/015文書、既存検査・保護・原画・他地方の素材は担当外で変更しない。
 
@@ -71,3 +71,33 @@
 初回 `e14a375c09ca5eb184e167017682a6c965cf4183` のCIで、新検査のGodot相対パスが固定checkoutで解決しない点と、6項目の末尾追加が既存背景の台帳再生成順と一致しない点を検出した。Godot実行パスを絶対化し、既存1134項目の内容・相対順を保持したまま村背景10項目の直前に6項目を挿入する。既存検査や生成器は変更しない。CI追加までを含む完成点に固定し、範囲・既存台帳保持・CI1ステップ追加の検査は、その完成点の素材検査器で実行する。初回CIの失敗を成功結果に数えない。
 
 修正後の既存背景検査は244件PASS、素材厳格検査1140件PASS、保護26/26一致。既存009出力の固定文言「007未着手・未検証」は009の対象外の表示であり、007サービスの成功証拠には使わない。今回のサービス検査と通常操作の実測を別に記録する。
+
+## 自己点検
+
+1. 世界169,88への沿岸13歩、両門の退出と再入村：通常入力と既存最新回帰で確認。
+2. 全マスの通行・NPC占有：既存最新回帰7630件の全地形・接続条件と、追加6人の床・占有・話しかけ位置のBFSで確認。
+3. 屋根・葉・両門・手前の高い壁・入口の顔：通常描画の画素照合と33枚の実画像を確認。既存009の固定/最新7モードもCIで継続。
+4. 4室の出入り・非接続4扉：006定義不変と既存最新回帰を確認。非接続扉にイベントはない。
+5. 6人の会話：通常操作で全員の会話を撮影。上表の短文のみで物語の大事な内容は含まない。
+6. 宿と祠：既存の全員回復・料金なし、祠の正負境界・全8系統の従来祠との比較を確認。販売・商品・職業解放は追加していない。
+7. 保存・再開：外観と4室の通常メニュー保存/ロード、20状態の保存、5別プロセス復帰、追加NPC占有6保存の入口補正を確認。
+8. 原画・保護・既存検査：原画SHA-256一致、保護26/26一致、既存台帳1134項目の内容・相対順一致。既存CIステップと上限は全て同じで、新ステップ1件のみ。
+9. R-01〜R-08は全件PASS。全20 CIとGodotジョブの所要時間は、終了後の実測を以下に記録。
+
+見た目の確認は6人の全72コマと通常配置をまとめて親へ渡す。原画の正面デザインを使い、横・背面・足運びを新たに補完したことも採否の対象となる。今回の指示に従いmainへはmergeしない。
+
+## 固定完成点と最新HEADの実測
+
+完成点は `776ad944723d21c1e250a1ee5fd56d35da42cfed`（CI追加を含む）。CIの固定参照を登録した検査HEADは `2b8fe599e55b8dfffcee630118909e520aea762b`。相対パス指定 `.tools/task007/godot` からも、固定checkoutで絶対パスへ解決して実行できることを確認した。`python tools/check_task007.py --completed 776ad944723d21c1e250a1ee5fd56d35da42cfed --godot .tools/task007/godot` はPASS。
+
+固定checkoutの範囲・再生成・299サービス・外観49件/11枚・4室113件/22枚、最新HEADの72コマ・280サービス・外観49件/11枚・4室113件/22枚は全てPASS。各撮影は180秒以内（最大97.278秒）、固定importは58.28秒で600秒以内。警告・エラー0、実行SHA一致。固定の範囲検査は当時の `check_task007_assets.py` で実行している。
+
+[固定/最新の全実測JSON](../../verification/task-007/ci/summary.json)、[既存最新回帰](../../verification/task-007/existing-latest/regression-summary.json)、[背景再生成244件](../../verification/task-007/existing-backdrops.log)、[変更ファイル一覧](../../verification/task-007/changed-files.txt)。最新の通常操作画像は検査HEADで再撮影し、画像SHA-256の一覧も更新した。
+
+## CI・報告済みの引き渡し
+
+検査HEAD `2b8fe599e55b8dfffcee630118909e520aea762b` の [CI（3ジョブ）](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37240029238) と [006固定受入と最新回帰（17ジョブ）](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37240029217) は全20ジョブ終了・全成功。Godotジョブは594秒（9分54秒）、新規撮影のCI最大77.377秒、固定import54.904秒。R-01〜R-08と既存の後段検査も同じGodotジョブで成功し、保護26/26一致。
+
+[全20ジョブのURL・結果・実測時間](../../verification/task-007/ci-github.json)、[新規固定/最新検査のCIログ抜粋](../../verification/task-007/ci-success-excerpt.log)。依頼書は報告済みへ更新。報告文書のpush後も最終HEADで全CIを再実行して、終了と全成功を引き渡し回答で確認する。
+
+自己点検1〜9の実装・検査は満たした。新規人物6人の初回見た目採否とmainへの反映は、今回の明示指示により親のルッカへ引き渡す。mainはmergeしていない。STATUS更新・発注管理・全体計画・独立確認は代行していない。残る判断は、全72コマと33枚の通常画面を使った6人の見た目採否。技術的なブロッカーはない。
