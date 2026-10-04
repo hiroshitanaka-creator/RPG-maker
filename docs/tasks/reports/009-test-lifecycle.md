@@ -194,7 +194,7 @@
 
 ## 提出と実行結果
 
-完成コードSHA：`d3a9c48b8328085fb79736791d29588915d34b2a`。実装842306f、クリーンコピーと独立期待値の補強d3a9c48を通常commit/push。後続の報告・証拠commitは本番/検査コードを変更しない。PRは [#16](https://github.com/hiroshitanaka-creator/RPG-maker/pull/16)。開始mainと最終統合直前のmainはともに5f1c2ba（再fetch実施）。
+完成コードSHA：`d3a9c48b8328085fb79736791d29588915d34b2a`。実装842306f、クリーンコピーと独立期待値の補強d3a9c48を通常commit/push。報告版7b2e883の全40CI成功後、独立レビューによりNPC正例の壁配置を発見し、009専用正負例を追加補強した。最終補強版SHAとCIは下の追記に記録する。本番コードは変更しない。PRは [#16](https://github.com/hiroshitanaka-creator/RPG-maker/pull/16)。開始mainと最終統合直前のmainはともに5f1c2ba（再fetch実施）。
 
 | コマンド | 実行対象・結果 | 証拠 |
 | --- | --- | --- |
@@ -203,7 +203,7 @@
 | 同上 `--capture journey/details/restart-0〜4` | 固定の137/34/17×5項目、49枚。全mode終了0、警告/エラー0。各180秒内 | fixed-render/各mode/checks.json・PNG・execution.log |
 | `python tools/check_region2_village_regression.py --commit HEAD --godot <規定版>` | clean d3a9c48で7662項目、20状態、5別プロセスPASS。全6プロセス計33.947秒 | latest/regression-summary.json、各JSON・log・保存実物 |
 | 同上 `--capture journey/details/restart-0〜4` | 最新の132/34/17×5項目、49枚、全mode終了0・警告/エラー0。ローカル画面は842306fの試作、最終d3a9c48の全画面はpush/PR CIで実行し成功 | latest/各mode、ci/d3-push-jobs.json、d3-all-checks.json |
-| `python tools/test_task009_lifecycle.py --fixed-path <別checkout> --godot <規定版>` | 誤SHAは終了1、扉0の室1→2は終了1・扉assertion失敗、不正room5受理は終了1・拒否assertion5失敗。timeout/Parse Error0。後続登録+NPC占有のコピー正例は7662項目PASS | negative-cases/summary.json と全負例JSON/log |
+| `python tools/test_task009_lifecycle.py --fixed-path <別checkout> --godot <規定版>` | 誤SHAは終了1、扉0の室1→2は終了1・扉assertion失敗、不正room5受理は終了1・拒否assertion5失敗。timeout/Parse Error0。旧7662項目のコピー正例はNPCが壁上のため占有実証として無効。床配置の補強正例は7656項目PASS、配置前後の各39項目と占有無視負例で別途実証 | negative-cases/summary.json と全負例JSON/log |
 | `python tools/check_task009_assertion_map.py` | 135箇所、未分類0、fixture固定006一致 | assertion-map.json / .md、CIログ |
 | `python tools/run_locked_checks.py` | R-01〜R-08全8件PASS、全体テストと14条件の通常操作通しを含む。最終d3a9c48も既存CIで全件PASS | locked-results.json、locked-checks.log、CI Godot jobのPASSマーカー |
 | `python tools/check_frozen_files.py` | 保護26/26一致 | CI各jobの照合・scope監査 |
@@ -250,7 +250,7 @@
 
 全CI・R全件・保護不変・弱体化なし・担当範囲内の5条件を実証した。報告・証拠を提出し、そのCIも全job確認後にPR #16を通常mergeする。main反映SHAと統合後CIは反映後の追記・最終応答に記録する。強制push/履歴変更/原画削除は行わない。
 
-- 009の機械検査は成功。007/008は未着手・未発注のまま。6人会話・宿・祠の機能は009で実装も成功扱いもしない。S01〜S06の正負例の実装は007担当へ引継ぐ。
+- 009の固定/最新の機械検査は成功。独立レビュー後の追加補強CIも全終了を確認してから完了する。007/008は未着手・未発注のまま。6人会話・宿・祠の機能は009で実装も成功扱いもしない。S01〜S06の正負例の実装は007担当へ引継ぐ。
 - 006に既存の任意旧航路検査の失敗（return_learned参照）と旧保存契約300秒timeoutは未解決として保持する。009で再実行して改善したとは報告しない。現在の航路・保存は既存CIの対象で成功。
 - 人間の主観試遊と約60時間の実測、物理音声機器の聴感検証は未実施。009は検査分離の依頼で、これらを完成扱いにはしない。
 - CI基盤のNode.js 20非推奨は既存の警告。Godotログの警告0と区別する。既存ci.ymlやGUTを修正しない。
@@ -259,3 +259,18 @@
 ## 変更ファイル一覧
 
 全パスは `docs/verification/task-009/changed-files.txt` に列挙。コード/ルール：AGENTS.md、.github/workflows/region2-village-connections.yml、tools/check_region2_village_regression.py/.gd/.gd.uid、tools/capture_task009_village_regression.gd/.gd.uid、tools/check_task009_scope.py、tools/check_task009_lifecycle.py、tools/check_task009_assertion_map.py、tools/test_task009_lifecycle.py。文書：decision-log、009状態行、本報告。証拠・独立fixture・対応表・全CI・負例・保存実物・画像はdocs/verification/task-009/だけ。親登録006確認/007/008と009依頼書の持込みは009開始SHA以前の変更として分離。
+
+## 独立レビュー後のNPC正負例補強
+
+d3a9c48と報告版7b2e883のコピー正例で使った `[18,13]` は固定fixtureの壁 `#` だった。旧7662件PASSを「床上NPC占有の実証」とした報告は誤りとして訂正する。Git履歴に旧結果を保持し、検査項目や予算を変えず床 `[20,25]` と隣接 `[20,26]` の明示検査へ補強した。007の人物・会話・宿・祠は実装しない。
+
+| コピー検査 | 観測結果 | 判定と証拠 |
+| --- | --- | --- |
+| NPC配置前 | 固定/実地形とも `.`、通行true、入口 `[4,15]` から隣接へ本番通常歩行、床への移動 `moved` | 39項目PASS、negative-cases/npc-floor-before.json |
+| NPC配置後 | 地形 `.` を保持、占有true、通行false、同じ隣接まで到達、床への実移動空・全状態不変 | 39項目PASS、npc-floor-after.json |
+| 後続登録＋床上NPCの全継続回帰 | 7656項目、20保存、全床/占有/入口出口の検査がPASS。7662との差は占有セルと隣接辺を通行対象から外し、占有隣接到達を実行した結果 | registered-request-and-npc-occupancy.json |
+| 占有拒否を無効化した負例 | NPCがいる床へ通行・実移動が成功し、通行拒否と状態保持の2assertionが失敗 | 終了1・39項目・2失敗、npc-occupancy-ignored.json。timeout/parse errorを成功扱いしない |
+
+プローブの全ソースはnegative-cases/npc-probe-source.gd.txtに保管。別コピーの新規一時検査から、本番APIと継続回帰の経路支援を呼ぶ。配置前後の固定地形・NPC有無・通行・位置・実移動・全状態を実行JSONに残す。原画、本番データ、本番コードは元ツリーへ書き込まない。旧固定SHA・誤接続・不正保存受理の3負例も省略せず併走する。
+
+補強のローカル実行は7b2e883上の未コミット009道具で実行（negative-cases/summary.jsonのexecution_shaは土台HEAD）。クリーンな完成commitでの同じ正負例は提出後のCIで再実行し、全jobとともに記録する。

@@ -1,0 +1,36 @@
+{
+  "checks": 39,
+  "elapsed_ms": 573,
+  "execution_sha": "7b2e88310b052882911a818c95f73e82fd3e7580",
+  "failures": [],
+  "limit_ms": 180000,
+  "method": "最新本番APIの一歩移動・全セル・境界状態・通常保存。固定006fixtureを独立期待値に使用。通常キー入力と描画は別の最新capture証拠。",
+  "port_route": [
+    {
+      "adjacent_cell": [
+        20,
+        26
+      ],
+      "adjacent_reached": true,
+      "move_kind": "moved",
+      "npc_cell": [
+        20,
+        25
+      ],
+      "npc_present": false,
+      "state_unchanged": false,
+      "terrain": ".",
+      "walkable": true
+    }
+  ],
+  "save_states": [],
+  "sections": {
+    "1": {
+      "checks": 39,
+      "failures": [],
+      "status": "PASS"
+    }
+  },
+  "service_acceptance": "007未着手。6人会話・宿回復・祠の機能成功は009の判定対象に含めず、引継ぎ表に正負例を記録。固定側では006の無反応を全件検査。",
+  "status": "PASS"
+}
