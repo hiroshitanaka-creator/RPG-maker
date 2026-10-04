@@ -145,6 +145,7 @@ jobs:
       - name: 村の独立背景・原画不変・再生成・実描画画素を検査
         run: |
           git fetch --no-tags --depth=1 origin dad3fca1d2d6216c3418999d27a4cf581ca00860
+          git fetch --no-tags --depth=1 origin f53dcb58e8d7e2a14bb7342b9e67b1343b5399ab
           python -m pip install numpy scipy
           python -B tools/check_region2_village_scope.py
           python -B tools/check_region2_village_backdrops.py
@@ -206,6 +207,12 @@ jobs:
         run: |
           export PATH="$PWD:$PATH"
           python tools/run_locked_checks.py
+      - name: 導入の固定比較基準を取得し台帳の異常検出を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          git fetch --no-tags --depth=1 origin c30530cf0a85c6decbaa75da8a6f467ea21ce16d
+          python -B tools/check_registry_sprint_scope.py
+
       - name: 第1地方の追加導入・見逃し・旧保存補完を検査
         if: steps.check.outputs.exists == 'true'
         run: |

@@ -4,6 +4,7 @@ import hashlib
 import json
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
+from village_png import save as save_png
 
 ROOT=Path(__file__).resolve().parents[1]
 DIR=ROOT/'docs/verification/region2-village-backdrops'
@@ -50,7 +51,7 @@ def comparisons(role,record,captures):
     font=ImageFont.truetype(str(ROOT/'assets/fonts/notosansjp/NotoSansJP.ttf'),14)
     for i,(label,picture) in enumerate(sources):
         x,y=(i%3)*512,(i//3)*312;sheet.paste(panel(picture,(512,288)),(x,y+24));draw.text((x+8,y+2),label,font=font,fill='white')
-    path=DIR/role/'review-comparison.png';sheet.save(path)
+    path=DIR/role/'review-comparison.png';save_png(sheet,path)
     return dict(path=str(path.relative_to(ROOT)).replace('\\','/'),reference=reference,reference_sha256=hashlib.sha256((ROOT/reference).read_bytes()).hexdigest(),original_sha256=record['sha256'])
 
 def main():

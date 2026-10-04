@@ -13,6 +13,7 @@ from PIL import Image
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE='dad3fca1d2d6216c3418999d27a4cf581ca00860'
+SHIPPED='f53dcb58e8d7e2a14bb7342b9e67b1343b5399ab'
 RECORD='assets/source_records/region2-village-backdrops.json'
 WORLD='world/region2_village_backdrops.json'
 VERIFY='docs/verification/region2-village-backdrops'
@@ -65,13 +66,16 @@ def reachable(rows,start):
 def verify():
     records=load(RECORD);maps=load(WORLD)['maps'];colors=palette()
     baseline_registry=json.loads(subprocess.check_output(['git','show',BASE+':assets/registry.json'],cwd=ROOT))
+    shipped_registry=json.loads(subprocess.check_output(['git','show',SHIPPED+':assets/registry.json'],cwd=ROOT))
     registry=load('assets/registry.json')
     check(set(maps)==set(records['maps'])=={'exterior','inn','item','weapon','shrine'},'5地形がすべて実在')
-    check((ROOT/'assets/palette/natural.gpl').read_bytes()==subprocess.check_output(['git','show',BASE+':assets/palette/natural.gpl'],cwd=ROOT),'既存パレットはバイト不変')
-    check(hashlib.sha256((ROOT/'assets/palette/natural.gpl').read_bytes()).hexdigest()==records['palette_sha256'],'パレットSHA一致')
+    baseline_palette=subprocess.check_output(['git','show',BASE+':assets/palette/natural.gpl'],cwd=ROOT)
+    check((ROOT/'assets/palette/natural.gpl').read_bytes().startswith(baseline_palette),'既存パレットの全バイト保持（末尾の色追加は別の承認範囲）')
+    check(hashlib.sha256(baseline_palette).hexdigest()==records['palette_sha256'],'パレットSHA一致')
     prior={entry['path']:entry for entry in baseline_registry['assets']}
     current={entry['path']:entry for entry in registry['assets']}
-    check(all(current.get(path)==entry for path,entry in prior.items()),'既存素材台帳の全項目を保持')
+    shipped={entry['path']:entry for entry in shipped_registry['assets']}
+    check(all(shipped.get(path)==entry for path,entry in prior.items()),'確定コミットで既存素材台帳の全項目を保持')
     generated=[]
     for role,record in records['maps'].items():
         raw=(ROOT/record['original']).read_bytes()
@@ -109,7 +113,7 @@ def verify():
         for path in (record['background'],record['overlays']['path']):
             generated.append(path);entry=current.get(path,{})
             check(entry.get('original_file')==record['original'] and entry.get('conversion_record')==RECORD+'#maps/'+role,'出所と台帳登録: '+path)
-    check(len(current)==len(prior)+10 and len(set(generated))==10,'新規素材10件だけを追加')
+    check(len(shipped)==len(prior)+10 and len(set(generated))==10 and set(generated)<=set(current),'確定コミットで追加10件、現行も派生10件を保持')
     for role,cell in [('exterior',[23,15]),('exterior',[16,6]),('inn',[4,4]),('item',[8,5]),('weapon',[8,5]),('shrine',[8,4])]:
         check(maps[role]['layout'][cell[1]][cell[0]]=='#','水面・建物・家具へ立てない: '+role+str(cell))
     with tempfile.TemporaryDirectory(prefix='rpg-village-rebuild-') as first,tempfile.TemporaryDirectory(prefix='rpg-village-rebuild-') as second:

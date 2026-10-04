@@ -12,6 +12,7 @@ from backdrop_common import ROOT, palette, grid, overlay
 from build_interior_backdrops import content_box
 from build_region2_port_town_backdrop import pack
 import region2_village_backdrop_defs as D
+from village_png import save as save_png
 
 RECORD = 'assets/source_records/region2-village-backdrops.json'
 WORLD = 'world/region2_village_backdrops.json'
@@ -132,7 +133,7 @@ def derive(role,spec):
     source_path=ROOT/spec['original'];raw_bytes=source_path.read_bytes()
     if hashlib.sha256(raw_bytes).hexdigest()!=spec['sha256']:raise ValueError('原本不一致: '+role)
     with Image.open(source_path) as source:raw,info=transform(source,spec)
-    colors=palette().astype(np.int32);indices=nearest(raw,colors)
+    colors=palette()[:80].astype(np.int32);indices=nearest(raw,colors)
     counts=np.bincount(indices.ravel(),minlength=len(colors));used=np.where(counts>0)[0]
     selected=sorted(sorted(used,key=lambda c:(-int(counts[c]),int(c)))[:64])
     indices=nearest(raw,colors[selected]);rgb=colors[selected][indices].astype('uint8')
@@ -173,26 +174,26 @@ def derive(role,spec):
 
 def build(destination):
     document=dict(version=1,status='独立した地形・施設土台。本番イベント・保存先・施設機能は未接続',maps={})
-    records=dict(version=1,baseline_commit='dad3fca1d2d6216c3418999d27a4cf581ca00860',method='原画の最近傍縮小、natural.gplの選択64色への最近傍減色、同じ背景画素から二値透過の上層を切出し。平均化・描足し・色調補正なし。',palette='assets/palette/natural.gpl',palette_sha256=hashlib.sha256((ROOT/'assets/palette/natural.gpl').read_bytes()).hexdigest(),maps={})
+    records=dict(version=1,baseline_commit='dad3fca1d2d6216c3418999d27a4cf581ca00860',method='原画の最近傍縮小、natural.gplの選択64色への最近傍減色、同じ背景画素から二値透過の上層を切出し。平均化・描足し・色調補正なし。',palette='assets/palette/natural.gpl',palette_sha256='1b1c00dd929b96b64703972a0ae9368c36636b96c8f717dded78524e57913088',maps={})
     outputs=[]
     for role,spec in D.MAPS.items():
         image,atlas,map_data,record,walk=derive(role,spec)
         document['maps'][role]=map_data;records['maps'][role]=record
         for path,picture in [(record['background'],image),(record['overlays']['path'],atlas)]:
-            full=destination/path;full.parent.mkdir(parents=True,exist_ok=True);picture.save(full);outputs.append(path)
+            full=destination/path;full.parent.mkdir(parents=True,exist_ok=True);save_png(picture,full);outputs.append(path)
         directory=destination/VERIFY/role;directory.mkdir(parents=True,exist_ok=True)
-        grid(image,spec['columns'],spec['rows'],1).save(directory/'grid.png')
-        overlay(image,record['layout'],{tuple(c):'door' for c in spec['doors'].values()},1).save(directory/'collision-overlay.png')
-        Image.fromarray((walk.repeat(32,0).repeat(32,1)*255).astype('uint8')).save(directory/'walk-mask.png')
+        save_png(grid(image,spec['columns'],spec['rows'],1),directory/'grid.png')
+        save_png(overlay(image,record['layout'],{tuple(c):'door' for c in spec['doors'].values()},1),directory/'collision-overlay.png')
+        save_png(Image.fromarray((walk.repeat(32,0).repeat(32,1)*255).astype('uint8')),directory/'walk-mask.png')
         union=np.zeros((image.height,image.width),bool)
         a=np.array(atlas)
         for ax,ay,w,h,x,y,_,_ in record['overlays']['pieces']:union[y:y+h,x:x+w]|=a[ay:ay+h,ax:ax+w,3]>0
-        Image.fromarray((union*255).astype('uint8')).save(directory/'upper-mask.png')
+        save_png(Image.fromarray((union*255).astype('uint8')),directory/'upper-mask.png')
         source=Image.open(ROOT/spec['original']).convert('RGB')
         original_canvas,_=transform(source,spec)
         panel=Image.new('RGB',(image.width*2,image.height+24),(24,24,30));panel.paste(Image.fromarray(original_canvas),(0,24));panel.paste(image.convert('RGB'),(image.width,24))
         font=ImageFont.truetype(str(ROOT/'assets/fonts/notosansjp/NotoSansJP.ttf'),14);draw=ImageDraw.Draw(panel)
-        draw.text((8,2),'原画の最近傍縮小（減色前）',font=font,fill='white');draw.text((image.width+8,2),'派生背景（規定パレット）',font=font,fill='white');panel.save(directory/'source-comparison.png')
+        draw.text((8,2),'原画の最近傍縮小（減色前）',font=font,fill='white');draw.text((image.width+8,2),'派生背景（規定パレット）',font=font,fill='white');save_png(panel,directory/'source-comparison.png')
         print('VILLAGE_BUILD: '+role+' colors='+str(record['colors'])+' walk='+str(record['walkable_cells'])+' pieces='+str(len(record['overlays']['pieces'])),flush=True)
     write(destination/WORLD,document);write(destination/RECORD,records)
     registry=json.loads((ROOT/'assets/registry.json').read_text(encoding='utf-8'))
