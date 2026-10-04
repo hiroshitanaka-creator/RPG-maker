@@ -98,6 +98,8 @@ func _draw() -> void:
 			var ship := Vector2(WorldExpedition.point(Region2Port.data()["docks"][0]["display_cell"]))
 			ordered.append({"bottom":ship.y+1.0,"object":"res://assets/vehicles/owner_ship.png","cell":ship,"dimensions":Vector2(192,192),"region":Rect2(96,0,96,96)})
 	if state["layer"]=="world":
+		var village := Vector2(WorldExpedition.point(definition["region2_village_entrance"]["cell"]))-origin
+		ordered.append({"bottom":village.y+1.0,"object":"res://assets/ui/icon_village.png","cell":village,"dimensions":Vector2(64,64)})
 		var second_port := Vector2(WorldExpedition.point(definition["second_port_entrance"]["cell"]))-origin
 		ordered.append({"bottom":second_port.y+1.0,"object":"res://assets/ui/icon_town.png","cell":second_port,"dimensions":Vector2(64,64)})
 		if definition.has("port_entrance"):

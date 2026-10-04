@@ -16,7 +16,7 @@ static func ensure(saved: Dictionary) -> Dictionary:
 
 static func visit(saved: Dictionary, id: String) -> void:
 	var travel := ensure(saved)
-	if id in ["start_village","first_castle","first_port","brine_port"] and id not in travel["visited"]:travel["visited"].append(id)
+	if id in ["start_village","first_castle","first_port","brine_port","region2_village"] and id not in travel["visited"]:travel["visited"].append(id)
 
 static func snapshot(saved: Dictionary) -> Dictionary:
 	return saved.get("first_region",{}).get("travel",{})
@@ -28,7 +28,7 @@ static func docks() -> Array:
 	return data()["docks"]+SecondRegionCoast.data()["docks"]+Region2Port.data()["docks"]
 
 static func destinations() -> Array:
-	return data()["destinations"]+Region2Port.data()["destinations"]
+	return data()["destinations"]+Region2Port.data()["destinations"]+Region2Village.data()["destinations"]
 
 static func encounter(cell: Vector2i) -> Dictionary:
 	var b: Array=data()["sea_bounds"]
@@ -69,7 +69,7 @@ static func board_or_land(saved: Dictionary) -> bool:
 	return true
 
 static func can_return(saved: Dictionary) -> bool:
-	return snapshot(saved).get("return_learned",false) and (saved["overworld"]["layer"]=="world" or saved["overworld"]["node"] in ["start_village","first_castle","first_port","brine_port"])
+	return snapshot(saved).get("return_learned",false) and (saved["overworld"]["layer"]=="world" or saved["overworld"]["node"] in ["start_village","first_castle","first_port","brine_port","region2_village"])
 
 static func return_to(saved: Dictionary, actor_id: String, destination: String) -> bool:
 	if not can_return(saved) or destination not in snapshot(saved).get("visited",[]):return false
@@ -96,7 +96,7 @@ static func valid(saved: Dictionary) -> bool:
 	if not travel.get("return_learned") is bool or not travel.get("ship_owned") is bool or not travel.get("ship_cell") is Array:return false
 	var seen: Array=[]
 	for id in travel["visited"]:
-		if id not in ["start_village","first_castle","first_port","brine_port"] or id in seen:return false
+		if id not in ["start_village","first_castle","first_port","brine_port","region2_village"] or id in seen:return false
 		seen.append(id)
 	if (travel["return_learned"] or travel["ship_owned"]) and ("first_port" not in seen or not saved["progress_flags"].get("mountain_path_open",false)):return false
 	if travel["ship_owned"]:

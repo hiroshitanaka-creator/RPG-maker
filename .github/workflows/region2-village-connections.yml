@@ -1,0 +1,45 @@
+name: 006 村接続検査
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  connections:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      GODOT_LINUX_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
+      RPG_QA_SAVE_PREFIX: ci-village006
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 固定版を照合してインポート
+        run: |
+          set -o pipefail
+          curl -fL -o godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  godot.zip" | sha256sum --check
+          unzip -q godot.zip
+          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot
+          chmod +x godot
+          timeout 600 ./godot --headless --editor --import --quit 2>&1 | tee village-import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" village-import.log; then exit 1; fi
+      - name: 固定コミット範囲・接続・20保存・5別プロセスを検査
+        run: |
+          python tools/check_region2_village_connections.py --commit "$GITHUB_SHA" --godot ./godot
+          python tools/check_frozen_files.py
+      - name: 記録を保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: village006-connections
+          path: |
+            village-import.log
+            docs/verification/region2-village-connections/*.json
+            docs/verification/region2-village-connections/*.log

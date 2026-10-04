@@ -8,6 +8,7 @@ static func data() -> Dictionary:
 		_data = WorldExpedition._integers(JSON.parse_string(FileAccess.get_file_as_string("res://world/first_region_visuals.json")))
 		_data["maps"]["world"]=SecondRegionCoast.extend_world(_data["maps"]["world"])
 		_data["maps"].merge(Region2Port.data()["maps"].duplicate(true))
+		_data["maps"].merge(Region2Village.data()["maps"].duplicate(true))
 	return _data
 
 static func map_for(state: Dictionary) -> Dictionary:
