@@ -1,0 +1,143 @@
+{
+  "status": "PASS",
+  "execution_sha": "cbae42a517911e4d7e3c4d48c9690a4219acd548",
+  "results": {
+    "scope": {
+      "status": "PASS",
+      "base": "552261345f68a4916ddeefad959896b44da2fcbf",
+      "comparison_base": "677e5a74937921250ec388c72fb1ceaba0341c8c",
+      "preserved_upstream_originals": [
+        "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-armor-shop.png",
+        "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-harbor-office.png",
+        "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-inn.png",
+        "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-item-shop.png",
+        "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-shrine.png",
+        "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-weapon-shop.png"
+      ],
+      "commit": "cbae42a517911e4d7e3c4d48c9690a4219acd548",
+      "changed_files": [
+        ".github/workflows/region2-village-connections.yml",
+        "PLAYTEST_QUEUE.md",
+        "docs/decision-log.md",
+        "docs/region2-village-connections.md",
+        "docs/tasks/006-connect-village-shells.md",
+        "scripts/world/first_region.gd",
+        "scripts/world/first_region_presentation.gd",
+        "scripts/world/first_region_travel.gd",
+        "scripts/world/first_region_view.gd",
+        "scripts/world/region2_village.gd",
+        "scripts/world/region2_village.gd.uid",
+        "tools/capture_region2_village_connections.gd",
+        "tools/capture_region2_village_connections.gd.uid",
+        "tools/check_region2_village_connections.gd",
+        "tools/check_region2_village_connections.gd.uid",
+        "tools/check_region2_village_connections.py",
+        "world/region2_village.json"
+      ],
+      "failures": [],
+      "protected_and_existing_unchanged": 2015,
+      "grok_originals_unchanged": 18,
+      "checks_weakened_or_removed": 0,
+      "method": "固定開始mainと指定コミットのGitツリー・blobを比較。既存検査・CI全バイト不変。"
+    },
+    "runtime": {
+      "status": "PASS",
+      "command": [
+        ".tools/godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\repo",
+        "--script",
+        "res://tools/check_region2_village_connections.gd"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 7592
+    },
+    "restart-0": {
+      "status": "PASS",
+      "command": [
+        ".tools/godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\repo",
+        "--script",
+        "res://tools/check_region2_village_connections.gd",
+        "--",
+        "--restart",
+        "0"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 9
+    },
+    "restart-1": {
+      "status": "PASS",
+      "command": [
+        ".tools/godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\repo",
+        "--script",
+        "res://tools/check_region2_village_connections.gd",
+        "--",
+        "--restart",
+        "1"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 26
+    },
+    "restart-2": {
+      "status": "PASS",
+      "command": [
+        ".tools/godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\repo",
+        "--script",
+        "res://tools/check_region2_village_connections.gd",
+        "--",
+        "--restart",
+        "2"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 37
+    },
+    "restart-3": {
+      "status": "PASS",
+      "command": [
+        ".tools/godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\repo",
+        "--script",
+        "res://tools/check_region2_village_connections.gd",
+        "--",
+        "--restart",
+        "3"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 51
+    },
+    "restart-4": {
+      "status": "PASS",
+      "command": [
+        ".tools/godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\repo",
+        "--script",
+        "res://tools/check_region2_village_connections.gd",
+        "--",
+        "--restart",
+        "4"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 43
+    }
+  }
+}

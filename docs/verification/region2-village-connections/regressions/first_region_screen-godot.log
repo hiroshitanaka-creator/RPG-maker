@@ -1,0 +1,13 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+REGION_UI_CHECK: U01 PASS 通常のニューゲームで村内開始
+REGION_UI_CHECK: U02 PASS マップが画面全体を占める
+REGION_UI_CHECK: U03 PASS 探索中の常設ボタン0件。実際: []
+REGION_UI_CHECK: U04 PASS Escapeから道具の窓へ進める
+REGION_UI_CHECK: U05 PASS 世界地図の表示で場所・所持品・進行を変更しない
+REGION_UI_CHECK: U06 PASS 地図を閉じると元の道具画面へ戻る
+REGION_UI_CHECK: U09 PASS 人物の選択欄が画面に収まり、Escapeで状態を変えず探索へ戻る
+REGION_UI_CHECK: U07 PASS 窓から保存し、実移動後のロードで全ゲーム状態が一致
+REGION_UI_CHECK: U08 PASS 村BGMの再生とBGM/効果音の分離
+REGION_UI_CHECK: U10 PASS 住人情報のない旧保存を受け入れ、不正な住人情報を拒否する
+REGION_UI_PASS: checks=10

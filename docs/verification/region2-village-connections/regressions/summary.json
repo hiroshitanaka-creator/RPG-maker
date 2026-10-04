@@ -1,0 +1,327 @@
+{
+  "execution_sha": "8ac824f316aea69954c459409087c9d42bead942",
+  "results": [
+    {
+      "name": "connections",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/check_region2_village_connections.py",
+        "--commit",
+        "HEAD",
+        "--godot",
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 37.15,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "assets",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 11.84,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "frozen",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/check_frozen_files.py"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "seconds": 0.1,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "region2_village_scope",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_village_scope.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 0.24,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "region2_village_backdrops",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_village_backdrops.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 47.64,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "region2_village_native",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_village_native.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 1.76,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "region2_village_palette",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_village_palette.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 4.13,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "region2_port_backdrop",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_port_backdrop.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 13.01,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "first_region_gado_data",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_first_region_gado_data.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 0.72,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "region2_village_backdrops-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_village_backdrops.gd"
+      ],
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "seconds": 2.98,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "region2_port_backdrop-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_port_backdrop.gd"
+      ],
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "seconds": 1.7,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "region2_port-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_port.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 3.03,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "second_region_coast-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_second_region_coast.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 2.37,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "coastal_travel-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_coastal_travel.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 124,
+      "seconds": 180.03,
+      "errors": [
+        "SCRIPT ERROR: Invalid access to property or key 'return_learned' on a base object of type 'Dictionary'."
+      ],
+      "status": "FAIL"
+    },
+    {
+      "name": "first_region_gado-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_first_region_gado.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 8.7,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "saved_position_relocation-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_position_relocation.gd"
+      ],
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "seconds": 2.99,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "saved_value_types-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_value_types.gd"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "seconds": 1.53,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "save_contract-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_save_contract.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 124,
+      "seconds": 180.04,
+      "errors": [],
+      "status": "FAIL"
+    },
+    {
+      "name": "save_complete-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_save_complete.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 124,
+      "seconds": 180.03,
+      "errors": [],
+      "status": "FAIL"
+    },
+    {
+      "name": "first_region_screen-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_first_region_screen.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 3.47,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "locked",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/run_locked_checks.py"
+      ],
+      "timeout_seconds": 1800,
+      "exit_code": 0,
+      "seconds": 137.66,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "scope-cli",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "D:\\Codex\\.codex\\scope-lock\\scripts\\verify_cli.py",
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006"
+      ],
+      "timeout_seconds": 1800,
+      "exit_code": 0,
+      "seconds": 140.05,
+      "errors": [],
+      "status": "PASS"
+    }
+  ]
+}
