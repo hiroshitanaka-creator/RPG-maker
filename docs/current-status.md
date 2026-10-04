@@ -1,5 +1,9 @@
 # 現在の実装・受入・残作業
 
+## 2026-10-04・村の背景土台
+
+準備はmain `dad3fca` に統合済み。[CI 37163349819](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37163349819) は全3ジョブ成功。村の採用原画5点から独立した背景・上層10素材と通行地図を制作する区切り。技術記録は [村の背景土台](region2-village-backdrops.md)。本番接続・NPC・会話・販売品・職業解放の新場面は未実装で、見た目の採用は未評価。以下の基準mainと準備段階は各記録時点の履歴。
+
 ## 2026-10-03・世界マップ攻略型の現在地
 
 基準main `0674954` は承認済みの第1地方導入・見逃し回収・旧保存互換・保存位置補正の通知を含む。 [CI 37158729305](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37158729305) は全3ジョブ成功。検査・素材・未検証の内訳は [導入の技術記録](first-region-intro-implementation.md)。村と遺跡は [実装前準備](sprint6-oasis-preparation.md) を保存する段階で、ゲーム接続は未実施。具体的な職業解放場面と新しい販売品等を未決のまま実装しない。

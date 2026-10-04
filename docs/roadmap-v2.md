@@ -4,6 +4,8 @@ RPG-maker 今後の計画
 
 > 現在の状態（2026-10-03 UTC）：導入追加と保存位置補正の通知はmainへ統合済み。基準main `0674954` の [CI 37158729305](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37158729305) は全3ジョブ成功。以下の未実装・追送待ち・push禁止・CI未実行は、それぞれ記録時点の履歴。最新の検査は [通知修正の記録](verification/first-region-intro/load-notice-checks.json) と [技術記録](first-region-intro-implementation.md) を参照。大きい生成原画の画素照合と人間の聴感・テンポ評価は未実施。
 
+2026-10-04：準備はmain `dad3fca` に統合済み、main CI 37163349819は全3ジョブ成功。承認済みの村外観と4室だけを独立した背景・上層・通行地図として制作する区切りは [村の背景土台](region2-village-backdrops.md)。本番接続・人物・品目・新しい職業解放場面は未実装。
+
 村・室内4枚の用途と実装前の準備範囲は [準備記録](sprint6-oasis-preparation.md) を参照。計画案全体を実装承認と解釈しない。
 
 ## 2026年10月1日の決定：物語統合案の保存と文書反映
