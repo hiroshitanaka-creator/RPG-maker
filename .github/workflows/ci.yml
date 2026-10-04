@@ -230,6 +230,15 @@ jobs:
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" region2-village-backdrops.log; then exit 1; fi
           test "$(grep -c '^VILLAGE_RUNTIME_PASS:' region2-village-backdrops.log)" -eq 1
 
+      - name: 007完成版と最新の住人・宿・祠・通常操作を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          git fetch --no-tags --depth=1 origin 8694aad22ce8ceab74ac96c090360739c30d9983
+          git fetch --no-tags --depth=1 origin a8148389b19bddb2a05eb97471ffeea510238c90
+          python -m pip install pillow numpy scipy
+          sudo apt-get update && sudo apt-get install -y xvfb mesa-vulkan-drivers
+          python tools/check_task007.py --completed a8148389b19bddb2a05eb97471ffeea510238c90 --godot ./godot
+
       - name: 敵の行動予定と連戦の保存を検査
         if: steps.check.outputs.exists == 'true'
         run: |
