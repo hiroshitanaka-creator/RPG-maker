@@ -41,10 +41,14 @@ def main():
     paths = {r['path'] for _, r in outputs}
     # 今回の6項目だけ更新。既存1134項目の内容・順序を保持する。
     registry['assets'] = [e for e in registry['assets'] if e['path'] not in paths]
+    # 既存背景再生成器は村の10項目を末尾へ再登録する。6項目はその直前に挿入する。
+    insertion=next(i for i,e in enumerate(registry['assets']) if str(e.get('conversion_record','')).startswith('assets/source_records/region2-village-backdrops.json#'))
+    additions=[]
     for image, record in outputs:
         target = ROOT/record['path']; target.parent.mkdir(parents=True, exist_ok=True); image.save(target)
         record['sha256'] = sha(target)
-        registry['assets'].append(dict(path=record['path'], kind='character_walk', size=[96,192], frame=[32,48], grid=[3,4], max_colors=16, status='required', palette='assets/palette/natural.gpl', source='generated', tool='imagegen + Python/Pillow', generated_at='2026-10-04', author='RPG-maker / Codex（設定原画：依頼者）', license='LicenseRef-Generated-Project', prompt_record='assets/source_records/task007-residents-generation.json', conversion_record=RECORD, original_file=OWNER, modified=record['operations']))
+        additions.append(dict(path=record['path'], kind='character_walk', size=[96,192], frame=[32,48], grid=[3,4], max_colors=16, status='required', palette='assets/palette/natural.gpl', source='generated', tool='imagegen + Python/Pillow', generated_at='2026-10-04', author='RPG-maker / Codex（設定原画：依頼者）', license='LicenseRef-Generated-Project', prompt_record='assets/source_records/task007-residents-generation.json', conversion_record=RECORD, original_file=OWNER, modified=record['operations']))
+    registry['assets'][insertion:insertion]=additions
     for path, value in [(ROOT/'assets/registry.json', registry), (ROOT/RECORD, dict(owner_unchanged=True, palette_added=[], entries=[r for _,r in outputs]))]:
         path.write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n')
     font = ImageFont.truetype(str(ROOT/'assets/fonts/notosansjp/NotoSansJP.ttf'), 18)

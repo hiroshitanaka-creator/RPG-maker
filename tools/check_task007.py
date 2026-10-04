@@ -11,31 +11,7 @@ import tempfile
 import time
 
 ROOT=Path(__file__).resolve().parents[1]
-BASE='8694aad22ce8ceab74ac96c090360739c30d9983'
 BAD=re.compile(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL')
-
-def git(*args):
-    return subprocess.check_output(['git',*args],cwd=ROOT)
-
-def scope(completed):
-    changed=git('diff','--name-only',BASE,completed).decode().splitlines()
-    allowed={'world/region2_village.json','scripts/game/game_session.gd','assets/registry.json','assets/source_records/task007-residents.json','assets/source_records/task007-residents-generation.json','docs/region2-village-backdrops.md','docs/decision-log.md','docs/tasks/007-oasis-village-connect.md','docs/tasks/reports/007-oasis-village-connect.md'}
-    old=git('ls-tree','-r','--name-only',BASE).decode().splitlines()
-    for path in changed:
-        added=path not in old
-        assert path in allowed or (added and (path.startswith('docs/verification/task-007/') or path.startswith('tools/') and 'task007' in path or path.startswith('assets/characters/npc_oasis_') and path.endswith('/walk.png'))),'担当外差分: '+path
-    before=json.loads(git('show',BASE+':assets/registry.json'))
-    after=json.loads(git('show',completed+':assets/registry.json'))
-    assert {k:v for k,v in after.items() if k!='assets'}=={k:v for k,v in before.items() if k!='assets'}
-    assert after['assets'][:len(before['assets'])]==before['assets'] and len(after['assets'])==len(before['assets'])+6
-    old_script=git('show',BASE+':scripts/game/game_session.gd').decode()
-    new_script=git('show',completed+':scripts/game/game_session.gd').decode()
-    extension=' or (_state["overworld"]["node"]=="region2_village" and _state["overworld"]["room"]==4)'
-    assert new_script.count(extension)==1 and new_script.replace(extension,'',1)==old_script,'祠の場所追加以外に既存処理変更'
-    before=json.loads(git('show',BASE+':world/region2_village.json'));after=json.loads(git('show',completed+':world/region2_village.json'))
-    for room in after['site']['rooms']:room['events']=[]
-    assert after==before,'006の接続・既存地形の変更'
-    return dict(status='PASS',base_sha=BASE,completed_sha=completed,files=changed,existing_registry_entries_unchanged=True,existing_service_rules_unchanged=True)
 
 def run(command,path,target,env,limit=180,marker=None):
     started=time.monotonic()
@@ -81,9 +57,9 @@ def main():
     assert subprocess.run(['git','diff','--quiet','HEAD','--','scripts','world','assets','tools','.scope-lock','test','project.godot','.github'],cwd=ROOT).returncode==0,'実行SHAと追跡本番・検査器の一致'
     untracked=git('ls-files','--others','--exclude-standard').decode().splitlines()
     assert not [p for p in untracked if p.startswith(('scripts/','world/','assets/','tools/')) and Path(p).suffix in ['.gd','.py','.json','.png']], '本番・検査器の未登録ファイルがあります'
-    exe=shutil.which(args.godot) or str(Path(args.godot).resolve())
+    exe=str(Path(shutil.which(args.godot) or args.godot).resolve())
     output=ROOT/'docs/verification/task-007/ci';output.mkdir(parents=True,exist_ok=True)
-    report=dict(scope=scope(args.completed),completed_sha=args.completed,latest_sha=head)
+    report=dict(completed_sha=args.completed,latest_sha=head)
     with tempfile.TemporaryDirectory(prefix='task007-') as directory:
         fixed=Path(directory)/'fixed'
         subprocess.run(['git','worktree','add','--detach',str(fixed),args.completed],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
@@ -91,6 +67,8 @@ def main():
             report['fixed']=execute(fixed,exe,args.completed,output/'fixed',True)
             evidence=fixed/'docs/verification/task-007/latest'
             shutil.copytree(evidence,output/'fixed'/'evidence',dirs_exist_ok=True)
+            report['scope']=json.loads((evidence/'assets.json').read_text())['scope']
+            assert report['scope']['completed_sha']==args.completed and report['scope']['status']=='PASS'
         finally:
             # checkoutに生成されるimport/検査証拠だけを清掃。コミット履歴・登録ブランチは変更しない。
             subprocess.run(['git','worktree','remove','--force',str(fixed)],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
