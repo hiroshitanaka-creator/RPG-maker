@@ -1,0 +1,26 @@
+{
+  "start_sha": "0ea253e47b7d210581efebd788b42a39fe2271a2",
+  "original_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+  "moved_sha": "38021055d12c1656dc13d3256807357d6fd54eab",
+  "input_sha": "b28a9fbd72f9a10429f3f1e850fa4b951d304abc",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tools/check_task016_scope.py",
+    "--completed-sha",
+    "38021055d12c1656dc13d3256807357d6fd54eab",
+    "--fixed-path",
+    "/workspace/task018/moved016",
+    "--latest-sha",
+    "b28a9fbd72f9a10429f3f1e850fa4b951d304abc"
+  ],
+  "exit_code": 1,
+  "report": {
+    "status": "FAIL",
+    "execution_sha": "b28a9fbd72f9a10429f3f1e850fa4b951d304abc",
+    "expected016_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+    "expected016_tree": "02105ab24ef39a2acf7405274e040d8cefaa399b",
+    "results": {},
+    "failure": "016 CLIの固定SHAが独立定数と不一致"
+  },
+  "stderr": ""
+}

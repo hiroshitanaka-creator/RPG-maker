@@ -1,0 +1,64 @@
+{
+  "scope-positive": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_task016_scope.py",
+      "--completed-sha",
+      "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "--fixed-path",
+      "/workspace/task018/fixed016",
+      "--latest-sha",
+      "1e32aaf43abf32381a4404d9904a97700c3681b5"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 19.211
+  },
+  "fixed012-original17": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/workspace/task018/fixed012/tools/test_task012_pinned_audit.py",
+      "--current-path",
+      ".",
+      "--fixed009-path",
+      "/workspace/task018/fixed009",
+      "--completed012-sha",
+      "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a",
+      "--latest-sha",
+      "1e32aaf43abf32381a4404d9904a97700c3681b5"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 1.884
+  },
+  "fixed012-anchor": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_task016_fixed_anchor.py",
+      "--fixed012-path",
+      "/workspace/task018/fixed012",
+      "--latest-sha",
+      "1e32aaf43abf32381a4404d9904a97700c3681b5"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.263
+  },
+  "fixed012-cases14": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/test_task016_fixed_anchor.py",
+      "--fixed012-path",
+      "/workspace/task018/fixed012",
+      "--latest-sha",
+      "1e32aaf43abf32381a4404d9904a97700c3681b5"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 3.68
+  },
+  "frozen": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_frozen_files.py"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.03
+  }
+}

@@ -15,6 +15,9 @@ from test_task012_pinned_audit import WORKFLOW, normalized_request, resolve, run
 
 START = 'cc86765d7b5bba158dca8b828a626aad98610f12'
 RECORD = 'docs/verification/task-016/completed-audit.json'
+# 018依頼書の承認済み016完成点。CLI・最新manifest・workflowから生成しない。
+EXPECTED016 = '6706397e2674ffa382852e0f33ce23edf5c76634'
+TREE016 = '02105ab24ef39a2acf7405274e040d8cefaa399b'
 # 016依頼書の変更範囲をそのまま固定。006/009/012の許可一覧は変更しない。
 PERMITTED = {WORKFLOW, 'tools/check_task016_fixed_anchor.py', 'tools/test_task016_fixed_anchor.py',
              'tools/check_task016_scope.py', 'tools/check_region2_village_regression.gd',
@@ -47,20 +50,31 @@ def audit(repo: Path, completed: str) -> dict:
             'changed_files': changed, 'preserved_paths': len(base)-len(changed), 'failures': failures}
 
 
-def verify_record(repo: Path, latest: str, completed: str, fixed: Path) -> dict:
-    record = json.loads(show(repo, latest, RECORD))
-    if record['completed_sha'] != completed or record['start_sha'] != START:
-        raise ValueError('016完成記録と明示固定SHA/開始点が不一致')
-    if run(fixed, 'rev-parse', 'HEAD').decode().strip() != completed:
+def verify_completed(repo: Path, completed: str, fixed: Path) -> None:
+    if completed != EXPECTED016:
+        raise ValueError('016 CLIの固定SHAが独立定数と不一致')
+    resolve(repo, EXPECTED016)
+    if run(repo, 'rev-parse', EXPECTED016 + '^{tree}').decode().strip() != TREE016:
+        raise ValueError('016完成commitのtreeが独立定数と不一致')
+    if run(fixed, 'rev-parse', 'HEAD').decode().strip() != EXPECTED016:
         raise ValueError('016固定checkoutのHEAD不一致')
-    if run(fixed, 'rev-parse', 'HEAD^{tree}').decode().strip() != record['completed_tree']:
+    if run(fixed, 'rev-parse', 'HEAD^{tree}').decode().strip() != TREE016:
         raise ValueError('016固定checkoutのtree不一致')
     if run(fixed, 'diff', '--name-only', 'HEAD').strip():
         raise ValueError('016固定checkoutの追跡入力がdirty')
+
+
+def verify_record(repo: Path, latest: str, completed: str, fixed: Path) -> dict:
+    verify_completed(repo, completed, fixed)
+    record = json.loads(show(repo, latest, RECORD))
+    if record['completed_sha'] != EXPECTED016 or record['start_sha'] != START:
+        raise ValueError('016完成記録の固定SHA/開始点が独立定数と不一致')
+    if record['completed_tree'] != TREE016:
+        raise ValueError('016完成記録のtreeが独立定数と不一致')
     workflow = show(repo, latest, WORKFLOW).decode()
-    if re.findall(r'^  FIXED_016_SHA: (\S+)$', workflow, re.M) != [completed]:
+    if re.findall(r'^  FIXED_016_SHA: (\S+)$', workflow, re.M) != [EXPECTED016]:
         raise ValueError('016 workflowの固定完全SHA不一致')
-    if f'ref: {completed}\n          fetch-depth: 0\n          path: completed016' not in workflow:
+    if f'ref: {EXPECTED016}\n          fetch-depth: 0\n          path: completed016' not in workflow:
         raise ValueError('016の固定別checkout欠損')
     return audit(fixed, completed)
 
@@ -73,11 +87,14 @@ def main() -> int:
     parser.add_argument('--bootstrap', action='store_true', help='完成commit初回のみ、まだ記録のない完成差分を直接監査する')
     args = parser.parse_args()
     out = ROOT / 'docs/verification/task-016/scope-checks.json'; out.parent.mkdir(parents=True, exist_ok=True)
-    results = {}; report = {'status': 'FAIL', 'execution_sha': args.latest_sha, 'results': results}
+    results = {}; report = {'status': 'FAIL', 'execution_sha': args.latest_sha,
+                           'expected016_sha': EXPECTED016, 'expected016_tree': TREE016, 'results': results}
     try:
         resolve(ROOT, args.latest_sha)
         if run(ROOT, 'rev-parse', 'HEAD').decode().strip() != args.latest_sha:
             raise ValueError('最新SHAと実行HEAD不一致')
+        # 初回用bootstrapでも独立定数の照合を迂回しない。
+        verify_completed(ROOT, args.completed_sha, args.fixed_path)
         original = audit(args.fixed_path, args.completed_sha)
         if original['status'] != 'PASS':raise ValueError('016完成差分が許可範囲外: '+str(original['failures']))
         if not args.bootstrap:
@@ -105,6 +122,70 @@ def main() -> int:
             if rejected['status'] != 'FAIL' or 'scripts/game/game_session.gd' not in rejected['failures']:
                 raise ValueError('016完成差分内の本番改変を受理')
             results['broken-completed-scope'] = {'status': 'PASS', 'rejected_audit': rejected}
+            if not args.bootstrap:
+                # 017F3と同じ状態子commit。範囲監査単体に通ることも前提として実測する。
+                state = normalized_request(show(repo, EXPECTED016, request)).replace(
+                    b'- state: excluded', '- 状態：018同時付替えコピー'.encode())
+                moved = synthetic(repo, EXPECTED016, {request: state})
+                if audit(repo, moved)['status'] != 'PASS':
+                    raise ValueError('F3反証の状態子commitが元の許可範囲を逸脱')
+                manifest = json.loads(show(repo, args.latest_sha, RECORD))
+                shifted = {**manifest, 'completed_sha': moved,
+                           'completed_tree': run(repo, 'rev-parse', moved + '^{tree}').decode().strip()}
+                workflow = show(repo, args.latest_sha, WORKFLOW)
+                checkout = Path(directory) / 'fixed'
+                run(repo, 'clone', '--quiet', '--no-hardlinks', str(repo), str(checkout))
+                cases = [
+                    ('state-child-manifest-workflow-cli-checkout',
+                     {RECORD: json.dumps(shifted).encode(), WORKFLOW: workflow.replace(EXPECTED016.encode(), moved.encode())},
+                     moved, moved, 'CLIの固定SHA'),
+                    ('wrong-manifest-sha', {RECORD: json.dumps({**manifest, 'completed_sha': moved}).encode()},
+                     EXPECTED016, EXPECTED016, '完成記録の固定SHA'),
+                    ('wrong-manifest-tree', {RECORD: json.dumps({**manifest, 'completed_tree': 'f' * 40}).encode()},
+                     EXPECTED016, EXPECTED016, '完成記録のtree'),
+                    ('wrong-manifest-start', {RECORD: json.dumps({**manifest, 'start_sha': moved}).encode()},
+                     EXPECTED016, EXPECTED016, '完成記録の固定SHA/開始点'),
+                    ('wrong-workflow-sha', {WORKFLOW: workflow.replace(
+                        ('FIXED_016_SHA: ' + EXPECTED016).encode(), ('FIXED_016_SHA: ' + moved).encode())},
+                     EXPECTED016, EXPECTED016, 'workflowの固定完全SHA'),
+                    ('wrong-workflow-checkout', {WORKFLOW: workflow.replace(
+                        ('ref: ' + EXPECTED016).encode(), ('ref: ' + moved).encode())},
+                     EXPECTED016, EXPECTED016, '固定別checkout欠損'),
+                    ('missing-workflow-checkout', {WORKFLOW: workflow.replace(b'path: completed016', b'path: missing016')},
+                     EXPECTED016, EXPECTED016, '固定別checkout欠損'),
+                    ('missing-record-fields', {RECORD: b'{}'}, EXPECTED016, EXPECTED016, 'completed_sha'),
+                    ('invalid-record-json', {RECORD: b'not json'}, EXPECTED016, EXPECTED016, 'Expecting value'),
+                    ('malformed-cli-sha', {}, 'HEAD', EXPECTED016, 'CLIの固定SHA'),
+                    ('nonexistent-cli-sha', {}, '0' * 40, EXPECTED016, 'CLIの固定SHA'),
+                    ('state-child-actual-checkout', {}, EXPECTED016, moved, 'checkoutのHEAD'),
+                ]
+                for name, changes, cli, actual, reason in cases:
+                    commit = synthetic(repo, args.latest_sha, changes)
+                    run(checkout, 'checkout', '--quiet', '--detach', actual)
+                    try:
+                        verify_record(repo, commit, cli, checkout)
+                    except (ValueError, KeyError) as exc:
+                        if reason not in str(exc):
+                            raise ValueError('負例が意図しない理由で失敗: ' + name + ': ' + str(exc)) from exc
+                        results[name] = {'status': 'PASS', 'input_sha': commit, 'cli_sha': cli,
+                                         'checkout_sha': actual, 'rejection': str(exc)}
+                    else:
+                        raise ValueError('異常016完成参照を受理: ' + name)
+                run(checkout, 'checkout', '--quiet', '--detach', EXPECTED016)
+                run(repo, 'checkout', '--quiet', '--detach', args.latest_sha)
+                run(repo, 'rm', '--quiet', RECORD)
+                run(repo, '-c', 'user.name=018コピー', '-c', 'user.email=qa@example.invalid',
+                    'commit', '--quiet', '-m', '016完成記録欠損の負例')
+                missing = run(repo, 'rev-parse', 'HEAD').decode().strip()
+                for name, commit, path in [
+                    ('missing-record-file', missing, checkout),
+                    ('missing-actual-checkout', args.latest_sha, Path(directory) / 'missing')]:
+                    try:
+                        verify_record(repo, commit, EXPECTED016, path)
+                    except (ValueError, OSError) as exc:
+                        results[name] = {'status': 'PASS', 'input_sha': commit, 'rejection': str(exc)}
+                    else:
+                        raise ValueError('016固定入力の欠損を受理: ' + name)
         report['status'] = 'PASS'
     except (ValueError, OSError, KeyError, TypeError) as exc:
         report['failure'] = str(exc)
