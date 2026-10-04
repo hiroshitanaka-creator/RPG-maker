@@ -1,0 +1,251 @@
+{
+  "status": "PASS",
+  "latest_sha": "15248ac3f93b30ed75760b7dbd50fb880d64af56",
+  "results": {
+    "completed012-scope": {
+      "status": "PASS",
+      "start_sha": "8ed58c00f8d7d16e2df24f3273f18019d2406002",
+      "execution_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a",
+      "changed_files": [
+        ".github/workflows/region2-village-connections.yml",
+        "docs/decision-log.md",
+        "docs/tasks/009-test-lifecycle.md",
+        "docs/tasks/012-pin-completed-audit.md",
+        "docs/tasks/reports/012-pin-completed-audit.md",
+        "docs/verification/task-012/ce07-all-ci.json",
+        "docs/verification/task-012/plan.md",
+        "tools/test_task012_pinned_audit.py"
+      ],
+      "preserved_paths": 5002,
+      "failures": []
+    },
+    "completed009-scope": {
+      "exit_code": 0,
+      "status": "PASS",
+      "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+      "failures": [],
+      "timeout_seconds": 180
+    },
+    "new-request": {
+      "status": "PASS",
+      "input_sha": "5181f03b738e56c0308221675999a6f03bcacc0d",
+      "changes": [
+        "docs/tasks/099-copy-only.md"
+      ],
+      "selection": {
+        "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+      },
+      "fixed009_audit": {
+        "exit_code": 0,
+        "status": "PASS",
+        "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "failures": [],
+        "timeout_seconds": 180
+      },
+      "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+    },
+    "009-state-only": {
+      "status": "PASS",
+      "input_sha": "0d834e50c89df048be60c6fd86e6186a4aebf482",
+      "changes": [
+        "docs/tasks/009-test-lifecycle.md"
+      ],
+      "selection": {
+        "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+      },
+      "fixed009_audit": {
+        "exit_code": 0,
+        "status": "PASS",
+        "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "failures": [],
+        "timeout_seconds": 180
+      },
+      "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+    },
+    "state-and-new-request-same-commit": {
+      "status": "PASS",
+      "input_sha": "b37e8927ca9a7d309572b0a0ec4c8a9b806133a5",
+      "changes": [
+        "docs/tasks/009-test-lifecycle.md",
+        "docs/tasks/099-copy-only.md"
+      ],
+      "selection": {
+        "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+      },
+      "fixed009_audit": {
+        "exit_code": 0,
+        "status": "PASS",
+        "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "failures": [],
+        "timeout_seconds": 180
+      },
+      "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+    },
+    "state-and-010-011-same-commit": {
+      "status": "PASS",
+      "input_sha": "0a01147d5135ce411a40f2a3a8d77c84cc9116b3",
+      "changes": [
+        "docs/tasks/009-test-lifecycle.md",
+        "docs/tasks/010-record-ner.md",
+        "docs/tasks/011-ruins-dungeon-groundwork.md"
+      ],
+      "selection": {
+        "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+      },
+      "fixed009_audit": {
+        "exit_code": 0,
+        "status": "PASS",
+        "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "failures": [],
+        "timeout_seconds": 180
+      },
+      "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+    },
+    "future-other-scope": {
+      "status": "PASS",
+      "input_sha": "b8bec25416e69f7b3b79d08225210333acbd8bc6",
+      "changes": [
+        "scripts/game/game_session.gd"
+      ],
+      "selection": {
+        "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+      },
+      "fixed009_audit": {
+        "exit_code": 0,
+        "status": "PASS",
+        "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "failures": [],
+        "timeout_seconds": 180
+      },
+      "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+    },
+    "012-state-only": {
+      "status": "PASS",
+      "input_sha": "2eac00db36c0193152bf204247cf0090cf19e3e2",
+      "changes": [
+        "docs/tasks/012-pin-completed-audit.md"
+      ],
+      "selection": {
+        "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+      },
+      "fixed009_audit": {
+        "exit_code": 0,
+        "status": "PASS",
+        "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "failures": [],
+        "timeout_seconds": 180
+      },
+      "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+    },
+    "historical-state-and-010-011-added": {
+      "status": "PASS",
+      "input_sha": "94116823d45b77822fa719cc4896000e91c6d841",
+      "changes": [
+        ".github/workflows/region2-village-connections.yml",
+        "docs/tasks/009-test-lifecycle.md",
+        "docs/tasks/010-record-ner.md",
+        "docs/tasks/011-ruins-dungeon-groundwork.md",
+        "docs/verification/task-012/completed-audit.json"
+      ],
+      "selection": {
+        "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+      },
+      "fixed009_audit": {
+        "exit_code": 0,
+        "status": "PASS",
+        "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "failures": [],
+        "timeout_seconds": 180
+      },
+      "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+    },
+    "old-selector-parent-registration": {
+      "status": "PASS",
+      "old_selected_sha": "a1022b6340d772900563b0d2f60969f9adf50b25",
+      "exit_code": 1,
+      "execution_sha": "a1022b6340d772900563b0d2f60969f9adf50b25",
+      "failures": [
+        "docs/tasks/010-record-ner.md",
+        "docs/tasks/011-ruins-dungeon-groundwork.md"
+      ],
+      "timeout_seconds": 180
+    },
+    "wrong009-sha": {
+      "status": "PASS",
+      "rejection": "独立期待値と固定選択が一致しない: FIXED_009_SHA",
+      "input_sha": "4778d17d4984b9123ea45e3a6d61d352da79f000"
+    },
+    "nonexistent-sha": {
+      "status": "PASS",
+      "rejection": "独立期待値と固定選択が一致しない: FIXED_009_SHA",
+      "input_sha": "bc22ddf6bdf5a68bde97943d19d2d89b52e445a9"
+    },
+    "wrong012-sha": {
+      "status": "PASS",
+      "rejection": "独立期待値と固定選択が一致しない: FIXED_012_SHA",
+      "input_sha": "519f249007e42c75b25ed24cb94f3158e42e644a"
+    },
+    "nonexistent-object": {
+      "status": "PASS",
+      "rejection": "git失敗: rev-parse --verify 0000000000000000000000000000000000000000^{commit}\nfatal: Needed a single revision\n"
+    },
+    "broken009-target": {
+      "status": "PASS",
+      "rejected_sha": "8f44640e164eee8d3d43fdb7caeab263c1604aab",
+      "audit": {
+        "exit_code": 1,
+        "status": "FAIL",
+        "execution_sha": "8f44640e164eee8d3d43fdb7caeab263c1604aab",
+        "failures": [
+          "docs/tasks/099-copy-only.md"
+        ],
+        "timeout_seconds": 180
+      }
+    },
+    "broken012-target": {
+      "status": "PASS",
+      "audit": {
+        "status": "FAIL",
+        "start_sha": "8ed58c00f8d7d16e2df24f3273f18019d2406002",
+        "execution_sha": "51571144fa669e711a34092bb78c933e6995f9ea",
+        "changed_files": [
+          ".github/workflows/region2-village-connections.yml",
+          "docs/decision-log.md",
+          "docs/tasks/009-test-lifecycle.md",
+          "docs/tasks/012-pin-completed-audit.md",
+          "docs/tasks/reports/012-pin-completed-audit.md",
+          "docs/verification/task-012/ce07-all-ci.json",
+          "docs/verification/task-012/plan.md",
+          "scripts/game/game_session.gd",
+          "tools/test_task012_pinned_audit.py"
+        ],
+        "preserved_paths": 5001,
+        "failures": [
+          "scripts/game/game_session.gd"
+        ]
+      }
+    },
+    "modified009-checkout": {
+      "status": "PASS",
+      "rejection": "固定009 checkoutの本番/検査器が改変されている"
+    }
+  },
+  "fixed006_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+  "fixed009_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+  "completed012_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a",
+  "completed012_tree": "1a128f883bd555653bd9eea3082c09b875c1f7e5"
+}
