@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+  "results": {
+    "runtime": {
+      "status": "PASS",
+      "command": [
+        "/workspace/qa009/bin/godot",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 7662,
+      "elapsed_seconds": 27.784,
+      "timeout_seconds": 180
+    },
+    "restart-0": {
+      "status": "PASS",
+      "command": [
+        "/workspace/qa009/bin/godot",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "0"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 10,
+      "elapsed_seconds": 1.19,
+      "timeout_seconds": 180
+    },
+    "restart-1": {
+      "status": "PASS",
+      "command": [
+        "/workspace/qa009/bin/godot",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "1"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 27,
+      "elapsed_seconds": 1.194,
+      "timeout_seconds": 180
+    },
+    "restart-2": {
+      "status": "PASS",
+      "command": [
+        "/workspace/qa009/bin/godot",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "2"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 38,
+      "elapsed_seconds": 1.294,
+      "timeout_seconds": 180
+    },
+    "restart-3": {
+      "status": "PASS",
+      "command": [
+        "/workspace/qa009/bin/godot",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "3"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 52,
+      "elapsed_seconds": 1.288,
+      "timeout_seconds": 180
+    },
+    "restart-4": {
+      "status": "PASS",
+      "command": [
+        "/workspace/qa009/bin/godot",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "4"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 44,
+      "elapsed_seconds": 1.197,
+      "timeout_seconds": 180
+    }
+  },
+  "service_acceptance": "007未着手・未検証",
+  "method": "最新checkoutの本番API。期待値は固定006の独立fixture。"
+}

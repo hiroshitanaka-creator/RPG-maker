@@ -191,3 +191,71 @@
 初回842306fのCIは、負例用コピーにlatest出力がまだ無いときrmtreeが終了1となった。クリーンコピーでlatestを生成する方式へ修正し、古い結果JSONも実行前に除く。警告や機能失敗を許容する変更ではない。最新回帰の帰還期待値を全帰還先の固定位置・向き・entry_lock・船位置で独立化し、船未所有も追加、表示map全体の固定照合を追加した。既存の段階限定条件は固定側で全て維持する。
 
 試作時のローカル動作証拠は未コミットの検査器を含むため、表示された当時のHEADだけを厳密な実行コードSHAとは扱わない。最終のCIはclean checkoutのGITHUB_SHAを実行し、最新runnerは本番・検査器・期待値の未コミット変更も拒否する。固定006は初めから別checkoutの完成SHAとコードが一致する。
+
+## 提出と実行結果
+
+完成コードSHA：`d3a9c48b8328085fb79736791d29588915d34b2a`。実装842306f、クリーンコピーと独立期待値の補強d3a9c48を通常commit/push。後続の報告・証拠commitは本番/検査コードを変更しない。PRは [#16](https://github.com/hiroshitanaka-creator/RPG-maker/pull/16)。開始mainと最終統合直前のmainはともに5f1c2ba（再fetch実施）。
+
+| コマンド | 実行対象・結果 | 証拠 |
+| --- | --- | --- |
+| `godot --headless --editor --import --quit`（timeout600） | 規定4.7.2、固定/最新とも終了0・エラー/警告0 | fixed-import.log、latest-import.log |
+| `python tools/check_task009_lifecycle.py --fixed-path <別checkout> --fixed-sha 5f1c2ba… --godot <規定版>` | 固定006のscope PASS、7592項目、20状態、5別プロセスPASS。ローカル全体36.034秒 | fixed/lifecycle-summary.json、fixed/各JSON・log・保存実物 |
+| 同上 `--capture journey/details/restart-0〜4` | 固定の137/34/17×5項目、49枚。全mode終了0、警告/エラー0。各180秒内 | fixed-render/各mode/checks.json・PNG・execution.log |
+| `python tools/check_region2_village_regression.py --commit HEAD --godot <規定版>` | clean d3a9c48で7662項目、20状態、5別プロセスPASS。全6プロセス計33.947秒 | latest/regression-summary.json、各JSON・log・保存実物 |
+| 同上 `--capture journey/details/restart-0〜4` | 最新の132/34/17×5項目、49枚、全mode終了0・警告/エラー0。ローカル画面は842306fの試作、最終d3a9c48の全画面はpush/PR CIで実行し成功 | latest/各mode、ci/d3-push-jobs.json、d3-all-checks.json |
+| `python tools/test_task009_lifecycle.py --fixed-path <別checkout> --godot <規定版>` | 誤SHAは終了1、扉0の室1→2は終了1・扉assertion失敗、不正room5受理は終了1・拒否assertion5失敗。timeout/Parse Error0。後続登録+NPC占有のコピー正例は7662項目PASS | negative-cases/summary.json と全負例JSON/log |
+| `python tools/check_task009_assertion_map.py` | 135箇所、未分類0、fixture固定006一致 | assertion-map.json / .md、CIログ |
+| `python tools/run_locked_checks.py` | R-01〜R-08全8件PASS、全体テストと14条件の通常操作通しを含む。最終d3a9c48も既存CIで全件PASS | locked-results.json、locked-checks.log、CI Godot jobのPASSマーカー |
+| `python tools/check_frozen_files.py` | 保護26/26一致 | CI各jobの照合・scope監査 |
+| `python tools/validate_assets.py --strict` | 終了0、問題なし | assets-strict.log、既存CI素材job |
+| `python tools/check_task009_scope.py --commit HEAD` / `--worktree` | 009担当内、削除0、既存CI/検査/本番/素材不変。親承認4パスと007/008保持 | scope-checks.json、preservation.json |
+| `git diff --check` / Pythonコンパイル | 終了0 | ローカル実行 |
+
+原画を含む2181パスの開始SHAからのSHA-256一致、assets/_incoming/334件不変を全件記録した。009範囲監査では既存検査も含む2423保全パスを照合。006の歴史PNG54枚（通常操作49枚+before5枚）・入力31件は1バイトも変えない。元の006検査器・撮影器・ALLOWEDとci.ymlは不変。007/008本文・状態行も親152cdb1と全バイト一致。
+
+分類数：最新でも継続 121箇所, 007の承認済み新機能で置き換える現在条件 4箇所, 当時だけ 10箇所。各コマンド180秒、import600秒、追加job15分を全て維持。撮影の600移動・3000入力・300ターンも不変。画像49枚を固定側/最新側で欠かさず毎回別jobで検証する。
+
+## 完成コードの全CI（全job終了確認済み）
+
+- d3a9c48 push：通常CI [37193610582](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610582) 全3、専用CI [37193610575](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575) 全17が成功。
+- d3a9c48 PR：通常CI [37193612812](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193612812) 全3、専用CI [37193612767](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193612767) 全17が成功。計40/40。PR側のcheckoutはGitHub合流候補SHA、固定側は常に5f1c2baである。
+- 初回842306fの通常CI3件は成功、専用CIは16成功/負例道具のディレクトリ前提1失敗。失敗を成功扱いせず、ci/842-negative-failure.logを残した。修正後は固定/最新の項目・予算を保って全job成功。
+
+下表の時間はGitHub job全体（setup/import/uploadを含む）。実行コマンド単体の時間・件数・対象SHAはci/d3-push-jobs.jsonへ実測ログから保存した。PR側全jobの開始/終了/所要時間と結果はci/d3-all-checks.jsonに保存。
+
+| job（push） | 実行コードSHA | 結果・件数 | 時間（秒） |
+| --- | --- | --- | --- |
+| [lifecycle-audit](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410769971) | d3a9c48（最新） | success / 135分類・範囲・負例3/正例1 | 158 |
+| [normal-input-and-rendering (latest, restart-1)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770097) | d3a9c48（最新） | success / 17項目 / 3枚 | 153 |
+| [acceptance-and-regression (latest)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770132) | d3a9c48（最新） | success / 7662 / 20保存 / 5再起動 | 102 |
+| [acceptance-and-regression (fixed)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770136) | 5f1c2ba（当時の原本） | success / 7592 / 20保存 / 5再起動 | 118 |
+| [normal-input-and-rendering (latest, details)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770151) | d3a9c48（最新） | success / 34項目 / 6枚 | 172 |
+| [normal-input-and-rendering (fixed, restart-3)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770165) | 5f1c2ba（当時の原本） | success / 17項目 / 3枚 | 175 |
+| [normal-input-and-rendering (latest, journey)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770175) | d3a9c48（最新） | success / 132項目 / 28枚 | 235 |
+| [normal-input-and-rendering (latest, restart-0)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770178) | d3a9c48（最新） | success / 17項目 / 3枚 | 152 |
+| [normal-input-and-rendering (fixed, restart-0)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770188) | 5f1c2ba（当時の原本） | success / 17項目 / 3枚 | 142 |
+| [normal-input-and-rendering (fixed, restart-2)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770216) | 5f1c2ba（当時の原本） | success / 17項目 / 3枚 | 127 |
+| [normal-input-and-rendering (fixed, restart-4)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770218) | 5f1c2ba（当時の原本） | success / 17項目 / 3枚 | 213 |
+| [normal-input-and-rendering (fixed, restart-1)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770221) | 5f1c2ba（当時の原本） | success / 17項目 / 3枚 | 156 |
+| [normal-input-and-rendering (latest, restart-2)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770236) | d3a9c48（最新） | success / 17項目 / 3枚 | 159 |
+| [normal-input-and-rendering (fixed, details)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770239) | 5f1c2ba（当時の原本） | success / 34項目 / 6枚 | 201 |
+| [normal-input-and-rendering (latest, restart-3)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770257) | d3a9c48（最新） | success / 17項目 / 3枚 | 161 |
+| [normal-input-and-rendering (latest, restart-4)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770272) | d3a9c48（最新） | success / 17項目 / 3枚 | 192 |
+| [素材検査](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610582/job/111410770115) | d3a9c48（最新） | success / 既存の全検査（GodotはR全8件） | 76 |
+| [Godot・凍結受入テスト](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610582/job/111410770182) | d3a9c48（最新） | success / 既存の全検査（GodotはR全8件） | 219 |
+| [normal-input-and-rendering (fixed, journey)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770258) | 5f1c2ba（当時の原本） | success / 137項目 / 28枚 | 248 |
+| [試遊前の通常戦闘・案内・画面・復帰検査](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610582/job/111410770223) | d3a9c48（最新） | success / 既存の全検査（GodotはR全8件） | 265 |
+
+## main反映と残る制約
+
+全CI・R全件・保護不変・弱体化なし・担当範囲内の5条件を実証した。報告・証拠を提出し、そのCIも全job確認後にPR #16を通常mergeする。main反映SHAと統合後CIは反映後の追記・最終応答に記録する。強制push/履歴変更/原画削除は行わない。
+
+- 009の機械検査は成功。007/008は未着手・未発注のまま。6人会話・宿・祠の機能は009で実装も成功扱いもしない。S01〜S06の正負例の実装は007担当へ引継ぐ。
+- 006に既存の任意旧航路検査の失敗（return_learned参照）と旧保存契約300秒timeoutは未解決として保持する。009で再実行して改善したとは報告しない。現在の航路・保存は既存CIの対象で成功。
+- 人間の主観試遊と約60時間の実測、物理音声機器の聴感検証は未実施。009は検査分離の依頼で、これらを完成扱いにはしない。
+- CI基盤のNode.js 20非推奨は既存の警告。Godotログの警告0と区別する。既存ci.ymlやGUTを修正しない。
+- 判断依頼は0件。007/008を開始しない。
+
+## 変更ファイル一覧
+
+全パスは `docs/verification/task-009/changed-files.txt` に列挙。コード/ルール：AGENTS.md、.github/workflows/region2-village-connections.yml、tools/check_region2_village_regression.py/.gd/.gd.uid、tools/capture_task009_village_regression.gd/.gd.uid、tools/check_task009_scope.py、tools/check_task009_lifecycle.py、tools/check_task009_assertion_map.py、tools/test_task009_lifecycle.py。文書：decision-log、009状態行、本報告。証拠・独立fixture・対応表・全CI・負例・保存実物・画像はdocs/verification/task-009/だけ。親登録006確認/007/008と009依頼書の持込みは009開始SHA以前の変更として分離。

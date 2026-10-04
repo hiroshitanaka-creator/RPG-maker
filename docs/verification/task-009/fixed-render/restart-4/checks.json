@@ -1,0 +1,955 @@
+{
+  "checks": 17,
+  "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+  "failures": [],
+  "images": [
+    "01-restart-room-4.png",
+    "03-position-relocation-notice.png",
+    "02-port-after-restart.png"
+  ],
+  "inputs": [
+    "button:手動セーブから再開",
+    "key:4194305",
+    "button:手動セーブから再開",
+    "key:4194322",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194322",
+    "key:4194319",
+    "key:4194322",
+    "key:4194319",
+    "key:4194319",
+    "key:4194319",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194322",
+    "key:4194321",
+    "key:4194320"
+  ],
+  "limits": {
+    "inputs": 3000,
+    "milliseconds": 180000,
+    "moves": 600,
+    "turns": 300
+  },
+  "method": "港内の人工境界保存（通常save_game）から開始。以後は本番キー・画面ボタン・既存戦闘入力だけ。村へのワープ・状態注入・遭遇変更なし。",
+  "moves": 48,
+  "poses": [
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          33,
+          9
+        ],
+        "facing": 0,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          32,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          31,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          30,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          29,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          28,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          27,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          26,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          25,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          24,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          23,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          22,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          21,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          20,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          19,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          18,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          17,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          16,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          15,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          14,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          13,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          12,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          11,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          10,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          9,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          8,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          7,
+          9
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          7,
+          10
+        ],
+        "facing": 0,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          6,
+          10
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          6,
+          11
+        ],
+        "facing": 0,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          5,
+          11
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          4,
+          11
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        -1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          3,
+          11
+        ],
+        "facing": 1,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          3,
+          12
+        ],
+        "facing": 0,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          88
+        ],
+        "facing": 1,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          89
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          90
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          91
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          92
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          93
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          94
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          95
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          96
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          97
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          98
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          168,
+          99
+        ],
+        "facing": 0,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        1,
+        0
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          169,
+          99
+        ],
+        "facing": 2,
+        "layer": "world",
+        "node": "",
+        "room": 0
+      }
+    },
+    {
+      "direction": [
+        0,
+        -1
+      ],
+      "mode": "world",
+      "pose": {
+        "cell": [
+          4,
+          4
+        ],
+        "facing": 3,
+        "layer": "interior",
+        "node": "brine_port",
+        "room": 0
+      }
+    }
+  ],
+  "renderer": "X11",
+  "shots": [
+    {
+      "camera": [
+        0.0,
+        3.0
+      ],
+      "hidden": 0,
+      "image": "01-restart-room-4.png",
+      "matched": 202,
+      "pose": {
+        "cell": [
+          8,
+          10
+        ],
+        "facing": 0,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 4
+      },
+      "ui_covered": 541,
+      "visible": 202
+    },
+    {
+      "camera": [
+        0.0,
+        3.0
+      ],
+      "hidden": 0,
+      "image": "03-position-relocation-notice.png",
+      "matched": 202,
+      "pose": {
+        "cell": [
+          8,
+          10
+        ],
+        "facing": 0,
+        "layer": "interior",
+        "node": "region2_village",
+        "room": 4
+      },
+      "ui_covered": 541,
+      "visible": 202
+    },
+    {
+      "camera": [],
+      "hidden": 0,
+      "image": "02-port-after-restart.png",
+      "matched": 0,
+      "pose": {
+        "cell": [
+          4,
+          4
+        ],
+        "facing": 3,
+        "layer": "interior",
+        "node": "brine_port",
+        "room": 0
+      },
+      "ui_covered": 0,
+      "visible": 0
+    }
+  ],
+  "source_sha256": "d5c254f0ee4391eda688986b56a72ed925edc242f55152b5458782376359bc61",
+  "status": "PASS",
+  "turns": 0
+}

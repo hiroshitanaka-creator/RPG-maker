@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "execution_sha": "842306feadaef19760022240c3f37004b2ae69c6",
+  "command": [
+    "xvfb-run",
+    "-a",
+    "/workspace/qa009/bin/godot",
+    "--path",
+    "/workspace/RPG-maker",
+    "--rendering-method",
+    "mobile",
+    "--rendering-driver",
+    "vulkan",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "res://tools/capture_task009_village_regression.gd",
+    "--",
+    "--restart",
+    "1"
+  ],
+  "exit_code": 0,
+  "checks": 17,
+  "images": 3,
+  "errors": [],
+  "elapsed_seconds": 33.676,
+  "timeout_seconds": 180
+}

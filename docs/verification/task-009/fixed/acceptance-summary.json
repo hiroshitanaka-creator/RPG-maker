@@ -1,0 +1,388 @@
+{
+  "status": "PASS",
+  "execution_sha": "cbae42a517911e4d7e3c4d48c9690a4219acd548",
+  "requirements": {
+    "1": {
+      "status": "PASS",
+      "evidence": "runtime-checks.json section 1"
+    },
+    "2": {
+      "status": "PASS",
+      "evidence": "runtime-checks.json section 2"
+    },
+    "3": {
+      "status": "PASS",
+      "evidence": "runtime-checks.json section 3"
+    },
+    "4": {
+      "status": "PASS",
+      "evidence": "runtime-checks.json section 4"
+    },
+    "5": {
+      "status": "PASS",
+      "evidence": "runtime-checks.json section 5"
+    },
+    "6": {
+      "status": "PASS",
+      "evidence": "runtime-checks.json section 6"
+    },
+    "7": {
+      "status": "PASS",
+      "evidence": "runtime-checks.json section 7"
+    },
+    "9": {
+      "status": "PASS",
+      "evidence": "runtime-checks.json section 9"
+    },
+    "8": {
+      "status": "PASS",
+      "evidence": "native-final-summary.json、native-evidence-index.json、画像49枚"
+    },
+    "10": {
+      "status": "PASS",
+      "evidence": "scope-checks.json、preservation-checks.json、upstream-preservation.json、original-pc-end-checks.json、保護26件"
+    }
+  },
+  "current_regressions": {
+    "region2_village_scope": {
+      "name": "region2_village_scope",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_village_scope.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 0.24,
+      "errors": [],
+      "status": "PASS"
+    },
+    "region2_village_backdrops": {
+      "name": "region2_village_backdrops",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_village_backdrops.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 47.64,
+      "errors": [],
+      "status": "PASS"
+    },
+    "region2_village_native": {
+      "name": "region2_village_native",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_village_native.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 1.76,
+      "errors": [],
+      "status": "PASS"
+    },
+    "region2_village_palette": {
+      "name": "region2_village_palette",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_village_palette.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 4.13,
+      "errors": [],
+      "status": "PASS"
+    },
+    "region2_port_backdrop": {
+      "name": "region2_port_backdrop",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_region2_port_backdrop.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 13.01,
+      "errors": [],
+      "status": "PASS"
+    },
+    "first_region_gado_data": {
+      "name": "first_region_gado_data",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "-B",
+        "tools/check_first_region_gado_data.py"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 0.72,
+      "errors": [],
+      "status": "PASS"
+    },
+    "region2_village_backdrops-godot": {
+      "name": "region2_village_backdrops-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_village_backdrops.gd"
+      ],
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "seconds": 2.98,
+      "errors": [],
+      "status": "PASS"
+    },
+    "region2_port_backdrop-godot": {
+      "name": "region2_port_backdrop-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_port_backdrop.gd"
+      ],
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "seconds": 1.7,
+      "errors": [],
+      "status": "PASS"
+    },
+    "region2_port-godot": {
+      "name": "region2_port-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_port.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 3.03,
+      "errors": [],
+      "status": "PASS"
+    },
+    "second_region_coast-godot": {
+      "name": "second_region_coast-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_second_region_coast.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 2.37,
+      "errors": [],
+      "status": "PASS"
+    },
+    "first_region_gado-godot": {
+      "name": "first_region_gado-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_first_region_gado.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 8.7,
+      "errors": [],
+      "status": "PASS"
+    },
+    "saved_position_relocation-godot": {
+      "name": "saved_position_relocation-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_position_relocation.gd"
+      ],
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "seconds": 2.99,
+      "errors": [],
+      "status": "PASS"
+    },
+    "saved_value_types-godot": {
+      "name": "saved_value_types-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_value_types.gd"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "seconds": 1.53,
+      "errors": [],
+      "status": "PASS"
+    },
+    "first_region_screen-godot": {
+      "name": "first_region_screen-godot",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_first_region_screen.gd"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 3.47,
+      "errors": [],
+      "status": "PASS"
+    },
+    "scope-cli": {
+      "name": "scope-cli",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "D:\\Codex\\.codex\\scope-lock\\scripts\\verify_cli.py",
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006"
+      ],
+      "timeout_seconds": 1800,
+      "exit_code": 0,
+      "seconds": 140.05,
+      "errors": [],
+      "status": "PASS"
+    },
+    "save-complete-4-ci600": {
+      "name": "save-complete-4-ci600",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_save_complete.gd",
+        "--",
+        "--automated-playtest"
+      ],
+      "timeout_seconds": 600,
+      "exit_code": 0,
+      "seconds": 469.66,
+      "errors": [],
+      "status": "PASS"
+    },
+    "save-complete-3-ci600": {
+      "name": "save-complete-3-ci600",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_save_complete.gd",
+        "--",
+        "--three-member-party",
+        "--teaching-first",
+        "--automated-playtest"
+      ],
+      "timeout_seconds": 600,
+      "exit_code": 0,
+      "seconds": 465.51,
+      "errors": [],
+      "status": "PASS"
+    },
+    "locked-after-upstream": {
+      "name": "locked-after-upstream",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/run_locked_checks.py"
+      ],
+      "timeout_seconds": 1800,
+      "exit_code": 0,
+      "seconds": 143.3,
+      "errors": [],
+      "status": "PASS"
+    },
+    "frozen-after-upstream": {
+      "name": "frozen-after-upstream",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/check_frozen_files.py"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "seconds": 0.09,
+      "errors": [],
+      "status": "PASS"
+    },
+    "assets-after-upstream": {
+      "name": "assets-after-upstream",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 12.13,
+      "errors": [],
+      "status": "PASS"
+    }
+  },
+  "production_blobs_equal_to_upstream_test_commit": {
+    "scripts/world/first_region.gd": true,
+    "scripts/world/first_region_travel.gd": true,
+    "scripts/world/first_region_presentation.gd": true,
+    "scripts/world/first_region_view.gd": true,
+    "scripts/world/region2_village.gd": true,
+    "world/region2_village.json": true
+  },
+  "scope_lock_results": [
+    [
+      "R-01",
+      "PASS"
+    ],
+    [
+      "R-02",
+      "PASS"
+    ],
+    [
+      "R-03",
+      "PASS"
+    ],
+    [
+      "R-04",
+      "PASS"
+    ],
+    [
+      "R-05",
+      "PASS"
+    ],
+    [
+      "R-06",
+      "PASS"
+    ],
+    [
+      "R-07",
+      "PASS"
+    ],
+    [
+      "R-08",
+      "PASS"
+    ]
+  ],
+  "optional_historical_failures": [
+    "旧coastal_travelは開始mainでもreturn_learned参照エラー。旧save_contract一括再生は300秒超過。通常保存通しは3人・4人とも359状態成功。"
+  ],
+  "human_playtest": "NOT_RUN、PLAYTEST_QUEUEへ分離"
+}

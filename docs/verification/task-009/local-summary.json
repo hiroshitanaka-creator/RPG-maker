@@ -1,0 +1,349 @@
+{
+  "fixed": {
+    "status": "PASS",
+    "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+    "runtime_checks": 7592,
+    "save_states": 20,
+    "restart_checks": [
+      9,
+      26,
+      37,
+      51,
+      43
+    ],
+    "scope_status": "PASS",
+    "exit_code": 0,
+    "elapsed_seconds": 36.034,
+    "process_timeout_seconds": 180
+  },
+  "latest": {
+    "status": "PASS",
+    "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+    "results": {
+      "runtime": {
+        "status": "PASS",
+        "command": [
+          "/workspace/qa009/bin/godot",
+          "--headless",
+          "--path",
+          "/workspace/RPG-maker",
+          "--script",
+          "res://tools/check_region2_village_regression.gd"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "checks": 7662,
+        "elapsed_seconds": 27.784,
+        "timeout_seconds": 180
+      },
+      "restart-0": {
+        "status": "PASS",
+        "command": [
+          "/workspace/qa009/bin/godot",
+          "--headless",
+          "--path",
+          "/workspace/RPG-maker",
+          "--script",
+          "res://tools/check_region2_village_regression.gd",
+          "--",
+          "--restart",
+          "0"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "checks": 10,
+        "elapsed_seconds": 1.19,
+        "timeout_seconds": 180
+      },
+      "restart-1": {
+        "status": "PASS",
+        "command": [
+          "/workspace/qa009/bin/godot",
+          "--headless",
+          "--path",
+          "/workspace/RPG-maker",
+          "--script",
+          "res://tools/check_region2_village_regression.gd",
+          "--",
+          "--restart",
+          "1"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "checks": 27,
+        "elapsed_seconds": 1.194,
+        "timeout_seconds": 180
+      },
+      "restart-2": {
+        "status": "PASS",
+        "command": [
+          "/workspace/qa009/bin/godot",
+          "--headless",
+          "--path",
+          "/workspace/RPG-maker",
+          "--script",
+          "res://tools/check_region2_village_regression.gd",
+          "--",
+          "--restart",
+          "2"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "checks": 38,
+        "elapsed_seconds": 1.294,
+        "timeout_seconds": 180
+      },
+      "restart-3": {
+        "status": "PASS",
+        "command": [
+          "/workspace/qa009/bin/godot",
+          "--headless",
+          "--path",
+          "/workspace/RPG-maker",
+          "--script",
+          "res://tools/check_region2_village_regression.gd",
+          "--",
+          "--restart",
+          "3"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "checks": 52,
+        "elapsed_seconds": 1.288,
+        "timeout_seconds": 180
+      },
+      "restart-4": {
+        "status": "PASS",
+        "command": [
+          "/workspace/qa009/bin/godot",
+          "--headless",
+          "--path",
+          "/workspace/RPG-maker",
+          "--script",
+          "res://tools/check_region2_village_regression.gd",
+          "--",
+          "--restart",
+          "4"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "checks": 44,
+        "elapsed_seconds": 1.197,
+        "timeout_seconds": 180
+      }
+    },
+    "service_acceptance": "007未着手・未検証",
+    "method": "最新checkoutの本番API。期待値は固定006の独立fixture。"
+  },
+  "negative": {
+    "status": "PASS",
+    "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+    "production_unchanged": true,
+    "results": {
+      "wrong-fixed-sha": {
+        "status": "PASS",
+        "exit_code": 1,
+        "failure": "固定006の完全SHAが承認済み完成点と一致しません",
+        "fixed_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+      },
+      "registered-request-and-npc-occupancy": {
+        "status": "PASS",
+        "exit_code": 0,
+        "checks": 7662,
+        "failures": [],
+        "runtime_status": "PASS",
+        "elapsed_seconds": 37.8,
+        "timeout_seconds": 180,
+        "parser_errors": false,
+        "scope": "一時コピーのみ。007サービスは未実装・未検証"
+      },
+      "misconnected-door": {
+        "status": "PASS",
+        "exit_code": 1,
+        "checks": 7662,
+        "failures": [
+          "村の世界接続・東西出口・8扉の固定対応",
+          "8本の扉リンク: { \"layer\": \"interior\", \"node\": \"region2_village\", \"room\": 0, \"cell\": [16, 8] }",
+          "同じ方向の継続で往復せず、採用済みの壁ならその場で止まる",
+          "既存の入口安全補正",
+          "補正以外の全状態不変",
+          "再保存後に補正通知が残らない",
+          "既存の入口安全補正",
+          "補正以外の全状態不変",
+          "再保存後に補正通知が残らない",
+          "既存の入口安全補正",
+          "補正以外の全状態不変",
+          "再保存後に補正通知が残らない",
+          "既存の入口安全補正",
+          "補正以外の全状態不変",
+          "再保存後に補正通知が残らない"
+        ],
+        "runtime_status": "FAIL",
+        "elapsed_seconds": 37.055,
+        "timeout_seconds": 180,
+        "parser_errors": false,
+        "mutation": "扉0の接続室1を2へ変更"
+      },
+      "invalid-save-accepted": {
+        "status": "PASS",
+        "exit_code": 1,
+        "checks": 7662,
+        "failures": [
+          "不正保存拒否と現在状態保持: { \"room\": 5 }",
+          "不正保存拒否と現在状態保持: { \"room\": 5 }",
+          "不正保存拒否と現在状態保持: { \"room\": 5 }",
+          "不正保存拒否と現在状態保持: { \"room\": 5 }",
+          "不正保存拒否と現在状態保持: { \"room\": 5 }"
+        ],
+        "runtime_status": "FAIL",
+        "elapsed_seconds": 32.648,
+        "timeout_seconds": 180,
+        "parser_errors": false,
+        "mutation": "不正room5のload_gameをtrueへ変更"
+      }
+    },
+    "method": "別コピーの正例と故障注入。負例は終了1・実assertion失敗を要求し、timeout/parse errorは成功扱いしない。"
+  },
+  "rendering": [
+    {
+      "generation": "fixed-render",
+      "mode": "restart-4",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "fixed-render",
+      "mode": "restart-0",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "fixed-render",
+      "mode": "journey",
+      "status": "PASS",
+      "checks": 137,
+      "images": 28,
+      "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "fixed-render",
+      "mode": "restart-3",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "fixed-render",
+      "mode": "details",
+      "status": "PASS",
+      "checks": 34,
+      "images": 6,
+      "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "fixed-render",
+      "mode": "restart-1",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "fixed-render",
+      "mode": "restart-2",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "latest",
+      "mode": "restart-4",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "842306feadaef19760022240c3f37004b2ae69c6",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "latest",
+      "mode": "restart-0",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "842306feadaef19760022240c3f37004b2ae69c6",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "latest",
+      "mode": "journey",
+      "status": "PASS",
+      "checks": 132,
+      "images": 28,
+      "execution_sha": "842306feadaef19760022240c3f37004b2ae69c6",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "latest",
+      "mode": "restart-3",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "842306feadaef19760022240c3f37004b2ae69c6",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "latest",
+      "mode": "details",
+      "status": "PASS",
+      "checks": 34,
+      "images": 6,
+      "execution_sha": "842306feadaef19760022240c3f37004b2ae69c6",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "latest",
+      "mode": "restart-1",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "842306feadaef19760022240c3f37004b2ae69c6",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    },
+    {
+      "generation": "latest",
+      "mode": "restart-2",
+      "status": "PASS",
+      "checks": 17,
+      "images": 3,
+      "execution_sha": "842306feadaef19760022240c3f37004b2ae69c6",
+      "milliseconds": 180000,
+      "renderer": "X11"
+    }
+  ]
+}
