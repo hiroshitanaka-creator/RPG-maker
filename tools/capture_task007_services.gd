@@ -2,6 +2,7 @@ extends "res://tools/capture_task009_village_regression.gd"
 ## 007の追加撮影。通常港保存からロードし、キー・画面ボタン・スクロールだけで遊ぶ。
 var task_mode := "outside"
 var task_source_sha := ""
+const SERVICE_POSITION = preload("res://tools/task021_service_position.gd")
 
 func _run() -> void:
 	var args := OS.get_cmdline_user_args()
@@ -28,7 +29,10 @@ func _run() -> void:
 	else:await facilities()
 	finish()
 
-func talk(room: int, cell: Array, facing: Vector2i, id: String) -> bool:
+func talk(room: int, id: String) -> bool:
+	var position := SERVICE_POSITION.find(_state(),room,id)
+	if not castle_check(not position.is_empty(),"住人IDの床・占有・reach・入口到達: "+id):return false
+	var cell: Array=position["approach"];var facing: Vector2i=position["facing"]
 	if not castle_check(await _walk(point(room,cell)),"住人へ通常歩行: "+id):return false
 	var keys := [KEY_DOWN,KEY_LEFT,KEY_RIGHT,KEY_UP]
 	if not await _key(keys[DIRECTIONS.find(facing)]):return false
@@ -50,8 +54,8 @@ func outdoors() -> void:
 	if not await menu_roundtrip(0):return
 	if not await _walk(point(0,[3,14])):castle_check(false,"西門の下へ");return
 	await picture("west-gate-under")
-	if not await talk(0,[29,13],Vector2i.UP,"water_keeper"):return
-	if not await talk(0,[17,20],Vector2i.UP,"child"):return
+	if not await talk(0,"water_keeper"):return
+	if not await talk(0,"child"):return
 	if not await _walk(point(0,[38,12])):castle_check(false,"屋根の奥へ");return
 	await picture("roof-behind")
 	if not await _walk(point(0,[31,6])) or not await _step_direction(Vector2i.UP):castle_check(false,"木の葉の奥へ");return
@@ -69,8 +73,7 @@ func facilities() -> void:
 	for index in range(1,5):
 		if not castle_check(await _walk(point(index,[8,10])),"通常扉から入室: "+str(index)):return
 		await create_timer(2.2).timeout;await picture("room-%d-entry" % index)
-		var cell: Array=[[12,5],[8,6],[8,6],[12,7]][index-1]
-		if not await talk(index,cell,Vector2i.UP,["innkeeper","date_farmer","camel_keeper","elder"][index-1]):return
+		if not await talk(index,["innkeeper","date_farmer","camel_keeper","elder"][index-1]):return
 		if index==1:
 			for actor in _state()["party"]:castle_check(actor["hp"]==actor["max_hp"] and actor["mp"]==actor["max_mp"],"通常会話で全員回復")
 			castle_check(_state()["first_region"]["coins"]==healthy_before["first_region"]["coins"],"通常宿泊で料金追加なし")
@@ -117,6 +120,7 @@ func purification() -> bool:
 	if not castle_check(await _button(["やめる"]) and _state()==before,"既存祠の取消で状態不変"):return false
 	if not castle_check(await scroll_button("町の祠で清める（魔物専用技を全消去）") and await _button(["専用技を消去して清める"]),"既存確認画面で実行"):return false
 	castle_check(_state()["party"][0]["erosion"]==30,"既存祠の通常操作で60から30")
+	castle_check(_state()["overworld"]==before["overworld"],"通常祠成功前後のoverworld全体不変")
 	return castle_check(await scroll_button("探索へ戻る") and await _settle(),"編成から通常探索へ戻る")
 
 func finish() -> void:

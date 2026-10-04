@@ -76,7 +76,9 @@ def main():
             # checkoutに生成されるimport/検査証拠だけを清掃。コミット履歴・登録ブランチは変更しない。
             subprocess.run(['git','worktree','remove','--force',str(fixed)],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
     report['latest']=execute(ROOT,exe,head,output/'latest',False)
-    report['status']='PASS' if report['fixed']['status']==report['latest']['status']=='PASS' else 'FAIL'
+    from check_task021_regressions import verify
+    report['task021']=verify(exe,head,ROOT/'docs/verification/task-021/ci')
+    report['status']='PASS' if report['fixed']['status']==report['latest']['status']==report['task021']['status']=='PASS' else 'FAIL'
     (output/'summary.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print('TASK007_'+report['status']+': completed='+args.completed+' latest='+head,flush=True)
     return 0 if report['status']=='PASS' else 1

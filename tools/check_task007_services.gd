@@ -1,6 +1,7 @@
 extends SceneTree
 ## 007の施設・住人。完成時の配置は--stage、継続サービスは最新コードでも検査する。
 const OUTPUT := "res://docs/verification/task-007/latest/"
+const SERVICE_POSITION = preload("res://tools/task021_service_position.gd")
 const IDS := ["water_keeper","date_farmer","innkeeper","camel_keeper","elder","child"]
 const ROOMS := [0,2,1,3,4,0]
 const CELLS := [[29,12],[8,4],[12,3],[8,4],[12,6],[17,19]]
@@ -95,10 +96,12 @@ func residents() -> void:
 		var after := game.export_state()
 		check(after["first_region"]["coins"]==before["first_region"]["coins"] and after["inventory"]==before["inventory"] and after["integrated"]==before["integrated"] and after["progress_flags"]==before["progress_flags"],"会話・宿泊で取引・解放・料金を追加しない")
 		check(FirstRegion.event_facing(after,event)==DIRECTIONS.find(-face),"話しかけた人物はこちらを向く")
-		records.append({"id":event["id"],"room":room,"cell":event["cell"],"approach":[approach.x,approach.y],"result":result})
+		records.append({"id":event["id"],"room":room,"cell":event["cell"],"approach":[approach.x,approach.y],"facing":[face.x,face.y],"reach":int(event.get("reach",1)),"result":result})
 
 func inn() -> void:
-	var game := session(placed(1,[12,5]));game.first_region_face(Vector2i.UP)
+	var position := SERVICE_POSITION.find(base,1,"innkeeper")
+	if not check(not position.is_empty(),"宿IDの床・占有・reach・入口到達"):return
+	var game := session(placed(1,position["approach"]));game.first_region_face(position["facing"])
 	var before := game.export_state();var result := game.interact_first_region();var after := game.export_state()
 	check(result.get("kind")=="dialogue" and result.get("sound")=="heal","受付台越しに既存宿処理")
 	for index in range(4):
@@ -107,7 +110,7 @@ func inn() -> void:
 	for actor in expected["party"]:actor["hp"]=actor["max_hp"];actor["mp"]=actor["max_mp"]
 	expected["overworld"]["residents"]=after["overworld"]["residents"].duplicate(true)
 	check(after==expected,"回復と対面以外の全状態不変・料金なし")
-	var healthy := placed(1,[12,5])
+	var healthy := placed(1,position["approach"])
 	for actor in healthy["party"]:actor["hp"]=actor["max_hp"]
 	var battle_game := session(healthy);check(battle_game.start_battle([str(battle_game.enemy_definitions.keys()[0])] ,7007)!=null,"宿の戦闘負例は実戦闘を開始")
 	before=battle_game.export_state()
@@ -119,6 +122,12 @@ func make_irreversible(saved: Dictionary) -> void:
 	var template := GameSession.new()
 	var caps := template._compute_stats(actor,true)
 	actor["max_hp"]=caps["hp"];actor["max_mp"]=caps["mp"];actor["hp"]=0;actor["mp"]=0
+
+func same_shrine_state(left: Dictionary, right: Dictionary) -> bool:
+	# FirstRegion.placeで意図的に変えた位置4項目だけをそろえる。
+	# 攻略情報・transport・residents・facing等は比較に残す。
+	for key in ["layer","node","room","cell"]:right["overworld"][key]=left["overworld"][key]
+	return left==right
 
 func shrine() -> void:
 	for room in range(5):
@@ -132,14 +141,15 @@ func shrine() -> void:
 			var result := game.release_monster_form("pc_01","purification_shrine")
 			var expected: bool=room==4 and erosion>0 and erosion<=89
 			check(result==expected,"既存の正負境界: 室%d 値%d" % [room,erosion])
-			if expected:check(game.export_state()["party"][0]["erosion"]==maxi(0,erosion-30),"既存低下30")
+			if expected:
+				check(game.export_state()["party"][0]["erosion"]==maxi(0,erosion-30),"既存低下30")
+				check(game.export_state()["overworld"]==before["overworld"],"祠成功前後のoverworld全体不変")
 			else:check(game.export_state()==before,"拒否時に全状態不変")
 			# 従来の第2港の祠と場所を除く全状態が一致する。
 			var port := saved.duplicate(true);FirstRegion.place(port["overworld"],{"layer":"interior","node":"brine_port","room":5,"cell":[8,10]})
 			var existing := session(port);var port_result := existing.release_monster_form("pc_01","purification_shrine")
 			if room==4:
-				var left := game.export_state();var right := existing.export_state();left.erase("overworld");right.erase("overworld")
-				check(port_result==result and left==right,"従来祠との同条件・同全状態")
+				check(port_result==result and same_shrine_state(game.export_state(),existing.export_state()),"従来祠との同条件・同全状態")
 	for negative in ["irreversible","wrong_event","unknown_actor","battle"]:
 		var saved := placed(4,[8,10]);saved["party"][0]["erosion"]=60
 		for actor in saved["party"]:actor["hp"]=actor["max_hp"]
@@ -166,6 +176,7 @@ func forms() -> void:
 		var stats := template._compute_stats(actor,true);actor["max_hp"]=stats["hp"];actor["max_mp"]=stats["mp"]
 		var game := session(saved);var before := game.export_state()
 		check(game.release_monster_form("pc_01","purification_shrine"),"既存の魔物化解除: "+id)
+		check(game.export_state()["overworld"]==before["overworld"],"全8系統の祠成功前後のoverworld全体不変: "+id)
 		var after: Dictionary=game.export_state()["party"][0]
 		check(after["monster_form"]=="" and after["job_id"]==actor["last_human_job"] and after["erosion"]==30,"姿・職・低下30: "+id)
 		check(after["mastered_jobs"]==actor["mastered_jobs"] and after["jp"]==actor["jp"] and after["integrated"]["mastery"]==actor["integrated"]["mastery"],"マスター成長と修練を保持: "+id)
@@ -173,8 +184,7 @@ func forms() -> void:
 			check((skill in after["learned_abilities"])==(skill in human_skills),"専用技だけ忘却、人間職の共有技は保持: "+id+" "+skill)
 		var port := before.duplicate(true);FirstRegion.place(port["overworld"],{"layer":"interior","node":"brine_port","room":5,"cell":[8,10]})
 		var existing := session(port);check(existing.release_monster_form("pc_01","purification_shrine"),"従来祠の同じ姿の解除: "+id)
-		var left := game.export_state();var right := existing.export_state();left.erase("overworld");right.erase("overworld")
-		check(left==right,"全8系統で従来祠との全状態一致: "+id);tested+=1
+		check(same_shrine_state(game.export_state(),existing.export_state()),"全8系統で従来祠との全状態一致: "+id);tested+=1
 	check(tested==8,"全8系統の祠回帰")
 
 func saves() -> void:
