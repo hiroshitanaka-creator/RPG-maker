@@ -35,18 +35,47 @@
 
 ## 自己点検1〜7
 
-提出前に固定比較の文書検査と実行検査の結果を追記する。未実行を成功と扱わない。
+| 点検 | 実結果・根拠 |
+| --- | --- |
+| 1. 制作順と節目 | 両正本に施設→別途採用する解放→遺跡・鍵・帰路。進行表の全行を開始mainと照合し不変、節目6→7を保持 |
+| 2. 村10人と未採用の中身 | この村だけ施設4＋屋外6＝10人。一般表全行・他拠点の人数不変。人物具体案・初の見た目・商品・解放場所は未決と明記 |
+| 3. 人物の確認日 | 両正本に2026-10-04 02:26 UTCの確認と既存甲殻系／shellを追記。10月3日の本文を保持し、未決一覧は同確認への参照だけ追加 |
+| 4. 原本・対象外 | 物語原本12877バイト、SHA-256 `13e9366c89c5a2cd759406f54f88daca4c188ce06504c532a005e7a9a052650c`、開始時と全バイト一致。開始mainにある原画18枚のGit blobも全件一致。許可文書以外0件 |
+| 5. 差分の範囲 | 固定SHAのツリーを開始mainと全パス比較し許可5文書だけ。001〜004の状態・本文・報告は差分0件。005発注コミットの本文は状態行以外全バイト一致 |
+| 6. 承認の拡張なし | 002の旧本文は不変。新人物具体案・解放・穴・36種検査・鍵を後続依存として両正本に記載。原画再描画・落下・一方通行・検査期待値増加を許可済みにしていない |
+| 7. 検査の区別 | 下表は今回の実行。R全8件とR-07 A01〜A14、保護26件に成功。開始mainのCIと提出後のCIを分けて記録する。ゲーム機能・人間評価の達成へ置き換えない |
 
 ## コマンドと結果
 
 開始時の `git status --short`・`git log --branches --not --remotes` は空。最新fetchでmain `52a8438` と005依頼書を取得した。初回の昇格fetchは所有者差で拒否されたため、同repoだけの`-c safe.directory=...`を付けて再実行し成功。全体のGit設定は変更していない。
 
+Windows既存のGodot 4.7.2-stableを使い、`APPDATA`と`RPG_QA_SAVE_PREFIX`を005用に分離した。提出repoのimportは先に実行。一時QAは文書内容コミット `1eab7b7068d83f8fc7a0d93182c094fb43d39f64` のno-hardlinks cloneで、固定実行ファイル2件も全バイトSHA一致。既存の検査条件・アサーション・時間上限を変えず、検査が生成する担当外の検証JSONを提出repoへ書き戻さない。後続の報告更新との差分も許可文書だけで、ゲーム・検査・契約・素材は同一であることを固定SHAで照合する。
+
+| 実行コマンド | 今回の結果 |
+| --- | --- |
+| `godot --version` | 終了0、`4.7.2.stable.official.ed1daf0bf` |
+| `godot --headless --editor --import --quit`（提出repo・一時QA） | 両方終了0。SCRIPT ERROR／ERROR／WARNING／Parse Errorは0行 |
+| `python tools/validate_assets.py --strict` | 終了0。画像1134件・音15件・字体2件・パレット3件。問題なし、不足素材なし |
+| `python tools/check_progress_docs.py` | 終了0、`PROGRESS_DOCS: history=26 errors=0` |
+| `python tools/check_frozen_files.py`（提出repo・R後のQA） | 終了0、保護26件全一致 |
+| `python tools/run_locked_checks.py`（一時QA） | 終了0、R-01〜R-08全PASS。R-07個別14件全PASS・最終`FIRST_REGION_PASS: checks=14`、R-08は17テスト・2302 assertions・failed/pending0 |
+| `python D:\Codex\.codex\scope-lock\scripts\verify_cli.py`（一時QA） | 終了0、全8件PASS。python3はPATHにないため同じ指定スクリプトを既存pythonで実行。verifyコマンドや時間上限は不変 |
+| `python <一時文書検査check_docs005.py> 1eab7b7068d83f8fc7a0d93182c094fb43d39f64` | 終了0、`DOCS005_PASS`。比較は作業ツリーではなく固定開始mainと固定コミット。全パスの対象外0・原本SHA・原画18 blob・既存表と本文・005本文・前提・3決定と依存条件を照合 |
+| `git diff --check`／`git diff --name-only 52a8438 <提出SHA>`／`git diff --stat 52a8438 <提出SHA>` | 文書内容SHAで終了0、許可5件だけ。発注時の005依頼書追加を含むmain差分と、実作業の状態行変更を区別 |
+
+R実行日時は `2026-10-04T05:29:34.257733+00:00`、契約SHA-256は `601a7452fe13be169d28327dfce1946b5a2ee2e7a1b1d8f92924d77dc95dedb3`。一時QAの`docs/verification/scope-lock-current.json`と`.tools/verification/current-20261004T052758Z/`に原実行ログを保持し、提出repoの既存記録は不変。
+
+一時QA作成の初回は既定権限でPermission denied、次はsourceの.git所有者差で拒否された。限定したsafe.directoryと許可されたTempへの昇格コピーで解消してからimport・R検査を実行した。検査を失敗扱いから成功へ置き換えたり、保護条件を変えたりしたものではない。
+
+
 ## 提出・統合・CI
 
-提出SHA、同SHAのCI全ジョブ、5条件照合後のmain統合SHAとmain CIを、確認できた順に追記する。この段階では未実行。
+提出SHA、同SHAのCI全ジョブ、5条件照合後のmain統合SHAとmain CIを、確認できた順に追記する。この段階では提出・統合は未実行。開始main `52a843883c75469290a159021238841411fb7442` の [CI 37179213842](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37179213842) は読み取りAPIで全3ジョブcompleted/successを確認した。素材検査終了05:14:06Z、Godot・凍結受入終了05:15:12Z、試遊前検査終了05:16:54Z。過去の319b490のCIを今回の提出SHAの結果へ流用しない。
 
 ## 未達・未検証・担当外
 
 この文書作業ではゲームの施設・10人・商品・解放・遺跡・敵・鍵を実装しない。新住人の名前・人物像・台詞・初の見た目・巡回担当・役割の細部、商品の内容、解放場所・人物・場面・条件、遺跡2↔3階の穴、敵追加と既存36種検査の整合、未採用の登場位置、鍵の名称・受取り方・鍵付き扉の接続先は後続依頼で扱う。原画の描き直し・新しい落下規則・保護検査変更を許可済みにしない。
 
 過去のロードマップには人物の名前・系統の未決記録が残る。担当外の過去本文を一括修正せず、許可された序盤追加節から10月4日の確認へ参照して当時の状態と区別した。002のA推奨・C未承認も報告時点の記録として維持する。005の状態は指揮役の実物確認前に「確認済み」にしない。006・他taskへ進まない。
+
+担当外の文書差：`docs/asset-spec.md`にはnatural.gplの上限80色という001時点の記録が残るが、開始mainのパレットは004の承認済み追加後の84色。005では素材規約・パレットを変更せず、今回の素材strict成功と過去の文書値を区別する。
