@@ -1,0 +1,1075 @@
+{
+  "source_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+  "definition": {
+    "region2_village_entrance": {
+      "cell": [
+        169,
+        88
+      ],
+      "outward": [
+        -1,
+        0
+      ]
+    },
+    "region2_village_spawn": {
+      "layer": "interior",
+      "node": "region2_village",
+      "room": 0,
+      "cell": [
+        4,
+        15
+      ]
+    },
+    "region2_village_spawn_east": {
+      "layer": "interior",
+      "node": "region2_village",
+      "room": 0,
+      "cell": [
+        41,
+        15
+      ]
+    },
+    "region2_village_exits": [
+      {
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            3,
+            13
+          ]
+        },
+        "to": {
+          "layer": "world",
+          "node": "",
+          "room": 0,
+          "cell": [
+            168,
+            88
+          ]
+        },
+        "facing": 1
+      },
+      {
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            42,
+            13
+          ]
+        },
+        "to": {
+          "layer": "world",
+          "node": "",
+          "room": 0,
+          "cell": [
+            170,
+            88
+          ]
+        },
+        "facing": 2
+      }
+    ],
+    "region2_village_doors": [
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 1,
+          "cell": [
+            8,
+            10
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            16,
+            8
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            16,
+            9
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 1,
+          "cell": [
+            8,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 2,
+          "cell": [
+            8,
+            10
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            26,
+            7
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            26,
+            8
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 2,
+          "cell": [
+            8,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 3,
+          "cell": [
+            8,
+            10
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            35,
+            14
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            35,
+            15
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 3,
+          "cell": [
+            8,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 4,
+          "cell": [
+            8,
+            10
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            33,
+            8
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            33,
+            9
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 4,
+          "cell": [
+            8,
+            11
+          ]
+        }
+      }
+    ]
+  },
+  "maps": {
+    "exterior": {
+      "version": 1,
+      "id": "region2_village_exterior",
+      "tile_size": 32,
+      "width": 45,
+      "height": 30,
+      "origin": [
+        0,
+        0
+      ],
+      "tiles": {},
+      "layers": [],
+      "layout": [
+        "#############################################",
+        "########.#......###.######...........###.####",
+        "#####........######.....#####..#.....##..####",
+        "########.....######.....#####....##.....#####",
+        "########....#######....######...###.....#####",
+        "########...########...#######...####...######",
+        "#########..########...#######...####...######",
+        "########..##########...###.##.#.#####...#####",
+        "####....................................#####",
+        "##................................###.......#",
+        "#.......####.......######........####.......#",
+        "##.....######....##########.....######......#",
+        "##..#..######...############....######..#..##",
+        "##..#..#######..############....#######.#..##",
+        "#.......##.#....#############....##.##......#",
+        "#...............#############...............#",
+        "#.........####...###########....####........#",
+        "#.......#.#####..###########....####........#",
+        "#...###..######....######.....#######...###.#",
+        "#...###..######...............#######...###.#",
+        "#...###..#######..#########...########..###.#",
+        "#######..........############...........###.#",
+        "####.............############........#......#",
+        "#....##..##......###########.........##.....#",
+        "#....##.####.......##########............####",
+        "#######.###..............................####",
+        "#####...###..................##........#.####",
+        "#####...###............####..##........#.####",
+        "#####..................####..##.............#",
+        "#############################################"
+      ],
+      "surround": "assets/tiles/region2_sand.png",
+      "backdrop": {
+        "path": "assets/town_backdrops/region2_village_exterior.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/town_backdrops/region2_village_exterior_overlay.png",
+        "fields": [
+          "atlas_x",
+          "atlas_y",
+          "w",
+          "h",
+          "x",
+          "y",
+          "bottom_row",
+          "object"
+        ],
+        "pieces": [
+          [
+            0,
+            0,
+            201,
+            148,
+            409,
+            76,
+            8,
+            "inn"
+          ],
+          [
+            201,
+            0,
+            112,
+            142,
+            1017,
+            82,
+            8,
+            "shrine"
+          ],
+          [
+            313,
+            0,
+            73,
+            132,
+            896,
+            412,
+            18,
+            "palm_pool_e"
+          ],
+          [
+            386,
+            0,
+            139,
+            121,
+            502,
+            263,
+            13,
+            "palm_pool_nw"
+          ],
+          [
+            525,
+            0,
+            99,
+            110,
+            488,
+            338,
+            15,
+            "palm_pool_w"
+          ],
+          [
+            624,
+            0,
+            167,
+            108,
+            1020,
+            532,
+            21,
+            "home_se"
+          ],
+          [
+            791,
+            0,
+            165,
+            108,
+            317,
+            532,
+            21,
+            "home_sw"
+          ],
+          [
+            0,
+            148,
+            129,
+            107,
+            740,
+            277,
+            13,
+            "palm_pool_n"
+          ],
+          [
+            129,
+            148,
+            404,
+            104,
+            504,
+            375,
+            16,
+            "pool"
+          ],
+          [
+            533,
+            148,
+            205,
+            104,
+            1022,
+            312,
+            14,
+            "weapon"
+          ],
+          [
+            738,
+            148,
+            70,
+            103,
+            1152,
+            537,
+            21,
+            "palm_home_se"
+          ],
+          [
+            808,
+            148,
+            77,
+            100,
+            375,
+            316,
+            14,
+            "palm_home_w"
+          ],
+          [
+            885,
+            148,
+            64,
+            100,
+            608,
+            124,
+            8,
+            "palm_inn_r"
+          ],
+          [
+            0,
+            255,
+            102,
+            98,
+            292,
+            126,
+            8,
+            "palm_inn_l"
+          ],
+          [
+            102,
+            255,
+            104,
+            91,
+            1120,
+            133,
+            8,
+            "palm_shrine_r"
+          ],
+          [
+            206,
+            255,
+            10,
+            80,
+            256,
+            112,
+            7,
+            "home_nw"
+          ],
+          [
+            216,
+            255,
+            11,
+            79,
+            928,
+            145,
+            8,
+            "item"
+          ],
+          [
+            227,
+            255,
+            142,
+            77,
+            32,
+            339,
+            14,
+            "arch_w"
+          ],
+          [
+            369,
+            255,
+            198,
+            77,
+            219,
+            339,
+            14,
+            "home_w"
+          ],
+          [
+            567,
+            255,
+            134,
+            74,
+            1274,
+            342,
+            14,
+            "arch_e"
+          ],
+          [
+            701,
+            255,
+            57,
+            73,
+            967,
+            151,
+            8,
+            "palm_shrine_l"
+          ],
+          [
+            758,
+            255,
+            47,
+            65,
+            128,
+            351,
+            14,
+            "arch_w_right"
+          ],
+          [
+            805,
+            255,
+            141,
+            40,
+            1056,
+            312,
+            15,
+            "weapon"
+          ],
+          [
+            946,
+            255,
+            11,
+            39,
+            533,
+            496,
+            18,
+            "palm_pool_sw"
+          ],
+          [
+            957,
+            255,
+            26,
+            33,
+            1382,
+            351,
+            14,
+            "arch_e_right"
+          ],
+          [
+            983,
+            255,
+            13,
+            10,
+            723,
+            150,
+            7,
+            "item"
+          ],
+          [
+            0,
+            353,
+            241,
+            6,
+            569,
+            346,
+            18,
+            "pool"
+          ],
+          [
+            241,
+            353,
+            2,
+            1,
+            500,
+            563,
+            21,
+            "palm_home_sw"
+          ]
+        ]
+      }
+    },
+    "inn": {
+      "version": 1,
+      "id": "region2_village_inn",
+      "tile_size": 32,
+      "width": 16,
+      "height": 12,
+      "origin": [
+        0,
+        0
+      ],
+      "tiles": {},
+      "layers": [],
+      "layout": [
+        "################",
+        "################",
+        "##.............#",
+        "##..#..#.......#",
+        "##..####...###.#",
+        "##.............#",
+        "##.#...........#",
+        "##.............#",
+        "##.............#",
+        "########.#######",
+        "########.#######",
+        "########.#######"
+      ],
+      "surround": "assets/tiles/region2_sand.png",
+      "backdrop": {
+        "path": "assets/interiors/region2_village_inn.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/interiors/region2_village_inn_overlay.png",
+        "fields": [
+          "atlas_x",
+          "atlas_y",
+          "w",
+          "h",
+          "x",
+          "y",
+          "bottom_row",
+          "object"
+        ],
+        "pieces": [
+          [
+            0,
+            0,
+            58,
+            43,
+            120,
+            85,
+            5,
+            "bed_l"
+          ],
+          [
+            58,
+            0,
+            57,
+            43,
+            204,
+            85,
+            5,
+            "bed_r"
+          ],
+          [
+            115,
+            0,
+            30,
+            12,
+            82,
+            180,
+            7,
+            "jar_a"
+          ],
+          [
+            145,
+            0,
+            111,
+            8,
+            340,
+            120,
+            5,
+            "counter"
+          ]
+        ]
+      }
+    },
+    "item": {
+      "version": 1,
+      "id": "region2_village_item",
+      "tile_size": 32,
+      "width": 16,
+      "height": 12,
+      "origin": [
+        0,
+        0
+      ],
+      "tiles": {},
+      "layers": [],
+      "layout": [
+        "################",
+        "################",
+        "##.............#",
+        "##...#######...#",
+        "##.............#",
+        "##...#######...#",
+        "##.............#",
+        "##.#.........#.#",
+        "##.............#",
+        "########.#######",
+        "########.#######",
+        "########.#######"
+      ],
+      "surround": "assets/tiles/region2_sand.png",
+      "backdrop": {
+        "path": "assets/interiors/region2_village_item.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/interiors/region2_village_item_overlay.png",
+        "fields": [
+          "atlas_x",
+          "atlas_y",
+          "w",
+          "h",
+          "x",
+          "y",
+          "bottom_row",
+          "object"
+        ],
+        "pieces": [
+          [
+            0,
+            0,
+            252,
+            42,
+            146,
+            54,
+            4,
+            "shelves"
+          ],
+          [
+            252,
+            0,
+            33,
+            11,
+            87,
+            213,
+            8,
+            "basket_l"
+          ],
+          [
+            285,
+            0,
+            37,
+            11,
+            422,
+            213,
+            8,
+            "basket_r"
+          ],
+          [
+            322,
+            0,
+            196,
+            10,
+            173,
+            150,
+            6,
+            "counter"
+          ]
+        ]
+      }
+    },
+    "weapon": {
+      "version": 1,
+      "id": "region2_village_weapon",
+      "tile_size": 32,
+      "width": 16,
+      "height": 12,
+      "origin": [
+        0,
+        0
+      ],
+      "tiles": {},
+      "layers": [],
+      "layout": [
+        "################",
+        "################",
+        "##.............#",
+        "##...#######...#",
+        "##.............#",
+        "##...#######.###",
+        "##.............#",
+        "##.............#",
+        "##.............#",
+        "########.#######",
+        "########.#######",
+        "########.#######"
+      ],
+      "surround": "assets/tiles/region2_sand.png",
+      "backdrop": {
+        "path": "assets/interiors/region2_village_weapon.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/interiors/region2_village_weapon_overlay.png",
+        "fields": [
+          "atlas_x",
+          "atlas_y",
+          "w",
+          "h",
+          "x",
+          "y",
+          "bottom_row",
+          "object"
+        ],
+        "pieces": [
+          [
+            0,
+            0,
+            55,
+            51,
+            419,
+            109,
+            6,
+            "workbench"
+          ],
+          [
+            55,
+            0,
+            226,
+            33,
+            159,
+            63,
+            4,
+            "rack_n"
+          ],
+          [
+            281,
+            0,
+            236,
+            7,
+            155,
+            153,
+            6,
+            "counter"
+          ]
+        ]
+      }
+    },
+    "shrine": {
+      "version": 1,
+      "id": "region2_village_shrine",
+      "tile_size": 32,
+      "width": 16,
+      "height": 12,
+      "origin": [
+        0,
+        0
+      ],
+      "tiles": {},
+      "layers": [],
+      "layout": [
+        "################",
+        "################",
+        "##.............#",
+        "##...#.....#...#",
+        "##.....###.....#",
+        "##.#.........#.#",
+        "##.............#",
+        "##.............#",
+        "##.............#",
+        "########.#######",
+        "########.#######",
+        "########.#######"
+      ],
+      "surround": "assets/tiles/region2_sand.png",
+      "backdrop": {
+        "path": "assets/interiors/region2_village_shrine.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/interiors/region2_village_shrine_overlay.png",
+        "fields": [
+          "atlas_x",
+          "atlas_y",
+          "w",
+          "h",
+          "x",
+          "y",
+          "bottom_row",
+          "object"
+        ],
+        "pieces": [
+          [
+            0,
+            0,
+            111,
+            45,
+            216,
+            83,
+            5,
+            "altar"
+          ],
+          [
+            111,
+            0,
+            58,
+            44,
+            348,
+            52,
+            4,
+            "palm_r"
+          ],
+          [
+            169,
+            0,
+            64,
+            43,
+            138,
+            53,
+            4,
+            "palm_l"
+          ],
+          [
+            233,
+            0,
+            46,
+            29,
+            97,
+            131,
+            6,
+            "candles_l"
+          ],
+          [
+            279,
+            0,
+            48,
+            29,
+            402,
+            131,
+            6,
+            "candles_r"
+          ]
+        ]
+      }
+    }
+  },
+  "targets": {
+    "exterior": {
+      "arch_w": [
+        3,
+        13
+      ],
+      "arch_e": [
+        42,
+        13
+      ]
+    },
+    "inn": {
+      "bed_front": [
+        5,
+        6
+      ],
+      "counter_front": [
+        12,
+        5
+      ]
+    },
+    "item": {
+      "counter_front": [
+        8,
+        6
+      ],
+      "counter_back": [
+        8,
+        4
+      ]
+    },
+    "weapon": {
+      "counter_front": [
+        8,
+        6
+      ],
+      "counter_back": [
+        8,
+        4
+      ]
+    },
+    "shrine": {
+      "altar_front": [
+        8,
+        5
+      ],
+      "altar_back": [
+        8,
+        3
+      ]
+    }
+  },
+  "destinations": [
+    {
+      "id": "start_village",
+      "name": "ミルフェ村",
+      "entrance": "village_entrance"
+    },
+    {
+      "id": "first_castle",
+      "name": "エルヴァ城下町・城",
+      "entrance": "castle_entrance"
+    },
+    {
+      "id": "first_port",
+      "name": "港町",
+      "entrance": "port_entrance"
+    },
+    {
+      "id": "brine_port",
+      "name": "第2地方の港町（仮）",
+      "entrance": "second_port_entrance",
+      "ship_cell": [
+        155,
+        110
+      ]
+    },
+    {
+      "id": "region2_village",
+      "name": "オアシスの村（仮）",
+      "entrance": "region2_village_entrance",
+      "ship_destination": "brine_port",
+      "ship_cell": [
+        155,
+        110
+      ]
+    }
+  ],
+  "return_landings": {
+    "start_village": [
+      32,
+      54
+    ],
+    "first_castle": [
+      43,
+      44
+    ],
+    "first_port": [
+      50,
+      41
+    ],
+    "brine_port": [
+      169,
+      99
+    ],
+    "region2_village": [
+      168,
+      88
+    ]
+  }
+}
