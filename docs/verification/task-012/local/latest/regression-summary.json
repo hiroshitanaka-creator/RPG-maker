@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "execution_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+  "results": {
+    "runtime": {
+      "status": "PASS",
+      "command": [
+        "/tmp/task012-engine/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 7662,
+      "elapsed_seconds": 41.491,
+      "timeout_seconds": 180
+    },
+    "restart-0": {
+      "status": "PASS",
+      "command": [
+        "/tmp/task012-engine/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "0"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 10,
+      "elapsed_seconds": 3.57,
+      "timeout_seconds": 180
+    },
+    "restart-1": {
+      "status": "PASS",
+      "command": [
+        "/tmp/task012-engine/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "1"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 27,
+      "elapsed_seconds": 3.728,
+      "timeout_seconds": 180
+    },
+    "restart-2": {
+      "status": "PASS",
+      "command": [
+        "/tmp/task012-engine/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "2"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 38,
+      "elapsed_seconds": 3.7,
+      "timeout_seconds": 180
+    },
+    "restart-3": {
+      "status": "PASS",
+      "command": [
+        "/tmp/task012-engine/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "3"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 52,
+      "elapsed_seconds": 3.8,
+      "timeout_seconds": 180
+    },
+    "restart-4": {
+      "status": "PASS",
+      "command": [
+        "/tmp/task012-engine/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/workspace/RPG-maker",
+        "--script",
+        "res://tools/check_region2_village_regression.gd",
+        "--",
+        "--restart",
+        "4"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "checks": 44,
+      "elapsed_seconds": 3.73,
+      "timeout_seconds": 180
+    }
+  },
+  "service_acceptance": "007未着手・未検証",
+  "method": "最新checkoutの本番API。期待値は固定006の独立fixture。"
+}
