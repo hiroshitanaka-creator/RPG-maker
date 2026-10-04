@@ -8,7 +8,8 @@ import json
 from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-from backdrop_common import ROOT, palette, grid, overlay
+from backdrop_common import ROOT, palette
+from village_guides import grid, overlay
 from build_interior_backdrops import content_box
 from build_region2_port_town_backdrop import pack
 import region2_village_backdrop_defs as D
