@@ -30,7 +30,7 @@ func picture(name: String) -> void:
 	castle_check(DisplayServer.get_name()!="headless" and image.get_size()==Vector2i(1024,576),"本番UI・実レンダラー: "+name)
 	castle_check(image.save_png(OUTPUT+name+".png")==OK,"本番画面保存: "+name)
 	castle_images.append(name+".png")
-	var shot := {"image":name+".png","pose":_pose(),"camera":[],"visible":0,"hidden":0,"matched":0}
+	var shot := {"image":name+".png","pose":_pose(),"camera":[],"visible":0,"hidden":0,"matched":0,"ui_covered":0}
 	if _snapshot().get("mode")=="world" and _pose().get("node")=="region2_village":
 		var screen: FirstRegionScreen=_main.get("_region_screen");var view := screen.map_view
 		var saved := _state();var state: Dictionary=saved["overworld"]
@@ -39,6 +39,9 @@ func picture(name: String) -> void:
 		var sprite := (load(appearance["path"]) as Texture2D).get_image().get_region(Rect2i(appearance["region"]))
 		var map: Dictionary=view._map;var atlas := (load("res://"+str(map["overlays"]["path"])) as Texture2D).get_image()
 		var cell := WorldExpedition.point(state["cell"]);var pos := view._screen(Vector2(cell))+Vector2(0,-16)
+		var windows: Array=[]
+		for panel in screen.find_children("*","PanelContainer",true,false):
+			if panel.is_visible_in_tree():windows.append(panel.get_global_rect())
 		for y in range(48):
 			for x in range(32):
 				var color := sprite.get_pixel(x,y)
@@ -49,6 +52,10 @@ func picture(name: String) -> void:
 					var local := pixel-Vector2i(piece[4],piece[5])
 					if local.x>=0 and local.y>=0 and local.x<int(piece[2]) and local.y<int(piece[3]) and atlas.get_pixel(int(piece[0])+local.x,int(piece[1])+local.y).a>0:covered=true;break
 				if covered:shot["hidden"]+=1;continue
+				var under_window := false
+				for window in windows:
+					if window.has_point(pos+Vector2(x,y)+Vector2(.5,.5)):under_window=true;break
+				if under_window:shot["ui_covered"]+=1;continue
 				shot["visible"]+=1
 				var sample := Vector2i((pos+Vector2(x,y))*2)+Vector2i.ONE
 				if not Rect2i(Vector2i.ZERO,image.get_size()).has_point(sample):continue
@@ -178,6 +185,12 @@ func restart_route(index: int) -> void:
 	var expected: Dictionary=WorldExpedition._integers(JSON.parse_string(FileAccess.get_file_as_string("user://village006_expected_%d.json" % index)))
 	castle_check(_state()==expected,"別プロセスのタイトル再開で全状態復元")
 	await create_timer(2.2).timeout;await picture("01-restart-room-%d" % index)
+	var corrected_source := "user://village006_relocation_%d.json" % index
+	var manual := "user://qa_"+OS.get_environment("RPG_QA_SAVE_PREFIX")+"_save.json"
+	var copy := FileAccess.open(manual,FileAccess.WRITE);copy.store_buffer(FileAccess.get_file_as_bytes(corrected_source));copy.close()
+	castle_check(await _key(KEY_ESCAPE) and await _button(["手動セーブから再開"]) and await _settle(),"本番メニューで壁保存を読み込む")
+	castle_check(_session().position_relocated and str(_main.get("_notice")).contains("安全な入口へ移動しました。") and _pose()["cell"]==FirstRegion.entrance_landing("region2_village",index),"既存の安全補正通知と入口への置き直し")
+	await picture("03-position-relocation-notice")
 	castle_check(await to_port(),"別プロセス再起動後に通常キーだけで港へ戻る")
 	await picture("02-port-after-restart")
 
