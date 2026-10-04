@@ -11,6 +11,7 @@ env:
   FIXED_006_SHA: 5f1c2ba231191b25b9b32a814b616a9f8d0a54ce
   FIXED_009_SHA: ce07fdada0466138260ab678c10fd78e61c0c63d
   FIXED_012_SHA: c327e7c439c9c8c8f1fd640e6cda6df7550fb26a
+  FIXED_016_SHA: 6706397e2674ffa382852e0f33ce23edf5c76634
 jobs:
   acceptance-and-regression:
     runs-on: ubuntu-latest
@@ -164,6 +165,11 @@ jobs:
           ref: c327e7c439c9c8c8f1fd640e6cda6df7550fb26a
           fetch-depth: 0
           path: completed012
+      - uses: actions/checkout@v4
+        with:
+          ref: 6706397e2674ffa382852e0f33ce23edf5c76634
+          fetch-depth: 0
+          path: completed016
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -188,6 +194,8 @@ jobs:
         run: |
           timeout 180 python tools/check_task016_fixed_anchor.py --current-path . --fixed012-path ../completed012 --latest-sha "$GITHUB_SHA"
           timeout 180 python tools/test_task016_fixed_anchor.py --fixed012-path ../completed012 --latest-sha "$GITHUB_SHA"
+      - name: 016完成点だけを固定範囲監査し後続編集と異常完成差分を反証
+        run: timeout 180 python tools/check_task016_scope.py --completed-sha "$FIXED_016_SHA" --fixed-path ../completed016 --latest-sha "$GITHUB_SHA"
       - name: 009完成点だけを独立範囲監査
         run: |
           # 完成SHAの当時検査器で完成差分のみを監査する。
