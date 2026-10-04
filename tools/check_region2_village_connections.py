@@ -15,6 +15,9 @@ import sys
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "552261345f68a4916ddeefad959896b44da2fcbf"
 REQUEST = "3ddbbc14289599f529421a3587a5b7973a000545"
+# 監督が2026-10-04に保持を指示したmain。006の差分と区別して固定する。
+APPROVED_UPSTREAM = "677e5a74937921250ec388c72fb1ceaba0341c8c"
+UPSTREAM_ORIGINALS = {"assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-"+role+".png" for role in ("armor-shop","harbor-office","inn","item-shop","shrine","weapon-shop")}
 OUT = ROOT / "docs/verification/region2-village-connections"
 ALLOWED = {
     "scripts/world/first_region.gd", "scripts/world/first_region_travel.gd",
@@ -41,7 +44,10 @@ def write(name: str, document: dict) -> None:
 def scope(commit: str) -> dict:
     """作業ツリーを比較対象にせず、開始mainと指定コミットの全パスを比較する。"""
     target = git("rev-parse", commit + "^{commit}").decode().strip()
-    changed = git("diff", "--name-only", BASE, target).decode().splitlines()
+    contains_upstream = subprocess.run(["git","merge-base","--is-ancestor",APPROVED_UPSTREAM,target],cwd=ROOT,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode == 0
+    comparison_base = APPROVED_UPSTREAM if contains_upstream else BASE
+    upstream_changes = git("diff","--name-only",BASE,APPROVED_UPSTREAM).decode().splitlines() if contains_upstream else []
+    changed = git("diff", "--name-only", comparison_base, target).decode().splitlines()
     denied = [s for s in changed if s not in ALLOWED and not s.startswith("docs/verification/region2-village-connections/")]
     deleted = git("diff", "--diff-filter=D", "--name-only", BASE, target).decode().splitlines()
     original = git("show", REQUEST + ":docs/tasks/006-connect-village-shells.md").decode()
@@ -52,12 +58,14 @@ def scope(commit: str) -> dict:
         failures.append("006依頼書の状態行以外が変更されています")
     def tree(ref: str) -> dict:
         return {row.split("\t", 1)[1]: row.split()[2] for row in git("ls-tree", "-r", ref).decode().splitlines()}
-    a, b = tree(BASE), tree(target)
+    a, b = tree(comparison_base), tree(target)
+    if contains_upstream and set(upstream_changes) != UPSTREAM_ORIGINALS:
+        failures.append("監督指定mainの原画6件以外に上流差分があります")
     original_paths = [s for s in a if s.startswith(("assets/", "test/", ".scope-lock/")) or (s.startswith("tools/") and s not in ALLOWED) or s in ["project.godot", ".github/workflows/ci.yml", "world/region2_village_backdrops.json", "world/region2_port.json", "world/second_region_coast.json"]]
     altered = [s for s in original_paths if a[s] != b.get(s)]
     failures += altered
     originals = [s for s in a if s.startswith("assets/_incoming/owner-2026-10-04-grok-region3/")]
-    return {"status": "PASS" if not failures else "FAIL", "base": BASE, "commit": target,
+    return {"status": "PASS" if not failures else "FAIL", "base": BASE, "comparison_base":comparison_base, "preserved_upstream_originals":upstream_changes, "commit": target,
             "changed_files": changed, "failures": failures, "protected_and_existing_unchanged": len(original_paths),
             "grok_originals_unchanged": len(originals), "checks_weakened_or_removed": 0 if not altered else None,
             "method": "固定開始mainと指定コミットのGitツリー・blobを比較。既存検査・CI全バイト不変。"}
