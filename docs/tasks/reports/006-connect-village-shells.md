@@ -61,6 +61,8 @@
 
 mainの [既存CI 37189466363](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189466363) 全3ジョブ、[追加CI 37189466355](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189466355) 1ジョブもすべて終了・成功。実SHAと5条件・全ジョブの結果は [main-integration37b.json](../../verification/region2-village-connections/main-integration37b.json) に記録した。固定比較対象37b1681でも許可範囲のみ、保護・既存検査など2,015件のblobが不変。元PC35候補の内容とGit状態、開始素材等1,559件も再照合して不変。追記は報告と証拠だけで本番コードを変更しない。
 
+報告追記45b40a3の [既存CI 37189805926](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189805926) 全3ジョブ、[追加CI 37189805930](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189805930) 1ジョブも終了・成功。最終fetchでmainに未採用原画11件だけを追加した `24bd7d07a87e00872ae106a0ca3c7f06f9ac65a2` が実在したため、17cc3f3で11件を変更せず保持した。新しい006用検査の固定比較に、この上流追加だけの保持照合を追加した。比較基準677e5a7は移動せず、006のコード・範囲を比較から隠さない。37b1681→24bd7d0の差分が正確に11件の追加であることと、全11件のblob・SHA256不変を検査する。006への採用・素材加工・台帳更新・008作業は0件。`upstream-batch3-preservation.json`、`import-main24bd.log`を保存し、取込み後importは終了0・エラー／警告0件。本番コード6件は最終コードcbae42aと同一。
+
 ## 失敗した試行と担当外の不整合
 
 - 初回importはGodot設定先の書込制約で失敗。作業コピーの自己完結設定へ切り替え、固定版で再実行成功。
