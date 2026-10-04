@@ -194,7 +194,7 @@
 
 ## 提出と実行結果
 
-完成コードSHA：`d3a9c48b8328085fb79736791d29588915d34b2a`。実装842306f、クリーンコピーと独立期待値の補強d3a9c48を通常commit/push。報告版7b2e883の全40CI成功後、独立レビューによりNPC正例の壁配置を発見し、009専用正負例を追加補強した。最終補強版SHAとCIは下の追記に記録する。本番コードは変更しない。PRは [#16](https://github.com/hiroshitanaka-creator/RPG-maker/pull/16)。開始mainと最終統合直前のmainはともに5f1c2ba（再fetch実施）。
+補強前コードSHA：`d3a9c48b8328085fb79736791d29588915d34b2a`。実装842306f、クリーンコピーと独立期待値の補強d3a9c48を通常commit/push。報告版7b2e883の全40CI成功後、独立レビューによりNPC正例の壁配置を発見し、009専用正負例を追加補強した。最終補強版SHAとCIは下の追記に記録する。本番コードは変更しない。PRは [#16](https://github.com/hiroshitanaka-creator/RPG-maker/pull/16)。開始mainと最終統合直前のmainはともに5f1c2ba（再fetch実施）。
 
 | コマンド | 実行対象・結果 | 証拠 |
 | --- | --- | --- |
@@ -215,7 +215,7 @@
 
 分類数：最新でも継続 121箇所, 007の承認済み新機能で置き換える現在条件 4箇所, 当時だけ 10箇所。各コマンド180秒、import600秒、追加job15分を全て維持。撮影の600移動・3000入力・300ターンも不変。画像49枚を固定側/最新側で欠かさず毎回別jobで検証する。
 
-## 完成コードの全CI（全job終了確認済み）
+## 補強前コードd3a9c48の全CI（全job終了確認済み）
 
 - d3a9c48 push：通常CI [37193610582](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610582) 全3、専用CI [37193610575](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575) 全17が成功。
 - d3a9c48 PR：通常CI [37193612812](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193612812) 全3、専用CI [37193612767](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193612767) 全17が成功。計40/40。PR側のcheckoutはGitHub合流候補SHA、固定側は常に5f1c2baである。
@@ -248,9 +248,9 @@
 
 ## main反映と残る制約
 
-全CI・R全件・保護不変・弱体化なし・担当範囲内の5条件を実証した。報告・証拠を提出し、そのCIも全job確認後にPR #16を通常mergeする。main反映SHAと統合後CIは反映後の追記・最終応答に記録する。強制push/履歴変更/原画削除は行わない。
+全CI・R全件・保護不変・弱体化なし・担当範囲内の5条件を実証した。補強版の全40CI確認後、PR #16を通常merge済み。main反映SHAはff01ef949978e4bb0c16d2a5969d8a2df4d67f6e。統合後CIと報告済み状態の提出結果は下の追記・最終応答に記録する。強制push/履歴変更/原画削除は行わない。
 
-- 009の固定/最新の機械検査は成功。独立レビュー後の追加補強CIも全終了を確認してから完了する。007/008は未着手・未発注のまま。6人会話・宿・祠の機能は009で実装も成功扱いもしない。S01〜S06の正負例の実装は007担当へ引継ぐ。
+- 009の固定/最新の機械検査は成功。独立レビュー後の追加補強CI40件と統合mainのCI20件も全終了・成功を確認済み。007/008は未着手・未発注のまま。6人会話・宿・祠の機能は009で実装も成功扱いもしない。S01〜S06の正負例の実装は007担当へ引継ぐ。
 - 006に既存の任意旧航路検査の失敗（return_learned参照）と旧保存契約300秒timeoutは未解決として保持する。009で再実行して改善したとは報告しない。現在の航路・保存は既存CIの対象で成功。
 - 人間の主観試遊と約60時間の実測、物理音声機器の聴感検証は未実施。009は検査分離の依頼で、これらを完成扱いにはしない。
 - CI基盤のNode.js 20非推奨は既存の警告。Godotログの警告0と区別する。既存ci.ymlやGUTを修正しない。
@@ -274,3 +274,67 @@ d3a9c48と報告版7b2e883のコピー正例で使った `[18,13]` は固定fixt
 プローブの全ソースはnegative-cases/npc-probe-source.gd.txtに保管。別コピーの新規一時検査から、本番APIと継続回帰の経路支援を呼ぶ。配置前後の固定地形・NPC有無・通行・位置・実移動・全状態を実行JSONに残す。原画、本番データ、本番コードは元ツリーへ書き込まない。旧固定SHA・誤接続・不正保存受理の3負例も省略せず併走する。
 
 補強のローカル実行は7b2e883上の未コミット009道具で実行（negative-cases/summary.jsonのexecution_shaは土台HEAD）。クリーンな完成commitでの同じ正負例は提出後のCIで再実行し、全jobとともに記録する。
+
+## 補強後の完成コードと全CI
+
+完成コードSHA：`4a0691c455edb3faa8e2d201e3e3d9cb11330cc9`。push専用 [37194749183](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183) 17/17、通常 [37194749186](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749186) 3/3。PR専用 [37194752038](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194752038) 17/17、通常 [37194752041](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194752041) 3/3。全40job終了・成功を確認。PRの実行checkoutは `023c81e5838ecd85bc63db65c1f101485e6c0be1`、固定側は `5f1c2ba231191b25b9b32a814b616a9f8d0a54ce`。
+
+CI実行ログの集計はci/4a-push-jobs.json、push/PRの全job終了時刻と所要時間はci/4a-all-checks.json。PRの正負例もci/4a-pr-lifecycle.jsonへ保管。最新runtime artifact11300332113を取得し、実行SHAが4a0691cと一致する7662項目・20保存・5再起動10/27/38/52/44のJSONだけをci/4a-runtime/へ保存した（artifact同梱の既存証拠を今回実行分と混同しない）。主検査14.013秒、再起動各0.814秒以下、上限各180秒。
+
+| push job | 対象SHA | 結果・実測件数 | job時間（秒） |
+| --- | --- | --- | --- |
+| [lifecycle-audit](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414182899) | 4a0691c | success / 135分類 / 正例3・負例4 / 保護26 | 172 |
+| [normal-input-and-rendering (latest, details)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414182983) | 4a0691c | success / 34項目 / 6枚 / コマンド79.611秒 | 225 |
+| [normal-input-and-rendering (fixed, restart-0)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414182989) | 5f1c2ba | success / 17項目 / 3枚 / コマンド13.184秒 | 144 |
+| [normal-input-and-rendering (fixed, restart-4)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183001) | 5f1c2ba | success / 17項目 / 3枚 / コマンド28.779秒 | 186 |
+| [normal-input-and-rendering (latest, restart-0)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183023) | 4a0691c | success / 17項目 / 3枚 / コマンド17.553秒 | 180 |
+| [normal-input-and-rendering (latest, journey)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183027) | 4a0691c | success / 132項目 / 28枚 / コマンド124.06秒 | 266 |
+| [acceptance-and-regression (fixed)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183031) | 5f1c2ba | success / 7592項目 / 20保存 / 5再起動 | 140 |
+| [normal-input-and-rendering (latest, restart-3)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183069) | 4a0691c | success / 17項目 / 3枚 / コマンド21.962秒 | 139 |
+| [normal-input-and-rendering (latest, restart-2)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183084) | 4a0691c | success / 17項目 / 3枚 / コマンド26.042秒 | 191 |
+| [normal-input-and-rendering (latest, restart-4)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183092) | 4a0691c | success / 17項目 / 3枚 / コマンド29.454秒 | 165 |
+| [acceptance-and-regression (latest)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183102) | 4a0691c | success / 7662項目 / 20保存 / 5再起動 | 103 |
+| [normal-input-and-rendering (latest, restart-1)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183107) | 4a0691c | success / 17項目 / 3枚 / コマンド21.594秒 | 170 |
+| [normal-input-and-rendering (fixed, details)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183132) | 5f1c2ba | success / 34項目 / 6枚 / コマンド78.984秒 | 215 |
+| [normal-input-and-rendering (fixed, restart-3)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183192) | 5f1c2ba | success / 17項目 / 3枚 / コマンド29.481秒 | 172 |
+| [normal-input-and-rendering (fixed, journey)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183202) | 5f1c2ba | success / 137項目 / 28枚 / コマンド112.114秒 | 241 |
+| [normal-input-and-rendering (fixed, restart-2)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183223) | 5f1c2ba | success / 17項目 / 3枚 / コマンド21.84秒 | 148 |
+| [normal-input-and-rendering (fixed, restart-1)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183260) | 5f1c2ba | success / 17項目 / 3枚 / コマンド18.961秒 | 146 |
+| [素材検査](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749186/job/111414182814) | 4a0691c | success / 既存検査全件 | 103 |
+| [Godot・凍結受入テスト](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749186/job/111414182951) | 4a0691c | success / R-01〜R-08全8成功 / その他既存検査全件 | 167 |
+| [試遊前の通常戦闘・案内・画面・復帰検査](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749186/job/111414182964) | 4a0691c | success / 既存検査全件 | 267 |
+
+R全8件の実PASSマーカーと保護26件照合をci/4a-push-jobs.jsonに収録。固定7592/20保存/5再起動と固定全49枚、最新7662/20保存/5再起動と最新全49枚を省略せず実行。コピー正例7656件と明示プローブ39件×2、占有無視負例39件中2失敗も両イベントのlifecycle-auditで再実証。上限・期待値・原検査の弱化0。
+
+main取り込み後、検査前に規定Godotのimportを実行した。初回は固定撮影コピーに含まれた未追跡の.png.import副生成物49件と旧.godot UIDキャッシュが重複して警告49件（ci/main-import-before-cache-clean.log）。副生成物とキャッシュを作業領域へ別保管し、同じ本体ファイルから再生成後のimportは終了0・警告/エラー0（ci/main-import.log）。素材・画像本体・追跡ファイルは変更せず、CIのクリーンcheckoutにもこの古い生成物は含まれない。main上の保護26件、対応135箇所・未分類0、009範囲の作業ツリー照合も再PASS。
+
+## 通常merge後mainの全CIと終了点検
+
+PR #16を通常mergeし、main反映SHAは `ff01ef949978e4bb0c16d2a5969d8a2df4d67f6e`。統合mainの専用 [37195248477](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477) 全17、通常 [37195248488](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248488) 全3、計20/20が終了・成功。各jobの完全SHA・開始/終了・秒数・結果はci/main-all-checks.json、固定/最新の実測コマンド件数・時間・R全8のPASSマーカーはci/main-jobs.json。
+
+mainのlatest artifact11300816924を公式ダウンロード機能で取得しSHA-256一致を検証。実行SHAがff01ef9の最新7662項目、20保存、5再起動10/27/38/52/44のみci/main-runtime/へ保存。原画334件・保全2423パス・歴史画像54枚・入力31件、保護26/26、135分類/未分類0をmainでも照合し、正例3/負例4もPASS。親登録4パスと007/008の未着手状態は全バイト一致。
+
+| main job | 対象SHA | 結果・件数 | job時間（秒） |
+| --- | --- | --- | --- |
+| [lifecycle-audit](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415657957) | ff01ef9 | success / 135分類 / 正例3・負例4 / 保護26 | 169 |
+| [normal-input-and-rendering (fixed, restart-1)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658035) | 5f1c2ba | success / 17項目 / 3枚 / コマンド14.817秒 | 121 |
+| [acceptance-and-regression (fixed)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658059) | 5f1c2ba | success / 7592項目 / 20保存 / 5再起動 | 128 |
+| [acceptance-and-regression (latest)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658063) | ff01ef9 | success / 7662項目 / 20保存 / 5再起動 | 153 |
+| [normal-input-and-rendering (fixed, details)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658182) | 5f1c2ba | success / 34項目 / 6枚 / コマンド74.712秒 | 209 |
+| [normal-input-and-rendering (latest, restart-0)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658184) | ff01ef9 | success / 17項目 / 3枚 / コマンド14.479秒 | 166 |
+| [normal-input-and-rendering (latest, restart-1)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658185) | ff01ef9 | success / 17項目 / 3枚 / コマンド22.61秒 | 170 |
+| [normal-input-and-rendering (latest, restart-3)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658214) | ff01ef9 | success / 17項目 / 3枚 / コマンド29.966秒 | 176 |
+| [normal-input-and-rendering (latest, journey)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658219) | ff01ef9 | success / 132項目 / 28枚 / コマンド123.737秒 | 270 |
+| [normal-input-and-rendering (fixed, restart-0)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658240) | 5f1c2ba | success / 17項目 / 3枚 / コマンド17.983秒 | 189 |
+| [normal-input-and-rendering (fixed, restart-3)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658241) | 5f1c2ba | success / 17項目 / 3枚 / コマンド22.601秒 | 148 |
+| [normal-input-and-rendering (fixed, journey)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658251) | 5f1c2ba | success / 137項目 / 28枚 / コマンド123.651秒 | 305 |
+| [normal-input-and-rendering (fixed, restart-4)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658266) | 5f1c2ba | success / 17項目 / 3枚 / コマンド27.893秒 | 172 |
+| [normal-input-and-rendering (latest, restart-4)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658267) | ff01ef9 | success / 17項目 / 3枚 / コマンド20.887秒 | 153 |
+| [normal-input-and-rendering (fixed, restart-2)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658272) | 5f1c2ba | success / 17項目 / 3枚 / コマンド17.626秒 | 131 |
+| [normal-input-and-rendering (latest, restart-2)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658337) | ff01ef9 | success / 17項目 / 3枚 / コマンド25.231秒 | 166 |
+| [normal-input-and-rendering (latest, details)](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248477/job/111415658339) | ff01ef9 | success / 34項目 / 6枚 / コマンド68.062秒 | 186 |
+| [Godot・凍結受入テスト](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248488/job/111415657755) | ff01ef9 | success / R全8 / 既存検査全件 | 169 |
+| [素材検査](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248488/job/111415657782) | ff01ef9 | success / 既存検査全件 | 92 |
+| [試遊前の通常戦闘・案内・画面・復帰検査](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37195248488/job/111415657686) | ff01ef9 | success / 既存検査全件 | 408 |
+
+009は報告済み。最後の追記は報告・実行証拠・状態行だけで、本番/素材/保護/検査ロジックは完成コード4a0691cと同一。文書commit自体のSHAとpush後全CIの結果は最終応答に記録する。007/008は開始しない。残る制約は上の旧任意航路失敗・旧保存300秒timeout・人間試遊/約60時間実測/聴感未実施のまま。判断依頼0件。

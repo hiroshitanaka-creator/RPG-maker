@@ -1,0 +1,1478 @@
+[
+  {
+    "run_id": 37194749183,
+    "job_id": 111414182899,
+    "name": "lifecycle-audit",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:14:59Z",
+    "completed_at": "2026-10-04T10:17:51Z",
+    "elapsed_seconds": 172,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414182899",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "start_sha": "b9024b8379ea08070fa6b4f61149b257e25277e6",
+        "fixed_006_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "parent_registration_sha": "152cdb18228f377adb2f25e868a59d9649f597e4",
+        "execution_sha": "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+        "worktree": false,
+        "changed_files": [
+          ".github/workflows/region2-village-connections.yml",
+          "AGENTS.md",
+          "docs/decision-log.md",
+          "docs/tasks/009-test-lifecycle.md",
+          "docs/tasks/reports/009-test-lifecycle.md",
+          "docs/verification/task-009/assertion-map.json",
+          "docs/verification/task-009/assertion-map.md",
+          "docs/verification/task-009/assets-strict.log",
+          "docs/verification/task-009/baseline-connection-summary.json",
+          "docs/verification/task-009/baseline-scope-checks.json",
+          "docs/verification/task-009/changed-files.txt",
+          "docs/verification/task-009/ci/7b-all-checks.json",
+          "docs/verification/task-009/ci/842-negative-failure.log",
+          "docs/verification/task-009/ci/d3-all-checks.json",
+          "docs/verification/task-009/ci/d3-push-jobs.json",
+          "docs/verification/task-009/continuing-contract.json",
+          "docs/verification/task-009/fixed-details.log",
+          "docs/verification/task-009/fixed-execution.log",
+          "docs/verification/task-009/fixed-import.log",
+          "docs/verification/task-009/fixed-journey.log",
+          "docs/verification/task-009/fixed-lifecycle.log",
+          "docs/verification/task-009/fixed-render/details/01-west-arch-under.png",
+          "docs/verification/task-009/fixed-render/details/02-east-arch-under.png",
+          "docs/verification/task-009/fixed-render/details/03-room-1-high-front-wall.png",
+          "docs/verification/task-009/fixed-render/details/03-room-2-high-front-wall.png",
+          "docs/verification/task-009/fixed-render/details/03-room-3-high-front-wall.png",
+          "docs/verification/task-009/fixed-render/details/03-room-4-high-front-wall.png",
+          "docs/verification/task-009/fixed-render/details/checks.json",
+          "docs/verification/task-009/fixed-render/details/execution.log",
+          "docs/verification/task-009/fixed-render/details/lifecycle-summary.json",
+          "docs/verification/task-009/fixed-render/journey/01-port-start.png",
+          "docs/verification/task-009/fixed-render/journey/02-world-village-entrance.png",
+          "docs/verification/task-009/fixed-render/journey/03-west-landing.png",
+          "docs/verification/task-009/fixed-render/journey/04-room-0-entrance.png",
+          "docs/verification/task-009/fixed-render/journey/04-room-1-entrance.png",
+          "docs/verification/task-009/fixed-render/journey/04-room-2-entrance.png",
+          "docs/verification/task-009/fixed-render/journey/04-room-3-entrance.png",
+          "docs/verification/task-009/fixed-render/journey/04-room-4-entrance.png",
+          "docs/verification/task-009/fixed-render/journey/05-room-0-front.png",
+          "docs/verification/task-009/fixed-render/journey/05-room-1-front.png",
+          "docs/verification/task-009/fixed-render/journey/05-room-2-front.png",
+          "docs/verification/task-009/fixed-render/journey/05-room-3-front.png",
+          "docs/verification/task-009/fixed-render/journey/05-room-4-front.png",
+          "docs/verification/task-009/fixed-render/journey/06-room-0-behind.png",
+          "docs/verification/task-009/fixed-render/journey/06-room-1-behind.png",
+          "docs/verification/task-009/fixed-render/journey/06-room-2-behind.png",
+          "docs/verification/task-009/fixed-render/journey/06-room-3-behind.png",
+          "docs/verification/task-009/fixed-render/journey/06-room-4-behind.png",
+          "docs/verification/task-009/fixed-render/journey/07-room-1-return.png",
+          "docs/verification/task-009/fixed-render/journey/07-room-2-return.png",
+          "docs/verification/task-009/fixed-render/journey/07-room-3-return.png",
+          "docs/verification/task-009/fixed-render/journey/07-room-4-return.png",
+          "docs/verification/task-009/fixed-render/journey/08-east-outside.png",
+          "docs/verification/task-009/fixed-render/journey/09-east-landing-camera-edge.png",
+          "docs/verification/task-009/fixed-render/journey/10-menu-restored.png",
+          "docs/verification/task-009/fixed-render/journey/11-port-returned.png",
+          "docs/verification/task-009/fixed-render/journey/12-return-destinations.png",
+          "docs/verification/task-009/fixed-render/journey/13-returned-to-village.png",
+          "docs/verification/task-009/fixed-render/journey/checks.json",
+          "docs/verification/task-009/fixed-render/journey/execution.log",
+          "docs/verification/task-009/fixed-render/journey/lifecycle-summary.json",
+          "docs/verification/task-009/fixed-render/restart-0/01-restart-room-0.png",
+          "docs/verification/task-009/fixed-render/restart-0/02-port-after-restart.png",
+          "docs/verification/task-009/fixed-render/restart-0/03-position-relocation-notice.png",
+          "docs/verification/task-009/fixed-render/restart-0/checks.json",
+          "docs/verification/task-009/fixed-render/restart-0/execution.log",
+          "docs/verification/task-009/fixed-render/restart-0/lifecycle-summary.json",
+          "docs/verification/task-009/fixed-render/restart-1/01-restart-room-1.png",
+          "docs/verification/task-009/fixed-render/restart-1/02-port-after-restart.png",
+          "docs/verification/task-009/fixed-render/restart-1/03-position-relocation-notice.png",
+          "docs/verification/task-009/fixed-render/restart-1/checks.json",
+          "docs/verification/task-009/fixed-render/restart-1/execution.log",
+          "docs/verification/task-009/fixed-render/restart-1/lifecycle-summary.json",
+          "docs/verification/task-009/fixed-render/restart-2/01-restart-room-2.png",
+          "docs/verification/task-009/fixed-render/restart-2/02-port-after-restart.png",
+          "docs/verification/task-009/fixed-render/restart-2/03-position-relocation-notice.png",
+          "docs/verification/task-009/fixed-render/restart-2/checks.json",
+          "docs/verification/task-009/fixed-render/restart-2/execution.log",
+          "docs/verification/task-009/fixed-render/restart-2/lifecycle-summary.json",
+          "docs/verification/task-009/fixed-render/restart-3/01-restart-room-3.png",
+          "docs/verification/task-009/fixed-render/restart-3/02-port-after-restart.png",
+          "docs/verification/task-009/fixed-render/restart-3/03-position-relocation-notice.png",
+          "docs/verification/task-009/fixed-render/restart-3/checks.json",
+          "docs/verification/task-009/fixed-render/restart-3/execution.log",
+          "docs/verification/task-009/fixed-render/restart-3/lifecycle-summary.json",
+          "docs/verification/task-009/fixed-render/restart-4/01-restart-room-4.png",
+          "docs/verification/task-009/fixed-render/restart-4/02-port-after-restart.png",
+          "docs/verification/task-009/fixed-render/restart-4/03-position-relocation-notice.png",
+          "docs/verification/task-009/fixed-render/restart-4/checks.json",
+          "docs/verification/task-009/fixed-render/restart-4/execution.log",
+          "docs/verification/task-009/fixed-render/restart-4/lifecycle-summary.json",
+          "docs/verification/task-009/fixed-restart-0.log",
+          "docs/verification/task-009/fixed-restart-1.log",
+          "docs/verification/task-009/fixed-restart-2.log",
+          "docs/verification/task-009/fixed-restart-3.log",
+          "docs/verification/task-009/fixed-restart-4.log",
+          "docs/verification/task-009/fixed/acceptance-summary.json",
+          "docs/verification/task-009/fixed/ci-927cd60.json",
+          "docs/verification/task-009/fixed/ci-cbae42a.json",
+          "docs/verification/task-009/fixed/ci-report37b.json",
+          "docs/verification/task-009/fixed/ci-start.json",
+          "docs/verification/task-009/fixed/comparison-sources.json",
+          "docs/verification/task-009/fixed/connection-summary.json",
+          "docs/verification/task-009/fixed/execution.log",
+          "docs/verification/task-009/fixed/import-8ac824f.log",
+          "docs/verification/task-009/fixed/import-main24bd.log",
+          "docs/verification/task-009/fixed/import-main37b.log",
+          "docs/verification/task-009/fixed/import-upstream.log",
+          "docs/verification/task-009/fixed/lifecycle-summary.json",
+          "docs/verification/task-009/fixed/locked-results-8ac824f.json",
+          "docs/verification/task-009/fixed/locked-results-after-upstream.json",
+          "docs/verification/task-009/fixed/main-integration37b.json",
+          "docs/verification/task-009/fixed/native-details.log",
+          "docs/verification/task-009/fixed/native-evidence-index.json",
+          "docs/verification/task-009/fixed/native-final-journey.log",
+          "docs/verification/task-009/fixed/native-final-summary.json",
+          "docs/verification/task-009/fixed/native-journey.log",
+          "docs/verification/task-009/fixed/native-restart-0.log",
+          "docs/verification/task-009/fixed/native-restart-1.log",
+          "docs/verification/task-009/fixed/native-restart-2.log",
+          "docs/verification/task-009/fixed/native-restart-3.log",
+          "docs/verification/task-009/fixed/native-restart-4.log",
+          "docs/verification/task-009/fixed/native-restarts-summary.json",
+          "docs/verification/task-009/fixed/original-pc-end-checks.json",
+          "docs/verification/task-009/fixed/preservation-checks.json",
+          "docs/verification/task-009/fixed/preservation-report37b.json",
+          "docs/verification/task-009/fixed/restart-0.json",
+          "docs/verification/task-009/fixed/restart-0.log",
+          "docs/verification/task-009/fixed/restart-1.json",
+          "docs/verification/task-009/fixed/restart-1.log",
+          "docs/verification/task-009/fixed/restart-2.json",
+          "docs/verification/task-009/fixed/restart-2.log",
+          "docs/verification/task-009/fixed/restart-3.json",
+          "docs/verification/task-009/fixed/restart-3.log",
+          "docs/verification/task-009/fixed/restart-4.json",
+          "docs/verification/task-009/fixed/restart-4.log",
+          "docs/verification/task-009/fixed/runtime-checks.json",
+          "docs/verification/task-009/fixed/runtime-checks.log",
+          "docs/verification/task-009/fixed/saved-inputs-index.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_0_0.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_0_1.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_0_2.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_0_3.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_1_0.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_1_1.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_1_2.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_1_3.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_2_0.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_2_1.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_2_2.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_2_3.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_3_0.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_3_1.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_3_2.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_3_3.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_4_0.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_4_1.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_4_2.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_4_3.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_growth_0.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_growth_1.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_growth_2.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_growth_3.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_growth_4.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_port-start.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_relocation_0.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_relocation_1.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_relocation_2.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_relocation_3.json",
+          "docs/verification/task-009/fixed/saved-inputs/village006_relocation_4.json",
+          "docs/verification/task-009/fixed/scope-checks.json",
+          "docs/verification/task-009/fixed/scope-report37b.json",
+          "docs/verification/task-009/fixed/start-manifest.json",
+          "docs/verification/task-009/fixed/upstream-batch3-preservation.json",
+          "docs/verification/task-009/fixed/upstream-preservation.json",
+          "docs/verification/task-009/latest-details.log",
+          "docs/verification/task-009/latest-execution.log",
+          "docs/verification/task-009/latest-import.log",
+          "docs/verification/task-009/latest-journey.log",
+          "docs/verification/task-009/latest-restart-0.log",
+          "docs/verification/task-009/latest-restart-1.log",
+          "docs/verification/task-009/latest-restart-2.log",
+          "docs/verification/task-009/latest-restart-3.log",
+          "docs/verification/task-009/latest-restart-4.log",
+          "docs/verification/task-009/latest/details/01-west-arch-under.png",
+          "docs/verification/task-009/latest/details/02-east-arch-under.png",
+          "docs/verification/task-009/latest/details/03-room-1-high-front-wall.png",
+          "docs/verification/task-009/latest/details/03-room-2-high-front-wall.png",
+          "docs/verification/task-009/latest/details/03-room-3-high-front-wall.png",
+          "docs/verification/task-009/latest/details/03-room-4-high-front-wall.png",
+          "docs/verification/task-009/latest/details/checks.json",
+          "docs/verification/task-009/latest/details/execution.log",
+          "docs/verification/task-009/latest/details/regression-summary.json",
+          "docs/verification/task-009/latest/journey/01-port-start.png",
+          "docs/verification/task-009/latest/journey/02-world-village-entrance.png",
+          "docs/verification/task-009/latest/journey/03-west-landing.png",
+          "docs/verification/task-009/latest/journey/04-room-0-entrance.png",
+          "docs/verification/task-009/latest/journey/04-room-1-entrance.png",
+          "docs/verification/task-009/latest/journey/04-room-2-entrance.png",
+          "docs/verification/task-009/latest/journey/04-room-3-entrance.png",
+          "docs/verification/task-009/latest/journey/04-room-4-entrance.png",
+          "docs/verification/task-009/latest/journey/05-room-0-front.png",
+          "docs/verification/task-009/latest/journey/05-room-1-front.png",
+          "docs/verification/task-009/latest/journey/05-room-2-front.png",
+          "docs/verification/task-009/latest/journey/05-room-3-front.png",
+          "docs/verification/task-009/latest/journey/05-room-4-front.png",
+          "docs/verification/task-009/latest/journey/06-room-0-behind.png",
+          "docs/verification/task-009/latest/journey/06-room-1-behind.png",
+          "docs/verification/task-009/latest/journey/06-room-2-behind.png",
+          "docs/verification/task-009/latest/journey/06-room-3-behind.png",
+          "docs/verification/task-009/latest/journey/06-room-4-behind.png",
+          "docs/verification/task-009/latest/journey/07-room-1-return.png",
+          "docs/verification/task-009/latest/journey/07-room-2-return.png",
+          "docs/verification/task-009/latest/journey/07-room-3-return.png",
+          "docs/verification/task-009/latest/journey/07-room-4-return.png",
+          "docs/verification/task-009/latest/journey/08-east-outside.png",
+          "docs/verification/task-009/latest/journey/09-east-landing-camera-edge.png",
+          "docs/verification/task-009/latest/journey/10-menu-restored.png",
+          "docs/verification/task-009/latest/journey/11-port-returned.png",
+          "docs/verification/task-009/latest/journey/12-return-destinations.png",
+          "docs/verification/task-009/latest/journey/13-returned-to-village.png",
+          "docs/verification/task-009/latest/journey/checks.json",
+          "docs/verification/task-009/latest/journey/execution.log",
+          "docs/verification/task-009/latest/journey/regression-summary.json",
+          "docs/verification/task-009/latest/regression-summary.json",
+          "docs/verification/task-009/latest/restart-0.json",
+          "docs/verification/task-009/latest/restart-0.log",
+          "docs/verification/task-009/latest/restart-0/01-restart-room-0.png",
+          "docs/verification/task-009/latest/restart-0/02-port-after-restart.png",
+          "docs/verification/task-009/latest/restart-0/03-position-relocation-notice.png",
+          "docs/verification/task-009/latest/restart-0/checks.json",
+          "docs/verification/task-009/latest/restart-0/execution.log",
+          "docs/verification/task-009/latest/restart-0/regression-summary.json",
+          "docs/verification/task-009/latest/restart-1.json",
+          "docs/verification/task-009/latest/restart-1.log",
+          "docs/verification/task-009/latest/restart-1/01-restart-room-1.png",
+          "docs/verification/task-009/latest/restart-1/02-port-after-restart.png",
+          "docs/verification/task-009/latest/restart-1/03-position-relocation-notice.png",
+          "docs/verification/task-009/latest/restart-1/checks.json",
+          "docs/verification/task-009/latest/restart-1/execution.log",
+          "docs/verification/task-009/latest/restart-1/regression-summary.json",
+          "docs/verification/task-009/latest/restart-2.json",
+          "docs/verification/task-009/latest/restart-2.log",
+          "docs/verification/task-009/latest/restart-2/01-restart-room-2.png",
+          "docs/verification/task-009/latest/restart-2/02-port-after-restart.png",
+          "docs/verification/task-009/latest/restart-2/03-position-relocation-notice.png",
+          "docs/verification/task-009/latest/restart-2/checks.json",
+          "docs/verification/task-009/latest/restart-2/execution.log",
+          "docs/verification/task-009/latest/restart-2/regression-summary.json",
+          "docs/verification/task-009/latest/restart-3.json",
+          "docs/verification/task-009/latest/restart-3.log",
+          "docs/verification/task-009/latest/restart-3/01-restart-room-3.png",
+          "docs/verification/task-009/latest/restart-3/02-port-after-restart.png",
+          "docs/verification/task-009/latest/restart-3/03-position-relocation-notice.png",
+          "docs/verification/task-009/latest/restart-3/checks.json",
+          "docs/verification/task-009/latest/restart-3/execution.log",
+          "docs/verification/task-009/latest/restart-3/regression-summary.json",
+          "docs/verification/task-009/latest/restart-4.json",
+          "docs/verification/task-009/latest/restart-4.log",
+          "docs/verification/task-009/latest/restart-4/01-restart-room-4.png",
+          "docs/verification/task-009/latest/restart-4/02-port-after-restart.png",
+          "docs/verification/task-009/latest/restart-4/03-position-relocation-notice.png",
+          "docs/verification/task-009/latest/restart-4/checks.json",
+          "docs/verification/task-009/latest/restart-4/execution.log",
+          "docs/verification/task-009/latest/restart-4/regression-summary.json",
+          "docs/verification/task-009/latest/runtime-checks.json",
+          "docs/verification/task-009/latest/runtime-checks.log",
+          "docs/verification/task-009/latest/saved-inputs/village009_0_0.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_0_1.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_0_2.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_0_3.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_1_0.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_1_1.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_1_2.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_1_3.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_2_0.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_2_1.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_2_2.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_2_3.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_3_0.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_3_1.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_3_2.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_3_3.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_4_0.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_4_1.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_4_2.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_4_3.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_growth_0.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_growth_1.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_growth_2.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_growth_3.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_growth_4.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_port-start.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_relocation_0.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_relocation_1.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_relocation_2.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_relocation_3.json",
+          "docs/verification/task-009/latest/saved-inputs/village009_relocation_4.json",
+          "docs/verification/task-009/local-summary.json",
+          "docs/verification/task-009/locked-checks.log",
+          "docs/verification/task-009/locked-results.json",
+          "docs/verification/task-009/negative-cases/invalid-save-accepted.json",
+          "docs/verification/task-009/negative-cases/invalid-save-accepted.log",
+          "docs/verification/task-009/negative-cases/misconnected-door.json",
+          "docs/verification/task-009/negative-cases/misconnected-door.log",
+          "docs/verification/task-009/negative-cases/npc-floor-after.json",
+          "docs/verification/task-009/negative-cases/npc-floor-after.log",
+          "docs/verification/task-009/negative-cases/npc-floor-before.json",
+          "docs/verification/task-009/negative-cases/npc-floor-before.log",
+          "docs/verification/task-009/negative-cases/npc-occupancy-ignored.json",
+          "docs/verification/task-009/negative-cases/npc-occupancy-ignored.log",
+          "docs/verification/task-009/negative-cases/npc-probe-source.gd.txt",
+          "docs/verification/task-009/negative-cases/registered-request-and-npc-occupancy.json",
+          "docs/verification/task-009/negative-cases/registered-request-and-npc-occupancy.log",
+          "docs/verification/task-009/negative-cases/summary.json",
+          "docs/verification/task-009/negative-cases/wrong-fixed-sha.log",
+          "docs/verification/task-009/negative-execution.log",
+          "docs/verification/task-009/original-checks.json",
+          "docs/verification/task-009/preservation.json",
+          "docs/verification/task-009/scope-checks.json",
+          "docs/verification/task-009/scope-execution.log",
+          "tools/capture_task009_village_regression.gd",
+          "tools/capture_task009_village_regression.gd.uid",
+          "tools/check_region2_village_regression.gd",
+          "tools/check_region2_village_regression.gd.uid",
+          "tools/check_region2_village_regression.py",
+          "tools/check_task009_assertion_map.py",
+          "tools/check_task009_lifecycle.py",
+          "tools/check_task009_scope.py",
+          "tools/test_task009_lifecycle.py"
+        ],
+        "failures": [],
+        "preserved_paths": 2423,
+        "owner_originals": 334,
+        "historical_images": 54,
+        "historical_capture_images": 49,
+        "historical_inputs": 31
+      },
+      {
+        "status": "PASS",
+        "execution_sha": "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+        "production_unchanged": true,
+        "results": {
+          "wrong-fixed-sha": {
+            "status": "PASS",
+            "exit_code": 1,
+            "failure": "固定006の完全SHAが承認済み完成点と一致しません",
+            "fixed_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+          },
+          "npc-floor-before": {
+            "status": "PASS",
+            "exit_code": 0,
+            "checks": 39,
+            "failures": [],
+            "runtime_status": "PASS",
+            "npc_probe": [
+              {
+                "adjacent_cell": [
+                  20,
+                  26
+                ],
+                "adjacent_reached": true,
+                "move_kind": "moved",
+                "npc_cell": [
+                  20,
+                  25
+                ],
+                "npc_present": false,
+                "state_unchanged": false,
+                "terrain": ".",
+                "walkable": true
+              }
+            ],
+            "elapsed_seconds": 1,
+            "timeout_seconds": 180,
+            "parser_errors": false
+          },
+          "npc-floor-after": {
+            "status": "PASS",
+            "exit_code": 0,
+            "checks": 39,
+            "failures": [],
+            "runtime_status": "PASS",
+            "npc_probe": [
+              {
+                "adjacent_cell": [
+                  20,
+                  26
+                ],
+                "adjacent_reached": true,
+                "move_kind": "",
+                "npc_cell": [
+                  20,
+                  25
+                ],
+                "npc_present": true,
+                "state_unchanged": true,
+                "terrain": ".",
+                "walkable": false
+              }
+            ],
+            "elapsed_seconds": 0.997,
+            "timeout_seconds": 180,
+            "parser_errors": false
+          },
+          "registered-request-and-npc-occupancy": {
+            "status": "PASS",
+            "exit_code": 0,
+            "checks": 7656,
+            "failures": [],
+            "runtime_status": "PASS",
+            "npc_probe": null,
+            "elapsed_seconds": 21.453,
+            "timeout_seconds": 180,
+            "parser_errors": false,
+            "scope": "一時コピーのみ。007サービスは未実装・未検証"
+          },
+          "npc-occupancy-ignored": {
+            "status": "PASS",
+            "exit_code": 1,
+            "checks": 39,
+            "failures": [
+              "配置前通行可・配置後占有不可",
+              "実移動も配置前成功・配置後占有拒否で全状態保持"
+            ],
+            "runtime_status": "FAIL",
+            "npc_probe": [
+              {
+                "adjacent_cell": [
+                  20,
+                  26
+                ],
+                "adjacent_reached": true,
+                "move_kind": "moved",
+                "npc_cell": [
+                  20,
+                  25
+                ],
+                "npc_present": true,
+                "state_unchanged": false,
+                "terrain": ".",
+                "walkable": true
+              }
+            ],
+            "elapsed_seconds": 1,
+            "timeout_seconds": 180,
+            "parser_errors": false,
+            "mutation": "一時コピーだけNPC占有拒否を無効化"
+          },
+          "misconnected-door": {
+            "status": "PASS",
+            "exit_code": 1,
+            "checks": 7662,
+            "failures": [
+              "村の世界接続・東西出口・8扉の固定対応",
+              "8本の扉リンク: { \"layer\": \"interior\", \"node\": \"region2_village\", \"room\": 0, \"cell\": [16, 8] }",
+              "同じ方向の継続で往復せず、採用済みの壁ならその場で止まる",
+              "既存の入口安全補正",
+              "補正以外の全状態不変",
+              "再保存後に補正通知が残らない",
+              "既存の入口安全補正",
+              "補正以外の全状態不変",
+              "再保存後に補正通知が残らない",
+              "既存の入口安全補正",
+              "補正以外の全状態不変",
+              "再保存後に補正通知が残らない",
+              "既存の入口安全補正",
+              "補正以外の全状態不変",
+              "再保存後に補正通知が残らない"
+            ],
+            "runtime_status": "FAIL",
+            "npc_probe": null,
+            "elapsed_seconds": 20.618,
+            "timeout_seconds": 180,
+            "parser_errors": false,
+            "mutation": "扉0の接続室1を2へ変更"
+          },
+          "invalid-save-accepted": {
+            "status": "PASS",
+            "exit_code": 1,
+            "checks": 7662,
+            "failures": [
+              "不正保存拒否と現在状態保持: { \"room\": 5 }",
+              "不正保存拒否と現在状態保持: { \"room\": 5 }",
+              "不正保存拒否と現在状態保持: { \"room\": 5 }",
+              "不正保存拒否と現在状態保持: { \"room\": 5 }",
+              "不正保存拒否と現在状態保持: { \"room\": 5 }"
+            ],
+            "runtime_status": "FAIL",
+            "npc_probe": null,
+            "elapsed_seconds": 20.152,
+            "timeout_seconds": 180,
+            "parser_errors": false,
+            "mutation": "不正room5のload_gameをtrueへ変更"
+          }
+        },
+        "method": "別コピーの正例と故障注入。負例は終了1・実assertion失敗を要求し、timeout/parse errorは成功扱いしない。"
+      }
+    ],
+    "pass_markers": [
+      "TASK009_ASSERTION_MAP_PASS: sites=135 unclassified=0 fixture=fixed006",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414182983,
+    "name": "normal-input-and-rendering (latest, details)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:14:59Z",
+    "completed_at": "2026-10-04T10:18:44Z",
+    "elapsed_seconds": 225,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414182983",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--details"
+        ],
+        "exit_code": 0,
+        "checks": 34,
+        "images": 6,
+        "errors": [],
+        "elapsed_seconds": 79.611,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "VILLAGE_REGRESSION_PASS",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414182989,
+    "name": "normal-input-and-rendering (fixed, restart-0)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:17:24Z",
+    "elapsed_seconds": 144,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414182989",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 21.396,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "0"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 13.184,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183001,
+    "name": "normal-input-and-rendering (fixed, restart-4)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:18:06Z",
+    "elapsed_seconds": 186,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183001",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 25.298,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "4"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 28.779,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183023,
+    "name": "normal-input-and-rendering (latest, restart-0)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:01Z",
+    "completed_at": "2026-10-04T10:18:01Z",
+    "elapsed_seconds": 180,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183023",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "0"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 17.553,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "VILLAGE_REGRESSION_PASS",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183027,
+    "name": "normal-input-and-rendering (latest, journey)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:19:26Z",
+    "elapsed_seconds": 266,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183027",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd"
+        ],
+        "exit_code": 0,
+        "checks": 132,
+        "images": 28,
+        "errors": [],
+        "elapsed_seconds": 124.06,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "VILLAGE_REGRESSION_PASS",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183031,
+    "name": "acceptance-and-regression (fixed)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:17:20Z",
+    "elapsed_seconds": 140,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183031",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 24.709,
+        "process_timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183069,
+    "name": "normal-input-and-rendering (latest, restart-3)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:17:19Z",
+    "elapsed_seconds": 139,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183069",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "3"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 21.962,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "VILLAGE_REGRESSION_PASS",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183084,
+    "name": "normal-input-and-rendering (latest, restart-2)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:01Z",
+    "completed_at": "2026-10-04T10:18:12Z",
+    "elapsed_seconds": 191,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183084",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "2"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 26.042,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "VILLAGE_REGRESSION_PASS",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183092,
+    "name": "normal-input-and-rendering (latest, restart-4)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:17:45Z",
+    "elapsed_seconds": 165,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183092",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "4"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 29.454,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "VILLAGE_REGRESSION_PASS",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183102,
+    "name": "acceptance-and-regression (latest)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:14:59Z",
+    "completed_at": "2026-10-04T10:16:42Z",
+    "elapsed_seconds": 103,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183102",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [],
+    "pass_markers": [
+      "TASK009_ASSERTION_MAP_PASS: sites=135 unclassified=0 fixture=fixed006",
+      "VILLAGE_REGRESSION_PASS",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183107,
+    "name": "normal-input-and-rendering (latest, restart-1)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:17:50Z",
+    "elapsed_seconds": 170,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183107",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "1"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 21.594,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "VILLAGE_REGRESSION_PASS",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183132,
+    "name": "normal-input-and-rendering (fixed, details)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:14:59Z",
+    "completed_at": "2026-10-04T10:18:34Z",
+    "elapsed_seconds": 215,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183132",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 24.532,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--details"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 78.984,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 34,
+        "images": 6
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183192,
+    "name": "normal-input-and-rendering (fixed, restart-3)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:17:52Z",
+    "elapsed_seconds": 172,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183192",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 25.004,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "3"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 29.481,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183202,
+    "name": "normal-input-and-rendering (fixed, journey)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:19:01Z",
+    "elapsed_seconds": 241,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183202",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 19.521,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 112.114,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 137,
+        "images": 28
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183223,
+    "name": "normal-input-and-rendering (fixed, restart-2)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:17:28Z",
+    "elapsed_seconds": 148,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183223",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 19.119,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "2"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 21.84,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749183,
+    "job_id": 111414183260,
+    "name": "normal-input-and-rendering (fixed, restart-1)",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:17:26Z",
+    "elapsed_seconds": 146,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749183/job/111414183260",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 19.073,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "1"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 18.961,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749186,
+    "job_id": 111414182814,
+    "name": "素材検査",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:15:00Z",
+    "completed_at": "2026-10-04T10:16:43Z",
+    "elapsed_seconds": 103,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749186/job/111414182814",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9"
+    ],
+    "summary_objects": [],
+    "pass_markers": [
+      "VILLAGE_SCOPE_PASS: production_paths=10 prior_ci_bytes_identical=True",
+      "VILLAGE_DATA_PASS: checks=244",
+      "VILLAGE_NATIVE_PASS: captures=25"
+    ]
+  },
+  {
+    "run_id": 37194749186,
+    "job_id": 111414182951,
+    "name": "Godot・凍結受入テスト",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:14:59Z",
+    "completed_at": "2026-10-04T10:17:46Z",
+    "elapsed_seconds": 167,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749186/job/111414182951",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9"
+    ],
+    "summary_objects": [],
+    "pass_markers": [
+      "保護対象26件、一致26件。",
+      "PASS R-01 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-02 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-03 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-04 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-05 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-06 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-07 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-08 (exit=0, tests_ran=True, parser_failed=False)",
+      "\u001b[36;1mtest \"$(grep -c '^VILLAGE_RUNTIME_PASS:' region2-village-backdrops.log)\" -eq 1\u001b[0m",
+      "VILLAGE_RUNTIME_PASS: checks=2170",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37194749186,
+    "job_id": 111414182964,
+    "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-10-04T10:14:59Z",
+    "completed_at": "2026-10-04T10:19:26Z",
+    "elapsed_seconds": 267,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37194749186/job/111414182964",
+    "checkout_shas": [
+      "4a0691c455edb3faa8e2d201e3e3d9cb11330cc9"
+    ],
+    "summary_objects": [],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  }
+]
