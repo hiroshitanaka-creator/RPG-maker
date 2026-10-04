@@ -13,6 +13,9 @@ import time
 ROOT=Path(__file__).resolve().parents[1]
 BAD=re.compile(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL')
 
+def git(*args):
+    return subprocess.check_output(['git',*args],cwd=ROOT)
+
 def run(command,path,target,env,limit=180,marker=None):
     started=time.monotonic()
     try:
