@@ -1,6 +1,6 @@
 # 017 016の修正をAstraで独立再レビューする
 
-- 状態：未着手
+- 状態：報告済み
 - 担当：Codex（クラウド）、GPT-6 Astra／Medium
 - 依頼日：2026-10-04
 - ブランチ：codex/task-017-review-audit-fixes
