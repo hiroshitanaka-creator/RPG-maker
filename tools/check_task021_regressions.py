@@ -64,6 +64,9 @@ def verify(exe, sha, target):
                     result['status'] = 'FAIL'
                 (target / ('relocated-' + mode + '.json')).write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
                 cases['relocated-' + mode] = result
+            # 11,3では10,3から隣接会話できる。届かない負例は020と同じ12,3で作る。
+            data = json.loads(village_bytes)
+            inn = [event for room in data['site']['rooms'] for event in room.get('events', []) if event['id'] == 'oasis_innkeeper']
             inn[0]['reach'] = 1
             village.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
             services('inn-unreachable', '宿IDの床・占有・reach・入口到達')
