@@ -1,0 +1,1078 @@
+[
+  {
+    "run_id": 37193610575,
+    "job_id": 111410769971,
+    "name": "lifecycle-audit",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410769971",
+    "started_at": "2026-10-04T09:53:51.5041063Z",
+    "completed_at": "2026-10-04T09:56:29.3100245Z",
+    "elapsed_seconds": 158,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "start_sha": "b9024b8379ea08070fa6b4f61149b257e25277e6",
+        "fixed_006_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "parent_registration_sha": "152cdb18228f377adb2f25e868a59d9649f597e4",
+        "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+        "worktree": false,
+        "changed_files": [
+          ".github/workflows/region2-village-connections.yml",
+          "AGENTS.md",
+          "docs/decision-log.md",
+          "docs/tasks/009-test-lifecycle.md",
+          "docs/tasks/reports/009-test-lifecycle.md",
+          "docs/verification/task-009/assertion-map.json",
+          "docs/verification/task-009/assertion-map.md",
+          "docs/verification/task-009/baseline-connection-summary.json",
+          "docs/verification/task-009/baseline-scope-checks.json",
+          "docs/verification/task-009/ci/842-negative-failure.log",
+          "docs/verification/task-009/continuing-contract.json",
+          "docs/verification/task-009/original-checks.json",
+          "tools/capture_task009_village_regression.gd",
+          "tools/capture_task009_village_regression.gd.uid",
+          "tools/check_region2_village_regression.gd",
+          "tools/check_region2_village_regression.gd.uid",
+          "tools/check_region2_village_regression.py",
+          "tools/check_task009_assertion_map.py",
+          "tools/check_task009_lifecycle.py",
+          "tools/check_task009_scope.py",
+          "tools/test_task009_lifecycle.py"
+        ],
+        "failures": [],
+        "preserved_paths": 2423,
+        "owner_originals": 334,
+        "historical_images": 54,
+        "historical_capture_images": 49,
+        "historical_inputs": 31
+      },
+      {
+        "status": "PASS",
+        "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+        "production_unchanged": true,
+        "results": {
+          "wrong-fixed-sha": {
+            "status": "PASS",
+            "exit_code": 1,
+            "failure": "固定006の完全SHAが承認済み完成点と一致しません",
+            "fixed_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+          },
+          "registered-request-and-npc-occupancy": {
+            "status": "PASS",
+            "exit_code": 0,
+            "checks": 7662,
+            "failures": [],
+            "runtime_status": "PASS",
+            "elapsed_seconds": 21.088,
+            "timeout_seconds": 180,
+            "parser_errors": false,
+            "scope": "一時コピーのみ。007サービスは未実装・未検証"
+          },
+          "misconnected-door": {
+            "status": "PASS",
+            "exit_code": 1,
+            "checks": 7662,
+            "failures": [
+              "村の世界接続・東西出口・8扉の固定対応",
+              "8本の扉リンク: { \"layer\": \"interior\", \"node\": \"region2_village\", \"room\": 0, \"cell\": [16, 8] }",
+              "同じ方向の継続で往復せず、採用済みの壁ならその場で止まる",
+              "既存の入口安全補正",
+              "補正以外の全状態不変",
+              "再保存後に補正通知が残らない",
+              "既存の入口安全補正",
+              "補正以外の全状態不変",
+              "再保存後に補正通知が残らない",
+              "既存の入口安全補正",
+              "補正以外の全状態不変",
+              "再保存後に補正通知が残らない",
+              "既存の入口安全補正",
+              "補正以外の全状態不変",
+              "再保存後に補正通知が残らない"
+            ],
+            "runtime_status": "FAIL",
+            "elapsed_seconds": 20.809,
+            "timeout_seconds": 180,
+            "parser_errors": false,
+            "mutation": "扉0の接続室1を2へ変更"
+          },
+          "invalid-save-accepted": {
+            "status": "PASS",
+            "exit_code": 1,
+            "checks": 7662,
+            "failures": [
+              "不正保存拒否と現在状態保持: { \"room\": 5 }",
+              "不正保存拒否と現在状態保持: { \"room\": 5 }",
+              "不正保存拒否と現在状態保持: { \"room\": 5 }",
+              "不正保存拒否と現在状態保持: { \"room\": 5 }",
+              "不正保存拒否と現在状態保持: { \"room\": 5 }"
+            ],
+            "runtime_status": "FAIL",
+            "elapsed_seconds": 20.716,
+            "timeout_seconds": 180,
+            "parser_errors": false,
+            "mutation": "不正room5のload_gameをtrueへ変更"
+          }
+        },
+        "method": "別コピーの正例と故障注入。負例は終了1・実assertion失敗を要求し、timeout/parse errorは成功扱いしない。"
+      }
+    ],
+    "pass_markers": [
+      "TASK009_ASSERTION_MAP_PASS: sites=135 unclassified=0 fixture=fixed006",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770097,
+    "name": "normal-input-and-rendering (latest, restart-1)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770097",
+    "started_at": "2026-10-04T09:53:51.8348086Z",
+    "completed_at": "2026-10-04T09:56:24.9938816Z",
+    "elapsed_seconds": 153,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "1"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 21.809,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "runtime-checks: PASS checks=7662 exit=0",
+      "restart-0: PASS checks=10 exit=0",
+      "restart-1: PASS checks=27 exit=0",
+      "restart-2: PASS checks=38 exit=0",
+      "restart-3: PASS checks=52 exit=0",
+      "restart-4: PASS checks=44 exit=0",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770132,
+    "name": "acceptance-and-regression (latest)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770132",
+    "started_at": "2026-10-04T09:53:51.7821090Z",
+    "completed_at": "2026-10-04T09:55:33.5490742Z",
+    "elapsed_seconds": 102,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [],
+    "pass_markers": [
+      "TASK009_ASSERTION_MAP_PASS: sites=135 unclassified=0 fixture=fixed006",
+      "runtime-checks: PASS checks=7662 exit=0",
+      "restart-0: PASS checks=10 exit=0",
+      "restart-1: PASS checks=27 exit=0",
+      "restart-2: PASS checks=38 exit=0",
+      "restart-3: PASS checks=52 exit=0",
+      "restart-4: PASS checks=44 exit=0",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770136,
+    "name": "acceptance-and-regression (fixed)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770136",
+    "started_at": "2026-10-04T09:53:51.8482725Z",
+    "completed_at": "2026-10-04T09:55:50.0299614Z",
+    "elapsed_seconds": 118,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 24.23,
+        "process_timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770151,
+    "name": "normal-input-and-rendering (latest, details)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770151",
+    "started_at": "2026-10-04T09:53:52.1344578Z",
+    "completed_at": "2026-10-04T09:56:43.7874188Z",
+    "elapsed_seconds": 172,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--details"
+        ],
+        "exit_code": 0,
+        "checks": 34,
+        "images": 6,
+        "errors": [],
+        "elapsed_seconds": 67.952,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "runtime-checks: PASS checks=7662 exit=0",
+      "restart-0: PASS checks=10 exit=0",
+      "restart-1: PASS checks=27 exit=0",
+      "restart-2: PASS checks=38 exit=0",
+      "restart-3: PASS checks=52 exit=0",
+      "restart-4: PASS checks=44 exit=0",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770165,
+    "name": "normal-input-and-rendering (fixed, restart-3)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770165",
+    "started_at": "2026-10-04T09:53:52.6633185Z",
+    "completed_at": "2026-10-04T09:56:47.9645682Z",
+    "elapsed_seconds": 175,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 24.505,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "3"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 26.218,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770175,
+    "name": "normal-input-and-rendering (latest, journey)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770175",
+    "started_at": "2026-10-04T09:53:52.0905960Z",
+    "completed_at": "2026-10-04T09:57:47.1188980Z",
+    "elapsed_seconds": 235,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd"
+        ],
+        "exit_code": 0,
+        "checks": 132,
+        "images": 28,
+        "errors": [],
+        "elapsed_seconds": 109.984,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "runtime-checks: PASS checks=7662 exit=0",
+      "restart-0: PASS checks=10 exit=0",
+      "restart-1: PASS checks=27 exit=0",
+      "restart-2: PASS checks=38 exit=0",
+      "restart-3: PASS checks=52 exit=0",
+      "restart-4: PASS checks=44 exit=0",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770178,
+    "name": "normal-input-and-rendering (latest, restart-0)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770178",
+    "started_at": "2026-10-04T09:53:52.1453092Z",
+    "completed_at": "2026-10-04T09:56:24.1595002Z",
+    "elapsed_seconds": 152,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "0"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 18.074,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "runtime-checks: PASS checks=7662 exit=0",
+      "restart-0: PASS checks=10 exit=0",
+      "restart-1: PASS checks=27 exit=0",
+      "restart-2: PASS checks=38 exit=0",
+      "restart-3: PASS checks=52 exit=0",
+      "restart-4: PASS checks=44 exit=0",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770188,
+    "name": "normal-input-and-rendering (fixed, restart-0)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770188",
+    "started_at": "2026-10-04T09:53:51.8234643Z",
+    "completed_at": "2026-10-04T09:56:13.5703430Z",
+    "elapsed_seconds": 142,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 24.995,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "0"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 14.856,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770216,
+    "name": "normal-input-and-rendering (fixed, restart-2)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770216",
+    "started_at": "2026-10-04T09:53:51.7176814Z",
+    "completed_at": "2026-10-04T09:55:59.0028634Z",
+    "elapsed_seconds": 127,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 18.013,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "2"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 18.038,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770218,
+    "name": "normal-input-and-rendering (fixed, restart-4)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770218",
+    "started_at": "2026-10-04T09:53:53.9609984Z",
+    "completed_at": "2026-10-04T09:57:27.2747687Z",
+    "elapsed_seconds": 213,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 24.137,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "4"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 27.507,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770221,
+    "name": "normal-input-and-rendering (fixed, restart-1)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770221",
+    "started_at": "2026-10-04T09:53:51.8878387Z",
+    "completed_at": "2026-10-04T09:56:27.4767688Z",
+    "elapsed_seconds": 156,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 24.263,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--restart",
+          "1"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 20.446,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 17,
+        "images": 3
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770236,
+    "name": "normal-input-and-rendering (latest, restart-2)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770236",
+    "started_at": "2026-10-04T09:53:51.6909480Z",
+    "completed_at": "2026-10-04T09:56:30.9991515Z",
+    "elapsed_seconds": 159,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "2"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 25.076,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "runtime-checks: PASS checks=7662 exit=0",
+      "restart-0: PASS checks=10 exit=0",
+      "restart-1: PASS checks=27 exit=0",
+      "restart-2: PASS checks=38 exit=0",
+      "restart-3: PASS checks=52 exit=0",
+      "restart-4: PASS checks=44 exit=0",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770239,
+    "name": "normal-input-and-rendering (fixed, details)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770239",
+    "started_at": "2026-10-04T09:54:27.5748750Z",
+    "completed_at": "2026-10-04T09:57:48.7235804Z",
+    "elapsed_seconds": 201,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 24.794,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd",
+          "--",
+          "--details"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 75.85,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 34,
+        "images": 6
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770257,
+    "name": "normal-input-and-rendering (latest, restart-3)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770257",
+    "started_at": "2026-10-04T09:53:52.6005234Z",
+    "completed_at": "2026-10-04T09:56:33.4771083Z",
+    "elapsed_seconds": 161,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "3"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 29.892,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "runtime-checks: PASS checks=7662 exit=0",
+      "restart-0: PASS checks=10 exit=0",
+      "restart-1: PASS checks=27 exit=0",
+      "restart-2: PASS checks=38 exit=0",
+      "restart-3: PASS checks=52 exit=0",
+      "restart-4: PASS checks=44 exit=0",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770272,
+    "name": "normal-input-and-rendering (latest, restart-4)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770272",
+    "started_at": "2026-10-04T09:53:53.9896894Z",
+    "completed_at": "2026-10-04T09:57:05.8900879Z",
+    "elapsed_seconds": 192,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "d3a9c48b8328085fb79736791d29588915d34b2a",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "/home/runner/work/RPG-maker/RPG-maker/current",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task009_village_regression.gd",
+          "--",
+          "--restart",
+          "4"
+        ],
+        "exit_code": 0,
+        "checks": 17,
+        "images": 3,
+        "errors": [],
+        "elapsed_seconds": 36.033,
+        "timeout_seconds": 180
+      }
+    ],
+    "pass_markers": [
+      "runtime-checks: PASS checks=7662 exit=0",
+      "restart-0: PASS checks=10 exit=0",
+      "restart-1: PASS checks=27 exit=0",
+      "restart-2: PASS checks=38 exit=0",
+      "restart-3: PASS checks=52 exit=0",
+      "restart-4: PASS checks=44 exit=0",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610582,
+    "job_id": 111410770115,
+    "name": "素材検査",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610582/job/111410770115",
+    "started_at": "2026-10-04T09:53:51.5418480Z",
+    "completed_at": "2026-10-04T09:55:07.7105722Z",
+    "elapsed_seconds": 76,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a"
+    ],
+    "summary_objects": [],
+    "pass_markers": []
+  },
+  {
+    "run_id": 37193610582,
+    "job_id": 111410770182,
+    "name": "Godot・凍結受入テスト",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610582/job/111410770182",
+    "started_at": "2026-10-04T09:53:51.6357224Z",
+    "completed_at": "2026-10-04T09:57:30.1877331Z",
+    "elapsed_seconds": 219,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a"
+    ],
+    "summary_objects": [],
+    "pass_markers": [
+      "保護対象26件、一致26件。",
+      "PASS R-01 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-02 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-03 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-04 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-05 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-06 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-07 (exit=0, tests_ran=True, parser_failed=False)",
+      "PASS R-08 (exit=0, tests_ran=True, parser_failed=False)",
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610575,
+    "job_id": 111410770258,
+    "name": "normal-input-and-rendering (fixed, journey)",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610575/job/111410770258",
+    "started_at": "2026-10-04T09:55:38.4270270Z",
+    "completed_at": "2026-10-04T09:59:46.4294997Z",
+    "elapsed_seconds": 248,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a",
+      "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    ],
+    "summary_objects": [
+      {
+        "status": "PASS",
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "runtime_checks": 7592,
+        "save_states": 20,
+        "restart_checks": [
+          9,
+          26,
+          37,
+          51,
+          43
+        ],
+        "scope_status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 24.984,
+        "process_timeout_seconds": 180
+      },
+      {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "../godot",
+          "--path",
+          "../fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_region2_village_connections.gd"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 118.639,
+        "timeout_seconds": 180,
+        "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "checks": 137,
+        "images": 28
+      }
+    ],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  },
+  {
+    "run_id": 37193610582,
+    "job_id": 111410770223,
+    "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37193610582/job/111410770223",
+    "started_at": "2026-10-04T09:53:51.8508337Z",
+    "completed_at": "2026-10-04T09:58:17.1030391Z",
+    "elapsed_seconds": 265,
+    "checkout_shas": [
+      "d3a9c48b8328085fb79736791d29588915d34b2a"
+    ],
+    "summary_objects": [],
+    "pass_markers": [
+      "保護対象26件、一致26件。"
+    ]
+  }
+]

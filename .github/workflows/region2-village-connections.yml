@@ -1,45 +1,189 @@
-name: 006 村接続検査
+name: 006 固定受入と最新回帰
 on:
   push:
   pull_request:
   workflow_dispatch:
 permissions:
   contents: read
+env:
+  GODOT_VERSION: 4.7.2-stable
+  GODOT_LINUX_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
+  FIXED_006_SHA: 5f1c2ba231191b25b9b32a814b616a9f8d0a54ce
 jobs:
-  connections:
+  acceptance-and-regression:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: current
+    strategy:
+      fail-fast: false
+      matrix:
+        generation: [fixed, latest]
     env:
-      GODOT_VERSION: 4.7.2-stable
-      GODOT_LINUX_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
-      RPG_QA_SAVE_PREFIX: ci-village006
+      RPG_QA_SAVE_PREFIX: ci-village009-runtime-${{ matrix.generation }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          path: current
+      - uses: actions/checkout@v4
+        with:
+          ref: 5f1c2ba231191b25b9b32a814b616a9f8d0a54ce
+          fetch-depth: 0
+          path: fixed
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: 固定版を照合してインポート
+      - name: 指定ハッシュのGodotを取得
+        run: |
+          curl -fL -o ../godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  ../godot.zip" | sha256sum --check
+          unzip -q ../godot.zip -d ..
+          mv ../Godot_v${GODOT_VERSION}_linux.x86_64 ../godot
+          chmod +x ../godot
+      - name: 対象checkoutを600秒以内にインポート
         run: |
           set -o pipefail
-          curl -fL -o godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
-          echo "${GODOT_LINUX_SHA256}  godot.zip" | sha256sum --check
-          unzip -q godot.zip
-          mv Godot_v${GODOT_VERSION}_linux.x86_64 godot
-          chmod +x godot
-          timeout 600 ./godot --headless --editor --import --quit 2>&1 | tee village-import.log
-          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" village-import.log; then exit 1; fi
-      - name: 固定コミット範囲・接続・20保存・5別プロセスを検査
+          target=../fixed
+          if [ "${{ matrix.generation }}" = latest ]; then target=.; fi
+          timeout 600 ../godot --headless --path "$target" --editor --import --quit 2>&1 | tee import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" import.log; then exit 1; fi
+      - name: 固定006の全範囲監査・7592項目・20保存・5別プロセス
+        if: matrix.generation == 'fixed'
         run: |
-          python tools/check_region2_village_connections.py --commit "$GITHUB_SHA" --godot ./godot
+          python tools/check_task009_lifecycle.py --fixed-sha "$FIXED_006_SHA" --fixed-path ../fixed --godot ../godot
+          (cd ../fixed && python tools/check_frozen_files.py)
+      - name: 最新SHAの継続条件・20保存・5別プロセス
+        if: matrix.generation == 'latest'
+        run: |
+          python tools/check_task009_assertion_map.py
+          python tools/check_region2_village_regression.py --commit "$GITHUB_SHA" --godot ../godot
           python tools/check_frozen_files.py
-      - name: 記録を保存
+      - name: 証拠を保存
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: village006-connections
+          name: village009-runtime-${{ matrix.generation }}
           path: |
-            village-import.log
-            docs/verification/region2-village-connections/*.json
-            docs/verification/region2-village-connections/*.log
+            current/import.log
+            current/docs/verification/task-009/
+  normal-input-and-rendering:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: current
+    strategy:
+      fail-fast: false
+      matrix:
+        generation: [fixed, latest]
+        mode: [journey, details, restart-0, restart-1, restart-2, restart-3, restart-4]
+    env:
+      RPG_QA_SAVE_PREFIX: ci-village009-render-${{ matrix.generation }}-${{ matrix.mode }}
+      LIBGL_ALWAYS_SOFTWARE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: current
+      - uses: actions/checkout@v4
+        with:
+          ref: 5f1c2ba231191b25b9b32a814b616a9f8d0a54ce
+          fetch-depth: 0
+          path: fixed
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 実描画の仮想画面とソフトウェアドライバを用意
+        run: sudo apt-get update && sudo apt-get install -y xvfb mesa-vulkan-drivers
+      - name: 指定ハッシュのGodotを取得
+        run: |
+          curl -fL -o ../godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  ../godot.zip" | sha256sum --check
+          unzip -q ../godot.zip -d ..
+          mv ../Godot_v${GODOT_VERSION}_linux.x86_64 ../godot
+          chmod +x ../godot
+      - name: 対象checkoutを600秒以内にインポート
+        run: |
+          set -o pipefail
+          target=../fixed
+          if [ "${{ matrix.generation }}" = latest ]; then target=.; fi
+          timeout 600 ../godot --headless --path "$target" --editor --import --quit 2>&1 | tee import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" import.log; then exit 1; fi
+      - name: 固定版の通常保存を当時の全検査で用意
+        if: matrix.generation == 'fixed'
+        run: python tools/check_task009_lifecycle.py --fixed-sha "$FIXED_006_SHA" --fixed-path ../fixed --godot ../godot
+      - name: 固定版の通常操作・画素検査を180秒で再実行
+        if: matrix.generation == 'fixed'
+        run: python tools/check_task009_lifecycle.py --fixed-sha "$FIXED_006_SHA" --fixed-path ../fixed --godot ../godot --capture "${{ matrix.mode }}"
+      - name: 最新版の通常保存を全継続検査で用意
+        if: matrix.generation == 'latest'
+        run: python tools/check_region2_village_regression.py --commit "$GITHUB_SHA" --godot ../godot
+      - name: 最新版の通常操作・画素検査を180秒で実行
+        if: matrix.generation == 'latest'
+        run: python tools/check_region2_village_regression.py --commit "$GITHUB_SHA" --godot ../godot --capture "${{ matrix.mode }}"
+      - name: 保護照合
+        if: always()
+        run: python tools/check_frozen_files.py
+      - name: 証拠を保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: village009-render-${{ matrix.generation }}-${{ matrix.mode }}
+          path: |
+            current/import.log
+            current/docs/verification/task-009/
+  lifecycle-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: current
+    env:
+      RPG_QA_SAVE_PREFIX: ci-village009-negative
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: current
+      - uses: actions/checkout@v4
+        with:
+          ref: 5f1c2ba231191b25b9b32a814b616a9f8d0a54ce
+          fetch-depth: 0
+          path: fixed
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 指定ハッシュのGodotを取得
+        run: |
+          curl -fL -o ../godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  ../godot.zip" | sha256sum --check
+          unzip -q ../godot.zip -d ..
+          mv ../Godot_v${GODOT_VERSION}_linux.x86_64 ../godot
+          chmod +x ../godot
+      - name: 最新コードを600秒以内にインポート
+        run: |
+          set -o pipefail
+          timeout 600 ../godot --headless --path . --editor --import --quit 2>&1 | tee import.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" import.log; then exit 1; fi
+      - name: 009完成点だけを独立範囲監査
+        run: |
+          # 009専用の状態変更commitに固定し、後続の機能追加を009の差分に混ぜない。
+          task_commit=$(git log -1 --format=%H -- docs/tasks/009-test-lifecycle.md)
+          if grep -q "^- 状態：作業中$" docs/tasks/009-test-lifecycle.md; then task_commit=$GITHUB_SHA; fi
+          python tools/check_task009_scope.py --commit "$task_commit"
+          python tools/check_task009_assertion_map.py
+      - name: 異常SHA・誤接続・不正保存受理を別コピーで拒否
+        run: python tools/test_task009_lifecycle.py --fixed-path ../fixed --godot ../godot
+      - name: 保護照合
+        if: always()
+        run: python tools/check_frozen_files.py
+      - name: 監査証拠を保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: village009-lifecycle-audit
+          path: |
+            current/import.log
+            current/docs/verification/task-009/
