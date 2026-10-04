@@ -1,0 +1,27 @@
+2026-10-04T09:48:40.3155507Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib
+2026-10-04T09:48:40.3155832Z ##[endgroup]
+2026-10-04T09:48:42.5038473Z Traceback (most recent call last):
+2026-10-04T09:48:42.5045814Z   File "/home/runner/work/RPG-maker/RPG-maker/current/tools/test_task009_lifecycle.py", line 112, in <module>
+2026-10-04T09:48:42.5046485Z     sys.exit(main())
+2026-10-04T09:48:42.5046722Z              ^^^^^^
+2026-10-04T09:48:42.5047257Z   File "/home/runner/work/RPG-maker/RPG-maker/current/tools/test_task009_lifecycle.py", line 68, in main
+2026-10-04T09:48:42.5047830Z     shutil.rmtree(old_outputs)
+2026-10-04T09:48:42.5048335Z   File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/shutil.py", line 759, in rmtree
+2026-10-04T09:48:42.5105134Z     _rmtree_safe_fd(stack, onexc)
+2026-10-04T09:48:42.5105817Z   File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/shutil.py", line 703, in _rmtree_safe_fd
+2026-10-04T09:48:42.5106777Z     onexc(func, path, err)
+2026-10-04T09:48:42.5107390Z   File "/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/shutil.py", line 669, in _rmtree_safe_fd
+2026-10-04T09:48:42.5109064Z     orig_st = os.lstat(name, dir_fd=dirfd)
+2026-10-04T09:48:42.5109819Z               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-04T09:48:42.5110688Z FileNotFoundError: [Errno 2] No such file or directory: PosixPath('/tmp/task009-negative-ckv4anp9/project/docs/verification/task-009/latest')
+2026-10-04T09:48:42.5205539Z ##[error]Process completed with exit code 1.
+2026-10-04T09:48:42.5257013Z ##[group]Run python tools/check_frozen_files.py
+2026-10-04T09:48:42.5257424Z [36;1mpython tools/check_frozen_files.py[0m
+2026-10-04T09:48:42.5320585Z shell: /usr/bin/bash -e {0}
+2026-10-04T09:48:42.5320848Z env:
+2026-10-04T09:48:42.5321049Z   GODOT_VERSION: 4.7.2-stable
+2026-10-04T09:48:42.5321452Z   GODOT_LINUX_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
+2026-10-04T09:48:42.5321939Z   FIXED_006_SHA: 5f1c2ba231191b25b9b32a814b616a9f8d0a54ce
+2026-10-04T09:48:42.5322502Z   RPG_QA_SAVE_PREFIX: ci-village009-negative
+2026-10-04T09:48:42.5322851Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.14/x64
+2026-10-04T09:48:42.5323273Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.14/x64/lib/pkgconfig

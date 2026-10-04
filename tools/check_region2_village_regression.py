@@ -87,6 +87,9 @@ def main() -> int:
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT).decode().strip()
     if sha != head:
         parser.error('最新回帰の実行checkoutと指定SHAが一致しません')
+    tracked_source = ['scripts/', 'world/', 'data/', 'assets/', 'test/', '.scope-lock/', 'addons/', 'tools/', 'project.godot', 'docs/verification/task-009/continuing-contract.json']
+    if subprocess.run(['git', 'diff', '--quiet', 'HEAD', '--', *tracked_source], cwd=ROOT).returncode:
+        parser.error('本番・検査器・期待値に未コミット変更があります。実行SHAを偽装しません')
     OUT.mkdir(parents=True, exist_ok=True)
     exe = shutil.which(args.godot) or str(Path(args.godot).resolve())
     if args.capture:

@@ -182,6 +182,7 @@ func maps() -> void:
 					check(FirstRegion.move(probe,cell).get("kind")=="moved","村の全床・全隣接で非戦闘")
 		check(floors==[636,84,78,78,87][index],"採用済み床数")
 		var actual: Dictionary=FirstRegionPresentation.map_for(saved["overworld"])
+		check(actual==map,"本番表示が固定006の採用地形・背景・上層全体と一致")
 		for key in ["layout","width","height","background","overlays"]:
 			check(actual.get(key)==map.get(key),"本番表示の固定背景・上層: "+ROLES[index]+" "+key)
 		section="2"
@@ -290,13 +291,17 @@ func returns() -> void:
 	section="9"
 	for index in range(5):
 		var saved := placed(index,[4,15] if index==0 else [8,10]);FirstRegionTravel.visit(saved,"region2_village")
-		for destination in contract["destinations"]:
-			var game := game_for(saved);var before := game.export_state()
-			check(game.cast_first_region_return("pc_02",destination["id"]),"村5マップから訪問済み既存先へ帰還: "+destination["id"])
-			var after := game.export_state();var expected := before.duplicate(true)
-			expected["party"][1]["mp"]-=2;expected["overworld"]=after["overworld"].duplicate(true);expected["first_region"]["travel"]["ship_cell"]=after["first_region"]["travel"]["ship_cell"].duplicate()
-			check(after==expected and FirstRegion.at(after["overworld"],world(contract["return_landings"][destination["id"]])),"選択した生存者だけMP2・位置・船以外不変")
-			if destination["id"]=="region2_village":check(after["overworld"]["cell"]==[168,88] and after["overworld"]["facing"]==1 and after["first_region"]["travel"]["ship_cell"]==[155,110],"村入口前と既存第2港の船")
+		for owns_ship in [true,false]:
+			var return_saved := saved.duplicate(true)
+			if not owns_ship:
+				return_saved["first_region"]["travel"]["ship_owned"]=false
+				return_saved["first_region"]["travel"]["ship_cell"]=[]
+			for destination in contract["destinations"]:
+				var game := game_for(return_saved);var before := game.export_state()
+				check(game.cast_first_region_return("pc_02",destination["id"]),"村5マップから訪問済み既存先へ帰還: "+destination["id"])
+				var after := game.export_state();var expected := expected_return(before,destination["id"])
+				check(after==expected,"固定着地・向き・船規則・選択生存者だけMP2、その他の全状態不変")
+				if destination["id"]=="region2_village":check(after["overworld"]["cell"]==[168,88] and after["overworld"]["facing"]==1 and after["first_region"]["travel"]["ship_cell"]==([155,110] if owns_ship else []),"村入口前と既存第2港の船、船未所有なら増やさない")
 		for negative in ["unvisited","unlearned","dead","mp","battle","unknown_actor","unknown_target"]:
 			var probe := saved.duplicate(true)
 			if negative=="unvisited":probe["first_region"]["travel"]["visited"].erase("region2_village")
@@ -341,3 +346,10 @@ func contract_checks() -> void:
 	check(FirstRegionTravel.destinations()==contract["destinations"],"既存帰還先の全件と村の船先")
 	for index in range(5):
 		check(FirstRegion.room(p(index,[4,15] if index==0 else [8,10]))["layout"]==contract["maps"][ROLES[index]]["layout"],"採用済み地形の固定床壁: "+ROLES[index])
+
+func expected_return(before: Dictionary, destination: String) -> Dictionary:
+	var expected := before.duplicate(true)
+	expected["party"][1]["mp"]-=2
+	expected["overworld"].merge({"layer":"world","node":"","room":0,"cell":contract["return_landings"][destination].duplicate(),"facing":contract["return_facings"][destination],"entry_lock":"return_spell","transport":"walk"},true)
+	if expected["first_region"]["travel"]["ship_owned"]:expected["first_region"]["travel"]["ship_cell"]=contract["return_ships"][destination].duplicate()
+	return expected

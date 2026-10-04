@@ -95,6 +95,8 @@ def validate_fixture() -> None:
                 'maps': read('world/region2_village_backdrops.json')['maps'],
                 'targets': {k: v['targets'] for k, v in read('assets/source_records/region2-village-backdrops.json')['maps'].items()},
                 'destinations': destinations,
+                'return_facings': {d['id']: [[0,1],[-1,0],[1,0],[0,-1]].index(definition[d['entrance']]['outward']) for d in destinations},
+                'return_ships': {d['id']: d.get('ship_cell', [59,48]) for d in destinations},
                 'return_landings': {d['id']: [definition[d['entrance']]['cell'][i] + definition[d['entrance']]['outward'][i] for i in range(2)] for d in destinations}}
     if json.loads((OUT / 'continuing-contract.json').read_text()) != expected:
         raise ValueError('期待値fixtureが固定006の採用値と一致しません')

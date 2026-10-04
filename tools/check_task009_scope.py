@@ -91,7 +91,7 @@ def audit(commit: str, worktree: bool = False) -> dict:
               'changed_files': changed, 'failures': sorted(set(failures)), 'preserved_paths': len(protected),
               'owner_originals': sum(p.startswith('assets/_incoming/') for p in protected),
               'historical_images': sum(p.endswith('.png') for p in history),
-              'historical_capture_images': sum(p.endswith('.png') and '/before/' not in p for p in history),
+              'historical_capture_images': sum(p.endswith('.png') and p.split('/')[-2] in ['journey', 'details', *[f'restart-{i}' for i in range(5)]] for p in history),
               'historical_inputs': sum('/saved-inputs/' in p for p in history)}
     return report
 

@@ -26,6 +26,8 @@ def invoke(copy: Path, exe: str, name: str) -> dict:
     env['XDG_DATA_HOME'] = str(copy / 'qa-user')
     env['XDG_CONFIG_HOME'] = str(copy / 'qa-user')
     env['XDG_CACHE_HOME'] = str(copy / 'qa-cache')
+    report_file = copy / 'docs/verification/task-009/latest/runtime-checks.json'
+    report_file.unlink(missing_ok=True)
     start = time.monotonic()
     try:
         result = subprocess.run([exe, '--headless', '--path', str(copy), '--script',
@@ -63,10 +65,9 @@ def main() -> int:
     before = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in ['world/region2_village.json', 'scripts/game/game_session.gd']}
     with tempfile.TemporaryDirectory(prefix='task009-negative-') as directory:
         copy = Path(directory) / 'project'
-        shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns('.git', '.tools', '__pycache__'))
+        shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns('.git', '.tools', '__pycache__', 'latest'))
         old_outputs = copy / 'docs/verification/task-009/latest'
-        shutil.rmtree(old_outputs)
-        old_outputs.mkdir()
+        old_outputs.mkdir(parents=True)
         # 正例は後続の依頼書追加とNPC占有を含める。007本番機能の完了とは扱わない。
         (copy / 'docs/tasks/010-copy-only.md').write_text('# 作業コピー限定の後続登録正例\n', encoding='utf-8')
         data_file = copy / 'world/region2_village.json'
