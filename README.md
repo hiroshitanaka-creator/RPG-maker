@@ -6,7 +6,7 @@
 
 職業・アビリティ装着・魔物化を中心にした、1周約60時間を目指すオリジナルRPG。Godot 4.7.2-stable / GDScript、3〜4人パーティ、人間12職・魔物8職で実装している。
 
-**進捗と残作業の入口は [現在地](docs/current-status.md)。** 数値・修練条件は [確定設計値](docs/v1-final-values.md)、機械受入は [凍結契約](.scope-lock/spec.lock.json) と [追加3条件の説明](docs/additional-acceptance-v1.md) を参照する。履歴資料に残る旧FAIL・未制作件数は現在の状態ではない。
+**最新の進み具合と残作業の入口は [ロードマップ](docs/roadmap-v2.md)。** 2026年10月3日の決定を反映し、従来の [現在地](docs/current-status.md) は実装・受入の履歴への入口として残す。作業の依頼と報告は [伝言板](docs/tasks/README.md) で行う。数値・修練条件は [確定設計値](docs/v1-final-values.md)、機械受入は [凍結契約](.scope-lock/spec.lock.json) と [追加3条件の説明](docs/additional-acceptance-v1.md) を参照する。履歴資料に残る旧FAIL・未制作件数は現在の状態ではない。
 
 20連作80話と256×256の広域マップ49拠点、その内部を接続済み。3人／4人と正順／逆順の全編自動完走を確認している。目標約60時間の人間実測と、面白さ・探索・報酬・難易度の評価は [PLAYTEST_QUEUE.md](PLAYTEST_QUEUE.md) に分離し、未実施のまま保持する。
 
