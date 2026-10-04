@@ -10,6 +10,7 @@ env:
   GODOT_LINUX_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
   FIXED_006_SHA: 5f1c2ba231191b25b9b32a814b616a9f8d0a54ce
   FIXED_009_SHA: ce07fdada0466138260ab678c10fd78e61c0c63d
+  FIXED_012_SHA: c327e7c439c9c8c8f1fd640e6cda6df7550fb26a
 jobs:
   acceptance-and-regression:
     runs-on: ubuntu-latest
@@ -158,6 +159,11 @@ jobs:
           ref: ce07fdada0466138260ab678c10fd78e61c0c63d
           fetch-depth: 0
           path: completed009
+      - uses: actions/checkout@v4
+        with:
+          ref: c327e7c439c9c8c8f1fd640e6cda6df7550fb26a
+          fetch-depth: 0
+          path: completed012
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -173,6 +179,9 @@ jobs:
           set -o pipefail
           timeout 600 ../godot --headless --path . --editor --import --quit 2>&1 | tee import.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error" import.log; then exit 1; fi
+      - name: 006・009・012の不変完成点と後続編集の反証
+        run: |
+          timeout 180 python ../completed012/tools/test_task012_pinned_audit.py --current-path . --fixed009-path ../completed009 --completed012-sha "$FIXED_012_SHA" --latest-sha "$GITHUB_SHA"
       - name: 009完成点だけを独立範囲監査
         run: |
           # 完成SHAの当時検査器で完成差分のみを監査する。
