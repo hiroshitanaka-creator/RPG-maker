@@ -142,6 +142,15 @@ jobs:
       - name: 第2港の背景が最近傍縮小と最近傍減色だけで作られていることを検査
         run: python tools/check_region2_port_backdrop.py
 
+      - name: 村の独立背景・原画不変・再生成・実描画画素を検査
+        run: |
+          git fetch --no-tags --depth=1 origin dad3fca1d2d6216c3418999d27a4cf581ca00860
+          git fetch --no-tags --depth=1 origin f53dcb58e8d7e2a14bb7342b9e67b1343b5399ab
+          python -m pip install numpy scipy
+          python -B tools/check_region2_village_scope.py
+          python -B tools/check_region2_village_backdrops.py
+          python -B tools/check_region2_village_native.py
+
       - name: 進捗文書と検証結果の集計を検査
         run: |
           python tools/check_progress_docs.py
@@ -198,6 +207,12 @@ jobs:
         run: |
           export PATH="$PWD:$PATH"
           python tools/run_locked_checks.py
+      - name: 導入の固定比較基準を取得し台帳の異常検出を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          git fetch --no-tags --depth=1 origin c30530cf0a85c6decbaa75da8a6f467ea21ce16d
+          python -B tools/check_registry_sprint_scope.py
+
       - name: 第1地方の追加導入・見逃し・旧保存補完を検査
         if: steps.check.outputs.exists == 'true'
         run: |
@@ -207,6 +222,14 @@ jobs:
           timeout 180 ./godot --headless --path . --script res://tools/check_first_region_gado.gd 2>&1 | tee first-region-intro.log
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" first-region-intro.log; then exit 1; fi
           test "$(grep -c '^INTRO_RUNTIME_PASS:' first-region-intro.log)" -eq 1
+      - name: 村の独立地形を既存の通行・移動APIで検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          set -o pipefail
+          timeout 120 ./godot --headless --path . --script res://tools/check_region2_village_backdrops.gd 2>&1 | tee region2-village-backdrops.log
+          if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" region2-village-backdrops.log; then exit 1; fi
+          test "$(grep -c '^VILLAGE_RUNTIME_PASS:' region2-village-backdrops.log)" -eq 1
+
       - name: 敵の行動予定と連戦の保存を検査
         if: steps.check.outputs.exists == 'true'
         run: |
@@ -316,6 +339,8 @@ jobs:
             first-region-screen.log
             region2-port.log
             region2-port-backdrop.log
+            region2-village-backdrops.log
+            docs/verification/region2-village-backdrops/runtime-checks.json
             docs/verification/region2-port/checks.json
             docs/verification/region2-port-backdrop/checks.json
             job-costumes.log

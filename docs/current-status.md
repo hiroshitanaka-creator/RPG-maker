@@ -4,6 +4,10 @@
 
 001で確認した基準mainは `dad3fca1d2d6216c3418999d27a4cf581ca00860`。インポート・保護ファイル26件・R-01〜R-08は成功。AC-01〜AC-03は正式契約に未登録で、改訂案の11条件と正式契約の8条件を区別する。対象SHA、CI確認状況、ローカル状態と登録照合の詳細は [001の報告書](tasks/reports/001-status-and-decisions.md)。以下の古い「承認待ち」は当時の記録であり、001は契約変更や未確認の承認の代用を行わない。
 
+## 2026-10-04・村の背景土台
+
+準備はmain `dad3fca` に統合済み。[CI 37163349819](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37163349819) は全3ジョブ成功。村の採用原画5点から独立した背景・上層10素材と通行地図を制作する区切り。技術記録は [村の背景土台](region2-village-backdrops.md)。本番接続・NPC・会話・販売品・職業解放の新場面は未実装で、見た目の採用は未評価。以下の基準mainと準備段階は各記録時点の履歴。
+
 ## 2026-10-03・世界マップ攻略型の現在地
 
 基準main `0674954` は承認済みの第1地方導入・見逃し回収・旧保存互換・保存位置補正の通知を含む。 [CI 37158729305](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37158729305) は全3ジョブ成功。検査・素材・未検証の内訳は [導入の技術記録](first-region-intro-implementation.md)。村と遺跡は [実装前準備](sprint6-oasis-preparation.md) を保存する段階で、ゲーム接続は未実施。具体的な職業解放場面と新しい販売品等を未決のまま実装しない。

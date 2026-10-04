@@ -85,12 +85,13 @@ def main():
         try:apply_story(conflict)
         except ValueError:assert conflict==snapshot
         else:raise AssertionError("イベントID競合を拒否しない")
-    baseline_registry=copy.deepcopy(registry)
+    from sprint_registry_scope import at_commit,verified_scope,INTRO_COMMIT
+    baseline_registry=verified_scope(registry,at_commit(ROOT,INTRO_COMMIT))
     new_paths={"assets/characters/gado/human_standing_front.png","assets/characters/gado/shell_standing_front.png","assets/objects/gado_tool_broken.png","assets/objects/gado_tool_repaired.png"}
     assert len([entry for entry in registry["assets"] if entry["path"] in new_paths])==4
-    baseline_registry["assets"]=[entry for entry in registry["assets"] if entry["path"] not in new_paths]
+    baseline_registry["assets"]=[entry for entry in baseline_registry["assets"] if entry["path"] not in new_paths]
     assert len([entry for entry in registry["audio"] if entry["path"]=="assets/audio/se/gado_repair.wav"])==1
-    baseline_registry["audio"]=[entry for entry in registry["audio"] if entry["path"]!="assets/audio/se/gado_repair.wav"]
+    baseline_registry["audio"]=[entry for entry in baseline_registry["audio"] if entry["path"]!="assets/audio/se/gado_repair.wav"]
     assert canonical_hash(baseline_registry)=="d78aa15fee0289d2ad8d5b068a8e1b48d0330918fb5f3afa285b6ad68c017f23", "既存台帳の変更"
     from import_gado_static_art import EXPECTED, INPUT
     from PIL import Image
