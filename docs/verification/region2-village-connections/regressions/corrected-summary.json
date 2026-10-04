@@ -1,0 +1,97 @@
+{
+  "execution_sha": "927cd60579f08415b27ceab69b4315085fef272f",
+  "budget_source": ".github/workflows/legacy-campaign.yml:311,442,443、run_locked_checksの各verify既存300秒。既存の上限は変更なし。",
+  "results": [
+    {
+      "name": "save-contract-ci300",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_save_contract.gd"
+      ],
+      "timeout_seconds": 300,
+      "exit_code": 124,
+      "seconds": 300.03,
+      "errors": [],
+      "status": "FAIL"
+    },
+    {
+      "name": "save-complete-4-ci600",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_save_complete.gd",
+        "--",
+        "--automated-playtest"
+      ],
+      "timeout_seconds": 600,
+      "exit_code": 0,
+      "seconds": 469.66,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "save-complete-3-ci600",
+      "command": [
+        "D:\\codex\\Documents-Codex\\2026-10-04\\task-3\\qa006\\.tools\\godot\\godot_console.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_save_complete.gd",
+        "--",
+        "--three-member-party",
+        "--teaching-first",
+        "--automated-playtest"
+      ],
+      "timeout_seconds": 600,
+      "exit_code": 0,
+      "seconds": 465.51,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "locked-after-upstream",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/run_locked_checks.py"
+      ],
+      "timeout_seconds": 1800,
+      "exit_code": 0,
+      "seconds": 143.3,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "frozen-after-upstream",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/check_frozen_files.py"
+      ],
+      "timeout_seconds": 60,
+      "exit_code": 0,
+      "seconds": 0.09,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "name": "assets-after-upstream",
+      "command": [
+        "C:\\Users\\tanak\\miniconda3\\python.exe",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "seconds": 12.13,
+      "errors": [],
+      "status": "PASS"
+    }
+  ]
+}

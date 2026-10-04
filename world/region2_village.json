@@ -1,0 +1,294 @@
+{
+  "version": 1,
+  "backgrounds": "world/region2_village_backdrops.json",
+  "site": {
+    "id": "region2_village",
+    "rooms": [
+      {
+        "background": "exterior",
+        "title": "オアシスの村（仮）",
+        "events": []
+      },
+      {
+        "background": "inn",
+        "title": "宿",
+        "events": []
+      },
+      {
+        "background": "item",
+        "title": "道具屋",
+        "events": []
+      },
+      {
+        "background": "weapon",
+        "title": "武器屋",
+        "events": []
+      },
+      {
+        "background": "shrine",
+        "title": "祠",
+        "events": []
+      }
+    ]
+  },
+  "definition": {
+    "region2_village_entrance": {
+      "cell": [
+        169,
+        88
+      ],
+      "outward": [
+        -1,
+        0
+      ]
+    },
+    "region2_village_spawn": {
+      "layer": "interior",
+      "node": "region2_village",
+      "room": 0,
+      "cell": [
+        4,
+        15
+      ]
+    },
+    "region2_village_spawn_east": {
+      "layer": "interior",
+      "node": "region2_village",
+      "room": 0,
+      "cell": [
+        41,
+        15
+      ]
+    },
+    "region2_village_exits": [
+      {
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            3,
+            13
+          ]
+        },
+        "to": {
+          "layer": "world",
+          "node": "",
+          "room": 0,
+          "cell": [
+            168,
+            88
+          ]
+        },
+        "facing": 1
+      },
+      {
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            42,
+            13
+          ]
+        },
+        "to": {
+          "layer": "world",
+          "node": "",
+          "room": 0,
+          "cell": [
+            170,
+            88
+          ]
+        },
+        "facing": 2
+      }
+    ],
+    "region2_village_doors": [
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 1,
+          "cell": [
+            8,
+            10
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            16,
+            8
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            16,
+            9
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 1,
+          "cell": [
+            8,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 2,
+          "cell": [
+            8,
+            10
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            26,
+            7
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            26,
+            8
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 2,
+          "cell": [
+            8,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 3,
+          "cell": [
+            8,
+            10
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            35,
+            14
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            35,
+            15
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 3,
+          "cell": [
+            8,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 4,
+          "cell": [
+            8,
+            10
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            33,
+            8
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 0,
+          "cell": [
+            33,
+            9
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region2_village_door",
+        "from": {
+          "layer": "interior",
+          "node": "region2_village",
+          "room": 4,
+          "cell": [
+            8,
+            11
+          ]
+        }
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "region2_village",
+      "name": "オアシスの村（仮）",
+      "entrance": "region2_village_entrance",
+      "ship_destination": "brine_port"
+    }
+  ]
+}

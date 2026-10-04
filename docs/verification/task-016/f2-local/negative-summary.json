@@ -1,0 +1,60 @@
+{
+  "counter-back-occupancy-ignored": {
+    "exit_code": 1,
+    "checks": 7663,
+    "failures": [
+      "全セルの固定地形とNPC占有を区別: 2 8,4",
+      "占有目標の足元通行を拒否",
+      "占有目標の実移動拒否と全状態保持"
+    ],
+    "runtime_status": "FAIL",
+    "npc_probe": null,
+    "elapsed_seconds": 20.724,
+    "timeout_seconds": 180,
+    "parser_errors": false
+  },
+  "counter-customer-route-blocked": {
+    "exit_code": 1,
+    "checks": 7658,
+    "failures": [
+      "客側・出入口の必須目標をNPCで閉塞しない"
+    ],
+    "runtime_status": "FAIL",
+    "npc_probe": null,
+    "elapsed_seconds": 20.254,
+    "timeout_seconds": 180,
+    "parser_errors": false
+  },
+  "counter-room-exit-blocked": {
+    "exit_code": 1,
+    "checks": 7543,
+    "failures": [
+      "8本の扉リンク: { \"layer\": \"interior\", \"node\": \"region2_village\", \"room\": 2, \"cell\": [8, 11] }",
+      "本番移動経路: (8, 11)",
+      "保存復帰後の室外退出",
+      "本番移動経路: (3, 13)",
+      "保存復帰後に世界へ退出",
+      "20状態の読込後歩行・退出",
+      "本番移動経路: (8, 11)",
+      "保存復帰後の室外退出",
+      "本番移動経路: (3, 13)",
+      "保存復帰後に世界へ退出",
+      "20状態の読込後歩行・退出",
+      "本番移動経路: (8, 11)",
+      "保存復帰後の室外退出",
+      "本番移動経路: (3, 13)",
+      "保存復帰後に世界へ退出",
+      "20状態の読込後歩行・退出",
+      "本番移動経路: (8, 11)",
+      "保存復帰後の室外退出",
+      "本番移動経路: (3, 13)",
+      "保存復帰後に世界へ退出",
+      "20状態の読込後歩行・退出"
+    ],
+    "runtime_status": "FAIL",
+    "npc_probe": null,
+    "elapsed_seconds": 20.529,
+    "timeout_seconds": 180,
+    "parser_errors": false
+  }
+}

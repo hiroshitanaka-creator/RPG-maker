@@ -1,0 +1,119 @@
+{
+  "start_sha": "0ea253e47b7d210581efebd788b42a39fe2271a2",
+  "original_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+  "moved_sha": "38021055d12c1656dc13d3256807357d6fd54eab",
+  "input_sha": "b28a9fbd72f9a10429f3f1e850fa4b951d304abc",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tools/check_task016_scope.py",
+    "--completed-sha",
+    "38021055d12c1656dc13d3256807357d6fd54eab",
+    "--fixed-path",
+    "/workspace/task018/moved016",
+    "--latest-sha",
+    "b28a9fbd72f9a10429f3f1e850fa4b951d304abc"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 7.307,
+  "report": {
+    "status": "PASS",
+    "execution_sha": "b28a9fbd72f9a10429f3f1e850fa4b951d304abc",
+    "results": {
+      "completed-scope": {
+        "status": "PASS",
+        "start_sha": "cc86765d7b5bba158dca8b828a626aad98610f12",
+        "execution_sha": "38021055d12c1656dc13d3256807357d6fd54eab",
+        "completed_tree": "d8e5903fa6be092762ab081961c56af6a725b2be",
+        "changed_files": [
+          ".github/workflows/region2-village-connections.yml",
+          "docs/decision-log.md",
+          "docs/tasks/016-fix-audit-review.md",
+          "docs/verification/task-009/assertion-map.md",
+          "docs/verification/task-016/assertion-correspondence.json",
+          "docs/verification/task-016/assets.log",
+          "docs/verification/task-016/before/f1.json",
+          "docs/verification/task-016/before/f1.log",
+          "docs/verification/task-016/before/f2.json",
+          "docs/verification/task-016/before/f2.log",
+          "docs/verification/task-016/f2-local/counter-back-npc-positive.json",
+          "docs/verification/task-016/f2-local/counter-back-npc-positive.log",
+          "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.json",
+          "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.log",
+          "docs/verification/task-016/f2-local/counter-customer-route-blocked.json",
+          "docs/verification/task-016/f2-local/counter-customer-route-blocked.log",
+          "docs/verification/task-016/import.json",
+          "docs/verification/task-016/import.log",
+          "docs/verification/task-016/plan.md",
+          "tools/check_region2_village_regression.gd",
+          "tools/check_task016_fixed_anchor.py",
+          "tools/check_task016_scope.py",
+          "tools/test_task009_lifecycle.py",
+          "tools/test_task016_fixed_anchor.py"
+        ],
+        "preserved_paths": 5141,
+        "failures": []
+      },
+      "state-only": {
+        "status": "PASS",
+        "input_sha": "dca9db57ace6a0bf5de22454f1dc7f2561d0971e",
+        "audited_sha": "38021055d12c1656dc13d3256807357d6fd54eab"
+      },
+      "new-request": {
+        "status": "PASS",
+        "input_sha": "d5d3006cc9db3bdff5f1ba31dcffb5776dc2135e",
+        "audited_sha": "38021055d12c1656dc13d3256807357d6fd54eab"
+      },
+      "state-and-request": {
+        "status": "PASS",
+        "input_sha": "288accd26fc2866204c6c3b264a1c9d6604b7309",
+        "audited_sha": "38021055d12c1656dc13d3256807357d6fd54eab"
+      },
+      "future-other-scope": {
+        "status": "PASS",
+        "input_sha": "02de5bbbf7c12669732fc8cb4328268f8941cf63",
+        "audited_sha": "38021055d12c1656dc13d3256807357d6fd54eab"
+      },
+      "broken-completed-scope": {
+        "status": "PASS",
+        "rejected_audit": {
+          "status": "FAIL",
+          "start_sha": "cc86765d7b5bba158dca8b828a626aad98610f12",
+          "execution_sha": "a96f900be17ffc51d4905fa6da7a651cdc5a27b7",
+          "completed_tree": "17c8722b6c5cf3ebd125402efe721e2da82d4613",
+          "changed_files": [
+            ".github/workflows/region2-village-connections.yml",
+            "docs/decision-log.md",
+            "docs/tasks/016-fix-audit-review.md",
+            "docs/verification/task-009/assertion-map.md",
+            "docs/verification/task-016/assertion-correspondence.json",
+            "docs/verification/task-016/assets.log",
+            "docs/verification/task-016/before/f1.json",
+            "docs/verification/task-016/before/f1.log",
+            "docs/verification/task-016/before/f2.json",
+            "docs/verification/task-016/before/f2.log",
+            "docs/verification/task-016/f2-local/counter-back-npc-positive.json",
+            "docs/verification/task-016/f2-local/counter-back-npc-positive.log",
+            "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.json",
+            "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.log",
+            "docs/verification/task-016/f2-local/counter-customer-route-blocked.json",
+            "docs/verification/task-016/f2-local/counter-customer-route-blocked.log",
+            "docs/verification/task-016/import.json",
+            "docs/verification/task-016/import.log",
+            "docs/verification/task-016/plan.md",
+            "scripts/game/game_session.gd",
+            "tools/check_region2_village_regression.gd",
+            "tools/check_task016_fixed_anchor.py",
+            "tools/check_task016_scope.py",
+            "tools/test_task009_lifecycle.py",
+            "tools/test_task016_fixed_anchor.py"
+          ],
+          "preserved_paths": 5140,
+          "failures": [
+            "scripts/game/game_session.gd"
+          ]
+        }
+      }
+    }
+  },
+  "stderr": ""
+}

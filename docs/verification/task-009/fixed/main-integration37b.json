@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "start_main": "552261345f68a4916ddeefad959896b44da2fcbf",
+  "upstream_preserved_main": "677e5a74937921250ec388c72fb1ceaba0341c8c",
+  "submitted_report_sha": "37b16815492ca2922fd2850d2e1bae4283bdb3c2",
+  "integrated_main_sha": "37b16815492ca2922fd2850d2e1bae4283bdb3c2",
+  "integration_method": "通常fast-forward。強制push・削除・履歴変更なし。",
+  "branch_ci": [
+    {
+      "id": 37189194669,
+      "name": "006 村接続検査",
+      "head_sha": "37b16815492ca2922fd2850d2e1bae4283bdb3c2",
+      "branch": "codex/task-006-connect-village-shells",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189194669",
+      "jobs": [
+        {
+          "name": "connections",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 37189194673,
+      "name": "CI",
+      "head_sha": "37b16815492ca2922fd2850d2e1bae4283bdb3c2",
+      "branch": "codex/task-006-connect-village-shells",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189194673",
+      "jobs": [
+        {
+          "name": "素材検査",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Godot・凍結受入テスト",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "main_ci": [
+    {
+      "id": 37189466355,
+      "name": "006 村接続検査",
+      "head_sha": "37b16815492ca2922fd2850d2e1bae4283bdb3c2",
+      "branch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189466355",
+      "jobs": [
+        {
+          "name": "connections",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 37189466363,
+      "name": "CI",
+      "head_sha": "37b16815492ca2922fd2850d2e1bae4283bdb3c2",
+      "branch": "main",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37189466363",
+      "jobs": [
+        {
+          "name": "素材検査",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Godot・凍結受入テスト",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "criteria": {
+    "all_ci_jobs": "PASS、提出・main各4ジョブすべて終了成功",
+    "R01_R08": "PASS、全8件。既存CIの凍結受入検査も提出・main双方で成功",
+    "frozen_files": "PASS、統合後も26件一致",
+    "checks_unchanged": "PASS、scope-report37b.jsonの固定Git blob照合",
+    "within_requested_scope": "PASS、同固定照合。007未着手"
+  },
+  "post_integration_import": {
+    "command": [
+      ".tools/godot/godot_console.exe",
+      "--headless",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "errors": 0,
+    "warnings": 0,
+    "log": "import-main37b.log"
+  },
+  "original_preservation": "preservation-report37b.json、元PC35件・開始素材等1559件不変",
+  "request_status": "報告済み、指揮役の実物確認未実施",
+  "note": "以降の報告追記は、この実在する提出・統合を記録する。追記のSHA・最終CIは最終応答に記録する。"
+}

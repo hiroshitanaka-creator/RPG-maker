@@ -1,0 +1,24 @@
+{
+  "fixed_006_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+  "assertion_sites": 135,
+  "unclassified": 0,
+  "canonical_map": "docs/verification/task-009/assertion-map.json",
+  "S06": {
+    "A082": {
+      "fixed": "全固定目標のBFSと実歩行を当時の空床条件のまま保持",
+      "latest": "tools/check_region2_village_regression.gd::maps",
+      "helpers": ["target_checks", "reachable_adjacent", "occupied", "path", "walk"],
+      "unoccupied": "固定目標へのBFSと全一歩",
+      "occupied_furniture_back": "本番通常隣接到達・足元侵入拒否・全状態保持",
+      "mandatory": "客側front・アーチ・8扉・20保存後退出は占有による代替不可"
+    },
+    "A052": "tools/check_region2_village_regression.gd::game_for",
+    "A053": "tools/check_region2_village_regression.gd::walk",
+    "A054": "tools/check_region2_village_regression.gd::walk",
+    "A017": "tools/capture_task009_village_regression.gd::journey",
+    "A024": "tools/capture_task009_village_regression.gd::journey"
+  },
+  "positive": ["npc-floor-before", "npc-floor-after", "registered-request-and-npc-occupancy", "counter-back-npc-positive", "counter-back-capture"],
+  "negative": ["npc-occupancy-ignored", "counter-back-occupancy-ignored", "counter-back-rejection-state-corrupted", "counter-customer-route-blocked", "counter-room-exit-blocked"],
+  "service_acceptance": "007未着手・未検証。固定無反応条件4箇所を全て保持"
+}

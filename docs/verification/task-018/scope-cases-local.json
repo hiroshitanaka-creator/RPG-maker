@@ -1,0 +1,196 @@
+{
+  "status": "PASS",
+  "execution_sha": "1e32aaf43abf32381a4404d9904a97700c3681b5",
+  "expected016_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+  "expected016_tree": "02105ab24ef39a2acf7405274e040d8cefaa399b",
+  "results": {
+    "completed-scope": {
+      "status": "PASS",
+      "start_sha": "cc86765d7b5bba158dca8b828a626aad98610f12",
+      "execution_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "completed_tree": "02105ab24ef39a2acf7405274e040d8cefaa399b",
+      "changed_files": [
+        ".github/workflows/region2-village-connections.yml",
+        "docs/decision-log.md",
+        "docs/tasks/016-fix-audit-review.md",
+        "docs/verification/task-009/assertion-map.md",
+        "docs/verification/task-016/assertion-correspondence.json",
+        "docs/verification/task-016/assets.log",
+        "docs/verification/task-016/before/f1.json",
+        "docs/verification/task-016/before/f1.log",
+        "docs/verification/task-016/before/f2.json",
+        "docs/verification/task-016/before/f2.log",
+        "docs/verification/task-016/f2-local/counter-back-npc-positive.json",
+        "docs/verification/task-016/f2-local/counter-back-npc-positive.log",
+        "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.json",
+        "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.log",
+        "docs/verification/task-016/f2-local/counter-customer-route-blocked.json",
+        "docs/verification/task-016/f2-local/counter-customer-route-blocked.log",
+        "docs/verification/task-016/import.json",
+        "docs/verification/task-016/import.log",
+        "docs/verification/task-016/plan.md",
+        "tools/check_region2_village_regression.gd",
+        "tools/check_task016_fixed_anchor.py",
+        "tools/check_task016_scope.py",
+        "tools/test_task009_lifecycle.py",
+        "tools/test_task016_fixed_anchor.py"
+      ],
+      "preserved_paths": 5141,
+      "failures": []
+    },
+    "state-only": {
+      "status": "PASS",
+      "input_sha": "77026c8dd9c03387c3b9a111136c379e01cbeb34",
+      "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+    },
+    "new-request": {
+      "status": "PASS",
+      "input_sha": "8a0997d293b7d0409a9e1b8f4b4cdbc35018780d",
+      "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+    },
+    "state-and-request": {
+      "status": "PASS",
+      "input_sha": "b29bb9f6fc936ac248119906fac1d915238778a4",
+      "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+    },
+    "future-other-scope": {
+      "status": "PASS",
+      "input_sha": "961c9d6b5d27092341cf836c30dae7fb5d930bb7",
+      "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+    },
+    "broken-completed-scope": {
+      "status": "PASS",
+      "rejected_audit": {
+        "status": "FAIL",
+        "start_sha": "cc86765d7b5bba158dca8b828a626aad98610f12",
+        "execution_sha": "6e0e7e073fd4fa2e746b4d0e442df815de4fd635",
+        "completed_tree": "625d6b885f6a8c0bbd59f1ff9d8967e34e120d0b",
+        "changed_files": [
+          ".github/workflows/region2-village-connections.yml",
+          "docs/decision-log.md",
+          "docs/tasks/016-fix-audit-review.md",
+          "docs/verification/task-009/assertion-map.md",
+          "docs/verification/task-016/assertion-correspondence.json",
+          "docs/verification/task-016/assets.log",
+          "docs/verification/task-016/before/f1.json",
+          "docs/verification/task-016/before/f1.log",
+          "docs/verification/task-016/before/f2.json",
+          "docs/verification/task-016/before/f2.log",
+          "docs/verification/task-016/f2-local/counter-back-npc-positive.json",
+          "docs/verification/task-016/f2-local/counter-back-npc-positive.log",
+          "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.json",
+          "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.log",
+          "docs/verification/task-016/f2-local/counter-customer-route-blocked.json",
+          "docs/verification/task-016/f2-local/counter-customer-route-blocked.log",
+          "docs/verification/task-016/import.json",
+          "docs/verification/task-016/import.log",
+          "docs/verification/task-016/plan.md",
+          "scripts/game/game_session.gd",
+          "tools/check_region2_village_regression.gd",
+          "tools/check_task016_fixed_anchor.py",
+          "tools/check_task016_scope.py",
+          "tools/test_task009_lifecycle.py",
+          "tools/test_task016_fixed_anchor.py"
+        ],
+        "preserved_paths": 5140,
+        "failures": [
+          "scripts/game/game_session.gd"
+        ]
+      }
+    },
+    "state-child-manifest-workflow-cli-checkout": {
+      "status": "PASS",
+      "input_sha": "f370b6a56dbf029c6ce205e311dcb25238aeb026",
+      "cli_sha": "1bbcfb6847b4c7977f0515ffee49ff07dc4746b9",
+      "checkout_sha": "1bbcfb6847b4c7977f0515ffee49ff07dc4746b9",
+      "rejection": "016 CLIの固定SHAが独立定数と不一致"
+    },
+    "wrong-manifest-sha": {
+      "status": "PASS",
+      "input_sha": "f2dd86b2143d19015e3d0d554d62d871812af9be",
+      "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "016完成記録の固定SHA/開始点が独立定数と不一致"
+    },
+    "wrong-manifest-tree": {
+      "status": "PASS",
+      "input_sha": "e4e0db48903d0cbb7dba54b423e067bcf120677a",
+      "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "016完成記録のtreeが独立定数と不一致"
+    },
+    "wrong-manifest-start": {
+      "status": "PASS",
+      "input_sha": "69da468e3baac820ef2fc5932e367569717132dd",
+      "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "016完成記録の固定SHA/開始点が独立定数と不一致"
+    },
+    "wrong-workflow-sha": {
+      "status": "PASS",
+      "input_sha": "38c4931972e76225a03614e1eab83516e2dc6980",
+      "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "016 workflowの固定完全SHA不一致"
+    },
+    "wrong-workflow-checkout": {
+      "status": "PASS",
+      "input_sha": "7bb4701c0b26b1180af3d379ba7b468171bf32f9",
+      "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "016の固定別checkout欠損"
+    },
+    "missing-workflow-checkout": {
+      "status": "PASS",
+      "input_sha": "fad74025ac00a9b21dc396133a21891d1664717d",
+      "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "016の固定別checkout欠損"
+    },
+    "missing-record-fields": {
+      "status": "PASS",
+      "input_sha": "ce7945aa42d7bb7d8b9d29cd8dbca52631a25538",
+      "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "'completed_sha'"
+    },
+    "invalid-record-json": {
+      "status": "PASS",
+      "input_sha": "c12b817dd9386ede8f12f3ec60e0fd76da9e9e72",
+      "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "Expecting value: line 1 column 1 (char 0)"
+    },
+    "malformed-cli-sha": {
+      "status": "PASS",
+      "input_sha": "67873b45bea24afb93b12b4713f1f28dc60d1ee7",
+      "cli_sha": "HEAD",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "016 CLIの固定SHAが独立定数と不一致"
+    },
+    "nonexistent-cli-sha": {
+      "status": "PASS",
+      "input_sha": "67873b45bea24afb93b12b4713f1f28dc60d1ee7",
+      "cli_sha": "0000000000000000000000000000000000000000",
+      "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "rejection": "016 CLIの固定SHAが独立定数と不一致"
+    },
+    "state-child-actual-checkout": {
+      "status": "PASS",
+      "input_sha": "67873b45bea24afb93b12b4713f1f28dc60d1ee7",
+      "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "checkout_sha": "1bbcfb6847b4c7977f0515ffee49ff07dc4746b9",
+      "rejection": "016固定checkoutのHEAD不一致"
+    },
+    "missing-record-file": {
+      "status": "PASS",
+      "input_sha": "c5103efc751bd65058c56e2d6b14f17aa3e8c683",
+      "rejection": "git失敗: show c5103efc751bd65058c56e2d6b14f17aa3e8c683:docs/verification/task-016/completed-audit.json\nfatal: path 'docs/verification/task-016/completed-audit.json' does not exist in 'c5103efc751bd65058c56e2d6b14f17aa3e8c683'\n"
+    },
+    "missing-actual-checkout": {
+      "status": "PASS",
+      "input_sha": "1e32aaf43abf32381a4404d9904a97700c3681b5",
+      "rejection": "[Errno 2] No such file or directory: PosixPath('/tmp/task016-scope-5jzkm1is/missing')"
+    }
+  }
+}

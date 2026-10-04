@@ -8,6 +8,7 @@ static func data() -> Dictionary:
 	if _data.is_empty():
 		_data = WorldExpedition._integers(JSON.parse_string(FileAccess.get_file_as_string("res://world/interiors.json")))
 		Region2Port.apply_to(_data)
+		Region2Village.apply_to(_data)
 	return _data["first_region"]
 
 static func room(state: Dictionary) -> Dictionary:
@@ -52,11 +53,11 @@ static func walkable(saved: Dictionary, cell: Vector2i) -> bool:
 ## 町・洞窟・塔などの入口（*_spawn）を先に探し、なければ扉の接続（doors 系）で「その部屋へ入る」着地マスを使う。
 static func entrance_landing(node: String, room_index: int) -> Array:
 	var definition := data()
-	for key in ["village_spawn","cave_spawn","castle_spawn","tower_spawn","port_spawn","second_port_spawn"]:
+	for key in ["village_spawn","cave_spawn","castle_spawn","tower_spawn","port_spawn","second_port_spawn","region2_village_spawn"]:
 		var spawn: Variant = definition.get(key)
 		if spawn is Dictionary and spawn["layer"] == "interior" and spawn["node"] == node and spawn["room"] == room_index:return spawn["cell"].duplicate()
 	var links: Array = []
-	for key in ["doors","castle_doors","tower_doors","port_doors","second_port_doors"]:links.append_array(definition.get(key,[]))
+	for key in ["doors","castle_doors","tower_doors","port_doors","second_port_doors","region2_village_doors"]:links.append_array(definition.get(key,[]))
 	for key in ["stairs_down","stairs_up"]:
 		if definition.get(key) is Dictionary:links.append(definition[key])
 	for link in links:
@@ -111,6 +112,12 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		return {"kind":"moved"}
 	var definition := data()
 	if state["layer"] == "world":
+		if state["cell"]==definition["region2_village_entrance"]["cell"]:
+			var spawn_key := "region2_village_spawn_east" if before.x>cell.x else "region2_village_spawn"
+			place(state,definition[spawn_key])
+			state["facing"]=0;state["entry_lock"]="region2_village_entrance"
+			FirstRegionTravel.visit(saved,"region2_village")
+			return {"kind":"moved"}
 		if state["cell"]==definition["second_port_entrance"]["cell"]:
 			place(state,definition["second_port_spawn"])
 			FirstRegionTravel.visit(saved,"brine_port")
@@ -134,6 +141,11 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		if at(state,definition["gate"]["cell"]):
 			return {"kind":"dialogue","speaker":"門番","sound":"door","text":["通行証を確認しました。お通りください。"]}
 	else:
+		for link in definition["region2_village_exits"]:
+			if at(state,link["from"]):
+				place(state,link["to"])
+				state["facing"]=link["facing"];state["entry_lock"]="region2_village_entrance"
+				return {"kind":"moved"}
 		if at(state,definition["second_port_exit"]):
 			place(state,outside("second_port_entrance"));state["facing"]=0;state["entry_lock"]="second_port_entrance"
 			return {"kind":"moved"}
@@ -160,12 +172,15 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		links.append_array(definition.get("tower_doors",[]))
 		links.append_array(definition.get("port_doors",[]))
 		links.append_array(definition.get("second_port_doors",[]))
+		links.append_array(definition.get("region2_village_doors",[]))
 		links.append(definition["stairs_down"])
 		links.append(definition["stairs_up"])
 		for link in links:
 			if at(state,link["from"]):
 				if link==definition["stairs_up"] and FirstRegionStory.needs_return(saved):return {"kind":"story_request"}
 				place(state,link["to"])
+				if link.has("facing"):state["facing"]=link["facing"]
+				if link.has("entry_lock"):state["entry_lock"]=link["entry_lock"]
 				return {"kind":"moved"}
 		if definition.has("tower_boss") and at(state,definition["tower_boss"]["point"]) and "forest_tower_boss" not in state["cleared"]:
 			return {"kind":"battle","id":"forest_tower_boss","enemies":definition["tower_boss"]["enemies"],"seed":randi()}
@@ -175,7 +190,7 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		var coast: Dictionary=SecondRegionCoast.data()["ground_encounter"]
 		if randf()<float(coast["chance"]):return {"kind":"battle","id":"second_coast_ground_encounter","enemies":coast["groups"].pick_random(),"seed":randi()}
 		return {"kind":"moved"}
-	if state["node"] not in ["start_village","first_castle","first_port","brine_port"]:
+	if state["node"] not in ["start_village","first_castle","first_port","brine_port","region2_village"]:
 		var rule: Dictionary = definition["encounters"]["world" if state["layer"] == "world" else state["node"]]
 		if randf() < float(rule["chance"]):
 			return {"kind":"battle","id":"first_region_encounter","enemies":rule["enemies"],"seed":randi()}
@@ -244,7 +259,7 @@ static func valid(saved: Dictionary) -> bool:
 		var cell: Variant=record.get("cell")
 		if not cell is Array or cell.size()!=2 or not cell[0] is int or not cell[1] is int:return false
 		if not record.get("facing") is int or record["facing"] not in [0,1,2,3]:return false
-	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle","first_forest_tower","first_port","brine_port"] or room(state).is_empty()):return false
+	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle","first_forest_tower","first_port","brine_port","region2_village"] or room(state).is_empty()):return false
 	if state["node"]=="first_port" and not saved["progress_flags"].get("mountain_path_open",false):return false
 	if state["node"]=="first_forest_tower" and not saved["progress_flags"].get("castle_north_permission",false):return false
 	if saved["progress_flags"].get("mountain_path_open",false) and ("forest_tower_boss" not in state["cleared"] or not joined(saved,"pc_04")):return false
