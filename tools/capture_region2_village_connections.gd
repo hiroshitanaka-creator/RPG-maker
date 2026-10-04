@@ -70,13 +70,13 @@ func held(code: int, seconds: float) -> void:
 
 func _run() -> void:
 	var args := OS.get_cmdline_user_args()
-	mode="restart-%s" % args[args.find("--restart")+1] if "--restart" in args else "journey"
+	mode="details" if "--details" in args else ("restart-%s" % args[args.find("--restart")+1] if "--restart" in args else "journey")
 	OUTPUT=DIR+mode+"/"
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUTPUT))
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	root.min_size=Vector2i(1024,576);root.max_size=Vector2i(1024,576);root.size=Vector2i(1024,576)
 	root.position=Vector2i(-32000,-32000)
-	var source := "user://village006_port-start.json" if mode=="journey" else "user://village006_%s_0.json" % args[args.find("--restart")+1]
+	var source := "user://village006_port-start.json" if mode=="journey" else ("user://village006_0_0.json" if mode=="details" else "user://village006_%s_0.json" % args[args.find("--restart")+1])
 	if not castle_check(FileAccess.file_exists(source),"本番save_gameで作られた開始保存"):finish();return
 	source_sha=FileAccess.get_sha256(source)
 	var destination := "user://qa_"+OS.get_environment("RPG_QA_SAVE_PREFIX")+"_save.json"
@@ -89,6 +89,7 @@ func _run() -> void:
 	_definition["doors"].append_array(_definition["region2_village_doors"])
 	_definition["doors"].append_array(_definition["second_port_doors"])
 	if mode=="journey":await journey()
+	elif mode=="details":await details()
 	else:await restart_route(int(args[args.find("--restart")+1]))
 	finish()
 
@@ -179,6 +180,19 @@ func restart_route(index: int) -> void:
 	await create_timer(2.2).timeout;await picture("01-restart-room-%d" % index)
 	castle_check(await to_port(),"別プロセス再起動後に通常キーだけで港へ戻る")
 	await picture("02-port-after-restart")
+
+func details() -> void:
+	await create_timer(2.2).timeout
+	if not castle_check(await _walk(point(0,[3,14])),"西アーチ下へ通常歩行"):return
+	await picture("01-west-arch-under")
+	if not castle_check(await _walk(point(0,[42,14])),"東アーチ下へ通常歩行"):return
+	await picture("02-east-arch-under")
+	for index in range(1,5):
+		if not castle_check(await _walk(point(index,[7,8])),"高い手前壁の客側へ通常歩行"):return
+		await create_timer(2.2).timeout
+		await picture("03-room-%d-high-front-wall" % index)
+		if not castle_check(await _walk(point(index,[8,11]),Region2Village.data()["definition"]["region2_village_doors"][index*2-1]["to"]),"高い壁の開口部から通常退出"):return
+	castle_check(await to_port(),"詳細撮影後も港へ通常帰路")
 
 func finish() -> void:
 	castle_check(Time.get_ticks_msec()< _deadline and _moves<=LIMIT_MOVES and _input_log.size()<LIMIT_INPUTS and not _input_violation,"既存の180秒・移動・入力予算と禁止操作を維持")
