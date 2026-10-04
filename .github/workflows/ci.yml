@@ -234,10 +234,10 @@ jobs:
         if: steps.check.outputs.exists == 'true'
         run: |
           git fetch --no-tags --depth=1 origin 8694aad22ce8ceab74ac96c090360739c30d9983
-          git fetch --no-tags --depth=1 origin a8148389b19bddb2a05eb97471ffeea510238c90
+          git fetch --no-tags --depth=1 origin 999c1e947f9a528dd4d1ad82cb17221e883725c6
           python -m pip install pillow numpy scipy
           sudo apt-get update && sudo apt-get install -y xvfb mesa-vulkan-drivers
-          python tools/check_task007.py --completed a8148389b19bddb2a05eb97471ffeea510238c90 --godot ./godot
+          python tools/check_task007.py --completed 999c1e947f9a528dd4d1ad82cb17221e883725c6 --godot ./godot
 
       - name: 敵の行動予定と連戦の保存を検査
         if: steps.check.outputs.exists == 'true'
