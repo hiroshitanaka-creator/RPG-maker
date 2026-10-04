@@ -101,7 +101,11 @@ def main():
         target=ROOT/f"assets/characters/gado/{form}_standing_front.png"
         assert Image.open(ROOT/INPUT/f"gado-{form}-event-standing-candidate.png").convert("RGBA").tobytes()==Image.open(target).convert("RGBA").tobytes()
     retained=["world/terrain.json","world/first_region_visuals.json","assets/palette/natural.gpl","data/story_v1.json","docs/story-outline.md"]
-    for name in retained:assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==BASE_HASHES[name], name
+    from check_region2_village_palette import original_palette_bytes
+    for name in retained:
+        # 導入時の旧SHAは維持。追加部分も独立照合してから旧80色を照合する。
+        retained_bytes=original_palette_bytes(ROOT) if name=='assets/palette/natural.gpl' else (ROOT/name).read_bytes()
+        assert hashlib.sha256(retained_bytes).hexdigest()==BASE_HASHES[name], name
     stable=["world/first_region.json","world/interiors.json","assets/registry.json",*retained]
     before={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in stable}
     for iteration in range(2):

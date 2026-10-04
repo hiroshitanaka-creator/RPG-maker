@@ -296,8 +296,17 @@ def main() -> int:
         palette_cache[rel] = selected
         if selected is None:
             errors.append(f"{rel}: 指定パレットが存在しない、または色が空")
-        elif len(selected) > (80 if rel == 'assets/palette/natural.gpl' else 64):
-            errors.append(f"{rel}: パレットの色数超過 {len(selected)} 色 / 上限{80 if rel == 'assets/palette/natural.gpl' else 64}色")
+        elif rel == 'assets/palette/natural.gpl':
+            # 総数だけを緩めず、旧80色の全バイトと今回の原画由来4色だけを許可する。
+            from check_region2_village_palette import original_palette_bytes
+            try:
+                original_palette_bytes(REPO_ROOT)
+                if len(selected) != 84:
+                    raise AssertionError('旧80色＋今回の採取4色と色数が異なる')
+            except (AssertionError, ValueError, KeyError, OSError) as exc:
+                errors.append(f"{rel}: 承認済みの末尾4色追加へ適合しない: {exc}")
+        elif len(selected) > 64:
+            errors.append(f"{rel}: パレットの色数超過 {len(selected)} 色 / 上限64色")
 
     for entry in entries:
         entry.setdefault("max_colors", defaults.get("max_colors"))

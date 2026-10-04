@@ -19,3 +19,23 @@
 - 原本と既存パレットはバイト不変。追加色0。目標画像・原画・実表示のSHAは記録内に保持。
 
 通常の進捗報告には具体的な場面画像を表示せず、区切り末の確認用リンクとして渡す。見た目の採用、色調・尺度・歩きやすさの人間評価は未実施で、PLAYTEST_QUEUEに記載。
+
+## 004 の最新比較
+
+開始main・今回004・原画・既存目標・実描画を6面で識別した5比較。原画と目標は参照のみ。初の採否は未確認。
+
+| 対象 | 004比較 |
+| --- | --- |
+| 外観 | [exterior/color-review-004.png](exterior/color-review-004.png) |
+| 宿 | [inn/color-review-004.png](inn/color-review-004.png) |
+| 道具屋 | [item/color-review-004.png](item/color-review-004.png) |
+| 武器屋 | [weapon/color-review-004.png](weapon/color-review-004.png) |
+| 祠 | [shrine/color-review-004.png](shrine/color-review-004.png) |
+
+最新実行：原画照合244項目、独立2回再生成全バイト一致、通行2170項目、Windows/OpenGL2230項目・実描画25枚の独立合成差0。原画5点・先頭80色1940バイト・村以外の1538素材・全通行／上層形状は不変。原画の実画素4色を末尾追加。停止11負例と追加4負例は拒否。
+
+- `palette-validation-004.json`：停止11負例を含むパレット14負例。
+- `color-integrity-004.json`：追加4色の実出所・旧80色近似誤差・使用画素数・原画との色差、全形状・村外実体1バイト負例。
+- `comparison-index-004.json`：5比較と原画・目標・最新実描画のSHA。
+
+上段の追加色0・243検査等は初期土台の実測履歴。CIとmain反映・指揮役の確認状態は [004報告](../../tasks/reports/004-resume-village-colors.md) を参照。

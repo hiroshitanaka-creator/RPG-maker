@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "baseline_commit": "d2ad6c044920a44340b725987b86c36f4adf7952",
+  "unchanged_other_assets": 1538,
+  "color_evidence": [
+    {
+      "rgb": [
+        126,
+        76,
+        44
+      ],
+      "hex": "#7E4C2C",
+      "original": "assets/_incoming/owner-2026-10-03-region3-port/01-oasis-inn.png",
+      "coordinate": [
+        1072,
+        276
+      ],
+      "original_sha256": "3bec585c4bfe1fda0401b18b084832d51733bbfbe3cbffb6ec55a6eb7d9c3301",
+      "previous_nearest_rgb": [
+        116,
+        90,
+        50
+      ],
+      "previous_squared_error": 332,
+      "used_pixels": {
+        "exterior": 29253,
+        "inn": 8850,
+        "item": 6733,
+        "weapon": 9046,
+        "shrine": 10018
+      },
+      "reason": "床と木部の土色・陰影を旧80色の近似色に置換せず保持する"
+    },
+    {
+      "rgb": [
+        204,
+        119,
+        61
+      ],
+      "hex": "#CC773D",
+      "original": "assets/_incoming/owner-2026-10-03-region3-port/03-oasis-weapon-shop.png",
+      "coordinate": [
+        1128,
+        647
+      ],
+      "original_sha256": "81a4fa6e5f68c494bef92bd67a0c400193a2c30711472f6ce1704775968495d9",
+      "previous_nearest_rgb": [
+        191,
+        105,
+        77
+      ],
+      "previous_squared_error": 621,
+      "used_pixels": {
+        "exterior": 30893,
+        "inn": 5787,
+        "item": 4591,
+        "weapon": 3523,
+        "shrine": 9574
+      },
+      "reason": "床と木部の土色・陰影を旧80色の近似色に置換せず保持する"
+    },
+    {
+      "rgb": [
+        167,
+        89,
+        45
+      ],
+      "hex": "#A7592D",
+      "original": "assets/_incoming/owner-2026-10-03-region3-port/01-oasis-inn.png",
+      "coordinate": [
+        782,
+        781
+      ],
+      "original_sha256": "3bec585c4bfe1fda0401b18b084832d51733bbfbe3cbffb6ec55a6eb7d9c3301",
+      "previous_nearest_rgb": [
+        154,
+        96,
+        72
+      ],
+      "previous_squared_error": 947,
+      "used_pixels": {
+        "exterior": 31077,
+        "inn": 63222,
+        "item": 65879,
+        "weapon": 52406,
+        "shrine": 8452
+      },
+      "reason": "床と木部の土色・陰影を旧80色の近似色に置換せず保持する"
+    },
+    {
+      "rgb": [
+        113,
+        61,
+        29
+      ],
+      "hex": "#713D1D",
+      "original": "assets/_incoming/owner-2026-10-03-region3-port/01-oasis-inn.png",
+      "coordinate": [
+        1157,
+        150
+      ],
+      "original_sha256": "3bec585c4bfe1fda0401b18b084832d51733bbfbe3cbffb6ec55a6eb7d9c3301",
+      "previous_nearest_rgb": [
+        104,
+        66,
+        47
+      ],
+      "previous_squared_error": 430,
+      "used_pixels": {
+        "exterior": 24928,
+        "inn": 17033,
+        "item": 14296,
+        "weapon": 16871,
+        "shrine": 8398
+      },
+      "reason": "床と木部の土色・陰影を旧80色の近似色に置換せず保持する"
+    }
+  ],
+  "maps": {
+    "exterior": {
+      "previous_rgb_rmse": 12.356342508333773,
+      "revised_rgb_rmse": 11.836524168781482,
+      "geometry_identical": true
+    },
+    "inn": {
+      "previous_rgb_rmse": 11.903279358602497,
+      "revised_rgb_rmse": 8.978143219177477,
+      "geometry_identical": true
+    },
+    "item": {
+      "previous_rgb_rmse": 12.27314202049901,
+      "revised_rgb_rmse": 10.34753557679416,
+      "geometry_identical": true
+    },
+    "weapon": {
+      "previous_rgb_rmse": 11.251100236756555,
+      "revised_rgb_rmse": 8.546994713861732,
+      "geometry_identical": true
+    },
+    "shrine": {
+      "previous_rgb_rmse": 9.457948382774122,
+      "revised_rgb_rmse": 8.414967481862995,
+      "geometry_identical": true
+    }
+  },
+  "negative_case": "村外素材の実体1バイト変更を拒否: assets/backgrounds/castle.png",
+  "visual_adoption": "NOT_CONFIRMED"
+}

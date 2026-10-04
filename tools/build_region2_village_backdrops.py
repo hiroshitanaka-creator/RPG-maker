@@ -134,7 +134,9 @@ def derive(role,spec):
     source_path=ROOT/spec['original'];raw_bytes=source_path.read_bytes()
     if hashlib.sha256(raw_bytes).hexdigest()!=spec['sha256']:raise ValueError('原本不一致: '+role)
     with Image.open(source_path) as source:raw,info=transform(source,spec)
-    colors=palette()[:80].astype(np.int32);indices=nearest(raw,colors)
+    from check_region2_village_palette import original_palette_bytes
+    original_palette_bytes(ROOT)
+    colors=palette().astype(np.int32);indices=nearest(raw,colors)
     counts=np.bincount(indices.ravel(),minlength=len(colors));used=np.where(counts>0)[0]
     selected=sorted(sorted(used,key=lambda c:(-int(counts[c]),int(c)))[:64])
     indices=nearest(raw,colors[selected]);rgb=colors[selected][indices].astype('uint8')
@@ -176,6 +178,9 @@ def derive(role,spec):
 def build(destination):
     document=dict(version=1,status='独立した地形・施設土台。本番イベント・保存先・施設機能は未接続',maps={})
     records=dict(version=1,baseline_commit='dad3fca1d2d6216c3418999d27a4cf581ca00860',method='原画の最近傍縮小、natural.gplの選択64色への最近傍減色、同じ背景画素から二値透過の上層を切出し。平均化・描足し・色調補正なし。',palette='assets/palette/natural.gpl',palette_sha256='1b1c00dd929b96b64703972a0ae9368c36636b96c8f717dded78524e57913088',maps={})
+    records['palette_current_sha256']=hashlib.sha256((ROOT/'assets/palette/natural.gpl').read_bytes()).hexdigest()
+    from check_region2_village_palette import extension_metadata
+    records['palette_extension']=extension_metadata()
     outputs=[]
     for role,spec in D.MAPS.items():
         image,atlas,map_data,record,walk=derive(role,spec)

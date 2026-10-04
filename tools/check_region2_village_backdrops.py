@@ -65,6 +65,10 @@ def reachable(rows,start):
 
 def verify():
     records=load(RECORD);maps=load(WORLD)['maps'];colors=palette()
+    from check_region2_village_palette import original_palette_bytes, negative_cases
+    original_palette_bytes(ROOT)
+    negative_cases(ROOT)
+    check(hashlib.sha256((ROOT/'assets/palette/natural.gpl').read_bytes()).hexdigest()==records['palette_current_sha256'],'許可追加を含む現在パレットSHA一致')
     baseline_registry=json.loads(subprocess.check_output(['git','show',BASE+':assets/registry.json'],cwd=ROOT))
     shipped_registry=json.loads(subprocess.check_output(['git','show',SHIPPED+':assets/registry.json'],cwd=ROOT))
     registry=load('assets/registry.json')
