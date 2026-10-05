@@ -18,7 +18,7 @@
 
 ## 変更内容
 
-変更するファイルは次の4件だけ。
+変更したファイルは次の4件だけ。
 
 - `docs/design/items-and-equipment.md`：3節と指定の変更記録1行。
 - `docs/roadmap-v2.md`：付録B本節内、既存の `owner-2026-10-04-grok-region3` の表・注意の直後、次の「2026年9月27日の決定」の前に「付録B追記：Grok の原画（owner-2026-10-05-grok-batch3）」を追加。
@@ -79,7 +79,7 @@
 ## 実行した検査と結果
 
 - `godot --headless --editor --import --quit`：初期環境の4.6.3で終了0。その版での `python tools/run_locked_checks.py` はR-01〜R-07成功、R-08失敗（`test_startup.gd` のGodot版番号、6と7／3と2の不一致2件）。検査・期待値は変更していない。
-- CIと同じGodot 4.7.2-stableを取得。配布ZIPのSHA-256は `cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4` でCI固定値と一致。実行版は `4.7.2.stable.official.ed1daf0bf`。この実行ファイルをPATHの先頭に置いて検証する。書込可能なHOME・XDG_CACHE_HOMEを用意してFontconfigのキャッシュ出力も確認する。
+- CIと同じGodot 4.7.2-stableを取得。配布ZIPのSHA-256は `cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4` でCI固定値と一致。実行版は `4.7.2.stable.official.ed1daf0bf`。この実行ファイルをPATHの先頭に置いて検証した。書込可能なHOME・XDG_CACHE_HOMEを用意してFontconfigのキャッシュ出力も確認する。
 - 固定版の `godot --headless --editor --import --quit`：終了0、エラー・警告・Fontconfigエラー0件。
 - 固定版の `python tools/run_locked_checks.py`：終了0、R-01〜R-08すべてPASS。verifyコマンド、300秒上限、合否判定は不変。R-07はA01〜A14の全14件成功。結果JSONとログを読み、次の実測件数を確認。
 
@@ -95,7 +95,16 @@
 | R-08 | PASS / 終了0 | 17 tests / 2302 assertions、失敗・pending 0 |
 
 - `python tools/check_frozen_files.py`：検証後も終了0、保護26件すべて一致。
-- 提出コミットのCI：push後に全ジョブの終了とURLを確認して追記する。
+本文の提出コミット `545876887356dc12af58b66e1a2be72b6656e110` のpush CIは、2 workflowの全20ジョブが `completed / success`。runと全ジョブの実結果を取得し、失敗・cancelled・skippedは0件。通常CIには凍結受入R-01〜R-08、固定版・最新版の施設検査、検証前後の保護照合が含まれる。
+
+| CI | URL | 結果 |
+| --- | --- | --- |
+| 006 固定受入と最新回帰 | [run 37255459123](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37255459123) | 全17ジョブ成功 |
+| CI | [run 37255459137](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37255459137) | 全3ジョブ成功 |
+
+全20ジョブの確認内容：通常CIの素材検査、試遊前検査、Godot・凍結受入テストの3件。村の検査は `lifecycle-audit`、`acceptance-and-regression (fixed/latest)` の3件と、`normal-input-and-rendering (fixed/latest, journey/details/restart-0〜4)` の14件。いずれも成功。
+
+このCIの対象SHAは本文コミットであり、本報告確定と状態行更新の後続コミットと混同しない。後続コミットもpush/PRの全CIが終了したことを確認し、最終返答でその先端SHAと結果を親へ渡す。
 - `python tools/validate_assets.py --strict`：終了0。素材1140件・音15件・パレット3件・字体2件、問題なし。
 - `python tools/check_frozen_files.py`：検証前に終了0、保護26件すべて一致。
 - 文書と原画の照合スクリプト：既存決定3行、指定の未決・未実装注意、表11行の全文一致、注意3項目の全文一致、依頼書の状態行以外不変、原画11枚と台帳不変、登録先端と最新mainの祖先保持を確認。
@@ -105,11 +114,11 @@
 1. 名前・左から2番目の透明な栞を「決定（2026-10-04）」として記録。既存決定3行をメダル置換以外は保持。指定の未決は一致。
 2. 付録Bの表11行・注意3項目は依頼書と全文一致。
 3. 原画のファイル名・場所・全11件SHA-256は前後および最新mainと一致。
-4. 変更範囲は指定4文書に限定する。STATUS・全体計画の付録B以外・後続発注・ゲーム本体・原画・台帳・保護ファイル・検査は変更しない。検査が生成する履歴JSONは検証後に元へ戻して成果物から除外する。
-5. 固定版のR-01〜R-08、保護照合、提出コミットのCI全ジョブが終わるまで成功扱いにしない。結果確定後に状態を報告済みへ更新する。
+4. 最新mainとの `git diff --stat` と全パス差分を照合し、変更は指定4文書だけ。STATUS・全体計画の付録B以外・後続発注・ゲーム本体・原画・台帳・保護ファイル・検査は不変。検査が生成した履歴JSONは検証後に元へ戻し、成果物から除外した。未コミット変更・未pushコミットがないことも返却前に確認する。
+5. 固定版のR-01〜R-08すべて成功、検証前後の保護26件一致、本文提出コミットのpush CI全20ジョブ成功を確認した。依頼書の状態行を「報告済み」に更新。本報告をcommitしてpushし、先端の全CIも終了後に確認する。
 
 ## 統合状態と残る事項
 
-mainには未マージ。今回の発注は、親が成果物を独立確認して統合するため、報告済み・push済み・main未統合で返す指示であり、依頼書のmain反映条件は親の統合後に満たす。既存PR #14を引き継ぐ。STATUS更新・全体計画・後続発注は親担当。
+mainには未マージ。今回の発注は、親が成果物を独立確認して統合するため、報告済み・push済み・main未統合で返す指示であり、依頼書のmain反映条件は親の統合後に満たす。既存[PR #14](https://github.com/hiroshitanaka-creator/RPG-maker/pull/14)を引き継ぎ、本文と検証に合わせて日本語の題名・説明へ更新した。STATUS更新・全体計画・後続発注は親担当。
 
 1階の外入口の扱いと暗色敵の見えやすさは、原画をゲームに組み込む段階での確認事項として指定の注意を保持した。今回、それらの接続・戦闘画面での見えやすさ・栞の仕組みは実装も検証もしていない。未決の栞の総数・置き場所・交換内容・交換する人の名前と場所は未決のまま。追加の採用判断はしていない。
