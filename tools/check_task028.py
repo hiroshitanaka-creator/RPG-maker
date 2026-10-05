@@ -99,7 +99,7 @@ def main():
                'docs/decision-log.md', 'docs/tasks/028-enlarge-ruins-boss.md',
                'docs/tasks/reports/028-enlarge-ruins-boss.md'}
     assert all(p in allowed or p.startswith('docs/verification/task-028/') for p in changes), '028の変更範囲'
-    tracked_assets = git('ls-tree', '-r', '--name-only', BASE, '--', 'assets').decode().splitlines()
+    tracked_assets = git('ls-tree', '-rz', '--name-only', BASE, '--', 'assets').decode().rstrip('\0').split('\0')
     for name in tracked_assets:
         assert (ROOT/name).read_bytes() == git('show', BASE+':'+name), '原画・全素材不変: '+name
     old_capture = git('show', BASE+':tools/capture_task011_ruins.gd').decode()
