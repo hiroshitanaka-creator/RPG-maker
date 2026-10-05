@@ -2,6 +2,8 @@
 import argparse,json,os,re,shutil,subprocess,sys,tempfile,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+# CI登録も段階限定。後続の正しいCI追加を最新HEADの範囲違反にしない。
+REGISTERED='8ae87d658fe04f4053ea2f258d973e0862530085'
 BAD=re.compile(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:')
 def git(*args):return subprocess.check_output(['git',*args],cwd=ROOT)
 def run(command,path,target,env,limit,marker=None):
@@ -40,11 +42,11 @@ def main():
  assert git('diff','--name-only','HEAD','--','scripts','world','assets','tools','.scope-lock','test','project.godot','.github').decode().strip()=='','実行SHAと本番・検査器の追跡ファイル一致'
  assert not [p for p in git('ls-files','--others','--exclude-standard').decode().splitlines() if p.startswith(('scripts/','world/','assets/','tools/')) and Path(p).suffix in ['.gd','.py','.json','.png']], '未登録の本番・検査器'
  from check_task011_assets import BASE
- old=git('show',BASE+':.github/workflows/ci.yml').decode();new=git('show','HEAD:.github/workflows/ci.yml').decode()
+ old=git('show',BASE+':.github/workflows/ci.yml').decode();new=git('show',REGISTERED+':.github/workflows/ci.yml').decode()
  pattern=r'      - name: 011遺跡の完成版と最新の通行・階段・保存・実描画を検査\n.*?(?=      - name:)'
  steps=re.findall(pattern,new,re.S);assert len(steps)==1 and re.sub(pattern,'',new,flags=re.S)==old,'既存CI不変・追加1ステップ'
  assert args.completed in steps[0] and '--completed '+args.completed in steps[0],'完成版完全SHAの固定'
- output=ROOT/'docs/verification/task-011/ci';output.mkdir(parents=True,exist_ok=True);report=dict(completed_sha=args.completed,latest_sha=head,engine_version=engine)
+ output=ROOT/'docs/verification/task-011/ci';output.mkdir(parents=True,exist_ok=True);report=dict(completed_sha=args.completed,registration_sha=REGISTERED,latest_sha=head,engine_version=engine)
  with tempfile.TemporaryDirectory(prefix='task011-checkout-') as directory:
   fixed=Path(directory)/'fixed';subprocess.run(['git','worktree','add','--detach',str(fixed),args.completed],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
   try:
