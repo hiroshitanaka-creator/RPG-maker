@@ -1,0 +1,1070 @@
+{
+  "status": "PASS",
+  "execution_sha": "25bad742963d3ecec4be807bd6aa03d8dcb427c9",
+  "cases": {
+    "baseline": {
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 4.616,
+      "timeout_seconds": 180,
+      "expected_failure": null,
+      "observed": {
+        "checks": 293,
+        "execution_sha": "25bad742963d3ecec4be807bd6aa03d8dcb427c9",
+        "failures": [],
+        "residents": [
+          {
+            "approach": [
+              29,
+              13
+            ],
+            "cell": [
+              29,
+              12
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_water_keeper",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "泉の番人",
+              "text": [
+                "泉のそばでは、足元に気をつけてください。"
+              ]
+            },
+            "room": 0
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_date_farmer",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "道具屋の店員",
+              "text": [
+                "店の品物は、まだ準備中です。"
+              ]
+            },
+            "room": 2
+          },
+          {
+            "approach": [
+              12,
+              5
+            ],
+            "cell": [
+              12,
+              3
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_innkeeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "sound": "heal",
+              "speaker": "宿のおかみ",
+              "text": [
+                "宿で休み、HPとMPが回復しました。"
+              ]
+            },
+            "room": 1
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_camel_keeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "武器屋の店員",
+              "text": [
+                "ここは武器屋です。品物は、まだ準備中です。"
+              ]
+            },
+            "room": 3
+          },
+          {
+            "approach": [
+              12,
+              7
+            ],
+            "cell": [
+              12,
+              6
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_elder",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "村の長老",
+              "text": [
+                "ここで旅の身支度を整えていってください。"
+              ]
+            },
+            "room": 4
+          },
+          {
+            "approach": [
+              17,
+              20
+            ],
+            "cell": [
+              17,
+              19
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_child",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "子ども",
+              "text": [
+                "風が吹くと、風車がよく回るんだ。"
+              ]
+            },
+            "room": 0
+          }
+        ],
+        "stage": false,
+        "status": "PASS"
+      }
+    },
+    "inn-fixture": {
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 5.084,
+      "timeout_seconds": 180,
+      "expected_failure": null,
+      "observed": {
+        "checks": 293,
+        "execution_sha": "25bad742963d3ecec4be807bd6aa03d8dcb427c9",
+        "failures": [],
+        "residents": [
+          {
+            "approach": [
+              29,
+              13
+            ],
+            "cell": [
+              29,
+              12
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_water_keeper",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "泉の番人",
+              "text": [
+                "泉のそばでは、足元に気をつけてください。"
+              ]
+            },
+            "room": 0
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_date_farmer",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "道具屋の店員",
+              "text": [
+                "店の品物は、まだ準備中です。"
+              ]
+            },
+            "room": 2
+          },
+          {
+            "approach": [
+              12,
+              5
+            ],
+            "cell": [
+              12,
+              3
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_innkeeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "sound": "heal",
+              "speaker": "宿のおかみ",
+              "text": [
+                "宿で休み、HPとMPが回復しました。"
+              ]
+            },
+            "room": 1
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_camel_keeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "武器屋の店員",
+              "text": [
+                "ここは武器屋です。品物は、まだ準備中です。"
+              ]
+            },
+            "room": 3
+          },
+          {
+            "approach": [
+              12,
+              7
+            ],
+            "cell": [
+              12,
+              6
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_elder",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "村の長老",
+              "text": [
+                "ここで旅の身支度を整えていってください。"
+              ]
+            },
+            "room": 4
+          },
+          {
+            "approach": [
+              17,
+              20
+            ],
+            "cell": [
+              17,
+              19
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_child",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "子ども",
+              "text": [
+                "風が吹くと、風車がよく回るんだ。"
+              ]
+            },
+            "room": 0
+          }
+        ],
+        "stage": false,
+        "status": "PASS"
+      }
+    },
+    "inn-relocated": {
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 4.8,
+      "timeout_seconds": 180,
+      "expected_failure": null,
+      "observed": {
+        "checks": 293,
+        "execution_sha": "25bad742963d3ecec4be807bd6aa03d8dcb427c9",
+        "failures": [],
+        "residents": [
+          {
+            "approach": [
+              29,
+              13
+            ],
+            "cell": [
+              29,
+              12
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_water_keeper",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "泉の番人",
+              "text": [
+                "泉のそばでは、足元に気をつけてください。"
+              ]
+            },
+            "room": 0
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_date_farmer",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "道具屋の店員",
+              "text": [
+                "店の品物は、まだ準備中です。"
+              ]
+            },
+            "room": 2
+          },
+          {
+            "approach": [
+              11,
+              5
+            ],
+            "cell": [
+              11,
+              3
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_innkeeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "sound": "heal",
+              "speaker": "宿のおかみ",
+              "text": [
+                "宿で休み、HPとMPが回復しました。"
+              ]
+            },
+            "room": 1
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_camel_keeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "武器屋の店員",
+              "text": [
+                "ここは武器屋です。品物は、まだ準備中です。"
+              ]
+            },
+            "room": 3
+          },
+          {
+            "approach": [
+              12,
+              7
+            ],
+            "cell": [
+              12,
+              6
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_elder",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "村の長老",
+              "text": [
+                "ここで旅の身支度を整えていってください。"
+              ]
+            },
+            "room": 4
+          },
+          {
+            "approach": [
+              17,
+              20
+            ],
+            "cell": [
+              17,
+              19
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_child",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "子ども",
+              "text": [
+                "風が吹くと、風車がよく回るんだ。"
+              ]
+            },
+            "room": 0
+          }
+        ],
+        "stage": false,
+        "status": "PASS"
+      },
+      "movement": {
+        "source": [
+          12,
+          3
+        ],
+        "destination": [
+          11,
+          3
+        ],
+        "approach": [
+          11,
+          5
+        ],
+        "facing": [
+          0,
+          -1
+        ],
+        "reach": 2
+      }
+    },
+    "relocated-outside": {
+      "status": "PASS",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/tmp/task022-bin/godot",
+        "--path",
+        "/tmp/task021-mutations-fp6_a90h/candidate",
+        "--rendering-method",
+        "mobile",
+        "--rendering-driver",
+        "vulkan",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tools/capture_task007_services.gd"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 75.216,
+      "timeout_seconds": 180
+    },
+    "relocated-rooms": {
+      "status": "PASS",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/tmp/task022-bin/godot",
+        "--path",
+        "/tmp/task021-mutations-fp6_a90h/candidate",
+        "--rendering-method",
+        "mobile",
+        "--rendering-driver",
+        "vulkan",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tools/capture_task007_services.gd",
+        "--",
+        "--rooms"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 63.43,
+      "timeout_seconds": 180
+    },
+    "inn-unreachable": {
+      "status": "PASS",
+      "exit_code": 1,
+      "elapsed_seconds": 4.616,
+      "timeout_seconds": 180,
+      "expected_failure": "宿IDの床・占有・reach・入口到達",
+      "observed": {
+        "checks": 283,
+        "execution_sha": "25bad742963d3ecec4be807bd6aa03d8dcb427c9",
+        "failures": [
+          "宿IDの床・占有・reach・入口到達"
+        ],
+        "residents": [
+          {
+            "approach": [
+              29,
+              13
+            ],
+            "cell": [
+              29,
+              12
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_water_keeper",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "泉の番人",
+              "text": [
+                "泉のそばでは、足元に気をつけてください。"
+              ]
+            },
+            "room": 0
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_date_farmer",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "道具屋の店員",
+              "text": [
+                "店の品物は、まだ準備中です。"
+              ]
+            },
+            "room": 2
+          },
+          {
+            "approach": [
+              11,
+              3
+            ],
+            "cell": [
+              12,
+              3
+            ],
+            "facing": [
+              1,
+              0
+            ],
+            "id": "oasis_innkeeper",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "sound": "heal",
+              "speaker": "宿のおかみ",
+              "text": [
+                "宿で休み、HPとMPが回復しました。"
+              ]
+            },
+            "room": 1
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_camel_keeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "武器屋の店員",
+              "text": [
+                "ここは武器屋です。品物は、まだ準備中です。"
+              ]
+            },
+            "room": 3
+          },
+          {
+            "approach": [
+              12,
+              7
+            ],
+            "cell": [
+              12,
+              6
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_elder",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "村の長老",
+              "text": [
+                "ここで旅の身支度を整えていってください。"
+              ]
+            },
+            "room": 4
+          },
+          {
+            "approach": [
+              17,
+              20
+            ],
+            "cell": [
+              17,
+              19
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_child",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "子ども",
+              "text": [
+                "風が吹くと、風車がよく回るんだ。"
+              ]
+            },
+            "room": 0
+          }
+        ],
+        "stage": false,
+        "status": "FAIL"
+      }
+    },
+    "shrine-cleared-loss": {
+      "status": "PASS",
+      "exit_code": 1,
+      "elapsed_seconds": 4.613,
+      "timeout_seconds": 180,
+      "expected_failure": "祠成功前後のoverworld全体不変",
+      "observed": {
+        "checks": 293,
+        "execution_sha": "25bad742963d3ecec4be807bd6aa03d8dcb427c9",
+        "failures": [
+          "祠成功前後のoverworld全体不変",
+          "従来祠との同条件・同全状態",
+          "祠成功前後のoverworld全体不変",
+          "従来祠との同条件・同全状態",
+          "祠成功前後のoverworld全体不変",
+          "従来祠との同条件・同全状態",
+          "祠成功前後のoverworld全体不変",
+          "従来祠との同条件・同全状態",
+          "全8系統の祠成功前後のoverworld全体不変: slime",
+          "全8系統で従来祠との全状態一致: slime",
+          "全8系統の祠成功前後のoverworld全体不変: beast",
+          "全8系統で従来祠との全状態一致: beast",
+          "全8系統の祠成功前後のoverworld全体不変: undead",
+          "全8系統で従来祠との全状態一致: undead",
+          "全8系統の祠成功前後のoverworld全体不変: bird",
+          "全8系統で従来祠との全状態一致: bird",
+          "全8系統の祠成功前後のoverworld全体不変: plant",
+          "全8系統で従来祠との全状態一致: plant",
+          "全8系統の祠成功前後のoverworld全体不変: shell",
+          "全8系統で従来祠との全状態一致: shell",
+          "全8系統の祠成功前後のoverworld全体不変: spirit",
+          "全8系統で従来祠との全状態一致: spirit",
+          "全8系統の祠成功前後のoverworld全体不変: dragon",
+          "全8系統で従来祠との全状態一致: dragon"
+        ],
+        "residents": [
+          {
+            "approach": [
+              29,
+              13
+            ],
+            "cell": [
+              29,
+              12
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_water_keeper",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "泉の番人",
+              "text": [
+                "泉のそばでは、足元に気をつけてください。"
+              ]
+            },
+            "room": 0
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_date_farmer",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "道具屋の店員",
+              "text": [
+                "店の品物は、まだ準備中です。"
+              ]
+            },
+            "room": 2
+          },
+          {
+            "approach": [
+              12,
+              5
+            ],
+            "cell": [
+              12,
+              3
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_innkeeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "sound": "heal",
+              "speaker": "宿のおかみ",
+              "text": [
+                "宿で休み、HPとMPが回復しました。"
+              ]
+            },
+            "room": 1
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_camel_keeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "武器屋の店員",
+              "text": [
+                "ここは武器屋です。品物は、まだ準備中です。"
+              ]
+            },
+            "room": 3
+          },
+          {
+            "approach": [
+              12,
+              7
+            ],
+            "cell": [
+              12,
+              6
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_elder",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "村の長老",
+              "text": [
+                "ここで旅の身支度を整えていってください。"
+              ]
+            },
+            "room": 4
+          },
+          {
+            "approach": [
+              17,
+              20
+            ],
+            "cell": [
+              17,
+              19
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_child",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "子ども",
+              "text": [
+                "風が吹くと、風車がよく回るんだ。"
+              ]
+            },
+            "room": 0
+          }
+        ],
+        "stage": false,
+        "status": "FAIL"
+      }
+    },
+    "restored": {
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 4.805,
+      "timeout_seconds": 180,
+      "expected_failure": null,
+      "observed": {
+        "checks": 293,
+        "execution_sha": "25bad742963d3ecec4be807bd6aa03d8dcb427c9",
+        "failures": [],
+        "residents": [
+          {
+            "approach": [
+              29,
+              13
+            ],
+            "cell": [
+              29,
+              12
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_water_keeper",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "泉の番人",
+              "text": [
+                "泉のそばでは、足元に気をつけてください。"
+              ]
+            },
+            "room": 0
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_date_farmer",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "道具屋の店員",
+              "text": [
+                "店の品物は、まだ準備中です。"
+              ]
+            },
+            "room": 2
+          },
+          {
+            "approach": [
+              12,
+              5
+            ],
+            "cell": [
+              12,
+              3
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_innkeeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "sound": "heal",
+              "speaker": "宿のおかみ",
+              "text": [
+                "宿で休み、HPとMPが回復しました。"
+              ]
+            },
+            "room": 1
+          },
+          {
+            "approach": [
+              8,
+              6
+            ],
+            "cell": [
+              8,
+              4
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_camel_keeper",
+            "reach": 2,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "武器屋の店員",
+              "text": [
+                "ここは武器屋です。品物は、まだ準備中です。"
+              ]
+            },
+            "room": 3
+          },
+          {
+            "approach": [
+              12,
+              7
+            ],
+            "cell": [
+              12,
+              6
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_elder",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "村の長老",
+              "text": [
+                "ここで旅の身支度を整えていってください。"
+              ]
+            },
+            "room": 4
+          },
+          {
+            "approach": [
+              17,
+              20
+            ],
+            "cell": [
+              17,
+              19
+            ],
+            "facing": [
+              0,
+              -1
+            ],
+            "id": "oasis_child",
+            "reach": 1,
+            "result": {
+              "kind": "dialogue",
+              "speaker": "子ども",
+              "text": [
+                "風が吹くと、風車がよく回るんだ。"
+              ]
+            },
+            "room": 0
+          }
+        ],
+        "stage": false,
+        "status": "PASS"
+      }
+    }
+  },
+  "normalized": [
+    "layer",
+    "node",
+    "room",
+    "cell"
+  ]
+}

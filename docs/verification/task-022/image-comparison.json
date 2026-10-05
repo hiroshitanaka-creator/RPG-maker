@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "layout": "左：固定007の当時表示、右：022の表示。上：道具屋、下：武器屋。拡縮なし。",
+  "comparisons": [
+    {
+      "id": "date_farmer",
+      "before_sha": "776ad944723d21c1e250a1ee5fd56d35da42cfed",
+      "after_sha": "25bad742963d3ecec4be807bd6aa03d8dcb427c9",
+      "changed_pixel_bounds": [
+        48,
+        349,
+        240,
+        373
+      ],
+      "before_sha256": "20fddd61ea403c2daf5cb4f7f57ea45b54c022ee83d964d0663db9aef18fe6dd",
+      "after_sha256": "c8a1474ea8117937df1b7d4d15e2900287d8d35ea4b24c665256d5cebc583aa0",
+      "outside_label_pixels_identical": true
+    },
+    {
+      "id": "camel_keeper",
+      "before_sha": "776ad944723d21c1e250a1ee5fd56d35da42cfed",
+      "after_sha": "25bad742963d3ecec4be807bd6aa03d8dcb427c9",
+      "changed_pixel_bounds": [
+        48,
+        349,
+        192,
+        373
+      ],
+      "before_sha256": "2b8c9871fdbe32d147e7534ade342ee9ffa18bbe81da07550d5766ede0273981",
+      "after_sha256": "964c510f88f194ebffb0103ceb1591dc5a6b233181c0475996401413d299b529",
+      "outside_label_pixels_identical": true
+    }
+  ],
+  "label_region": [
+    44,
+    344,
+    380,
+    378
+  ]
+}
