@@ -246,6 +246,7 @@ jobs:
           git fetch --no-tags --depth=1 origin d258908fbb0397e64d08780694786ef1855c4979
           git fetch --no-tags --depth=1 origin 8ae87d658fe04f4053ea2f258d973e0862530085
           python tools/check_task011.py --completed d258908fbb0397e64d08780694786ef1855c4979 --godot ./godot
+          python tools/check_task011_ci_boundary.py --godot ./godot
 
       - name: 敵の行動予定と連戦の保存を検査
         if: steps.check.outputs.exists == 'true'
