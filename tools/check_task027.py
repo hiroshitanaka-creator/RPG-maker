@@ -112,7 +112,8 @@ def verify(root, exe, sha, output):
                 accepted = observed['exit_code'] == 0 and runtime['status'] == 'PASS' and not runtime['failures']
                 assert accepted == positive, name
                 if positive:
-                    assert runtime['encounter_returns'] == 4, '4階で通知の開始・復帰を実行'
+                    assert runtime['encounter_returns'] == 2, '道中のある2階・3階で通知の開始・復帰を実行'
+                    assert [runtime[key] for key in ['cells','neighbor_moves','stair_trips','saves','relocations']] == [5067,3552,60,16,16]
                 else:
                     assert any(failure in line for line in runtime['failures']), name
                 entry = dict(case=name, expected_accept=positive, accepted=accepted,
