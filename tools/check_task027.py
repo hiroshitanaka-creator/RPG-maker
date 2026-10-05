@@ -20,6 +20,11 @@ POSITIVE = '''\tif state["layer"] == "interior" and state["node"] == "region2_ru
 \t\t\tsaved["inventory"]["potion"] += 1
 \t\t\treturn {"kind":"battle","id":probe,"enemies":["slime"],"seed":1}
 \t\treturn result'''
+CONTINUOUS = '''\tif state["layer"] == "interior" and state["node"] == "region2_ruins":
+\t\tvar result := Region2Ruins.move(state)
+\t\tif state["entry_lock"] != "region2_ruins_stairs":
+\t\t\treturn {"kind":"battle","id":"ruins_review_probe","enemies":["slime"],"seed":1}
+\t\treturn result'''
 BRANCH = '\tif state["layer"] == "interior" and state["node"] == "region2_ruins":return Region2Ruins.move(state)'
 
 
@@ -52,6 +57,12 @@ def verify(root, exe, sha, output):
             # キャッシュは複製。fixtureのimportで本体・固定側のキャッシュを書き換えない。
             if (root/'.godot').is_dir():
                 shutil.copytree(root/'.godot', path/'.godot')
+                # 同じSHAの未変更資源の取り込み設定も複製し、不要な全再importを避ける。
+                # Godot import自体は省略せず、別checkoutの資源と設定を再照合させる。
+                for descriptor in root.rglob('*.import'):
+                    relative = descriptor.relative_to(root)
+                    if relative.parts[0] in ['assets','addons','docs'] and (path/relative).with_suffix('').is_file():
+                        shutil.copy2(descriptor, path/relative)
             env = os.environ.copy()
             env['TASK011_EXECUTION_SHA'] = sha
             env['RPG_QA_SAVE_PREFIX'] = 'task011-task027-fixture'
@@ -121,6 +132,9 @@ def verify(root, exe, sha, output):
                 report['cases'].append(entry)
                 print('TASK027_CASE_PASS: '+name, flush=True)
                 if positive:
+                    # 歩行撮影の最後の一歩も含め、026と同じ毎歩通知を本番UIへ渡す。
+                    (path/'scripts/world/first_region.gd').write_text(originals['scripts/world/first_region.gd'].replace(BRANCH, CONTINUOUS))
+                    (output/'battle-capture.patch').write_bytes(subprocess.check_output(['git','diff','--','scripts/world'],cwd=path))
                     command = [exe, '--path', str(path), '--rendering-method', 'mobile',
                                '--rendering-driver', 'vulkan', '--audio-driver', 'Dummy',
                                '--script', 'res://tools/capture_task011_ruins.gd']
@@ -129,11 +143,12 @@ def verify(root, exe, sha, output):
                     record = json.loads((path/'docs/verification/task-011/latest/images/checks.json').read_text())
                     assert captured['exit_code'] == 0 and not captured['errors'], '通知あり撮影'
                     assert record['status'] == 'PASS' and not record['failures'] and record['execution_sha'] == sha
-                    assert record['renderer'] == 'X11' and len(record['images']) == 25 and record['encounter_returns'] > 0
+                    assert record['renderer'] == 'X11' and len(record['images']) == 25 and record['encounter_returns'] == record['key_steps']-6 and record['encounter_returns'] > 0
                     shutil.copytree(path/'docs/verification/task-011/latest/images', output/'battle-images', dirs_exist_ok=True)
                     entry['capture'] = captured
                     entry['capture_encounter_returns'] = record['encounter_returns']
                     # 最新側へ移した無遭遇条件も、stage指定では依然として拒否する。
+                    (path/'scripts/world/first_region.gd').write_text(first)
                     stage = run([exe, '--headless', '--path', str(path), '--script',
                                  'res://tools/check_task011_runtime.gd', '--', '--stage'],
                                 path, env, output/'battle-stage-rejection.log', 120)

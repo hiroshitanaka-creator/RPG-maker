@@ -73,7 +73,11 @@ func walk(cell: Array, walking_picture: String="") -> void:
 		while main._world_mover.active() and Time.get_ticks_msec()<deadline:await process_frame
 		check(not main._world_mover.active(),"通常一歩の時間内終了")
 		if main.mode==main.Mode.BATTLE:
+			var observed_walk_frame: int=main._walk_frame
 			main.game=resume_confirmation_encounter(main.game)
+			check(main._walk_frame==observed_walk_frame,"本番入力の歩行コマを確認用復帰でも保持")
+			# 戦闘確認中の時間を探索の表示時間に含めない。入力で得たコマ値は変更しない。
+			main._world_motion_ms=Time.get_ticks_msec()
 			main.mode=main.Mode.WORLD;main._refresh();await frames(3)
 		check(main.mode==main.Mode.WORLD,"確認用の道中通知後に探索画面へ戻る")
 		if next==path[-1] and not walking_picture.is_empty():await picture(walking_picture)
