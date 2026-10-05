@@ -1,0 +1,160 @@
+{
+  "status": "PASS",
+  "execution_sha": "7b2e88310b052882911a818c95f73e82fd3e7580",
+  "production_unchanged": true,
+  "results": {
+    "wrong-fixed-sha": {
+      "status": "PASS",
+      "exit_code": 1,
+      "failure": "固定006の完全SHAが承認済み完成点と一致しません",
+      "fixed_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+    },
+    "npc-floor-before": {
+      "status": "PASS",
+      "exit_code": 0,
+      "checks": 39,
+      "failures": [],
+      "runtime_status": "PASS",
+      "npc_probe": [
+        {
+          "adjacent_cell": [
+            20,
+            26
+          ],
+          "adjacent_reached": true,
+          "move_kind": "moved",
+          "npc_cell": [
+            20,
+            25
+          ],
+          "npc_present": false,
+          "state_unchanged": false,
+          "terrain": ".",
+          "walkable": true
+        }
+      ],
+      "elapsed_seconds": 1.554,
+      "timeout_seconds": 180,
+      "parser_errors": false
+    },
+    "npc-floor-after": {
+      "status": "PASS",
+      "exit_code": 0,
+      "checks": 39,
+      "failures": [],
+      "runtime_status": "PASS",
+      "npc_probe": [
+        {
+          "adjacent_cell": [
+            20,
+            26
+          ],
+          "adjacent_reached": true,
+          "move_kind": "",
+          "npc_cell": [
+            20,
+            25
+          ],
+          "npc_present": true,
+          "state_unchanged": true,
+          "terrain": ".",
+          "walkable": false
+        }
+      ],
+      "elapsed_seconds": 1.19,
+      "timeout_seconds": 180,
+      "parser_errors": false
+    },
+    "registered-request-and-npc-occupancy": {
+      "status": "PASS",
+      "exit_code": 0,
+      "checks": 7656,
+      "failures": [],
+      "runtime_status": "PASS",
+      "npc_probe": null,
+      "elapsed_seconds": 25.846,
+      "timeout_seconds": 180,
+      "parser_errors": false,
+      "scope": "一時コピーのみ。007サービスは未実装・未検証"
+    },
+    "npc-occupancy-ignored": {
+      "status": "PASS",
+      "exit_code": 1,
+      "checks": 39,
+      "failures": [
+        "配置前通行可・配置後占有不可",
+        "実移動も配置前成功・配置後占有拒否で全状態保持"
+      ],
+      "runtime_status": "FAIL",
+      "npc_probe": [
+        {
+          "adjacent_cell": [
+            20,
+            26
+          ],
+          "adjacent_reached": true,
+          "move_kind": "moved",
+          "npc_cell": [
+            20,
+            25
+          ],
+          "npc_present": true,
+          "state_unchanged": false,
+          "terrain": ".",
+          "walkable": true
+        }
+      ],
+      "elapsed_seconds": 1.211,
+      "timeout_seconds": 180,
+      "parser_errors": false,
+      "mutation": "一時コピーだけNPC占有拒否を無効化"
+    },
+    "misconnected-door": {
+      "status": "PASS",
+      "exit_code": 1,
+      "checks": 7662,
+      "failures": [
+        "村の世界接続・東西出口・8扉の固定対応",
+        "8本の扉リンク: { \"layer\": \"interior\", \"node\": \"region2_village\", \"room\": 0, \"cell\": [16, 8] }",
+        "同じ方向の継続で往復せず、採用済みの壁ならその場で止まる",
+        "既存の入口安全補正",
+        "補正以外の全状態不変",
+        "再保存後に補正通知が残らない",
+        "既存の入口安全補正",
+        "補正以外の全状態不変",
+        "再保存後に補正通知が残らない",
+        "既存の入口安全補正",
+        "補正以外の全状態不変",
+        "再保存後に補正通知が残らない",
+        "既存の入口安全補正",
+        "補正以外の全状態不変",
+        "再保存後に補正通知が残らない"
+      ],
+      "runtime_status": "FAIL",
+      "npc_probe": null,
+      "elapsed_seconds": 29.823,
+      "timeout_seconds": 180,
+      "parser_errors": false,
+      "mutation": "扉0の接続室1を2へ変更"
+    },
+    "invalid-save-accepted": {
+      "status": "PASS",
+      "exit_code": 1,
+      "checks": 7662,
+      "failures": [
+        "不正保存拒否と現在状態保持: { \"room\": 5 }",
+        "不正保存拒否と現在状態保持: { \"room\": 5 }",
+        "不正保存拒否と現在状態保持: { \"room\": 5 }",
+        "不正保存拒否と現在状態保持: { \"room\": 5 }",
+        "不正保存拒否と現在状態保持: { \"room\": 5 }"
+      ],
+      "runtime_status": "FAIL",
+      "npc_probe": null,
+      "elapsed_seconds": 24.831,
+      "timeout_seconds": 180,
+      "parser_errors": false,
+      "mutation": "不正room5のload_gameをtrueへ変更"
+    }
+  },
+  "method": "別コピーの正例と故障注入。負例は終了1・実assertion失敗を要求し、timeout/parse errorは成功扱いしない。"
+}

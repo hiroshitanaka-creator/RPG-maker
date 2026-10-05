@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "execution_sha": "9f1a18892273ac06d9776d2ddf8dbcc1c6423453",
+  "results": {
+    "completed-scope": {
+      "status": "PASS",
+      "start_sha": "cc86765d7b5bba158dca8b828a626aad98610f12",
+      "execution_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+      "completed_tree": "02105ab24ef39a2acf7405274e040d8cefaa399b",
+      "changed_files": [
+        ".github/workflows/region2-village-connections.yml",
+        "docs/decision-log.md",
+        "docs/tasks/016-fix-audit-review.md",
+        "docs/verification/task-009/assertion-map.md",
+        "docs/verification/task-016/assertion-correspondence.json",
+        "docs/verification/task-016/assets.log",
+        "docs/verification/task-016/before/f1.json",
+        "docs/verification/task-016/before/f1.log",
+        "docs/verification/task-016/before/f2.json",
+        "docs/verification/task-016/before/f2.log",
+        "docs/verification/task-016/f2-local/counter-back-npc-positive.json",
+        "docs/verification/task-016/f2-local/counter-back-npc-positive.log",
+        "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.json",
+        "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.log",
+        "docs/verification/task-016/f2-local/counter-customer-route-blocked.json",
+        "docs/verification/task-016/f2-local/counter-customer-route-blocked.log",
+        "docs/verification/task-016/import.json",
+        "docs/verification/task-016/import.log",
+        "docs/verification/task-016/plan.md",
+        "tools/check_region2_village_regression.gd",
+        "tools/check_task016_fixed_anchor.py",
+        "tools/check_task016_scope.py",
+        "tools/test_task009_lifecycle.py",
+        "tools/test_task016_fixed_anchor.py"
+      ],
+      "preserved_paths": 5141,
+      "failures": []
+    },
+    "state-only": {
+      "status": "PASS",
+      "input_sha": "00e87e6daf317fba55ff8113e29e3bc0cd739a51",
+      "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+    },
+    "new-request": {
+      "status": "PASS",
+      "input_sha": "f0c558af7f2b8c6e6d344d92671b431a76343c20",
+      "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+    },
+    "state-and-request": {
+      "status": "PASS",
+      "input_sha": "8eda1b5e8747eb9c8adb05bde0032832e4a435fa",
+      "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+    },
+    "future-other-scope": {
+      "status": "PASS",
+      "input_sha": "5de26f446a8e1537f2a61131200610cd08e8c60b",
+      "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+    },
+    "broken-completed-scope": {
+      "status": "PASS",
+      "rejected_audit": {
+        "status": "FAIL",
+        "start_sha": "cc86765d7b5bba158dca8b828a626aad98610f12",
+        "execution_sha": "cecd7969d6238315630803e0efd16dc7ba60a0b6",
+        "completed_tree": "625d6b885f6a8c0bbd59f1ff9d8967e34e120d0b",
+        "changed_files": [
+          ".github/workflows/region2-village-connections.yml",
+          "docs/decision-log.md",
+          "docs/tasks/016-fix-audit-review.md",
+          "docs/verification/task-009/assertion-map.md",
+          "docs/verification/task-016/assertion-correspondence.json",
+          "docs/verification/task-016/assets.log",
+          "docs/verification/task-016/before/f1.json",
+          "docs/verification/task-016/before/f1.log",
+          "docs/verification/task-016/before/f2.json",
+          "docs/verification/task-016/before/f2.log",
+          "docs/verification/task-016/f2-local/counter-back-npc-positive.json",
+          "docs/verification/task-016/f2-local/counter-back-npc-positive.log",
+          "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.json",
+          "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.log",
+          "docs/verification/task-016/f2-local/counter-customer-route-blocked.json",
+          "docs/verification/task-016/f2-local/counter-customer-route-blocked.log",
+          "docs/verification/task-016/import.json",
+          "docs/verification/task-016/import.log",
+          "docs/verification/task-016/plan.md",
+          "scripts/game/game_session.gd",
+          "tools/check_region2_village_regression.gd",
+          "tools/check_task016_fixed_anchor.py",
+          "tools/check_task016_scope.py",
+          "tools/test_task009_lifecycle.py",
+          "tools/test_task016_fixed_anchor.py"
+        ],
+        "preserved_paths": 5140,
+        "failures": [
+          "scripts/game/game_session.gd"
+        ]
+      }
+    }
+  }
+}

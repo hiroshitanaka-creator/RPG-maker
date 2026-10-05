@@ -1,0 +1,1357 @@
+{
+  "fixed_006_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+  "unclassified": 0,
+  "assertion_sites": 135,
+  "assertions": [
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 30,
+      "function": "picture",
+      "condition": "castle_check(DisplayServer.get_name()!=\"headless\" and image.get_size()==Vector2i(1024,576),\"本番UI・実レンダラー: \"+name)",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:30",
+      "latest": "tools/capture_task009_village_regression.gd::picture",
+      "id": "A001"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 31,
+      "function": "picture",
+      "condition": "castle_check(image.save_png(OUTPUT+name+\".png\")==OK,\"本番画面保存: \"+name)",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:31",
+      "latest": "tools/capture_task009_village_regression.gd::picture",
+      "id": "A002"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 65,
+      "function": "picture",
+      "condition": "castle_check(shot[\"visible\"]>0 and shot[\"matched\"]==shot[\"visible\"],\"足元順で上層外の人物全画素一致: \"+name)",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:65",
+      "latest": "tools/capture_task009_village_regression.gd::picture",
+      "id": "A003"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 66,
+      "function": "picture",
+      "condition": "castle_check(shot[\"hidden\"]>=8 and shot[\"visible\"]>=8,\"奥の上層による部分遮蔽: \"+name)",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:66",
+      "latest": "tools/capture_task009_village_regression.gd::picture",
+      "id": "A004"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 87,
+      "function": "_run",
+      "condition": "castle_check(FileAccess.file_exists(source),\"本番save_gameで作られた開始保存\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:87",
+      "latest": "tools/capture_task009_village_regression.gd::_run",
+      "id": "A005"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 89,
+      "function": "_run",
+      "condition": "castle_check(source_sha==FileAccess.get_sha256(DIR+\"saved-inputs/\"+source.get_file()),\"撮影起点がリポジトリの保管済み通常保存と全バイト一致\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:89",
+      "latest": "tools/capture_task009_village_regression.gd::_run",
+      "id": "A006"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 92,
+      "function": "_run",
+      "condition": "castle_check(FileAccess.get_sha256(destination)==source_sha,\"開始保存の無編集コピー\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:92",
+      "latest": "tools/capture_task009_village_regression.gd::_run",
+      "id": "A007"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 95,
+      "function": "_run",
+      "condition": "castle_check(await _button([\"手動セーブから再開\"]) and await _settle(),\"タイトルの通常ロード\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:95",
+      "latest": "tools/capture_task009_village_regression.gd::_run",
+      "id": "A008"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 105,
+      "function": "coast_to_village",
+      "condition": "castle_check(_at(_world_point([169,99])),\"既存港外を起点にする\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:105",
+      "latest": "tools/capture_task009_village_regression.gd::coast_to_village",
+      "id": "A009"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 109,
+      "function": "coast_to_village",
+      "condition": "castle_check(_at(_world_point([168,88])),\"港外から指定の13歩経路で村入口前へ\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:109",
+      "latest": "tools/capture_task009_village_regression.gd::coast_to_village",
+      "id": "A010"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 123,
+      "function": "journey",
+      "condition": "castle_check(_at({\"layer\":\"interior\",\"node\":\"brine_port\",\"room\":0,\"cell\":[4,2]}),\"人工境界保存の港内起点を明示\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:123",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A011"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 125,
+      "function": "journey",
+      "condition": "castle_check(await _walk(_definition[\"second_port_exit\"],_world_point([169,99])),\"通常入力で港出口へ\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:125",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A012"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 126,
+      "function": "journey",
+      "condition": "castle_check(await coast_to_village(),\"通常キー13歩で村へ入場\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:126",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A013"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 129,
+      "function": "journey",
+      "condition": "castle_check(_state()==stationary,\"入場後の入力なしでは再遷移しない\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:129",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A014"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 131,
+      "function": "journey",
+      "condition": "castle_check(visited.count(\"region2_village\")==1,\"初訪問を既存visitedへ1件\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:131",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A015"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 135,
+      "function": "journey",
+      "condition": "castle_check(await _walk(point(index,[8,10])),\"扉から通常入室: \"+str(index))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:135",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A016"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 142,
+      "function": "journey",
+      "condition": "castle_check(await _walk(point(index,front)),\"受付・祭壇・扉前へ通常歩行\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:142",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A017"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 145,
+      "function": "journey",
+      "condition": "castle_check(await _walk(point(0,[16,9])),\"押し続け試験の扉前へ通常退出\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:145",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A018"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 147,
+      "function": "journey",
+      "condition": "castle_check(_pose().get(\"room\")==1,\"扉の上入力を押し続けても室内で進み、往復しない\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:147",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A019"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 148,
+      "function": "journey",
+      "condition": "castle_check(await _walk(point(1,[8,10])),\"出口の押し続け試験へ通常歩行\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:148",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A020"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 150,
+      "function": "journey",
+      "condition": "castle_check(_pose().get(\"room\")==0,\"退出の下入力を押し続けても外観にとどまる\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:150",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A021"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 151,
+      "function": "journey",
+      "condition": "castle_check(await _walk(point(index,front)),\"押し続け試験後に通常再入室\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:151",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A022"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 153,
+      "function": "journey",
+      "condition": "castle_check(_state()==before,\"調べる操作で機能を発火しない\")",
+      "category": "007の承認済み新機能で置き換える現在条件",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:153",
+      "latest": "007引継ぎ表 S01〜S06（未着手・未検証）",
+      "id": "A023"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 154,
+      "function": "journey",
+      "condition": "castle_check(samples.size()==1 and await _walk(point(index,[samples[0][0],samples[0][1]+1])) and await _step_direction(Vector2i.UP) and _at(point(index,samples[0])),\"家具・手前壁の奥へ通常歩行し北向きに立つ\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:154",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A024"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 157,
+      "function": "journey",
+      "condition": "castle_check(await _walk(point(index,[8,11]),Region2Village.data()[\"definition\"][\"region2_village_doors\"][index*2-1][\"to\"]),\"対応扉前へ通常退出\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:157",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A025"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 160,
+      "function": "journey",
+      "condition": "castle_check(await _walk(point(0,[42,13]),_world_point([170,88])),\"東アーチから退出\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:160",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A026"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 163,
+      "function": "journey",
+      "condition": "castle_check(_pose().get(\"layer\")==\"world\",\"アーチ退出後の同方向押し続けで往復しない\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:163",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A027"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 164,
+      "function": "journey",
+      "condition": "castle_check(await _walk(_world_point([169,88]),point(0,[41,15])),\"東側から再入場\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:164",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A028"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 166,
+      "function": "journey",
+      "condition": "castle_check(await _walk(point(0,[3,13]),_world_point([168,88])),\"西アーチから退出\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:166",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A029"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 167,
+      "function": "journey",
+      "condition": "castle_check(await _walk(_world_point([169,88]),point(0,[4,15])),\"西側から再入場\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:167",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A030"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 168,
+      "function": "journey",
+      "condition": "castle_check(_state()[\"first_region\"][\"travel\"][\"visited\"]==visited,\"再訪問で重複なし\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:168",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A031"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 170,
+      "function": "journey",
+      "condition": "castle_check(await _key(KEY_ESCAPE) and await _button([\"セーブ\"]) and await _button([\"現在の冒険に戻る\"]),\"通常メニューの保存\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:170",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A032"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 171,
+      "function": "journey",
+      "condition": "castle_check(await _walk(point(0,[4,16])),\"保存後に一歩移動\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:171",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A033"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 172,
+      "function": "journey",
+      "condition": "castle_check(await _key(KEY_ESCAPE) and await _button([\"手動セーブから再開\"]) and await _settle(),\"通常メニューの再読込\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:172",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A034"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 173,
+      "function": "journey",
+      "condition": "castle_check(_state()==before_save,\"通常保存の全状態復元\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:173",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A035"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 175,
+      "function": "journey",
+      "condition": "castle_check(await to_port(),\"読込後に通常徒歩で港へ帰着\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:175",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A036"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 178,
+      "function": "journey",
+      "condition": "castle_check(await _key(KEY_ESCAPE) and await _button([\"帰還の風\"]) and await _button([\"%s MP %d\" % [actor[\"name\"],actor[\"mp\"]]]),\"既存メニューで帰還と生存者を選択\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:178",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A037"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 180,
+      "function": "journey",
+      "condition": "castle_check(await _button([\"オアシスの村（仮）\"]),\"訪問済み村を選択\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:180",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A038"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 182,
+      "function": "journey",
+      "condition": "castle_check(member[\"mp\"]==actor[\"mp\"]-2 and _at(_world_point([168,88])) and after[\"first_region\"][\"travel\"][\"ship_cell\"]==[155,110],\"港側から村へMP2・既存第2港の船\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:182",
+      "latest": "tools/capture_task009_village_regression.gd::journey",
+      "id": "A039"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 187,
+      "function": "restart_route",
+      "condition": "castle_check(_state()==expected,\"別プロセスのタイトル再開で全状態復元\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:187",
+      "latest": "tools/capture_task009_village_regression.gd::restart_route",
+      "id": "A040"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 192,
+      "function": "restart_route",
+      "condition": "castle_check(await _key(KEY_ESCAPE) and await _button([\"手動セーブから再開\"]) and await _settle(),\"本番メニューで壁保存を読み込む\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:192",
+      "latest": "tools/capture_task009_village_regression.gd::restart_route",
+      "id": "A041"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 193,
+      "function": "restart_route",
+      "condition": "castle_check(_session().position_relocated and str(_main.get(\"_notice\")).contains(\"安全な入口へ移動しました。\") and _pose()[\"cell\"]==FirstRegion.entrance_landing(\"region2_village\",index),\"既存の安全補正通知と入口への置き直し\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:193",
+      "latest": "tools/capture_task009_village_regression.gd::restart_route",
+      "id": "A042"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 195,
+      "function": "restart_route",
+      "condition": "castle_check(await to_port(),\"別プロセス再起動後に通常キーだけで港へ戻る\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:195",
+      "latest": "tools/capture_task009_village_regression.gd::restart_route",
+      "id": "A043"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 200,
+      "function": "details",
+      "condition": "castle_check(await _walk(point(0,[3,14])),\"西アーチ下へ通常歩行\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:200",
+      "latest": "tools/capture_task009_village_regression.gd::details",
+      "id": "A044"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 202,
+      "function": "details",
+      "condition": "castle_check(await _walk(point(0,[42,14])),\"東アーチ下へ通常歩行\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:202",
+      "latest": "tools/capture_task009_village_regression.gd::details",
+      "id": "A045"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 205,
+      "function": "details",
+      "condition": "castle_check(await _walk(point(index,[7,8])),\"高い手前壁の客側へ通常歩行\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:205",
+      "latest": "tools/capture_task009_village_regression.gd::details",
+      "id": "A046"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 208,
+      "function": "details",
+      "condition": "castle_check(await _walk(point(index,[8,11]),Region2Village.data()[\"definition\"][\"region2_village_doors\"][index*2-1][\"to\"]),\"高い壁の開口部から通常退出\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:208",
+      "latest": "tools/capture_task009_village_regression.gd::details",
+      "id": "A047"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 209,
+      "function": "details",
+      "condition": "castle_check(await to_port(),\"詳細撮影後も港へ通常帰路\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:209",
+      "latest": "tools/capture_task009_village_regression.gd::details",
+      "id": "A048"
+    },
+    {
+      "source": "tools/capture_region2_village_connections.gd",
+      "line": 212,
+      "function": "finish",
+      "condition": "castle_check(Time.get_ticks_msec()< _deadline and _moves<=LIMIT_MOVES and _input_log.size()<LIMIT_INPUTS and not _input_violation,\"既存の180秒・移動・入力予算と禁止操作を維持\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/capture_region2_village_connections.gd:212",
+      "latest": "tools/capture_task009_village_regression.gd::finish",
+      "id": "A049"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 29,
+      "function": "preserve_save",
+      "condition": "check(file!=null,\"通常保存の実ファイルを006証拠へ保管\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:29",
+      "latest": "tools/check_region2_village_regression.gd::preserve_save",
+      "id": "A050"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 31,
+      "function": "preserve_save",
+      "condition": "check(FileAccess.get_sha256(source)==FileAccess.get_sha256(target),\"保管した通常保存の全バイト一致\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:31",
+      "latest": "tools/check_region2_village_regression.gd::preserve_save",
+      "id": "A051"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 46,
+      "function": "game_for",
+      "condition": "check(game.import_state(saved),\"本番セッションへ受理: \"+str(saved[\"overworld\"]))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:46",
+      "latest": "tools/check_region2_village_regression.gd::game_for",
+      "id": "A052"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 73,
+      "function": "walk",
+      "condition": "check(not route.is_empty(),\"本番移動経路: \"+str(goal))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:73",
+      "latest": "tools/check_region2_village_regression.gd::walk",
+      "id": "A053"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 77,
+      "function": "walk",
+      "condition": "check(game.move_first_region(cell).get(\"kind\")==\"moved\",\"一歩移動: \"+str(cell))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:77",
+      "latest": "tools/check_region2_village_regression.gd::walk",
+      "id": "A054"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 84,
+      "function": "leave",
+      "condition": "check(game.export_state()[\"overworld\"][\"room\"]==0,\"保存復帰後の室外退出\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:84",
+      "latest": "tools/check_region2_village_regression.gd::leave",
+      "id": "A055"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 86,
+      "function": "leave",
+      "condition": "check(FirstRegion.at(game.export_state()[\"overworld\"],world([168,88])),\"保存復帰後に世界へ退出\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:86",
+      "latest": "tools/check_region2_village_regression.gd::leave",
+      "id": "A056"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 89,
+      "function": "make_base",
+      "condition": "check(game.new_first_region(),\"新規状態\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:89",
+      "latest": "tools/check_region2_village_regression.gd::make_base",
+      "id": "A057"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 111,
+      "function": "connections",
+      "condition": "check(game.save_game(\"user://village006_port-start.json\"),\"人工開始状態を通常保存（港からの撮影起点）\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:111",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A058"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 113,
+      "function": "connections",
+      "condition": "check(game.move_first_region(Vector2i(4,1)).get(\"kind\")==\"moved\" and FirstRegion.at(game.export_state()[\"overworld\"],world([169,99])),\"既存港出口から世界へ\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:113",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A059"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 116,
+      "function": "connections",
+      "condition": "check(route.size()==13,\"既存陸地13歩\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:116",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A060"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 119,
+      "function": "connections",
+      "condition": "check(FirstRegion.walkable(game.export_state(),cell),\"指定沿岸セル通行: \"+str(cell))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:119",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A061"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 121,
+      "function": "connections",
+      "condition": "check(result.get(\"kind\") in [\"moved\",\"battle\"],\"港から通常一歩: \"+str(cell))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:121",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A062"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 124,
+      "function": "connections",
+      "condition": "check(FirstRegion.at(arrived[\"overworld\"],p(0,[4,15])) and arrived[\"overworld\"][\"facing\"]==0,\"西側から内側へ南向き着地\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:124",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A063"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 125,
+      "function": "connections",
+      "condition": "check(arrived[\"first_region\"][\"travel\"][\"visited\"]==base[\"first_region\"][\"travel\"][\"visited\"]+[\"region2_village\"],\"初訪問の1件だけ追加\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:125",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A064"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 128,
+      "function": "connections",
+      "condition": "check(unchanged==baseline,\"初訪問で他の進行・人物・品不変\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:128",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A065"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 132,
+      "function": "connections",
+      "condition": "check(FirstRegion.at(state,exit_link[\"to\"]) and state[\"facing\"]==exit_link[\"facing\"],\"アーチ退出と外向き: \"+str(exit_link[\"facing\"]))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:132",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A066"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 134,
+      "function": "connections",
+      "condition": "check(game.move_first_region(WorldExpedition.point(state[\"cell\"])).is_empty() and game.export_state()==before,\"入力なしの再遷移なし\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:134",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A067"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 135,
+      "function": "connections",
+      "condition": "check(game.move_first_region(Vector2i(169,88)).get(\"kind\")==\"moved\",\"退出直後の逆移動で再入村\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:135",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A068"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 137,
+      "function": "connections",
+      "condition": "check(game.export_state()[\"overworld\"][\"cell\"]==landing and game.export_state()[\"overworld\"][\"facing\"]==0,\"東西着地と向き\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:137",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A069"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 138,
+      "function": "connections",
+      "condition": "check(game.export_state()[\"first_region\"][\"travel\"][\"visited\"].count(\"region2_village\")==1,\"再訪問の重複なし\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:138",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A070"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 139,
+      "function": "connections",
+      "condition": "check(game.move_first_region(Vector2i(landing[0],landing[1]-1)).get(\"kind\")==\"moved\" and game.export_state()[\"overworld\"][\"node\"]==\"region2_village\",\"入場方向の継続で退出ループなし\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:139",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A071"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 144,
+      "function": "connections",
+      "condition": "check(game.move_first_region(cell).get(\"kind\") in [\"moved\",\"battle\"],\"同じ既存地上領域を徒歩帰路: \"+str(cell))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:144",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A072"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 145,
+      "function": "connections",
+      "condition": "check(game.export_state()[\"overworld\"][\"node\"]==\"brine_port\",\"港へ通常徒歩入場\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:145",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A073"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 150,
+      "function": "connections",
+      "condition": "check(game.move_first_region(WorldExpedition.point(from[\"cell\"])).get(\"kind\")==\"moved\" and FirstRegion.at(game.export_state()[\"overworld\"],link[\"to\"]),\"8本の扉リンク: \"+str(from))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:150",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A074"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 151,
+      "function": "connections",
+      "condition": "check(game.export_state()[\"overworld\"][\"facing\"]==link[\"facing\"],\"扉の着地方向\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:151",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A075"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 156,
+      "function": "connections",
+      "condition": "check((continued.get(\"kind\")==\"moved\" and game.export_state()[\"overworld\"][\"room\"]==link[\"to\"][\"room\"]) if can_move else (continued.is_empty() and game.export_state()==before),\"同じ方向の継続で往復せず、採用済みの壁ならその場で止まる\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:156",
+      "latest": "tools/check_region2_village_regression.gd::connections",
+      "id": "A076"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 168,
+      "function": "maps",
+      "condition": "check(FirstRegion.walkable(saved,Vector2i(x,y))==expected,\"全セル通行一致: %d %d,%d\" % [index,x,y])",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:168",
+      "latest": "tools/check_region2_village_regression.gd::maps",
+      "id": "A077"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 171,
+      "function": "maps",
+      "condition": "check(WorldExpedition.point(saved[\"overworld\"][\"cell\"])==Vector2i(x,y) or not path(saved,Vector2i(x,y),false).is_empty(),\"リンク判定を除いたBFSで全床連結\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:171",
+      "latest": "tools/check_region2_village_regression.gd::maps",
+      "id": "A078"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 176,
+      "function": "maps",
+      "condition": "check(FirstRegion.move(probe,cell).get(\"kind\")==\"moved\",\"村の全床・全隣接で非戦闘\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:176",
+      "latest": "tools/check_region2_village_regression.gd::maps",
+      "id": "A079"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 177,
+      "function": "maps",
+      "condition": "check(floors==[636,84,78,78,87][index],\"採用済み床数\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:177",
+      "latest": "tools/check_region2_village_regression.gd::maps",
+      "id": "A080"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 178,
+      "function": "maps",
+      "condition": "check(FirstRegionPresentation.map_for(saved[\"overworld\"])==map,\"本番表示が既存背景を参照\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:178",
+      "latest": "tools/check_region2_village_regression.gd::maps",
+      "id": "A081"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 181,
+      "function": "maps",
+      "condition": "check(not path(saved,WorldExpedition.point(target),false).is_empty(),\"リンク判定を除いたBFSの客側・家具前後到達\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:181",
+      "latest": "tools/check_region2_village_regression.gd::maps",
+      "id": "A082"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 186,
+      "function": "maps",
+      "condition": "check(FirstRegion.room(saved[\"overworld\"])[\"events\"].is_empty(),\"村NPC・施設・物語イベント0: \"+ROLES[index])",
+      "category": "007の承認済み新機能で置き換える現在条件",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:186",
+      "latest": "007引継ぎ表 S01〜S06（未着手・未検証）",
+      "id": "A083"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 197,
+      "function": "saves",
+      "condition": "check(game.save_game(filename),\"通常保存: \"+filename)",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:197",
+      "latest": "tools/check_region2_village_regression.gd::saves",
+      "id": "A084"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 200,
+      "function": "saves",
+      "condition": "check(restored.load_game(filename) and restored.export_state()==saved,\"20状態の別セッション完全復元: \"+filename)",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:200",
+      "latest": "tools/check_region2_village_regression.gd::saves",
+      "id": "A085"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 201,
+      "function": "saves",
+      "condition": "check(not restored.position_relocated,\"正常保存は補正しない\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:201",
+      "latest": "tools/check_region2_village_regression.gd::saves",
+      "id": "A086"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 203,
+      "function": "saves",
+      "condition": "check(restored.export_state()==saved,\"船・visited・編成・HP/MP・品・職・修練・侵蝕・マスター・物語フラグ全一致\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:203",
+      "latest": "tools/check_region2_village_regression.gd::saves",
+      "id": "A087"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 205,
+      "function": "saves",
+      "condition": "check(restored.export_state()[\"overworld\"][\"layer\"]==\"world\",\"20状態の読込後歩行・退出\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:205",
+      "latest": "tools/check_region2_village_regression.gd::saves",
+      "id": "A088"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 223,
+      "function": "growth_saves",
+      "condition": "check(game.save_game(file),\"村5マップの修練・マスター・侵蝕・消耗状態を通常保存\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:223",
+      "latest": "tools/check_region2_village_regression.gd::growth_saves",
+      "id": "A089"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 226,
+      "function": "growth_saves",
+      "condition": "check(restored.load_game(file) and restored.export_state()==saved,\"非初期値のJP・成功回数・マスター・侵蝕30・HP/MP・所持金・品も全一致\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:226",
+      "latest": "tools/check_region2_village_regression.gd::growth_saves",
+      "id": "A090"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 232,
+      "function": "restart",
+      "condition": "check(game.load_game(\"user://village006_%d_0.json\" % index) and game.export_state()==expected,\"別プロセス再起動後の完全復元\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:232",
+      "latest": "tools/check_region2_village_regression.gd::restart",
+      "id": "A091"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 234,
+      "function": "restart",
+      "condition": "check(game.export_state()[\"overworld\"][\"cell\"]==[168,88],\"別プロセス読込後の徒歩退出\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:234",
+      "latest": "tools/check_region2_village_regression.gd::restart",
+      "id": "A092"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 242,
+      "function": "invalid_saves",
+      "condition": "check(game.save_game(file),\"補正入力の通常保存\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:242",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A093"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 245,
+      "function": "invalid_saves",
+      "condition": "check(PlaySessionMetrics.write_json(\"user://village006_relocation_%d.json\" % index,relocation),\"本番UIの補正通知用入力を保存\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:245",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A094"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 255,
+      "function": "invalid_saves",
+      "condition": "check(PlaySessionMetrics.write_json(file,doc),\"壁・家具・範囲外の保存入力\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:255",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A095"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 257,
+      "function": "invalid_saves",
+      "condition": "check(restored.load_game(file) and restored.position_relocated and restored.export_state()[\"overworld\"][\"cell\"]==FirstRegion.entrance_landing(\"region2_village\",index),\"既存の入口安全補正\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:257",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A096"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 259,
+      "function": "invalid_saves",
+      "condition": "check(restored.export_state()==expected,\"補正以外の全状態不変\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:259",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A097"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 260,
+      "function": "invalid_saves",
+      "condition": "check(restored.save_game(file) and restored.load_game(file) and not restored.position_relocated,\"再保存後に補正通知が残らない\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:260",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A098"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 265,
+      "function": "invalid_saves",
+      "condition": "check(not game.load_game(file) and game.export_state()==before,\"不正保存拒否と現在状態保持: \"+str(change))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:265",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A099"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 268,
+      "function": "invalid_saves",
+      "condition": "check(game.save_game(file),\"旅情報なし旧保存\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:268",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A100"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 269,
+      "function": "invalid_saves",
+      "condition": "check(restored.load_game(file) and restored.export_state()==old,\"旧保存を旧保存のまま復元\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:269",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A101"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 271,
+      "function": "invalid_saves",
+      "condition": "check(\"region2_village\" not in old[\"first_region\"][\"travel\"][\"visited\"],\"未訪問旧保存に村訪問を捏造しない\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:271",
+      "latest": "tools/check_region2_village_regression.gd::invalid_saves",
+      "id": "A102"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 281,
+      "function": "interactions",
+      "condition": "check(entering.move_first_region(WorldExpedition.point(cell)).get(\"kind\")==\"moved\" and FirstRegion.at(entering.export_state()[\"overworld\"],p(0,cell)),\"非接続4扉に踏み込んでも別室へ飛ばない\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:281",
+      "latest": "tools/check_region2_village_regression.gd::nonconnecting_doors",
+      "id": "A103"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 285,
+      "function": "interactions",
+      "condition": "check(game.interact_first_region().is_empty() and game.export_state()==before,\"調べても回復・取引・装備・祠・解放・付与なし\")",
+      "category": "007の承認済み新機能で置き換える現在条件",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:285",
+      "latest": "007引継ぎ表 S01〜S06（未着手・未検証）。非接続4扉はnonconnecting_doorsで現在も全方向無反応を検査",
+      "id": "A104"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 286,
+      "function": "interactions",
+      "condition": "check(not game.at_purification_shrine(),\"村の祠を解除施設にしない\")",
+      "category": "007の承認済み新機能で置き換える現在条件",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:286",
+      "latest": "007引継ぎ表 S01〜S06（未着手・未検証）",
+      "id": "A105"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 294,
+      "function": "returns",
+      "condition": "check(game.cast_first_region_return(\"pc_02\",destination[\"id\"]),\"村5マップから訪問済み既存先へ帰還: \"+destination[\"id\"])",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:294",
+      "latest": "tools/check_region2_village_regression.gd::returns",
+      "id": "A106"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 297,
+      "function": "returns",
+      "condition": "check(after==expected and FirstRegion.at(after[\"overworld\"],FirstRegion.outside(destination[\"entrance\"])),\"選択した生存者だけMP2・位置・船以外不変\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:297",
+      "latest": "tools/check_region2_village_regression.gd::returns",
+      "id": "A107"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 298,
+      "function": "returns",
+      "condition": "check(after[\"overworld\"][\"cell\"]==[168,88] and after[\"overworld\"][\"facing\"]==1 and after[\"first_region\"][\"travel\"][\"ship_cell\"]==[155,110],\"村入口前と既存第2港の船\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:298",
+      "latest": "tools/check_region2_village_regression.gd::returns",
+      "id": "A108"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 306,
+      "function": "returns",
+      "condition": "check(game.start_first_region_battle({\"kind\":\"battle\",\"id\":\"first_region_encounter\",\"enemies\":[\"slime\"],\"seed\":6006})!=null,\"負例の本番戦闘開始\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:306",
+      "latest": "tools/check_region2_village_regression.gd::returns",
+      "id": "A109"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 308,
+      "function": "returns",
+      "condition": "check(not game.cast_first_region_return(\"missing\" if negative==\"unknown_actor\" else \"pc_02\",\"missing\" if negative==\"unknown_target\" else \"region2_village\") and game.export_state()==before,\"帰還負例の状態不変: \"+negative)",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:308",
+      "latest": "tools/check_region2_village_regression.gd::returns",
+      "id": "A110"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 311,
+      "function": "returns",
+      "condition": "check(game.cast_first_region_return(\"pc_01\",\"region2_village\") and game.export_state()[\"overworld\"][\"cell\"]==[168,88],\"港側から訪問済み村へ帰還\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:311",
+      "latest": "tools/check_region2_village_regression.gd::returns",
+      "id": "A111"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 312,
+      "function": "returns",
+      "condition": "check(game.move_first_region(Vector2i(169,88)).get(\"kind\")==\"moved\" and game.export_state()[\"overworld\"][\"node\"]==\"region2_village\",\"帰還後に通常入村\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:312",
+      "latest": "tools/check_region2_village_regression.gd::returns",
+      "id": "A112"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 315,
+      "function": "finish",
+      "condition": "check(Time.get_ticks_msec()-started<LIMIT_MS,\"180秒の検査上限\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:315",
+      "latest": "tools/check_region2_village_regression.gd::finish",
+      "id": "A113"
+    },
+    {
+      "source": "tools/check_region2_village_connections.gd",
+      "line": 318,
+      "function": "finish",
+      "condition": "check(PlaySessionMetrics.write_json(OUT+filename,report),\"検査JSON保存\")",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.gd:318",
+      "latest": "tools/check_region2_village_regression.gd::finish",
+      "id": "A114"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 45,
+      "function": "git",
+      "condition": "return subprocess.check_output([\"git\", *args], cwd=ROOT)",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:45",
+      "latest": "最新側のGit SHA取得・JSON保存・終了判定",
+      "id": "A115"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 65,
+      "function": "scope",
+      "condition": "denied = [s for s in changed if s not in ALLOWED and not s.startswith(\"docs/verification/region2-village-connections/\")]",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:65",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A116"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 66,
+      "function": "scope",
+      "condition": "deleted = git(\"diff\", \"--diff-filter=D\", \"--name-only\", BASE, target).decode().splitlines()",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:66",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A117"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 70,
+      "function": "scope",
+      "condition": "failures = denied + deleted",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:70",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A118"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 71,
+      "function": "scope",
+      "condition": "if normalize(original) != normalize(current)",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:71",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A119"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 74,
+      "function": "scope",
+      "condition": "return {row.split(\"\\t\", 1)[1]: row.split()[2] for row in git(\"ls-tree\", \"-r\", ref).decode().splitlines()}",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:74",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A120"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 76,
+      "function": "scope",
+      "condition": "if contains_batch3",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:76",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A121"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 77,
+      "function": "scope",
+      "condition": "if set(batch3_changes) != {\"A\\t\"+s for s in BATCH3_ORIGINALS}",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:77",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A122"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 81,
+      "function": "scope",
+      "condition": "if contains_upstream and set(upstream_changes) != UPSTREAM_ORIGINALS",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:81",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A123"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 84,
+      "function": "scope",
+      "condition": "altered = [s for s in original_paths if a[s] != b.get(s)]",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:84",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A124"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 87,
+      "function": "scope",
+      "condition": "return {\"status\": \"PASS\" if not failures else \"FAIL\", \"base\": BASE, \"comparison_base\":comparison_base, \"preserved_upstream_originals\":upstream_changes, \"commit\": target,\n            \"changed_files\": changed, \"failures\": failures, \"protected_and_existing_unchanged\": len(original_paths),\n            \"grok_originals_unchanged\": len(originals), \"preserved_batch3_upstream\": BATCH3_UPSTREAM if contains_batch3 else None,\n            \"preserved_batch3_originals\": sorted(retained_batch3), \"checks_weakened_or_removed\": 0 if not altered else None,\n            \"method\": \"固定開始mainと指定コミットのGitツリー・blobを比較。既存検査・CI全バイト不変。\"}",
+      "category": "当時だけ",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:87",
+      "latest": "固定側のscope（最新の範囲は009専用監査、後続はその段階の監査）",
+      "id": "A125"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 102,
+      "function": "run_godot",
+      "condition": "report = json.loads((OUT / (name + \".json\")).read_text(encoding=\"utf-8\"))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:102",
+      "latest": "tools/check_region2_village_regression.py::run",
+      "id": "A126"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 103,
+      "function": "run_godot",
+      "condition": "ok = result.returncode == 0 and not bad and report[\"status\"] == \"PASS\" and report[\"checks\"] > 0 and report[\"execution_sha\"] == sha",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:103",
+      "latest": "tools/check_region2_village_regression.py::run",
+      "id": "A127"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 105,
+      "function": "run_godot",
+      "condition": "return {\"status\": \"PASS\" if ok else \"FAIL\", \"command\": command, \"exit_code\": result.returncode, \"errors\": bad, \"checks\": report[\"checks\"]}",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:105",
+      "latest": "tools/check_region2_village_regression.py::run",
+      "id": "A128"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 117,
+      "function": "main",
+      "condition": "checks = {}",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:117",
+      "latest": "tools/check_region2_village_regression.py::main",
+      "id": "A129"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 118,
+      "function": "main",
+      "condition": "if not args.runtime_only",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:118",
+      "latest": "固定scopeと最新動作を別jobで必須実行。009差分はcheck_task009_scope.py",
+      "id": "A130"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 122,
+      "function": "main",
+      "condition": "if not args.scope_only",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:122",
+      "latest": "固定scopeと最新動作を別jobで必須実行。009差分はcheck_task009_scope.py",
+      "id": "A131"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 128,
+      "function": "main",
+      "condition": "if len(data[\"save_states\"]) != 20 or {s[\"room\"] for s in data[\"save_states\"]} != set(range(5)) or {s[\"facing\"] for s in data[\"save_states\"]} != set(range(4))",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:128",
+      "latest": "tools/check_region2_village_regression.py::main",
+      "id": "A132"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 130,
+      "function": "main",
+      "condition": "if set(data[\"sections\"]) != {\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"9\"}",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:130",
+      "latest": "tools/check_region2_village_regression.py::main",
+      "id": "A133"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 132,
+      "function": "main",
+      "condition": "report = {\"status\": \"PASS\" if all(s[\"status\"] == \"PASS\" for s in checks.values()) else \"FAIL\", \"execution_sha\": sha, \"results\": checks}",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:132",
+      "latest": "tools/check_region2_village_regression.py::main",
+      "id": "A134"
+    },
+    {
+      "source": "tools/check_region2_village_connections.py",
+      "line": 135,
+      "function": "main",
+      "condition": "return 0 if report[\"status\"] == \"PASS\" else 1",
+      "category": "最新でも継続",
+      "fixed": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce:tools/check_region2_village_connections.py:135",
+      "latest": "tools/check_region2_village_regression.py::main",
+      "id": "A135"
+    }
+  ]
+}
