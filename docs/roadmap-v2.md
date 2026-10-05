@@ -320,6 +320,27 @@ markdown
 - 火山の洞窟の中の戦闘背景は、床がとても暗い。組み込む前に、暗い色の敵（黒曜石の亀、灰の鳥など）を置いた戦闘画面で見えやすさを確かめ、見えにくい場合は依頼者に描き直しの要否を確認すること
 - 栞の候補のうち、採用しなかった3つ（和紙・押し花・魔法）は、使わない
 
+### 付録B追記：ネルの原画
+
+依頼者が正式と決めた原画2枚を、指定ブランチから同じパスへ、1バイトも変えずに保管する。人物・組み立ての記録は [ネルの人物記録](design/characters/ner.md) を参照。ゲームへの配置・台詞制作・魔物職の解放実装は行わない。
+
+| 原画 | ブランチ | パス | SHA-256 |
+| --- | --- | --- | --- |
+| 設定画（正式） | `grok/owner-2026-10-05-ner-concept` | `assets/_incoming/owner-2026-10-05-grok-batch3/ner-oasis-shrine-keeper-concept.png` | `aa72aa35101e0f978c0da832ea5c31c0aca28467fd40bdd281cbab93e81c9921` |
+| ゲームで使う2〜3頭身の絵（正式） | `grok/owner-2026-10-05-oasis-shrine-keeper-chibi-eye` | `assets/_incoming/owner-2026-10-05-grok-batch3/oasis-shrine-keeper-chibi.png` | `7fb285a7c31839ff33350c328f39dfd97e94ea57a0fe6567ef862f8fb19a9aa5` |
+
+次の5つは途中の版であり、mainへ取り込む対象から除外する。
+
+| ブランチ | 途中の版である理由 |
+| --- | --- |
+| `grok/owner-2026-10-05-shrine-keeper-returned` | 最初の男性の版 |
+| `grok/owner-2026-10-05-shrine-keeper-woman` | 女性の版。雪の土地の服装 |
+| `grok/owner-2026-10-05-oasis-shrine-keeper` | 砂の土地の服装の設定画。顔の跡と緑の目がない |
+| `grok/owner-2026-10-05-oasis-shrine-keeper-chibi` | 2〜3頭身の最初の版 |
+| `grok/owner-2026-10-05-oasis-shrine-keeper-chibi-mark` | 顔の跡だけを足した版 |
+
+`oasis-shrine-keeper-chibi.png` は途中版と同名・同じパスである。正式版は `grok/owner-2026-10-05-oasis-shrine-keeper-chibi-eye` のSHA-256 `7fb285a7c31839ff33350c328f39dfd97e94ea57a0fe6567ef862f8fb19a9aa5` で識別する。
+
 ## 2026年9月27日の決定：旧本編のCIを手動実行へ分離
 
 - 依頼者はスプリント2の重なり修正、リオネ・ハルドの加入場面、スイナの会話案を採用した。
