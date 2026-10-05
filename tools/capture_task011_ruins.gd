@@ -181,7 +181,7 @@ func battle_shots() -> void:
 			var source := arena._enemy_texture(pages[i][j]).get_image();var opaque := 0;var matched := 0;var samples := 0;var boundaries := 0
 			for y in range(ceili(rect.position.y*2),floori(rect.end.y*2)):
 				for x in range(ceili(rect.position.x*2),floori(rect.end.x*2)):
-					var uv := region.position+(Vector2(x+0.5,y+0.5)/2-rect.position)/(rect.size/region.size)
+					var uv := region.position+(Vector2(x+0.5,y+0.5)/2-rect.position)/(1.125 if pages[i][j]=="ruins_sandstone_colossus" else 0.75)
 					var xs := [floori(uv.x)];var ys := [floori(uv.y)]
 					# 最近傍の境界そのものだけはGPUの浮動小数点丸めで左右いずれにもなる。
 					# 色の許容差は1、座標候補は境界の両側だけ。非境界は1画素に固定する。

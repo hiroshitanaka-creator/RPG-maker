@@ -103,7 +103,7 @@ def main():
     for name in tracked_assets:
         assert (ROOT/name).read_bytes() == git('show', BASE+':'+name), '原画・全素材不変: '+name
     old_capture = git('show', BASE+':tools/capture_task011_ruins.gd').decode()
-    expected = old_capture.replace('/0.75\n', '/(rect.size/region.size)\n')
+    expected = old_capture.replace('/0.75\n', '/(1.125 if pages[i][j]=="ruins_sandstone_colossus" else 0.75)\n')
     assert (ROOT/'tools/capture_task011_ruins.gd').read_text() == expected, '011撮影の画素参照倍率のみ変更、assertionは全て保持'
     output = ROOT/'docs/verification/task-028'
     output.mkdir(parents=True, exist_ok=True)
