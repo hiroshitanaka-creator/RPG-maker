@@ -26,6 +26,9 @@ def scope(completed):
  return dict(status='PASS',base_sha=BASE,completed_sha=completed,files=changed,new_assets=new,existing_assets_and_places_unchanged=True)
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--stage',action='store_true');args=parser.parse_args();head=git('rev-parse','HEAD').decode().strip()
+ if args.stage:
+  assert git('diff','--name-only','HEAD','--','assets','scripts','world','tools').decode().strip()=='','完成SHAと本番・検査器が一致'
+  assert not [p for p in git('ls-files','--others','--exclude-standard').decode().splitlines() if p.startswith(('assets/','scripts/','world/','tools/')) and Path(p).suffix in ['.gd','.py','.json','.png']],'完成SHAに未登録の本番ファイル'
  record=json.loads((ROOT/'assets/source_records/task011-ruins.json').read_text());enemies=json.loads((ROOT/'assets/source_records/task011-enemies.json').read_text());registry=json.loads((ROOT/'assets/registry.json').read_text());entries={e['path']:e for e in registry['assets']};pal=load_palette(ROOT/'assets/palette/natural.gpl');paths=[];originals={};results=[]
  for r in record['maps'].values():
   originals[r['original']]=r['original_sha256'];paths.extend([r['background'],r['upper']])
