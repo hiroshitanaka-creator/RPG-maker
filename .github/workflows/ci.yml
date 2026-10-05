@@ -239,13 +239,6 @@ jobs:
           sudo apt-get update && sudo apt-get install -y xvfb mesa-vulkan-drivers
           python tools/check_task007.py --completed 776ad944723d21c1e250a1ee5fd56d35da42cfed --godot ./godot
 
-      - name: 011遺跡の完成版と最新の通行・階段・保存・実描画を検査
-        if: steps.check.outputs.exists == 'true'
-        run: |
-          git fetch --no-tags --depth=1 origin 0f781630fa75b620f06e5d71430979a1c5162ef4
-          git fetch --no-tags --depth=1 origin 14e4c9a11399b872d7fd718522c8e81dbf5a0693
-          python tools/check_task011.py --completed 14e4c9a11399b872d7fd718522c8e81dbf5a0693 --godot ./godot
-
       - name: 敵の行動予定と連戦の保存を検査
         if: steps.check.outputs.exists == 'true'
         run: |

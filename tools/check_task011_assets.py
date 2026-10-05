@@ -12,9 +12,11 @@ def scope(completed):
  allowed={'assets/registry.json','scripts/world/first_region.gd','scripts/world/first_region_presentation.gd','docs/decision-log.md','docs/tasks/011-ruins-dungeon-groundwork.md','docs/tasks/reports/011-ruins-dungeon-groundwork.md','.github/workflows/ci.yml'}
  for p in changed:
   assert p in allowed or p not in old and (p.startswith('docs/verification/task-011/') or p=='docs/region2-ruins-groundwork.md' or p.startswith('tools/') and 'task011' in p or p in ['world/region2_ruins.json','scripts/world/region2_ruins.gd','scripts/world/region2_ruins.gd.uid','assets/source_records/task011-ruins.json','assets/source_records/task011-enemies.json'] or p.startswith('assets/interiors/region2_ruins_floor') or p.startswith('assets/monsters/ruins_') or p=='assets/backgrounds/region2_ruins.png'),'範囲外: '+p
+ assert git('show',BASE+':.github/workflows/ci.yml')==git('show',completed+':.github/workflows/ci.yml'),'完成点の既存CI全文不変。011ステップは後の登録コミットで追加'
  before=json.loads(git('show',BASE+':assets/registry.json'));after=json.loads(git('show',completed+':assets/registry.json'))
  assert {k:v for k,v in before.items() if k!='assets'}=={k:v for k,v in after.items() if k!='assets'}
  previous={e['path'] for e in before['assets']};assert [e for e in after['assets'] if e['path'] in previous]==before['assets'],'既存台帳項目不変'
+ assert after['assets'][-10:]==before['assets'][-10:],'村の既存生成器に必要な末尾10項目を保持'
  new=[e['path'] for e in after['assets'] if e['path'] not in previous];assert len(new)==14 and len(after['assets'])==len(before['assets'])+14,'4背景・4上層・5敵・1戦闘背景'
  original=git('show',BASE+':scripts/world/first_region.gd').decode();current=git('show',completed+':scripts/world/first_region.gd').decode()
  for addition in ['\n\t\tRegion2Ruins.apply_to(_data)','\tif node == "region2_ruins":return Region2Ruins.landing(room_index)\n','\tif state["layer"] == "interior" and state["node"] == "region2_ruins":return Region2Ruins.move(state)\n']:

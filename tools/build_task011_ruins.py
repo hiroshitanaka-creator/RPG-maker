@@ -93,6 +93,8 @@ def build(dest):
   im=Image.open(dest/row['path'] if row['path'] in paths else ROOT/row['path']);row['size']=list(im.size);box=im.getbbox();row['visible_size']=[box[2]-box[0],box[3]-box[1]];row['output_sha256']=sha(dest/row['path'] if row['path'] in paths else ROOT/row['path'])
  write(dest/'assets/source_records/task011-enemies.json',dict(version=1,location='遺跡',status='候補台帳。通常遭遇・ボス戦は有効化しない',enemies=enemies,battle_background=dict(path=p,original_file=str(battle_source.relative_to(ROOT)),original_sha256=sha(battle_source),size=[512,288],scale=[4,15])))
  registry=json.loads((ROOT/'assets/registry.json').read_text());registry['assets']=[e for e in registry['assets'] if e['path'] not in paths]
+ # 既存の村生成器は最後の10項目を再生成するため、その直前に追加する。
+ insert_at=next(i for i,e in enumerate(registry['assets']) if e.get('conversion_record','').startswith('assets/source_records/region2-village-backdrops.json#maps/'));additions=[]
  for path in paths:
   im=Image.open(dest/path);entry=dict(path=path,size=list(im.size),max_colors=32 if '/monsters/' in path else 64,status='required',palette='assets/palette/natural.gpl',source='owner',license='LicenseRef-Owner-Provided',author='依頼者',provided_at='2026-10-05',modified='原画から決定論的な切出し・最近傍縮小・最近傍減色。二値透過。原本不変。')
   if '/monsters/' in path:
@@ -102,7 +104,8 @@ def build(dest):
    n=int(path.split('floor')[1][0])-1;entry.update(kind='town_overlay' if '_upper' in path else 'interior_backdrop',original_file=D.A+D.FILES[n],conversion_record=RECORD+'#'+str(n))
   entry.update(source='generated',tool='依頼者提供原画 + Python/Pillow（派生変換）',author='RPG-maker / Codex（原画：依頼者）',license='LicenseRef-Generated-Project',generated_at='2026-10-05',prompt_record=entry['conversion_record'])
   entry.pop('provided_at',None)
-  registry['assets'].append(entry)
+  additions.append(entry)
+ registry['assets'][insert_at:insert_at]=additions
  write(dest/'assets/registry.json',registry)
  return paths
 if __name__=='__main__':
