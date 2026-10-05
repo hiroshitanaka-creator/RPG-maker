@@ -1,0 +1,14 @@
+diff --git a/scripts/world/first_region.gd b/scripts/world/first_region.gd
+index 8bd4b7d..62c2e8c 100644
+--- a/scripts/world/first_region.gd
++++ b/scripts/world/first_region.gd
+@@ -102,6 +102,9 @@ static func walkable_cells(saved: Dictionary) -> Array:
+ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
+ 	var state: Dictionary = saved["overworld"]
+ 	var before := WorldExpedition.point(state["cell"])
++	if state["node"] == "region2_ruins" and cell == before:
++		state["room"] = (int(state["room"])+1)%4
++		return {"kind":"moved"}
+ 	if absi(cell.x-before.x)+absi(cell.y-before.y) != 1 or not walkable(saved,cell):return {}
+ 	state["cell"] = [cell.x,cell.y]
+ 	state["entry_lock"] = ""

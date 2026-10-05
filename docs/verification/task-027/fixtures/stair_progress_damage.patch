@@ -1,0 +1,16 @@
+diff --git a/scripts/world/first_region.gd b/scripts/world/first_region.gd
+index 8bd4b7d..5fe5496 100644
+--- a/scripts/world/first_region.gd
++++ b/scripts/world/first_region.gd
+@@ -105,7 +105,10 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
+ 	if absi(cell.x-before.x)+absi(cell.y-before.y) != 1 or not walkable(saved,cell):return {}
+ 	state["cell"] = [cell.x,cell.y]
+ 	state["entry_lock"] = ""
+-	if state["layer"] == "interior" and state["node"] == "region2_ruins":return Region2Ruins.move(state)
++	if state["layer"] == "interior" and state["node"] == "region2_ruins":
++		var result := Region2Ruins.move(state)
++		if state["entry_lock"] == "region2_ruins_stairs":saved["progress_flags"]["midgame_slots"] = not saved["progress_flags"].get("midgame_slots",false)
++		return result
+ 	if state.get("transport","walk")=="ship":
+ 		FirstRegionTravel.ensure(saved)["ship_cell"]=state["cell"].duplicate()
+ 		var sea: Dictionary=FirstRegionTravel.encounter(cell)

@@ -1,0 +1,231 @@
+{
+  "execution_sha": "477b4182204f10f4be2b19eee8f3ec08b08c5e6c",
+  "confirmation_state": true,
+  "checker_sha256": {
+    "check_task011_runtime.gd": "6670a09e3a000d13a16f3ef7533793e67ba88db13c82ac5f6f3cbf78a036e52a",
+    "capture_task011_ruins.gd": "8a3c7d289c234e5caf9be6ff86afe2f60b0ad7737bc00a770d7aaea3221b8cb3",
+    "check_task027.py": "45f09a7793fd704ced551f647b2ed8adbfe0305eb245b73ffc97d06ff5a9b7c0"
+  },
+  "cases": [
+    {
+      "case": "battle_notification",
+      "expected_accept": true,
+      "accepted": true,
+      "status": "PASS",
+      "runtime": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--script",
+          "res://tools/check_task011_runtime.gd"
+        ],
+        "exit_code": 0,
+        "timeout_seconds": 120,
+        "elapsed_seconds": 9.576,
+        "errors": []
+      },
+      "failures": 0,
+      "capture": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task011_ruins.gd"
+        ],
+        "exit_code": 0,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 173.666,
+        "errors": []
+      },
+      "capture_encounter_returns": 309,
+      "stage_rejection": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--script",
+          "res://tools/check_task011_runtime.gd",
+          "--",
+          "--stage"
+        ],
+        "exit_code": 1,
+        "timeout_seconds": 120,
+        "elapsed_seconds": 9.484,
+        "errors": []
+      }
+    },
+    {
+      "case": "wrong_stair_destination",
+      "expected_accept": false,
+      "accepted": false,
+      "status": "PASS",
+      "runtime": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--script",
+          "res://tools/check_task011_runtime.gd"
+        ],
+        "exit_code": 1,
+        "timeout_seconds": 120,
+        "elapsed_seconds": 9.298,
+        "errors": []
+      },
+      "failures": 20
+    },
+    {
+      "case": "stationary_retransition",
+      "expected_accept": false,
+      "accepted": false,
+      "status": "PASS",
+      "runtime": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--script",
+          "res://tools/check_task011_runtime.gd"
+        ],
+        "exit_code": 1,
+        "timeout_seconds": 120,
+        "elapsed_seconds": 9.11,
+        "errors": []
+      },
+      "failures": 166
+    },
+    {
+      "case": "stair_inventory_damage",
+      "expected_accept": false,
+      "accepted": false,
+      "status": "PASS",
+      "runtime": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--script",
+          "res://tools/check_task011_runtime.gd"
+        ],
+        "exit_code": 1,
+        "timeout_seconds": 120,
+        "elapsed_seconds": 9.58,
+        "errors": []
+      },
+      "failures": 60
+    },
+    {
+      "case": "stair_progress_damage",
+      "expected_accept": false,
+      "accepted": false,
+      "status": "PASS",
+      "runtime": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--script",
+          "res://tools/check_task011_runtime.gd"
+        ],
+        "exit_code": 1,
+        "timeout_seconds": 120,
+        "elapsed_seconds": 9.578,
+        "errors": []
+      },
+      "failures": 60
+    },
+    {
+      "case": "stair_map_damage",
+      "expected_accept": false,
+      "accepted": false,
+      "status": "PASS",
+      "runtime": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--script",
+          "res://tools/check_task011_runtime.gd"
+        ],
+        "exit_code": 1,
+        "timeout_seconds": 120,
+        "elapsed_seconds": 9.483,
+        "errors": []
+      },
+      "failures": 60
+    },
+    {
+      "case": "invalid_notification",
+      "expected_accept": false,
+      "accepted": false,
+      "status": "PASS",
+      "runtime": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--script",
+          "res://tools/check_task011_runtime.gd"
+        ],
+        "exit_code": 1,
+        "timeout_seconds": 120,
+        "elapsed_seconds": 9.578,
+        "errors": []
+      },
+      "failures": 4411
+    },
+    {
+      "case": "battle_at_stair",
+      "expected_accept": false,
+      "accepted": false,
+      "status": "PASS",
+      "runtime": {
+        "command": [
+          "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task027-fixtures-3iwi_bs2/checkout",
+          "--script",
+          "res://tools/check_task011_runtime.gd"
+        ],
+        "exit_code": 1,
+        "timeout_seconds": 120,
+        "elapsed_seconds": 9.67,
+        "errors": []
+      },
+      "failures": 60
+    }
+  ],
+  "import": {
+    "command": [
+      "/tmp/task027/engine/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--path",
+      "/tmp/task027-fixtures-3iwi_bs2/checkout",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "timeout_seconds": 600,
+    "elapsed_seconds": 9.057,
+    "errors": []
+  },
+  "status": "PASS"
+}
