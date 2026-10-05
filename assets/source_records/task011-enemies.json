@@ -1,0 +1,316 @@
+{
+  "version": 1,
+  "location": "遺跡",
+  "status": "候補台帳。通常遭遇・ボス戦は有効化しない",
+  "enemies": [
+    {
+      "id": "ruins_sandstone_doll",
+      "name": "砂岩の人形（仮）",
+      "sprite_id": "ruins_sandstone_doll",
+      "location": "遺跡",
+      "size_class": "medium",
+      "monster_tier": "normal",
+      "stats": {
+        "hp": 185,
+        "mp": 0,
+        "attack": 22,
+        "defense": 24,
+        "magic": 0,
+        "resistance": 9,
+        "speed": 7
+      },
+      "abilities": [],
+      "weaknesses": [],
+      "jp": 20,
+      "design_status": "既存第2地方の敵を基準にした仮値。遭遇未登録",
+      "path": "assets/monsters/ruins_sandstone_doll/idle.png",
+      "original_file": "assets/_incoming/owner-2026-10-04-grok-region3/region3-killer-machine-spear.png",
+      "original_sha256": "cdabe5ad8b43b94d16bd90cf9f23d34c0a2c03fa83edc3bedabd6bb8cfc35e94",
+      "split_rect": [
+        0,
+        0,
+        264,
+        784
+      ],
+      "segmentation": "外周灰色背景だけを除く",
+      "crop_box": [
+        21,
+        160,
+        257,
+        555
+      ],
+      "extent": 80,
+      "size": [
+        96,
+        96
+      ],
+      "visible_size": [
+        48,
+        80
+      ],
+      "output_sha256": "7e36345b33ecb2cde27039fc7f137b96f2801efd5ca1ad0a3b26a88886a251a4"
+    },
+    {
+      "id": "ruins_cursed_beetle",
+      "name": "呪われた甲虫（仮）",
+      "sprite_id": "ruins_cursed_beetle",
+      "location": "遺跡",
+      "size_class": "medium",
+      "monster_tier": "normal",
+      "stats": {
+        "hp": 150,
+        "mp": 12,
+        "attack": 17,
+        "defense": 28,
+        "magic": 8,
+        "resistance": 10,
+        "speed": 9
+      },
+      "abilities": [],
+      "weaknesses": [],
+      "jp": 20,
+      "design_status": "既存第2地方の敵を基準にした仮値。遭遇未登録",
+      "path": "assets/monsters/ruins_cursed_beetle/idle.png",
+      "original_file": "assets/_incoming/owner-2026-10-04-grok-region3/region3-killer-machine-spear.png",
+      "original_sha256": "cdabe5ad8b43b94d16bd90cf9f23d34c0a2c03fa83edc3bedabd6bb8cfc35e94",
+      "split_rect": [
+        264,
+        0,
+        576,
+        784
+      ],
+      "segmentation": "8近傍で最大の連結体だけを残す",
+      "crop_box": [
+        0,
+        291,
+        312,
+        552
+      ],
+      "extent": 72,
+      "size": [
+        96,
+        96
+      ],
+      "visible_size": [
+        72,
+        60
+      ],
+      "output_sha256": "d2fe303209d60cd58d0e7e0be4a3a81f30991cd8e53cb42bd26ecd7b4e0a518d"
+    },
+    {
+      "id": "ruins_sand_spirit",
+      "name": "砂の霊（仮）",
+      "sprite_id": "ruins_sand_spirit",
+      "location": "遺跡",
+      "size_class": "large",
+      "monster_tier": "normal",
+      "stats": {
+        "hp": 135,
+        "mp": 24,
+        "attack": 9,
+        "defense": 8,
+        "magic": 24,
+        "resistance": 18,
+        "speed": 18
+      },
+      "abilities": [],
+      "weaknesses": [],
+      "jp": 20,
+      "design_status": "既存第2地方の敵を基準にした仮値。遭遇未登録",
+      "path": "assets/monsters/ruins_sand_spirit/idle.png",
+      "original_file": "assets/_incoming/owner-2026-10-04-grok-region3/region3-killer-machine-spear.png",
+      "original_sha256": "cdabe5ad8b43b94d16bd90cf9f23d34c0a2c03fa83edc3bedabd6bb8cfc35e94",
+      "split_rect": [
+        543,
+        0,
+        912,
+        784
+      ],
+      "segmentation": "原画座標の多角形で他の個体を除く",
+      "crop_box": [
+        0,
+        183,
+        356,
+        561
+      ],
+      "extent": 92,
+      "size": [
+        96,
+        96
+      ],
+      "visible_size": [
+        86,
+        92
+      ],
+      "output_sha256": "0e41596b1eba240f886257f7a43a63e3e254153e23680f50efa96eb81d66662d"
+    },
+    {
+      "id": "ruins_tomb_hound",
+      "name": "墓守の番犬（仮）",
+      "sprite_id": "ruins_tomb_hound",
+      "location": "遺跡",
+      "size_class": "medium",
+      "monster_tier": "normal",
+      "stats": {
+        "hp": 175,
+        "mp": 10,
+        "attack": 26,
+        "defense": 13,
+        "magic": 4,
+        "resistance": 10,
+        "speed": 20
+      },
+      "abilities": [],
+      "weaknesses": [],
+      "jp": 20,
+      "design_status": "既存第2地方の敵を基準にした仮値。遭遇未登録",
+      "path": "assets/monsters/ruins_tomb_hound/idle.png",
+      "original_file": "assets/_incoming/owner-2026-10-04-grok-region3/region3-killer-machine-spear.png",
+      "original_sha256": "cdabe5ad8b43b94d16bd90cf9f23d34c0a2c03fa83edc3bedabd6bb8cfc35e94",
+      "split_rect": [
+        843,
+        0,
+        1168,
+        784
+      ],
+      "segmentation": "8近傍で最大の連結体だけを残す",
+      "crop_box": [
+        0,
+        271,
+        306,
+        557
+      ],
+      "extent": 80,
+      "size": [
+        96,
+        96
+      ],
+      "visible_size": [
+        80,
+        75
+      ],
+      "output_sha256": "a633f7e13ab052b1959bcc77b9693b8ec9f03a4b99f650eccefd146aa21cdbe6"
+    },
+    {
+      "id": "ruins_sandstone_colossus",
+      "name": "砂岩の巨像（仮）",
+      "sprite_id": "ruins_sandstone_colossus",
+      "location": "遺跡",
+      "size_class": "boss",
+      "monster_tier": "boss",
+      "stats": {
+        "hp": 800,
+        "mp": 30,
+        "attack": 36,
+        "defense": 30,
+        "magic": 24,
+        "resistance": 22,
+        "speed": 9
+      },
+      "abilities": [],
+      "weaknesses": [],
+      "jp": 50,
+      "design_status": "既存ボスを基準にした仮値。ボス戦未登録",
+      "path": "assets/monsters/ruins_sandstone_colossus/idle.png",
+      "original_file": "assets/_incoming/owner-2026-10-01-region2-port/chat-image-5-aa5c2020.png",
+      "original_sha256": "560358d71d33cfafda538d7abf2dd2d1879b3163d9a4484dbbeaaedfd48f215a",
+      "crop_box": [
+        209,
+        87,
+        1071,
+        1157
+      ],
+      "extent": 152,
+      "size": [
+        192,
+        160
+      ],
+      "visible_size": [
+        122,
+        152
+      ],
+      "output_sha256": "ef665f5c2a1630a85185da306388eedcb2c4e974c621c81eeab74882a06695a0"
+    },
+    {
+      "id": "desert_mummy",
+      "name": "ミイラ（仮）",
+      "sprite_id": "desert_mummy",
+      "location": "遺跡",
+      "size_class": "medium",
+      "monster_tier": "normal",
+      "stats": {
+        "hp": 160,
+        "mp": 12,
+        "attack": 20,
+        "defense": 14,
+        "magic": 12,
+        "resistance": 12,
+        "speed": 8
+      },
+      "abilities": [],
+      "weaknesses": [
+        "fire"
+      ],
+      "jp": 20,
+      "design_status": "取り込み済み控え素材。仮値。遭遇未登録",
+      "path": "assets/monsters/desert_mummy/idle.png",
+      "existing_sha256": "e5dec2194a73cf6109c5964872678bdbe8dd692f2764f7bb83fda2d626a83d06",
+      "size": [
+        96,
+        96
+      ],
+      "visible_size": [
+        80,
+        77
+      ],
+      "output_sha256": "e5dec2194a73cf6109c5964872678bdbe8dd692f2764f7bb83fda2d626a83d06"
+    },
+    {
+      "id": "stone_gargoyle",
+      "name": "石の翼像（仮）",
+      "sprite_id": "stone_gargoyle",
+      "location": "遺跡",
+      "size_class": "medium",
+      "monster_tier": "normal",
+      "stats": {
+        "hp": 185,
+        "mp": 0,
+        "attack": 22,
+        "defense": 26,
+        "magic": 0,
+        "resistance": 13,
+        "speed": 14
+      },
+      "abilities": [],
+      "weaknesses": [
+        "ice"
+      ],
+      "jp": 20,
+      "design_status": "取り込み済み控え素材。仮値。遭遇未登録",
+      "path": "assets/monsters/stone_gargoyle/idle.png",
+      "existing_sha256": "ce0331ebd98b5dcd7920284d3ff26b11f59a731650d925f037a7d1d2ab107615",
+      "size": [
+        96,
+        96
+      ],
+      "visible_size": [
+        69,
+        72
+      ],
+      "output_sha256": "ce0331ebd98b5dcd7920284d3ff26b11f59a731650d925f037a7d1d2ab107615"
+    }
+  ],
+  "battle_background": {
+    "path": "assets/backgrounds/region2_ruins.png",
+    "original_file": "assets/_incoming/owner-2026-10-03-region3-port/05-ruins-battle.png",
+    "original_sha256": "58ce32be5d7749e0f35c06e9a4e65b79b3af46994110bab29a879e91d4f2de31",
+    "size": [
+      512,
+      288
+    ],
+    "scale": [
+      4,
+      15
+    ]
+  }
+}

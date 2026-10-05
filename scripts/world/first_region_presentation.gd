@@ -9,6 +9,7 @@ static func data() -> Dictionary:
 		_data["maps"]["world"]=SecondRegionCoast.extend_world(_data["maps"]["world"])
 		_data["maps"].merge(Region2Port.data()["maps"].duplicate(true))
 		_data["maps"].merge(Region2Village.data()["maps"].duplicate(true))
+		_data["maps"].merge(Region2Ruins.data()["maps"].duplicate(true))
 	return _data
 
 static func map_for(state: Dictionary) -> Dictionary:
