@@ -122,6 +122,7 @@ def main():
         subprocess.run(['git', 'worktree', 'add', '--detach', str(path), BASE], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
         try:
             shutil.copy2(ROOT/'tools/check_task028_capture.gd', path/'tools/check_task028_capture.gd')
+            shutil.copy2(ROOT/'tools/check_task028_capture.gd.uid', path/'tools/check_task028_capture.gd.uid')
             if (ROOT/'.godot').is_dir():
                 shutil.copytree(ROOT/'.godot', path/'.godot')
                 for descriptor in ROOT.rglob('*.import'):
