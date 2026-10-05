@@ -19,6 +19,7 @@ func capture_run() -> void:
 	var scene: PackedScene=load(str(ProjectSettings.get_setting("application/run/main_scene")))
 	main=scene.instantiate();root.add_child(main);await frames()
 	var start := GameSession.new();check(start.new_first_region(),"本番新ゲーム")
+	walk_enemies=start.enemy_definitions
 	base=start.export_state();base["party"].append_array(base["first_region"]["reserve"]);base["first_region"]["reserve"]=[]
 	for index in range(4):
 		check(main.game.import_state(placed(index,Region2Ruins.landing(index))),"直接読込みの確認用状態")
@@ -51,7 +52,7 @@ func capture_run() -> void:
 		check(state["room"]==link["to_room"] and state["cell"]==link["to_cell"] and state["facing"]==link["facing"],"通常キーによる階段着地")
 		await picture("stairs-%d-to-%d" % [link["from_room"]+1,link["to_room"]+1])
 	await battle_shots()
-	var report := {"status":"PASS" if failures.is_empty() else "FAIL","execution_sha":OS.get_environment("TASK011_EXECUTION_SHA"),"confirmation_state":true,"renderer":DisplayServer.get_name(),"window_size":[root.size.x,root.size.y],"key_steps":key_steps,"images":shots,"failures":failures}
+	var report := {"status":"PASS" if failures.is_empty() else "FAIL","execution_sha":OS.get_environment("TASK011_EXECUTION_SHA"),"confirmation_state":true,"renderer":DisplayServer.get_name(),"window_size":[root.size.x,root.size.y],"key_steps":key_steps,"encounter_returns":encounter_returns,"encounter_return_policy":"通知後の全状態を保持した確認用探索。実戦・報酬検証ではない","images":shots,"failures":failures}
 	var file := FileAccess.open(OUTPUT+"checks.json",FileAccess.WRITE);file.store_string(JSON.stringify(report,"\t"));file.close()
 	for failure in failures:print("TASK011_FAIL: "+failure)
 	print("TASK011_CAPTURE_%s: images=%d key_steps=%d" % [report["status"],shots.size(),key_steps])
@@ -63,6 +64,7 @@ func walk(cell: Array, walking_picture: String="") -> void:
 	if not check(not path.is_empty() or saved["overworld"]["cell"]==cell,"撮影の通常歩行経路 "+str(cell)):return
 	for next in path:
 		var current := WorldExpedition.point(main.game.export_state()["overworld"]["cell"])
+		var step_before: Dictionary=main.game.export_state()
 		var dir := next-current
 		var keys := [KEY_DOWN,KEY_LEFT,KEY_RIGHT,KEY_UP]
 		var event := InputEventKey.new();event.keycode=keys[DIRS.find(dir)];event.physical_keycode=event.keycode;event.pressed=true
@@ -70,11 +72,19 @@ func walk(cell: Array, walking_picture: String="") -> void:
 		var deadline := Time.get_ticks_msec()+2000
 		while main._world_mover.active() and Time.get_ticks_msec()<deadline:await process_frame
 		check(not main._world_mover.active(),"通常一歩の時間内終了")
+		if main.mode==main.Mode.BATTLE:
+			main.game=resume_confirmation_encounter(main.game)
+			main.mode=main.Mode.WORLD;main._refresh();await frames(3)
+		check(main.mode==main.Mode.WORLD,"確認用の道中通知後に探索画面へ戻る")
 		if next==path[-1] and not walking_picture.is_empty():await picture(walking_picture)
 		await create_timer(0.16).timeout
 		key_steps += 1
-		# 階段では移動先が変わるため、最後の一歩だけは遷移先で確認する。
-		if next!=path[-1]:check(main.game.export_state()["overworld"]["cell"]==[next.x,next.y],"キー歩行の位置 "+str(next)+" actual="+str(main.game.export_state()["overworld"]["cell"]))
+		var step_after: Dictionary=main.game.export_state()
+		var stair := {}
+		for link in Region2Ruins.data()["stairs"]:
+			if step_before["overworld"]["room"]==link["from_room"] and [next.x,next.y]==link["from_cell"]:stair=link
+		if not stair.is_empty():check_stair(step_before,step_after,stair)
+		else:check(step_after["overworld"]["layer"]==step_before["overworld"]["layer"] and step_after["overworld"]["node"]==step_before["overworld"]["node"] and step_after["overworld"]["room"]==step_before["overworld"]["room"] and step_after["overworld"]["cell"]==[next.x,next.y],"キー歩行の位置 "+str(next)+" actual="+str(step_after["overworld"]["cell"]))
 
 func sprite_for(saved: Dictionary) -> Image:
 	var member: Dictionary=saved["party"].filter(func(a:Dictionary)->bool:return a["id"]==saved.get("leader_id","pc_01"))[0]

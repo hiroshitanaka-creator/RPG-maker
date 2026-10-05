@@ -10,6 +10,32 @@ var moves := 0
 var stair_trips := 0
 var saves := 0
 var relocations := 0
+var encounter_returns := 0
+var walk_enemies: Dictionary = {}
+
+func valid_walk_event(event: Dictionary) -> bool:
+	if event.get("kind") == "moved":return true
+	if event.get("kind") != "battle" or not event.get("id") is String or str(event["id"]).is_empty():return false
+	if not event.get("enemies") is Array or event["enemies"].is_empty() or not event.get("seed") is int:return false
+	for enemy in event["enemies"]:
+		if not enemy is String or not walk_enemies.has(enemy):return false
+	return true
+
+func check_stair(before: Dictionary, after: Dictionary, link: Dictionary) -> void:
+	check(after["overworld"]["layer"]==before["overworld"]["layer"] and after["overworld"]["node"]==before["overworld"]["node"] and after["overworld"]["room"]==link["to_room"] and after["overworld"]["cell"]==link["to_cell"] and after["overworld"]["facing"]==link["facing"],"階段の着地と向き")
+	var unchanged := before.duplicate(true)
+	for key in ["room","cell","facing","entry_lock"]:unchanged["overworld"][key]=after["overworld"][key]
+	check(unchanged==after,"階段直前直後は位置以外の進行・所持品・地図状態を変えない")
+
+func resume_confirmation_encounter(game: GameSession) -> GameSession:
+	# 戦闘の攻略・報酬は対象外。通知後の全保存値を新インスタンスへ保持し、確認用探索を続ける。
+	# 撮影は本番UIが実際に戦闘を開始した後だけ、runtimeはstart APIの受理後だけここへ来る。
+	check(game.current_battle()!=null,"確認用遭遇は本番戦闘APIで開始済み")
+	var saved := game.export_state()
+	var resumed := GameSession.new()
+	check(resumed.import_state(saved) and resumed.export_state()==saved and resumed.current_battle()==null,"確認用戦闘から通知後の全状態を維持して探索へ戻る")
+	encounter_returns += 1
+	return resumed
 
 func check(ok: bool, why: String) -> bool:
 	checks += 1
@@ -44,6 +70,7 @@ func _initialize() -> void:
 	var game := GameSession.new()
 	check(game.new_first_region(),"本番新ゲームから確認用状態を作る")
 	base = game.export_state()
+	walk_enemies=game.enemy_definitions
 	var document := Region2Ruins.data()
 	check(document["site"]["rooms"].size() == 4,"4階の定義")
 	for index in range(4):
@@ -66,7 +93,7 @@ func _initialize() -> void:
 					var next: Vector2i = Vector2i(x,y)+dir
 					var passable: bool=next.y>=0 and next.y<layout.size() and next.x>=0 and next.x<map["width"] and str(layout[next.y]).substr(next.x,1)=="."
 					var event := FirstRegion.move(probe,next);moves += 1
-					check(not event.is_empty() if passable else event.is_empty() and probe==before,"本番の全隣接移動と拒否")
+					check(valid_walk_event(event) if passable else event.is_empty() and probe==before,"本番の全隣接移動と拒否")
 					if stage and passable:check(event.get("kind")=="moved","完成時に遭遇・物語を発火しない")
 		check(reach>0,"歩ける床がある")
 		if stage:check(FirstRegion.room(saved["overworld"])["events"].is_empty(),"完成時イベント・宝箱未設置")
@@ -82,11 +109,23 @@ func _initialize() -> void:
 			if not check(not path.is_empty(),"階段への経路"):continue
 			for step in path:
 				travel.first_region_face(step-WorldExpedition.point(travel.export_state()["overworld"]["cell"]))
-				check(travel.move_first_region(step).get("kind")=="moved","通常移動APIで階段へ歩く")
+				var step_before := travel.export_state()
+				var event := travel.move_first_region(step)
+				var step_after := travel.export_state()
+				if step == path[-1]:
+					check(event.get("kind")=="moved","階段接触の通常移動通知")
+					check_stair(step_before,step_after,link)
+				else:
+					check(valid_walk_event(event),"道中の有効な通常移動・戦闘通知")
+					check(step_after["overworld"]["layer"]==step_before["overworld"]["layer"] and step_after["overworld"]["node"]==step_before["overworld"]["node"] and step_after["overworld"]["room"]==link["from_room"] and step_after["overworld"]["cell"]==[step.x,step.y],"道中では指定位置へ歩き誤接続しない")
+					if event.get("kind")=="battle" and valid_walk_event(event):
+						check(travel.start_first_region_battle(event)!=null,"道中の本番戦闘通知を受理")
+						travel=resume_confirmation_encounter(travel)
+				if stage:check(event.get("kind")=="moved","完成時に階段までの全経路で無遭遇")
 			var after := travel.export_state()
-			check(after["overworld"]["room"]==link["to_room"] and after["overworld"]["cell"]==link["to_cell"] and after["overworld"]["facing"]==link["facing"],"階段の着地と向き")
-			var unchanged := before.duplicate(true);unchanged["overworld"] = after["overworld"].duplicate(true)
-			check(unchanged == after,"階段は位置以外の進行・所持品を変えない")
+			if stage:
+				var unchanged := before.duplicate(true);unchanged["overworld"]=after["overworld"].duplicate(true)
+				check(unchanged==after,"完成時の全経路の位置以外の状態保持")
 			check(travel.move_first_region(WorldExpedition.point(after["overworld"]["cell"])).is_empty() and travel.export_state()==after,"静止時に再遷移しない")
 			stair_trips += 1
 	if stage:
@@ -96,7 +135,7 @@ func _initialize() -> void:
 		check(not FirstRegion.data().has("region2_ruins_entrance"),"完成時の世界接続なし")
 	var output := "res://docs/verification/task-011/latest/"
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output))
-	var report := {"status":"PASS" if failures.is_empty() else "FAIL","execution_sha":OS.get_environment("TASK011_EXECUTION_SHA"),"confirmation_state":true,"stage":stage,"checks":checks,"cells":cells,"neighbor_moves":moves,"stair_trips":stair_trips,"saves":saves,"relocations":relocations,"failures":failures}
+	var report := {"status":"PASS" if failures.is_empty() else "FAIL","execution_sha":OS.get_environment("TASK011_EXECUTION_SHA"),"confirmation_state":true,"stage":stage,"checks":checks,"cells":cells,"neighbor_moves":moves,"stair_trips":stair_trips,"saves":saves,"relocations":relocations,"encounter_returns":encounter_returns,"failures":failures}
 	var file := FileAccess.open(output+"runtime.json",FileAccess.WRITE);file.store_string(JSON.stringify(report,"\t"));file.close()
 	for failure in failures:print("TASK011_FAIL: "+failure)
 	print("TASK011_RUNTIME_%s: cells=%d moves=%d stairs=%d saves=%d relocation=%d" % [report["status"],cells,moves,stair_trips,saves,relocations])

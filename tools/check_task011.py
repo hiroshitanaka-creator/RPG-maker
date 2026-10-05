@@ -56,7 +56,9 @@ def main():
    if scope.get('completed_sha')!=args.completed or scope.get('status')!='PASS':report['fixed']['status']='FAIL'
   finally:subprocess.run(['git','worktree','remove','--force',str(fixed)],cwd=ROOT,check=True,stdout=subprocess.DEVNULL)
  report['latest']=execute(ROOT,exe,head,output/'latest',False)
- report['status']='PASS' if report['fixed']['status']==report['latest']['status']=='PASS' else 'FAIL';(output/'summary.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+ from check_task027 import verify
+ report['notification_boundary']=verify(ROOT,exe,head,ROOT/'docs/verification/task-027/fixtures')
+ report['status']='PASS' if report['fixed']['status']==report['latest']['status']==report['notification_boundary']['status']=='PASS' else 'FAIL';(output/'summary.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
  print('TASK011_'+report['status']+': completed='+args.completed+' latest='+head,flush=True)
  return 0 if report['status']=='PASS' else 1
 if __name__=='__main__':raise SystemExit(main())
