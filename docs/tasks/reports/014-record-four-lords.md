@@ -51,7 +51,19 @@
 ## CIと提出状態
 
 - 最新mainを取り込んだ作業ブランチで独立レビューへ提出する。mainへの直接書込み・mainへのマージは行わない。
-- CIはこれからpush・draft PRで起動し、全ジョブの終了後にURLと実際の結果を追記する。終了前の検査は成功とは扱わない。
+- 原画保管・決定記録コミットは `934608eb8500447a4eefe2e6ae39a45c84961137`。次表のpush・PR全40ジョブが `completed/success` であることを認証済みGitHubコネクタのチェック一覧・ジョブ一覧で確認した。検査の省略・弱化・時間上限の延長はない。`gh auth status` は環境のGH_TOKEN認証失敗だったため、接続済みGitHubコネクタを使用した。
+- 独立レビュー用 [draft PR #23](https://github.com/hiroshitanaka-creator/RPG-maker/pull/23) を作成。mainへはマージしていない。
+
+| 起動 | ワークフロー | URL | 結果 |
+| --- | --- | --- | --- |
+| push | CI | [37420211844](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37420211844) | 3/3 completed/success |
+| push | 006 固定受入と最新回帰 | [37420211819](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37420211819) | 17/17 completed/success |
+| PR | CI | [37420240762](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37420240762) | 3/3 completed/success |
+| PR | 006 固定受入と最新回帰 | [37420240751](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37420240751) | 17/17 completed/success |
+
+- 完全SHA `934608eb8500447a4eefe2e6ae39a45c84961137` と基準main `3078f061926f5e74eae7d08a8807d3bff92666b6` を固定して `git diff --name-only` / `git diff --check` とコミット済みblobを照合：変更は許可9ファイルだけ、依頼書は状態行以外不変、4原画は取得元の完全SHAのblobと全バイト一致、PNGの読取り検証も4枚成功（すべて1408×1408、RGB）。
+- 本追記と「報告済み」の状態行をcommit・通常pushし、その最終HEADで再起動される全CIの結果も最終回答に残す。原画・ゲーム・検査は再変更しない。
+
 
 ## 自己点検と未達・未検証
 
@@ -60,6 +72,8 @@
 3. 付録B：4枚の原画と岩を含む採用形の記録あり。
 4. 未決事項：決定済みの本当の名前と原画を外し、居場所の呼び名・名前が分かる場面・強さ・戦いの時期を保持。戦いの時期の重複なし。
 5. 範囲：指定9ファイルだけ。既存原画・コード・データ・台帳・パレット・検査・保護ファイル・他依頼書/報告書は不変。旧 `docs/STATUS.md` と `docs/director-next-preparation.md` は更新しない。031・PR #15の原画・追加委譲の作業なし。
-6. R-01〜R-08・保護26件・CI：上の実測結果に従う。CI全ジョブの終了は待機中。
+6. R-01〜R-08は全件PASS・終了0、保護26件は26件一致・終了0、原画保管・決定記録コミットのpush・PR全40CIジョブは終了してsuccess。上表の実測結果に従う。
 
 ゲームへの配置・戦闘・台詞・解放の実装は今回の対象外。依頼書の「mainに入り」の条件は、今回の独立レビュー提出・main未統合の指示により未達として明示する。新しい作品上の判断や追加の許可は求めない。
+
+確認時刻：2026-10-06 06:12:34 UTC。mainは未統合。独立レビューへの提出をもって今回の作業報告とする。
