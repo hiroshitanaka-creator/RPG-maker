@@ -83,9 +83,56 @@
 - `python tools/validate_assets.py --strict`：終了0。画像1154件・音15件・パレット3件・字体2件、問題なし。
 - `python tools/check_frozen_files.py`：終了0、保護対象26件・一致26件。
 - 原文照合：新文書から冒頭・表題・「台詞の方向の例（未決）」見出しだけを除いた本文が、依頼書の決定本文と完全一致。依頼書は状態行を除き完全一致。コード・素材・データ・検査・保護対象2275件を隔離検査checkoutと全バイト照合して一致。終了0。
-- R-01〜R-08は、既存 `tools/run_locked_checks.py` を隔離checkout `/tmp/task015/check` でそのまま実行する。元checkoutで許可外の検証記録を更新しないために隔離した。**初回はimport参照の不足によりR-01〜R-06・R-08がINVALID、R-07がFAIL（終了1）。成功とは扱わない。** 同じ4.7.2で隔離checkoutを取り込み直し、同じverify・判定・各300秒上限で再実行する。最終結果は確認後に追記する。
+- R-01〜R-08は、既存 `tools/run_locked_checks.py` を隔離checkout `/tmp/task015/check` でそのまま実行する。元checkoutで許可外の検証記録を更新しないために隔離した。**初回はimport参照の不足によりR-01〜R-06・R-08がINVALID、R-07がFAIL（終了1）。成功とは扱わない。** 同じ4.7.2で隔離checkoutを取り込み直し、同じverify・判定・各300秒上限で再実行し、**R-01〜R-08すべてPASS、実行全体の終了0**。隔離importも終了0、エラー・警告なし。最終実測は2026-10-06 03:14:56 UTC。原記録 `/tmp/task015/check/docs/verification/scope-lock-current.json` のSHA-256は `7c579538ee3943f44b1cdbce70a7256cd4c6688de12aef0eafa799cbc7d734cc`。許可外のファイルへ証拠を追加せず、本報告に結果を残す。
 - `git diff --check`：終了0。
-- CI：まだ未確認。クラウドの `gh auth status` と `gh run list` はGH_TOKENの認証失敗/Forbidden。利用可能な認証済みGitHubコネクタは読み取りが成功し、PR起動のrunを取得できる。作業ブランチをpushし、独立レビュー用のdraft PRのCIを全ジョブ確認してから、URL・対象SHA・実際の結果を追記する。
+- CI：記録・調査コミット `e083927eefb39a3414f65c332a0e422a536187ff` に対し、2026-10-06 03:39 UTCにpush全20件・PR全20件の **全40ジョブがcompleted/success** であることをGitHubコネクタのチェック一覧とジョブ一覧で確認。PR起動の2ワークフローもcompleted/success。`gh auth status` / `gh run list` はGH_TOKENの認証失敗/Forbiddenだったため、認証済みGitHubコネクタを使用した。実行中のログ取得は404だったが、終了後にGodotジョブログを取得できた。検査の削除・skip・緩和・時間上限の変更はない。
+
+| 要件 | 結果・終了コード | 実行された検査・assertion |
+| --- | --- | --- |
+| R-01 | PASS・0 | 2テスト・765assertion、失敗0・pending 0・invalid false |
+| R-02 | PASS・0 | 5テスト・946assertion、失敗0・pending 0・invalid false |
+| R-03 | PASS・0 | 2テスト・73assertion、失敗0・pending 0・invalid false |
+| R-04 | PASS・0 | 1テスト・293assertion、失敗0・pending 0・invalid false |
+| R-05 | PASS・0 | 2テスト・79assertion、失敗0・pending 0・invalid false |
+| R-06 | PASS・0 | 2テスト・87assertion、失敗0・pending 0・invalid false |
+| R-07 | PASS・0 | A01〜A14すべてPASS、FIRST_REGION_PASS: checks=14 |
+| R-08 | PASS・0 | 17テスト・2302assertion、失敗0・pending 0・invalid false |
+
+### CIのURLと全ジョブの結果
+
+対象SHA：`e083927eefb39a3414f65c332a0e422a536187ff`。独立レビュー用 [draft PR #22](https://github.com/hiroshitanaka-creator/RPG-maker/pull/22) はmain未統合。
+
+| 起動 | ワークフロー | URL | 結果 |
+| --- | --- | --- | --- |
+| push | CI | [37407973225](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37407973225) | 3/3 completed/success |
+| push | 006 固定受入と最新回帰 | [37407973232](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37407973232) | 17/17 completed/success |
+| PR | CI | [37408016092](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37408016092) | 3/3 completed/success |
+| PR | 006 固定受入と最新回帰 | [37408016117](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37408016117) | 17/17 completed/success |
+
+| ジョブ（全20種類） | push | PR |
+| --- | --- | --- |
+| Godot・凍結受入テスト | success | success |
+| acceptance-and-regression (fixed) | success | success |
+| acceptance-and-regression (latest) | success | success |
+| lifecycle-audit | success | success |
+| normal-input-and-rendering (fixed, details) | success | success |
+| normal-input-and-rendering (fixed, journey) | success | success |
+| normal-input-and-rendering (fixed, restart-0) | success | success |
+| normal-input-and-rendering (fixed, restart-1) | success | success |
+| normal-input-and-rendering (fixed, restart-2) | success | success |
+| normal-input-and-rendering (fixed, restart-3) | success | success |
+| normal-input-and-rendering (fixed, restart-4) | success | success |
+| normal-input-and-rendering (latest, details) | success | success |
+| normal-input-and-rendering (latest, journey) | success | success |
+| normal-input-and-rendering (latest, restart-0) | success | success |
+| normal-input-and-rendering (latest, restart-1) | success | success |
+| normal-input-and-rendering (latest, restart-2) | success | success |
+| normal-input-and-rendering (latest, restart-3) | success | success |
+| normal-input-and-rendering (latest, restart-4) | success | success |
+| 素材検査 | success | success |
+| 試遊前の通常戦闘・案内・画面・復帰検査 | success | success |
+
+本報告確定のコミットは、検査済み実装コミットから本報告書と依頼書の状態行だけを更新する。確定後のHEADでもCIを全ジョブ確認して提出する。確定後のSHA・CIのURLと結果は、[PRのChecks](https://github.com/hiroshitanaka-creator/RPG-maker/pull/22/checks) と提出メッセージで、上に記録した検査済みSHAの証拠と区別して示す。
 
 ## 自己点検
 
@@ -93,11 +140,11 @@
 2. ネルの4種類と未決行から決定行への更新：PASS。
 3. 体験仕様の担当3節と未決5項目：PASS。
 4. roadmapの指定決定節・正本参照：PASS。
-5. 調査結果の記録、変更範囲：本報告に記載。担当の6文書に限定し、コード・データ・素材・検査・保護ファイル・story-outline・他の依頼書と報告書・旧STATUS・director-next-preparationは変更しない。最終差分を確認して追記する。
-6. R-01〜R-08・保護照合・全CI：RとCIの最終確認を継続中。未確認を成功としない。
+5. 調査結果の記録、変更範囲：本報告に記載。担当の6文書に限定し、コード・データ・素材・検査・保護ファイル・story-outline・他の依頼書と報告書・旧STATUS・director-next-preparationは変更しない。`git diff origin/main...HEAD --name-only` と、担当6ファイルの完全一致照合、体験仕様の節単位照合がすべてPASS。変更された節は担当3節だけ。`git diff --check` も終了0。
+6. R-01〜R-08・保護照合・全CI：R-01〜R-08は全PASS、保護26件一致。上記SHAのCIはpush・PR各20ジョブすべてcompleted/success。PASS。
 
 ## 提出と未達・未検証
 
 - 最新のユーザー指示により、依頼書・報告書を作業ブランチ `codex/task-015-record-monster-job-unlock` に置き、**mainにはマージしない**。親の独立レビューへ提出する。依頼書本文のmain反映の完了条件は編集せず、今回の提出条件がmain未統合であることをこの報告で区別する。
 - 記録と読み取り調査の範囲を超える解放イベント・主との戦い・台詞の制作、014の先取りは行っていない。未決5項目は未決のまま。実装はこの依頼の成果ではない。
-- 検査結果・CI全ジョブの確認・コミットとpushのSHAは、確認後に本報告へ記録する。
+- 記録・調査コミット `e083927eefb39a3414f65c332a0e422a536187ff` は指定ブランチへcommit・push済み。検査結果・CI全ジョブのURLと結果は上に記録した。報告確定後のHEADの全CIも終了まで確認し、提出メッセージに最終SHAと結果を記録する。main反映と親の独立レビューは今回の提出後の工程であり、今回の作業では未実施。
