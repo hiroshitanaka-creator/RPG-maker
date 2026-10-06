@@ -351,6 +351,21 @@ markdown
 
 `oasis-shrine-keeper-chibi.png` は途中版と同名・同じパスである。正式版は `grok/owner-2026-10-05-oasis-shrine-keeper-chibi-eye` のSHA-256 `7fb285a7c31839ff33350c328f39dfd97e94ea57a0fe6567ef862f8fb19a9aa5` で識別する。
 
+### 付録B追記：4体の主の原画（owner-2026-10-05-grok-batch4）
+
+依頼者がGrokで作り、採用した4枚の原画を、指定ブランチから同じパスへ1バイトも変えずに保管する。呼び名と人物の記録は [魔物職の解放の記録](design/monster-job-unlock.md) を参照。今回の対象は原画の保管と文書記録だけとする。
+
+| 主 | ブランチ | パス | SHA-256 |
+| --- | --- | --- | --- |
+| 不死の主（ジーク） | `assets/owner-2026-10-05-grok-batch4-undead` | `assets/_incoming/owner-2026-10-05-grok-batch4/optional-boss-undead.png` | `30e4cee201f6391241afe505b7a522f3c890040ab1bfaa1eb68a9a41954a9a9a` |
+| 鳥の主 | `assets/owner-2026-10-05-grok-batch4-bird` | `assets/_incoming/owner-2026-10-05-grok-batch4/optional-boss-bird.png` | `e25df4ce5bb7879ed58786671b853a4bbf1b7c8df61254b1ab0db258ba04e8cd` |
+| 精霊の主 | `assets/owner-2026-10-05-grok-batch4-spirit` | `assets/_incoming/owner-2026-10-05-grok-batch4/optional-boss-spirit.png` | `02b05a0888df699489b1ebc8bf61a89c8a565721622ad65974ce83c154c16339` |
+| 竜の主 | `assets/owner-2026-10-05-grok-batch4-dragon` | `assets/_incoming/owner-2026-10-05-grok-batch4/optional-boss-dragon.png` | `11139fec646f6a75d233e2f188a25306656a3fea6281dcee953a6b60f40ff562` |
+
+竜の主は、宙に浮いた岩の上に立つ姿です。依頼者は、この姿のまま採用しました。鳥の主も、凍った岩をつかむ姿です。どちらも、岩を消したり、加工したりしないでください。
+
+鳥の主の凍った岩と竜の主の宙に浮いた岩は、どちらも岩を含む原画の姿のまま採用済み。岩の削除・画像加工は行わない。
+
 ## 2026年9月27日の決定：旧本編のCIを手動実行へ分離
 
 - 依頼者はスプリント2の重なり修正、リオネ・ハルドの加入場面、スイナの会話案を採用した。
