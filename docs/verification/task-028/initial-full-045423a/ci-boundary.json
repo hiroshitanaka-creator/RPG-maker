@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "execution_sha": "045423abc83f08a15690ed4e9cf32992a79910db",
+  "runner_sha256": "dd55d3d9fe8878c544766617a03f28aa063cfa0feb32f91bd786b9df80002caa",
+  "completed_sha": "d258908fbb0397e64d08780694786ef1855c4979",
+  "registration_sha": "8ae87d658fe04f4053ea2f258d973e0862530085",
+  "confirmation_state": true,
+  "note": "CI境界だけの正負例。本番の固定・最新機能検査は省略せず別に全実行する。",
+  "cases": [
+    {
+      "case": "approved_future_ci",
+      "accepted": true,
+      "status": "PASS",
+      "functional_tests_replaced": false
+    },
+    {
+      "case": "changed_registered_timeout",
+      "accepted": false,
+      "status": "PASS",
+      "functional_tests_replaced": false
+    },
+    {
+      "case": "wrong_completed_sha",
+      "accepted": false,
+      "status": "PASS",
+      "functional_tests_replaced": false
+    },
+    {
+      "case": "duplicate_registered_step",
+      "accepted": false,
+      "status": "PASS",
+      "functional_tests_replaced": false
+    }
+  ]
+}

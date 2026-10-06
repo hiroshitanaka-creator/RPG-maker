@@ -1,0 +1,4191 @@
+{
+  "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+  "source": "接続済みGitHub read-only APIで全run/job終了と全20jobログを直接取得",
+  "runs": [
+    {
+      "id": 37204986620,
+      "name": "CI",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986620"
+    },
+    {
+      "id": 37204986649,
+      "name": "006 固定受入と最新回帰",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 111444194289,
+      "name": "Godot・凍結受入テスト",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 208,
+      "reports": [],
+      "evidence": [
+        "2026-10-04T13:16:15.4664343Z 保護対象26件、一致26件。",
+        "2026-10-04T13:17:10.2610038Z PASS R-01 (exit=0, tests_ran=True, parser_failed=False)",
+        "2026-10-04T13:17:17.4853495Z PASS R-02 (exit=0, tests_ran=True, parser_failed=False)",
+        "2026-10-04T13:17:19.2281800Z PASS R-03 (exit=0, tests_ran=True, parser_failed=False)",
+        "2026-10-04T13:17:21.6173590Z PASS R-04 (exit=0, tests_ran=True, parser_failed=False)",
+        "2026-10-04T13:17:23.4499943Z PASS R-05 (exit=0, tests_ran=True, parser_failed=False)",
+        "2026-10-04T13:17:25.5657783Z PASS R-06 (exit=0, tests_ran=True, parser_failed=False)",
+        "2026-10-04T13:18:22.3465995Z PASS R-07 (exit=0, tests_ran=True, parser_failed=False)",
+        "2026-10-04T13:18:33.2914044Z PASS R-08 (exit=0, tests_ran=True, parser_failed=False)",
+        "2026-10-04T13:19:12.9867924Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "凍結ファイルのハッシュを確認",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Godot プロジェクトの有無を確認",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Godot を取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "インポートしてエラーを検出",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "凍結契約に登録された全verifyを実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "導入の固定比較基準を取得し台帳の異常検出を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "第1地方の追加導入・見逃し・旧保存補完を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "村の独立地形を既存の通行・移動APIで検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "敵の行動予定と連戦の保存を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "戦闘前の自動保存と全滅からの復帰を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "保存値の型と破損時の状態保持を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "部屋の作りが変わった後の保存の置き直しを検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "第2地方の航路と岸の境界を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "最初の地方の画面と通常保存操作を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "第2港の外観（一枚絵の背景・通行地図・上の層）を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "第2地方の港町と6室・船・帰還・保存を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "職業衣装の参照と保存復元を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "版識別と保存後の再起動復旧を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "検証後も保護ファイルが不変であることを確認",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "ログを保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47
+        }
+      ],
+      "run_id": 37204986620,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986620/job/111444194289"
+    },
+    {
+      "id": 111444194389,
+      "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 267,
+      "reports": [],
+      "evidence": [
+        "2026-10-04T13:20:11.9248622Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "固定版Godotを取得してインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "共通機構の実戦・育成・保存・画面・同予算比較を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "ワールド構造のPhase 1定義を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "ワールド構造のPhase 2と検査器の回帰を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "広域地形の再現性・実経路・実時間記録を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "60時間の時間判定を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "追加受入の勝率と終了率・反応への対処を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "保護対象を照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "試遊前検査の結果を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        }
+      ],
+      "run_id": 37204986620,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986620/job/111444194389"
+    },
+    {
+      "id": 111444194397,
+      "name": "素材検査",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 95,
+      "reports": [],
+      "evidence": [
+        "2026-10-04T13:16:43.1169267Z VILLAGE_SCOPE_PASS: production_paths=10 prior_ci_bytes_identical=True",
+        "2026-10-04T13:17:19.6388734Z VILLAGE_DATA_PASS: checks=244",
+        "2026-10-04T13:17:21.0546825Z VILLAGE_NATIVE_PASS: captures=25"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Pillow を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "素材台帳に従って検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "第2港の背景が最近傍縮小と最近傍減色だけで作られていることを検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "村の独立背景・原画不変・再生成・実描画画素を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "進捗文書と検証結果の集計を検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ],
+      "run_id": 37204986620,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986620/job/111444194397"
+    },
+    {
+      "id": 111444194670,
+      "name": "lifecycle-audit",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 479,
+      "reports": [
+        {
+          "status": "PASS",
+          "latest_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "results": {
+            "completed012-scope": {
+              "status": "PASS",
+              "start_sha": "8ed58c00f8d7d16e2df24f3273f18019d2406002",
+              "execution_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a",
+              "changed_files": [
+                ".github/workflows/region2-village-connections.yml",
+                "docs/decision-log.md",
+                "docs/tasks/009-test-lifecycle.md",
+                "docs/tasks/012-pin-completed-audit.md",
+                "docs/tasks/reports/012-pin-completed-audit.md",
+                "docs/verification/task-012/ce07-all-ci.json",
+                "docs/verification/task-012/plan.md",
+                "tools/test_task012_pinned_audit.py"
+              ],
+              "preserved_paths": 5002,
+              "failures": []
+            },
+            "completed009-scope": {
+              "exit_code": 0,
+              "status": "PASS",
+              "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+              "failures": [],
+              "timeout_seconds": 180
+            },
+            "new-request": {
+              "status": "PASS",
+              "input_sha": "b7e1a60e64bc0b342ab64674cc38d879ec36e193",
+              "changes": [
+                "docs/tasks/099-copy-only.md"
+              ],
+              "selection": {
+                "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+                "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+              },
+              "fixed009_audit": {
+                "exit_code": 0,
+                "status": "PASS",
+                "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "failures": [],
+                "timeout_seconds": 180
+              },
+              "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+            },
+            "009-state-only": {
+              "status": "PASS",
+              "input_sha": "5fd33e377f09624e949254c5a07d7eeab8dc8f28",
+              "changes": [
+                "docs/tasks/009-test-lifecycle.md"
+              ],
+              "selection": {
+                "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+                "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+              },
+              "fixed009_audit": {
+                "exit_code": 0,
+                "status": "PASS",
+                "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "failures": [],
+                "timeout_seconds": 180
+              },
+              "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+            },
+            "state-and-new-request-same-commit": {
+              "status": "PASS",
+              "input_sha": "b30d6001c13a996cc853308a3c25cdbd88b9a228",
+              "changes": [
+                "docs/tasks/009-test-lifecycle.md",
+                "docs/tasks/099-copy-only.md"
+              ],
+              "selection": {
+                "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+                "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+              },
+              "fixed009_audit": {
+                "exit_code": 0,
+                "status": "PASS",
+                "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "failures": [],
+                "timeout_seconds": 180
+              },
+              "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+            },
+            "state-and-010-011-same-commit": {
+              "status": "PASS",
+              "input_sha": "5fd33e377f09624e949254c5a07d7eeab8dc8f28",
+              "changes": [
+                "docs/tasks/009-test-lifecycle.md",
+                "docs/tasks/010-record-ner.md",
+                "docs/tasks/011-ruins-dungeon-groundwork.md"
+              ],
+              "selection": {
+                "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+                "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+              },
+              "fixed009_audit": {
+                "exit_code": 0,
+                "status": "PASS",
+                "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "failures": [],
+                "timeout_seconds": 180
+              },
+              "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+            },
+            "future-other-scope": {
+              "status": "PASS",
+              "input_sha": "9e27fd71f415743436b93436007eaf9f8b1e3b2a",
+              "changes": [
+                "scripts/game/game_session.gd"
+              ],
+              "selection": {
+                "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+                "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+              },
+              "fixed009_audit": {
+                "exit_code": 0,
+                "status": "PASS",
+                "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "failures": [],
+                "timeout_seconds": 180
+              },
+              "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+            },
+            "012-state-only": {
+              "status": "PASS",
+              "input_sha": "2198086ebe888592e78d0d198ca1948c751975f5",
+              "changes": [
+                "docs/tasks/012-pin-completed-audit.md"
+              ],
+              "selection": {
+                "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+                "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+              },
+              "fixed009_audit": {
+                "exit_code": 0,
+                "status": "PASS",
+                "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "failures": [],
+                "timeout_seconds": 180
+              },
+              "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+            },
+            "historical-state-and-010-011-added": {
+              "status": "PASS",
+              "input_sha": "72425eb8c3b43f558cfce050fec0dd4d5c95416c",
+              "changes": [
+                ".github/workflows/region2-village-connections.yml",
+                "docs/tasks/009-test-lifecycle.md",
+                "docs/tasks/010-record-ner.md",
+                "docs/tasks/011-ruins-dungeon-groundwork.md",
+                "docs/verification/task-012/completed-audit.json"
+              ],
+              "selection": {
+                "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+                "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+              },
+              "fixed009_audit": {
+                "exit_code": 0,
+                "status": "PASS",
+                "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "failures": [],
+                "timeout_seconds": 180
+              },
+              "completed012_audit_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+            },
+            "old-selector-parent-registration": {
+              "status": "PASS",
+              "old_selected_sha": "a1022b6340d772900563b0d2f60969f9adf50b25",
+              "exit_code": 1,
+              "execution_sha": "a1022b6340d772900563b0d2f60969f9adf50b25",
+              "failures": [
+                "docs/tasks/010-record-ner.md",
+                "docs/tasks/011-ruins-dungeon-groundwork.md"
+              ],
+              "timeout_seconds": 180
+            },
+            "wrong009-sha": {
+              "status": "PASS",
+              "rejection": "独立期待値と固定選択が一致しない: FIXED_009_SHA",
+              "input_sha": "5a6c150f983ef316c7e832a3130d2763bab10c74"
+            },
+            "nonexistent-sha": {
+              "status": "PASS",
+              "rejection": "独立期待値と固定選択が一致しない: FIXED_009_SHA",
+              "input_sha": "4262580db618d19cc488cd71586e802acfffe805"
+            },
+            "wrong012-sha": {
+              "status": "PASS",
+              "rejection": "独立期待値と固定選択が一致しない: FIXED_012_SHA",
+              "input_sha": "84796bf09ad90668e249bb6e0546b4e35886619e"
+            },
+            "nonexistent-object": {
+              "status": "PASS",
+              "rejection": "git失敗: rev-parse --verify 0000000000000000000000000000000000000000^{commit}\nfatal: Needed a single revision\n"
+            },
+            "broken009-target": {
+              "status": "PASS",
+              "rejected_sha": "416f485a9cba972b2fea67d2b5491dbacf5739a3",
+              "audit": {
+                "exit_code": 1,
+                "status": "FAIL",
+                "execution_sha": "416f485a9cba972b2fea67d2b5491dbacf5739a3",
+                "failures": [
+                  "docs/tasks/099-copy-only.md"
+                ],
+                "timeout_seconds": 180
+              }
+            },
+            "broken012-target": {
+              "status": "PASS",
+              "audit": {
+                "status": "FAIL",
+                "start_sha": "8ed58c00f8d7d16e2df24f3273f18019d2406002",
+                "execution_sha": "2b93ed89eeb25e990d11af1f18a57cae85165f3a",
+                "changed_files": [
+                  ".github/workflows/region2-village-connections.yml",
+                  "docs/decision-log.md",
+                  "docs/tasks/009-test-lifecycle.md",
+                  "docs/tasks/012-pin-completed-audit.md",
+                  "docs/tasks/reports/012-pin-completed-audit.md",
+                  "docs/verification/task-012/ce07-all-ci.json",
+                  "docs/verification/task-012/plan.md",
+                  "scripts/game/game_session.gd",
+                  "tools/test_task012_pinned_audit.py"
+                ],
+                "preserved_paths": 5001,
+                "failures": [
+                  "scripts/game/game_session.gd"
+                ]
+              }
+            },
+            "modified009-checkout": {
+              "status": "PASS",
+              "rejection": "固定009 checkoutの本番/検査器が改変されている"
+            }
+          },
+          "fixed006_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "fixed009_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+          "completed012_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a",
+          "completed012_tree": "1a128f883bd555653bd9eea3082c09b875c1f7e5"
+        },
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "trust_record_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+          "completed_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a",
+          "completed_tree": "1a128f883bd555653bd9eea3082c09b875c1f7e5",
+          "selection": {
+            "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+            "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+            "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+          },
+          "checkout_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+        },
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "trust_record_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+          "results": {
+            "approved-head": {
+              "status": "PASS",
+              "trust_record_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+              "completed_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a",
+              "completed_tree": "1a128f883bd555653bd9eea3082c09b875c1f7e5",
+              "selection": {
+                "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+                "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+                "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+              }
+            },
+            "state-child-manifest-and-workflow-and-checkout": {
+              "status": "PASS",
+              "input_sha": "fa15c1aab191f43e951eb6eaf43cc03d62290165",
+              "rejection": "012 manifestが独立信頼基点の記録と不一致"
+            },
+            "state-child-manifest-only": {
+              "status": "PASS",
+              "input_sha": "349cadae6b962f34fdd5ccea58ae0e9ce374513a",
+              "rejection": "012 manifestが独立信頼基点の記録と不一致"
+            },
+            "state-child-workflow-and-checkout-only": {
+              "status": "PASS",
+              "input_sha": "4f08c1548d5d0388d4df333f24fbf4657f83fff3",
+              "rejection": "独立期待値と固定選択が一致しない: FIXED_012_SHA"
+            },
+            "wrong-tree": {
+              "status": "PASS",
+              "input_sha": "d5e3efdb9b8bbe41877b14c0e2c8ff4df88a0e76",
+              "rejection": "012 manifestが独立信頼基点の記録と不一致"
+            },
+            "malformed-sha": {
+              "status": "PASS",
+              "input_sha": "2ff646121235c172c869443459a5a7af5c268c15",
+              "rejection": "012 manifestが独立信頼基点の記録と不一致"
+            },
+            "nonexistent-sha": {
+              "status": "PASS",
+              "input_sha": "172d8e6bb5fac60427a2135b0efcdd8b75eb3508",
+              "rejection": "012 manifestが独立信頼基点の記録と不一致"
+            },
+            "missing-record-fields": {
+              "status": "PASS",
+              "input_sha": "cb5497bae19fa1e5539ca6ef6203d298e34fd1ce",
+              "rejection": "012 manifestが独立信頼基点の記録と不一致"
+            },
+            "invalid-record-json": {
+              "status": "PASS",
+              "input_sha": "4c97a75fd6793295f6faa2c20f3de8f347643742",
+              "rejection": "Expecting value: line 1 column 1 (char 0)"
+            },
+            "missing-checkout": {
+              "status": "PASS",
+              "input_sha": "f23fe233c32fcda9e61ec0523ce88edce8139203",
+              "rejection": "固定SHAの別checkoutが欠落: completed012"
+            },
+            "missing-record-file": {
+              "status": "PASS",
+              "input_sha": "e221e5a3b935e858115ad803cd7ae44270e88bd4",
+              "rejection": "git失敗: show e221e5a3b935e858115ad803cd7ae44270e88bd4:docs/verification/task-012/completed-audit.json\nfatal: path 'docs/verification/task-012/completed-audit.json' does not exist in 'e221e5a3b935e858115ad803cd7ae44270e88bd4'\n"
+            },
+            "state-child-actual-checkout": {
+              "status": "PASS",
+              "rejected_sha": "030c48ae1eae76b09222cda01ccaec526d5adab4",
+              "rejection": "012別checkoutのHEADが独立信頼基点と不一致"
+            },
+            "modified-fixed-checker": {
+              "status": "PASS",
+              "rejection": "012別checkoutの当時コード/検査器/期待値が改変"
+            },
+            "unavailable-trust-record": {
+              "status": "PASS",
+              "rejection": "git失敗: rev-parse --verify 9e647b3d6d0f91b061f7de974dbb5411937a2bb9^{commit}\nfatal: Needed a single revision\n"
+            }
+          },
+          "elapsed_seconds": 5.003
+        },
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "expected016_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+          "expected016_tree": "02105ab24ef39a2acf7405274e040d8cefaa399b",
+          "results": {
+            "completed-scope": {
+              "status": "PASS",
+              "start_sha": "cc86765d7b5bba158dca8b828a626aad98610f12",
+              "execution_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "completed_tree": "02105ab24ef39a2acf7405274e040d8cefaa399b",
+              "changed_files": [
+                ".github/workflows/region2-village-connections.yml",
+                "docs/decision-log.md",
+                "docs/tasks/016-fix-audit-review.md",
+                "docs/verification/task-009/assertion-map.md",
+                "docs/verification/task-016/assertion-correspondence.json",
+                "docs/verification/task-016/assets.log",
+                "docs/verification/task-016/before/f1.json",
+                "docs/verification/task-016/before/f1.log",
+                "docs/verification/task-016/before/f2.json",
+                "docs/verification/task-016/before/f2.log",
+                "docs/verification/task-016/f2-local/counter-back-npc-positive.json",
+                "docs/verification/task-016/f2-local/counter-back-npc-positive.log",
+                "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.json",
+                "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.log",
+                "docs/verification/task-016/f2-local/counter-customer-route-blocked.json",
+                "docs/verification/task-016/f2-local/counter-customer-route-blocked.log",
+                "docs/verification/task-016/import.json",
+                "docs/verification/task-016/import.log",
+                "docs/verification/task-016/plan.md",
+                "tools/check_region2_village_regression.gd",
+                "tools/check_task016_fixed_anchor.py",
+                "tools/check_task016_scope.py",
+                "tools/test_task009_lifecycle.py",
+                "tools/test_task016_fixed_anchor.py"
+              ],
+              "preserved_paths": 5141,
+              "failures": []
+            },
+            "state-only": {
+              "status": "PASS",
+              "input_sha": "3a1e08b309cdbebf95cc956751f85eaa48892c5d",
+              "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+            },
+            "new-request": {
+              "status": "PASS",
+              "input_sha": "7233a43e8bc5602d7f7f64ecbdee7676eab5abee",
+              "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+            },
+            "state-and-request": {
+              "status": "PASS",
+              "input_sha": "9033dcc963abf0866435a01cee39ad66677cf853",
+              "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+            },
+            "future-other-scope": {
+              "status": "PASS",
+              "input_sha": "96b3645e338cad99826262f8436a4eaea35f0611",
+              "audited_sha": "6706397e2674ffa382852e0f33ce23edf5c76634"
+            },
+            "broken-completed-scope": {
+              "status": "PASS",
+              "rejected_audit": {
+                "status": "FAIL",
+                "start_sha": "cc86765d7b5bba158dca8b828a626aad98610f12",
+                "execution_sha": "1775c3ca69aa8978a042bfe2fdf0cbcf66919b25",
+                "completed_tree": "625d6b885f6a8c0bbd59f1ff9d8967e34e120d0b",
+                "changed_files": [
+                  ".github/workflows/region2-village-connections.yml",
+                  "docs/decision-log.md",
+                  "docs/tasks/016-fix-audit-review.md",
+                  "docs/verification/task-009/assertion-map.md",
+                  "docs/verification/task-016/assertion-correspondence.json",
+                  "docs/verification/task-016/assets.log",
+                  "docs/verification/task-016/before/f1.json",
+                  "docs/verification/task-016/before/f1.log",
+                  "docs/verification/task-016/before/f2.json",
+                  "docs/verification/task-016/before/f2.log",
+                  "docs/verification/task-016/f2-local/counter-back-npc-positive.json",
+                  "docs/verification/task-016/f2-local/counter-back-npc-positive.log",
+                  "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.json",
+                  "docs/verification/task-016/f2-local/counter-back-occupancy-ignored.log",
+                  "docs/verification/task-016/f2-local/counter-customer-route-blocked.json",
+                  "docs/verification/task-016/f2-local/counter-customer-route-blocked.log",
+                  "docs/verification/task-016/import.json",
+                  "docs/verification/task-016/import.log",
+                  "docs/verification/task-016/plan.md",
+                  "scripts/game/game_session.gd",
+                  "tools/check_region2_village_regression.gd",
+                  "tools/check_task016_fixed_anchor.py",
+                  "tools/check_task016_scope.py",
+                  "tools/test_task009_lifecycle.py",
+                  "tools/test_task016_fixed_anchor.py"
+                ],
+                "preserved_paths": 5140,
+                "failures": [
+                  "scripts/game/game_session.gd"
+                ]
+              }
+            },
+            "state-child-manifest-workflow-cli-checkout": {
+              "status": "PASS",
+              "input_sha": "e28a8ee5cd29dd6ef2983c4f3b58011768945adc",
+              "cli_sha": "75416b0bf6a5b5be43da2d563477113f07c30139",
+              "checkout_sha": "75416b0bf6a5b5be43da2d563477113f07c30139",
+              "rejection": "016 CLIの固定SHAが独立定数と不一致"
+            },
+            "wrong-manifest-sha": {
+              "status": "PASS",
+              "input_sha": "407527841e24da29fdd8bba228e71cadbf67f55b",
+              "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "016完成記録の固定SHA/開始点が独立定数と不一致"
+            },
+            "wrong-manifest-tree": {
+              "status": "PASS",
+              "input_sha": "678b8ccbea1ec14dec187111c87785443bfc6905",
+              "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "016完成記録のtreeが独立定数と不一致"
+            },
+            "wrong-manifest-start": {
+              "status": "PASS",
+              "input_sha": "f25fa0b62071bb6db6d55482f50b9abade669013",
+              "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "016完成記録の固定SHA/開始点が独立定数と不一致"
+            },
+            "wrong-workflow-sha": {
+              "status": "PASS",
+              "input_sha": "658862318550a85ef79126efa577947f090ccb50",
+              "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "016 workflowの固定完全SHA不一致"
+            },
+            "wrong-workflow-checkout": {
+              "status": "PASS",
+              "input_sha": "2b0914a2af09f2f992248e5d4777deb7908eaea0",
+              "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "016の固定別checkout欠損"
+            },
+            "missing-workflow-checkout": {
+              "status": "PASS",
+              "input_sha": "175b6b42a88d81ff5fc1cbbc5b4fe4983d3fef64",
+              "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "016の固定別checkout欠損"
+            },
+            "missing-record-fields": {
+              "status": "PASS",
+              "input_sha": "1b24851a58e15108aff4fdb2d68b3f78709b45eb",
+              "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "'completed_sha'"
+            },
+            "invalid-record-json": {
+              "status": "PASS",
+              "input_sha": "3aa4426094cf4c5fe4f576b754d538cb04b70e7c",
+              "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "Expecting value: line 1 column 1 (char 0)"
+            },
+            "malformed-cli-sha": {
+              "status": "PASS",
+              "input_sha": "e3a854690ffd6bed90d1c930072d7b315083b456",
+              "cli_sha": "HEAD",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "016 CLIの固定SHAが独立定数と不一致"
+            },
+            "nonexistent-cli-sha": {
+              "status": "PASS",
+              "input_sha": "e3a854690ffd6bed90d1c930072d7b315083b456",
+              "cli_sha": "0000000000000000000000000000000000000000",
+              "checkout_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "rejection": "016 CLIの固定SHAが独立定数と不一致"
+            },
+            "state-child-actual-checkout": {
+              "status": "PASS",
+              "input_sha": "e3a854690ffd6bed90d1c930072d7b315083b456",
+              "cli_sha": "6706397e2674ffa382852e0f33ce23edf5c76634",
+              "checkout_sha": "75416b0bf6a5b5be43da2d563477113f07c30139",
+              "rejection": "016固定checkoutのHEAD不一致"
+            },
+            "missing-record-file": {
+              "status": "PASS",
+              "input_sha": "f99c586b5ba8ce12aba0f725dbdf0849cc6c0939",
+              "rejection": "git失敗: show f99c586b5ba8ce12aba0f725dbdf0849cc6c0939:docs/verification/task-016/completed-audit.json\nfatal: path 'docs/verification/task-016/completed-audit.json' does not exist in 'f99c586b5ba8ce12aba0f725dbdf0849cc6c0939'\n"
+            },
+            "missing-actual-checkout": {
+              "status": "PASS",
+              "input_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+              "rejection": "[Errno 2] No such file or directory: PosixPath('/tmp/task016-scope-hqrqrpsl/missing')"
+            }
+          }
+        },
+        {
+          "status": "PASS",
+          "start_sha": "b9024b8379ea08070fa6b4f61149b257e25277e6",
+          "fixed_006_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "parent_registration_sha": "152cdb18228f377adb2f25e868a59d9649f597e4",
+          "execution_sha": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+          "worktree": false,
+          "changed_files": [
+            ".github/workflows/region2-village-connections.yml",
+            "AGENTS.md",
+            "docs/decision-log.md",
+            "docs/tasks/009-test-lifecycle.md",
+            "docs/tasks/reports/009-test-lifecycle.md",
+            "docs/verification/task-009/assertion-map.json",
+            "docs/verification/task-009/assertion-map.md",
+            "docs/verification/task-009/assets-strict.log",
+            "docs/verification/task-009/baseline-connection-summary.json",
+            "docs/verification/task-009/baseline-scope-checks.json",
+            "docs/verification/task-009/changed-files.txt",
+            "docs/verification/task-009/ci/4a-all-checks.json",
+            "docs/verification/task-009/ci/4a-pr-lifecycle.json",
+            "docs/verification/task-009/ci/4a-push-jobs.json",
+            "docs/verification/task-009/ci/4a-runtime/artifact.json",
+            "docs/verification/task-009/ci/4a-runtime/regression-summary.json",
+            "docs/verification/task-009/ci/4a-runtime/restart-0.json",
+            "docs/verification/task-009/ci/4a-runtime/restart-1.json",
+            "docs/verification/task-009/ci/4a-runtime/restart-2.json",
+            "docs/verification/task-009/ci/4a-runtime/restart-3.json",
+            "docs/verification/task-009/ci/4a-runtime/restart-4.json",
+            "docs/verification/task-009/ci/4a-runtime/runtime-checks.json",
+            "docs/verification/task-009/ci/7b-all-checks.json",
+            "docs/verification/task-009/ci/842-negative-failure.log",
+            "docs/verification/task-009/ci/d3-all-checks.json",
+            "docs/verification/task-009/ci/d3-push-jobs.json",
+            "docs/verification/task-009/ci/main-all-checks.json",
+            "docs/verification/task-009/ci/main-import-before-cache-clean.log",
+            "docs/verification/task-009/ci/main-import.log",
+            "docs/verification/task-009/ci/main-jobs.json",
+            "docs/verification/task-009/ci/main-runtime/artifact.json",
+            "docs/verification/task-009/ci/main-runtime/regression-summary.json",
+            "docs/verification/task-009/ci/main-runtime/restart-0.json",
+            "docs/verification/task-009/ci/main-runtime/restart-1.json",
+            "docs/verification/task-009/ci/main-runtime/restart-2.json",
+            "docs/verification/task-009/ci/main-runtime/restart-3.json",
+            "docs/verification/task-009/ci/main-runtime/restart-4.json",
+            "docs/verification/task-009/ci/main-runtime/runtime-checks.json",
+            "docs/verification/task-009/ci/main-scope-checks.json",
+            "docs/verification/task-009/continuing-contract.json",
+            "docs/verification/task-009/fixed-details.log",
+            "docs/verification/task-009/fixed-execution.log",
+            "docs/verification/task-009/fixed-import.log",
+            "docs/verification/task-009/fixed-journey.log",
+            "docs/verification/task-009/fixed-lifecycle.log",
+            "docs/verification/task-009/fixed-render/details/01-west-arch-under.png",
+            "docs/verification/task-009/fixed-render/details/02-east-arch-under.png",
+            "docs/verification/task-009/fixed-render/details/03-room-1-high-front-wall.png",
+            "docs/verification/task-009/fixed-render/details/03-room-2-high-front-wall.png",
+            "docs/verification/task-009/fixed-render/details/03-room-3-high-front-wall.png",
+            "docs/verification/task-009/fixed-render/details/03-room-4-high-front-wall.png",
+            "docs/verification/task-009/fixed-render/details/checks.json",
+            "docs/verification/task-009/fixed-render/details/execution.log",
+            "docs/verification/task-009/fixed-render/details/lifecycle-summary.json",
+            "docs/verification/task-009/fixed-render/journey/01-port-start.png",
+            "docs/verification/task-009/fixed-render/journey/02-world-village-entrance.png",
+            "docs/verification/task-009/fixed-render/journey/03-west-landing.png",
+            "docs/verification/task-009/fixed-render/journey/04-room-0-entrance.png",
+            "docs/verification/task-009/fixed-render/journey/04-room-1-entrance.png",
+            "docs/verification/task-009/fixed-render/journey/04-room-2-entrance.png",
+            "docs/verification/task-009/fixed-render/journey/04-room-3-entrance.png",
+            "docs/verification/task-009/fixed-render/journey/04-room-4-entrance.png",
+            "docs/verification/task-009/fixed-render/journey/05-room-0-front.png",
+            "docs/verification/task-009/fixed-render/journey/05-room-1-front.png",
+            "docs/verification/task-009/fixed-render/journey/05-room-2-front.png",
+            "docs/verification/task-009/fixed-render/journey/05-room-3-front.png",
+            "docs/verification/task-009/fixed-render/journey/05-room-4-front.png",
+            "docs/verification/task-009/fixed-render/journey/06-room-0-behind.png",
+            "docs/verification/task-009/fixed-render/journey/06-room-1-behind.png",
+            "docs/verification/task-009/fixed-render/journey/06-room-2-behind.png",
+            "docs/verification/task-009/fixed-render/journey/06-room-3-behind.png",
+            "docs/verification/task-009/fixed-render/journey/06-room-4-behind.png",
+            "docs/verification/task-009/fixed-render/journey/07-room-1-return.png",
+            "docs/verification/task-009/fixed-render/journey/07-room-2-return.png",
+            "docs/verification/task-009/fixed-render/journey/07-room-3-return.png",
+            "docs/verification/task-009/fixed-render/journey/07-room-4-return.png",
+            "docs/verification/task-009/fixed-render/journey/08-east-outside.png",
+            "docs/verification/task-009/fixed-render/journey/09-east-landing-camera-edge.png",
+            "docs/verification/task-009/fixed-render/journey/10-menu-restored.png",
+            "docs/verification/task-009/fixed-render/journey/11-port-returned.png",
+            "docs/verification/task-009/fixed-render/journey/12-return-destinations.png",
+            "docs/verification/task-009/fixed-render/journey/13-returned-to-village.png",
+            "docs/verification/task-009/fixed-render/journey/checks.json",
+            "docs/verification/task-009/fixed-render/journey/execution.log",
+            "docs/verification/task-009/fixed-render/journey/lifecycle-summary.json",
+            "docs/verification/task-009/fixed-render/restart-0/01-restart-room-0.png",
+            "docs/verification/task-009/fixed-render/restart-0/02-port-after-restart.png",
+            "docs/verification/task-009/fixed-render/restart-0/03-position-relocation-notice.png",
+            "docs/verification/task-009/fixed-render/restart-0/checks.json",
+            "docs/verification/task-009/fixed-render/restart-0/execution.log",
+            "docs/verification/task-009/fixed-render/restart-0/lifecycle-summary.json",
+            "docs/verification/task-009/fixed-render/restart-1/01-restart-room-1.png",
+            "docs/verification/task-009/fixed-render/restart-1/02-port-after-restart.png",
+            "docs/verification/task-009/fixed-render/restart-1/03-position-relocation-notice.png",
+            "docs/verification/task-009/fixed-render/restart-1/checks.json",
+            "docs/verification/task-009/fixed-render/restart-1/execution.log",
+            "docs/verification/task-009/fixed-render/restart-1/lifecycle-summary.json",
+            "docs/verification/task-009/fixed-render/restart-2/01-restart-room-2.png",
+            "docs/verification/task-009/fixed-render/restart-2/02-port-after-restart.png",
+            "docs/verification/task-009/fixed-render/restart-2/03-position-relocation-notice.png",
+            "docs/verification/task-009/fixed-render/restart-2/checks.json",
+            "docs/verification/task-009/fixed-render/restart-2/execution.log",
+            "docs/verification/task-009/fixed-render/restart-2/lifecycle-summary.json",
+            "docs/verification/task-009/fixed-render/restart-3/01-restart-room-3.png",
+            "docs/verification/task-009/fixed-render/restart-3/02-port-after-restart.png",
+            "docs/verification/task-009/fixed-render/restart-3/03-position-relocation-notice.png",
+            "docs/verification/task-009/fixed-render/restart-3/checks.json",
+            "docs/verification/task-009/fixed-render/restart-3/execution.log",
+            "docs/verification/task-009/fixed-render/restart-3/lifecycle-summary.json",
+            "docs/verification/task-009/fixed-render/restart-4/01-restart-room-4.png",
+            "docs/verification/task-009/fixed-render/restart-4/02-port-after-restart.png",
+            "docs/verification/task-009/fixed-render/restart-4/03-position-relocation-notice.png",
+            "docs/verification/task-009/fixed-render/restart-4/checks.json",
+            "docs/verification/task-009/fixed-render/restart-4/execution.log",
+            "docs/verification/task-009/fixed-render/restart-4/lifecycle-summary.json",
+            "docs/verification/task-009/fixed-restart-0.log",
+            "docs/verification/task-009/fixed-restart-1.log",
+            "docs/verification/task-009/fixed-restart-2.log",
+            "docs/verification/task-009/fixed-restart-3.log",
+            "docs/verification/task-009/fixed-restart-4.log",
+            "docs/verification/task-009/fixed/acceptance-summary.json",
+            "docs/verification/task-009/fixed/ci-927cd60.json",
+            "docs/verification/task-009/fixed/ci-cbae42a.json",
+            "docs/verification/task-009/fixed/ci-report37b.json",
+            "docs/verification/task-009/fixed/ci-start.json",
+            "docs/verification/task-009/fixed/comparison-sources.json",
+            "docs/verification/task-009/fixed/connection-summary.json",
+            "docs/verification/task-009/fixed/execution.log",
+            "docs/verification/task-009/fixed/import-8ac824f.log",
+            "docs/verification/task-009/fixed/import-main24bd.log",
+            "docs/verification/task-009/fixed/import-main37b.log",
+            "docs/verification/task-009/fixed/import-upstream.log",
+            "docs/verification/task-009/fixed/lifecycle-summary.json",
+            "docs/verification/task-009/fixed/locked-results-8ac824f.json",
+            "docs/verification/task-009/fixed/locked-results-after-upstream.json",
+            "docs/verification/task-009/fixed/main-integration37b.json",
+            "docs/verification/task-009/fixed/native-details.log",
+            "docs/verification/task-009/fixed/native-evidence-index.json",
+            "docs/verification/task-009/fixed/native-final-journey.log",
+            "docs/verification/task-009/fixed/native-final-summary.json",
+            "docs/verification/task-009/fixed/native-journey.log",
+            "docs/verification/task-009/fixed/native-restart-0.log",
+            "docs/verification/task-009/fixed/native-restart-1.log",
+            "docs/verification/task-009/fixed/native-restart-2.log",
+            "docs/verification/task-009/fixed/native-restart-3.log",
+            "docs/verification/task-009/fixed/native-restart-4.log",
+            "docs/verification/task-009/fixed/native-restarts-summary.json",
+            "docs/verification/task-009/fixed/original-pc-end-checks.json",
+            "docs/verification/task-009/fixed/preservation-checks.json",
+            "docs/verification/task-009/fixed/preservation-report37b.json",
+            "docs/verification/task-009/fixed/restart-0.json",
+            "docs/verification/task-009/fixed/restart-0.log",
+            "docs/verification/task-009/fixed/restart-1.json",
+            "docs/verification/task-009/fixed/restart-1.log",
+            "docs/verification/task-009/fixed/restart-2.json",
+            "docs/verification/task-009/fixed/restart-2.log",
+            "docs/verification/task-009/fixed/restart-3.json",
+            "docs/verification/task-009/fixed/restart-3.log",
+            "docs/verification/task-009/fixed/restart-4.json",
+            "docs/verification/task-009/fixed/restart-4.log",
+            "docs/verification/task-009/fixed/runtime-checks.json",
+            "docs/verification/task-009/fixed/runtime-checks.log",
+            "docs/verification/task-009/fixed/saved-inputs-index.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_0_0.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_0_1.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_0_2.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_0_3.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_1_0.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_1_1.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_1_2.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_1_3.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_2_0.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_2_1.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_2_2.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_2_3.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_3_0.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_3_1.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_3_2.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_3_3.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_4_0.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_4_1.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_4_2.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_4_3.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_growth_0.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_growth_1.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_growth_2.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_growth_3.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_growth_4.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_port-start.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_relocation_0.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_relocation_1.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_relocation_2.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_relocation_3.json",
+            "docs/verification/task-009/fixed/saved-inputs/village006_relocation_4.json",
+            "docs/verification/task-009/fixed/scope-checks.json",
+            "docs/verification/task-009/fixed/scope-report37b.json",
+            "docs/verification/task-009/fixed/start-manifest.json",
+            "docs/verification/task-009/fixed/upstream-batch3-preservation.json",
+            "docs/verification/task-009/fixed/upstream-preservation.json",
+            "docs/verification/task-009/latest-details.log",
+            "docs/verification/task-009/latest-execution.log",
+            "docs/verification/task-009/latest-import.log",
+            "docs/verification/task-009/latest-journey.log",
+            "docs/verification/task-009/latest-restart-0.log",
+            "docs/verification/task-009/latest-restart-1.log",
+            "docs/verification/task-009/latest-restart-2.log",
+            "docs/verification/task-009/latest-restart-3.log",
+            "docs/verification/task-009/latest-restart-4.log",
+            "docs/verification/task-009/latest/details/01-west-arch-under.png",
+            "docs/verification/task-009/latest/details/02-east-arch-under.png",
+            "docs/verification/task-009/latest/details/03-room-1-high-front-wall.png",
+            "docs/verification/task-009/latest/details/03-room-2-high-front-wall.png",
+            "docs/verification/task-009/latest/details/03-room-3-high-front-wall.png",
+            "docs/verification/task-009/latest/details/03-room-4-high-front-wall.png",
+            "docs/verification/task-009/latest/details/checks.json",
+            "docs/verification/task-009/latest/details/execution.log",
+            "docs/verification/task-009/latest/details/regression-summary.json",
+            "docs/verification/task-009/latest/journey/01-port-start.png",
+            "docs/verification/task-009/latest/journey/02-world-village-entrance.png",
+            "docs/verification/task-009/latest/journey/03-west-landing.png",
+            "docs/verification/task-009/latest/journey/04-room-0-entrance.png",
+            "docs/verification/task-009/latest/journey/04-room-1-entrance.png",
+            "docs/verification/task-009/latest/journey/04-room-2-entrance.png",
+            "docs/verification/task-009/latest/journey/04-room-3-entrance.png",
+            "docs/verification/task-009/latest/journey/04-room-4-entrance.png",
+            "docs/verification/task-009/latest/journey/05-room-0-front.png",
+            "docs/verification/task-009/latest/journey/05-room-1-front.png",
+            "docs/verification/task-009/latest/journey/05-room-2-front.png",
+            "docs/verification/task-009/latest/journey/05-room-3-front.png",
+            "docs/verification/task-009/latest/journey/05-room-4-front.png",
+            "docs/verification/task-009/latest/journey/06-room-0-behind.png",
+            "docs/verification/task-009/latest/journey/06-room-1-behind.png",
+            "docs/verification/task-009/latest/journey/06-room-2-behind.png",
+            "docs/verification/task-009/latest/journey/06-room-3-behind.png",
+            "docs/verification/task-009/latest/journey/06-room-4-behind.png",
+            "docs/verification/task-009/latest/journey/07-room-1-return.png",
+            "docs/verification/task-009/latest/journey/07-room-2-return.png",
+            "docs/verification/task-009/latest/journey/07-room-3-return.png",
+            "docs/verification/task-009/latest/journey/07-room-4-return.png",
+            "docs/verification/task-009/latest/journey/08-east-outside.png",
+            "docs/verification/task-009/latest/journey/09-east-landing-camera-edge.png",
+            "docs/verification/task-009/latest/journey/10-menu-restored.png",
+            "docs/verification/task-009/latest/journey/11-port-returned.png",
+            "docs/verification/task-009/latest/journey/12-return-destinations.png",
+            "docs/verification/task-009/latest/journey/13-returned-to-village.png",
+            "docs/verification/task-009/latest/journey/checks.json",
+            "docs/verification/task-009/latest/journey/execution.log",
+            "docs/verification/task-009/latest/journey/regression-summary.json",
+            "docs/verification/task-009/latest/regression-summary.json",
+            "docs/verification/task-009/latest/restart-0.json",
+            "docs/verification/task-009/latest/restart-0.log",
+            "docs/verification/task-009/latest/restart-0/01-restart-room-0.png",
+            "docs/verification/task-009/latest/restart-0/02-port-after-restart.png",
+            "docs/verification/task-009/latest/restart-0/03-position-relocation-notice.png",
+            "docs/verification/task-009/latest/restart-0/checks.json",
+            "docs/verification/task-009/latest/restart-0/execution.log",
+            "docs/verification/task-009/latest/restart-0/regression-summary.json",
+            "docs/verification/task-009/latest/restart-1.json",
+            "docs/verification/task-009/latest/restart-1.log",
+            "docs/verification/task-009/latest/restart-1/01-restart-room-1.png",
+            "docs/verification/task-009/latest/restart-1/02-port-after-restart.png",
+            "docs/verification/task-009/latest/restart-1/03-position-relocation-notice.png",
+            "docs/verification/task-009/latest/restart-1/checks.json",
+            "docs/verification/task-009/latest/restart-1/execution.log",
+            "docs/verification/task-009/latest/restart-1/regression-summary.json",
+            "docs/verification/task-009/latest/restart-2.json",
+            "docs/verification/task-009/latest/restart-2.log",
+            "docs/verification/task-009/latest/restart-2/01-restart-room-2.png",
+            "docs/verification/task-009/latest/restart-2/02-port-after-restart.png",
+            "docs/verification/task-009/latest/restart-2/03-position-relocation-notice.png",
+            "docs/verification/task-009/latest/restart-2/checks.json",
+            "docs/verification/task-009/latest/restart-2/execution.log",
+            "docs/verification/task-009/latest/restart-2/regression-summary.json",
+            "docs/verification/task-009/latest/restart-3.json",
+            "docs/verification/task-009/latest/restart-3.log",
+            "docs/verification/task-009/latest/restart-3/01-restart-room-3.png",
+            "docs/verification/task-009/latest/restart-3/02-port-after-restart.png",
+            "docs/verification/task-009/latest/restart-3/03-position-relocation-notice.png",
+            "docs/verification/task-009/latest/restart-3/checks.json",
+            "docs/verification/task-009/latest/restart-3/execution.log",
+            "docs/verification/task-009/latest/restart-3/regression-summary.json",
+            "docs/verification/task-009/latest/restart-4.json",
+            "docs/verification/task-009/latest/restart-4.log",
+            "docs/verification/task-009/latest/restart-4/01-restart-room-4.png",
+            "docs/verification/task-009/latest/restart-4/02-port-after-restart.png",
+            "docs/verification/task-009/latest/restart-4/03-position-relocation-notice.png",
+            "docs/verification/task-009/latest/restart-4/checks.json",
+            "docs/verification/task-009/latest/restart-4/execution.log",
+            "docs/verification/task-009/latest/restart-4/regression-summary.json",
+            "docs/verification/task-009/latest/runtime-checks.json",
+            "docs/verification/task-009/latest/runtime-checks.log",
+            "docs/verification/task-009/latest/saved-inputs/village009_0_0.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_0_1.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_0_2.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_0_3.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_1_0.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_1_1.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_1_2.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_1_3.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_2_0.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_2_1.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_2_2.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_2_3.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_3_0.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_3_1.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_3_2.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_3_3.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_4_0.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_4_1.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_4_2.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_4_3.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_growth_0.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_growth_1.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_growth_2.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_growth_3.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_growth_4.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_port-start.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_relocation_0.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_relocation_1.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_relocation_2.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_relocation_3.json",
+            "docs/verification/task-009/latest/saved-inputs/village009_relocation_4.json",
+            "docs/verification/task-009/local-summary.json",
+            "docs/verification/task-009/locked-checks.log",
+            "docs/verification/task-009/locked-results.json",
+            "docs/verification/task-009/negative-cases/invalid-save-accepted.json",
+            "docs/verification/task-009/negative-cases/invalid-save-accepted.log",
+            "docs/verification/task-009/negative-cases/misconnected-door.json",
+            "docs/verification/task-009/negative-cases/misconnected-door.log",
+            "docs/verification/task-009/negative-cases/npc-floor-after.json",
+            "docs/verification/task-009/negative-cases/npc-floor-after.log",
+            "docs/verification/task-009/negative-cases/npc-floor-before.json",
+            "docs/verification/task-009/negative-cases/npc-floor-before.log",
+            "docs/verification/task-009/negative-cases/npc-occupancy-ignored.json",
+            "docs/verification/task-009/negative-cases/npc-occupancy-ignored.log",
+            "docs/verification/task-009/negative-cases/npc-probe-source.gd.txt",
+            "docs/verification/task-009/negative-cases/registered-request-and-npc-occupancy.json",
+            "docs/verification/task-009/negative-cases/registered-request-and-npc-occupancy.log",
+            "docs/verification/task-009/negative-cases/summary.json",
+            "docs/verification/task-009/negative-cases/wrong-fixed-sha.log",
+            "docs/verification/task-009/negative-execution.log",
+            "docs/verification/task-009/original-checks.json",
+            "docs/verification/task-009/preservation.json",
+            "docs/verification/task-009/scope-checks.json",
+            "docs/verification/task-009/scope-execution.log",
+            "tools/capture_task009_village_regression.gd",
+            "tools/capture_task009_village_regression.gd.uid",
+            "tools/check_region2_village_regression.gd",
+            "tools/check_region2_village_regression.gd.uid",
+            "tools/check_region2_village_regression.py",
+            "tools/check_task009_assertion_map.py",
+            "tools/check_task009_lifecycle.py",
+            "tools/check_task009_scope.py",
+            "tools/test_task009_lifecycle.py"
+          ],
+          "failures": [],
+          "preserved_paths": 2423,
+          "owner_originals": 334,
+          "historical_images": 54,
+          "historical_capture_images": 49,
+          "historical_inputs": 31
+        },
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "production_unchanged": true,
+          "results": {
+            "wrong-fixed-sha": {
+              "status": "PASS",
+              "exit_code": 1,
+              "failure": "固定006の完全SHAが承認済み完成点と一致しません",
+              "fixed_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce"
+            },
+            "npc-floor-before": {
+              "status": "PASS",
+              "exit_code": 0,
+              "checks": 39,
+              "failures": [],
+              "runtime_status": "PASS",
+              "npc_probe": [
+                {
+                  "adjacent_cell": [
+                    20,
+                    26
+                  ],
+                  "adjacent_reached": true,
+                  "move_kind": "moved",
+                  "npc_cell": [
+                    20,
+                    25
+                  ],
+                  "npc_present": false,
+                  "state_unchanged": false,
+                  "terrain": ".",
+                  "walkable": true
+                }
+              ],
+              "elapsed_seconds": 1.002,
+              "timeout_seconds": 180,
+              "parser_errors": false
+            },
+            "npc-floor-after": {
+              "status": "PASS",
+              "exit_code": 0,
+              "checks": 39,
+              "failures": [],
+              "runtime_status": "PASS",
+              "npc_probe": [
+                {
+                  "adjacent_cell": [
+                    20,
+                    26
+                  ],
+                  "adjacent_reached": true,
+                  "move_kind": "",
+                  "npc_cell": [
+                    20,
+                    25
+                  ],
+                  "npc_present": true,
+                  "state_unchanged": true,
+                  "terrain": ".",
+                  "walkable": false
+                }
+              ],
+              "elapsed_seconds": 1.003,
+              "timeout_seconds": 180,
+              "parser_errors": false
+            },
+            "registered-request-and-npc-occupancy": {
+              "status": "PASS",
+              "exit_code": 0,
+              "checks": 7656,
+              "failures": [],
+              "runtime_status": "PASS",
+              "npc_probe": null,
+              "elapsed_seconds": 21.368,
+              "timeout_seconds": 180,
+              "parser_errors": false,
+              "scope": "一時コピーのみ。007サービスは未実装・未検証"
+            },
+            "npc-occupancy-ignored": {
+              "status": "PASS",
+              "exit_code": 1,
+              "checks": 39,
+              "failures": [
+                "配置前通行可・配置後占有不可",
+                "実移動も配置前成功・配置後占有拒否で全状態保持"
+              ],
+              "runtime_status": "FAIL",
+              "npc_probe": [
+                {
+                  "adjacent_cell": [
+                    20,
+                    26
+                  ],
+                  "adjacent_reached": true,
+                  "move_kind": "moved",
+                  "npc_cell": [
+                    20,
+                    25
+                  ],
+                  "npc_present": true,
+                  "state_unchanged": false,
+                  "terrain": ".",
+                  "walkable": true
+                }
+              ],
+              "elapsed_seconds": 0.999,
+              "timeout_seconds": 180,
+              "parser_errors": false,
+              "mutation": "一時コピーだけNPC占有拒否を無効化"
+            },
+            "counter-back-npc-positive": {
+              "status": "PASS",
+              "exit_code": 0,
+              "checks": 7661,
+              "failures": [],
+              "runtime_status": "PASS",
+              "npc_probe": null,
+              "elapsed_seconds": 20.81,
+              "timeout_seconds": 180,
+              "parser_errors": false,
+              "occupied_targets": [
+                {
+                  "adjacent": [
+                    7,
+                    4
+                  ],
+                  "move_kind": "",
+                  "occupied_target": [
+                    8,
+                    4
+                  ],
+                  "room": 2,
+                  "state_unchanged": true
+                }
+              ],
+              "save_states": 20,
+              "scope": "元013と同じeventsだけの変更。隣接実歩行・占有拒否・全状態保持・20保存後退出。007サービスは未検証"
+            },
+            "counter-back-capture": {
+              "status": "PASS",
+              "exit_code": 0,
+              "checks": 132,
+              "images": 28,
+              "elapsed_seconds": 119.802,
+              "timeout_seconds": 180
+            },
+            "counter-back-occupancy-ignored": {
+              "status": "PASS",
+              "exit_code": 1,
+              "checks": 7663,
+              "failures": [
+                "全セルの固定地形とNPC占有を区別: 2 8,4",
+                "占有目標の足元通行を拒否",
+                "占有目標の実移動拒否と全状態保持"
+              ],
+              "runtime_status": "FAIL",
+              "npc_probe": null,
+              "elapsed_seconds": 20.617,
+              "timeout_seconds": 180,
+              "parser_errors": false
+            },
+            "counter-back-rejection-state-corrupted": {
+              "status": "PASS",
+              "exit_code": 1,
+              "checks": 7661,
+              "failures": [
+                "占有目標の実移動拒否と全状態保持"
+              ],
+              "runtime_status": "FAIL",
+              "npc_probe": null,
+              "elapsed_seconds": 21.179,
+              "timeout_seconds": 180,
+              "parser_errors": false
+            },
+            "counter-customer-route-blocked": {
+              "status": "PASS",
+              "exit_code": 1,
+              "checks": 7658,
+              "failures": [
+                "客側・出入口の必須目標をNPCで閉塞しない"
+              ],
+              "runtime_status": "FAIL",
+              "npc_probe": null,
+              "elapsed_seconds": 20.716,
+              "timeout_seconds": 180,
+              "parser_errors": false,
+              "blocked_cell": [
+                8,
+                6
+              ]
+            },
+            "counter-room-exit-blocked": {
+              "status": "PASS",
+              "exit_code": 1,
+              "checks": 7543,
+              "failures": [
+                "8本の扉リンク: { \"layer\": \"interior\", \"node\": \"region2_village\", \"room\": 2, \"cell\": [8, 11] }",
+                "本番移動経路: (8, 11)",
+                "保存復帰後の室外退出",
+                "本番移動経路: (3, 13)",
+                "保存復帰後に世界へ退出",
+                "20状態の読込後歩行・退出",
+                "本番移動経路: (8, 11)",
+                "保存復帰後の室外退出",
+                "本番移動経路: (3, 13)",
+                "保存復帰後に世界へ退出",
+                "20状態の読込後歩行・退出",
+                "本番移動経路: (8, 11)",
+                "保存復帰後の室外退出",
+                "本番移動経路: (3, 13)",
+                "保存復帰後に世界へ退出",
+                "20状態の読込後歩行・退出",
+                "本番移動経路: (8, 11)",
+                "保存復帰後の室外退出",
+                "本番移動経路: (3, 13)",
+                "保存復帰後に世界へ退出",
+                "20状態の読込後歩行・退出"
+              ],
+              "runtime_status": "FAIL",
+              "npc_probe": null,
+              "elapsed_seconds": 20.712,
+              "timeout_seconds": 180,
+              "parser_errors": false,
+              "blocked_cell": [
+                8,
+                11
+              ]
+            },
+            "misconnected-door": {
+              "status": "PASS",
+              "exit_code": 1,
+              "checks": 7662,
+              "failures": [
+                "村の世界接続・東西出口・8扉の固定対応",
+                "8本の扉リンク: { \"layer\": \"interior\", \"node\": \"region2_village\", \"room\": 0, \"cell\": [16, 8] }",
+                "同じ方向の継続で往復せず、採用済みの壁ならその場で止まる",
+                "既存の入口安全補正",
+                "補正以外の全状態不変",
+                "再保存後に補正通知が残らない",
+                "既存の入口安全補正",
+                "補正以外の全状態不変",
+                "再保存後に補正通知が残らない",
+                "既存の入口安全補正",
+                "補正以外の全状態不変",
+                "再保存後に補正通知が残らない",
+                "既存の入口安全補正",
+                "補正以外の全状態不変",
+                "再保存後に補正通知が残らない"
+              ],
+              "runtime_status": "FAIL",
+              "npc_probe": null,
+              "elapsed_seconds": 20.806,
+              "timeout_seconds": 180,
+              "parser_errors": false,
+              "mutation": "扉0の接続室1を2へ変更"
+            },
+            "invalid-save-accepted": {
+              "status": "PASS",
+              "exit_code": 1,
+              "checks": 7662,
+              "failures": [
+                "不正保存拒否と現在状態保持: { \"room\": 5 }",
+                "不正保存拒否と現在状態保持: { \"room\": 5 }",
+                "不正保存拒否と現在状態保持: { \"room\": 5 }",
+                "不正保存拒否と現在状態保持: { \"room\": 5 }",
+                "不正保存拒否と現在状態保持: { \"room\": 5 }"
+              ],
+              "runtime_status": "FAIL",
+              "npc_probe": null,
+              "elapsed_seconds": 20.806,
+              "timeout_seconds": 180,
+              "parser_errors": false,
+              "mutation": "不正room5のload_gameをtrueへ変更"
+            }
+          },
+          "method": "別コピーの正例と故障注入。負例は終了1・実assertion失敗を要求し、timeout/parse errorは成功扱いしない。"
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:18:47.8208906Z TASK009_ASSERTION_MAP_PASS: sites=135 unclassified=0 fixture=fixed006",
+        "2026-10-04T13:23:41.0065055Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "NPC正例の実描画用仮想画面を用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "最新コードを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "006・009・012の不変完成点と後続編集の反証",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "既存固定記録を信頼基点に012の全参照と実checkoutを独立照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "016完成点だけを固定範囲監査し後続編集と異常完成差分を反証",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "009完成点だけを独立範囲監査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "異常SHA・誤接続・不正保存受理を別コピーで拒否",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "監査証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194670"
+    },
+    {
+      "id": 111444194813,
+      "name": "normal-input-and-rendering (fixed, restart-3)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 163,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "runtime_checks": 7592,
+          "save_states": 20,
+          "restart_checks": [
+            9,
+            26,
+            37,
+            51,
+            43
+          ],
+          "scope_status": "PASS",
+          "exit_code": 0,
+          "elapsed_seconds": 24.344,
+          "process_timeout_seconds": 180
+        },
+        {
+          "status": "PASS",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "../fixed",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_region2_village_connections.gd",
+            "--",
+            "--restart",
+            "3"
+          ],
+          "exit_code": 0,
+          "errors": [],
+          "elapsed_seconds": 29.251,
+          "timeout_seconds": 180,
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "checks": 17,
+          "images": 3
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:18:26.1452694Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194813"
+    },
+    {
+      "id": 111444194823,
+      "name": "acceptance-and-regression (latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 116,
+      "reports": [],
+      "evidence": [
+        "2026-10-04T13:17:18.9275933Z TASK009_ASSERTION_MAP_PASS: sites=135 unclassified=0 fixture=fixed006",
+        "2026-10-04T13:17:35.6288747Z runtime-checks: PASS checks=7662 exit=0",
+        "2026-10-04T13:17:36.4347625Z restart-0: PASS checks=10 exit=0",
+        "2026-10-04T13:17:37.2401986Z restart-1: PASS checks=27 exit=0",
+        "2026-10-04T13:17:38.0455405Z restart-2: PASS checks=38 exit=0",
+        "2026-10-04T13:17:38.8503362Z restart-3: PASS checks=52 exit=0",
+        "2026-10-04T13:17:39.6539370Z restart-4: PASS checks=44 exit=0",
+        "2026-10-04T13:17:39.6835584Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "固定006の全範囲監査・7592項目・20保存・5別プロセス",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7
+        },
+        {
+          "name": "最新SHAの継続条件・20保存・5別プロセス",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194823"
+    },
+    {
+      "id": 111444194836,
+      "name": "normal-input-and-rendering (fixed, restart-1)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 119,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "runtime_checks": 7592,
+          "save_states": 20,
+          "restart_checks": [
+            9,
+            26,
+            37,
+            51,
+            43
+          ],
+          "scope_status": "PASS",
+          "exit_code": 0,
+          "elapsed_seconds": 17.127,
+          "process_timeout_seconds": 180
+        },
+        {
+          "status": "PASS",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "../fixed",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_region2_village_connections.gd",
+            "--",
+            "--restart",
+            "1"
+          ],
+          "exit_code": 0,
+          "errors": [],
+          "elapsed_seconds": 15.035,
+          "timeout_seconds": 180,
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "checks": 17,
+          "images": 3
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:17:43.5220427Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194836"
+    },
+    {
+      "id": 111444194838,
+      "name": "normal-input-and-rendering (latest, details)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 215,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "/home/runner/work/RPG-maker/RPG-maker/current",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_task009_village_regression.gd",
+            "--",
+            "--details"
+          ],
+          "exit_code": 0,
+          "checks": 34,
+          "images": 6,
+          "errors": [],
+          "elapsed_seconds": 80.614,
+          "timeout_seconds": 180
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:17:53.4513452Z runtime-checks: PASS checks=7662 exit=0",
+        "2026-10-04T13:17:54.4575248Z restart-0: PASS checks=10 exit=0",
+        "2026-10-04T13:17:55.5566217Z restart-1: PASS checks=27 exit=0",
+        "2026-10-04T13:17:56.6545023Z restart-2: PASS checks=38 exit=0",
+        "2026-10-04T13:17:57.7521413Z restart-3: PASS checks=52 exit=0",
+        "2026-10-04T13:17:58.7560212Z restart-4: PASS checks=44 exit=0",
+        "2026-10-04T13:19:19.5633495Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194838"
+    },
+    {
+      "id": 111444194843,
+      "name": "normal-input-and-rendering (fixed, restart-0)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 153,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "runtime_checks": 7592,
+          "save_states": 20,
+          "restart_checks": [
+            9,
+            26,
+            37,
+            51,
+            43
+          ],
+          "scope_status": "PASS",
+          "exit_code": 0,
+          "elapsed_seconds": 24.253,
+          "process_timeout_seconds": 180
+        },
+        {
+          "status": "PASS",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "../fixed",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_region2_village_connections.gd",
+            "--",
+            "--restart",
+            "0"
+          ],
+          "exit_code": 0,
+          "errors": [],
+          "elapsed_seconds": 17.833,
+          "timeout_seconds": 180,
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "checks": 17,
+          "images": 3
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:18:17.7469829Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194843"
+    },
+    {
+      "id": 111444194846,
+      "name": "normal-input-and-rendering (latest, journey)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 257,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "/home/runner/work/RPG-maker/RPG-maker/current",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_task009_village_regression.gd"
+          ],
+          "exit_code": 0,
+          "checks": 132,
+          "images": 28,
+          "errors": [],
+          "elapsed_seconds": 122.935,
+          "timeout_seconds": 180
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:18:29.2231308Z runtime-checks: PASS checks=7662 exit=0",
+        "2026-10-04T13:18:30.2225998Z restart-0: PASS checks=10 exit=0",
+        "2026-10-04T13:18:31.2235815Z restart-1: PASS checks=27 exit=0",
+        "2026-10-04T13:18:32.2221410Z restart-2: PASS checks=38 exit=0",
+        "2026-10-04T13:18:33.2205490Z restart-3: PASS checks=52 exit=0",
+        "2026-10-04T13:18:34.2181470Z restart-4: PASS checks=44 exit=0",
+        "2026-10-04T13:20:37.3388296Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194846"
+    },
+    {
+      "id": 111444194854,
+      "name": "normal-input-and-rendering (fixed, restart-2)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 121,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "runtime_checks": 7592,
+          "save_states": 20,
+          "restart_checks": [
+            9,
+            26,
+            37,
+            51,
+            43
+          ],
+          "scope_status": "PASS",
+          "exit_code": 0,
+          "elapsed_seconds": 16.611,
+          "process_timeout_seconds": 180
+        },
+        {
+          "status": "PASS",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "../fixed",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_region2_village_connections.gd",
+            "--",
+            "--restart",
+            "2"
+          ],
+          "exit_code": 0,
+          "errors": [],
+          "elapsed_seconds": 17.915,
+          "timeout_seconds": 180,
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "checks": 17,
+          "images": 3
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:17:44.7942622Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194854"
+    },
+    {
+      "id": 111444194860,
+      "name": "normal-input-and-rendering (fixed, journey)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 218,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "runtime_checks": 7592,
+          "save_states": 20,
+          "restart_checks": [
+            9,
+            26,
+            37,
+            51,
+            43
+          ],
+          "scope_status": "PASS",
+          "exit_code": 0,
+          "elapsed_seconds": 17.529,
+          "process_timeout_seconds": 180
+        },
+        {
+          "status": "PASS",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "../fixed",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_region2_village_connections.gd"
+          ],
+          "exit_code": 0,
+          "errors": [],
+          "elapsed_seconds": 104.578,
+          "timeout_seconds": 180,
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "checks": 137,
+          "images": 28
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:19:21.9445457Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194860"
+    },
+    {
+      "id": 111444194867,
+      "name": "normal-input-and-rendering (latest, restart-0)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 165,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "/home/runner/work/RPG-maker/RPG-maker/current",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_task009_village_regression.gd",
+            "--",
+            "--restart",
+            "0"
+          ],
+          "exit_code": 0,
+          "checks": 17,
+          "images": 3,
+          "errors": [],
+          "elapsed_seconds": 18.305,
+          "timeout_seconds": 180
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:19:44.8249107Z runtime-checks: PASS checks=7662 exit=0",
+        "2026-10-04T13:19:45.8295492Z restart-0: PASS checks=10 exit=0",
+        "2026-10-04T13:19:46.8313022Z restart-1: PASS checks=27 exit=0",
+        "2026-10-04T13:19:47.8339060Z restart-2: PASS checks=38 exit=0",
+        "2026-10-04T13:19:48.8392596Z restart-3: PASS checks=52 exit=0",
+        "2026-10-04T13:19:49.8421813Z restart-4: PASS checks=44 exit=0",
+        "2026-10-04T13:20:08.3650043Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194867"
+    },
+    {
+      "id": 111444194869,
+      "name": "normal-input-and-rendering (latest, restart-1)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 154,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "/home/runner/work/RPG-maker/RPG-maker/current",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_task009_village_regression.gd",
+            "--",
+            "--restart",
+            "1"
+          ],
+          "exit_code": 0,
+          "checks": 17,
+          "images": 3,
+          "errors": [],
+          "elapsed_seconds": 19.845,
+          "timeout_seconds": 180
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:17:52.7306185Z runtime-checks: PASS checks=7662 exit=0",
+        "2026-10-04T13:17:53.7305946Z restart-0: PASS checks=10 exit=0",
+        "2026-10-04T13:17:54.7306281Z restart-1: PASS checks=27 exit=0",
+        "2026-10-04T13:17:55.7314736Z restart-2: PASS checks=38 exit=0",
+        "2026-10-04T13:17:56.7315693Z restart-3: PASS checks=52 exit=0",
+        "2026-10-04T13:17:57.7317356Z restart-4: PASS checks=44 exit=0",
+        "2026-10-04T13:18:17.7649153Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194869"
+    },
+    {
+      "id": 111444194893,
+      "name": "normal-input-and-rendering (fixed, restart-4)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 122,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "runtime_checks": 7592,
+          "save_states": 20,
+          "restart_checks": [
+            9,
+            26,
+            37,
+            51,
+            43
+          ],
+          "scope_status": "PASS",
+          "exit_code": 0,
+          "elapsed_seconds": 15.831,
+          "process_timeout_seconds": 180
+        },
+        {
+          "status": "PASS",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "../fixed",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_region2_village_connections.gd",
+            "--",
+            "--restart",
+            "4"
+          ],
+          "exit_code": 0,
+          "errors": [],
+          "elapsed_seconds": 23.555,
+          "timeout_seconds": 180,
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "checks": 17,
+          "images": 3
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:18:15.7181080Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194893"
+    },
+    {
+      "id": 111444194898,
+      "name": "normal-input-and-rendering (latest, restart-2)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 138,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "/home/runner/work/RPG-maker/RPG-maker/current",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_task009_village_regression.gd",
+            "--",
+            "--restart",
+            "2"
+          ],
+          "exit_code": 0,
+          "checks": 17,
+          "images": 3,
+          "errors": [],
+          "elapsed_seconds": 22.145,
+          "timeout_seconds": 180
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:17:36.3448408Z runtime-checks: PASS checks=7662 exit=0",
+        "2026-10-04T13:17:37.0581418Z restart-0: PASS checks=10 exit=0",
+        "2026-10-04T13:17:37.7696341Z restart-1: PASS checks=27 exit=0",
+        "2026-10-04T13:17:38.5763624Z restart-2: PASS checks=38 exit=0",
+        "2026-10-04T13:17:39.3842164Z restart-3: PASS checks=52 exit=0",
+        "2026-10-04T13:17:40.1906996Z restart-4: PASS checks=44 exit=0",
+        "2026-10-04T13:18:02.4755606Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194898"
+    },
+    {
+      "id": 111444194904,
+      "name": "acceptance-and-regression (fixed)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 115,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "runtime_checks": 7592,
+          "save_states": 20,
+          "restart_checks": [
+            9,
+            26,
+            37,
+            51,
+            43
+          ],
+          "scope_status": "PASS",
+          "exit_code": 0,
+          "elapsed_seconds": 24.23,
+          "process_timeout_seconds": 180
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:19:39.8835419Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "固定006の全範囲監査・7592項目・20保存・5別プロセス",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新SHAの継続条件・20保存・5別プロセス",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194904"
+    },
+    {
+      "id": 111444194905,
+      "name": "normal-input-and-rendering (latest, restart-4)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 129,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "/home/runner/work/RPG-maker/RPG-maker/current",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_task009_village_regression.gd",
+            "--",
+            "--restart",
+            "4"
+          ],
+          "exit_code": 0,
+          "checks": 17,
+          "images": 3,
+          "errors": [],
+          "elapsed_seconds": 22.471,
+          "timeout_seconds": 180
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:17:27.2141419Z runtime-checks: PASS checks=7662 exit=0",
+        "2026-10-04T13:17:27.9199843Z restart-0: PASS checks=10 exit=0",
+        "2026-10-04T13:17:28.6268147Z restart-1: PASS checks=27 exit=0",
+        "2026-10-04T13:17:29.3329446Z restart-2: PASS checks=38 exit=0",
+        "2026-10-04T13:17:30.0384274Z restart-3: PASS checks=52 exit=0",
+        "2026-10-04T13:17:30.7433473Z restart-4: PASS checks=44 exit=0",
+        "2026-10-04T13:17:53.3446840Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194905"
+    },
+    {
+      "id": 111444194909,
+      "name": "normal-input-and-rendering (fixed, details)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 210,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "runtime_checks": 7592,
+          "save_states": 20,
+          "restart_checks": [
+            9,
+            26,
+            37,
+            51,
+            43
+          ],
+          "scope_status": "PASS",
+          "exit_code": 0,
+          "elapsed_seconds": 22.813,
+          "process_timeout_seconds": 180
+        },
+        {
+          "status": "PASS",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "../fixed",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_region2_village_connections.gd",
+            "--",
+            "--details"
+          ],
+          "exit_code": 0,
+          "errors": [],
+          "elapsed_seconds": 76.141,
+          "timeout_seconds": 180,
+          "execution_sha": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+          "checks": 34,
+          "images": 6
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:19:22.0955439Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194909"
+    },
+    {
+      "id": 111444194958,
+      "name": "normal-input-and-rendering (latest, restart-3)",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+      "checkout_sha_found": true,
+      "duration_seconds": 139,
+      "reports": [
+        {
+          "status": "PASS",
+          "execution_sha": "80908c34f619d3cbf55920dbcbb28720bf442aec",
+          "command": [
+            "xvfb-run",
+            "-a",
+            "../godot",
+            "--path",
+            "/home/runner/work/RPG-maker/RPG-maker/current",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_task009_village_regression.gd",
+            "--",
+            "--restart",
+            "3"
+          ],
+          "exit_code": 0,
+          "checks": 17,
+          "images": 3,
+          "errors": [],
+          "elapsed_seconds": 23.585,
+          "timeout_seconds": 180
+        }
+      ],
+      "evidence": [
+        "2026-10-04T13:17:36.4442811Z runtime-checks: PASS checks=7662 exit=0",
+        "2026-10-04T13:17:37.1574963Z restart-0: PASS checks=10 exit=0",
+        "2026-10-04T13:17:37.8673606Z restart-1: PASS checks=27 exit=0",
+        "2026-10-04T13:17:38.5777898Z restart-2: PASS checks=38 exit=0",
+        "2026-10-04T13:17:39.2885443Z restart-3: PASS checks=52 exit=0",
+        "2026-10-04T13:17:40.0154874Z restart-4: PASS checks=44 exit=0",
+        "2026-10-04T13:18:03.7352233Z 保護対象26件、一致26件。"
+      ],
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "実描画の仮想画面とソフトウェアドライバを用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "指定ハッシュのGodotを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "対象checkoutを600秒以内にインポート",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "固定版の通常保存を当時の全検査で用意",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "固定版の通常操作・画素検査を180秒で再実行",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "最新版の通常保存を全継続検査で用意",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "最新版の通常操作・画素検査を180秒で実行",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "保護照合",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "証拠を保存",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ],
+      "run_id": 37204986649,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37204986649/job/111444194958"
+    }
+  ]
+}

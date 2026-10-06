@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "execution_sha": "9f1a18892273ac06d9776d2ddf8dbcc1c6423453",
+  "trust_record_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+  "results": {
+    "approved-head": {
+      "status": "PASS",
+      "trust_record_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+      "completed_sha": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a",
+      "completed_tree": "1a128f883bd555653bd9eea3082c09b875c1f7e5",
+      "selection": {
+        "FIXED_006_SHA": "5f1c2ba231191b25b9b32a814b616a9f8d0a54ce",
+        "FIXED_009_SHA": "ce07fdada0466138260ab678c10fd78e61c0c63d",
+        "FIXED_012_SHA": "c327e7c439c9c8c8f1fd640e6cda6df7550fb26a"
+      }
+    },
+    "state-child-manifest-and-workflow-and-checkout": {
+      "status": "PASS",
+      "input_sha": "b67298b809060a28a66e6a6870a870f457b5c50e",
+      "rejection": "012 manifestが独立信頼基点の記録と不一致"
+    },
+    "state-child-manifest-only": {
+      "status": "PASS",
+      "input_sha": "275acfb64ec025d5661097283ebdff524085e610",
+      "rejection": "012 manifestが独立信頼基点の記録と不一致"
+    },
+    "state-child-workflow-and-checkout-only": {
+      "status": "PASS",
+      "input_sha": "e59be253c3bdec9251faf4ad64572f6485f75ebf",
+      "rejection": "独立期待値と固定選択が一致しない: FIXED_012_SHA"
+    },
+    "wrong-tree": {
+      "status": "PASS",
+      "input_sha": "e8f929245cf2261c22a8bf9d209738e5025ec095",
+      "rejection": "012 manifestが独立信頼基点の記録と不一致"
+    },
+    "malformed-sha": {
+      "status": "PASS",
+      "input_sha": "e46b0c8714fc4345b6f9002ee8c7eae65f18d241",
+      "rejection": "012 manifestが独立信頼基点の記録と不一致"
+    },
+    "nonexistent-sha": {
+      "status": "PASS",
+      "input_sha": "cd23fe385215653e4fed8e2e254309459de08eb0",
+      "rejection": "012 manifestが独立信頼基点の記録と不一致"
+    },
+    "missing-record-fields": {
+      "status": "PASS",
+      "input_sha": "a7432198dbbecbbb86c962da6ed893432e149c9a",
+      "rejection": "012 manifestが独立信頼基点の記録と不一致"
+    },
+    "invalid-record-json": {
+      "status": "PASS",
+      "input_sha": "6a63e9de6438bbbd7a09c87b6c6a04ee8a18a39a",
+      "rejection": "Expecting value: line 1 column 1 (char 0)"
+    },
+    "missing-checkout": {
+      "status": "PASS",
+      "input_sha": "86b5434524ae004e3be870ce7564a19de574d6c5",
+      "rejection": "固定SHAの別checkoutが欠落: completed012"
+    },
+    "missing-record-file": {
+      "status": "PASS",
+      "input_sha": "7cb252781bcbc6a9abff0753dbd44e73d9eca808",
+      "rejection": "git失敗: show 7cb252781bcbc6a9abff0753dbd44e73d9eca808:docs/verification/task-012/completed-audit.json\nfatal: path 'docs/verification/task-012/completed-audit.json' does not exist in '7cb252781bcbc6a9abff0753dbd44e73d9eca808'\n"
+    },
+    "state-child-actual-checkout": {
+      "status": "PASS",
+      "rejected_sha": "69efea2f59094fdfa370b9de7b5bc7092071db0c",
+      "rejection": "012別checkoutのHEADが独立信頼基点と不一致"
+    },
+    "modified-fixed-checker": {
+      "status": "PASS",
+      "rejection": "012別checkoutの当時コード/検査器/期待値が改変"
+    },
+    "unavailable-trust-record": {
+      "status": "PASS",
+      "rejection": "git失敗: rev-parse --verify 9e647b3d6d0f91b061f7de974dbb5411937a2bb9^{commit}\nfatal: Needed a single revision\n"
+    }
+  },
+  "elapsed_seconds": 7.175
+}

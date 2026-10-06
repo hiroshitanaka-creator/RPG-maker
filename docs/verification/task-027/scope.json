@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "baseline_sha": "791ec46e07bd4816bc14da3fc5e223318ac42c5f",
+  "implementation_sha": "477b4182204f10f4be2b19eee8f3ec08b08c5e6c",
+  "completed_sha": "d258908fbb0397e64d08780694786ef1855c4979",
+  "registration_sha": "8ae87d658fe04f4053ea2f258d973e0862530085",
+  "changed_files": [
+    "docs/decision-log.md",
+    "docs/region2-ruins-groundwork.md",
+    "docs/tasks/027-fix-ruins-regression.md",
+    "docs/tasks/reports/027-fix-ruins-regression.md",
+    "docs/verification/task-027/attempt-interrupted-walking/README.md",
+    "docs/verification/task-027/attempt-interrupted-walking/capture.json",
+    "docs/verification/task-027/attempt-interrupted-walking/capture.log",
+    "docs/verification/task-027/attempt-interrupted-walking/runtime.json",
+    "docs/verification/task-027/attempt-interrupted-walking/runtime.log",
+    "docs/verification/task-027/attempt-notification-count/battle_notification.json",
+    "docs/verification/task-027/attempt-notification-count/battle_notification.log",
+    "docs/verification/task-027/attempt-notification-count/battle_notification.patch",
+    "docs/verification/task-027/attempt-notification-count/import.log",
+    "docs/verification/task-027/preliminary/capture.json",
+    "docs/verification/task-027/preliminary/capture.log",
+    "docs/verification/task-027/preliminary/import.log",
+    "docs/verification/task-027/preliminary/runtime.json",
+    "docs/verification/task-027/preliminary/runtime.log",
+    "docs/verification/task-027/reproduction/runtime.json",
+    "docs/verification/task-027/reproduction/runtime.log",
+    "tools/capture_task011_ruins.gd",
+    "tools/check_task011.py",
+    "tools/check_task011_runtime.gd",
+    "tools/check_task027.py"
+  ],
+  "forbidden_changes": [],
+  "pre011_checks_changed": [],
+  "pre011_files_checked": 447,
+  "checker_sha256": {
+    "tools/capture_task011_ruins.gd": "8a3c7d289c234e5caf9be6ff86afe2f60b0ad7737bc00a770d7aaea3221b8cb3",
+    "tools/check_task011.py": "c5f37a4cdd581698d5effc667a6deb529270ddf7010ece8d02eecc07f15496ac",
+    "tools/check_task011_runtime.gd": "6670a09e3a000d13a16f3ef7533793e67ba88db13c82ac5f6f3cbf78a036e52a",
+    "tools/check_task027.py": "45f09a7793fd704ced551f647b2ed8adbfe0305eb245b73ffc97d06ff5a9b7c0"
+  }
+}

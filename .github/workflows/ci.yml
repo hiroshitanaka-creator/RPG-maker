@@ -230,6 +230,24 @@ jobs:
           if grep -E "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:" region2-village-backdrops.log; then exit 1; fi
           test "$(grep -c '^VILLAGE_RUNTIME_PASS:' region2-village-backdrops.log)" -eq 1
 
+      - name: 007完成版と最新の住人・宿・祠・通常操作を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          git fetch --no-tags --depth=1 origin 8694aad22ce8ceab74ac96c090360739c30d9983
+          git fetch --no-tags --depth=1 origin 776ad944723d21c1e250a1ee5fd56d35da42cfed
+          python -m pip install pillow numpy scipy
+          sudo apt-get update && sudo apt-get install -y xvfb mesa-vulkan-drivers
+          python tools/check_task007.py --completed 776ad944723d21c1e250a1ee5fd56d35da42cfed --godot ./godot
+
+      - name: 011遺跡の完成版と最新の通行・階段・保存・実描画を検査
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          git fetch --no-tags --depth=1 origin 0f781630fa75b620f06e5d71430979a1c5162ef4
+          git fetch --no-tags --depth=1 origin d258908fbb0397e64d08780694786ef1855c4979
+          git fetch --no-tags --depth=1 origin 8ae87d658fe04f4053ea2f258d973e0862530085
+          python tools/check_task011.py --completed d258908fbb0397e64d08780694786ef1855c4979 --godot ./godot
+          python tools/check_task011_ci_boundary.py --godot ./godot
+
       - name: 敵の行動予定と連戦の保存を検査
         if: steps.check.outputs.exists == 'true'
         run: |

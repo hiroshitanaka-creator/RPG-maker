@@ -1,0 +1,510 @@
+{
+  "completed_sha": "d258908fbb0397e64d08780694786ef1855c4979",
+  "registration_sha": "8ae87d658fe04f4053ea2f258d973e0862530085",
+  "latest_sha": "045423abc83f08a15690ed4e9cf32992a79910db",
+  "engine_version": "4.7.2.stable.official.ed1daf0bf",
+  "fixed": {
+    "status": "PASS",
+    "execution_sha": "d258908fbb0397e64d08780694786ef1855c4979",
+    "stage": true,
+    "results": {
+      "import": {
+        "status": "PASS",
+        "command": [
+          "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task011-checkout-byzgtthn/fixed",
+          "--editor",
+          "--import",
+          "--quit"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 38.038,
+        "timeout_seconds": 600
+      },
+      "assets": {
+        "status": "PASS",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "tools/check_task011_assets.py",
+          "--stage"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 30.753,
+        "timeout_seconds": 180
+      },
+      "runtime": {
+        "status": "PASS",
+        "command": [
+          "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/tmp/task011-checkout-byzgtthn/fixed",
+          "--script",
+          "res://tools/check_task011_runtime.gd",
+          "--",
+          "--stage"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 6.571,
+        "timeout_seconds": 120
+      },
+      "capture": {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--path",
+          "/tmp/task011-checkout-byzgtthn/fixed",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task011_ruins.gd"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 120.416,
+        "timeout_seconds": 180
+      }
+    }
+  },
+  "scope": {
+    "status": "PASS",
+    "base_sha": "0f781630fa75b620f06e5d71430979a1c5162ef4",
+    "completed_sha": "d258908fbb0397e64d08780694786ef1855c4979",
+    "files": [
+      "assets/backgrounds/region2_ruins.png",
+      "assets/interiors/region2_ruins_floor1.png",
+      "assets/interiors/region2_ruins_floor1_upper.png",
+      "assets/interiors/region2_ruins_floor2.png",
+      "assets/interiors/region2_ruins_floor2_upper.png",
+      "assets/interiors/region2_ruins_floor3.png",
+      "assets/interiors/region2_ruins_floor3_upper.png",
+      "assets/interiors/region2_ruins_floor4.png",
+      "assets/interiors/region2_ruins_floor4_upper.png",
+      "assets/monsters/ruins_cursed_beetle/idle.png",
+      "assets/monsters/ruins_sand_spirit/idle.png",
+      "assets/monsters/ruins_sandstone_colossus/idle.png",
+      "assets/monsters/ruins_sandstone_doll/idle.png",
+      "assets/monsters/ruins_tomb_hound/idle.png",
+      "assets/registry.json",
+      "assets/source_records/task011-enemies.json",
+      "assets/source_records/task011-ruins.json",
+      "docs/decision-log.md",
+      "docs/region2-ruins-groundwork.md",
+      "docs/tasks/011-ruins-dungeon-groundwork.md",
+      "docs/tasks/reports/011-ruins-dungeon-groundwork.md",
+      "docs/verification/task-011/README.md",
+      "docs/verification/task-011/attempt-8c21c8b/ci-failure.json",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/assets.log",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/capture.log",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/assets.json",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/battle-1.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/battle-2.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/battle-3.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/checks.json",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor1-behind.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor1-front.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor1-landing.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor1-walking.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor2-behind.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor2-front.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor2-landing.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor2-walking.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor3-behind.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor3-front.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor3-landing.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor3-walking.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor4-behind.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor4-front.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor4-landing.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/floor4-walking.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/stairs-1-to-2.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/stairs-2-to-1.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/stairs-2-to-3.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/stairs-3-to-2.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/stairs-3-to-4.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/images/stairs-4-to-3.png",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/evidence/runtime.json",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/import.log",
+      "docs/verification/task-011/attempt-8c21c8b/fixed/runtime.log",
+      "docs/verification/task-011/attempt-8c21c8b/github-assets.log",
+      "docs/verification/task-011/attempt-8c21c8b/latest/assets.log",
+      "docs/verification/task-011/attempt-8c21c8b/latest/capture.log",
+      "docs/verification/task-011/attempt-8c21c8b/latest/runtime.log",
+      "docs/verification/task-011/attempt-8c21c8b/summary.json",
+      "docs/verification/task-011/enemy-assets.png",
+      "docs/verification/task-011/floor1-overview.png",
+      "docs/verification/task-011/floor2-overview.png",
+      "docs/verification/task-011/floor3-overview.png",
+      "docs/verification/task-011/floor4-overview.png",
+      "docs/verification/task-011/latest/assets.json",
+      "docs/verification/task-011/latest/images/battle-1.png",
+      "docs/verification/task-011/latest/images/battle-2.png",
+      "docs/verification/task-011/latest/images/battle-3.png",
+      "docs/verification/task-011/latest/images/checks.json",
+      "docs/verification/task-011/latest/images/floor1-behind.png",
+      "docs/verification/task-011/latest/images/floor1-front.png",
+      "docs/verification/task-011/latest/images/floor1-landing.png",
+      "docs/verification/task-011/latest/images/floor1-walking.png",
+      "docs/verification/task-011/latest/images/floor2-behind.png",
+      "docs/verification/task-011/latest/images/floor2-front.png",
+      "docs/verification/task-011/latest/images/floor2-landing.png",
+      "docs/verification/task-011/latest/images/floor2-walking.png",
+      "docs/verification/task-011/latest/images/floor3-behind.png",
+      "docs/verification/task-011/latest/images/floor3-front.png",
+      "docs/verification/task-011/latest/images/floor3-landing.png",
+      "docs/verification/task-011/latest/images/floor3-walking.png",
+      "docs/verification/task-011/latest/images/floor4-behind.png",
+      "docs/verification/task-011/latest/images/floor4-front.png",
+      "docs/verification/task-011/latest/images/floor4-landing.png",
+      "docs/verification/task-011/latest/images/floor4-walking.png",
+      "docs/verification/task-011/latest/images/stairs-1-to-2.png",
+      "docs/verification/task-011/latest/images/stairs-2-to-1.png",
+      "docs/verification/task-011/latest/images/stairs-2-to-3.png",
+      "docs/verification/task-011/latest/images/stairs-3-to-2.png",
+      "docs/verification/task-011/latest/images/stairs-3-to-4.png",
+      "docs/verification/task-011/latest/images/stairs-4-to-3.png",
+      "docs/verification/task-011/latest/runtime.json",
+      "docs/verification/task-011/local-before-pin/baseline-R01-R08.log",
+      "docs/verification/task-011/local-before-pin/baseline-import.log",
+      "docs/verification/task-011/local-before-pin/context.json",
+      "docs/verification/task-011/local-before-pin/frozen.log",
+      "docs/verification/task-011/local-before-pin/latest-worktree-R01-R08.log",
+      "docs/verification/task-011/local-before-pin/latest-worktree-runtime.log",
+      "docs/verification/task-011/local-before-pin/strict-assets.log",
+      "docs/verification/task-011/measurements.json",
+      "docs/verification/task-011/measurements.png",
+      "docs/verification/task-011/visual-target-comparison.png",
+      "scripts/world/first_region.gd",
+      "scripts/world/first_region_presentation.gd",
+      "scripts/world/region2_ruins.gd",
+      "scripts/world/region2_ruins.gd.uid",
+      "tools/build_task011_review.py",
+      "tools/build_task011_ruins.py",
+      "tools/capture_task011_ruins.gd",
+      "tools/capture_task011_ruins.gd.uid",
+      "tools/check_task011.py",
+      "tools/check_task011_assets.py",
+      "tools/check_task011_runtime.gd",
+      "tools/check_task011_runtime.gd.uid",
+      "tools/task011_ruins_defs.py",
+      "world/region2_ruins.json"
+    ],
+    "new_assets": [
+      "assets/interiors/region2_ruins_floor1.png",
+      "assets/interiors/region2_ruins_floor1_upper.png",
+      "assets/interiors/region2_ruins_floor2.png",
+      "assets/interiors/region2_ruins_floor2_upper.png",
+      "assets/interiors/region2_ruins_floor3.png",
+      "assets/interiors/region2_ruins_floor3_upper.png",
+      "assets/interiors/region2_ruins_floor4.png",
+      "assets/interiors/region2_ruins_floor4_upper.png",
+      "assets/monsters/ruins_sandstone_doll/idle.png",
+      "assets/monsters/ruins_cursed_beetle/idle.png",
+      "assets/monsters/ruins_sand_spirit/idle.png",
+      "assets/monsters/ruins_tomb_hound/idle.png",
+      "assets/monsters/ruins_sandstone_colossus/idle.png",
+      "assets/backgrounds/region2_ruins.png"
+    ],
+    "existing_assets_and_places_unchanged": true
+  },
+  "latest": {
+    "status": "PASS",
+    "execution_sha": "045423abc83f08a15690ed4e9cf32992a79910db",
+    "stage": false,
+    "results": {
+      "assets": {
+        "status": "PASS",
+        "command": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "tools/check_task011_assets.py"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 3.324,
+        "timeout_seconds": 180
+      },
+      "runtime": {
+        "status": "PASS",
+        "command": [
+          "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          "/workspace/RPG-maker",
+          "--script",
+          "res://tools/check_task011_runtime.gd"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 6.743,
+        "timeout_seconds": 120
+      },
+      "capture": {
+        "status": "PASS",
+        "command": [
+          "xvfb-run",
+          "-a",
+          "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+          "--path",
+          "/workspace/RPG-maker",
+          "--rendering-method",
+          "mobile",
+          "--rendering-driver",
+          "vulkan",
+          "--audio-driver",
+          "Dummy",
+          "--script",
+          "res://tools/capture_task011_ruins.gd"
+        ],
+        "exit_code": 0,
+        "errors": [],
+        "elapsed_seconds": 120.221,
+        "timeout_seconds": 180
+      }
+    }
+  },
+  "notification_boundary": {
+    "execution_sha": "045423abc83f08a15690ed4e9cf32992a79910db",
+    "confirmation_state": true,
+    "checker_sha256": {
+      "check_task011_runtime.gd": "6670a09e3a000d13a16f3ef7533793e67ba88db13c82ac5f6f3cbf78a036e52a",
+      "capture_task011_ruins.gd": "22c78fc644ef78226312ae37fa40562d12080956ffded2f3f7cbbb64b312a3f8",
+      "check_task027.py": "45f09a7793fd704ced551f647b2ed8adbfe0305eb245b73ffc97d06ff5a9b7c0"
+    },
+    "cases": [
+      {
+        "case": "battle_notification",
+        "expected_accept": true,
+        "accepted": true,
+        "status": "PASS",
+        "runtime": {
+          "command": [
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--headless",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--script",
+            "res://tools/check_task011_runtime.gd"
+          ],
+          "exit_code": 0,
+          "timeout_seconds": 120,
+          "elapsed_seconds": 6.662,
+          "errors": []
+        },
+        "failures": 0,
+        "capture": {
+          "command": [
+            "xvfb-run",
+            "-a",
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--rendering-method",
+            "mobile",
+            "--rendering-driver",
+            "vulkan",
+            "--audio-driver",
+            "Dummy",
+            "--script",
+            "res://tools/capture_task011_ruins.gd"
+          ],
+          "exit_code": 0,
+          "timeout_seconds": 180,
+          "elapsed_seconds": 176.454,
+          "errors": []
+        },
+        "capture_encounter_returns": 309,
+        "stage_rejection": {
+          "command": [
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--headless",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--script",
+            "res://tools/check_task011_runtime.gd",
+            "--",
+            "--stage"
+          ],
+          "exit_code": 1,
+          "timeout_seconds": 120,
+          "elapsed_seconds": 7.227,
+          "errors": []
+        }
+      },
+      {
+        "case": "wrong_stair_destination",
+        "expected_accept": false,
+        "accepted": false,
+        "status": "PASS",
+        "runtime": {
+          "command": [
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--headless",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--script",
+            "res://tools/check_task011_runtime.gd"
+          ],
+          "exit_code": 1,
+          "timeout_seconds": 120,
+          "elapsed_seconds": 6.477,
+          "errors": []
+        },
+        "failures": 20
+      },
+      {
+        "case": "stationary_retransition",
+        "expected_accept": false,
+        "accepted": false,
+        "status": "PASS",
+        "runtime": {
+          "command": [
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--headless",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--script",
+            "res://tools/check_task011_runtime.gd"
+          ],
+          "exit_code": 1,
+          "timeout_seconds": 120,
+          "elapsed_seconds": 6.394,
+          "errors": []
+        },
+        "failures": 166
+      },
+      {
+        "case": "stair_inventory_damage",
+        "expected_accept": false,
+        "accepted": false,
+        "status": "PASS",
+        "runtime": {
+          "command": [
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--headless",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--script",
+            "res://tools/check_task011_runtime.gd"
+          ],
+          "exit_code": 1,
+          "timeout_seconds": 120,
+          "elapsed_seconds": 6.667,
+          "errors": []
+        },
+        "failures": 60
+      },
+      {
+        "case": "stair_progress_damage",
+        "expected_accept": false,
+        "accepted": false,
+        "status": "PASS",
+        "runtime": {
+          "command": [
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--headless",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--script",
+            "res://tools/check_task011_runtime.gd"
+          ],
+          "exit_code": 1,
+          "timeout_seconds": 120,
+          "elapsed_seconds": 6.288,
+          "errors": []
+        },
+        "failures": 60
+      },
+      {
+        "case": "stair_map_damage",
+        "expected_accept": false,
+        "accepted": false,
+        "status": "PASS",
+        "runtime": {
+          "command": [
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--headless",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--script",
+            "res://tools/check_task011_runtime.gd"
+          ],
+          "exit_code": 1,
+          "timeout_seconds": 120,
+          "elapsed_seconds": 6.382,
+          "errors": []
+        },
+        "failures": 60
+      },
+      {
+        "case": "invalid_notification",
+        "expected_accept": false,
+        "accepted": false,
+        "status": "PASS",
+        "runtime": {
+          "command": [
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--headless",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--script",
+            "res://tools/check_task011_runtime.gd"
+          ],
+          "exit_code": 1,
+          "timeout_seconds": 120,
+          "elapsed_seconds": 6.475,
+          "errors": []
+        },
+        "failures": 4411
+      },
+      {
+        "case": "battle_at_stair",
+        "expected_accept": false,
+        "accepted": false,
+        "status": "PASS",
+        "runtime": {
+          "command": [
+            "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+            "--headless",
+            "--path",
+            "/tmp/task027-fixtures-9ql7t3rv/checkout",
+            "--script",
+            "res://tools/check_task011_runtime.gd"
+          ],
+          "exit_code": 1,
+          "timeout_seconds": 120,
+          "elapsed_seconds": 6.382,
+          "errors": []
+        },
+        "failures": 60
+      }
+    ],
+    "import": {
+      "command": [
+        "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--path",
+        "/tmp/task027-fixtures-9ql7t3rv/checkout",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "exit_code": 0,
+      "timeout_seconds": 600,
+      "elapsed_seconds": 7.26,
+      "errors": []
+    },
+    "status": "PASS"
+  },
+  "status": "PASS"
+}

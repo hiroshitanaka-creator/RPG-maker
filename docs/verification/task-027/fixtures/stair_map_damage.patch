@@ -1,0 +1,11 @@
+diff --git a/scripts/world/region2_ruins.gd b/scripts/world/region2_ruins.gd
+index c942a22..619365d 100644
+--- a/scripts/world/region2_ruins.gd
++++ b/scripts/world/region2_ruins.gd
+@@ -22,5 +22,6 @@ static func move(state: Dictionary) -> Dictionary:
+ 			state["cell"] = link["to_cell"].duplicate()
+ 			state["facing"] = link["facing"]
+ 			state["entry_lock"] = "region2_ruins_stairs"
++			state["cleared"].append("task027_corrupted_progress")
+ 			break
+ 	return {"kind":"moved"}

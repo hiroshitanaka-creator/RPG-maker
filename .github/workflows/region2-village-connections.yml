@@ -11,6 +11,7 @@ env:
   FIXED_006_SHA: 5f1c2ba231191b25b9b32a814b616a9f8d0a54ce
   FIXED_009_SHA: ce07fdada0466138260ab678c10fd78e61c0c63d
   FIXED_012_SHA: c327e7c439c9c8c8f1fd640e6cda6df7550fb26a
+  FIXED_016_SHA: 6706397e2674ffa382852e0f33ce23edf5c76634
 jobs:
   acceptance-and-regression:
     runs-on: ubuntu-latest
@@ -164,9 +165,16 @@ jobs:
           ref: c327e7c439c9c8c8f1fd640e6cda6df7550fb26a
           fetch-depth: 0
           path: completed012
+      - uses: actions/checkout@v4
+        with:
+          ref: 6706397e2674ffa382852e0f33ce23edf5c76634
+          fetch-depth: 0
+          path: completed016
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: NPC正例の実描画用仮想画面を用意
+        run: sudo apt-get update && sudo apt-get install -y xvfb mesa-vulkan-drivers
       - name: 指定ハッシュのGodotを取得
         run: |
           curl -fL -o ../godot.zip "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
@@ -182,6 +190,12 @@ jobs:
       - name: 006・009・012の不変完成点と後続編集の反証
         run: |
           timeout 180 python ../completed012/tools/test_task012_pinned_audit.py --current-path . --fixed009-path ../completed009 --completed012-sha "$FIXED_012_SHA" --latest-sha "$GITHUB_SHA"
+      - name: 既存固定記録を信頼基点に012の全参照と実checkoutを独立照合
+        run: |
+          timeout 180 python tools/check_task016_fixed_anchor.py --current-path . --fixed012-path ../completed012 --latest-sha "$GITHUB_SHA"
+          timeout 180 python tools/test_task016_fixed_anchor.py --fixed012-path ../completed012 --latest-sha "$GITHUB_SHA"
+      - name: 016完成点だけを固定範囲監査し後続編集と異常完成差分を反証
+        run: timeout 180 python tools/check_task016_scope.py --completed-sha "$FIXED_016_SHA" --fixed-path ../completed016 --latest-sha "$GITHUB_SHA"
       - name: 009完成点だけを独立範囲監査
         run: |
           # 完成SHAの当時検査器で完成差分のみを監査する。
@@ -202,3 +216,4 @@ jobs:
             current/docs/verification/task-009/
             completed009/docs/verification/task-009/scope-checks.json
             current/docs/verification/task-012/
+            current/docs/verification/task-016/

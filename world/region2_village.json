@@ -7,27 +7,116 @@
       {
         "background": "exterior",
         "title": "オアシスの村（仮）",
-        "events": []
+        "events": [
+          {
+            "id": "oasis_water_keeper",
+            "kind": "npc",
+            "sprite": "npc_oasis_water_keeper",
+            "label": "泉の番人",
+            "cell": [
+              29,
+              12
+            ],
+            "reach": 1,
+            "text": [
+              "泉のそばでは、足元に気をつけてください。"
+            ]
+          },
+          {
+            "id": "oasis_child",
+            "kind": "npc",
+            "sprite": "npc_oasis_child",
+            "label": "子ども",
+            "cell": [
+              17,
+              19
+            ],
+            "reach": 1,
+            "text": [
+              "風が吹くと、風車がよく回るんだ。"
+            ]
+          }
+        ]
       },
       {
         "background": "inn",
         "title": "宿",
-        "events": []
+        "events": [
+          {
+            "id": "oasis_innkeeper",
+            "kind": "rest",
+            "sprite": "npc_oasis_innkeeper",
+            "label": "宿のおかみ",
+            "cell": [
+              12,
+              3
+            ],
+            "reach": 2,
+            "text": [
+              "宿で休み、HPとMPが回復しました。"
+            ]
+          }
+        ]
       },
       {
         "background": "item",
         "title": "道具屋",
-        "events": []
+        "events": [
+          {
+            "id": "oasis_date_farmer",
+            "kind": "npc",
+            "sprite": "npc_oasis_date_farmer",
+            "label": "道具屋の店員",
+            "cell": [
+              8,
+              4
+            ],
+            "reach": 2,
+            "text": [
+              "店の品物は、まだ準備中です。"
+            ]
+          }
+        ]
       },
       {
         "background": "weapon",
         "title": "武器屋",
-        "events": []
+        "events": [
+          {
+            "id": "oasis_camel_keeper",
+            "kind": "npc",
+            "sprite": "npc_oasis_camel_keeper",
+            "label": "武器屋の店員",
+            "cell": [
+              8,
+              4
+            ],
+            "reach": 2,
+            "text": [
+              "ここは武器屋です。品物は、まだ準備中です。"
+            ]
+          }
+        ]
       },
       {
         "background": "shrine",
         "title": "祠",
-        "events": []
+        "events": [
+          {
+            "id": "oasis_elder",
+            "kind": "npc",
+            "sprite": "npc_oasis_elder",
+            "label": "村の長老",
+            "cell": [
+              12,
+              6
+            ],
+            "reach": 1,
+            "text": [
+              "ここで旅の身支度を整えていってください。"
+            ]
+          }
+        ]
       }
     ]
   },

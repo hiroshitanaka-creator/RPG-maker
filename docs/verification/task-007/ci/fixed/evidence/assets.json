@@ -1,0 +1,328 @@
+{
+  "status": "PASS",
+  "stage": true,
+  "scope": {
+    "status": "PASS",
+    "ci_added_steps": 1,
+    "base_sha": "8694aad22ce8ceab74ac96c090360739c30d9983",
+    "completed_sha": "776ad944723d21c1e250a1ee5fd56d35da42cfed",
+    "files": [
+      ".github/workflows/ci.yml",
+      "assets/characters/npc_oasis_camel_keeper/walk.png",
+      "assets/characters/npc_oasis_child/walk.png",
+      "assets/characters/npc_oasis_date_farmer/walk.png",
+      "assets/characters/npc_oasis_elder/walk.png",
+      "assets/characters/npc_oasis_innkeeper/walk.png",
+      "assets/characters/npc_oasis_water_keeper/walk.png",
+      "assets/registry.json",
+      "assets/source_records/task007-residents-generation.json",
+      "assets/source_records/task007-residents.json",
+      "docs/decision-log.md",
+      "docs/region2-village-backdrops.md",
+      "docs/tasks/007-oasis-village-connect.md",
+      "docs/tasks/reports/007-oasis-village-connect.md",
+      "docs/verification/task-007/README.md",
+      "docs/verification/task-007/assets-working.log",
+      "docs/verification/task-007/final-locked.json",
+      "docs/verification/task-007/final-locked.log",
+      "docs/verification/task-007/generated/pair1.png",
+      "docs/verification/task-007/generated/pair2.png",
+      "docs/verification/task-007/generated/pair3.png",
+      "docs/verification/task-007/images.json",
+      "docs/verification/task-007/latest/assets.json",
+      "docs/verification/task-007/latest/outside/02-world-village-entrance.png",
+      "docs/verification/task-007/latest/outside/checks.json",
+      "docs/verification/task-007/latest/outside/east-gate-under.png",
+      "docs/verification/task-007/latest/outside/east-world-exit.png",
+      "docs/verification/task-007/latest/outside/leaves-behind.png",
+      "docs/verification/task-007/latest/outside/roof-behind.png",
+      "docs/verification/task-007/latest/outside/saved-room-0.png",
+      "docs/verification/task-007/latest/outside/talk-child.png",
+      "docs/verification/task-007/latest/outside/talk-water_keeper.png",
+      "docs/verification/task-007/latest/outside/west-gate-under.png",
+      "docs/verification/task-007/latest/outside/west-landing.png",
+      "docs/verification/task-007/latest/outside/west-world-exit.png",
+      "docs/verification/task-007/latest/port-start.json",
+      "docs/verification/task-007/latest/rooms/02-world-village-entrance.png",
+      "docs/verification/task-007/latest/rooms/checks.json",
+      "docs/verification/task-007/latest/rooms/room-1-entry.png",
+      "docs/verification/task-007/latest/rooms/room-1-front-wall.png",
+      "docs/verification/task-007/latest/rooms/room-1-return.png",
+      "docs/verification/task-007/latest/rooms/room-2-entry.png",
+      "docs/verification/task-007/latest/rooms/room-2-front-wall.png",
+      "docs/verification/task-007/latest/rooms/room-2-return.png",
+      "docs/verification/task-007/latest/rooms/room-3-entry.png",
+      "docs/verification/task-007/latest/rooms/room-3-front-wall.png",
+      "docs/verification/task-007/latest/rooms/room-3-return.png",
+      "docs/verification/task-007/latest/rooms/room-4-entry.png",
+      "docs/verification/task-007/latest/rooms/room-4-front-wall.png",
+      "docs/verification/task-007/latest/rooms/room-4-return.png",
+      "docs/verification/task-007/latest/rooms/saved-room-1.png",
+      "docs/verification/task-007/latest/rooms/saved-room-2.png",
+      "docs/verification/task-007/latest/rooms/saved-room-3.png",
+      "docs/verification/task-007/latest/rooms/saved-room-4.png",
+      "docs/verification/task-007/latest/rooms/shrine-existing-confirmation.png",
+      "docs/verification/task-007/latest/rooms/talk-camel_keeper.png",
+      "docs/verification/task-007/latest/rooms/talk-date_farmer.png",
+      "docs/verification/task-007/latest/rooms/talk-elder.png",
+      "docs/verification/task-007/latest/rooms/talk-innkeeper.png",
+      "docs/verification/task-007/latest/services.json",
+      "docs/verification/task-007/normal-operation-1.png",
+      "docs/verification/task-007/normal-operation-2.png",
+      "docs/verification/task-007/normal-operation-3.png",
+      "docs/verification/task-007/residents-source-comparison.png",
+      "docs/verification/task-007/residents-walk.png",
+      "docs/verification/task-007/services-working.log",
+      "docs/verification/task-007/start-import.log",
+      "docs/verification/task-007/start-locked.json",
+      "docs/verification/task-007/start-locked.log",
+      "docs/verification/task-007/target-comparison.png",
+      "scripts/game/game_session.gd",
+      "tools/capture_task007_services.gd",
+      "tools/capture_task007_services.gd.uid",
+      "tools/check_task007.py",
+      "tools/check_task007_assets.py",
+      "tools/check_task007_services.gd",
+      "tools/check_task007_services.gd.uid",
+      "tools/import_task007_residents.py",
+      "tools/make_task007_review.py",
+      "world/region2_village.json"
+    ],
+    "existing_registry_entries_unchanged": true,
+    "existing_service_rules_unchanged": true
+  },
+  "execution_sha": "776ad944723d21c1e250a1ee5fd56d35da42cfed",
+  "people": 6,
+  "frames": 72,
+  "results": [
+    {
+      "id": "water_keeper",
+      "frames": 12,
+      "colors": 16,
+      "ground": [
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "footfall_changed_pixels": [
+        [
+          262,
+          281
+        ],
+        [
+          242,
+          238
+        ],
+        [
+          253,
+          233
+        ],
+        [
+          238,
+          229
+        ]
+      ],
+      "sha256": "7487ea59953f82a0295730eaeff5ed1de5765f585c1c738f5dda9402c0dcd77c"
+    },
+    {
+      "id": "date_farmer",
+      "frames": 12,
+      "colors": 16,
+      "ground": [
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "footfall_changed_pixels": [
+        [
+          225,
+          248
+        ],
+        [
+          241,
+          206
+        ],
+        [
+          230,
+          247
+        ],
+        [
+          232,
+          184
+        ]
+      ],
+      "sha256": "b184c99139eb94ed78361e156d7ad1b05238f96ecfed3a0eb47007f0bcfdb6cc"
+    },
+    {
+      "id": "innkeeper",
+      "frames": 12,
+      "colors": 16,
+      "ground": [
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "footfall_changed_pixels": [
+        [
+          206,
+          206
+        ],
+        [
+          231,
+          195
+        ],
+        [
+          220,
+          201
+        ],
+        [
+          199,
+          176
+        ]
+      ],
+      "sha256": "a3f14ae8c520d3d75821a01d40b589e1d848cf5ee5d64fb141dc0f31bad30aac"
+    },
+    {
+      "id": "camel_keeper",
+      "frames": 12,
+      "colors": 16,
+      "ground": [
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "footfall_changed_pixels": [
+        [
+          207,
+          177
+        ],
+        [
+          209,
+          152
+        ],
+        [
+          186,
+          153
+        ],
+        [
+          190,
+          178
+        ]
+      ],
+      "sha256": "4c3e171fbd4a7a9520f9e137309eca51088b3bf61752dad1ef9a5070f4948c7c"
+    },
+    {
+      "id": "elder",
+      "frames": 12,
+      "colors": 16,
+      "ground": [
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "footfall_changed_pixels": [
+        [
+          215,
+          261
+        ],
+        [
+          234,
+          263
+        ],
+        [
+          253,
+          266
+        ],
+        [
+          211,
+          253
+        ]
+      ],
+      "sha256": "3f690ba5592b189d19897bd0cbf7d6de790789ccc24be20f065cc46d7f6beb6b"
+    },
+    {
+      "id": "child",
+      "frames": 12,
+      "colors": 16,
+      "ground": [
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "footfall_changed_pixels": [
+        [
+          140,
+          131
+        ],
+        [
+          143,
+          132
+        ],
+        [
+          171,
+          149
+        ],
+        [
+          149,
+          110
+        ]
+      ],
+      "sha256": "153885e38044a6c4ec836ed9cdce0d79b3d593762dc34bca6b9735dc5a6186d8"
+    }
+  ],
+  "direction_review": "generated/pair1〜3の実画像を目視し、行順を下・左・右・上と確認。背面に顔なし。方向の意味は数値だけでは採否しない。"
+}

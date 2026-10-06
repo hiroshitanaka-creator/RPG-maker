@@ -1,0 +1,533 @@
+{
+  "run": {
+    "id": 37196997052,
+    "name": "CI",
+    "event": "push",
+    "head_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+    "head_branch": "codex/task-012-pin-completed-audit",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37196997052",
+    "path": ".github/workflows/ci.yml"
+  },
+  "jobs": [
+    {
+      "id": 111420838817,
+      "run_id": 37196997052,
+      "event": "push",
+      "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+      "head_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-04T10:56:18Z",
+      "completed_at": "2026-10-04T11:00:51Z",
+      "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37196997052/job/111420838817",
+      "elapsed_seconds": 273,
+      "timeout_minutes": 35,
+      "steps": [
+        {
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:19Z",
+          "completed_at": "2026-10-04T10:56:20Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:20Z",
+          "completed_at": "2026-10-04T10:56:45Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:45Z",
+          "completed_at": "2026-10-04T10:56:45Z"
+        },
+        {
+          "name": "固定版Godotを取得してインポート",
+          "number": 4,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:45Z",
+          "completed_at": "2026-10-04T10:57:43Z"
+        },
+        {
+          "name": "共通機構の実戦・育成・保存・画面・同予算比較を検査",
+          "number": 5,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:57:43Z",
+          "completed_at": "2026-10-04T10:58:23Z"
+        },
+        {
+          "name": "ワールド構造のPhase 1定義を検査",
+          "number": 6,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:58:23Z",
+          "completed_at": "2026-10-04T10:58:23Z"
+        },
+        {
+          "name": "ワールド構造のPhase 2と検査器の回帰を検査",
+          "number": 7,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:58:23Z",
+          "completed_at": "2026-10-04T10:58:25Z"
+        },
+        {
+          "name": "広域地形の再現性・実経路・実時間記録を検査",
+          "number": 8,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:58:25Z",
+          "completed_at": "2026-10-04T10:58:31Z"
+        },
+        {
+          "name": "60時間の時間判定を検査",
+          "number": 9,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:58:31Z",
+          "completed_at": "2026-10-04T10:58:33Z"
+        },
+        {
+          "name": "追加受入の勝率と終了率・反応への対処を検査",
+          "number": 10,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:58:33Z",
+          "completed_at": "2026-10-04T11:00:46Z"
+        },
+        {
+          "name": "保護対象を照合",
+          "number": 11,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T11:00:46Z",
+          "completed_at": "2026-10-04T11:00:46Z"
+        },
+        {
+          "name": "試遊前検査の結果を保存",
+          "number": 12,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T11:00:46Z",
+          "completed_at": "2026-10-04T11:00:48Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "number": 23,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T11:00:48Z",
+          "completed_at": "2026-10-04T11:00:48Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "number": 24,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T11:00:48Z",
+          "completed_at": "2026-10-04T11:00:48Z"
+        },
+        {
+          "name": "Complete job",
+          "number": 25,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T11:00:48Z",
+          "completed_at": "2026-10-04T11:00:48Z"
+        }
+      ],
+      "markers": [
+        "ORIGINAL_ACCEPTANCE_INPUT_PASS: d4b5befの3人・4人の全初期値を保持",
+        "INTEGRATED_ENTRY_PASS: 通常開始と本番の新機構入口",
+        "INTEGRATED_COMBAT_PASS: cases=20",
+        "INTEGRATED_PROGRESSION_PASS: cases=10",
+        "MAP_GRAPH_DEFINITION_PASS: regions=4 nodes=49 towns=11 dungeons=16 outposts=22 edges=61 legacy_edges=11 walk=17 ship=16 flight=16 flags=3 errors=0 coordinates=0 scope=definition_only",
+        "MAP_GRAPH_STRUCTURE_PASS: nodes=49 reachable=49 masks=8 states=392 admissible=224 rejected=168 reachable_states=106 cycles=0 deadlocks=0 warnings=0",
+        "MAP_GRAPH_REGRESSION_PASS: cases=16 errors=0",
+        "WORLD_TERRAIN_PASS: tiles=65536 nodes=49 edges=61 unused_land=1813/49870 errors=0",
+        "WORLD_TERRAIN_BOUNDARY_PASS: reverse_edges=61 errors=0",
+        "WORLD_REALTIME_RECORD_PASS: edges=61 hashes=4 errors=0",
+        "DURATION_TARGET_PASS: 60時間目標、54〜66時間の暫定幅、旧記録・自動操作の除外",
+        "DURATION_SUMMARY_PASS: 旧330分の非受入、60時間の境界、旧目標と自動操作の除外。合成入力のみ。",
+        "REACTION_RULE_PASS: 予告・取消・実計算・防御・再現性・画面",
+        "COUNTERPLAY_PASS: 固定状態と1000シードで対処方針の全ケース80%以上",
+        "保護対象26件、一致26件。"
+      ],
+      "records": []
+    },
+    {
+      "id": 111420838913,
+      "run_id": 37196997052,
+      "event": "push",
+      "name": "素材検査",
+      "head_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-04T10:56:18Z",
+      "completed_at": "2026-10-04T10:57:53Z",
+      "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37196997052/job/111420838913",
+      "elapsed_seconds": 95,
+      "timeout_minutes": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:18Z",
+          "completed_at": "2026-10-04T10:56:19Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:19Z",
+          "completed_at": "2026-10-04T10:56:41Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:41Z",
+          "completed_at": "2026-10-04T10:56:42Z"
+        },
+        {
+          "name": "Pillow を導入",
+          "number": 4,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:42Z",
+          "completed_at": "2026-10-04T10:56:43Z"
+        },
+        {
+          "name": "素材台帳に従って検査",
+          "number": 5,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:43Z",
+          "completed_at": "2026-10-04T10:56:54Z"
+        },
+        {
+          "name": "第2港の背景が最近傍縮小と最近傍減色だけで作られていることを検査",
+          "number": 6,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:54Z",
+          "completed_at": "2026-10-04T10:57:05Z"
+        },
+        {
+          "name": "村の独立背景・原画不変・再生成・実描画画素を検査",
+          "number": 7,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:57:05Z",
+          "completed_at": "2026-10-04T10:57:52Z"
+        },
+        {
+          "name": "進捗文書と検証結果の集計を検査",
+          "number": 8,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:57:52Z",
+          "completed_at": "2026-10-04T10:57:52Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "number": 15,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:57:52Z",
+          "completed_at": "2026-10-04T10:57:52Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:57:52Z",
+          "completed_at": "2026-10-04T10:57:52Z"
+        },
+        {
+          "name": "Complete job",
+          "number": 17,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:57:52Z",
+          "completed_at": "2026-10-04T10:57:52Z"
+        }
+      ],
+      "markers": [
+        "REGION2_BACKDROP_PY_PASS: 背景は原画の最近傍縮小+最近傍減色のみ（使用64色、原画の色454117種を確認）、上の層54644画素が背景と同一、船を消した55576画素は写し元の1画素の色だけ",
+        "VILLAGE_SCOPE_PASS: production_paths=10 prior_ci_bytes_identical=True",
+        "VILLAGE_DATA_PASS: checks=244",
+        "VILLAGE_NATIVE_PASS: captures=25"
+      ],
+      "records": []
+    },
+    {
+      "id": 111420838981,
+      "run_id": 37196997052,
+      "event": "push",
+      "name": "Godot・凍結受入テスト",
+      "head_sha": "9e647b3d6d0f91b061f7de974dbb5411937a2bb9",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-04T10:56:18Z",
+      "completed_at": "2026-10-04T10:59:58Z",
+      "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37196997052/job/111420838981",
+      "elapsed_seconds": 220,
+      "timeout_minutes": 25,
+      "steps": [
+        {
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:18Z",
+          "completed_at": "2026-10-04T10:56:19Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:19Z",
+          "completed_at": "2026-10-04T10:56:42Z"
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:42Z",
+          "completed_at": "2026-10-04T10:56:42Z"
+        },
+        {
+          "name": "凍結ファイルのハッシュを確認",
+          "number": 4,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:42Z",
+          "completed_at": "2026-10-04T10:56:43Z"
+        },
+        {
+          "name": "Godot プロジェクトの有無を確認",
+          "number": 5,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:43Z",
+          "completed_at": "2026-10-04T10:56:43Z"
+        },
+        {
+          "name": "Godot を取得",
+          "number": 6,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:43Z",
+          "completed_at": "2026-10-04T10:56:44Z"
+        },
+        {
+          "name": "インポートしてエラーを検出",
+          "number": 7,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:56:44Z",
+          "completed_at": "2026-10-04T10:57:40Z"
+        },
+        {
+          "name": "凍結契約に登録された全verifyを実行",
+          "number": 8,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:57:40Z",
+          "completed_at": "2026-10-04T10:59:11Z"
+        },
+        {
+          "name": "導入の固定比較基準を取得し台帳の異常検出を検査",
+          "number": 9,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:11Z",
+          "completed_at": "2026-10-04T10:59:11Z"
+        },
+        {
+          "name": "第1地方の追加導入・見逃し・旧保存補完を検査",
+          "number": 10,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:11Z",
+          "completed_at": "2026-10-04T10:59:19Z"
+        },
+        {
+          "name": "村の独立地形を既存の通行・移動APIで検査",
+          "number": 11,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:19Z",
+          "completed_at": "2026-10-04T10:59:21Z"
+        },
+        {
+          "name": "敵の行動予定と連戦の保存を検査",
+          "number": 12,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:21Z",
+          "completed_at": "2026-10-04T10:59:23Z"
+        },
+        {
+          "name": "戦闘前の自動保存と全滅からの復帰を検査",
+          "number": 13,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:23Z",
+          "completed_at": "2026-10-04T10:59:39Z"
+        },
+        {
+          "name": "保存値の型と破損時の状態保持を検査",
+          "number": 14,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:39Z",
+          "completed_at": "2026-10-04T10:59:40Z"
+        },
+        {
+          "name": "部屋の作りが変わった後の保存の置き直しを検査",
+          "number": 15,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:40Z",
+          "completed_at": "2026-10-04T10:59:42Z"
+        },
+        {
+          "name": "第2地方の航路と岸の境界を検査",
+          "number": 16,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:42Z",
+          "completed_at": "2026-10-04T10:59:44Z"
+        },
+        {
+          "name": "最初の地方の画面と通常保存操作を検査",
+          "number": 17,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:44Z",
+          "completed_at": "2026-10-04T10:59:46Z"
+        },
+        {
+          "name": "第2港の外観（一枚絵の背景・通行地図・上の層）を検査",
+          "number": 18,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:46Z",
+          "completed_at": "2026-10-04T10:59:47Z"
+        },
+        {
+          "name": "第2地方の港町と6室・船・帰還・保存を検査",
+          "number": 19,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:47Z",
+          "completed_at": "2026-10-04T10:59:50Z"
+        },
+        {
+          "name": "職業衣装の参照と保存復元を検査",
+          "number": 20,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:50Z",
+          "completed_at": "2026-10-04T10:59:51Z"
+        },
+        {
+          "name": "版識別と保存後の再起動復旧を検査",
+          "number": 21,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:51Z",
+          "completed_at": "2026-10-04T10:59:56Z"
+        },
+        {
+          "name": "検証後も保護ファイルが不変であることを確認",
+          "number": 22,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:56Z",
+          "completed_at": "2026-10-04T10:59:56Z"
+        },
+        {
+          "name": "ログを保存",
+          "number": 23,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:56Z",
+          "completed_at": "2026-10-04T10:59:57Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "number": 45,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:57Z",
+          "completed_at": "2026-10-04T10:59:57Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "number": 46,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:57Z",
+          "completed_at": "2026-10-04T10:59:57Z"
+        },
+        {
+          "name": "Complete job",
+          "number": 47,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-04T10:59:57Z",
+          "completed_at": "2026-10-04T10:59:57Z"
+        }
+      ],
+      "markers": [
+        "保護対象26件、一致26件。",
+        "PASS R-01 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-02 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-03 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-04 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-05 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-06 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-07 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-08 (exit=0, tests_ran=True, parser_failed=False)",
+        "REGISTRY_SPRINT_SCOPE_PASS: actual_registry=PASS negative_cases=5",
+        "INTRO_MEDIA_PASS: received=6 original_wav_match=1 props=2",
+        "INTRO_DATA_PASS: variants=5 pending_art=0",
+        "INTRO_RUNTIME_PASS: checks=1988 pending_art=0",
+        "VILLAGE_RUNTIME_PASS: checks=2170",
+        "ENCOUNTER_PASS: 旧30種と追加6種・回復/防御/蘇生・予定の再現性・連戦保存を検証",
+        "RECOVERY_PASS: 手動保存の保持・戦闘前の復元・全滅計測の保持・3人/4人・連戦・区画・破損保存を検証",
+        "SAVED_VALUE_TYPES_PASS: 型付き配列・整数と小数・従来保存・破損時不変",
+        "SAVED_POSITION_RELOCATION_PASS: rooms=31 checks=199",
+        "SECOND_COAST_PASS: checks=91",
+        "REGION_UI_PASS: checks=10",
+        "REGION2_BACKDROP_PASS: checks=94",
+        "REGION2_PORT_PASS: checks=935",
+        "JOB_COSTUMES_PASS: jobs=4 actors=4 lookups=32 saves=4",
+        "BUILD_ID_PASS: 実行版の一致・職業/敵/物語/処理の変更検出・旧記録と混在の非受入",
+        "RESTART_PASS: 保存済みの試行履歴を復元し、強制終了後の不明な末尾時間を未検証と表示",
+        "保護対象26件、一致26件。"
+      ],
+      "records": []
+    }
+  ]
+}

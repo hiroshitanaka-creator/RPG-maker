@@ -186,11 +186,37 @@ func maps() -> void:
 		for key in ["layout","width","height","background","overlays"]:
 			check(actual.get(key)==map.get(key),"本番表示の固定背景・上層: "+ROLES[index]+" "+key)
 		section="2"
-		for target in record[ROLES[index]].values():
-			check(not path(saved,WorldExpedition.point(target),false).is_empty(),"リンク判定を除いたBFSの客側・家具前後到達")
+		for key in record[ROLES[index]]:
+			var target: Vector2i=WorldExpedition.point(record[ROLES[index]][key])
 			var game := game_for(saved)
-			# アーチは退出点なので、目標への最終歩だけで外へ戻る。
-			walk(game,WorldExpedition.point(target))
+			target_checks(game,target,str(key).ends_with("_back"))
+
+func target_checks(game: GameSession, target: Vector2i, furniture_back: bool) -> void:
+	var saved := game.export_state()
+	if not occupied(saved,target):
+		check(not path(saved,target,false).is_empty(),"リンク判定を除いたBFSの客側・家具前後到達")
+		# アーチは退出点なので、目標への最終歩だけで外へ戻る。
+		walk(game,target)
+		return
+	# 客側通路・アーチは占有で置き換えず、必須目標の閉塞として拒否する。
+	check(furniture_back,"客側・出入口の必須目標をNPCで閉塞しない")
+	var adjacent := reachable_adjacent(saved,target)
+	if not check(adjacent!=Vector2i(-1,-1),"占有目標の隣接へリンクを経由せず通常到達"):return
+	if not walk(game,adjacent):return
+	check(FirstRegion.at(game.export_state()["overworld"],saved["overworld"].merged({"cell":[adjacent.x,adjacent.y]},true)),"占有目標の隣接セルへ本番歩行で到達")
+	game.first_region_face(target-adjacent)
+	var before := game.export_state()
+	check(not game.first_region_walkable(target),"占有目標の足元通行を拒否")
+	var moved := game.move_first_region(target)
+	check(moved.is_empty() and game.export_state()==before,"占有目標の実移動拒否と全状態保持")
+	route_log.append({"occupied_target":[target.x,target.y],"adjacent":[adjacent.x,adjacent.y],"room":saved["overworld"]["room"],"move_kind":moved.get("kind",""),"state_unchanged":game.export_state()==before})
+
+func reachable_adjacent(saved: Dictionary, cell: Vector2i) -> Vector2i:
+	for direction in DIRECTIONS:
+		var target: Vector2i=cell+direction
+		if target in triggers(saved["overworld"]["room"]):continue
+		if FirstRegion.walkable(saved,target) and (WorldExpedition.point(saved["overworld"]["cell"])==target or not path(saved,target).is_empty()):return target
+	return Vector2i(-1,-1)
 
 func saves() -> void:
 	section="4"

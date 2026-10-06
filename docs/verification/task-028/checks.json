@@ -1,0 +1,104 @@
+{
+  "base_sha": "a5f3f65dcb63e8fa86a8c68e702ebf931115cd85",
+  "execution_sha": "9a691bdfb5bec12cd421c92cdcb9d07ef3e8f7c6",
+  "changes": [
+    "docs/decision-log.md",
+    "docs/tasks/028-enlarge-ruins-boss.md",
+    "docs/tasks/reports/028-enlarge-ruins-boss.md",
+    "scripts/ui/rpg_battle_view.gd",
+    "tools/capture_task011_ruins.gd",
+    "tools/check_task028.py",
+    "tools/check_task028_capture.gd",
+    "tools/check_task028_capture.gd.uid"
+  ],
+  "unchanged_asset_files": 1611,
+  "protected_and_workflow_unchanged": true,
+  "engine_version": "4.7.2.stable.official.ed1daf0bf",
+  "before_import": {
+    "command": [
+      "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--path",
+      "/tmp/task028-lv0q_cpx/before",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 6.771,
+    "timeout_seconds": 600
+  },
+  "before_capture": {
+    "command": [
+      "xvfb-run",
+      "-a",
+      "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+      "--path",
+      "/tmp/task028-lv0q_cpx/before",
+      "--rendering-method",
+      "mobile",
+      "--rendering-driver",
+      "vulkan",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://tools/check_task028_capture.gd"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 12.236,
+    "timeout_seconds": 180
+  },
+  "after_capture": {
+    "command": [
+      "xvfb-run",
+      "-a",
+      "/tmp/task028/engine/Godot_v4.7.2-stable_linux.x86_64",
+      "--path",
+      "/workspace/RPG-maker",
+      "--rendering-method",
+      "mobile",
+      "--rendering-driver",
+      "vulkan",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://tools/check_task028_capture.gd"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 12.213,
+    "timeout_seconds": 180
+  },
+  "comparison": {
+    "before_rect": [
+      124.25,
+      82.0,
+      91.5,
+      114.0
+    ],
+    "after_rect": [
+      101.375,
+      25.0,
+      137.25,
+      171.0
+    ],
+    "width_height_ratio": [
+      1.5,
+      1.5
+    ],
+    "feet": [
+      170,
+      196
+    ],
+    "changed_pixels": 53856,
+    "changed_pixel_bbox": [
+      203,
+      50,
+      477,
+      392
+    ],
+    "unchanged_other_enemy_layouts": 42,
+    "unchanged_other_enemy_pages": 2,
+    "pixels_outside_boss_unchanged": true
+  },
+  "status": "PASS"
+}

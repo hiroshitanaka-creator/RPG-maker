@@ -130,6 +130,80 @@ def main() -> int:
                                           'mutation': '一時コピーだけNPC占有拒否を無効化'}
         occupancy_source.write_text(original_occupancy, encoding='utf-8')
         data_file.write_bytes(original_data)
+        # F2: 元013と同じ店内NPC。外観の既存正負例は上でそのまま実行する。
+        data = json.loads(original_data)
+        data['site']['rooms'][2]['events'] = [{'id': 'task013_counter_copy', 'kind': 'npc', 'cell': [8, 4], 'text': ['コピー限定']}]
+        counter_data = json.dumps(data, ensure_ascii=False, indent=2) + '\n'
+        data_file.write_text(counter_data, encoding='utf-8')
+        observed = invoke(copy, exe, 'counter-back-npc-positive')
+        runtime = json.loads((copy / 'docs/verification/task-009/latest/runtime-checks.json').read_text())
+        targets = [entry for entry in runtime.get('port_route', []) if entry.get('occupied_target') == [8, 4] and entry.get('room') == 2]
+        ok = (observed['exit_code'] == 0 and observed['runtime_status'] == 'PASS' and not observed['parser_errors']
+              and len(targets) == 1 and targets[0]['state_unchanged'] and targets[0]['adjacent'] in [[7, 4], [9, 4], [8, 3], [8, 5]]
+              and len(runtime.get('save_states', [])) == 20)
+        results['counter-back-npc-positive'] = {'status': 'PASS' if ok else 'FAIL', **observed,
+                                              'occupied_targets': targets, 'save_states': len(runtime.get('save_states', [])),
+                                              'scope': '元013と同じeventsだけの変更。隣接実歩行・占有拒否・全状態保持・20保存後退出。007サービスは未検証'}
+        # 撮影目的地は[8,4]ではない。占有を除いた通常入力経路と全22枚の画素検査を実行する。
+        from check_task009_lifecycle import CAPTURE_IMAGES
+        env = {**os.environ, 'RPG009_EXECUTION_SHA': git('rev-parse', 'HEAD').decode().strip(),
+               'XDG_DATA_HOME': str(copy / 'qa-user'), 'XDG_CONFIG_HOME': str(copy / 'qa-user'),
+               'XDG_CACHE_HOME': str(copy / 'qa-cache'), 'LIBGL_ALWAYS_SOFTWARE': '1'}
+        capture_file = copy / 'docs/verification/task-009/latest/journey/checks.json'
+        capture_file.unlink(missing_ok=True)
+        started = time.monotonic()
+        command = ['xvfb-run', '-a', exe, '--path', str(copy), '--rendering-method', 'mobile', '--rendering-driver', 'vulkan',
+                   '--audio-driver', 'Dummy', '--script', 'res://tools/capture_task009_village_regression.gd']
+        try:
+            captured = subprocess.run(command, env=env, capture_output=True, timeout=180)
+            code = captured.returncode; text = (captured.stdout + captured.stderr).decode(errors='replace')
+        except subprocess.TimeoutExpired as exc:
+            code = 124; text = ((exc.stdout or b'') + (exc.stderr or b'')).decode(errors='replace') + '\nTIMEOUT\n'
+        (OUT / 'counter-back-capture.log').write_text(text, encoding='utf-8')
+        rendered = json.loads(capture_file.read_text()) if capture_file.exists() else {}
+        (OUT / 'counter-back-capture.json').write_text(json.dumps(rendered, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        ok = (code == 0 and rendered.get('status') == 'PASS' and rendered.get('renderer') == 'X11'
+              and rendered.get('execution_sha') == env['RPG009_EXECUTION_SHA']
+              and len(rendered.get('images', [])) == CAPTURE_IMAGES['journey']
+              and rendered.get('limits') == {'milliseconds': 180000, 'moves': 600, 'inputs': 3000, 'turns': 300}
+              and not re.search(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL', text))
+        capture_evidence = ROOT / 'docs/verification/task-016/counter-capture'
+        capture_evidence.mkdir(parents=True, exist_ok=True)
+        for shot in (copy / 'docs/verification/task-009/latest/journey').glob('*.png'):
+            shutil.copyfile(shot, capture_evidence / shot.name)
+        (capture_evidence / 'checks.json').write_text(json.dumps(rendered, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        results['counter-back-capture'] = {'status': 'PASS' if ok else 'FAIL', 'exit_code': code,
+                                           'checks': rendered.get('checks'), 'images': len(rendered.get('images', [])),
+                                           'elapsed_seconds': round(time.monotonic()-started, 3), 'timeout_seconds': 180}
+        occupancy_source.write_text(original_occupancy.replace(guard, 'if false:return false'), encoding='utf-8')
+        observed = invoke(copy, exe, 'counter-back-occupancy-ignored')
+        ok = (observed['exit_code'] == 1 and observed['runtime_status'] == 'FAIL' and not observed['parser_errors']
+              and '占有目標の足元通行を拒否' in observed['failures']
+              and '占有目標の実移動拒否と全状態保持' in observed['failures'])
+        results['counter-back-occupancy-ignored'] = {'status': 'PASS' if ok else 'FAIL', **observed}
+        occupancy_source.write_text(original_occupancy, encoding='utf-8')
+        session_source = copy / 'scripts/game/game_session.gd'
+        original_session = session_source.read_text()
+        session_marker = '\tvar result := FirstRegion.move(_state,cell)'
+        if original_session.count(session_marker) != 1:raise ValueError('占有拒否時状態破壊の注入箇所が一意ではありません')
+        session_source.write_text(original_session.replace(session_marker, session_marker + '\n\tif result.is_empty() and _state["overworld"].get("node")=="region2_village" and _state["overworld"].get("room")==2 and cell==Vector2i(8,4):_state["first_region"]["coins"]+=1'), encoding='utf-8')
+        observed = invoke(copy, exe, 'counter-back-rejection-state-corrupted')
+        ok = (observed['exit_code'] == 1 and observed['runtime_status'] == 'FAIL' and not observed['parser_errors']
+              and '占有目標の実移動拒否と全状態保持' in observed['failures'])
+        results['counter-back-rejection-state-corrupted'] = {'status': 'PASS' if ok else 'FAIL', **observed}
+        session_source.write_text(original_session, encoding='utf-8')
+        # 必須客側目標と室外扉はNPCがいても代替/skipしない。
+        for name, blocked, expected_failure in [
+            ('counter-customer-route-blocked', [8, 6], '客側・出入口の必須目標をNPCで閉塞しない'),
+            ('counter-room-exit-blocked', [8, 11], '8本の扉リンク')]:
+            data = json.loads(counter_data)
+            data['site']['rooms'][2]['events'].append({'id': 'task016_blocked', 'kind': 'npc', 'cell': blocked, 'text': ['閉塞コピー限定']})
+            data_file.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            observed = invoke(copy, exe, name)
+            ok = (observed['exit_code'] == 1 and observed['runtime_status'] == 'FAIL' and not observed['parser_errors']
+                  and any(expected_failure in failure for failure in observed['failures']))
+            results[name] = {'status': 'PASS' if ok else 'FAIL', **observed, 'blocked_cell': blocked}
+        data_file.write_bytes(original_data)
         # fixtureと実行APIの両方が同時に間違った値を取り込む自己一致を防ぐ。
         data = json.loads(original_data)
         data['definition']['region2_village_doors'][0]['to']['room'] = 2
