@@ -16,7 +16,7 @@
 | `scripts/game/integrated_progression.gd` `initial_actor/initial_world/valid_actor/valid_world` | `armory` は既知武器IDの重複を拒否。人物の `weapons` は1〜2、空不可、2本には `twin_grip` 必須。同一ID2本や別人との共有は拒否しない | 旧形式ではそのまま検証。新規則だけ所有・数量・空装備・職制限を検証 |
 | 同 `weapon/weapon_bonus`、`data/integrated_rules.json` | 武器6件、主武器だけ能力値に加算。攻撃加算は0・負値もある。分類は `melee/projectile` で新5分類ではない | ID・値・追加効果を保つ互換表を作り、比較に負値も許す。空欄を攻撃0の商品として比較しない |
 | `scripts/game/game_session.gd` `equip_weapon/change_job/choose_job/equip_ability/unequip_ability/_reconcile_slots` | 武器は職制限・数量減算なし。転職で装着枠を整理し、二刀流解除時は武器配列を切る。通常転職入口は `choose_job` | 新規則の取引を一括適用。配列切捨てを袋への返却へ変える。職解放・戦闘中禁止は維持 |
-| 同 `finish_battle` 周辺の `forced_job` 適用、加入処理、`new_first_region_game` | 戦闘終了時に `job_id` を直接変更する経路あり。`first_region.reserve` に未加入仲間を保存し、加入で移す | 通常転職だけに実装しない。強制転職・加入・初期生成も同じ所有検証へ。保管中人物の装備を自動選択で奪わない |
+| 同 `finish_battle` 周辺の `forced_job` 適用、加入処理、`new_first_region` | 戦闘終了時に `job_id` を直接変更する経路あり。`first_region.reserve` に未加入仲間を保存し、加入で移す | 通常転職だけに実装しない。強制転職・加入・初期生成も同じ所有検証へ。保管中人物の装備を自動選択で奪わない |
 | 同 `_compute_stats/_refresh_caps`、戦闘生成の `Combatant` 構築 | 職基礎値→マスター特性→EXP成長と主武器→形態補正。HP/MP上限を再計算する | 装備補正を単一計算元へ。上限変更で回復・蘇生させない。旧計算は旧モードで保持 |
 | `scripts/combat/battle_state.gd` `_attack`、`scripts/combat/encounter_effects.gd` `damage/after_hit` | physical かつ非naturalの技は武器ごとに `hits` 回。二刀流4連撃は8打。`attack + weapon.attack - primary_weapon_attack` で主武器分を差替え。追加効果・反撃は回数制限あり | 二刀流を倍率にしない。両手持ちだけ威力補正、打数・MP・反応回数を増やさない |
 | `scripts/ui/game_root.gd` `_integrated_party_controls` | 共有armoryの全候補を1〜2個のOptionButtonへ表示 | 新形式では個数・可否・装備先・返却結果の表示。UIから保存辞書を直書きしない |
@@ -35,7 +35,7 @@
 
 技術推奨は **ゲーム形式2を維持し、ルートの `equipment_rules_version: 1` の有無で装備規則を明示**する方式。既存 `mastery_rules_version` と同じく、既知の版だけ受理する。形式1・旧形式2にはキーを読込み時に勝手に足さない。未知版・部分移行状態は不正として拒否し、旧扱いにフォールバックしない。
 
-新規則は形式2・既存修練規則が有効であることを前提にする。新規則人物は新 `equipment` を持ち、旧 `integrated.weapons` は持たない。世界の旧 `integrated.armory` は新規則の所有源にしない（移行記録側へ退避する）。`valid_actor/valid_world` は必須項目を版ごとに分け、旧形を緩めない。旧新キーの混在も拒否する。`weapon_bonus`・戦闘生成・UI等は同じ読み取りアダプタを経由する。形式3を導入して既存の `==2` 判定を全部変える案より変更漏れが少ない。
+新規則は形式2・既存修練規則が有効であることを前提にする。新規則人物は新 `equipment` を持ち、旧 `integrated.weapons` は持たない。世界の旧 `integrated.armory` は新規則の所有源にしない（移行記録側へ退避する）。`valid_actor/valid_world` は必須項目を版ごとに分け、旧形を緩めない。旧新キーの混在も拒否する。`weapon_bonus`・戦闘生成・UI等は同じ読み取りアダプタを経由する。形式3を導入して既存の `==2` 判定を全部変える案より変更漏れが少ない。新規則のキーがあるのに版がない保存も拒否する。旧バイナリは新保存の必須旧キーが欠けるため拒否することを互換試験で確かめ、古い版で遊ぶ場合は保持した移行前保存を選ぶ。人物単体を扱う読取りアダプタにも、検証済みの版を渡し、フィールド有無だけで規則を推測しない。
 
 ### 3.2 定義と所有を分離
 
@@ -109,7 +109,7 @@
 
 主武器の二重加算を防ぐため、新旧とも戦闘へ「主武器込みattack」「primary_weapon_attack」「各武器attack」を渡し差替え式を維持する。防具防御は `_compute_stats` で1回加算。装飾効果は定義承認まで計算へ入れない。将来HP/MP効果が採用されたときは生存者を上限まで切り詰めるだけとし、装着で全回復しない。予測表示と実行で同じ係数・丸め・適用判定を呼ぶ。
 
-戦士マスター報酬は既存4技に混ぜず、装備規則用データの `mastery_rewards: {warrior: [two_handed]}` として定義する案を推奨。既存職JSONの4技・120JP・物理20回・legacy_abilities・成長値は変更不要。能力の定義は共通catalogから参照可能にし、職UIで既存技とは別に「マスター報酬」と表示する。
+戦士マスター報酬は既存4技に混ぜず、装備規則用データの `mastery_rewards: {warrior: [two_handed]}` として定義する案を推奨。既存職JSONの4技・120JP・物理20回・legacy_abilities・成長値は変更不要。能力の定義は共通catalogから参照可能にし、職UIで既存技とは別に「マスター報酬」と表示する。既存 `BattleCatalog.EFFECTS` の `passive` を使用し、攻撃コマンドとして予約できないことも確認する。catalogの通常必須項目（cost/power/hits/priority/target/element/description）は二刀流と同じ常時能力の形に合わせ、別の戦闘技や職を追加しない。
 
 習得は新規則で `mastered_jobs` にwarriorが追加された後にのみ行う。JP120到達だけでは与えない。既にマスター済みの旧保存は、明示移行時に新能力を1回だけ追加習得する提案とする。これは記録済みのマスターの権利を新能力へ反映するもので、未記録の行動回数は補完しない。装着は自動で行わず既存装着順・枠を維持。旧通常読込みでは一切追加しない。`legacy_masters` も消さない。未マスター、JPだけ充足、他職マスターの場合は追加しない。型検証・使用可能能力・装着検証・職情報表示まで同じ参照元を使う。
 
@@ -160,7 +160,7 @@
 
 ## 8. 機械受入と比較計画（今回未実行）
 
-後続検査はGodot **4.7.2-stable**。各行は固定入力→公開API→保存/戦闘の観測結果で検証する。期待値は仕様から手書きし、本番計画器で生成しない。検査IDごとに実行件数・失敗一覧・固定SHA・シード・ログを保存する。
+後続検査はGodot **4.7.2-stable**。各行は固定入力→公開API→保存/戦闘の観測結果で検証する。期待値は仕様から手書きし、本番計画器で生成しない。検査IDごとに実行件数・失敗一覧・固定SHA・シード・ログを保存する。後続コマンド案は `timeout 240 godot --headless --path . --script res://tools/check_equipment_rules.gd`（E01〜04）、同じ上限の `check_equipment_combat.gd`（E05〜06/E10）、`check_equipment_migration.gd`（E07〜09）、`check_equipment_ui.gd`（E11）。全て新規検査器の案で現時点では存在しない。E12は既存CIそのまま。終了0に加え各検査のPASS件数と失敗0、SCRIPT ERROR/ERROR:/WARNING:/Parse Errorの不在を必須とする。既存コマンドやjob上限へ足す余裕がなければ、予算内で成立する分割を親へ提示し、未承認のworkflow変更で解決しない。
 
 | ID | 入力と操作 | 必須の観測結果 |
 | --- | --- | --- |
