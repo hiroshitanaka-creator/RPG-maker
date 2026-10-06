@@ -9,6 +9,7 @@ static func data() -> Dictionary:
 		_data = WorldExpedition._integers(JSON.parse_string(FileAccess.get_file_as_string("res://world/interiors.json")))
 		Region2Port.apply_to(_data)
 		Region2Village.apply_to(_data)
+		Region2Ruins.apply_to(_data)
 	return _data["first_region"]
 
 static func room(state: Dictionary) -> Dictionary:
@@ -52,6 +53,7 @@ static func walkable(saved: Dictionary, cell: Vector2i) -> bool:
 ## 部屋の入口の扉の前のマス。入口がなければ空の配列。
 ## 町・洞窟・塔などの入口（*_spawn）を先に探し、なければ扉の接続（doors 系）で「その部屋へ入る」着地マスを使う。
 static func entrance_landing(node: String, room_index: int) -> Array:
+	if node == "region2_ruins":return Region2Ruins.landing(room_index)
 	var definition := data()
 	for key in ["village_spawn","cave_spawn","castle_spawn","tower_spawn","port_spawn","second_port_spawn","region2_village_spawn"]:
 		var spawn: Variant = definition.get(key)
@@ -103,6 +105,7 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 	if absi(cell.x-before.x)+absi(cell.y-before.y) != 1 or not walkable(saved,cell):return {}
 	state["cell"] = [cell.x,cell.y]
 	state["entry_lock"] = ""
+	if state["layer"] == "interior" and state["node"] == "region2_ruins":return Region2Ruins.move(state)
 	if state.get("transport","walk")=="ship":
 		FirstRegionTravel.ensure(saved)["ship_cell"]=state["cell"].duplicate()
 		var sea: Dictionary=FirstRegionTravel.encounter(cell)
@@ -259,7 +262,7 @@ static func valid(saved: Dictionary) -> bool:
 		var cell: Variant=record.get("cell")
 		if not cell is Array or cell.size()!=2 or not cell[0] is int or not cell[1] is int:return false
 		if not record.get("facing") is int or record["facing"] not in [0,1,2,3]:return false
-	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle","first_forest_tower","first_port","brine_port","region2_village"] or room(state).is_empty()):return false
+	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle","first_forest_tower","first_port","brine_port","region2_village","region2_ruins"] or room(state).is_empty()):return false
 	if state["node"]=="first_port" and not saved["progress_flags"].get("mountain_path_open",false):return false
 	if state["node"]=="first_forest_tower" and not saved["progress_flags"].get("castle_north_permission",false):return false
 	if saved["progress_flags"].get("mountain_path_open",false) and ("forest_tower_boss" not in state["cleared"] or not joined(saved,"pc_04")):return false

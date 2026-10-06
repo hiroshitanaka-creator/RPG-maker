@@ -57,10 +57,14 @@ func actor_rect(identifier: String) -> Rect2:
 	for i in range(enemy_ids.size()):
 		if identifier!="enemy_%02d" % (i+1):continue
 		var source := enemy_region(enemy_ids[i])
-		var dimensions := source.size*0.75
+		var dimensions := source.size*enemy_display_scale(enemy_ids[i])
 		var feet := enemy_feet(i)
 		return Rect2(feet-Vector2(dimensions.x/2.0,dimensions.y),dimensions)
 	return Rect2()
+
+func enemy_display_scale(identifier: String) -> float:
+	# 028の依頼者指定：巨像1体だけ縦横1.5倍。原画と足元座標は保持する。
+	return 1.125 if identifier=="ruins_sandstone_colossus" else 0.75
 
 func enemy_feet(index: int) -> Vector2:
 	if _layout_ids!=enemy_ids:_arrange_enemies()
@@ -80,7 +84,7 @@ func _arrange_enemies() -> void:
 	var order: Array[int]=[]
 	var collision := false
 	for i in range(enemy_ids.size()):
-		var dimensions := enemy_region(enemy_ids[i]).size*0.75
+		var dimensions := enemy_region(enemy_ids[i]).size*enemy_display_scale(enemy_ids[i])
 		var rectangle := Rect2(_enemy_feet[i]-Vector2(dimensions.x/2,dimensions.y),dimensions)
 		for previous in rectangles:
 			if rectangle.grow(3).intersects(previous.grow(3)):collision=true
