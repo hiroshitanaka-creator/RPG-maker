@@ -254,16 +254,103 @@ Codexは、これらの事項に関わる作業に入る前に、依頼者に選
 - [ ] CIのNode.js 20の非推奨警告への対応時期
 ```
 
-## 検証（検証後に確定する）
+## 使用環境と初期照合
 
 - Godot ZIPのSHA-256：`cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4`。既存CIの固定値と一致。使用版：`4.7.2.stable.official.ed1daf0bf`。保存環境既定の4.6.3は検査に使わない。
 - 初回importはホーム配下のデータ・設定保存先に権限エラーが出たため成功扱いにしない。XDG_CACHE_HOME・XDG_DATA_HOME・XDG_CONFIG_HOMEを作業用 `/tmp/task031/` へ指定し、同じ600秒上限で再実行。終了0、SCRIPT ERROR・ERROR:・WARNING:・Parse Errorなし。
 - `python tools/check_frozen_files.py`：保護対象26件、一致26件、終了0。
-- R-01〜R-08・CI全ジョブ：検証中。最終結果と対象SHAは後続の報告確定で記録する。
-- `gh` のREST/GraphQL照会は環境でForbidden。GitHubコネクターの読み取りは成功し、親引継ぎのCI37431742329の3件がすべてcompleted/successであることを実際に再確認した。今回の成果のCIとは区別する。
+- R-01〜R-08は全PASS、CIはpush・PR各20ジョブすべてcompleted/success。対象SHAと全件の結果は以下に記録する。
+- `gh` のREST/GraphQL照会は環境でForbidden。GitHubコネクターの読み取りは成功し、親引継ぎのCI37431742329の3件・37431742472の17件がすべてcompleted/successであることを実際に再確認した。今回の成果のCIとは区別する。
+
+## ローカル検証の結果
+
+対象SHA：`88653681963f77f94a3b8bdaf0c37da8f64f8b95`。この完成文書コミットを `/tmp/task031/verify` の別checkoutに固定して検査した。生成される検証JSON・ログは別checkout内に保存し、提出ブランチの指定4文書以外は変更していない。
+
+使用コマンド：
+
+```bash
+# Godotは検証済み4.7.2の実行ファイルをPATHの先頭に置く。
+# データ・設定・キャッシュは書込み可能な /tmp/task031/ 配下をXDG_*で指定する。
+timeout 600 godot --headless --editor --import --quit
+python tools/run_locked_checks.py
+python tools/check_frozen_files.py
+python tools/validate_assets.py --strict
+python tools/check_progress_docs.py
+python tools/test_locked_check_reporting.py
+git diff --check ec90a56c9710ae603b19fa2813d8c71327e8f343...88653681963f77f94a3b8bdaf0c37da8f64f8b95
+git diff --stat ec90a56c9710ae603b19fa2813d8c71327e8f343...88653681963f77f94a3b8bdaf0c37da8f64f8b95
+```
+
+全verifyは凍結契約のコマンドそのまま、各300秒上限。検査の緩和・省略・時間上限変更なし。
+
+| 要件 | 結果・終了コード | 実行証拠 |
+| --- | --- | --- |
+| R-01 | PASS・0 | 2テスト・765assertion、失敗0・pending 0・invalid false |
+| R-02 | PASS・0 | 5テスト・946assertion、失敗0・pending 0・invalid false |
+| R-03 | PASS・0 | 2テスト・73assertion、失敗0・pending 0・invalid false |
+| R-04 | PASS・0 | 1テスト・293assertion、失敗0・pending 0・invalid false |
+| R-05 | PASS・0 | 2テスト・79assertion、失敗0・pending 0・invalid false |
+| R-06 | PASS・0 | 2テスト・87assertion、失敗0・pending 0・invalid false |
+| R-07 | PASS・0 | A01〜A14全PASS、FIRST_REGION_PASS: checks=14 |
+| R-08 | PASS・0 | 17テスト・2302assertion、失敗0・pending 0・invalid false |
+
+- 固定checkoutのimport：終了0、エラー・警告なし。
+- 保護照合は作業前後・固定checkout検査前後とも26/26一致。
+- 素材検査：終了0、問題なし。進捗文書検査：history=26 errors=0、終了0。判定器の既存回帰検査：23テストOK、終了0。
+- 一時的な文書検証は上記完成SHAを読み、作業ツリーとの自己比較はしない。依頼書登録SHAとの状態行以外の全文一致、依頼書の装備4ブロック・12職表・刀の分類の完全一致、武器6種類・補強剣15・初期20枚の旧状態保持、4文書の完全な範囲一致、体験仕様の指定2節以外のバイト一致、装備文書の1〜3節不変と変更記録1行のみ追加、報告書の変更前後全文一致を確認し、すべてPASS。
+- 依頼書の状態行を正規化した全文SHA-256：`855b3b2c24deb0bf914b69f283fb649dcdba27110e490aa55e4c8caa5f6aea20`。登録原文と一致。
+- Gitの差分検査：終了0。mainとの差分は指定4文書のみ（依頼書は登録コミットで追加済み、今回の制作による依頼書変更は状態行のみ）。旧STATUS、保護物、検査、時間上限、コード、データ、素材への変更なし。
+
+## CIのURLと全ジョブの結果
+
+対象SHA：`88653681963f77f94a3b8bdaf0c37da8f64f8b95`。GitHubコネクターで各runの全ジョブと終了状態を実際に確認した。pushのrunはGitHub Actionsのブランチ一覧で当該SHA・pushイベントを照合し、PRのrunは当該SHAのworkflow runs照会で確認した。独立レビュー用 [draft PR #24](https://github.com/hiroshitanaka-creator/RPG-maker/pull/24) はmain未統合。
+
+| 起動 | ワークフロー | URL | 結果 |
+| --- | --- | --- | --- |
+| push | CI | [37435371277](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37435371277) | 3/3 completed/success |
+| push | 006 固定受入と最新回帰 | [37435371303](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37435371303) | 17/17 completed/success |
+| PR | 006 固定受入と最新回帰 | [37435484473](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37435484473) | 17/17 completed/success |
+| PR | CI | [37435484509](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37435484509) | 3/3 completed/success |
+
+| ジョブ（全20種類） | push | PR |
+| --- | --- | --- |
+| Godot・凍結受入テスト | success | success |
+| acceptance-and-regression (fixed) | success | success |
+| acceptance-and-regression (latest) | success | success |
+| lifecycle-audit | success | success |
+| normal-input-and-rendering (fixed, details) | success | success |
+| normal-input-and-rendering (fixed, journey) | success | success |
+| normal-input-and-rendering (fixed, restart-0) | success | success |
+| normal-input-and-rendering (fixed, restart-1) | success | success |
+| normal-input-and-rendering (fixed, restart-2) | success | success |
+| normal-input-and-rendering (fixed, restart-3) | success | success |
+| normal-input-and-rendering (fixed, restart-4) | success | success |
+| normal-input-and-rendering (latest, details) | success | success |
+| normal-input-and-rendering (latest, journey) | success | success |
+| normal-input-and-rendering (latest, restart-0) | success | success |
+| normal-input-and-rendering (latest, restart-1) | success | success |
+| normal-input-and-rendering (latest, restart-2) | success | success |
+| normal-input-and-rendering (latest, restart-3) | success | success |
+| normal-input-and-rendering (latest, restart-4) | success | success |
+| 素材検査 | success | success |
+| 試遊前の通常戦闘・案内・画面・復帰検査 | success | success |
+
+本報告確定のコミットは、上記検査済み文書コミットから本報告書と依頼書の状態行だけを更新する。確定後のHEADでもCI全ジョブを確認して提出する。確定後のSHA・CIのURLと終了結果は [PRのChecks](https://github.com/hiroshitanaka-creator/RPG-maker/pull/24/checks) と提出メッセージに示し、上に記録した検査済みSHAの証拠と区別する。
+
+## 自己点検
+
+1. 4節の装備の枠・職業表・職業変更時の装備・強さの方針：4ブロック全文と12職表の原文照合PASS。各ブロックに決定（2026-10-04）を表示し、刀は剣・刀・斧に含めた。自動装備の比較基準・同率優先・候補範囲・他の仲間の除外・自由な再変更・人間職と魔物職の双方の移行・装飾品の非自動変更をすべて保持。
+2. 5節のヴァル：決定表示と未決行からの除外を確認、PASS。
+3. 武器6種類・補強剣15・防具なし・初期20枚の旧状態原文を保持、PASS。
+4. 体験仕様の指定2節を決定に同期。決定済みの内容を未決から外し、残る未決の重複を除き、未実装と明記。新しい決定の追加採用なし、PASS。
+5. mainとの変更範囲は担当4文書のみ。依頼書本文は登録原文と状態行以外一致。装備文書は4節・5節と指示された変更記録1行、体験仕様は指定2節だけの変更。範囲・原文・差分検査すべてPASS。コード・データ・素材・検査・契約・時間上限・旧STATUS・他の依頼書と報告書は変更していない。
+6. R-01〜R-08、保護26件照合、上記SHAのpush・PR全40CIジョブが成功、PASS。
 
 ## 提出条件と未実施事項
 
 - 最新のユーザー指示に従いmain未統合で提出する。依頼書にあるmain反映の条件は本文を変更せず残し、今回の提出の完了条件とは区別する。mainへの直接書込み・マージ、旧docs/STATUS.md更新、追加委譲なし。
 - 装備実装・商品や価格の追加・数値調整は今回の範囲外で未実施。未決を独自に採用しない。
 - 親の独立レビュー・main統合は提出後の工程。
+
+- 記録・検証コミット `88653681963f77f94a3b8bdaf0c37da8f64f8b95` は作業ブランチへcommit・push済み。報告確定と依頼書の「報告済み」への状態更新も同じブランチへcommit・pushし、そのHEADのCI全ジョブを確認して提出する。
+- 上記検査済みSHAについて未確認の検査結果なし。主な未実施は今回の範囲外の装備実装・具体的な数値決定・商品追加と、指示により行わないmain統合・親の独立レビュー。
