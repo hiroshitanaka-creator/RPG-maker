@@ -1,0 +1,36 @@
+{
+  "before_sha": "2547e91d36c59ed6d59f46be15c5c40b20a6b184",
+  "after_sha": "ada5c87e3aa660a8f04ed92b0c68348e3da9c633",
+  "baseline_expectations_and_fixtures_identical": true,
+  "original_checker_body_byte_identical": true,
+  "data_assets_protected_workflow_byte_identical": true,
+  "before_checks": 1576,
+  "after_checks": 1576,
+  "before_cases": 202,
+  "before_passed": 39,
+  "after_passed": 202,
+  "source_sha256": {
+    "scripts/game/equipment_rules.gd": "abdf6e33c78939b0706b6c1d385007923646a99f6261ec0067879bda014d3b52",
+    "tools/check_equipment_rules.gd": "9dd861a51f4170041e5f5bc94e0ebede2c2bb5460cf9eba14513880276b236f6",
+    "tools/check_equipment_invalid_definitions.py": "ce42568f246aeacfe081c9a34283f4f46279d2846e2e6792914d56e0dc333445",
+    "data/equipment_rules.json": "9e52fb78f74834382c50671da1a6c4de01fe377017b78ae64db8ab0871e91892"
+  },
+  "engine_zip_sha256": "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4",
+  "engine_binary_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e",
+  "imports": [
+    {
+      "name": "before-import",
+      "exit_code": 0,
+      "error_count": 0,
+      "log_sha256": "6d76ae037dd83b4fc63eda7e46b11813ea42f62d30caf70917f42e7495ea4b2a",
+      "command": "timeout 600 godot --headless --editor --import --quit"
+    },
+    {
+      "name": "after-import",
+      "exit_code": 0,
+      "error_count": 0,
+      "log_sha256": "1f6afb48483d4997cd847c536fbb5ab3c08008392a93a71193c35c4da347bca3",
+      "command": "timeout 600 godot --headless --editor --import --quit"
+    }
+  ]
+}
