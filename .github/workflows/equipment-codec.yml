@@ -1,0 +1,59 @@
+name: Equipment Codec CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: 4.7.2-stable
+  GODOT_LINUX_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
+
+jobs:
+  codec:
+    name: equipment-codec (${{ matrix.profile }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [fixed049, latest]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # 固定側は当時の本番・原検査・期待・wrapperも同じ完全SHAを使用する。
+          ref: ${{ matrix.profile == 'fixed049' && '99e9d03d4e095b4627b510efd4806f82276617c9' || (github.event.pull_request.head.sha || github.sha) }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 登録と固定完成コードを完全SHAで取得
+        run: |
+          git fetch --no-tags --depth=1 origin \
+            5f5aab4fbe48e77f7e217b71672a043be2839d34 \
+            99e9d03d4e095b4627b510efd4806f82276617c9
+      - name: 公式Godotを既存指定hashで照合
+        run: |
+          curl -fL -o "$RUNNER_TEMP/codec-godot.zip" "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  $RUNNER_TEMP/codec-godot.zip" | sha256sum --check
+          unzip -q "$RUNNER_TEMP/codec-godot.zip" -d "$RUNNER_TEMP/codec-bin"
+          mv "$RUNNER_TEMP/codec-bin/Godot_v${GODOT_VERSION}_linux.x86_64" "$RUNNER_TEMP/codec-bin/godot"
+          chmod +x "$RUNNER_TEMP/codec-bin/godot"
+      - name: S2全固定期待と失敗伝播の実exitを検査
+        run: |
+          python tools/fixtures/equipment-save-codec/run_ci.py \
+            --profile "${{ matrix.profile }}" --source-sha "$(git rev-parse HEAD)" \
+            --godot "$RUNNER_TEMP/codec-bin/godot" \
+            --output "$RUNNER_TEMP/equipment-codec-evidence/results"
+      - name: 対象checkoutの保護照合（失敗時も実行）
+        if: always()
+        run: python tools/check_frozen_files.py
+      - name: 原入力・符号化bytes・全結果・原log保存（失敗時も実行）
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: equipment-codec-${{ matrix.profile }}
+          path: ${{ runner.temp }}/equipment-codec-evidence/
+          if-no-files-found: error
