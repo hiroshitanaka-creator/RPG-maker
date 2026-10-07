@@ -1,0 +1,213 @@
+{
+  "checked_at": "2026-10-07 08:41:33 UTC",
+  "execution_sha": "8d3c1848d09b588fa41bcf6345d3aab6e12a5347",
+  "scope": "固定コードSHAのCI途中記録。最終提出SHAの全20終了結果は最終応答で返す。",
+  "runs": [
+    {
+      "id": 37594412575,
+      "name": "CI",
+      "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412575",
+      "head_sha": "8d3c1848d09b588fa41bcf6345d3aab6e12a5347",
+      "event": "push",
+      "run_attempt": 1,
+      "status": "in_progress",
+      "conclusion": null,
+      "total_count": 3,
+      "jobs": [
+        {
+          "id": 112703393507,
+          "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412575/job/112703393507",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:37:06Z"
+        },
+        {
+          "id": 112703393734,
+          "name": "素材検査",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412575/job/112703393734",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:33:40Z"
+        },
+        {
+          "id": 112703393835,
+          "name": "Godot・凍結受入テスト",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412575/job/112703393835",
+          "status": "in_progress",
+          "conclusion": null,
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": null
+        }
+      ]
+    },
+    {
+      "id": 37594412593,
+      "name": "006 固定受入と最新回帰",
+      "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593",
+      "head_sha": "8d3c1848d09b588fa41bcf6345d3aab6e12a5347",
+      "event": "push",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "total_count": 17,
+      "jobs": [
+        {
+          "id": 112703394831,
+          "name": "lifecycle-audit",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703394831",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:39:32Z"
+        },
+        {
+          "id": 112703395062,
+          "name": "acceptance-and-regression (fixed)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395062",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:34:37Z"
+        },
+        {
+          "id": 112703395067,
+          "name": "normal-input-and-rendering (latest, restart-2)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395067",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:36:23Z"
+        },
+        {
+          "id": 112703395108,
+          "name": "normal-input-and-rendering (fixed, restart-4)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395108",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:16Z",
+          "completed_at": "2026-10-07T08:34:56Z"
+        },
+        {
+          "id": 112703395120,
+          "name": "normal-input-and-rendering (latest, restart-0)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395120",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:16Z",
+          "completed_at": "2026-10-07T08:34:34Z"
+        },
+        {
+          "id": 112703395127,
+          "name": "normal-input-and-rendering (latest, journey)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395127",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:37:05Z"
+        },
+        {
+          "id": 112703395177,
+          "name": "normal-input-and-rendering (fixed, restart-1)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395177",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:18Z",
+          "completed_at": "2026-10-07T08:35:03Z"
+        },
+        {
+          "id": 112703395183,
+          "name": "normal-input-and-rendering (fixed, restart-2)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395183",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:34:49Z"
+        },
+        {
+          "id": 112703395191,
+          "name": "normal-input-and-rendering (latest, restart-3)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395191",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:16Z",
+          "completed_at": "2026-10-07T08:35:09Z"
+        },
+        {
+          "id": 112703395205,
+          "name": "normal-input-and-rendering (fixed, journey)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395205",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:36:49Z"
+        },
+        {
+          "id": 112703395244,
+          "name": "acceptance-and-regression (latest)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395244",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:18Z",
+          "completed_at": "2026-10-07T08:36:00Z"
+        },
+        {
+          "id": 112703395252,
+          "name": "normal-input-and-rendering (latest, details)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395252",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:20Z",
+          "completed_at": "2026-10-07T08:37:13Z"
+        },
+        {
+          "id": 112703395300,
+          "name": "normal-input-and-rendering (latest, restart-1)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395300",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:35:04Z"
+        },
+        {
+          "id": 112703395335,
+          "name": "normal-input-and-rendering (fixed, restart-0)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395335",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:35:26Z"
+        },
+        {
+          "id": 112703395381,
+          "name": "normal-input-and-rendering (latest, restart-4)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395381",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:34:45Z"
+        },
+        {
+          "id": 112703395674,
+          "name": "normal-input-and-rendering (fixed, restart-3)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395674",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:34:56Z"
+        },
+        {
+          "id": 112703395740,
+          "name": "normal-input-and-rendering (fixed, details)",
+          "html_url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37594412593/job/112703395740",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-07T08:32:17Z",
+          "completed_at": "2026-10-07T08:35:54Z"
+        }
+      ]
+    }
+  ]
+}
