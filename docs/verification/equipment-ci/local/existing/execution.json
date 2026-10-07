@@ -1,0 +1,61 @@
+{
+  "source_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+  "records": [
+    {
+      "name": "import",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        "/tmp/equipment043-existing-3l1492g0/checkout",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "exit_code": 0,
+      "seconds": 70.53380244699997,
+      "timeout": 600
+    },
+    {
+      "name": "frozen-before",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.033786107999958404,
+      "timeout": 30
+    },
+    {
+      "name": "locked",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/run_locked_checks.py"
+      ],
+      "exit_code": 0,
+      "seconds": 102.82033770499993,
+      "timeout": null
+    },
+    {
+      "name": "assets",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "seconds": 8.705927309999993,
+      "timeout": null
+    },
+    {
+      "name": "frozen-after",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.06463759399991886,
+      "timeout": 30
+    }
+  ]
+}

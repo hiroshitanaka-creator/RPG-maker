@@ -1,0 +1,32 @@
+{
+  "start_sha": "fae00564540d58a256444940eada2fc45dc2a006",
+  "base_sha": "a5cbeb0bb6f239958b2330d414afc0752c4fe36a",
+  "branch": "codex/task-043-equipment-ci",
+  "uncommitted_at_start": [],
+  "unpushed_at_start": [],
+  "base_difference": [
+    "docs/tasks/043-equipment-ci.md"
+  ],
+  "existing_workflow_sha256": {
+    ".github/workflows/ci.yml": "e375c073123be06d67dacc48fe06d3b3c36de7f1b0b406533ed294f7be6b1019",
+    ".github/workflows/legacy-campaign.yml": "a9f4bd9619401bb8986de6af08caf1d790130f9f43f09d140748c9cda400a7d5",
+    ".github/workflows/region2-village-connections.yml": "4fd051de4c2295681c4bcc19b9e9b568cdd1519e3922e107921817dd60d0a24d"
+  },
+  "local_skills": "checkout .agents/skills は存在せず /workspace/.agents は空",
+  "new_job_count": 14,
+  "job_timeout_minutes": 15,
+  "budgets_seconds": {
+    "import": 600,
+    "core": 240,
+    "migration": 120,
+    "legacy": 120,
+    "invalid_child": 30
+  },
+  "plan": [
+    "固定036/038/041の原検査と変更範囲",
+    "最新core/invalid/S1の全回帰",
+    "基点/041/最新の同一固定fixtureで旧入口等価性",
+    "wrapper失敗伝播fixture",
+    "既存workflow byte不変・保護26/R8・同一最終SHA全CI"
+  ]
+}

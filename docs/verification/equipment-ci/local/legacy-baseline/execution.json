@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "suite": "legacy",
+  "profile": "baseline",
+  "source_sha": "821448b384d37edc041152beb5d6b6f560ad771d",
+  "latest_sha": "fae00564540d58a256444940eada2fc45dc2a006",
+  "commands": [
+    {
+      "command": [
+        "/tmp/equipment043-bin/godot",
+        "--version"
+      ],
+      "cwd": "/tmp/equipment-ci-legacy-baseline-p909iw8t/checkout",
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 1.07,
+      "log": "version.log",
+      "log_sha256": "edff16c1721dd4ae989cadf29a01f574ae8d51b118221f664725bd6980bbba5d",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/equipment-ci-legacy-baseline-p909iw8t/checkout",
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.072,
+      "log": "frozen-before.log",
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/tmp/equipment043-bin/godot",
+        "--headless",
+        "--path",
+        "/tmp/equipment-ci-legacy-baseline-p909iw8t/checkout",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "cwd": "/tmp/equipment-ci-legacy-baseline-p909iw8t/checkout",
+      "timeout_seconds": 600,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 169.631,
+      "log": "import.log",
+      "log_sha256": "2d19654115f94602f7b974a0450c675221be4cf619035c85ac7e61f77f58f65b",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/tmp/equipment043-bin/godot",
+        "--headless",
+        "--path",
+        "/tmp/equipment-ci-legacy-baseline-p909iw8t/checkout",
+        "--script",
+        "res://tools/fixtures/equipment-save/legacy_equivalence.gd"
+      ],
+      "cwd": "/tmp/equipment-ci-legacy-baseline-p909iw8t/checkout",
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 2.902,
+      "log": "legacy.log",
+      "log_sha256": "a6dedfee36c2b1ca1a1b461a1c059e5fde67e9a31c4006ec3f6c7e22e2cc85d1",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/equipment-ci-legacy-baseline-p909iw8t/checkout",
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064,
+      "log": "frozen-after.log",
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "bad_lines": []
+    }
+  ],
+  "wrapper_sha256": "c7936422c224070305c54e7076f2cc19f6c8ade652cf455fdbeaba9135a111be",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "engine_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e",
+  "fixture_sha": "8d3c1848d09b588fa41bcf6345d3aab6e12a5347",
+  "fixture_sha256": {
+    "tools/fixtures/equipment-save/base.json": "55040da8837a4cae90a69de9a329137e07fd5a405670cd18f68c1e5a5b15ad8c",
+    "tools/fixtures/equipment-save/fixtures.gd": "9b893ae2d5ee4a796f15c047f8c9c05b99732d80743fe80228579be7b86273a3",
+    "tools/fixtures/equipment-save/fixtures.gd.uid": "56d366af235c83f7c2bac7e341972018ce2a40d622ad080ec385776c8308993c",
+    "tools/fixtures/equipment-save/legacy_equivalence.gd": "f38183739eacb80ea40aaa901d93d59860b586a3e5657856e7d773740b926791",
+    "tools/fixtures/equipment-save/legacy_equivalence.gd.uid": "751e9e69519db0d96394a58e6b9a24182dd8e2e5c6887d40bcd3a33c350d7d9b"
+  }
+}
