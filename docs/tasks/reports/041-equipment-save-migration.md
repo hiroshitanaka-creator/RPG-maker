@@ -62,7 +62,7 @@ SHA256とsourceの由来は呼出し側の責務である。S1は実バイトを
 | M06 | 形式1reserveのJP更新、記録人物だけの支給、存在しない人物の生成0。reserve混在/ID重複/未知job/不正HP/修練不整合の拒否と候補なし |
 | M07 | party/reserveの戦士既得master2人だけ1回習得追加。非master JP120/counts19・他職masterは追加0、装着0。再移行候補なし、能力context欠落・未知能力拒否。現GameSessionによる新候補受理はfalse |
 | M08 | 純粋pending→grantedの10個だけ、一回性、再実行3回拒否、入力/進行不変。既存reserveを配列移動した加入fixtureと既存EquipmentRulesの再転職は生成0。進行済み加入docの再支給も拒否。通常解放/ロード/加入ハンドラへの接続はS2で未実装 |
-| M10 | 非装備進捗の型・値・順保持、既存型付き配列、HP0、型付きhistory、有限小数、任意記録IDを検査。非装備保存のscalar leaf311箇所を各単独改変して全拒否。未知root/party/reserveキーを削除せず拒否 |
+| M10 | 非装備進捗の型・値・順保持、既存型付き配列、HP0、型付きhistory、有限小数、任意記録IDを検査。候補全体のscalar leaf311箇所（非装備進捗を含む）を各単独改変して全拒否。未知root/party/reserveキーを削除せず拒否 |
 | M11 | 未知版、新キーに版欠落、旧新混在、孤児、重複所有、bag float/null、policy/監査/支援台帳、余分な個体、未知習得、7種stock不正型、新source context、既存不正mode/容量/解放フラグ、JP overflow等を拒否。成否理由とパス、失敗候補なし、元doc/state/metrics/history/jobs/能力context不変 |
 
 新検査は61ケース・2,828条件、failed=0。成功例では決定性と候補/監査の参照分離も確認する。M09/M12/M13のcodec・I/O・通常接続をこの成功に含めない。
