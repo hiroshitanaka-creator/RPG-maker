@@ -1,0 +1,318 @@
+{
+  "equipment_rules_version": 1,
+  "catalog_revision": 1,
+  "design_status": "2026-10-07 10:26 JST Q1A（鉄の短剣へ名称訂正）/Q2A/Q3A採用。新8品の数値は仮値。ゲーム接続・支給・移行・実戦効果は未実装。",
+  "legacy_source": "res://data/integrated_rules.json",
+  "jobs": {
+    "warrior": {
+      "type": "human",
+      "weapon_category": "blade",
+      "armor_rank": 3,
+      "accessory_slots": 2
+    },
+    "knight": {
+      "type": "human",
+      "weapon_category": "blade",
+      "armor_rank": 3,
+      "accessory_slots": 2
+    },
+    "swordsman": {
+      "type": "human",
+      "weapon_category": "blade",
+      "armor_rank": 2,
+      "accessory_slots": 2
+    },
+    "martial_artist": {
+      "type": "human",
+      "weapon_category": "fist",
+      "armor_rank": 1,
+      "accessory_slots": 2
+    },
+    "thief": {
+      "type": "human",
+      "weapon_category": "dagger",
+      "armor_rank": 2,
+      "accessory_slots": 2
+    },
+    "hunter": {
+      "type": "human",
+      "weapon_category": "bow",
+      "armor_rank": 2,
+      "accessory_slots": 2
+    },
+    "apothecary": {
+      "type": "human",
+      "weapon_category": "dagger",
+      "armor_rank": 1,
+      "accessory_slots": 2
+    },
+    "bard": {
+      "type": "human",
+      "weapon_category": "dagger",
+      "armor_rank": 1,
+      "accessory_slots": 2
+    },
+    "priest": {
+      "type": "human",
+      "weapon_category": "staff",
+      "armor_rank": 1,
+      "accessory_slots": 2
+    },
+    "mage": {
+      "type": "human",
+      "weapon_category": "staff",
+      "armor_rank": 1,
+      "accessory_slots": 2
+    },
+    "sage": {
+      "type": "human",
+      "weapon_category": "staff",
+      "armor_rank": 1,
+      "accessory_slots": 2
+    },
+    "shaman": {
+      "type": "human",
+      "weapon_category": "staff",
+      "armor_rank": 1,
+      "accessory_slots": 2
+    },
+    "slime": {
+      "type": "monster",
+      "weapon_category": "",
+      "armor_rank": 0,
+      "accessory_slots": 3
+    },
+    "beast": {
+      "type": "monster",
+      "weapon_category": "",
+      "armor_rank": 0,
+      "accessory_slots": 3
+    },
+    "undead": {
+      "type": "monster",
+      "weapon_category": "",
+      "armor_rank": 0,
+      "accessory_slots": 3
+    },
+    "bird": {
+      "type": "monster",
+      "weapon_category": "",
+      "armor_rank": 0,
+      "accessory_slots": 3
+    },
+    "plant": {
+      "type": "monster",
+      "weapon_category": "",
+      "armor_rank": 0,
+      "accessory_slots": 3
+    },
+    "shell": {
+      "type": "monster",
+      "weapon_category": "",
+      "armor_rank": 0,
+      "accessory_slots": 3
+    },
+    "spirit": {
+      "type": "monster",
+      "weapon_category": "",
+      "armor_rank": 0,
+      "accessory_slots": 3
+    },
+    "dragon": {
+      "type": "monster",
+      "weapon_category": "",
+      "armor_rank": 0,
+      "accessory_slots": 3
+    }
+  },
+  "items": [
+    {
+      "id": "practice_blade",
+      "name": "稽古剣",
+      "kind": "weapon",
+      "weapon_category": "blade",
+      "bonuses": {
+        "attack": 0
+      },
+      "legacy": {
+        "id": "practice_blade",
+        "name": "稽古剣",
+        "attack": 0,
+        "tags": [
+          "melee"
+        ]
+      },
+      "provisional": false
+    },
+    {
+      "id": "practice_staff",
+      "name": "術杖",
+      "kind": "weapon",
+      "weapon_category": "staff",
+      "bonuses": {
+        "attack": -2
+      },
+      "legacy": {
+        "id": "practice_staff",
+        "name": "術杖",
+        "attack": -2,
+        "tags": [
+          "melee"
+        ]
+      },
+      "provisional": false
+    },
+    {
+      "id": "practice_bow",
+      "name": "稽古弓",
+      "kind": "weapon",
+      "weapon_category": "bow",
+      "bonuses": {
+        "attack": -1
+      },
+      "legacy": {
+        "id": "practice_bow",
+        "name": "稽古弓",
+        "attack": -1,
+        "tags": [
+          "projectile"
+        ]
+      },
+      "provisional": false
+    },
+    {
+      "id": "iron_blade",
+      "name": "補強剣",
+      "kind": "weapon",
+      "weapon_category": "blade",
+      "bonuses": {
+        "attack": 3
+      },
+      "legacy": {
+        "id": "iron_blade",
+        "name": "補強剣",
+        "attack": 3,
+        "tags": [
+          "melee"
+        ]
+      },
+      "provisional": false
+    },
+    {
+      "id": "twin_blade",
+      "name": "軽双剣",
+      "kind": "weapon",
+      "weapon_category": "blade",
+      "bonuses": {
+        "attack": 1
+      },
+      "legacy": {
+        "id": "twin_blade",
+        "name": "軽双剣",
+        "attack": 1,
+        "tags": [
+          "melee"
+        ]
+      },
+      "provisional": false
+    },
+    {
+      "id": "long_bow",
+      "name": "封緘の長弓",
+      "kind": "weapon",
+      "weapon_category": "bow",
+      "bonuses": {
+        "attack": 3
+      },
+      "legacy": {
+        "id": "long_bow",
+        "name": "封緘の長弓",
+        "attack": 3,
+        "tags": [
+          "projectile"
+        ],
+        "on_hit": {
+          "kind": "seal"
+        }
+      },
+      "provisional": false
+    },
+    {
+      "id": "cloth_fist_wrap",
+      "name": "布巻き拳帯",
+      "kind": "weapon",
+      "weapon_category": "fist",
+      "bonuses": {
+        "attack": 0
+      },
+      "provisional": true
+    },
+    {
+      "id": "iron_dagger",
+      "name": "鉄の短剣",
+      "kind": "weapon",
+      "weapon_category": "dagger",
+      "bonuses": {
+        "attack": 0
+      },
+      "provisional": true
+    },
+    {
+      "id": "cotton_travel_clothes",
+      "name": "綿の旅服",
+      "kind": "armor",
+      "armor_rank": 1,
+      "bonuses": {
+        "defense": 1
+      },
+      "provisional": true
+    },
+    {
+      "id": "layered_leather_vest",
+      "name": "革合わせの胴着",
+      "kind": "armor",
+      "armor_rank": 2,
+      "bonuses": {
+        "defense": 2
+      },
+      "provisional": true
+    },
+    {
+      "id": "iron_plate_armor",
+      "name": "鉄片の胴鎧",
+      "kind": "armor",
+      "armor_rank": 3,
+      "bonuses": {
+        "defense": 3
+      },
+      "provisional": true
+    },
+    {
+      "id": "vitality_braid",
+      "name": "活力の組紐",
+      "kind": "accessory",
+      "bonuses": {
+        "hp": 10
+      },
+      "provisional": true
+    },
+    {
+      "id": "thought_clasp",
+      "name": "思索の留め具",
+      "kind": "accessory",
+      "bonuses": {
+        "mp": 2
+      },
+      "provisional": true
+    },
+    {
+      "id": "guard_stitched_bracelet",
+      "name": "守り縫いの腕輪",
+      "kind": "accessory",
+      "bonuses": {
+        "defense": 1
+      },
+      "provisional": true
+    }
+  ]
+}
