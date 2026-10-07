@@ -76,7 +76,7 @@ func _load_definitions() -> void:
 		var kind: String = item.kind
 		if kind == "weapon" and (not item.get("weapon_category") is String or item.weapon_category not in CATEGORIES or item.has("armor_rank")):
 			_error(_definition_errors, target, "invalid_weapon_definition")
-		if kind == "armor" and (not _integer_value(item.get("armor_rank")) or item.armor_rank not in [1, 2, 3] or item.has("weapon_category")):
+		if kind == "armor" and (not _integer_value(item.get("armor_rank")) or int(item.armor_rank) not in [1, 2, 3] or item.has("weapon_category")):
 			_error(_definition_errors, target, "invalid_armor_definition")
 		if kind == "accessory" and (item.has("weapon_category") or item.has("armor_rank")):
 			_error(_definition_errors, target, "invalid_accessory_definition")
@@ -115,7 +115,7 @@ func _load_definitions() -> void:
 			_error(_definition_errors, str(identifier), "invalid_job_definition")
 			continue
 		if job.type == "human":
-			if job.weapon_category not in CATEGORIES or job.armor_rank not in [1, 2, 3] or job.accessory_slots != 2:
+			if job.weapon_category not in CATEGORIES or int(job.armor_rank) not in [1, 2, 3] or job.accessory_slots != 2:
 				_error(_definition_errors, identifier, "invalid_job_definition")
 		elif job.type == "monster":
 			if job.weapon_category != "" or job.armor_rank != 0 or job.accessory_slots != 3:
