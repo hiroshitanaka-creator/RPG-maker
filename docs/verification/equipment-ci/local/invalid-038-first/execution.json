@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "suite": "invalid",
+  "profile": "038",
+  "source_sha": "45a58b7faf09809d916954353a3a1fe0c3d2d035",
+  "latest_sha": "fae00564540d58a256444940eada2fc45dc2a006",
+  "commands": [
+    {
+      "command": [
+        "/tmp/equipment043-bin/godot",
+        "--version"
+      ],
+      "cwd": "/tmp/equipment-ci-invalid-038-5vd3wyww/checkout",
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.743,
+      "log": "version.log",
+      "log_sha256": "edff16c1721dd4ae989cadf29a01f574ae8d51b118221f664725bd6980bbba5d",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/equipment-ci-invalid-038-5vd3wyww/checkout",
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.072,
+      "log": "frozen-before.log",
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_equipment_invalid_definitions.py",
+        "--source-sha",
+        "45a58b7faf09809d916954353a3a1fe0c3d2d035",
+        "--godot",
+        "/tmp/equipment043-bin/godot",
+        "--output",
+        "/tmp/equipment043-evidence/invalid-038-first/invalid"
+      ],
+      "cwd": "/tmp/equipment-ci-invalid-038-5vd3wyww/checkout",
+      "timeout_seconds": null,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 156.266,
+      "log": "invalid.log",
+      "log_sha256": "09167861532a927bd618253c6ed39c4113ba898a4192f687dd8cdc69ff839f76",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/equipment-ci-invalid-038-5vd3wyww/checkout",
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.161,
+      "log": "frozen-after.log",
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "bad_lines": []
+    }
+  ],
+  "wrapper_sha256": "c7936422c224070305c54e7076f2cc19f6c8ade652cf455fdbeaba9135a111be",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "engine_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e"
+}

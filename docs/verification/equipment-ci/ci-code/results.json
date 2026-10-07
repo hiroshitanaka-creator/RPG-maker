@@ -1,0 +1,469 @@
+{
+  "head_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+  "status": "IN_PROGRESS",
+  "note": "専用CIのpush全14job・14artifactは成功と全hashを確認済み。既存CIとPRの途中記録であり、全CI成功とは扱わない。最終提出SHAの全結果はPR30本文と最終応答に記録する。",
+  "runs": [
+    {
+      "id": 37612351765,
+      "name": "006 固定受入と最新回帰",
+      "event": "pull_request",
+      "head_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37612351765",
+      "jobs": [
+        {
+          "id": 112762391314,
+          "name": "acceptance-and-regression (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762391642,
+          "name": "acceptance-and-regression (fixed)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762391870,
+          "name": "normal-input-and-rendering (fixed, restart-2)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762391964,
+          "name": "normal-input-and-rendering (fixed, journey)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762391994,
+          "name": "normal-input-and-rendering (latest, restart-2)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762392050,
+          "name": "normal-input-and-rendering (latest, restart-1)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392076,
+          "name": "normal-input-and-rendering (latest, restart-4)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392109,
+          "name": "lifecycle-audit",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392113,
+          "name": "normal-input-and-rendering (fixed, details)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392138,
+          "name": "normal-input-and-rendering (fixed, restart-4)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392144,
+          "name": "normal-input-and-rendering (latest, journey)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392217,
+          "name": "normal-input-and-rendering (fixed, restart-3)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392236,
+          "name": "normal-input-and-rendering (latest, restart-0)",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 112762392238,
+          "name": "normal-input-and-rendering (latest, details)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392256,
+          "name": "normal-input-and-rendering (fixed, restart-1)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392284,
+          "name": "normal-input-and-rendering (fixed, restart-0)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762392421,
+          "name": "normal-input-and-rendering (latest, restart-3)",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ]
+    },
+    {
+      "id": 37612351720,
+      "name": "Equipment and Save CI",
+      "event": "pull_request",
+      "head_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37612351720",
+      "jobs": [
+        {
+          "id": 112762390507,
+          "name": "equipment-migration (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762390815,
+          "name": "equipment-invalid (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762390922,
+          "name": "equipment-core (038)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762390949,
+          "name": "equipment-invalid (038)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762390952,
+          "name": "equipment-legacy (041)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762390974,
+          "name": "equipment-invalid (041)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762390995,
+          "name": "equipment-core (041)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762391004,
+          "name": "equipment-migration (041)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762391042,
+          "name": "equipment-core (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762391047,
+          "name": "equipment-core (036)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762391093,
+          "name": "equipment-legacy (baseline)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762391132,
+          "name": "equipment-legacy (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762391244,
+          "name": "equipment-failure-propagation",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112765429898,
+          "name": "equipment-legacy-comparison",
+          "status": "queued",
+          "conclusion": null
+        }
+      ]
+    },
+    {
+      "id": 37612351727,
+      "name": "CI",
+      "event": "pull_request",
+      "head_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37612351727",
+      "jobs": [
+        {
+          "id": 112762390832,
+          "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762391198,
+          "name": "素材検査",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762391267,
+          "name": "Godot・凍結受入テスト",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ]
+    },
+    {
+      "id": 37612300140,
+      "name": "006 固定受入と最新回帰",
+      "event": "push",
+      "head_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37612300140",
+      "jobs": [
+        {
+          "id": 112762211954,
+          "name": "lifecycle-audit",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212358,
+          "name": "acceptance-and-regression (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212382,
+          "name": "normal-input-and-rendering (fixed, restart-1)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212443,
+          "name": "normal-input-and-rendering (fixed, journey)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212446,
+          "name": "normal-input-and-rendering (fixed, restart-4)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212447,
+          "name": "normal-input-and-rendering (latest, journey)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212484,
+          "name": "normal-input-and-rendering (fixed, restart-0)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212488,
+          "name": "normal-input-and-rendering (fixed, restart-3)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212501,
+          "name": "normal-input-and-rendering (fixed, restart-2)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212515,
+          "name": "normal-input-and-rendering (latest, restart-1)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212539,
+          "name": "normal-input-and-rendering (latest, restart-4)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212553,
+          "name": "normal-input-and-rendering (fixed, details)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212554,
+          "name": "normal-input-and-rendering (latest, restart-3)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212559,
+          "name": "normal-input-and-rendering (latest, details)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212570,
+          "name": "normal-input-and-rendering (latest, restart-0)",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762212605,
+          "name": "acceptance-and-regression (fixed)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212739,
+          "name": "normal-input-and-rendering (latest, restart-2)",
+          "status": "in_progress",
+          "conclusion": null
+        }
+      ]
+    },
+    {
+      "id": 37612300178,
+      "name": "Equipment and Save CI",
+      "event": "push",
+      "head_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37612300178",
+      "jobs": [
+        {
+          "id": 112762211819,
+          "name": "equipment-failure-propagation",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762211903,
+          "name": "equipment-legacy (baseline)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762211905,
+          "name": "equipment-core (036)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762211947,
+          "name": "equipment-legacy (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212014,
+          "name": "equipment-invalid (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212044,
+          "name": "equipment-legacy (041)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212073,
+          "name": "equipment-core (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212083,
+          "name": "equipment-core (038)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212114,
+          "name": "equipment-migration (041)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212132,
+          "name": "equipment-migration (latest)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212161,
+          "name": "equipment-core (041)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212274,
+          "name": "equipment-invalid (041)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762212277,
+          "name": "equipment-invalid (038)",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112764004092,
+          "name": "equipment-legacy-comparison",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 37612300089,
+      "name": "CI",
+      "event": "push",
+      "head_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37612300089",
+      "jobs": [
+        {
+          "id": 112762211455,
+          "name": "素材検査",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 112762211706,
+          "name": "Godot・凍結受入テスト",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 112762211770,
+          "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

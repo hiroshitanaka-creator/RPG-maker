@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "suite": "migration",
+  "profile": "latest",
+  "source_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+  "latest_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+  "commands": [
+    {
+      "command": [
+        "/tmp/equipment043-bin/godot",
+        "--version"
+      ],
+      "cwd": "/tmp/equipment-ci-migration-latest-r8ress0u/checkout",
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.415,
+      "log": "version.log",
+      "log_sha256": "edff16c1721dd4ae989cadf29a01f574ae8d51b118221f664725bd6980bbba5d",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/equipment-ci-migration-latest-r8ress0u/checkout",
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.032,
+      "log": "frozen-before.log",
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/tmp/equipment043-bin/godot",
+        "--headless",
+        "--path",
+        "/tmp/equipment-ci-migration-latest-r8ress0u/checkout",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "cwd": "/tmp/equipment-ci-migration-latest-r8ress0u/checkout",
+      "timeout_seconds": 600,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 56.236,
+      "log": "import.log",
+      "log_sha256": "053048484a5ab9f4a219116f8168562c3f2dc6c470e19684a77fee210c157cb7",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/tmp/equipment043-bin/godot",
+        "--headless",
+        "--path",
+        "/tmp/equipment-ci-migration-latest-r8ress0u/checkout",
+        "--script",
+        "res://tools/check_equipment_save_migration.gd"
+      ],
+      "cwd": "/tmp/equipment-ci-migration-latest-r8ress0u/checkout",
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 36.377,
+      "log": "migration.log",
+      "log_sha256": "951e3c7ade93e94abb342f95f7edb95c3225202fae6a864340c2cf25984b17d7",
+      "bad_lines": []
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/equipment-ci-migration-latest-r8ress0u/checkout",
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 0.064,
+      "log": "frozen-after.log",
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "bad_lines": []
+    }
+  ],
+  "wrapper_sha256": "5a6a33bf464c439bebf9fee9b17080a2cd99a87b16284746d9e19c0f8e43100f",
+  "source_sha256": {
+    "data/equipment_rules.json": "9e52fb78f74834382c50671da1a6c4de01fe377017b78ae64db8ab0871e91892",
+    "data/integrated_rules.json": "a991e585168acc326517be740e573f5cc1f0292bf6640cacea7415d69bbbd9e9",
+    "scripts/game/equipment_rules.gd": "abdf6e33c78939b0706b6c1d385007923646a99f6261ec0067879bda014d3b52",
+    "scripts/game/game_session.gd": "473f9e52eac25783938cde41cb5185aa3cf73f526a9f8b26f25f6d73027d4059",
+    "scripts/game/integrated_progression.gd": "9faf7e55c735aa4a63bb26149fb56b1b7896b2be8a469216b713446c8f51c3b2",
+    "scripts/game/equipment_save_migration.gd": "71ba2c1d4542b0d07523e565d2504c5feef5da3243ee748e9581b96e93c979f5",
+    "scripts/game/equipment_save_validation.gd": "6fc7f482b7bdf621effa2c354106edc9aaa72e38b17167e50549d99db49dba4b",
+    "scripts/game/equipment_state_view.gd": "71a9f2332fc1ac3b7267820bca55c14f16446c24d1cd36533825c74227dfb792",
+    "tools/check_equipment_rules.gd": "9dd861a51f4170041e5f5bc94e0ebede2c2bb5460cf9eba14513880276b236f6",
+    "tools/check_equipment_invalid_definitions.py": "ce42568f246aeacfe081c9a34283f4f46279d2846e2e6792914d56e0dc333445",
+    "tools/check_equipment_save_migration.gd": "727f6972e3c54f248ff926d874ea061eb20974636f3acfdffcfc2daed156d6e4",
+    "tools/fixtures/equipment-save/expectations.json": "fc1ac6a46ceaf6381473aa1a4943333f33ba5d9777ddbaf60b3963e0bca29fd3"
+  },
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "engine_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e"
+}
