@@ -394,6 +394,17 @@ func test_extra_boundaries() -> void:
 		check(result.ok and result.candidate.party[0].equipment.weapons == ["z_instance"], "instance_idよりitem_id順を優先")
 	rules = original_rules
 
+func test_invalid_requests() -> void:
+	var state := fixture()
+	var bad_requests: Array = [{}]
+	for kind in [null, true, false, 0, 1, 1.5, [], {}, "unknown"]:
+		bad_requests.append({"kind": kind})
+	for request in bad_requests:
+		reject(state, request, "invalid_request", "操作種別の欠落・型・未知値 " + str(request))
+	for request in [{"kind": "set_abilities", "equipped_abilities": []}, {"kind": "change_job", "job_id": "warrior"}, {"kind": "equip", "slot": "accessory", "index": 0, "instance_id": ""}]:
+		var result := plan(state, request, "正常3操作対照 " + request.kind)
+		check(result.ok, "正常操作成功 " + request.kind)
+
 func _initialize() -> void:
 	rules = Rules.new()
 	check(Engine.get_version_info().major == 4 and Engine.get_version_info().minor == 7 and Engine.get_version_info().patch == 2 and Engine.get_version_info().status == "stable", "指定Godot4.7.2")
@@ -405,11 +416,15 @@ func _initialize() -> void:
 	test_manual_and_abilities()
 	test_bonuses()
 	test_extra_boundaries()
-	var result := {"status": "PASS" if failures.is_empty() else "FAIL", "checks": checks, "transitions": transitions, "failures": failures, "engine": Engine.get_version_info().string, "command": "timeout 240 godot --headless --path . --script res://tools/check_equipment_rules.gd"}
-	var output := FileAccess.open("res://docs/verification/equipment-core/checks.json", FileAccess.WRITE)
+	var legacy_checks := checks
+	var legacy_failures := failures.size()
+	test_invalid_requests()
+	var result := {"legacy_checks": legacy_checks, "additional_checks": checks - legacy_checks, "status": "PASS" if failures.is_empty() else "FAIL", "checks": checks, "transitions": transitions, "failures": failures, "engine": Engine.get_version_info().string, "command": "timeout 240 godot --headless --path . --script res://tools/check_equipment_rules.gd"}
+	var output := FileAccess.open("res://docs/verification/equipment-validation/core-checks.json", FileAccess.WRITE)
 	output.store_string(JSON.stringify(result, "\t") + "\n")
 	output.close()
-	print("EQUIPMENT_CORE_" + result.status + ": checks=%d transitions=%d failures=%d" % [checks, transitions, failures.size()])
+	print("EQUIPMENT_CORE_" + ("PASS" if legacy_failures == 0 else "FAIL") + ": checks=%d transitions=%d failures=%d" % [legacy_checks, transitions, legacy_failures])
+	print("EQUIPMENT_VALIDATION_" + result.status + ": additional_checks=%d failures=%d" % [checks - legacy_checks, failures.size()])
 	for failure in failures:
 		print("EQUIPMENT_CORE_FAIL: " + failure)
 	quit(0 if failures.is_empty() else 1)
