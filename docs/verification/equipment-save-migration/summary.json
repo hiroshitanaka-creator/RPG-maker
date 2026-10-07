@@ -1,0 +1,129 @@
+{
+  "execution_sha": "8d3c1848d09b588fa41bcf6345d3aab6e12a5347",
+  "new_migration": {
+    "cases": 61,
+    "checks": 2828,
+    "failed": 0,
+    "timeout_seconds": 120
+  },
+  "legacy_equivalence": {
+    "validation_inputs": 142,
+    "upgrade_inputs": 10,
+    "byte_equal": true
+  },
+  "equipment": {
+    "legacy_checks": 5394,
+    "additional_checks": 93,
+    "transitions": 400,
+    "failed": 0
+  },
+  "invalid_definitions": {
+    "cases": 202,
+    "checks": 1576,
+    "failed": 0
+  },
+  "requirements": [
+    {
+      "id": "R-01",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false
+    },
+    {
+      "id": "R-02",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false
+    },
+    {
+      "id": "R-03",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false
+    },
+    {
+      "id": "R-04",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false
+    },
+    {
+      "id": "R-05",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false
+    },
+    {
+      "id": "R-06",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false
+    },
+    {
+      "id": "R-07",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false
+    },
+    {
+      "id": "R-08",
+      "status": "PASS",
+      "exit_code": 0,
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false
+    }
+  ],
+  "protected_paths": {
+    "before": 26,
+    "after": 26,
+    "unchanged": true
+  },
+  "assets": {
+    "images": 1154,
+    "audio": 15,
+    "fonts": 2,
+    "palettes": 3,
+    "issues": 0
+  },
+  "import": {
+    "exit_code": 0,
+    "errors_or_warnings": 0
+  },
+  "initial_r_attempt": {
+    "pass": false,
+    "reason": "import完了前に実行しR-01〜R-04がUID警告でFAIL。完了後に同じコマンド・300秒上限で全件再実行しPASS。初回ログ保持。"
+  },
+  "scope": {
+    "unchanged_prefixes_and_files": [
+      ".scope-lock/",
+      "test/",
+      "data/",
+      "assets/",
+      ".github/",
+      "addons/",
+      "project.godot",
+      "tools/run_locked_checks.py",
+      "tools/check_equipment_rules.gd",
+      "tools/check_equipment_invalid_definitions.py"
+    ],
+    "task_body_unchanged_except_status": true,
+    "decision_log_append_only": true,
+    "new_check_not_wired_to_ci": true,
+    "main_not_written": true
+  }
+}
