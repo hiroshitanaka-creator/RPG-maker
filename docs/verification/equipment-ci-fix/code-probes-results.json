@@ -1,0 +1,221 @@
+{
+  "module_sha256": "46feaa3dc1612fcf801129ecf66256871a235844c868152eb8ffbac9b085c58e",
+  "artifact_sha": "f8ae80b34589f2c0f2c3b5ef3b6d9ddd2e86c94a",
+  "original_zip_sha256": {
+    "baseline": "b3b47d17dec85c8e16a1c3f15f3d01bd3ab92fee9ed7821f0f737567ae7a4274",
+    "041": "0d8da7bf1c02de475fe5433a98265e1352a187c1ebd49b45d2632c8fc89bcb31",
+    "latest": "c9761a0296554cb4af96b4c30e10ef414814408222590bcad7b083bf528eb4ae"
+  },
+  "cases": [
+    {
+      "case": "control",
+      "expected_exit": 0,
+      "observed_exit": 0
+    },
+    {
+      "case": "missing_artifact",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "wrong_source",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "stale_artifact",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "failed_log",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "duplicate_command",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "no_original_command",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "no_pass_line",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "timeout_record",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "missing_commands",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "empty_fixture_hashes",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "fake_success_json",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "command_lookalike",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "wrong_checkout",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "wrong_cwd",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "wrong_budget",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "over_budget",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "nonfinite_seconds",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "bool_exit",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "bool_budget",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "false_engine",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "wrong_wrapper",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "missing_source_hash",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "duplicate_pass",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "version_no_pass",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "protection_no_pass",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "import_no_completion",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "fixture_wrong_hash",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "fixture_missing",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_missing_valid",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_wrong_case",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_duplicate_case",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_missing_metrics",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_missing_history",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_missing_types",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_wrong_value",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_wrong_type",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_wrong_valid",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "output_failed",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "missing_manifest_log",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "wrong_manifest_log",
+      "expected_exit": 1,
+      "observed_exit": 1
+    },
+    {
+      "case": "wrong_output_hash",
+      "expected_exit": 1,
+      "observed_exit": 1
+    }
+  ]
+}

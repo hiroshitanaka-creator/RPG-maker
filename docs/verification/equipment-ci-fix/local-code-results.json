@@ -1,0 +1,159 @@
+{
+  "code_sha": "858164c25224ff8467b75a3d9044f00b6c0ccb05",
+  "results": [
+    {
+      "suite": "legacy",
+      "profile": "041",
+      "command": [
+        "python",
+        "tools/run_equipment_ci.py",
+        "--suite",
+        "legacy",
+        "--profile",
+        "041",
+        "--latest-sha",
+        "858164c25224ff8467b75a3d9044f00b6c0ccb05",
+        "--output",
+        "/tmp/task045-code/equipment-legacy-041",
+        "--godot",
+        "/tmp/task045-bin/godot"
+      ],
+      "exit_code": 0,
+      "seconds": 149.708
+    },
+    {
+      "suite": "legacy",
+      "profile": "latest",
+      "command": [
+        "python",
+        "tools/run_equipment_ci.py",
+        "--suite",
+        "legacy",
+        "--profile",
+        "latest",
+        "--latest-sha",
+        "858164c25224ff8467b75a3d9044f00b6c0ccb05",
+        "--output",
+        "/tmp/task045-code/equipment-legacy-latest",
+        "--godot",
+        "/tmp/task045-bin/godot"
+      ],
+      "exit_code": 0,
+      "seconds": 154.604
+    },
+    {
+      "suite": "legacy",
+      "profile": "baseline",
+      "command": [
+        "python",
+        "tools/run_equipment_ci.py",
+        "--suite",
+        "legacy",
+        "--profile",
+        "baseline",
+        "--latest-sha",
+        "858164c25224ff8467b75a3d9044f00b6c0ccb05",
+        "--output",
+        "/tmp/task045-code/equipment-legacy-baseline",
+        "--godot",
+        "/tmp/task045-bin/godot"
+      ],
+      "exit_code": 0,
+      "seconds": 158.74
+    },
+    {
+      "suite": "core",
+      "profile": "latest",
+      "command": [
+        "python",
+        "tools/run_equipment_ci.py",
+        "--suite",
+        "core",
+        "--profile",
+        "latest",
+        "--latest-sha",
+        "858164c25224ff8467b75a3d9044f00b6c0ccb05",
+        "--output",
+        "/tmp/task045-code/equipment-core-latest",
+        "--godot",
+        "/tmp/task045-bin/godot"
+      ],
+      "exit_code": 0,
+      "seconds": 107.72
+    },
+    {
+      "suite": "invalid",
+      "profile": "latest",
+      "command": [
+        "python",
+        "tools/run_equipment_ci.py",
+        "--suite",
+        "invalid",
+        "--profile",
+        "latest",
+        "--latest-sha",
+        "858164c25224ff8467b75a3d9044f00b6c0ccb05",
+        "--output",
+        "/tmp/task045-code/equipment-invalid-latest",
+        "--godot",
+        "/tmp/task045-bin/godot"
+      ],
+      "exit_code": 0,
+      "seconds": 110.469
+    },
+    {
+      "suite": "self-test",
+      "profile": "latest",
+      "command": [
+        "python",
+        "tools/run_equipment_ci.py",
+        "--suite",
+        "self-test",
+        "--profile",
+        "latest",
+        "--latest-sha",
+        "858164c25224ff8467b75a3d9044f00b6c0ccb05",
+        "--output",
+        "/tmp/task045-code/equipment-self-test-latest"
+      ],
+      "exit_code": 0,
+      "seconds": 12.579
+    },
+    {
+      "suite": "migration",
+      "profile": "latest",
+      "command": [
+        "python",
+        "tools/run_equipment_ci.py",
+        "--suite",
+        "migration",
+        "--profile",
+        "latest",
+        "--latest-sha",
+        "858164c25224ff8467b75a3d9044f00b6c0ccb05",
+        "--output",
+        "/tmp/task045-code/equipment-migration-latest",
+        "--godot",
+        "/tmp/task045-bin/godot"
+      ],
+      "exit_code": 0,
+      "seconds": 117.997
+    },
+    {
+      "suite": "compare",
+      "command": [
+        "python",
+        "tools/run_equipment_ci.py",
+        "--suite",
+        "compare",
+        "--latest-sha",
+        "858164c25224ff8467b75a3d9044f00b6c0ccb05",
+        "--inputs",
+        "/tmp/task045-code",
+        "--output",
+        "/tmp/task045-code/comparison"
+      ],
+      "exit_code": 0
+    }
+  ]
+}
