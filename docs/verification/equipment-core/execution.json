@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-10-07T01:41:41.700774+00:00",
+  "source_sha": "993929b43f311ec6beec8e340fe2c422274171f5",
+  "checkout": "/tmp/equipment-036-checkout",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "archive_sha256": "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4",
+  "source_sha256": {
+    "scripts/game/equipment_rules.gd": "54fa9ddd95bdf7a1142c7889bc12cbe2aa8b02b7f9ae4cc7352ee4330c9667b4",
+    "data/equipment_rules.json": "9e52fb78f74834382c50671da1a6c4de01fe377017b78ae64db8ab0871e91892",
+    "tools/check_equipment_rules.gd": "0361f34670ab0fdc96ae96b742b26fb214e93919a205994fe5d0f6a61f793de0"
+  },
+  "results": [
+    {
+      "name": "pinned-import",
+      "command": [
+        "godot",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "pinned-check",
+      "command": [
+        "timeout",
+        "240",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_equipment_rules.gd"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "requirements",
+      "command": [
+        "python",
+        "tools/run_locked_checks.py"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

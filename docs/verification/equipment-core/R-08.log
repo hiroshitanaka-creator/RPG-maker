@@ -1,0 +1,76 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[1m[INFO]:  [0musing [/tmp/equipment-data/godot/app_userdata/RPG-maker] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.6.1
+
+
+res://test/unit/test_ability_slots.gd
+* test_capacity_unknown_ability_and_effect_removal
+* test_slot_capacity_is_bounded_and_equipment_is_not_duplicated
+2/2 passed.
+
+
+res://test/unit/test_battle_loop.gd
+* test_three_and_four_member_battles_are_reproducible
+* test_guard_damage_action_order_and_defeat
+2/2 passed.
+
+
+res://test/unit/test_job_actions.gd
+* test_action_mastery_entry_and_fixed_original_conditions
+* test_jp_alone_never_masters_any_job
+* test_every_job_requires_both_conditions_and_preserves_action_progress
+* test_preview_queue_replacement_and_multihits_do_not_multiply_counts
+* test_legacy_load_is_unchanged_and_explicit_upgrade_preserves_mastery_without_fabricating_counts
+5/5 passed.
+
+
+res://test/unit/test_job_change.gd
+* test_victory_awards_jp_once_and_mastery_keeps_learned_abilities
+* test_below_threshold_is_not_mastered_and_defeat_has_no_reward
+2/2 passed.
+
+
+res://test/unit/test_job_data.gd
+* test_exact_job_counts_and_schema
+* test_runtime_uses_all_job_definitions_and_valid_abilities
+2/2 passed.
+
+
+res://test/unit/test_monster_form.gd
+* test_all_eight_masteries_transform_and_apply_defined_effects
+1/1 passed.
+
+
+res://test/unit/test_save_roundtrip.gd
+* test_save_load_preserves_all_required_state_for_three_and_four_members
+* test_invalid_save_does_not_destroy_current_state
+2/2 passed.
+
+
+res://test/unit/test_startup.gd
+* test_project_starts_without_errors_or_warnings
+1/1 passed.
+SCOPE_GUT_RESULT {"assertions":2302,"failed_assertions":0,"invalid":false,"pending":0,"tests":17}
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               8
+Tests                17
+Passing Tests        17
+Asserts            2302
+Time              14.106s
+
+
+---- All tests passed! ----
+GUT 9.7.1:  https://github.com/bitwes/Gut/releases/tag/v9.7.1 is now available!
+
