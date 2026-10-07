@@ -2,6 +2,8 @@ extends RefCounted
 ## 装備所有の正規化状態に対する独立した計画器。保存・GameSession適用は行わない。
 ## 職解放・不可逆・戦闘中禁止・形態遷移の許可は呼出し側の責任。
 
+const INT_MAX := 9223372036854775807
+const INT_MIN := -9223372036854775807 - 1
 const DATA_PATH := "res://data/equipment_rules.json"
 const CATEGORIES := ["blade", "fist", "dagger", "bow", "staff"]
 const SLOTS := ["weapon", "armor", "accessory"]
@@ -15,49 +17,84 @@ func _init() -> void:
 func _error(errors: Array, target: String, code: String) -> void:
 	errors.append({"target": target, "reason_code": code})
 
+func _integer_value(value: Variant) -> bool:
+	# intはfloatへ往復させない。floatの2^63はINT_MAXへ丸めず拒否する。
+	if value is int:
+		return true
+	if not value is float:
+		return false
+	return is_finite(value) and value == floor(value) and value >= -9223372036854775808.0 and value < 9223372036854775808.0
+
+func _read_definition(path: String, code: String) -> Variant:
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		_error(_definition_errors, path, code)
+		return null
+	var parser := JSON.new()
+	var status := parser.parse(file.get_as_text())
+	file.close()
+	if status != OK:
+		_error(_definition_errors, path, code)
+		return null
+	return parser.data
+
 func _load_definitions() -> void:
-	var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(DATA_PATH))
-	if not data is Dictionary or data.get("equipment_rules_version") != 1 or not data.get("items") is Array or not data.get("jobs") is Dictionary:
+	# 検証中の候補は局所変数だけに置く。不正定義を半完成の状態で公開しない。
+	var data: Variant = _read_definition(DATA_PATH, "invalid_definition")
+	if not data is Dictionary:
 		_error(_definition_errors, DATA_PATH, "invalid_definition")
 		return
-	_jobs = data.jobs.duplicate(true)
-	var source: Variant = JSON.parse_string(FileAccess.get_file_as_string(data.legacy_source))
+	if not _integer_value(data.get("equipment_rules_version")) or data.equipment_rules_version != 1 or not data.get("items") is Array or not data.get("jobs") is Dictionary or not data.get("legacy_source") is String:
+		_error(_definition_errors, DATA_PATH, "invalid_definition")
+		return
+	if not data.legacy_source.begins_with("res://"):
+		_error(_definition_errors, DATA_PATH, "invalid_definition")
+		return
+	var jobs: Dictionary = data.jobs.duplicate(true)
+	var items: Dictionary = {}
+	var source: Variant = _read_definition(data.legacy_source, "invalid_legacy_source")
 	if not source is Dictionary or not source.get("weapons") is Array:
 		_error(_definition_errors, data.legacy_source, "invalid_legacy_source")
 		return
 	var legacy: Dictionary = {}
 	for item in source.weapons:
+		if not item is Dictionary or not item.get("id") is String or item.id.is_empty() or not item.get("name") is String or not _integer_value(item.get("attack")):
+			_error(_definition_errors, data.legacy_source, "invalid_legacy_source")
+			continue
+		if legacy.has(item.id):
+			_error(_definition_errors, data.legacy_source, "invalid_legacy_source")
+			continue
 		legacy[item.id] = item
 	for item in data.items:
-		if not item is Dictionary or not item.get("id") is String or item.id.is_empty() or _items.has(item.id):
+		if not item is Dictionary or not item.get("id") is String or item.id.is_empty() or items.has(item.id):
 			_error(_definition_errors, DATA_PATH, "invalid_item_id")
 			continue
 		var target: String = "items/" + item.id
-		if not item.get("name") is String or not item.get("kind") in ["weapon", "armor", "accessory"] or not item.get("bonuses") is Dictionary or not item.get("provisional") is bool:
+		if not item.get("name") is String or not item.get("kind") is String or item.kind not in ["weapon", "armor", "accessory"] or not item.get("bonuses") is Dictionary or not item.get("provisional") is bool:
 			_error(_definition_errors, target, "invalid_item_definition")
 			continue
 		var kind: String = item.kind
-		if kind == "weapon" and (not item.get("weapon_category") in CATEGORIES or item.has("armor_rank")):
+		if kind == "weapon" and (not item.get("weapon_category") is String or item.weapon_category not in CATEGORIES or item.has("armor_rank")):
 			_error(_definition_errors, target, "invalid_weapon_definition")
-		if kind == "armor" and (not item.get("armor_rank") in [1.0, 2.0, 3.0] or item.has("weapon_category")):
+		if kind == "armor" and (not _integer_value(item.get("armor_rank")) or item.armor_rank not in [1, 2, 3] or item.has("weapon_category")):
 			_error(_definition_errors, target, "invalid_armor_definition")
 		if kind == "accessory" and (item.has("weapon_category") or item.has("armor_rank")):
 			_error(_definition_errors, target, "invalid_accessory_definition")
+		var allowed: Array = ["attack"] if kind == "weapon" else (["defense"] if kind == "armor" else ["hp", "mp", "defense"])
+		for stat in item.bonuses:
+			var value: Variant = item.bonuses[stat]
+			if stat not in allowed or not _integer_value(value):
+				_error(_definition_errors, target + "/bonuses/" + str(stat), "invalid_bonus")
+			else:
+				item.bonuses[stat] = int(value)
 		if legacy.has(item.id):
 			if item.get("legacy") != legacy[item.id] or item.name != legacy[item.id].name or item.bonuses.get("attack") != legacy[item.id].attack or item.provisional:
 				_error(_definition_errors, target, "legacy_mismatch")
 		elif item.has("legacy"):
 			_error(_definition_errors, target, "unknown_legacy_reference")
-		var allowed: Array = ["attack"] if kind == "weapon" else (["defense"] if kind == "armor" else ["hp", "mp", "defense"])
-		for stat in item.bonuses:
-			var value: Variant = item.bonuses[stat]
-			if stat not in allowed or not (value is float or value is int) or not is_finite(float(value)) or float(value) != floor(float(value)):
-				_error(_definition_errors, target + "/bonuses/" + str(stat), "invalid_bonus")
-			else:
-				item.bonuses[stat] = int(value)
-		_items[item.id] = item.duplicate(true)
+		items[item.id] = item.duplicate(true)
 	for identifier in legacy:
-		if not _items.has(identifier):
+		if not items.has(identifier):
 			_error(_definition_errors, identifier, "missing_legacy_item")
 	var observed: Dictionary = {}
 	var files := DirAccess.get_files_at("res://data/jobs")
@@ -65,28 +102,34 @@ func _load_definitions() -> void:
 	for filename in files:
 		if not filename.ends_with(".json"):
 			continue
-		var job: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://data/jobs/" + filename))
-		if not job is Dictionary or not job.get("id") is String:
+		var job: Variant = _read_definition("res://data/jobs/" + filename, "invalid_job_source")
+		if not job is Dictionary or not job.get("id") is String or job.id.is_empty() or not job.get("type") is String or job.type not in ["human", "monster"] or observed.has(job.id):
 			_error(_definition_errors, filename, "invalid_job_source")
 			continue
 		observed[job.id] = job.type
-		if not _jobs.has(job.id) or _jobs[job.id].get("type") != job.type:
-			_error(_definition_errors, job.id, "job_type_mismatch")
-	if observed.size() != 20 or _jobs.size() != 20:
+	if observed.size() != 20 or jobs.size() != 20:
 		_error(_definition_errors, "jobs", "job_count_mismatch")
-	for identifier in _jobs:
-		var job: Variant = _jobs[identifier]
-		if not job is Dictionary or not observed.has(identifier):
-			_error(_definition_errors, identifier, "unknown_job_definition")
+	for identifier in jobs:
+		var job: Variant = jobs[identifier]
+		if not identifier is String or not job is Dictionary or not job.get("type") is String or not job.get("weapon_category") is String or not _integer_value(job.get("armor_rank")) or not _integer_value(job.get("accessory_slots")):
+			_error(_definition_errors, str(identifier), "invalid_job_definition")
 			continue
 		if job.type == "human":
-			if not job.get("weapon_category") in CATEGORIES or not job.get("armor_rank") in [1.0, 2.0, 3.0] or job.get("accessory_slots") != 2:
-				_error(_definition_errors, identifier, "invalid_human_rule")
+			if job.weapon_category not in CATEGORIES or job.armor_rank not in [1, 2, 3] or job.accessory_slots != 2:
+				_error(_definition_errors, identifier, "invalid_job_definition")
 		elif job.type == "monster":
-			if job.get("weapon_category") != "" or job.get("armor_rank") != 0 or job.get("accessory_slots") != 3:
-				_error(_definition_errors, identifier, "invalid_monster_rule")
+			if job.weapon_category != "" or job.armor_rank != 0 or job.accessory_slots != 3:
+				_error(_definition_errors, identifier, "invalid_job_definition")
 		else:
-			_error(_definition_errors, identifier, "invalid_job_type")
+			_error(_definition_errors, identifier, "invalid_job_definition")
+		if not observed.has(identifier) or observed[identifier] != job.type:
+			_error(_definition_errors, identifier, "job_type_mismatch")
+	for identifier in observed:
+		if not jobs.has(identifier):
+			_error(_definition_errors, identifier, "job_type_mismatch")
+	if _definition_errors.is_empty():
+		_items = items
+		_jobs = jobs
 
 func definition_errors() -> Array:
 	return _definition_errors.duplicate(true)
@@ -281,6 +324,8 @@ func _failure(code: String, errors: Array = []) -> Dictionary:
 
 func _request_valid(request: Dictionary) -> bool:
 	var kind: Variant = request.get("kind")
+	if not kind is String:
+		return false
 	var allowed: Array
 	if kind == "equip":
 		allowed = ["kind", "slot", "index", "instance_id"]
@@ -354,7 +399,13 @@ func plan_equipment_change(state: Dictionary, actor_id: String, request: Diction
 	for instance in instances:
 		if before[instance] != after[instance]:
 			moves.append({"instance_id": instance, "from": before[instance], "to": after[instance]})
-	return {"ok": true, "reason_code": "ok", "candidate": candidate, "moves": moves, "stats_before": equipment_bonuses(state, actor_id).bonuses, "stats_after": equipment_bonuses(candidate, actor_id).bonuses}
+	var stats_before := equipment_bonuses(state, actor_id)
+	var stats_after := equipment_bonuses(candidate, actor_id)
+	if not stats_before.ok:
+		return _failure(stats_before.reason_code, stats_before.errors)
+	if not stats_after.ok:
+		return _failure(stats_after.reason_code, stats_after.errors)
+	return {"ok": true, "reason_code": "ok", "candidate": candidate, "moves": moves, "stats_before": stats_before.bonuses, "stats_after": stats_after.bonuses}
 
 func _manual(state: Dictionary, person: Dictionary, request: Dictionary) -> String:
 	var slot: String = request.slot
@@ -402,7 +453,13 @@ func equipment_bonuses(state: Dictionary, actor_id: String) -> Dictionary:
 		if item.kind == "weapon" and instance != person.equipment.weapons[0]:
 			continue
 		for stat in item.bonuses:
-			bonuses[stat] += item.bonuses[stat]
+			var value: int = item.bonuses[stat]
+			var previous: int = bonuses[stat]
+			# 加算そのものを行う前にintの表現可能域を検査する。
+			if (value > 0 and previous > INT_MAX - value) or (value < 0 and previous < INT_MIN - value):
+				_error(errors, "bonuses/" + stat, "numeric_overflow")
+				return _failure("numeric_overflow", errors)
+			bonuses[stat] = previous + value
 	return {"ok": true, "reason_code": "ok", "bonuses": bonuses}
 
 func two_handed_active(state: Dictionary, actor_id: String) -> bool:
