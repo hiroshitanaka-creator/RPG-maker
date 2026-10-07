@@ -102,6 +102,7 @@ func codec_cases() -> void:
 		check(reread.ok and same(Fixture.typed(candidate),reread.document),"同新版decoderで全値・型比較")
 		check(reread.document._play_session.events[0].details.ints==[3,1,2] and reread.document._play_session.events[0].details.strings==["b","a"],"手書き配列順固定")
 		check(reread.document._play_session.events[0].details.empty.get_typed_builtin()==TYPE_STRING and reread.document._play_session.events[0].details.integer_float is float,"空typed/float1.0固定")
+	run_case("M09-new-existing-metadata",Fixture.typed(candidate),"encode")
 	var many := candidate.duplicate(true)
 	for index in range(9999):many._play_session.events.append({"kind":"history","chapter":"1","elapsed_ms":0,"details":{"index":index,"text":"固定履歴型保存の繰返し証拠"}})
 	result=run_case("M09-new-gzip-10000",many,"encode")
@@ -140,6 +141,7 @@ func codec_cases() -> void:
 			"extra":broken._saved_value_types["unknown"]=1
 			"version":broken._saved_value_types.version=2
 		run_case("M12-types-"+id,json_bytes(broken))
+		run_case("M12-encode-types-"+id,broken,"encode")
 	run_case("M12-invalid-utf8",PackedByteArray([123,34,255,34,58,49,125]))
 	run_case("M12-invalid-json","{broken".to_utf8_buffer())
 	run_case("M12-duplicate-json-key",'{"format_version":1,"format_version":2}'.to_utf8_buffer())

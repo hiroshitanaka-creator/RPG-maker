@@ -128,6 +128,11 @@ static func encode_candidate(document: Dictionary, context: Dictionary) -> Dicti
 	candidate.erase("_saved_value_types")
 	var metadata := SavedValueTypes.describe(candidate)
 	if not metadata.errors.is_empty():return failure("unsupported_value","$")
+	# 既存metadataの未知キー・壊れたpath・型不一致を再生成で消さない。
+	if document.has("_saved_value_types"):
+		errors=metadata_errors(document._saved_value_types)
+		if not errors.is_empty():return failure("invalid_types","$._saved_value_types",errors)
+		if not S1.differences(metadata,document._saved_value_types).is_empty():return failure("invalid_types","$._saved_value_types")
 	errors=Validation.validate(candidate,context)
 	if not errors.is_empty():return failure(errors[0].reason_code,"$",errors)
 	candidate["_saved_value_types"]=metadata
