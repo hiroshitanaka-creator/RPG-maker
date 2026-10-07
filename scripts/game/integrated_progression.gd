@@ -86,13 +86,16 @@ static func forget(actor: Dictionary, removed: Array) -> void:
 		own["relearn"][id]=0
 	if own["focus_binding"] in removed:own["focus_binding"]=""
 static func valid_actor(actor: Dictionary,jobs: Dictionary,abilities: Dictionary,armory: Array) -> bool:
+	return valid_actor_common(actor,jobs,abilities) and valid_legacy_weapons(actor,armory)
+
+static func valid_actor_common(actor: Dictionary,jobs: Dictionary,abilities: Dictionary) -> bool:
 	if not JobMastery.valid(actor,jobs):return false
 	var own: Variant=actor.get("integrated")
-	if not own is Dictionary or not own.has_all(["exp","level","erosion_fraction","jp_remainders","forgotten","relearn","focus_binding","weapons"]):return false
+	if not own is Dictionary or not own.has_all(["exp","level","erosion_fraction","jp_remainders","forgotten","relearn","focus_binding"]):return false
 	for key in ["exp","level","erosion_fraction"]:
 		if not own[key] is int or own[key]<0:return false
 	if own["level"]!=level_for(own["exp"]) or own["erosion_fraction"]>9 or (actor["erosion"]==100 and own["erosion_fraction"]!=0):return false
-	if not own["jp_remainders"] is Dictionary or not own["relearn"] is Dictionary or not own["forgotten"] is Array or not own["weapons"] is Array or not own["focus_binding"] is String:return false
+	if not own["jp_remainders"] is Dictionary or not own["relearn"] is Dictionary or not own["forgotten"] is Array or not own["focus_binding"] is String:return false
 	for id in own["jp_remainders"]:
 		if not jobs.has(id) or not own["jp_remainders"][id] is int or own["jp_remainders"][id] not in [0,1]:return false
 	var seen: Array=[]
@@ -102,19 +105,32 @@ static func valid_actor(actor: Dictionary,jobs: Dictionary,abilities: Dictionary
 	for id in own["relearn"]:
 		if id not in own["forgotten"] or not own["relearn"][id] is int or own["relearn"][id]<0:return false
 	if not own["focus_binding"].is_empty() and (own["focus_binding"] not in actor["equipped_abilities"] or "focus_vow" not in actor["equipped_abilities"] or not abilities.has(own["focus_binding"]) or abilities[own["focus_binding"]]["kind"] not in ["physical","magic"]):return false
+	return true
+
+static func valid_legacy_weapons(actor: Dictionary,armory: Array) -> bool:
+	var own: Dictionary=actor["integrated"]
+	if not own.get("weapons") is Array:return false
 	if own["weapons"].is_empty() or own["weapons"].size()>2 or (own["weapons"].size()==2 and "twin_grip" not in actor["equipped_abilities"]):return false
 	for id in own["weapons"]:
 		if not id is String or id not in armory or weapon(id).is_empty():return false
 	return true
 static func valid_world(value: Variant) -> bool:
-	if not value is Dictionary or not value.has_all(["knowledge","outcomes","claimed","armory","job_notes"]):return false
+	if not valid_world_common(value) or not value.get("armory") is Array:return false
+	var seen: Array=[]
+	for id in value["armory"]:
+		if not id is String or weapon(id).is_empty() or id in seen:return false
+		seen.append(id)
+	return true
+
+static func valid_world_common(value: Variant) -> bool:
+	if not value is Dictionary or not value.has_all(["knowledge","outcomes","claimed","job_notes"]):return false
 	if value.has("mastery_rules_version") and (not value["mastery_rules_version"] is int or value["mastery_rules_version"]!=1):return false
 	if not value["job_notes"] is Array:return false
 	var notes: Array=[]
 	for note in value["job_notes"]:
 		if note not in ["hunter/rumor","hunter/bestiary","sage/rumor","sage/bestiary","swordsman/rumor","swordsman/bestiary","spirit/rumor","spirit/bestiary"] or note in notes:return false
 		notes.append(note)
-	if not value["knowledge"] is Dictionary or not value["outcomes"] is Dictionary or not value["claimed"] is Array or not value["armory"] is Array:return false
+	if not value["knowledge"] is Dictionary or not value["outcomes"] is Dictionary or not value["claimed"] is Array:return false
 	var ids: Array=[]
 	for rule in rules()["enemy_rules"]:ids.append(rule["id"])
 	for id in value["knowledge"]:
@@ -125,12 +141,6 @@ static func valid_world(value: Variant) -> bool:
 		for index in entry["facts"]:
 			if not index is int or index not in [0,1] or index in seen:return false
 			seen.append(index)
-	for id in value["armory"]:
-		if not id is String or weapon(id).is_empty():return false
-	var seen_weapons: Array=[]
-	for id in value["armory"]:
-		if id in seen_weapons:return false
-		seen_weapons.append(id)
 	var methods: Array=["electric","observe","field","seal_break","conducted_hit","device","field_break","seal","disarm","focus","conduct","amplify","overdrive","deflect_physical","deflect_magic","cover","reflect_field","riposte","recycle","restore_mp","weaken"]
 	for id in value["outcomes"]:
 		if not id is String:return false

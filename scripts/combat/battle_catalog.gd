@@ -6,6 +6,9 @@ const EFFECTS := ["physical", "magic", "heal", "revive", "guard", "steal", "focu
 const TARGETS := ["enemy", "ally", "self", "fallen_ally", "enemies", "allies"]
 const AI_PROFILES := ["legacy","caster","guardian","healer","raider","reviver","mixed"]
 
+var equipment_abilities: Dictionary = {}
+var equipment_rewards: Dictionary = {}
+var equipment_errors: Array[String] = []
 var integration: Dictionary = {}
 var errors: Array[String] = []
 var jobs: Dictionary = {}
@@ -45,6 +48,7 @@ func _init(path: String = "res://data/catalog.json") -> void:
 	integration = supplemental.data
 	document["abilities"].append_array(integration["abilities"])
 	_load_document(document)
+	_load_equipment_document(JSON.parse_string(FileAccess.get_file_as_string("res://data/equipment_abilities.json")))
 
 
 func _load_document(document: Dictionary) -> void:
@@ -217,4 +221,37 @@ func make_enemies(encounter_id: String) -> Array[Combatant]:
 		actor.weaknesses.assign(entry["weaknesses"])
 		actor.tactics = entry.get("tactics",actor.tactics).duplicate(true)
 		result.append(actor)
+	return result
+
+
+func _load_equipment_document(value: Variant) -> void:
+	# 内部S2 catalog。旧abilitiesと通常報酬は変更しない。
+	equipment_abilities.clear()
+	equipment_rewards.clear()
+	equipment_errors.clear()
+	if not value is Dictionary or value.size()!=3 or value.get("version")!=1 or not value.get("abilities") is Array or value.abilities.size()!=1 or value.get("mastery_rewards")!={"warrior":["two_handed"]}:
+		equipment_errors.append("装備能力定義の構造が不正です。")
+		return
+	var entry: Variant=value.abilities[0]
+	if not entry is Dictionary or not entry.has_all(["id","name","kind","target","element","description","cost","power","hits","priority"]):
+		equipment_errors.append("両手持ちの能力定義が不正です。")
+		return
+	for key in entry:
+		if key not in ["id","name","kind","target","cost","power","hits","priority","element","description"]:
+			equipment_errors.append("装備能力に未定義項目があります。")
+	for key in {"id":"two_handed","name":"両手持ち","kind":"passive","target":"self","element":"none"}:
+		var fixed: Dictionary={"id":"two_handed","name":"両手持ち","kind":"passive","target":"self","element":"none"}
+		if not entry[key] is String or entry[key]!=fixed[key]:equipment_errors.append("両手持ちの能力定義が不正です。")
+	if abilities.has(entry.id) or not entry.description is String:equipment_errors.append("両手持ちの能力定義が不正です。")
+	for key in ["cost","power","hits","priority"]:
+		if not _is_integer(entry.get(key),1 if key=="hits" else 0) or entry[key]!=(1 if key=="hits" else 0):
+			equipment_errors.append("両手持ちの必須数値が不正です。")
+	if not equipment_errors.is_empty():return
+	equipment_abilities[entry.id]=entry.duplicate(true)
+	equipment_rewards=value.mastery_rewards.duplicate(true)
+
+func equipment_context_abilities() -> Dictionary:
+	if not errors.is_empty() or not equipment_errors.is_empty() or not equipment_abilities.has("two_handed"):return {}
+	var result := abilities.duplicate(true)
+	result.merge(equipment_abilities)
 	return result

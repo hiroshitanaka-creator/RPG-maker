@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "abilities": [
+    {
+      "id": "two_handed",
+      "name": "両手持ち",
+      "kind": "passive",
+      "target": "self",
+      "cost": 0,
+      "power": 0,
+      "hits": 1,
+      "priority": 0,
+      "element": "none",
+      "description": "主武器1本・副武器なしで有効。二刀流とは同時装着できない。"
+    }
+  ],
+  "mastery_rewards": {
+    "warrior": [
+      "two_handed"
+    ]
+  }
+}
