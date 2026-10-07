@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'int' in operator '!='.
+          at: _load_definitions (res://scripts/game/equipment_rules.gd:20)
+          GDScript backtrace (most recent call first):
+              [0] _load_definitions (res://scripts/game/equipment_rules.gd:20)
+              [1] _init (res://scripts/game/equipment_rules.gd:13)
+              [2] _initialize (res://probe.gd:11)
+EQUIPMENT_INVALID_RESULT {"bonus":{"errors":[{"reason_code":"unknown_job","target":"actor/a"}],"moves":[],"ok":false,"reason_code":"invalid_state"},"can_equip":false,"catalog_size":0,"checks":8,"definitions":[],"failures":["定義不正を明示","期待した定義拒否理由 invalid_definition"],"input_unchanged":true,"plan":{"errors":[{"reason_code":"unknown_job","target":"actor/a"}],"moves":[],"ok":false,"reason_code":"invalid_state"},"validation":[{"reason_code":"unknown_job","target":"actor/a"}]}

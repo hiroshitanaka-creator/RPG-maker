@@ -1,0 +1,136 @@
+{
+  "source_sha": "ada5c87e3aa660a8f04ed92b0c68348e3da9c633",
+  "commands": [
+    {
+      "name": "frozen-before",
+      "source_sha": "ada5c87e3aa660a8f04ed92b0c68348e3da9c633",
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "exit_code": 0,
+      "error_count": 0,
+      "duration_seconds": 0.025,
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "status": "PASS"
+    },
+    {
+      "name": "after-core",
+      "source_sha": "ada5c87e3aa660a8f04ed92b0c68348e3da9c633",
+      "command": [
+        "timeout",
+        "240",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_equipment_rules.gd"
+      ],
+      "exit_code": 0,
+      "error_count": 0,
+      "duration_seconds": 0.45,
+      "log_sha256": "0445447eda5da6d950e3f5f579b574ea75ad91d0e12d675f9189f372d6aa80bf",
+      "status": "PASS"
+    },
+    {
+      "name": "requirements",
+      "source_sha": "ada5c87e3aa660a8f04ed92b0c68348e3da9c633",
+      "command": [
+        "python",
+        "tools/run_locked_checks.py"
+      ],
+      "exit_code": 0,
+      "error_count": 0,
+      "duration_seconds": 82.507,
+      "log_sha256": "1d7888f05efc5f8dd0119fdf0f586c71139801a56c81bd398132001f3386409a",
+      "status": "PASS"
+    },
+    {
+      "name": "assets",
+      "source_sha": "ada5c87e3aa660a8f04ed92b0c68348e3da9c633",
+      "command": [
+        "python",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "error_count": 0,
+      "duration_seconds": 7.221,
+      "log_sha256": "183dfcad6963493135f36ad1a47c24632725bbb02150381dde39d477216f870f",
+      "status": "PASS"
+    },
+    {
+      "name": "frozen-after",
+      "source_sha": "ada5c87e3aa660a8f04ed92b0c68348e3da9c633",
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "exit_code": 0,
+      "error_count": 0,
+      "duration_seconds": 0.026,
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "status": "PASS"
+    }
+  ],
+  "comparison_commands": [
+    {
+      "name": "before-core",
+      "source_sha": "98a48207e9c640b2483f7d5f244b02e8a365faec",
+      "command": [
+        "timeout",
+        "240",
+        "godot",
+        "--headless",
+        "--path",
+        "/tmp/equipment038-before",
+        "--script",
+        "/workspace/RPG-maker/tools/check_equipment_rules.gd"
+      ],
+      "exit_code": 1,
+      "error_count": 7,
+      "checker_sha256": "9dd861a51f4170041e5f5bc94e0ebede2c2bb5460cf9eba14513880276b236f6",
+      "log_sha256": "005a8ddda066294ac7d6027353d624155fb88c0ebdd489bf0d365696a97443a2",
+      "status": "EXPECTED_FAIL"
+    },
+    {
+      "name": "before-original-core",
+      "source_sha": "98a48207e9c640b2483f7d5f244b02e8a365faec",
+      "command": [
+        "timeout",
+        "240",
+        "godot",
+        "--headless",
+        "--path",
+        "/tmp/equipment038-before",
+        "--script",
+        "/tmp/equipment038-original-check.gd"
+      ],
+      "exit_code": 0,
+      "error_count": 0,
+      "checker_sha256": "0361f34670ab0fdc96ae96b742b26fb214e93919a205994fe5d0f6a61f793de0",
+      "log_sha256": "b76b9d4e7bb4ce62fb074f718ca03b8da576923ec8ac1b8241d736f1bff610c3",
+      "status": "PASS"
+    },
+    {
+      "name": "after-original-core",
+      "source_sha": "ada5c87e3aa660a8f04ed92b0c68348e3da9c633",
+      "command": [
+        "timeout",
+        "240",
+        "godot",
+        "--headless",
+        "--path",
+        "/tmp/equipment038-after",
+        "--script",
+        "/tmp/equipment038-original-check.gd"
+      ],
+      "exit_code": 0,
+      "error_count": 0,
+      "checker_sha256": "0361f34670ab0fdc96ae96b742b26fb214e93919a205994fe5d0f6a61f793de0",
+      "log_sha256": "b76b9d4e7bb4ce62fb074f718ca03b8da576923ec8ac1b8241d736f1bff610c3",
+      "status": "PASS"
+    }
+  ]
+}

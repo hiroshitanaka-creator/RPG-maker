@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Invalid type in function '_error' in base 'RefCounted (equipment_rules.gd)'. Cannot convert argument 2 from float to String.
+          at: _load_definitions (res://scripts/game/equipment_rules.gd:61)
+          GDScript backtrace (most recent call first):
+              [0] _load_definitions (res://scripts/game/equipment_rules.gd:61)
+              [1] _init (res://scripts/game/equipment_rules.gd:13)
+              [2] _initialize (res://probe.gd:11)
+EQUIPMENT_INVALID_RESULT {"bonus":{"errors":[{"reason_code":"unknown_legacy_reference","target":"items/practice_blade"}],"moves":[],"ok":false,"reason_code":"invalid_state"},"can_equip":false,"catalog_size":14,"checks":8,"definitions":[{"reason_code":"unknown_legacy_reference","target":"items/practice_blade"}],"failures":["半完成カタログを非公開","期待した定義拒否理由 invalid_legacy_source"],"input_unchanged":true,"plan":{"errors":[{"reason_code":"unknown_legacy_reference","target":"items/practice_blade"}],"moves":[],"ok":false,"reason_code":"invalid_state"},"validation":[{"reason_code":"unknown_legacy_reference","target":"items/practice_blade"}]}

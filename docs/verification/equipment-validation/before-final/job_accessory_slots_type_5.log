@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Invalid operands 'Dictionary' and 'int' in operator '!='.
+          at: _load_definitions (res://scripts/game/equipment_rules.gd:83)
+          GDScript backtrace (most recent call first):
+              [0] _load_definitions (res://scripts/game/equipment_rules.gd:83)
+              [1] _init (res://scripts/game/equipment_rules.gd:13)
+              [2] _initialize (res://probe.gd:11)
+EQUIPMENT_INVALID_RESULT {"bonus":{"bonuses":{"attack":0,"defense":0,"hp":0,"mp":0},"ok":true,"reason_code":"ok"},"can_equip":true,"catalog_size":14,"checks":8,"definitions":[],"failures":["定義不正を明示","state拒否","半完成カタログを非公開","計画拒否・候補なし","補正拒否","装備不可","期待した定義拒否理由 invalid_job_definition"],"input_unchanged":true,"plan":{"candidate":{"equipment_rules_version":1,"equipment_stock":{"bag":[],"instances":{}},"first_region":{"reserve":[]},"party":[{"equipment":{"accessories":["","",""],"armor":"","weapons":[]},"equipped_abilities":[],"hp":0,"id":"a","job_id":"warrior","learned_abilities":[],"monster_form":"","mp":1}],"progress_flags":{"midgame_slots":false}},"moves":[],"ok":true,"reason_code":"ok","stats_after":{"attack":0,"defense":0,"hp":0,"mp":0},"stats_before":{"attack":0,"defense":0,"hp":0,"mp":0}},"validation":[]}

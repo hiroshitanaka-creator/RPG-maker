@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Invalid access to property or key 'type' on a base object of type 'Dictionary'.
+          at: _load_definitions (res://scripts/game/equipment_rules.gd:82)
+          GDScript backtrace (most recent call first):
+              [0] _load_definitions (res://scripts/game/equipment_rules.gd:82)
+              [1] _init (res://scripts/game/equipment_rules.gd:13)
+              [2] _initialize (res://probe.gd:11)
+EQUIPMENT_INVALID_RESULT {"bonus":{"errors":[{"reason_code":"job_type_mismatch","target":"warrior"}],"moves":[],"ok":false,"reason_code":"invalid_state"},"can_equip":false,"catalog_size":14,"checks":8,"definitions":[{"reason_code":"job_type_mismatch","target":"warrior"}],"failures":["半完成カタログを非公開","期待した定義拒否理由 invalid_job_definition"],"input_unchanged":true,"plan":{"errors":[{"reason_code":"job_type_mismatch","target":"warrior"}],"moves":[],"ok":false,"reason_code":"invalid_state"},"validation":[{"reason_code":"job_type_mismatch","target":"warrior"}]}
