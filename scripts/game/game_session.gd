@@ -459,66 +459,10 @@ func _valid_state(value: Dictionary) -> bool:
 		return false
 	var ids: Array[String] = []
 	for item in party:
-		if not item is Dictionary:
+		if not item is Dictionary or not validate_legacy_actor(item,value["format_version"],value.get("integrated",{}),value["progress_flags"]):
 			return false
-		var actor: Dictionary = item
-		var required := ["id", "name", "job_id", "last_human_job", "jp", "mastered_jobs", "learned_abilities", "equipped_abilities", "monster_form", "erosion", "irreversible", "hp", "max_hp", "mp", "max_mp"]
-		if not actor.has_all(required):
-			return false
-		if not actor["id"] is String or actor["id"].is_empty() or actor["id"] in ids or not actor["name"] is String:
-			return false
-		ids.append(actor["id"])
-		if not jobs.has(actor["job_id"]) or not jobs.has(actor["last_human_job"]) or jobs[actor["last_human_job"]]["type"] != "human":
-			return false
-		if not actor["jp"] is Dictionary:
-			return false
-		if not actor.get("unlocked_jobs",[]) is Array:
-			return false
-		var unlocked: Array = []
-		for identifier in actor.get("unlocked_jobs",[]):
-			if not identifier is String or not job_progression["advanced"].has(identifier) or identifier in unlocked:
-				return false
-			unlocked.append(identifier)
-		for job_id in actor["jp"]:
-			if not jobs.has(job_id) or not actor["jp"][job_id] is int or actor["jp"][job_id] < 0:
-				return false
-		for field in ["mastered_jobs", "learned_abilities", "equipped_abilities"]:
-			if not actor[field] is Array:
-				return false
-			var seen: Array = []
-			for identifier in actor[field]:
-				if not identifier is String or identifier in seen:
-					return false
-				seen.append(identifier)
-				if field == "mastered_jobs":
-					if not jobs.has(identifier) or int(actor["jp"].get(identifier, 0)) < IntegratedProgression.cost(jobs[identifier],value["format_version"]==2):
-						return false
-				elif not abilities.has(identifier):
-					return false
-		if not actor["erosion"] is int or actor["erosion"] < 0 or actor["erosion"] > 100 or not actor["irreversible"] is bool:
-			return false
-		if actor["erosion"] >= 90 and not actor["irreversible"]:
-			return false
-		var form: Variant = actor["monster_form"]
-		if not form is String or (not form.is_empty() and (not jobs.has(form) or jobs[form]["type"] != "monster" or not form in actor["mastered_jobs"])):
-			return false
-		if actor["irreversible"] and jobs[actor["job_id"]]["type"] == "human":
-			return false
-		for field in ["hp", "max_hp", "mp", "max_mp"]:
-			if not actor[field] is int or actor[field] < 0:
-				return false
-		if value["format_version"]==2 and not IntegratedProgression.valid_actor(actor,jobs,abilities,value["integrated"]["armory"]):return false
-		if value["format_version"]==2 and value["integrated"].has("mastery_rules_version")!=JobMastery.active(actor):return false
-		if value["format_version"]==1 and actor.has("integrated"):return false
-		var computed := _compute_stats(actor, true)
-		if actor["max_hp"] != computed["hp"] or actor["max_mp"] != computed["mp"] or actor["hp"] > actor["max_hp"] or actor["mp"] > actor["max_mp"]:
-			return false
-		var available: Array[String] = _available(actor)
-		var equipped_ids: Array[String] = []
-		equipped_ids.assign(actor["equipped_abilities"])
-		var slots := Loadout.capacity(bool(value["progress_flags"].get("midgame_slots", false)), not form.is_empty())
-		if not Loadout.validate(available, equipped_ids, slots).is_empty():
-			return false
+		if item["id"] in ids:return false
+		ids.append(item["id"])
 	if value.has("leader_id") and (not value["leader_id"] is String or not value["leader_id"] in ids):
 		return false
 	var team: Variant = value.get("gate_team", [])
@@ -532,6 +476,67 @@ func _valid_state(value: Dictionary) -> bool:
 			if not identifier is String or not identifier in ids or identifier in assigned:
 				return false
 			assigned.append(identifier)
+	return true
+
+
+func validate_legacy_actor(actor: Dictionary, format_version: int, world_integrated: Dictionary, flags: Dictionary) -> bool:
+	# 旧入口の人物条件をそのまま共有する。状態・計測・履歴を変更しない。
+	var required := ["id", "name", "job_id", "last_human_job", "jp", "mastered_jobs", "learned_abilities", "equipped_abilities", "monster_form", "erosion", "irreversible", "hp", "max_hp", "mp", "max_mp"]
+	if not actor.has_all(required):
+		return false
+	if not actor["id"] is String or actor["id"].is_empty() or not actor["name"] is String:
+		return false
+	if not jobs.has(actor["job_id"]) or not jobs.has(actor["last_human_job"]) or jobs[actor["last_human_job"]]["type"] != "human":
+		return false
+	if not actor["jp"] is Dictionary:
+		return false
+	if not actor.get("unlocked_jobs",[]) is Array:
+		return false
+	var unlocked: Array = []
+	for identifier in actor.get("unlocked_jobs",[]):
+		if not identifier is String or not job_progression["advanced"].has(identifier) or identifier in unlocked:
+			return false
+		unlocked.append(identifier)
+	for job_id in actor["jp"]:
+		if not jobs.has(job_id) or not actor["jp"][job_id] is int or actor["jp"][job_id] < 0:
+			return false
+	for field in ["mastered_jobs", "learned_abilities", "equipped_abilities"]:
+		if not actor[field] is Array:
+			return false
+		var seen: Array = []
+		for identifier in actor[field]:
+			if not identifier is String or identifier in seen:
+				return false
+			seen.append(identifier)
+			if field == "mastered_jobs":
+				if not jobs.has(identifier) or int(actor["jp"].get(identifier, 0)) < IntegratedProgression.cost(jobs[identifier],format_version==2):
+					return false
+			elif not abilities.has(identifier):
+				return false
+	if not actor["erosion"] is int or actor["erosion"] < 0 or actor["erosion"] > 100 or not actor["irreversible"] is bool:
+		return false
+	if actor["erosion"] >= 90 and not actor["irreversible"]:
+		return false
+	var form: Variant = actor["monster_form"]
+	if not form is String or (not form.is_empty() and (not jobs.has(form) or jobs[form]["type"] != "monster" or not form in actor["mastered_jobs"])):
+		return false
+	if actor["irreversible"] and jobs[actor["job_id"]]["type"] == "human":
+		return false
+	for field in ["hp", "max_hp", "mp", "max_mp"]:
+		if not actor[field] is int or actor[field] < 0:
+			return false
+	if format_version==2 and not IntegratedProgression.valid_actor(actor,jobs,abilities,world_integrated["armory"]):return false
+	if format_version==2 and world_integrated.has("mastery_rules_version")!=JobMastery.active(actor):return false
+	if format_version==1 and actor.has("integrated"):return false
+	var computed := _compute_stats(actor, true)
+	if actor["max_hp"] != computed["hp"] or actor["max_mp"] != computed["mp"] or actor["hp"] > actor["max_hp"] or actor["mp"] > actor["max_mp"]:
+		return false
+	var available: Array[String] = _available(actor)
+	var equipped_ids: Array[String] = []
+	equipped_ids.assign(actor["equipped_abilities"])
+	var slots := Loadout.capacity(bool(flags.get("midgame_slots", false)), not form.is_empty())
+	if not Loadout.validate(available, equipped_ids, slots).is_empty():
+		return false
 	return true
 
 

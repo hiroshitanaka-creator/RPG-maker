@@ -150,26 +150,32 @@ static func upgrade(old: Dictionary,jobs: Dictionary) -> Dictionary:
 	var result:=old.duplicate(true)
 	result["format_version"]=2
 	result["integrated"]=initial_world()
-	for actor in result["party"]:
-		actor["integrated"]=initial_actor()
-		actor["integrated"]["mastery"]=JobMastery.initial(actor["mastered_jobs"])
-		var formerly_possible: Array=[]
-		for job_id in actor["jp"]:
-			var job: Dictionary=jobs[job_id]
-			var old_jp: int=actor["jp"][job_id]
-			var old_cost:=cost(job,false)
-			actor["jp"][job_id]=floori(float(old_jp)*float(cost(job,true))/float(old_cost))
-			var former: Array=skill_list(job,false)
-			if old_jp>=ceili(old_cost/2.0):formerly_possible.append(former[0])
-			if job_id in actor["mastered_jobs"]:
-				actor["jp"][job_id]=maxi(cost(job,true),actor["jp"][job_id])
-				formerly_possible.append_array(former)
-				if job["type"]=="monster":formerly_possible.append_array(job["monster_form"]["abilities"])
-		var human_skills: Array=[]
-		for job in jobs.values():
-			if job["type"]=="human":human_skills.append_array(job["abilities"])
-		var erased: Array=[]
-		for id in formerly_possible:
-			if id not in actor["learned_abilities"] and id not in human_skills and id not in erased:erased.append(id)
-		forget(actor,erased)
+	for index in range(result["party"].size()):
+		result["party"][index]=upgrade_actor(result["party"][index],jobs)
+	return result
+
+static func upgrade_actor(actor: Dictionary, jobs: Dictionary) -> Dictionary:
+	# 数量支給とは独立した、旧形式1人物更新の純粋処理。
+	var result:=actor.duplicate(true)
+	result["integrated"]=initial_actor()
+	result["integrated"]["mastery"]=JobMastery.initial(result["mastered_jobs"])
+	var formerly_possible: Array=[]
+	for job_id in result["jp"]:
+		var job: Dictionary=jobs[job_id]
+		var old_jp: int=result["jp"][job_id]
+		var old_cost:=cost(job,false)
+		result["jp"][job_id]=floori(float(old_jp)*float(cost(job,true))/float(old_cost))
+		var former: Array=skill_list(job,false)
+		if old_jp>=ceili(old_cost/2.0):formerly_possible.append(former[0])
+		if job_id in result["mastered_jobs"]:
+			result["jp"][job_id]=maxi(cost(job,true),result["jp"][job_id])
+			formerly_possible.append_array(former)
+			if job["type"]=="monster":formerly_possible.append_array(job["monster_form"]["abilities"])
+	var human_skills: Array=[]
+	for job in jobs.values():
+		if job["type"]=="human":human_skills.append_array(job["abilities"])
+	var erased: Array=[]
+	for id in formerly_possible:
+		if id not in result["learned_abilities"] and id not in human_skills and id not in erased:erased.append(id)
+	forget(result,erased)
 	return result
