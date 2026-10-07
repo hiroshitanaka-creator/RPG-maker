@@ -4,8 +4,11 @@ from __future__ import annotations
 
 import argparse
 import copy
+from functools import lru_cache
+import gzip
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -25,6 +28,7 @@ FIXED = {
 BASE = {"036": "79caadbe71e13ba7060aab598dc460035b04cab9",
         "038": "2547e91d36c59ed6d59f46be15c5c40b20a6b184", "041": FIXED["baseline"]}
 VERSION = "4.7.2.stable.official.ed1daf0bf"
+ENGINE_SHA256 = "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e"
 MIGRATION_EVIDENCE = "ddf2153e0f47513eb7906ddd68ab03b645edacd7"
 BAD_LOG = re.compile(r"SCRIPT ERROR|ERROR:|WARNING:|Parse Error|_FAIL:|Fontconfig error")
 FIXTURE_FILES = ["base.json", "fixtures.gd", "fixtures.gd.uid",
@@ -54,14 +58,20 @@ def blob(sha: str, path: str) -> bytes:
     return git("show", f"{sha}:{path}")
 
 
-def read_json(path: Path) -> dict:
+def load_json(raw: str | bytes):
     def unique(pairs):
         result = {}
         for key, value in pairs:
             require(key not in result, f"JSONキー重複: {key}")
             result[key] = value
         return result
-    return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique)
+    def nonfinite(value):
+        raise ValueError("JSON非有限数: " + value)
+    return json.loads(raw, object_pairs_hook=unique, parse_constant=nonfinite)
+
+
+def read_json(path: Path) -> dict:
+    return load_json(path.read_bytes())
 
 
 def write_json(path: Path, value) -> None:
@@ -145,6 +155,27 @@ def check_migration(report: dict, source_sha: str, reference: dict) -> None:
             report["not_verified"] == reference["not_verified"], "S1版/保証境界不一致")
 
 
+@lru_cache
+def frozen_legacy() -> dict:
+    """041当時の旧基点実出力。最新実装から期待を作らない。"""
+    return load_json(gzip.decompress(blob(MIGRATION_EVIDENCE,
+        "docs/verification/equipment-save-migration/legacy-before.json.gz")))
+
+
+def same_values_and_types(actual, expected, path: str = "legacy") -> None:
+    require(type(actual) is type(expected), "旧出力の型不一致: " + path)
+    if isinstance(expected, dict):
+        require(actual.keys() == expected.keys(), "旧出力の必須フィールド不一致: " + path)
+        for key in expected:
+            same_values_and_types(actual[key], expected[key], path + "/" + key)
+    elif isinstance(expected, list):
+        require(len(actual) == len(expected), "旧出力の件数不一致: " + path)
+        for i, (value, fixed) in enumerate(zip(actual, expected)):
+            same_values_and_types(value, fixed, path + "/" + str(i))
+    else:
+        require(actual == expected, "旧出力の固定値不一致: " + path)
+
+
 def check_legacy(report: dict) -> None:
     require((report["validation_count"], report["upgrade_count"]) == (142, 10) and report["failures"] == [], "旧入口件数/失敗")
     require(len(report["validation"]) == 142 and len(report["upgrades"]) == 10, "旧入口結果欠落")
@@ -153,6 +184,68 @@ def check_legacy(report: dict) -> None:
     require(all(item["unchanged"] is True for item in report["validation"]), "旧検証副作用")
     require(all(all(item[k] is True for k in ["imported", "saved", "loaded", "roundtrip"])
                 for item in report["upgrades"]), "旧I/O往復失敗")
+    # 全固定ID・valid・入力/純粋変換/前後state・型記録・metrics/履歴も必須。
+    same_values_and_types(report, frozen_legacy())
+
+
+@lru_cache
+def fixed_fixture_hashes() -> dict:
+    return {"tools/fixtures/equipment-save/" + name:
+            sha256(blob(FIXED["041"], "tools/fixtures/equipment-save/" + name))
+            for name in FIXTURE_FILES}
+
+
+@lru_cache
+def source_hashes(source_sha: str) -> dict:
+    paths = set(git("ls-tree", "-r", "--name-only", source_sha).decode().splitlines())
+    return {path: sha256(blob(source_sha, path)) for path in SOURCE_FILES if path in paths}
+
+
+def check_legacy_commands(execution: dict, folder: Path, manifest: dict) -> None:
+    commands = execution["commands"]
+    require(type(commands) is list and len(commands) == 5, "旧入口必須5コマンド欠落")
+    engine = commands[0]["command"][0]
+    python = commands[1]["command"][0]
+    checkout = commands[0]["cwd"]
+    require(type(engine) is str and Path(engine).is_absolute() and
+            Path(engine).name in ("godot", "Godot_v4.7.2-stable_linux.x86_64") and
+            type(python) is str and Path(python).is_absolute() and
+            re.fullmatch(r"python(?:3(?:\.\d+)?)?", Path(python).name) is not None and
+            type(checkout) is str and Path(checkout).is_absolute() and Path(checkout).name == "checkout",
+            "旧入口実行ファイル/checkout不一致")
+    expected = [
+        ("version.log", 30, [engine, "--version"]),
+        ("frozen-before.log", 30, [python, "tools/check_frozen_files.py"]),
+        ("import.log", 600, [engine, "--headless", "--path", checkout, "--editor", "--import", "--quit"]),
+        ("legacy.log", 120, [engine, "--headless", "--path", checkout, "--script",
+                              "res://tools/fixtures/equipment-save/legacy_equivalence.gd"]),
+        ("frozen-after.log", 30, [python, "tools/check_frozen_files.py"]),
+    ]
+    protected_count = len(load_json(blob(execution["source_sha"], ".scope-lock/frozen-files.json"))["files"])
+    for command, (name, budget, argv) in zip(commands, expected):
+        require(command["log"] == name and command["command"] == argv and command["cwd"] == checkout,
+                "旧入口コマンド種類/順/一意性/対象不一致: " + name)
+        require(type(command["timeout_seconds"]) is int and command["timeout_seconds"] == budget and
+                type(command["seconds"]) in (int, float) and math.isfinite(command["seconds"]) and
+                0 <= command["seconds"] <= budget and type(command["exit_code"]) is int and
+                command["exit_code"] == 0 and command["timed_out"] is False and command["bad_lines"] == [],
+                "旧入口実行結果/予算不一致: " + name)
+        raw = (folder / name).read_bytes()
+        log = raw.decode("utf-8")
+        require(sha256(raw) == command["log_sha256"] == manifest[name] and not BAD_LOG.search(log),
+                "旧入口ログhash/警告不一致: " + name)
+        if name == "version.log":
+            require(log.strip() == VERSION, "旧入口Godot版ログ不一致")
+        elif name.startswith("frozen-"):
+            require(log.strip() == f"保護対象{protected_count}件、一致{protected_count}件。", "旧入口保護PASS欠落")
+        else:
+            require(log.splitlines()[0] == f"Godot Engine v{VERSION} - https://godotengine.org",
+                    "旧入口Godot実行ログ欠落")
+            if name == "legacy.log":
+                exact_lines(log, "LEGACY_EQUIVALENCE_", "LEGACY_EQUIVALENCE_PASS: validation=142 upgrade=10 failures=0")
+            else:
+                clean = re.sub(r"\x1b\[[0-9;]*m", "", log)
+                require("[ DONE ] loading_editor_layout" in clean, "旧入口import終了ログ欠落")
 
 
 def check_scope(profile: str, output: Path) -> None:
@@ -192,26 +285,23 @@ def check_scope(profile: str, output: Path) -> None:
 def compare_legacy(inputs: Path, output: Path, latest_sha: str) -> None:
     versions = {"baseline": FIXED["baseline"], "041": FIXED["041"], "latest": latest_sha}
     hashes = {}
-    fixture_hashes = None
+    fixture_hashes = fixed_fixture_hashes()
     baseline = None
     for profile, expected_sha in versions.items():
         folder = inputs / ("equipment-legacy-" + profile)
         execution = read_json(folder / "execution.json")
-        require(execution["status"] == "PASS" and execution["suite"] == "legacy" and
+        require(execution["status"] == "PASS" and execution["suite"] == "legacy" and execution["profile"] == profile and
                 execution["source_sha"] == expected_sha and execution["latest_sha"] == latest_sha,
                 "旧入口artifactの実行版/成否不一致")
         require(execution["fixture_sha"] == FIXED["041"], "旧入口固定fixture版不一致")
-        require(len(execution["commands"]) == 5 and all(c["exit_code"] == 0 and not c["timed_out"] and
-                not c["bad_lines"] for c in execution["commands"]), "旧入口実行記録の欠落/失敗")
-        for command in execution["commands"]:
-            raw_log = (folder / command["log"]).read_bytes()
-            require(sha256(raw_log) == command["log_sha256"] and not BAD_LOG.search(raw_log.decode()),
-                    "旧入口artifactのログhash/警告不一致")
+        require(execution["engine"] == VERSION and execution["engine_sha256"] == ENGINE_SHA256 and
+                execution["wrapper_sha256"] == sha256(blob(latest_sha, "tools/run_equipment_ci.py")),
+                "旧入口engine/wrapper原本hash不一致")
+        require(execution["source_sha256"] == source_hashes(expected_sha), "旧入口対象checkout原本hash不一致")
         manifest = read_json(folder / "sha256.json")
+        check_legacy_commands(execution, folder, manifest)
         require(manifest["legacy.json"] == sha256((folder / "legacy.json").read_bytes()), "旧入口出力hash不一致")
-        if fixture_hashes is None:
-            fixture_hashes = execution["fixture_sha256"]
-        require(execution["fixture_sha256"] == fixture_hashes, "前後fixture不一致")
+        require(execution["fixture_sha256"] == fixture_hashes, "固定041 fixture5原本hash不一致")
         raw = (folder / "legacy.json").read_bytes()
         check_legacy(read_json(folder / "legacy.json"))
         if baseline is None:
@@ -221,6 +311,125 @@ def compare_legacy(inputs: Path, output: Path, latest_sha: str) -> None:
     write_json(output / "comparison.json", {"status": "PASS", "versions": versions,
                "fixture_sha": FIXED["041"], "fixture_sha256": fixture_hashes,
                "output_sha256": hashes, "validation_count": 142, "upgrade_count": 10})
+
+
+def comparison_fixtures(output: Path, scripts: dict) -> None:
+    """044全12プローブを含む追加42件。各改変は別artifactコピーへ限定する。"""
+    latest_sha = git("rev-parse", "HEAD").decode().strip()
+    originals = output / "comparison-originals"
+    originals.mkdir()
+    engine = "/fixture/bin/godot"
+    python = "/fixture/bin/python"
+    checkout = "/fixture/checkout"
+    log_data = [VERSION + "\n", "保護対象26件、一致26件。\n",
+                f"Godot Engine v{VERSION} - https://godotengine.org\n[ DONE ] loading_editor_layout\n",
+                f"Godot Engine v{VERSION} - https://godotengine.org\nLEGACY_EQUIVALENCE_PASS: validation=142 upgrade=10 failures=0\n",
+                "保護対象26件、一致26件。\n"]
+    definitions = [
+        ("version.log", 30, [engine, "--version"]),
+        ("frozen-before.log", 30, [python, "tools/check_frozen_files.py"]),
+        ("import.log", 600, [engine, "--headless", "--path", checkout, "--editor", "--import", "--quit"]),
+        ("legacy.log", 120, [engine, "--headless", "--path", checkout, "--script",
+                             "res://tools/fixtures/equipment-save/legacy_equivalence.gd"]),
+        ("frozen-after.log", 30, [python, "tools/check_frozen_files.py"]),
+    ]
+    for profile, source in {"baseline": FIXED["baseline"], "041": FIXED["041"], "latest": latest_sha}.items():
+        folder = originals / ("equipment-legacy-" + profile)
+        folder.mkdir()
+        commands = []
+        for (name, budget, argv), log in zip(definitions, log_data):
+            (folder / name).write_text(log, encoding="utf-8")
+            commands.append({"command": argv, "cwd": checkout, "timeout_seconds": budget,
+                             "exit_code": 0, "timed_out": False, "seconds": 1,
+                             "log": name, "log_sha256": sha256(log.encode()), "bad_lines": []})
+        write_json(folder / "legacy.json", frozen_legacy())
+        write_json(folder / "execution.json", {"status": "PASS", "suite": "legacy", "profile": profile,
+                   "source_sha": source, "latest_sha": latest_sha, "fixture_sha": FIXED["041"],
+                   "fixture_sha256": fixed_fixture_hashes(), "commands": commands,
+                   "engine": VERSION, "engine_sha256": ENGINE_SHA256,
+                   "wrapper_sha256": sha256(blob(latest_sha, "tools/run_equipment_ci.py")),
+                   "source_sha256": source_hashes(source)})
+        write_json(folder / "sha256.json", {p.name: sha256(p.read_bytes()) for p in folder.iterdir()})
+    names = ["control", "missing_artifact", "wrong_source", "stale_artifact", "failed_log",
+             "duplicate_command", "no_original_command", "no_pass_line", "timeout_record", "missing_commands",
+             "empty_fixture_hashes", "fake_success_json", "command_lookalike", "wrong_checkout", "wrong_cwd",
+             "wrong_budget", "over_budget", "nonfinite_seconds", "bool_exit", "bool_budget", "false_engine",
+             "wrong_wrapper", "missing_source_hash", "duplicate_pass", "version_no_pass", "protection_no_pass",
+             "import_no_completion", "fixture_wrong_hash", "fixture_missing", "output_missing_valid",
+             "output_wrong_case", "output_duplicate_case", "output_missing_metrics", "output_missing_history",
+             "output_missing_types", "output_wrong_value", "output_wrong_type", "output_wrong_valid",
+             "output_failed", "missing_manifest_log", "wrong_manifest_log", "wrong_output_hash"]
+    for name in names:
+        inputs = output / ("comparison-" + name)
+        shutil.copytree(originals, inputs)
+        folder = inputs / "equipment-legacy-latest"
+        execution = read_json(folder / "execution.json")
+        command = execution["commands"][3]
+        if name == "missing_artifact":
+            shutil.rmtree(folder)
+        else:
+            if name == "wrong_source": execution["source_sha"] = "0"*40
+            if name == "stale_artifact": execution["latest_sha"] = "0"*40
+            if name == "duplicate_command": execution["commands"] = [copy.deepcopy(execution["commands"][0]) for _ in range(5)]
+            if name == "no_original_command": command["command"] = ["true"]
+            if name == "missing_commands": execution["commands"] = []
+            if name == "timeout_record": command["timed_out"] = True
+            if name == "command_lookalike": command["command"][0] = "/fixture/bin/true"
+            if name == "wrong_checkout": command["command"][3] = "/other/checkout"
+            if name == "wrong_cwd": command["cwd"] = "/other/checkout"
+            if name == "wrong_budget": command["timeout_seconds"] = 121
+            if name == "over_budget": command["seconds"] = 121
+            if name == "nonfinite_seconds": command["seconds"] = float("nan")
+            if name == "bool_exit": command["exit_code"] = False
+            if name == "bool_budget": command["timeout_seconds"] = True
+            if name == "false_engine": execution["engine_sha256"] = "0"*64
+            if name == "wrong_wrapper": execution["wrapper_sha256"] = "0"*64
+            if name == "missing_source_hash": execution["source_sha256"] = {}
+            log_cases = {"failed_log": (3, "ERROR: fixture\n"), "no_pass_line": (3, "not executed\n"),
+                         "duplicate_pass": (3, log_data[3] + log_data[3]), "version_no_pass": (0, "not executed\n"),
+                         "protection_no_pass": (1, "not executed\n"), "import_no_completion": (2, "not executed\n")}
+            if name in log_cases:
+                index, text = log_cases[name]
+                execution["commands"][index]["log_sha256"] = sha256(text.encode())
+                (folder / definitions[index][0]).write_text(text, encoding="utf-8")
+            write_json(folder / "execution.json", execution)
+            for profile in ["baseline", "041", "latest"]:
+                target = inputs / ("equipment-legacy-" + profile)
+                if name in ["empty_fixture_hashes", "fixture_wrong_hash", "fixture_missing"]:
+                    changed = read_json(target / "execution.json")
+                    if name == "empty_fixture_hashes": changed["fixture_sha256"] = {}
+                    if name == "fixture_wrong_hash": changed["fixture_sha256"][next(iter(changed["fixture_sha256"]))] = "0"*64
+                    if name == "fixture_missing": changed["fixture_sha256"].pop(next(iter(changed["fixture_sha256"])))
+                    write_json(target / "execution.json", changed)
+                if name == "fake_success_json" or name.startswith("output_"):
+                    report = copy.deepcopy(frozen_legacy())
+                    if name == "fake_success_json":
+                        report = {"validation_count": 142, "upgrade_count": 10, "failures": [],
+                                  "validation": [{"case": str(i), "unchanged": True} for i in range(142)],
+                                  "upgrades": [{"case": str(i), "imported": True, "saved": True, "loaded": True,
+                                                "roundtrip": True} for i in range(10)]}
+                    if name == "output_missing_valid": report["validation"][0].pop("valid")
+                    if name == "output_wrong_case": report["validation"][0]["case"] = "fake-case"
+                    if name == "output_duplicate_case": report["validation"][1]["case"] = report["validation"][0]["case"]
+                    if name == "output_missing_metrics": report["upgrades"][0].pop("metrics_after")
+                    if name == "output_missing_history": report["upgrades"][0]["metrics_after"].pop("events")
+                    if name == "output_missing_types": report["upgrades"][0].pop("after_types")
+                    if name == "output_wrong_value": report["upgrades"][0]["after"]["party"][0]["hp"] += 1
+                    if name == "output_wrong_type": report["upgrades"][0]["after"]["party"][0]["hp"] = float(report["upgrades"][0]["after"]["party"][0]["hp"])
+                    if name == "output_wrong_valid": report["validation"][0]["valid"] = False
+                    if name == "output_failed": report["failures"] = ["fixture"]
+                    write_json(target / "legacy.json", report)
+                # log/output改変後にもmanifestを整合させ、意味の検証まで実行させる。
+                write_json(target / "sha256.json", {p.name: sha256(p.read_bytes()) for p in target.iterdir() if p.name != "sha256.json"})
+            manifest = read_json(folder / "sha256.json")
+            if name == "missing_manifest_log": manifest.pop("legacy.log")
+            if name == "wrong_manifest_log": manifest["legacy.log"] = "0"*64
+            if name == "wrong_output_hash": manifest["legacy.json"] = "0"*64
+            write_json(folder / "sha256.json", manifest)
+        result = output / ("comparison-result-" + name)
+        result.mkdir()
+        scripts["comparison_" + name] = (f"m.compare_legacy(pathlib.Path({str(inputs)!r}), "
+                                           f"pathlib.Path({str(result)!r}), {latest_sha!r})\n")
 
 
 def self_test(output: Path) -> None:
@@ -249,9 +458,8 @@ def self_test(output: Path) -> None:
         scripts[name] = f"m.check_core({bad!r}, False)\n"
     for name, log in [("missing_pass", ""), ("duplicate_pass", "PASS\nPASS\n"), ("wrong_count", "PASS: cases=60")]:
         scripts[name] = f"m.exact_lines({log!r}, 'PASS', 'PASS')\n"
-    legacy = {"validation_count": 142, "upgrade_count": 10, "failures": [],
-              "validation": [{"case": str(i), "unchanged": True} for i in range(142)],
-              "upgrades": [{"case": str(i), "imported": True, "saved": True, "loaded": True, "roundtrip": True} for i in range(10)]}
+    # 元35fixtureの全ID・拒否変異を維持。正常旧対照には省略されていた原本フィールドを補う。
+    legacy = copy.deepcopy(frozen_legacy())
     scripts["legacy_control"] = f"m.check_legacy({legacy!r})\n"
     for name in ["legacy_missing", "legacy_failure", "legacy_duplicate", "legacy_roundtrip"]:
         bad = copy.deepcopy(legacy)
@@ -300,6 +508,7 @@ def self_test(output: Path) -> None:
         if name == "invalid_log_hash": bad["results"][0]["log_sha256"] = "0"*64
         write_json(output / (name + ".json"), bad)
         scripts[name] = f"INPUT={str(output / (name + '.json'))!r}\n" + invalid_call
+    comparison_fixtures(output, scripts)
     for name, script in scripts.items():
         expected = 0 if name.endswith("control") else 1
         log_file = output / (name + ".log")
@@ -411,7 +620,7 @@ def main() -> int:
                 exact_lines(log, "LEGACY_EQUIVALENCE_", "LEGACY_EQUIVALENCE_PASS: validation=142 upgrade=10 failures=0")
                 check_legacy(read_json(output / "legacy.json"))
         record["status"] = "PASS"
-    except (RuntimeError, OSError, ValueError, KeyError, subprocess.SubprocessError) as error:
+    except (RuntimeError, OSError, ValueError, KeyError, IndexError, TypeError, subprocess.SubprocessError) as error:
         record["error"] = str(error)
         print("EQUIPMENT_CI_FAIL: " + str(error), file=sys.stderr)
     finally:

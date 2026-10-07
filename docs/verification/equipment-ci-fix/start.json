@@ -1,0 +1,35 @@
+{
+  "start_sha": "5899ee42c60495135f1187561bef248d2d9a92bd",
+  "base_sha": "9010b9b18e468e5e03c47ac285d4d1ad80045660",
+  "uncommitted_before": [],
+  "unpushed_before": [],
+  "read_sha256": {
+    "AGENTS.md": "7e2058f1785572bf090998c05210a10b1d2f9a51d4e7ac21491fa2f66585be28",
+    "docs/asset-spec.md": "96a30b2914787ff106a181a7e67c0319bdb07faf3417bd6077041991bb3326b7",
+    "docs/rpg-plan-v1.md": "da0762aed0f10cdf58dec0b0cf0613f6c5244054f433c4473f62d55199cf94df",
+    "docs/experience-spec-v2.md": "64669cf38852eb5de6799cc72abbc26578b0ed21e986bc8b5971d914f51e09be",
+    "assets/registry.json": "c085e4d32d3a8ef9e30e6d12aa284fa93ac53bfeb6abad6b37c876514fd0a234",
+    "docs/tasks/043-equipment-ci.md": "62536fab2432ed0867c137382f3fc70866fed6c1325c8ecc4c18cf2f75da102c",
+    "docs/tasks/044-review-equipment-ci.md": "275127016bd3f53c14b20186de3c316496fea21efe9dfe0b667d2f1105c5c744",
+    "docs/tasks/reports/043-equipment-ci.md": "b579332048bd528a21eb31e8489d1d6823422c1fdf315085f9b328c2b7316a2e",
+    "docs/tasks/reports/044-review-equipment-ci.md": "fe94386b085ffe9707dd004b9f33148e68061c56de464c0b9a5eeec0f293da97"
+  },
+  "registry_counts": {
+    "assets": 1154,
+    "audio": 15,
+    "fonts": 2
+  },
+  "existing_workflows": {
+    ".github/workflows/ci.yml": "e375c073123be06d67dacc48fe06d3b3c36de7f1b0b406533ed294f7be6b1019",
+    ".github/workflows/legacy-campaign.yml": "a9f4bd9619401bb8986de6af08caf1d790130f9f43f09d140748c9cda400a7d5",
+    ".github/workflows/region2-village-connections.yml": "4fd051de4c2295681c4bcc19b9e9b568cdd1519e3922e107921817dd60d0a24d",
+    ".github/workflows/equipment-save.yml": "b8ca8ee63cc89e01c5fe999c8889a4007a15bc5ff652bf1083ae97c3de2d2362"
+  },
+  "plan": [
+    "044全反例と元35fixtureを修正前実行",
+    "原コマンド/固定fixture/固定旧出力を照合",
+    "修正後全拒否・正常成功",
+    "コードSHA固定・scope検査・証拠保存",
+    "最終SHA全34CI終了・報告"
+  ]
+}

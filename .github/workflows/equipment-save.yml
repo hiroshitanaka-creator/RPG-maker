@@ -223,6 +223,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: 旧基点・固定041の原本と当時の旧出力を読取り取得
+        run: |
+          git fetch --no-tags --depth=1 origin \
+            821448b384d37edc041152beb5d6b6f560ad771d \
+            8d3c1848d09b588fa41bcf6345d3aab6e12a5347 \
+            ddf2153e0f47513eb7906ddd68ab03b645edacd7
       - uses: actions/download-artifact@v4
         with:
           pattern: equipment-legacy-*
@@ -254,6 +260,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: 失敗伝播fixtureの固定原本・当時の旧出力を読取り取得
+        run: |
+          git fetch --no-tags --depth=1 origin \
+            821448b384d37edc041152beb5d6b6f560ad771d \
+            8d3c1848d09b588fa41bcf6345d3aab6e12a5347 \
+            ddf2153e0f47513eb7906ddd68ab03b645edacd7
       - name: 専用fixtureで実際のexit1・警告・件数欠落・timeout拒否を実証
         run: |
           python tools/run_equipment_ci.py --suite self-test --latest-sha "$(git rev-parse HEAD)" \
