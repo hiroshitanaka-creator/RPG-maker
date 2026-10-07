@@ -95,6 +95,7 @@ def main() -> int:
             if replacement is not None or name == "root_value_0":
                 content = replacement
         cases.append((name, path, content, {"mode": mode, "reason": reason, "count": count, "expected": expected}))
+    case("legacy_file_missing", "data/equipment_rules.json", lambda d: d.__setitem__("legacy_source", "res://data/missing.json"), reason="invalid_legacy_source")
     case("normal", mode="valid", count=1, expected="1")
     bad_types = [None, True, 1, 1.5, [], {}, "unknown"]
     def field_cases(prefix, path, location, fields, base, reason):
@@ -123,6 +124,11 @@ def main() -> int:
     field_cases("item", path, ["items", 13], ["id", "name", "kind", "bonuses", "provisional"], catalog, "invalid_item_definition")
     # IDは専用の理由コード。
     cases = [(n, p, c, {**cfg, "reason": "invalid_item_id"} if n.startswith("item_id_") else cfg) for n,p,c,cfg in cases]
+    field_cases("weapon", path, ["items", 6], ["weapon_category"], catalog, "invalid_weapon_definition")
+    field_cases("armor", path, ["items", 8], ["armor_rank"], catalog, "invalid_armor_definition")
+    field_cases("legacy_catalog", path, ["items", 0], ["legacy"], catalog, "legacy_mismatch")
+    for i, value in enumerate(bad_types):
+        case(f"legacy_bonus_{i}", path, lambda d,v=value: d["items"][0]["bonuses"].__setitem__("attack", v), reason="invalid_bonus")
     case("item_null", path, lambda d: d["items"].__setitem__(13, None), reason="invalid_item_id")
     field_cases("job", path, ["jobs", "warrior"], ["type", "weapon_category", "armor_rank", "accessory_slots"], catalog, "invalid_job_definition")
     for i, value in enumerate(bad_types):
@@ -134,7 +140,7 @@ def main() -> int:
     jobpath = "data/jobs/01_warrior.json"
     field_cases("job_source", jobpath, [], ["id", "type"], json.loads(originals[jobpath]), "invalid_job_source")
     # 非文字列name/idは拒否。未知文字列name/idは型正常なので名前変更の不整合で拒否させる。
-    cases = [c for c in cases if not (c[0] in ["item_name_type_6", "item_id_type_6", "legacy_item_name_type_6", "legacy_item_id_type_6", "job_source_id_type_6", "legacy_item_attack_type_2"])]
+    cases = [c for c in cases if not (c[0] in ["item_name_type_6", "item_id_type_6", "legacy_item_name_type_6", "legacy_item_id_type_6", "job_source_id_type_6", "legacy_item_attack_type_2", "legacy_bonus_2"])]
     boundary = [
         ("huge_positive", 1e30, "invalid", "0"), ("huge_negative", -1e30, "invalid", "0"),
         ("fraction", 1.5, "invalid", "0"), ("numeric_string", "1", "invalid", "0"), ("numeric_bool", True, "invalid", "0"),

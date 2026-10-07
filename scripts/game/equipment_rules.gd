@@ -88,7 +88,7 @@ func _load_definitions() -> void:
 			else:
 				item.bonuses[stat] = int(value)
 		if legacy.has(item.id):
-			if item.get("legacy") != legacy[item.id] or item.name != legacy[item.id].name or item.bonuses.get("attack") != legacy[item.id].attack or item.provisional:
+			if not item.get("legacy") is Dictionary or item.legacy != legacy[item.id] or item.name != legacy[item.id].name or not _integer_value(item.bonuses.get("attack")) or item.bonuses.attack != legacy[item.id].attack or item.provisional:
 				_error(_definition_errors, target, "legacy_mismatch")
 		elif item.has("legacy"):
 			_error(_definition_errors, target, "unknown_legacy_reference")

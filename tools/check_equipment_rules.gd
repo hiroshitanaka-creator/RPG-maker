@@ -405,6 +405,30 @@ func test_invalid_requests() -> void:
 		var result := plan(state, request, "正常3操作対照 " + request.kind)
 		check(result.ok, "正常操作成功 " + request.kind)
 
+func test_sum_boundaries() -> void:
+	var original_rules: RefCounted = rules
+	for value in [9223372036854775807, -9223372036854775807 - 1]:
+		rules = Rules.new()
+		# JSONのfloat丸めと分離して、native intの両端をAPIで検査する。
+		rules._items.guard_stitched_bracelet.bonuses.defense = value
+		var state := fixture()
+		wear(state, "edge", "guard_stitched_bracelet", "accessory", 0)
+		var before := state.duplicate(true)
+		var bonus: Dictionary = rules.equipment_bonuses(state, "a")
+		check(bonus.ok and bonus.bonuses.defense == value, "native int上下端を保持 " + str(value))
+		check(state == before, "端値補正も入力不変")
+		var result := plan(state, {"kind": "set_abilities", "equipped_abilities": []}, "端値計画")
+		check(result.ok and result.stats_after.defense == value, "端値計画も整数保持")
+		# 補正前の状態は表現可能。候補の2枠目だけが表現可能域を越える。
+		rules._items.vitality_braid.bonuses = {"defense": 1 if value > 0 else -1}
+		add(state, "step", "vitality_braid")
+		reject(state, {"kind": "equip", "slot": "accessory", "index": 1, "instance_id": "step"}, "numeric_overflow", "候補だけの上下overflow")
+		wear(state, "step2", "vitality_braid", "accessory", 1)
+		bonus = rules.equipment_bonuses(state, "a")
+		check(not bonus.ok and bonus.reason_code == "numeric_overflow" and not bonus.has("bonuses"), "既存状態の上下overflow")
+		reject(state, {"kind": "equip", "slot": "accessory", "index": 1, "instance_id": ""}, "numeric_overflow", "元の補正失敗も計画へ伝播")
+	rules = original_rules
+
 func _initialize() -> void:
 	rules = Rules.new()
 	check(Engine.get_version_info().major == 4 and Engine.get_version_info().minor == 7 and Engine.get_version_info().patch == 2 and Engine.get_version_info().status == "stable", "指定Godot4.7.2")
@@ -419,6 +443,7 @@ func _initialize() -> void:
 	var legacy_checks := checks
 	var legacy_failures := failures.size()
 	test_invalid_requests()
+	test_sum_boundaries()
 	var result := {"legacy_checks": legacy_checks, "additional_checks": checks - legacy_checks, "status": "PASS" if failures.is_empty() else "FAIL", "checks": checks, "transitions": transitions, "failures": failures, "engine": Engine.get_version_info().string, "command": "timeout 240 godot --headless --path . --script res://tools/check_equipment_rules.gd"}
 	var output := FileAccess.open("res://docs/verification/equipment-validation/core-checks.json", FileAccess.WRITE)
 	output.store_string(JSON.stringify(result, "\t") + "\n")
