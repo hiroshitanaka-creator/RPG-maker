@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ matrix.profile == 'fixed053' && '75b6e350f3e52daeff16408f7d3154debe9a8ca4' || (github.event.pull_request.head.sha || github.sha) }}
+          ref: ${{ matrix.profile == 'fixed053' && 'e003b126de6695fa131e07a3db14c3011fb74f2e' || (github.event.pull_request.head.sha || github.sha) }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -32,7 +32,7 @@ jobs:
         run: |
           git fetch --no-tags --depth=1 origin \
             e2c28474b55bd3a9e3dee00be768661ba87e09c4 \
-            75b6e350f3e52daeff16408f7d3154debe9a8ca4
+            e003b126de6695fa131e07a3db14c3011fb74f2e
       - name: 公式Godotの既存指定hashを照合
         run: |
           curl -fL -o "$RUNNER_TEMP/transaction-godot.zip" "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
@@ -44,7 +44,7 @@ jobs:
         run: |
           python tools/fixtures/equipment-save-transaction/run_ci.py \
             --profile "${{ matrix.profile }}" --source-sha "$(git rev-parse HEAD)" \
-            --fixed-sha 75b6e350f3e52daeff16408f7d3154debe9a8ca4 \
+            --fixed-sha e003b126de6695fa131e07a3db14c3011fb74f2e \
             --godot "$RUNNER_TEMP/transaction-bin/godot" \
             --output "$RUNNER_TEMP/equipment-transaction-evidence/results"
       - name: 対象checkoutの保護照合（失敗時も実行）

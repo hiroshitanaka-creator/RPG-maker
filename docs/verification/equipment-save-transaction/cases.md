@@ -1,4 +1,6 @@
-# 固定053 全ケース実測
+# 最終固定053 全ケース実測
+
+コード固定：`e003b126de6695fa131e07a3db14c3011fb74f2e`。原case.json/実exit/log/bytesはfinal-fixed053-raw.tar.gz。初回固定と通知競合の失敗原証拠は別archiveで保持。
 
 | ID | 期待理由 | 実理由 | 条件 | 子exit | phase |
 |---|---|---|---:|---|---|

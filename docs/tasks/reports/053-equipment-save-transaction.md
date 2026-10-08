@@ -1,6 +1,6 @@
 # 053 保存I/O・中断復旧の実装報告
 
-依頼登録 `e2c28474b55bd3a9e3dee00be768661ba87e09c4`、前提main `87f4e66ed64f2ae9a92538acb9716c6a01f5cb27`。指定branch `codex/task-053-equipment-save-transaction`。コード完成固定 `75b6e350f3e52daeff16408f7d3154debe9a8ca4`。draft [PR33](https://github.com/hiroshitanaka-creator/RPG-maker/pull/33)。最終提出SHAと、そのSHAの全CI終了結果・runリンクは最終応答とPR本文へ記録する（自身のSHAを含めたcommitは再帰するため）。
+依頼登録 `e2c28474b55bd3a9e3dee00be768661ba87e09c4`、前提main `87f4e66ed64f2ae9a92538acb9716c6a01f5cb27`。指定branch `codex/task-053-equipment-save-transaction`。コード完成固定 `e003b126de6695fa131e07a3db14c3011fb74f2e`。draft [PR33](https://github.com/hiroshitanaka-creator/RPG-maker/pull/33)。最終提出SHAと、そのSHAの全CI終了結果・runリンクは最終応答とPR本文へ記録する（自身のSHAを含めたcommitは再帰するため）。
 
 承認済みのS3を明示QA root/隔離XDGだけに実装した。通常画面・通常GameSession入口・運用記録・実ユーザー保存へ接続せず、メモリ適用はfalse。AGENTS全文、040計画第4/7/9/10節、051/052報告、S1/S2実API、関係規約を読んだ。checkoutに追加AGENTS/.agents/skillsなし。verification-before-completionを適用し、実結果で成功を確認した。
 
@@ -24,9 +24,9 @@ converted.tmpの書込み後の最初の実読戻しをS2でdecodeし、全値/�
 
 | 実コマンド・内容 | 予算秒 | 実測秒 | 実exit/結果 |
 |---|---:|---:|---|
-| Godot --version | 30 | 0.425 | 0、4.7.2.stable.official.ed1daf0bf |
-| 固定checkout import | 600 | 60.499 | 0 |
-| check_equipment_save_transaction.py（全件） | 180 | 147.603 | 0、172/2178、警告/エラー0 |
+| Godot --version | 30 | 0.409 | 0、4.7.2.stable.official.ed1daf0bf |
+| 固定checkout import | 600 | 5.918 | 0 |
+| check_equipment_save_transaction.py（全件） | 180 | 147.587 | 0、172/2178、警告/エラー0 |
 | run_locked_checks.py：R全8、tests_ran=true/parser_failed=false | 900 | 125.234 | 0 |
 | check_frozen_files.py：26/26 | 30 | 0.065 | 0 |
 | check_equipment_rules.gd：5394＋93条件/400切替 | 240 | 0.967 | 0 |
@@ -35,7 +35,7 @@ converted.tmpの書込み後の最初の実読戻しをS2でdecodeし、全値/�
 | legacy_equivalence.gd：142検証/10更新 | 120 | 2.272 | 0 |
 | validate_assets.py --strict：画像1154/音15/palette3/font2、問題0 | 120 | 7.558 | 0 |
 
-全argv・各子30秒・実exit・原log hashは [fixed-execution.json](../../verification/equipment-save-transaction/fixed-execution.json) と [regression-commands.json](../../verification/equipment-save-transaction/regression-commands.json)。旧比較全文のSHA256は `bb7bc92c918d9ab046bfee348bd033a0404cf0138a3c2248ac13f705a7dfe3ea` で既存原全文と一致。Rの原spec/test/smoke hashも新 [R01-R08.json](../../verification/equipment-save-transaction/R01-R08.json) に記録する。既存異常定義202件のローカル再実行は未実施で、既存CIの全世代で確認する。
+全argv・各子30秒・実exit・原log hashは [final-fixed-execution.json](../../verification/equipment-save-transaction/final-fixed-execution.json) と [regression-commands.json](../../verification/equipment-save-transaction/regression-commands.json)。旧比較全文のSHA256は `bb7bc92c918d9ab046bfee348bd033a0404cf0138a3c2248ac13f705a7dfe3ea` で既存原全文と一致。Rの原spec/test/smoke hashも新 [R01-R08.json](../../verification/equipment-save-transaction/R01-R08.json) に記録する。既存異常定義202件のローカル再実行は未実施で、既存CIの全世代で確認する。
 
 ## 原証拠・範囲
 
@@ -50,3 +50,11 @@ Linux公式ZIP SHA256 `cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c
 実権限拒否は非root uid1000の新設専用directoryを作成時0500にして実測。ユーザー権限・OS・ディスク設定は変更しない。ENOSPCは注入を実測し、実容量不足は専用小容量領域がないため未検証。専用nested別volume、他OS、停電/媒体故障/directory fsync、非協調processによるpath検査/open間の悪意あるdirectory差替えTOCTOUも未検証。プロセス強制終了後の復旧を停電保証としない。mount設定がprocess中に変わらない隔離QAを前提とする。
 
 通常load/メモリ適用/UI/戦闘/運用記録との接続、実ユーザー保存、S4/S5、人間の作品/操作体験の採否は未実施・範囲外。main反映・merge・強制push・削除・追加委譲は行わない。親の独立レビューと受入判断を待つ。
+
+## 追加実測で見つかった通知競合の修正
+
+初回固定75b6e350の独立wrapperは172/2178・147.603秒で成功したが、文書追加head d144ea49の追加local latestで停止通知paused.jsonを作成直後・書込み前に読む競合が1件発生した。kill-source.store.beforeの原markerは0bytes、171ケース/2163条件、156.939秒、exit1。原証拠と旧CIのfixed/latest成功ログをmarker-race archiveへ保持し、成功CIでlocal失敗を隠さない。検査側は厳密JSON解析を維持し、成功へ補完しない。
+
+修正はprobe_worker.gdの停止通知だけ。専用paused.json.tmpへJSONを書き、flush/error/closeを確認してrenameで公開する。新完成固定e003b126de6695fa131e07a3db14c3011fb74f2eを独立checkoutしてwrapper全体を再実行し、全172/2178・実SIGKILL97地点・伝播14・scope2・保護26を成功。新固定のimportは既にimport済みcheckoutの5.918秒（旧clean import60.499秒と区別）。新固定の全argv/実時間/exit/source hashはfinal-fixed-execution.json。原log/全bytesはfinal-fixed053-raw archive。旧成功・新成功・失敗を混ぜない。
+
+保存本体、S1/S2、既存検査/期待/予算に差分なし。既存回帰の表は初回固定SHAでの実測を保持し、最終SHAの全CIも確認する。今回の通知専用修正後の完成固定をe003b126として、それ以降はコード/検査/期待を変更せずCI/文書/証拠だけを追加する。
