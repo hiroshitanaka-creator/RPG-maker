@@ -1,0 +1,59 @@
+name: 装備保存I/O・中断復旧CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: 4.7.2-stable
+  GODOT_LINUX_SHA256: cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4
+
+jobs:
+  transaction:
+    name: equipment-transaction (${{ matrix.profile }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [fixed053, latest]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.profile == 'fixed053' && 'e003b126de6695fa131e07a3db14c3011fb74f2e' || (github.event.pull_request.head.sha || github.sha) }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 登録と完成コードを完全SHAで取得
+        run: |
+          git fetch --no-tags --depth=1 origin \
+            e2c28474b55bd3a9e3dee00be768661ba87e09c4 \
+            e003b126de6695fa131e07a3db14c3011fb74f2e
+      - name: 公式Godotの既存指定hashを照合
+        run: |
+          curl -fL -o "$RUNNER_TEMP/transaction-godot.zip" "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          echo "${GODOT_LINUX_SHA256}  $RUNNER_TEMP/transaction-godot.zip" | sha256sum --check
+          unzip -q "$RUNNER_TEMP/transaction-godot.zip" -d "$RUNNER_TEMP/transaction-bin"
+          mv "$RUNNER_TEMP/transaction-bin/Godot_v${GODOT_VERSION}_linux.x86_64" "$RUNNER_TEMP/transaction-bin/godot"
+          chmod +x "$RUNNER_TEMP/transaction-bin/godot"
+      - name: 全172ケース・97地点・証拠改変と範囲世代の実exitを検査
+        run: |
+          python tools/fixtures/equipment-save-transaction/run_ci.py \
+            --profile "${{ matrix.profile }}" --source-sha "$(git rev-parse HEAD)" \
+            --fixed-sha e003b126de6695fa131e07a3db14c3011fb74f2e \
+            --godot "$RUNNER_TEMP/transaction-bin/godot" \
+            --output "$RUNNER_TEMP/equipment-transaction-evidence/results"
+      - name: 対象checkoutの保護照合（失敗時も実行）
+        if: always()
+        run: python tools/check_frozen_files.py
+      - name: 原入力・全bytes・全結果・実exit・原log保存（失敗時も実行）
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: equipment-transaction-${{ matrix.profile }}
+          path: ${{ runner.temp }}/equipment-transaction-evidence/
+          if-no-files-found: error

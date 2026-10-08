@@ -1,0 +1,178 @@
+# 最終固定053 全ケース実測
+
+コード固定：`e003b126de6695fa131e07a3db14c3011fb74f2e`。原case.json/実exit/log/bytesはfinal-fixed053-raw.tar.gz。初回固定と通知競合の失敗原証拠は別archiveで保持。
+
+| ID | 期待理由 | 実理由 | 条件 | 子exit | phase |
+|---|---|---|---:|---|---|
+| absent-id | ok | ok | 9 | 0,0 | committed |
+| backup-changed | recovery_required | recovery_required | 9 | 0,0 |  |
+| backup-collision | conflict | conflict | 9 | 0 |  |
+| backup-hardlink | same_file | same_file | 9 | 0 |  |
+| candidate-quantity | orphan_instance | orphan_instance | 9 | 0 |  |
+| candidate-types | invalid_types | invalid_types | 9 | 0 |  |
+| candidate-value | candidate_changed | candidate_changed | 9 | 0 |  |
+| commit-source-race | source_changed | source_changed | 9 | 0 |  |
+| commit-target-race | recovery_required | recovery_required | 9 | 0 |  |
+| commit-tmp-race | not_prepared | not_prepared | 9 | 0 |  |
+| different-raw | ok | ok | 9 | 0,0 | committed |
+| directory-link | path_invalid | path_invalid | 9 | 0 |  |
+| fault-candidate.flush.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-candidate.open.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-candidate.readback.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-candidate.store.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-candidate.store.partial | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-commit.rename.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-history.flush.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-history.open.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-history.readback.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-history.rename.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-history.store.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-history.store.partial | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-read.buffer.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-read.open.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-receipt-committed.open.before | ok | ok | 11 | 0,0 | committed |
+| fault-receipt-committed.rename.before | ok | ok | 11 | 0,0 | committed |
+| fault-receipt-prepared.open.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-receipt-prepared.rename.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-source.flush.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-source.open.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-source.readback.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-source.rename.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-source.store.before | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| fault-source.store.partial | injected_io_failure | injected_io_failure | 11 | 0,0 |  |
+| history-changed | recovery_required | recovery_required | 9 | 0,0 |  |
+| initial-tmp-hardlink | conflict | conflict | 9 | 0 |  |
+| injected-enospc | injected_io_failure | injected_io_failure | 9 | 0 |  |
+| inspect-committed | ok | ok | 9 | 0,0 |  |
+| inspect-missing | read_failed | read_failed | 9 | 0 |  |
+| inspect-null-context | ok | ok | 9 | 0 |  |
+| inspect-prepared | ok | ok | 9 | 0,0 |  |
+| inspect-readonly | ok | ok | 9 | 0 |  |
+| intent-changed | recovery_required | recovery_required | 9 | 0,0 |  |
+| kill-candidate.close.after |  | ok | 15 | -9,0 | committed |
+| kill-candidate.close.before |  | ok | 15 | -9,0 | committed |
+| kill-candidate.flush.after |  | ok | 15 | -9,0 | committed |
+| kill-candidate.flush.before |  | ok | 15 | -9,0 | committed |
+| kill-candidate.open.after |  | ok | 15 | -9,0 | committed |
+| kill-candidate.open.before |  | ok | 15 | -9,0 | committed |
+| kill-candidate.readback.after |  | ok | 15 | -9,0 | committed |
+| kill-candidate.readback.before |  | ok | 15 | -9,0 | committed |
+| kill-candidate.store.after |  | ok | 15 | -9,0 | committed |
+| kill-candidate.store.before |  | ok | 15 | -9,0 | committed |
+| kill-candidate.store.partial |  | ok | 15 | -9,0 | committed |
+| kill-commit.rename.after |  | ok | 15 | -9,0 | committed |
+| kill-commit.rename.before |  | ok | 15 | -9,0 | committed |
+| kill-directory.create.after |  | ok | 15 | -9,0 | committed |
+| kill-directory.create.before |  | ok | 15 | -9,0 | committed |
+| kill-history.close.after |  | ok | 15 | -9,0 | committed |
+| kill-history.close.before |  | ok | 15 | -9,0 | committed |
+| kill-history.flush.after |  | ok | 15 | -9,0 | committed |
+| kill-history.flush.before |  | ok | 15 | -9,0 | committed |
+| kill-history.open.after |  | ok | 15 | -9,0 | committed |
+| kill-history.open.before |  | ok | 15 | -9,0 | committed |
+| kill-history.readback.after |  | ok | 15 | -9,0 | committed |
+| kill-history.readback.before |  | ok | 15 | -9,0 | committed |
+| kill-history.rename.after |  | ok | 15 | -9,0 | committed |
+| kill-history.rename.before |  | ok | 15 | -9,0 | committed |
+| kill-history.store.after |  | ok | 15 | -9,0 | committed |
+| kill-history.store.before |  | ok | 15 | -9,0 | committed |
+| kill-history.store.partial |  | ok | 15 | -9,0 | committed |
+| kill-intent.close.after |  | ok | 15 | -9,0 | committed |
+| kill-intent.close.before |  | ok | 15 | -9,0 | committed |
+| kill-intent.flush.after |  | ok | 15 | -9,0 | committed |
+| kill-intent.flush.before |  | ok | 15 | -9,0 | committed |
+| kill-intent.open.after |  | ok | 15 | -9,0 | committed |
+| kill-intent.open.before |  | ok | 15 | -9,0 | committed |
+| kill-intent.readback.after |  | ok | 15 | -9,0 | committed |
+| kill-intent.readback.before |  | ok | 15 | -9,0 | committed |
+| kill-intent.rename.after |  | ok | 15 | -9,0 | committed |
+| kill-intent.rename.before |  | ok | 15 | -9,0 | committed |
+| kill-intent.store.after |  | ok | 15 | -9,0 | committed |
+| kill-intent.store.before |  | ok | 15 | -9,0 | committed |
+| kill-intent.store.partial |  | ok | 15 | -9,0 | committed |
+| kill-lease.acquire.after |  | ok | 15 | -9,0 | committed |
+| kill-lease.acquire.before |  | ok | 15 | -9,0 | committed |
+| kill-owner.close.after |  | ok | 15 | -9,0 | committed |
+| kill-owner.close.before |  | ok | 15 | -9,0 | committed |
+| kill-owner.flush.after |  | ok | 15 | -9,0 | committed |
+| kill-owner.flush.before |  | ok | 15 | -9,0 | committed |
+| kill-owner.open.after |  | ok | 15 | -9,0 | committed |
+| kill-owner.open.before |  | ok | 15 | -9,0 | committed |
+| kill-owner.readback.after |  | ok | 15 | -9,0 | committed |
+| kill-owner.readback.before |  | ok | 15 | -9,0 | committed |
+| kill-owner.store.after |  | ok | 15 | -9,0 | committed |
+| kill-owner.store.before |  | ok | 15 | -9,0 | committed |
+| kill-owner.store.partial |  | ok | 15 | -9,0 | committed |
+| kill-read.buffer.after |  | ok | 15 | -9,0 | committed |
+| kill-read.buffer.before |  | ok | 15 | -9,0 | committed |
+| kill-read.open.after |  | ok | 15 | -9,0 | committed |
+| kill-read.open.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.close.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.close.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.flush.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.flush.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.open.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.open.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.readback.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.readback.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.rename.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.rename.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.store.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.store.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-committed.store.partial |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.close.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.close.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.flush.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.flush.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.open.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.open.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.readback.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.readback.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.rename.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.rename.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.store.after |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.store.before |  | ok | 15 | -9,0 | committed |
+| kill-receipt-prepared.store.partial |  | ok | 15 | -9,0 | committed |
+| kill-source.close.after |  | ok | 15 | -9,0 | committed |
+| kill-source.close.before |  | ok | 15 | -9,0 | committed |
+| kill-source.flush.after |  | ok | 15 | -9,0 | committed |
+| kill-source.flush.before |  | ok | 15 | -9,0 | committed |
+| kill-source.open.after |  | ok | 15 | -9,0 | committed |
+| kill-source.open.before |  | ok | 15 | -9,0 | committed |
+| kill-source.readback.after |  | ok | 15 | -9,0 | committed |
+| kill-source.readback.before |  | ok | 15 | -9,0 | committed |
+| kill-source.rename.after |  | ok | 15 | -9,0 | committed |
+| kill-source.rename.before |  | ok | 15 | -9,0 | committed |
+| kill-source.store.after |  | ok | 15 | -9,0 | committed |
+| kill-source.store.before |  | ok | 15 | -9,0 | committed |
+| kill-source.store.partial |  | ok | 15 | -9,0 | committed |
+| new-input | already_migrated | already_migrated | 9 | 0,0 |  |
+| nonroot-permission | backup_failed | backup_failed | 9 | 0 |  |
+| normal-granted | ok | ok | 9 | 0,0 | committed |
+| normal-pending | ok | ok | 9 | 0,0 | committed |
+| null-abilities | invalid_catalog | invalid_catalog | 9 | 0 |  |
+| null-session | invalid_context | invalid_context | 9 | 0 |  |
+| output-changed | recovery_required | recovery_required | 9 | 0,0 |  |
+| output-link | path_invalid | path_invalid | 9 | 0,0 |  |
+| outside-path | path_invalid | path_invalid | 9 | 0 |  |
+| owner-corrupt | recovery_required | recovery_required | 9 | 0,0 |  |
+| parent-path | path_invalid | path_invalid | 9 | 0 |  |
+| receipt-corrupt | recovery_required | recovery_required | 9 | 0,0 |  |
+| receipt-intent | recovery_required | recovery_required | 9 | 0,0 |  |
+| receipt-phase-stale | ok | ok | 9 | 0,0 | committed |
+| receipt-tmp-hardlink | ok | ok | 9 | 0,0 | committed |
+| same-raw-alias | ok | ok | 9 | 0,0 | committed |
+| source-changed | source_changed | source_changed | 9 | 0,0 |  |
+| source-link | path_invalid | path_invalid | 9 | 0 |  |
+| stale-commit | stale_state | stale_state | 9 | 0,0 |  |
+| stale-committed | stale_state | stale_state | 9 | 0,0 |  |
+| stale-current | stale_state | stale_state | 9 | 0,0 |  |
+| stale-prepare | stale_state | stale_state | 9 | 0 |  |
+| target-collision | recovery_required | recovery_required | 9 | 0,0 |  |
+| token-invalid | path_invalid | path_invalid | 9 | 0 |  |
+| transaction-source | same_file | same_file | 9 | 0 |  |
+| trial-corrupt | ok | ok | 9 | 0 | committed |
+| trial-missing | ok | ok | 9 | 0 | committed |
+| trial-unclean | ok | ok | 9 | 0 | committed |
+| writer-busy | busy | busy | 9 | 0,0 |  |
+| wrong-hash | source_changed | source_changed | 9 | 0 |  |
