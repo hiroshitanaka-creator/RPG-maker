@@ -1,5 +1,5 @@
 # 054 保存復旧の独立レビューとWindows未達の修正案
-- 状態：未着手
+- 状態：報告済み（差し戻し。Windows未達・排他照会失敗・依存cache不備、修正案は報告参照）
 - 担当：Codex GPT-6 Astra／Medium（独立レビュー・技術修正案）
 - 依頼日：2026-10-09 JST
 - 作業ブランチ：codex/task-054-review-save-transaction
