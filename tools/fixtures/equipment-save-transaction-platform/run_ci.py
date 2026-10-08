@@ -84,6 +84,31 @@ def propagation(checkout,output):
         expected=0 if name=='control' else 1;require(child.returncode==expected,'改変伝播:'+name);rows.append({'case':name,'expected_exit':expected,'exit_code':child.returncode,'seconds':time.monotonic()-start,'log_sha256':digest(child.stdout)})
     return rows
 
+def source_audit(checkout,sha):
+    prefixes=['native/equipment_save_io','tools/fixtures/equipment-save-transaction-platform']
+    paths=subprocess.check_output(['git','ls-files',*prefixes,'scripts/game/equipment_save_transaction.gd','tools/check_equipment_save_transaction_platform.py'],cwd=checkout,text=True).splitlines()
+    results={}
+    for path in paths:
+        if not (Path(path).suffix in ['.gd','.cpp','.h','.py','.json'] or Path(path).name=='SConstruct'):continue
+        raw=subprocess.check_output(['git','show',sha+':'+path],cwd=checkout);actual=(checkout/path).read_bytes()
+        require(actual==raw,'実sourceとGit blob不一致:'+path)
+        results[path]={'raw_sha256':digest(actual),'git_blob':subprocess.check_output(['git','rev-parse',sha+':'+path],cwd=checkout,text=True).strip()}
+    return results
+
+def scope_tests(checkout,fixed,output):
+    output.mkdir(parents=True,exist_ok=True);rows=[]
+    for name,path,profile,expected in [('later-document','docs/tasks/future-independent-review.md','latest',0),('outside-fixed','outside055.txt','fixed055',1)]:
+        env=os.environ.copy();env['GIT_INDEX_FILE']=str(output/('index-'+name))
+        subprocess.run(['git','read-tree',fixed],cwd=checkout,env=env,check=True)
+        blob=subprocess.check_output(['git','hash-object','-w','--stdin'],input=b'055 scope QA fixture\n',cwd=checkout).decode().strip()
+        subprocess.run(['git','update-index','--add','--cacheinfo','100644',blob,path],cwd=checkout,env=env,check=True)
+        tree=subprocess.check_output(['git','write-tree'],cwd=checkout,env=env).decode().strip()
+        sha=subprocess.check_output(['git','-c','user.name=QA','-c','user.email=qa@example.invalid','commit-tree',tree,'-p',fixed],input=b'055 scope QA fixture\n',cwd=checkout).decode().strip()
+        argv=[sys.executable,str(Path(__file__).resolve()),'--scope-only','--checkout',str(checkout),'--source-sha',sha,'--fixed-sha',fixed,'--profile',profile,'--output',str(output)]
+        p=subprocess.run(argv,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30);(output/(name+'.log')).write_bytes(p.stdout)
+        require(p.returncode==expected,'scope実exit:'+name);rows.append({'case':name,'source_sha':sha,'fixed_sha':fixed,'expected_exit':expected,'exit_code':p.returncode,'log_sha256':digest(p.stdout)})
+    return rows
+
 GODOT=''
 def main(args):
     global GODOT
@@ -92,6 +117,7 @@ def main(args):
     if args.validate_only:validate(checkout,output);return
     if args.scope_only:scope(checkout,args.source_sha if args.profile=='fixed055' else args.fixed_sha);return
     require(subprocess.check_output(['git','rev-parse','HEAD'],cwd=checkout,text=True).strip()==args.source_sha,'checkout完全SHA')
+    source_files=source_audit(checkout,args.source_sha)
     commands=[];env=os.environ.copy()
     for key in ['XDG_CACHE_HOME','XDG_DATA_HOME','XDG_CONFIG_HOME','APPDATA','LOCALAPPDATA']:
         value=output.parent/'profile'/key;value.mkdir(parents=True,exist_ok=True);env[key]=str(value)
@@ -111,11 +137,14 @@ def main(args):
         command('legacy-import',[GODOT,'--headless','--editor','--path',str(legacy),'--import','--quit'],600)
         extra_args=['--legacy-checkout',str(legacy)]
     extra=command('native-extra',[sys.executable,'tools/fixtures/equipment-save-transaction-platform/extra.py','--godot',GODOT,'--output',str(output.parent/'extra')]+extra_args,180)
+    command('binary-checks',[sys.executable,'tools/fixtures/equipment-save-transaction-platform/binary_checks.py','--godot',GODOT,'--output',str(output.parent/'binary-checks')],180)
     command('frozen-after',[sys.executable,'tools/check_frozen_files.py'],30)
     target=args.source_sha if args.profile=='fixed055' else args.fixed_sha
     changes=scope(checkout,target) if target else []
     negatives=propagation(checkout,output)
-    write(output.parent/'execution.json',{'source_sha':args.source_sha,'fixed_sha':args.fixed_sha,'status':'PASS','summary':summary,'commands':commands,'propagation':negatives,'scope_changes':changes,'engine_sha256':digest(Path(GODOT).read_bytes())})
+    scope_rows=scope_tests(checkout,target or args.source_sha,output.parent/'scope')
+    require(source_audit(checkout,args.source_sha)==source_files,'検査後source不変')
+    write(output.parent/'execution.json',{'source_sha':args.source_sha,'fixed_sha':args.fixed_sha,'status':'PASS','summary':summary,'commands':commands,'propagation':negatives,'scope_changes':changes,'source_files':source_files,'scope_propagation':scope_rows,'engine_sha256':digest(Path(GODOT).read_bytes())})
     print('PLATFORM_CI_PASS: cases=172 checks=2178 kill=97 propagation=16 source='+args.source_sha)
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--godot');p.add_argument('--output',required=True);p.add_argument('--source-sha');p.add_argument('--fixed-sha');p.add_argument('--profile',choices=['fixed055','latest']);p.add_argument('--checkout');p.add_argument('--scope-only',action='store_true');p.add_argument('--validate-only',action='store_true')
