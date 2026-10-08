@@ -1,0 +1,103 @@
+[
+  {
+    "name": "R01-R08",
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/run_locked_checks.py"
+    ],
+    "budget_seconds": 900,
+    "seconds": 125.23442793699996,
+    "exit_code": 0,
+    "timed_out": false,
+    "log_sha256": "1d7888f05efc5f8dd0119fdf0f586c71139801a56c81bd398132001f3386409a"
+  },
+  {
+    "name": "protected",
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_frozen_files.py"
+    ],
+    "budget_seconds": 30,
+    "seconds": 0.06474428899991835,
+    "exit_code": 0,
+    "timed_out": false,
+    "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+  },
+  {
+    "name": "equipment",
+    "argv": [
+      "/workspace/qa053/bin/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_equipment_rules.gd"
+    ],
+    "budget_seconds": 240,
+    "seconds": 0.9673710970000684,
+    "exit_code": 0,
+    "timed_out": false,
+    "log_sha256": "0445447eda5da6d950e3f5f579b574ea75ad91d0e12d675f9189f372d6aa80bf"
+  },
+  {
+    "name": "S1",
+    "argv": [
+      "/workspace/qa053/bin/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_equipment_save_migration.gd"
+    ],
+    "budget_seconds": 120,
+    "seconds": 20.15074201499965,
+    "exit_code": 0,
+    "timed_out": false,
+    "log_sha256": "951e3c7ade93e94abb342f95f7edb95c3225202fae6a864340c2cf25984b17d7"
+  },
+  {
+    "name": "S2",
+    "argv": [
+      "/workspace/qa053/bin/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_equipment_save_codec.gd"
+    ],
+    "budget_seconds": 120,
+    "seconds": 13.566027862000283,
+    "exit_code": 0,
+    "timed_out": false,
+    "log_sha256": "57eeabd193004a6cd3e5fa17a0bb3c1cc63d1c98acd0d167bbb5b3ab734db904"
+  },
+  {
+    "name": "legacy",
+    "argv": [
+      "/workspace/qa053/bin/Godot_v4.7.2-stable_linux.x86_64",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/fixtures/equipment-save/legacy_equivalence.gd"
+    ],
+    "budget_seconds": 120,
+    "seconds": 2.272189444000105,
+    "exit_code": 0,
+    "timed_out": false,
+    "log_sha256": "a6dedfee36c2b1ca1a1b461a1c059e5fde67e9a31c4006ec3f6c7e22e2cc85d1"
+  },
+  {
+    "name": "assets",
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/validate_assets.py",
+      "--strict"
+    ],
+    "budget_seconds": 120,
+    "seconds": 7.557774054999754,
+    "exit_code": 0,
+    "timed_out": false,
+    "log_sha256": "183dfcad6963493135f36ad1a47c24632725bbb02150381dde39d477216f870f"
+  }
+]
