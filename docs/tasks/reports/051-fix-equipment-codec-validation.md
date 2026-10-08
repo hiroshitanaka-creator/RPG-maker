@@ -79,7 +79,7 @@ test/.scope-lock/addons/原画・素材/data、既存他workflow、旧043〜046 
 
 最終報告/証拠commitのpush全CIは最終応答で完全SHA・各run・全job終了を改めて確認する。完成コード/fixture/wrapperはd813723から変更していない。
 
-ローカル生証拠はlocal-original.tar.gzに原入力・全document/encoded bytes・結果・log・実exit・付録・scope・R・旧比較を保存し、各tar.gz.members.jsonで全memberを照合する。原codec結果と読み取り用summary/logも併置する。CI原artifactは別archiveとして保存し、Linux実行とWindows実行を混ぜない。
+ローカル生証拠はlocal-original.tar.gzに原入力・全document/encoded bytes・結果・log・実exit・付録・scope・R・旧比較を保存し、各tar.gz.members.jsonで全memberを照合する。閲覧用log/JSONはGitの改行正規化に従うため、artifact-sha256.jsonは正規化されたGit blobのhashであり、原bytesのhashはtar member manifestとraw-artifact-sha256.jsonに保持する。原codec結果と読み取り用summary/logも併置する。CI原artifactは別archiveとして保存し、Linux実行とWindows実行を混ぜない。
 
 ## 未実行・境界
 
