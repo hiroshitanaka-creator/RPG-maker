@@ -1,0 +1,359 @@
+{
+  "fixed051_sha": "d813723b3acb2c77658317e7303c83f02f957a5b",
+  "fixed049_code_to_registration_diff": [],
+  "passed_commands": [
+    {
+      "label": "version",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--version"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\fix051",
+      "limit": 30,
+      "seconds": 1.2350000000442378,
+      "exit": 0,
+      "sha256": "bf8803022b574250bb04dea65053a46b7c58570725316c1f7fe2aa6735706498",
+      "bad_log": false
+    },
+    {
+      "label": "import-before",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\fix051",
+      "limit": 600,
+      "seconds": 36.28099999995902,
+      "exit": 0,
+      "sha256": "ebd77e2e95bb8f19bc4ae35851a1db355bef11808b734b89da3bb08cd3d77dbc",
+      "bad_log": false
+    },
+    {
+      "label": "before-codec",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_equipment_save_codec.gd"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\fix051",
+      "limit": 120,
+      "seconds": 13.313000000023749,
+      "exit": 0,
+      "sha256": "870dcd5e5a5cea72b4e13f6d21bbaf5160df048c12d140f3230cbefeacee75ef",
+      "bad_log": false
+    },
+    {
+      "label": "after-metadata",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+        "--script",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\fix051\\independent050.gd",
+        "--",
+        "metadata"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "limit": 120,
+      "seconds": 1.672000000020489,
+      "exit": 0,
+      "sha256": "3f1886fbb3809974863c4b6ce9da2d3414ec6a80b61461b876340f6a81d31639",
+      "bad_log": false
+    },
+    {
+      "label": "after-context",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+        "--script",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\fix051\\independent050.gd",
+        "--",
+        "context"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "limit": 120,
+      "seconds": 1.672000000020489,
+      "exit": 0,
+      "sha256": "7a1f7427e146e347c439136e22f9c707933dc416bcbb8f7db4e3c8bba2793872",
+      "bad_log": false
+    },
+    {
+      "label": "after-relocation",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+        "--script",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\fix051\\independent050.gd",
+        "--",
+        "relocation"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "limit": 120,
+      "seconds": 1.2969999999622814,
+      "exit": 0,
+      "sha256": "1319bf72f3f9b65b258c5a27a920ac81e858f636efa7cd6ff5291a129bb05951",
+      "bad_log": false
+    },
+    {
+      "label": "after-progress",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+        "--script",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\fix051\\independent050.gd",
+        "--",
+        "progress"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "limit": 120,
+      "seconds": 2.312000000034459,
+      "exit": 0,
+      "sha256": "ce21f4675c23c6eed6119ac2a610717664893c74bb71806a465b00b8dbb91fae",
+      "bad_log": false
+    },
+    {
+      "label": "after-shape",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+        "--script",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\fix051\\independent050.gd",
+        "--",
+        "shape"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "limit": 120,
+      "seconds": 1.4689999999827705,
+      "exit": 0,
+      "sha256": "130772d078a9de3d51ea66ba0dcc3d68618f9580f1eb2e3bd9d8e26ae5537762",
+      "bad_log": false
+    },
+    {
+      "label": "after-catalog",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+        "--script",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\fix051\\independent050.gd",
+        "--",
+        "catalog"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "limit": 120,
+      "seconds": 2.2189999999827705,
+      "exit": 0,
+      "sha256": "42033e89adfc2dd7bb919494e831e484d1d93f735d6870af707ead9da94fd7fd",
+      "bad_log": false
+    },
+    {
+      "label": "after-codec-final",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_equipment_save_codec.gd"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "limit": 120,
+      "seconds": 15.219000000040978,
+      "exit": 0,
+      "sha256": "3829b23fc8bf7d701f20827dd438058fb4646774d21a68700aeafc03be7a8c25",
+      "bad_log": false
+    },
+    {
+      "label": "after-validate",
+      "argv": [
+        "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+        "--output",
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "limit": 30,
+      "seconds": 0.26600000000325963,
+      "exit": 0,
+      "sha256": "3759eea4f13979a9c4ed3b2366d8a7749210fdd55ed803ea346117d712acd351",
+      "bad_log": false
+    },
+    {
+      "label": "fixed-frozen-before",
+      "argv": [
+        "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-fixed051",
+      "limit": 30,
+      "seconds": 0.09299999999348074,
+      "exit": 0,
+      "sha256": "732751e7166644c18b29ce53d46141d973716ee35a4eb1507dd8c0a8627d68d5",
+      "bad_log": false
+    },
+    {
+      "label": "fixed-import",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-fixed051",
+      "limit": 600,
+      "seconds": 80.42200000002049,
+      "exit": 0,
+      "sha256": "68f60cb80656cc5753f83fd69d545b7f626c79c6b6ec5547d0ad3a76ed5411e9",
+      "bad_log": false
+    },
+    {
+      "label": "fixed-codec",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_equipment_save_codec.gd"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-fixed051",
+      "limit": 120,
+      "seconds": 16.39100000000326,
+      "exit": 0,
+      "sha256": "3829b23fc8bf7d701f20827dd438058fb4646774d21a68700aeafc03be7a8c25",
+      "bad_log": false
+    },
+    {
+      "label": "core",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_equipment_rules.gd"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-fixed051",
+      "limit": 240,
+      "seconds": 0.8439999999827705,
+      "exit": 0,
+      "sha256": "1d58f7fed530b501f449d7b0bf7d28875008ec02be259658ef8e44c830e6b01e",
+      "bad_log": false
+    },
+    {
+      "label": "s1",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_equipment_save_migration.gd"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-fixed051",
+      "limit": 120,
+      "seconds": 27.29599999997299,
+      "exit": 0,
+      "sha256": "fa7e8e837af52edc18fa8f382d46e11b7811ac178545921e2e47b03e03182c22",
+      "bad_log": false
+    },
+    {
+      "label": "legacy",
+      "argv": [
+        "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-bin\\godot.exe",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/fixtures/equipment-save/legacy_equivalence.gd"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-fixed051",
+      "limit": 120,
+      "seconds": 2.125,
+      "exit": 0,
+      "sha256": "0176dc8bc8c351f45f1c1dbb1e8a504aa2aee05a33a99e39fa219ef818b5d3fb",
+      "bad_log": false
+    },
+    {
+      "label": "locked",
+      "argv": [
+        "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "tools/run_locked_checks.py"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-fixed051",
+      "limit": 2450,
+      "seconds": 89.86000000004424,
+      "exit": 0,
+      "sha256": "ef664316fb8253345d8e459b8b9ee0ba745ebc3766ca3004c93e3fd914966076",
+      "bad_log": false
+    },
+    {
+      "label": "assets",
+      "argv": [
+        "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-fixed051",
+      "limit": 120,
+      "seconds": 6.202999999979511,
+      "exit": 0,
+      "sha256": "00522441a95896822f62ebe313f383a3d025ca84d2cb9490bb135680e13db118",
+      "bad_log": false
+    },
+    {
+      "label": "fixed-frozen-after",
+      "argv": [
+        "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\qa-fixed051",
+      "limit": 30,
+      "seconds": 0.0779999999795109,
+      "exit": 0,
+      "sha256": "732751e7166644c18b29ce53d46141d973716ee35a4eb1507dd8c0a8627d68d5",
+      "bad_log": false
+    }
+  ],
+  "R_count": 8,
+  "protected_count": 26,
+  "case_count": 154,
+  "checks": 975,
+  "original_case_count": 112,
+  "original_checks": 723,
+  "additional_case_count": 42,
+  "additional_checks": 252,
+  "propagation_original_count": 13,
+  "propagation_repaired_count": 18,
+  "scope_propagation_count": 2,
+  "fixed_vs_working_all_codec_results_equal": true,
+  "all_changes": [
+    "M\t.github/workflows/equipment-codec.yml",
+    "M\tscripts/game/equipment_document_validation.gd",
+    "M\tscripts/game/equipment_save_codec.gd",
+    "M\ttools/check_equipment_save_codec.gd",
+    "A\ttools/fixtures/equipment-save-codec/generations.md",
+    "M\ttools/fixtures/equipment-save-codec/run_ci.py",
+    "A\ttools/fixtures/equipment-save-codec/validation-expectations.json"
+  ]
+}

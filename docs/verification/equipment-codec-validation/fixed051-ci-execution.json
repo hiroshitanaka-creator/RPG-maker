@@ -1,0 +1,419 @@
+{
+  "source_sha": "d813723b3acb2c77658317e7303c83f02f957a5b",
+  "profile": "fixed051",
+  "commands": [
+    {
+      "name": "version",
+      "argv": [
+        "/home/runner/work/_temp/codec-bin/godot",
+        "--version"
+      ],
+      "cwd": "/tmp/codec049-x_xuoolf/checkout",
+      "budget_seconds": 30,
+      "seconds": 0.044328296999992745,
+      "exit_code": 0,
+      "timed_out": false,
+      "log_sha256": "edff16c1721dd4ae989cadf29a01f574ae8d51b118221f664725bd6980bbba5d"
+    },
+    {
+      "name": "frozen-before",
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/codec049-x_xuoolf/checkout",
+      "budget_seconds": 30,
+      "seconds": 0.03530525499999726,
+      "exit_code": 0,
+      "timed_out": false,
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+    },
+    {
+      "name": "import",
+      "argv": [
+        "/home/runner/work/_temp/codec-bin/godot",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "cwd": "/tmp/codec049-x_xuoolf/checkout",
+      "budget_seconds": 600,
+      "seconds": 63.587052740000004,
+      "exit_code": 0,
+      "timed_out": false,
+      "log_sha256": "03e0e0a705556469b077448b061da10b2d699420edc524c896f07632e3bb65fe"
+    },
+    {
+      "name": "codec",
+      "argv": [
+        "/home/runner/work/_temp/codec-bin/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_equipment_save_codec.gd"
+      ],
+      "cwd": "/tmp/codec049-x_xuoolf/checkout",
+      "budget_seconds": 120,
+      "seconds": 11.061722328000002,
+      "exit_code": 0,
+      "timed_out": false,
+      "log_sha256": "57eeabd193004a6cd3e5fa17a0bb3c1cc63d1c98acd0d167bbb5b3ab734db904"
+    },
+    {
+      "name": "frozen-after",
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/codec049-x_xuoolf/checkout",
+      "budget_seconds": 30,
+      "seconds": 0.033750330000003714,
+      "exit_code": 0,
+      "timed_out": false,
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+    }
+  ],
+  "status": "PASS",
+  "case_count": 154,
+  "checks": 975,
+  "source_files": {
+    "scripts/combat/battle_catalog.gd": "211ebeab5d084abeea9841706b908fbd85188d818d7ad8f8b2545f8c7a4c29cd",
+    "scripts/game/game_session.gd": "0f472a80d3c41a7dd10f1cff2e51c0b02b96b2702899517161873363858fda3d",
+    "scripts/game/integrated_progression.gd": "8baeccb9ce158323e11c6122ff6304d644a0ce9ae8bb13b0ebe7a8ac7ef1629c",
+    "scripts/game/equipment_document_validation.gd": "e978c2eb2ccf2c207bb337673a364e10665d603f0b7ebb56f4be6294631e6ad4",
+    "scripts/game/equipment_save_codec.gd": "57d1cd0ad63172c08fdb696ea7f0b009f12219ffd4f2aa9360c78d0ab15a0a49",
+    "data/equipment_abilities.json": "6fe54302b5b76a7c45f656e09305fd88420908caf12e9f2894baf4bb46eb6623",
+    "tools/check_equipment_save_codec.gd": "15b32681481cc36c4b4604d21332f32d77f0663c9a12102f1dcab3cff989bcf0",
+    "tools/fixtures/equipment-save-codec/legacy.json": "55040da8837a4cae90a69de9a329137e07fd5a405670cd18f68c1e5a5b15ad8c",
+    "tools/fixtures/equipment-save-codec/fixtures.gd": "c4e1be8fe2ad0923f91c1a4fcde7f962a9eb4b335a8f9117acb14ae87775d269",
+    "tools/fixtures/equipment-save-codec/expectations.json": "04798ce7395d0952cdbfb19f37cc2e5c49090def2b51805384aa511dda29d3ab",
+    "tools/fixtures/equipment-save-codec/run_ci.py": "f9c8bd206741b0dff293171d291c126a0123a077465a44104f5c9d2dd5e271ef",
+    "tools/fixtures/equipment-save-codec/validation-expectations.json": "cd00ecd51e1612f7aecdf37e53b681846bf50ef21a587983579efef12670d2d9"
+  },
+  "engine_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e",
+  "scope_sha": "99e9d03d4e095b4627b510efd4806f82276617c9",
+  "scope_changes": [
+    "A\tdata/equipment_abilities.json",
+    "M\tscripts/combat/battle_catalog.gd",
+    "A\tscripts/game/equipment_document_validation.gd",
+    "A\tscripts/game/equipment_document_validation.gd.uid",
+    "A\tscripts/game/equipment_save_codec.gd",
+    "A\tscripts/game/equipment_save_codec.gd.uid",
+    "M\tscripts/game/game_session.gd",
+    "M\tscripts/game/integrated_progression.gd",
+    "A\ttools/check_equipment_save_codec.gd",
+    "A\ttools/check_equipment_save_codec.gd.uid",
+    "A\ttools/fixtures/equipment-save-codec/expectations.json",
+    "A\ttools/fixtures/equipment-save-codec/fixtures.gd",
+    "A\ttools/fixtures/equipment-save-codec/fixtures.gd.uid",
+    "A\ttools/fixtures/equipment-save-codec/legacy.json",
+    "A\ttools/fixtures/equipment-save-codec/run_ci.py"
+  ],
+  "implementation_sha": "d813723b3acb2c77658317e7303c83f02f957a5b",
+  "implementation_scope_changes": [
+    "M\tscripts/game/equipment_document_validation.gd",
+    "M\tscripts/game/equipment_save_codec.gd",
+    "M\ttools/check_equipment_save_codec.gd",
+    "A\ttools/fixtures/equipment-save-codec/generations.md",
+    "M\ttools/fixtures/equipment-save-codec/run_ci.py",
+    "A\ttools/fixtures/equipment-save-codec/validation-expectations.json"
+  ],
+  "scope_propagation": [
+    {
+      "case": "later-document",
+      "source_sha": "dd9b82faf11b72ae9964babcb27578a9de465748",
+      "scope_sha": "99e9d03d4e095b4627b510efd4806f82276617c9",
+      "expected_exit": 0,
+      "observed_exit": 0,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--scope-only",
+        "--checkout",
+        "/home/runner/work/RPG-maker/RPG-maker",
+        "--profile",
+        "latest",
+        "--source-sha",
+        "dd9b82faf11b72ae9964babcb27578a9de465748",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results"
+      ]
+    },
+    {
+      "case": "fixed-outside",
+      "source_sha": "b1ed6d9b54e84de2fa11bc8e468fc5c283ab561d",
+      "scope_sha": "b1ed6d9b54e84de2fa11bc8e468fc5c283ab561d",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--scope-only",
+        "--checkout",
+        "/home/runner/work/RPG-maker/RPG-maker",
+        "--profile",
+        "fixed049",
+        "--source-sha",
+        "b1ed6d9b54e84de2fa11bc8e468fc5c283ab561d",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results"
+      ]
+    }
+  ],
+  "propagation": [
+    {
+      "case": "control",
+      "expected_exit": 0,
+      "observed_exit": 0,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-control"
+      ]
+    },
+    {
+      "case": "exit-log",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-exit-log"
+      ]
+    },
+    {
+      "case": "warning",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-warning"
+      ]
+    },
+    {
+      "case": "missing-case",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-missing-case"
+      ]
+    },
+    {
+      "case": "duplicate-case",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-duplicate-case"
+      ]
+    },
+    {
+      "case": "actual",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-actual"
+      ]
+    },
+    {
+      "case": "missing-input",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-missing-input"
+      ]
+    },
+    {
+      "case": "input-hash",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-input-hash"
+      ]
+    },
+    {
+      "case": "missing-document",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-missing-document"
+      ]
+    },
+    {
+      "case": "missing-encoded",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-missing-encoded"
+      ]
+    },
+    {
+      "case": "missing-summary",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-missing-summary"
+      ]
+    },
+    {
+      "case": "pass-missing",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-pass-missing"
+      ]
+    },
+    {
+      "case": "pass-count",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-pass-count"
+      ]
+    },
+    {
+      "case": "checks-one",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-checks-one"
+      ]
+    },
+    {
+      "case": "document-empty",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-document-empty"
+      ]
+    },
+    {
+      "case": "document-modified",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-document-modified"
+      ]
+    },
+    {
+      "case": "document-size",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-document-size"
+      ]
+    },
+    {
+      "case": "document-hash",
+      "expected_exit": 1,
+      "observed_exit": 1,
+      "argv": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-codec/run_ci.py",
+        "--validate-only",
+        "--checkout",
+        "/tmp/codec049-x_xuoolf/checkout",
+        "--output",
+        "/home/runner/work/_temp/equipment-codec-evidence/results-propagation-document-hash"
+      ]
+    }
+  ]
+}

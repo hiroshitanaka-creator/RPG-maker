@@ -1,0 +1,265 @@
+{
+  "run_id": 37714045106,
+  "artifacts": [
+    {
+      "profile": "fixed049",
+      "source_sha": "99e9d03d4e095b4627b510efd4806f82276617c9",
+      "case_count": 112,
+      "checks": 723,
+      "propagation": 13,
+      "manifest_entries": 139,
+      "manifest_all_hash_equal": true,
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/home/runner/work/_temp/codec-bin/godot",
+            "--version"
+          ],
+          "cwd": "/tmp/codec049-yjawmej2/checkout",
+          "budget_seconds": 30,
+          "seconds": 0.05761838499999783,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "edff16c1721dd4ae989cadf29a01f574ae8d51b118221f664725bd6980bbba5d"
+        },
+        {
+          "name": "frozen-before",
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+            "tools/check_frozen_files.py"
+          ],
+          "cwd": "/tmp/codec049-yjawmej2/checkout",
+          "budget_seconds": 30,
+          "seconds": 0.032583481999992614,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+        },
+        {
+          "name": "import",
+          "argv": [
+            "/home/runner/work/_temp/codec-bin/godot",
+            "--headless",
+            "--editor",
+            "--import",
+            "--quit"
+          ],
+          "cwd": "/tmp/codec049-yjawmej2/checkout",
+          "budget_seconds": 600,
+          "seconds": 61.09944161599999,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "a1d44dcb44745b07614c63f4b41a2dbdceaf5909ac89e88d8fc74dcf39eb541b"
+        },
+        {
+          "name": "codec",
+          "argv": [
+            "/home/runner/work/_temp/codec-bin/godot",
+            "--headless",
+            "--path",
+            ".",
+            "--script",
+            "res://tools/check_equipment_save_codec.gd"
+          ],
+          "cwd": "/tmp/codec049-yjawmej2/checkout",
+          "budget_seconds": 120,
+          "seconds": 9.378628648000017,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "fd44a2a3db9d109cb25edfa618da37d063c247784ae7faf57663c6131b7a6269"
+        },
+        {
+          "name": "frozen-after",
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+            "tools/check_frozen_files.py"
+          ],
+          "cwd": "/tmp/codec049-yjawmej2/checkout",
+          "budget_seconds": 30,
+          "seconds": 0.032048016999993933,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+        }
+      ],
+      "codec_sha256": "da3d787b1ed2db5b364d0b4f722b97615ac228cea4a3b71ac65006a16579a375",
+      "execution_sha256": "1bd52100aff56344ee2e74c659b5ab1ac3f018a0fc8ac3511bb7592dfb564420"
+    },
+    {
+      "profile": "fixed051",
+      "source_sha": "d813723b3acb2c77658317e7303c83f02f957a5b",
+      "case_count": 154,
+      "checks": 975,
+      "propagation": 18,
+      "manifest_entries": 192,
+      "manifest_all_hash_equal": true,
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/home/runner/work/_temp/codec-bin/godot",
+            "--version"
+          ],
+          "cwd": "/tmp/codec049-x_xuoolf/checkout",
+          "budget_seconds": 30,
+          "seconds": 0.044328296999992745,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "edff16c1721dd4ae989cadf29a01f574ae8d51b118221f664725bd6980bbba5d"
+        },
+        {
+          "name": "frozen-before",
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+            "tools/check_frozen_files.py"
+          ],
+          "cwd": "/tmp/codec049-x_xuoolf/checkout",
+          "budget_seconds": 30,
+          "seconds": 0.03530525499999726,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+        },
+        {
+          "name": "import",
+          "argv": [
+            "/home/runner/work/_temp/codec-bin/godot",
+            "--headless",
+            "--editor",
+            "--import",
+            "--quit"
+          ],
+          "cwd": "/tmp/codec049-x_xuoolf/checkout",
+          "budget_seconds": 600,
+          "seconds": 63.587052740000004,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "03e0e0a705556469b077448b061da10b2d699420edc524c896f07632e3bb65fe"
+        },
+        {
+          "name": "codec",
+          "argv": [
+            "/home/runner/work/_temp/codec-bin/godot",
+            "--headless",
+            "--path",
+            ".",
+            "--script",
+            "res://tools/check_equipment_save_codec.gd"
+          ],
+          "cwd": "/tmp/codec049-x_xuoolf/checkout",
+          "budget_seconds": 120,
+          "seconds": 11.061722328000002,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "57eeabd193004a6cd3e5fa17a0bb3c1cc63d1c98acd0d167bbb5b3ab734db904"
+        },
+        {
+          "name": "frozen-after",
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+            "tools/check_frozen_files.py"
+          ],
+          "cwd": "/tmp/codec049-x_xuoolf/checkout",
+          "budget_seconds": 30,
+          "seconds": 0.033750330000003714,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+        }
+      ],
+      "codec_sha256": "c2b52e643ebd5cdc1d031ceccd9e9bf8166c91c94a6db64cff68bbd1d233f212",
+      "execution_sha256": "8854d9e0e848962871b584e9be77dd96ab120e0d0d481eb1265955fe1a1ba249"
+    },
+    {
+      "profile": "latest",
+      "source_sha": "361009af03205c969ced2b33495444df2882c655",
+      "case_count": 154,
+      "checks": 975,
+      "propagation": 18,
+      "manifest_entries": 192,
+      "manifest_all_hash_equal": true,
+      "commands": [
+        {
+          "name": "version",
+          "argv": [
+            "/home/runner/work/_temp/codec-bin/godot",
+            "--version"
+          ],
+          "cwd": "/tmp/codec049-u9phaurd/checkout",
+          "budget_seconds": 30,
+          "seconds": 0.05780259900001283,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "edff16c1721dd4ae989cadf29a01f574ae8d51b118221f664725bd6980bbba5d"
+        },
+        {
+          "name": "frozen-before",
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "tools/check_frozen_files.py"
+          ],
+          "cwd": "/tmp/codec049-u9phaurd/checkout",
+          "budget_seconds": 30,
+          "seconds": 0.032946422999998504,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+        },
+        {
+          "name": "import",
+          "argv": [
+            "/home/runner/work/_temp/codec-bin/godot",
+            "--headless",
+            "--editor",
+            "--import",
+            "--quit"
+          ],
+          "cwd": "/tmp/codec049-u9phaurd/checkout",
+          "budget_seconds": 600,
+          "seconds": 61.664814374,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "a1d44dcb44745b07614c63f4b41a2dbdceaf5909ac89e88d8fc74dcf39eb541b"
+        },
+        {
+          "name": "codec",
+          "argv": [
+            "/home/runner/work/_temp/codec-bin/godot",
+            "--headless",
+            "--path",
+            ".",
+            "--script",
+            "res://tools/check_equipment_save_codec.gd"
+          ],
+          "cwd": "/tmp/codec049-u9phaurd/checkout",
+          "budget_seconds": 120,
+          "seconds": 11.332725441000036,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "57eeabd193004a6cd3e5fa17a0bb3c1cc63d1c98acd0d167bbb5b3ab734db904"
+        },
+        {
+          "name": "frozen-after",
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "tools/check_frozen_files.py"
+          ],
+          "cwd": "/tmp/codec049-u9phaurd/checkout",
+          "budget_seconds": 30,
+          "seconds": 0.032036699999991924,
+          "exit_code": 0,
+          "timed_out": false,
+          "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+        }
+      ],
+      "codec_sha256": "c2b52e643ebd5cdc1d031ceccd9e9bf8166c91c94a6db64cff68bbd1d233f212",
+      "execution_sha256": "21af8a819e2ff2ce757d7dba06fd4ef685c5fa818af9aec321c2704dd90576c9"
+    }
+  ],
+  "fixed049_all_results_equal_original": true,
+  "fixed051_latest_all_results_equal": true,
+  "fixed051_latest_source_files_equal": true,
+  "original_112_observations_equal": true,
+  "original_scope_predicate_results_equal": true
+}
