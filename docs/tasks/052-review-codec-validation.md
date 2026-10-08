@@ -1,5 +1,5 @@
 # 052 装備保存 codec 検証修正の独立再レビュー
-状態：報告済み
+状態：確認済み
 担当：Codex GPT-6 Astra／Medium（独立レビュー）
 登録日：2026-10-08 JST
 作業ブランチ：codex/task-052-review-codec-validation
