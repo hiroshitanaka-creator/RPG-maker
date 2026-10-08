@@ -24,7 +24,10 @@ func _init(qa_root: String, explicit_context: Dictionary, session_generation: St
 	var target := "template_debug" if OS.has_feature("debug") else "template_release"
 	var suffix := ".dll" if platform=="windows" else ".so"
 	var binary := "res://addons/equipment_save_io/bin/equipment_save_io.%s.%s.x86_64%s" % [platform,target,suffix]
-	var manifest: Variant=JSON.parse_string(FileAccess.get_file_as_string("res://addons/equipment_save_io/manifest.json")) if FileAccess.file_exists("res://addons/equipment_save_io/manifest.json") else null
+	var manifest: Variant=null
+	if FileAccess.file_exists("res://addons/equipment_save_io/manifest.json"):
+		var parser := JSON.new()
+		if parser.parse(FileAccess.get_file_as_string("res://addons/equipment_save_io/manifest.json"))==OK:manifest=parser.data
 	if platform.is_empty() or not manifest is Dictionary or not manifest.get("files") is Dictionary:return
 	if not FileAccess.file_exists(binary) or manifest.files.get(binary.trim_prefix("res://"),"")!=FileAccess.get_sha256(binary):return
 	if not ClassDB.class_exists("EquipmentSaveIO"):return
