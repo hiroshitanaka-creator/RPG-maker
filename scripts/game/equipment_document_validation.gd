@@ -8,12 +8,32 @@ const METRICS = ["version","source","source_changed","active_ms","elapsed_ms","i
 const WORLD = ["location","player_cell","quest_step","section"]
 
 static func context_errors(context: Dictionary) -> Array:
-	if not context.get("legacy_session") is GameSession:return [S1.error("context.legacy_session","invalid_context")]
+	if not is_instance_valid(context.get("legacy_session")) or not context.get("legacy_session") is GameSession:return [S1.error("context.legacy_session","invalid_context")]
 	if not context.get("abilities") is Dictionary:return [S1.error("context.abilities","invalid_catalog")]
 	if not context.abilities.has("two_handed"):return [S1.error("context.abilities.two_handed","unknown_ability")]
-	var real: Dictionary=context.legacy_session.catalog.equipment_context_abilities()
+	var catalog: Variant=context.legacy_session.catalog
+	if not is_instance_valid(catalog) or not catalog is BattleCatalog:return [S1.error("context.legacy_session.catalog","invalid_catalog")]
+	if not catalog.errors.is_empty() or not catalog.equipment_errors.is_empty():return [S1.error("context.legacy_session.catalog","invalid_catalog")]
+	var real: Dictionary=catalog.equipment_context_abilities()
 	if real.is_empty() or not S1.differences(real,context.abilities).is_empty():return [S1.error("context.abilities","invalid_catalog")]
 	return S1.context_errors(context)
+
+static func metadata_errors(metadata: Variant) -> Array:
+	if not metadata is Dictionary or metadata.size()!=4 or not metadata.has_all(["version","arrays","floats","errors"]) or metadata.version!=1 or not metadata.arrays is Array or not metadata.floats is Array or metadata.errors!=[]:
+		return [S1.error("$._saved_value_types","invalid_types")]
+	for entry in metadata.arrays:
+		if not entry is Dictionary or entry.size()!=2 or not entry.has_all(["path","builtin"]):return [S1.error("$._saved_value_types.arrays","invalid_types")]
+	return []
+
+static func native_metadata_errors(document: Dictionary) -> Array:
+	if not document.has("_saved_value_types"):return []
+	var errors := metadata_errors(document._saved_value_types)
+	if not errors.is_empty():return errors
+	var body := document.duplicate(true)
+	body.erase("_saved_value_types")
+	if not S1.differences(SavedValueTypes.describe(body),document._saved_value_types).is_empty():
+		return [S1.error("$._saved_value_types","invalid_types")]
+	return []
 
 static func shape(value: Variant, keys: Array, path: String, errors: Array) -> bool:
 	if not value is Dictionary:
@@ -247,6 +267,7 @@ static func audit_errors(document: Dictionary, context: Dictionary) -> Array:
 
 static func prepare_candidate(candidate: Dictionary, context: Dictionary) -> Dictionary:
 	var errors := context_errors(context)
+	if errors.is_empty():errors=native_metadata_errors(candidate)
 	if errors.is_empty():errors=schema(candidate,true)
 	if errors.is_empty():errors=S1.equipment_layer(candidate,context)
 	if not errors.is_empty():return {"ok":false,"reason_code":errors[0].reason_code,"errors":errors}

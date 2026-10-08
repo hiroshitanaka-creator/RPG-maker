@@ -49,11 +49,7 @@ static func unique_json_keys(text: String) -> bool:
 	return true
 
 static func metadata_errors(metadata: Variant) -> Array:
-	if not metadata is Dictionary or metadata.size()!=4 or not metadata.has_all(["version","arrays","floats","errors"]) or metadata.version!=1 or not metadata.arrays is Array or not metadata.floats is Array or metadata.errors!=[]:
-		return [S1.error("$._saved_value_types","invalid_types")]
-	for entry in metadata.arrays:
-		if not entry is Dictionary or entry.size()!=2 or not entry.has_all(["path","builtin"]):return [S1.error("$._saved_value_types.arrays","invalid_types")]
-	return []
+	return Validation.metadata_errors(metadata)
 
 static func decode_source(bytes: PackedByteArray, context: Dictionary) -> Dictionary:
 	var errors := Validation.context_errors(context)
@@ -104,6 +100,16 @@ static func decode_source(bytes: PackedByteArray, context: Dictionary) -> Dictio
 		# JSON内のpath/builtinの整数表現だけを正規化する。
 		if not S1.differences(described,GameSession._normalize_numbers(metadata)).is_empty():return failure("invalid_types","$._saved_value_types")
 		document["_saved_value_types"]=described
+	# 位置処理が参照するparty/住人の形状を先に確認する。
+	var equipment := S1.NEW_ROOT.any(func(key):return document.has(key))
+	errors=Validation.schema(document,equipment)
+	if not errors.is_empty():return failure(errors[0].reason_code,"$",errors)
+	if document.get("overworld") is Dictionary and document.get("first_region") is Dictionary:
+		for index in range(document.party.size()):
+			if not document.party[index].get("id") is String:return failure("invalid_shape","$.party[%d].id" % index)
+		for key in document.overworld.get("residents",{}):
+			var cell: Variant=document.overworld.residents[key].get("cell")
+			if not cell is Array or cell.size()!=2 or not cell[0] is int or not cell[1] is int:return failure("invalid_shape","$.overworld.residents."+str(key)+".cell")
 	var located := document.duplicate(true)
 	if context.legacy_session._relocate_saved_position(located):
 		var result := failure("position_relocation_required","$.overworld")
@@ -111,7 +117,6 @@ static func decode_source(bytes: PackedByteArray, context: Dictionary) -> Dictio
 		result["position_before"]=document.overworld.duplicate(true)
 		result["position_after"]=located.overworld.duplicate(true)
 		return result
-	var equipment := S1.NEW_ROOT.any(func(key):return document.has(key))
 	if equipment:
 		if not document.get("equipment_rules_version") is int or document.equipment_rules_version!=1:return failure("unsupported_version","$.equipment_rules_version")
 		errors=Validation.validate(document,context)
@@ -130,9 +135,8 @@ static func encode_candidate(document: Dictionary, context: Dictionary) -> Dicti
 	if not metadata.errors.is_empty():return failure("unsupported_value","$")
 	# 既存metadataの未知キー・壊れたpath・型不一致を再生成で消さない。
 	if document.has("_saved_value_types"):
-		errors=metadata_errors(document._saved_value_types)
+		errors=Validation.native_metadata_errors(document)
 		if not errors.is_empty():return failure("invalid_types","$._saved_value_types",errors)
-		if not S1.differences(metadata,document._saved_value_types).is_empty():return failure("invalid_types","$._saved_value_types")
 	errors=Validation.validate(candidate,context)
 	if not errors.is_empty():return failure(errors[0].reason_code,"$",errors)
 	candidate["_saved_value_types"]=metadata

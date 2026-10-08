@@ -13,6 +13,8 @@ var cases: Array=[]
 var failures: Array=[]
 var observations: Array=[]
 var checks := 0
+var original_case_count := 0
+var original_checks := 0
 
 func check(condition: bool, label: String) -> void:
 	checks+=1
@@ -57,7 +59,7 @@ func run_case(id: String, value: Variant, operation: String="decode", custom: Di
 			var save_file := FileAccess.open(destination.path_join("encoded.bin"),FileAccess.WRITE)
 			if save_file==null:failures.append(id+" raw出力証拠保存失敗")
 			else:save_file.store_buffer(result.bytes);save_file.close()
-	observations.append({"case":id,"operation":operation,"expected":expected.cases.get(id),"actual":result.reason_code,"errors":result.errors,"input_sha256":Codec.hash_bytes(value) if value is PackedByteArray else Codec.hash_bytes(var_to_bytes(value)),"input_bytes":value.size() if value is PackedByteArray else var_to_bytes(value).size(),"caps_changes":result.get("caps_changes",[]),"output_sha256":result.get("document_sha256",result.get("source_sha256",""))})
+	observations.append({"case":id,"operation":operation,"expected":expected.cases.get(id),"actual":result.reason_code,"errors":result.errors,"input_sha256":Codec.hash_bytes(value) if value is PackedByteArray else Codec.hash_bytes(var_to_bytes(value)),"input_bytes":value.size() if value is PackedByteArray else var_to_bytes(value).size(),"caps_changes":result.get("caps_changes",[]),"output_sha256":result.get("document_sha256",result.get("source_sha256","")),"document_sha256":Codec.hash_bytes(var_to_bytes(result.document)) if result.ok and result.has("document") else "","document_bytes":var_to_bytes(result.document).size() if result.ok and result.has("document") else 0})
 	return result
 
 func json_bytes(document: Dictionary) -> PackedByteArray:
@@ -345,6 +347,91 @@ func extra_cases() -> void:
 	var broken := valid.duplicate(true);broken.party[0].learned_abilities.append("two_handed")
 	run_case("M10-two-handed-unearned",broken,"validate")
 
+func validation_cases() -> void:
+	var valid := build(true)
+	valid["_play_session"]=Fixture.metrics()
+	valid=Fixture.typed(valid)
+	for kind in ["null","version","missing","duplicate","builtin","unknown","mismatch"]:
+		var broken := valid.duplicate(true)
+		match kind:
+			"null":broken._saved_value_types=null
+			"version":broken._saved_value_types.version=99
+			"missing":broken._saved_value_types.floats.append(["missing"])
+			"duplicate":broken._saved_value_types.floats.append(broken._saved_value_types.floats[0].duplicate())
+			"builtin":broken._saved_value_types.arrays[0].builtin=TYPE_OBJECT
+			"unknown":broken._saved_value_types["extra"]=1
+			"mismatch":broken._saved_value_types.floats=[]
+		run_case("F2-prepare-"+kind,broken,"prepare")
+		run_case("F2-encode-"+kind,broken,"encode")
+	run_case("F2-metadata-control",valid,"encode")
+	for mode in ["missing-session","missing-abilities","null-catalog","catalog-errors","catalog-definition-errors"]:
+		var fixture_session := GameSession.new()
+		fixture_session.new_game()
+		var fixture_context := {"legacy_session":fixture_session,"abilities":fixture_session.catalog.equipment_context_abilities()}
+		match mode:
+			"missing-session":fixture_context.erase("legacy_session")
+			"missing-abilities":fixture_context.erase("abilities")
+			"null-catalog":fixture_session.catalog=null
+			"catalog-errors":fixture_session.catalog.equipment_errors.append("fixture invalid")
+			"catalog-definition-errors":fixture_session.catalog.errors.append("fixture invalid")
+		for op in ["decode","encode","prepare"]:
+			run_case("F3-"+mode+"-"+op,json_bytes(valid) if op=="decode" else valid,op,fixture_context)
+	for mode in ["party-null","residents-null","actor-null","actor-id","resident-cell-null","resident-cell-short","resident-cell-type"]:
+		var broken := Fixture.region()
+		broken.overworld.room=1;broken.overworld.cell=[1,1]
+		match mode:
+			"party-null":broken.party=null
+			"residents-null":broken.overworld["residents"]=null
+			"actor-null":broken.party[0]=null
+			"actor-id":broken.party[0].erase("id")
+			"resident-cell-null":broken.overworld["residents"]={"fixture":{"cell":null,"facing":0}}
+			"resident-cell-short":broken.overworld["residents"]={"fixture":{"cell":[1],"facing":0}}
+			"resident-cell-type":broken.overworld["residents"]={"fixture":{"cell":["1",1],"facing":0}}
+		run_case("F4-"+mode,json_bytes(broken))
+	var caps := build()
+	caps["_play_session"]=Fixture.metrics()
+	var items: Array=[]
+	for item in ["vitality_braid","thought_clasp"]:
+		for instance in caps.equipment_stock.bag:
+			if caps.equipment_stock.instances[instance]==item:items.append(instance);break
+	caps.party[0].equipment.accessories=[items[0],items[1],""]
+	for instance in items:caps.equipment_stock.bag.erase(instance)
+	caps.party[0].hp=0
+	var prepared := run_case("F2-caps-raise-typed",Fixture.typed(caps),"prepare")
+	if prepared.ok:
+		check(prepared.document.party[0].hp==0 and prepared.document.party[0].mp==24 and prepared.document.party[0].max_hp==150 and prepared.document.party[0].max_mp==26,"型付き上限上昇・回復蘇生0")
+		check(Validation.native_metadata_errors(prepared.document).is_empty(),"上限後metadata一致")
+		caps=prepared.document
+		caps.party[0].hp=149;caps.party[0].mp=26
+		caps.party[0].equipment.accessories=["","",""]
+		caps.equipment_stock.bag.append_array(items)
+		prepared=run_case("F2-caps-lower-typed",Fixture.typed(caps),"prepare")
+		if prepared.ok:check(prepared.document.party[0].hp==140 and prepared.document.party[0].mp==24 and Validation.native_metadata_errors(prepared.document).is_empty(),"型付き上限低下min・metadata一致")
+	var progressed := valid.duplicate(true)
+	progressed.inventory.potion+=1;progressed.first_region.coins+=1
+	progressed.first_region.reserve[0].jp["warrior"]=3
+	progressed.first_region.reserve[0].integrated.mastery.counts["warrior"]=1
+	progressed.first_region.reserve[0].hp=0
+	progressed.party.append(progressed.first_region.reserve.pop_front())
+	progressed=Fixture.typed(progressed)
+	var encoded := run_case("F7-progress-recruit",progressed,"encode")
+	if encoded.ok:
+		var decoded := Codec.decode_source(encoded.bytes,context)
+		check(decoded.ok and same(decoded.document,encoded.document),"進行加入の全値型順序往復")
+		check(decoded.document.party[1].hp==0,"加入HP0維持")
+		check(not Validation.compare_migration(Fixture.region(),progressed,HASH,context).is_empty(),"移行差分検証は進行を別拒否")
+	var grant_source := valid.duplicate(true)
+	grant_source.erase("_play_session");grant_source.erase("_saved_value_types")
+	grant_source.progress_flags["job_change_unlocked"]=true
+	var grant_context := context.duplicate();grant_context["job_change_unlocked"]=true
+	var grant := Migration.new().grant_common(grant_source,Fixture.region(),HASH,grant_context)
+	check(grant.ok,"共通支給pure成功")
+	if grant.ok:
+		prepared=run_case("F7-common-prepare",grant.candidate_document,"prepare")
+		if prepared.ok:
+			check(prepared.document.equipment_stock.instances.size()==22,"共通支給12から22")
+			run_case("F7-common-encode",prepared.document,"encode")
+
 func _initialize() -> void:
 	expected=GameSession._normalize_numbers(JSON.parse_string(FileAccess.get_file_as_string("res://tools/fixtures/equipment-save-codec/expectations.json")))
 	session=GameSession.new()
@@ -357,7 +444,12 @@ func _initialize() -> void:
 	var actual := cases.duplicate();actual.sort()
 	var ids: Array=expected.cases.keys();ids.sort()
 	check(actual==ids,"固定全ケース集合・件数・省略0")
-	var output := {"cases":cases,"case_count":cases.size(),"checks":checks,"failures":failures,"observations":observations}
+	original_case_count=cases.size();original_checks=checks
+	var additional: Dictionary=GameSession._normalize_numbers(JSON.parse_string(FileAccess.get_file_as_string("res://tools/fixtures/equipment-save-codec/validation-expectations.json")))
+	expected.cases.merge(additional.cases)
+	validation_cases()
+	if original_case_count!=additional.original_case_count or original_checks!=additional.original_checks or cases.size()!=additional.case_count or checks!=additional.checks:failures.append("独立固定条件数との不一致")
+	var output := {"original_case_count":original_case_count,"original_checks":original_checks,"additional_case_count":cases.size()-original_case_count,"additional_checks":checks-original_checks,"cases":cases,"case_count":cases.size(),"checks":checks,"failures":failures,"observations":observations}
 	var directory := OS.get_environment("EQUIPMENT_CODEC_EVIDENCE")
 	if not directory.is_empty():
 		DirAccess.make_dir_recursive_absolute(directory)
