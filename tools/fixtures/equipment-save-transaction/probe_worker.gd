@@ -11,8 +11,14 @@ var points: Array=[]
 func hook(point: String) -> bool:
 	points.append(point)
 	if config.get("kill_point","")==point:
-		var marker := FileAccess.open(config.root.path_join("paused.json"),FileAccess.WRITE)
-		marker.store_string(JSON.stringify({"point":point,"pid":OS.get_process_id()}));marker.close()
+		# 観測側へ未書込み/途中のJSONを公開しない。停止通知もclose後のrenameで公開する。
+		var marker_path: String=config.root.path_join("paused.json")
+		var marker := FileAccess.open(marker_path+".tmp",FileAccess.WRITE)
+		if marker==null:return false
+		marker.store_string(JSON.stringify({"point":point,"pid":OS.get_process_id()}));marker.flush()
+		var marker_error := marker.get_error()
+		marker.close()
+		if marker_error!=OK or DirAccess.rename_absolute(marker_path+".tmp",marker_path)!=OK:return false
 		while not FileAccess.file_exists(config.root.path_join("release")):OS.delay_msec(5)
 	return config.get("fail_point","")!=point
 
