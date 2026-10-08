@@ -398,9 +398,18 @@ func import_state(value: Dictionary) -> bool:
 
 
 func _valid_state(value: Dictionary) -> bool:
+	return validate_state_common(value)
+
+
+func validate_state_common(value: Dictionary, equipment_context: Dictionary = {}) -> bool:
+	# S2内部検証専用。通常入口は空contextで旧契約を継続する。
+	var equipment_mode := not equipment_context.is_empty()
 	if value.get("format_version") not in [1,2] or not value.get("party") is Array:
 		return false
-	if value["format_version"]==2 and not IntegratedProgression.valid_world(value.get("integrated")):return false
+	if value["format_version"]==2:
+		if equipment_mode:
+			if not IntegratedProgression.valid_world_common(value.get("integrated")):return false
+		elif not IntegratedProgression.valid_world(value.get("integrated")):return false
 	if value["format_version"]==1 and value.has("integrated"):return false
 	var party: Array = value["party"]
 	if party.size() < (1 if value.has("first_region") else 3) or party.size() > 4 or not value.get("inventory") is Dictionary or not value.get("progress_flags") is Dictionary or not value.get("world") is Dictionary:
@@ -459,7 +468,7 @@ func _valid_state(value: Dictionary) -> bool:
 		return false
 	var ids: Array[String] = []
 	for item in party:
-		if not item is Dictionary or not validate_legacy_actor(item,value["format_version"],value.get("integrated",{}),value["progress_flags"]):
+		if not item is Dictionary or not validate_actor_common(item,value["format_version"],value.get("integrated",{}),value["progress_flags"],equipment_context):
 			return false
 		if item["id"] in ids:return false
 		ids.append(item["id"])
@@ -480,7 +489,13 @@ func _valid_state(value: Dictionary) -> bool:
 
 
 func validate_legacy_actor(actor: Dictionary, format_version: int, world_integrated: Dictionary, flags: Dictionary) -> bool:
-	# 旧入口の人物条件をそのまま共有する。状態・計測・履歴を変更しない。
+	return validate_actor_common(actor,format_version,world_integrated,flags)
+
+
+func validate_actor_common(actor: Dictionary, format_version: int, world_integrated: Dictionary, flags: Dictionary, equipment_context: Dictionary = {}) -> bool:
+	# 新旧で非装備条件を共有し、新版は全stateを明示する。
+	var equipment_mode := not equipment_context.is_empty()
+	var actor_abilities: Dictionary = equipment_context.get("abilities", abilities)
 	var required := ["id", "name", "job_id", "last_human_job", "jp", "mastered_jobs", "learned_abilities", "equipped_abilities", "monster_form", "erosion", "irreversible", "hp", "max_hp", "mp", "max_mp"]
 	if not actor.has_all(required):
 		return false
@@ -511,7 +526,7 @@ func validate_legacy_actor(actor: Dictionary, format_version: int, world_integra
 			if field == "mastered_jobs":
 				if not jobs.has(identifier) or int(actor["jp"].get(identifier, 0)) < IntegratedProgression.cost(jobs[identifier],format_version==2):
 					return false
-			elif not abilities.has(identifier):
+			elif not actor_abilities.has(identifier):
 				return false
 	if not actor["erosion"] is int or actor["erosion"] < 0 or actor["erosion"] > 100 or not actor["irreversible"] is bool:
 		return false
@@ -525,12 +540,17 @@ func validate_legacy_actor(actor: Dictionary, format_version: int, world_integra
 	for field in ["hp", "max_hp", "mp", "max_mp"]:
 		if not actor[field] is int or actor[field] < 0:
 			return false
-	if format_version==2 and not IntegratedProgression.valid_actor(actor,jobs,abilities,world_integrated["armory"]):return false
+	if format_version==2:
+		if equipment_mode:
+			if not IntegratedProgression.valid_actor_common(actor,jobs,actor_abilities):return false
+		elif not IntegratedProgression.valid_actor(actor,jobs,abilities,world_integrated["armory"]):return false
 	if format_version==2 and world_integrated.has("mastery_rules_version")!=JobMastery.active(actor):return false
 	if format_version==1 and actor.has("integrated"):return false
-	var computed := _compute_stats(actor, true)
-	if actor["max_hp"] != computed["hp"] or actor["max_mp"] != computed["mp"] or actor["hp"] > actor["max_hp"] or actor["mp"] > actor["max_mp"]:
-		return false
+	if not equipment_mode or not equipment_context.get("skip_caps",false):
+		var computed := equipment_stats(actor,equipment_context.get("document",{})) if equipment_mode else _compute_stats(actor, true)
+		if computed.is_empty():return false
+		if actor["max_hp"] != computed["hp"] or actor["max_mp"] != computed["mp"] or actor["hp"] > actor["max_hp"] or actor["mp"] > actor["max_mp"]:
+			return false
 	var available: Array[String] = _available(actor)
 	var equipped_ids: Array[String] = []
 	equipped_ids.assign(actor["equipped_abilities"])
@@ -705,7 +725,7 @@ func _reconcile_slots(actor: Dictionary) -> void:
 		if actor["integrated"]["focus_binding"] not in kept or "focus_vow" not in kept:actor["integrated"]["focus_binding"]=""
 
 
-func _compute_stats(actor: Dictionary, include_form: bool) -> Dictionary:
+func _compute_stats(actor: Dictionary, include_form: bool, legacy_weapon: bool = true) -> Dictionary:
 	var result: Dictionary = jobs[actor["job_id"]]["stats"].duplicate(true)
 	for identifier in actor["mastered_jobs"]:
 		for stat in jobs[identifier]["stat_growth"]:
@@ -713,7 +733,7 @@ func _compute_stats(actor: Dictionary, include_form: bool) -> Dictionary:
 	if actor.has("integrated"):
 		var bonus:=IntegratedProgression.growth(actor)
 		for key in bonus:result[key]+=bonus[key]
-		result["attack"]=maxi(1,int(result["attack"])+IntegratedProgression.weapon_bonus(actor))
+		if legacy_weapon:result["attack"]=maxi(1,int(result["attack"])+IntegratedProgression.weapon_bonus(actor))
 	if include_form and not str(actor["monster_form"]).is_empty():
 		var modifiers: Dictionary = jobs[actor["monster_form"]]["monster_form"]["stat_modifiers"]
 		for stat in modifiers:
@@ -721,6 +741,22 @@ func _compute_stats(actor: Dictionary, include_form: bool) -> Dictionary:
 	for stat in result:
 		result[stat] = int(result[stat])
 	return result
+
+
+func equipment_stats(actor: Dictionary, document: Dictionary) -> Dictionary:
+	# _stateを読まない。reserveも同じ明示documentから導出する。
+	var view = preload("res://scripts/game/equipment_state_view.gd").project(document)
+	if not view.ok:return {}
+	var bonus = preload("res://scripts/game/equipment_rules.gd").new().equipment_bonuses(view.view,actor.get("id",""))
+	if not bonus.ok:return {}
+	var stats := _compute_stats(actor,true,false)
+	for key in bonus.bonuses:
+		var addition: int = bonus.bonuses[key]
+		if addition > 0 and stats[key] > 9223372036854775807 - addition:return {}
+		if addition < 0 and stats[key] < -9223372036854775807 - addition:return {}
+		stats[key] += addition
+	stats.attack = maxi(1,stats.attack)
+	return stats
 
 
 func effective_stats(actor_id: String) -> Dictionary:

@@ -1,0 +1,254 @@
+[
+  {
+    "case": "control",
+    "expected_exit": 0,
+    "observed_exit": 0,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-control"
+    ]
+  },
+  {
+    "case": "exit-log",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-exit-log"
+    ]
+  },
+  {
+    "case": "warning",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-warning"
+    ]
+  },
+  {
+    "case": "missing-case",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-missing-case"
+    ]
+  },
+  {
+    "case": "duplicate-case",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-duplicate-case"
+    ]
+  },
+  {
+    "case": "actual",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-actual"
+    ]
+  },
+  {
+    "case": "missing-input",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-missing-input"
+    ]
+  },
+  {
+    "case": "input-hash",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-input-hash"
+    ]
+  },
+  {
+    "case": "missing-document",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-missing-document"
+    ]
+  },
+  {
+    "case": "missing-encoded",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-missing-encoded"
+    ]
+  },
+  {
+    "case": "missing-summary",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-missing-summary"
+    ]
+  },
+  {
+    "case": "pass-missing",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-pass-missing"
+    ]
+  },
+  {
+    "case": "pass-count",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-pass-count"
+    ]
+  },
+  {
+    "case": "checks-one",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-checks-one"
+    ]
+  },
+  {
+    "case": "document-empty",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-document-empty"
+    ]
+  },
+  {
+    "case": "document-modified",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-document-modified"
+    ]
+  },
+  {
+    "case": "document-size",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-document-size"
+    ]
+  },
+  {
+    "case": "document-hash",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--validate-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051\\after-codec-final-propagation-document-hash"
+    ]
+  }
+]

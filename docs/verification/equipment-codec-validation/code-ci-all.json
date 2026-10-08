@@ -1,0 +1,4677 @@
+[
+  {
+    "conclusion": "success",
+    "event": "push",
+    "headSha": "361009af03205c969ced2b33495444df2882c655",
+    "jobs": [
+      {
+        "completedAt": "2026-10-08T01:44:33Z",
+        "conclusion": "success",
+        "databaseId": 113106327855,
+        "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:57Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:18Z",
+            "conclusion": "success",
+            "name": "固定版Godotを取得してインポート",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "共通機構の実戦・育成・保存・画面・同予算比較を検査",
+            "number": 5,
+            "startedAt": "2026-10-08T01:41:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "ワールド構造のPhase 1定義を検査",
+            "number": 6,
+            "startedAt": "2026-10-08T01:42:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:02Z",
+            "conclusion": "success",
+            "name": "ワールド構造のPhase 2と検査器の回帰を検査",
+            "number": 7,
+            "startedAt": "2026-10-08T01:42:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:08Z",
+            "conclusion": "success",
+            "name": "広域地形の再現性・実経路・実時間記録を検査",
+            "number": 8,
+            "startedAt": "2026-10-08T01:42:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:10Z",
+            "conclusion": "success",
+            "name": "60時間の時間判定を検査",
+            "number": 9,
+            "startedAt": "2026-10-08T01:42:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:30Z",
+            "conclusion": "success",
+            "name": "追加受入の勝率と終了率・反応への対処を検査",
+            "number": 10,
+            "startedAt": "2026-10-08T01:42:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:30Z",
+            "conclusion": "success",
+            "name": "保護対象を照合",
+            "number": 11,
+            "startedAt": "2026-10-08T01:44:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:31Z",
+            "conclusion": "success",
+            "name": "試遊前検査の結果を保存",
+            "number": 12,
+            "startedAt": "2026-10-08T01:44:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:31Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 23,
+            "startedAt": "2026-10-08T01:44:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:31Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 24,
+            "startedAt": "2026-10-08T01:44:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:31Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 25,
+            "startedAt": "2026-10-08T01:44:31Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045047/job/113106327855"
+      },
+      {
+        "completedAt": "2026-10-08T01:42:30Z",
+        "conclusion": "success",
+        "databaseId": 113106328115,
+        "name": "素材検査",
+        "startedAt": "2026-10-08T01:40:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:40:55Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:40:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:12Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:40:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:12Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:41:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:14Z",
+            "conclusion": "success",
+            "name": "Pillow を導入",
+            "number": 4,
+            "startedAt": "2026-10-08T01:41:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:26Z",
+            "conclusion": "success",
+            "name": "素材台帳に従って検査",
+            "number": 5,
+            "startedAt": "2026-10-08T01:41:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:37Z",
+            "conclusion": "success",
+            "name": "第2港の背景が最近傍縮小と最近傍減色だけで作られていることを検査",
+            "number": 6,
+            "startedAt": "2026-10-08T01:41:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:27Z",
+            "conclusion": "success",
+            "name": "村の独立背景・原画不変・再生成・実描画画素を検査",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "success",
+            "name": "進捗文書と検証結果の集計を検査",
+            "number": 8,
+            "startedAt": "2026-10-08T01:42:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:42:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:42:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:42:28Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045047/job/113106328115"
+      },
+      {
+        "completedAt": "2026-10-08T01:59:53Z",
+        "conclusion": "success",
+        "databaseId": 113106328153,
+        "name": "Godot・凍結受入テスト",
+        "startedAt": "2026-10-08T01:41:15Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:41:16Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:41:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:32Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:41:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:33Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:41:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:33Z",
+            "conclusion": "success",
+            "name": "凍結ファイルのハッシュを確認",
+            "number": 4,
+            "startedAt": "2026-10-08T01:41:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:33Z",
+            "conclusion": "success",
+            "name": "Godot プロジェクトの有無を確認",
+            "number": 5,
+            "startedAt": "2026-10-08T01:41:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:35Z",
+            "conclusion": "success",
+            "name": "Godot を取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:41:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:16Z",
+            "conclusion": "success",
+            "name": "インポートしてエラーを検出",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:26Z",
+            "conclusion": "success",
+            "name": "凍結契約に登録された全verifyを実行",
+            "number": 8,
+            "startedAt": "2026-10-08T01:42:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:26Z",
+            "conclusion": "success",
+            "name": "導入の固定比較基準を取得し台帳の異常検出を検査",
+            "number": 9,
+            "startedAt": "2026-10-08T01:43:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:33Z",
+            "conclusion": "success",
+            "name": "第1地方の追加導入・見逃し・旧保存補完を検査",
+            "number": 10,
+            "startedAt": "2026-10-08T01:43:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:35Z",
+            "conclusion": "success",
+            "name": "村の独立地形を既存の通行・移動APIで検査",
+            "number": 11,
+            "startedAt": "2026-10-08T01:43:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:50:56Z",
+            "conclusion": "success",
+            "name": "007完成版と最新の住人・宿・祠・通常操作を検査",
+            "number": 12,
+            "startedAt": "2026-10-08T01:43:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:27Z",
+            "conclusion": "success",
+            "name": "011遺跡の完成版と最新の通行・階段・保存・実描画を検査",
+            "number": 13,
+            "startedAt": "2026-10-08T01:50:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:29Z",
+            "conclusion": "success",
+            "name": "敵の行動予定と連戦の保存を検査",
+            "number": 14,
+            "startedAt": "2026-10-08T01:59:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:38Z",
+            "conclusion": "success",
+            "name": "戦闘前の自動保存と全滅からの復帰を検査",
+            "number": 15,
+            "startedAt": "2026-10-08T01:59:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:38Z",
+            "conclusion": "success",
+            "name": "保存値の型と破損時の状態保持を検査",
+            "number": 16,
+            "startedAt": "2026-10-08T01:59:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:40Z",
+            "conclusion": "success",
+            "name": "部屋の作りが変わった後の保存の置き直しを検査",
+            "number": 17,
+            "startedAt": "2026-10-08T01:59:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:41Z",
+            "conclusion": "success",
+            "name": "第2地方の航路と岸の境界を検査",
+            "number": 18,
+            "startedAt": "2026-10-08T01:59:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:43Z",
+            "conclusion": "success",
+            "name": "最初の地方の画面と通常保存操作を検査",
+            "number": 19,
+            "startedAt": "2026-10-08T01:59:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:44Z",
+            "conclusion": "success",
+            "name": "第2港の外観（一枚絵の背景・通行地図・上の層）を検査",
+            "number": 20,
+            "startedAt": "2026-10-08T01:59:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:45Z",
+            "conclusion": "success",
+            "name": "第2地方の港町と6室・船・帰還・保存を検査",
+            "number": 21,
+            "startedAt": "2026-10-08T01:59:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:46Z",
+            "conclusion": "success",
+            "name": "職業衣装の参照と保存復元を検査",
+            "number": 22,
+            "startedAt": "2026-10-08T01:59:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:50Z",
+            "conclusion": "success",
+            "name": "版識別と保存後の再起動復旧を検査",
+            "number": 23,
+            "startedAt": "2026-10-08T01:59:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:50Z",
+            "conclusion": "success",
+            "name": "検証後も保護ファイルが不変であることを確認",
+            "number": 24,
+            "startedAt": "2026-10-08T01:59:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:51Z",
+            "conclusion": "success",
+            "name": "ログを保存",
+            "number": 25,
+            "startedAt": "2026-10-08T01:59:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:51Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 49,
+            "startedAt": "2026-10-08T01:59:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:51Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 50,
+            "startedAt": "2026-10-08T01:59:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:59:51Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 51,
+            "startedAt": "2026-10-08T01:59:51Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045047/job/113106328153"
+      }
+    ],
+    "name": "CI",
+    "status": "completed",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045047",
+    "run_id": 37714045047
+  },
+  {
+    "conclusion": "success",
+    "event": "push",
+    "headSha": "361009af03205c969ced2b33495444df2882c655",
+    "jobs": [
+      {
+        "completedAt": "2026-10-08T01:42:17Z",
+        "conclusion": "success",
+        "databaseId": 113106327936,
+        "name": "equipment-codec (latest)",
+        "startedAt": "2026-10-08T01:39:56Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:58Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:18Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:18Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:38Z",
+            "conclusion": "success",
+            "name": "登録と固定完成コードを完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:40Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:07Z",
+            "conclusion": "success",
+            "name": "S2全固定期待と失敗伝播の実exitを検査",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:07Z",
+            "conclusion": "success",
+            "name": "対象checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:42:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:14Z",
+            "conclusion": "success",
+            "name": "原入力・符号化bytes・全結果・原log保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:42:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:14Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:42:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:14Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:42:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:14Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:42:14Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045106/job/113106327936"
+      },
+      {
+        "completedAt": "2026-10-08T01:43:54Z",
+        "conclusion": "success",
+        "databaseId": 113106328174,
+        "name": "equipment-codec (fixed051)",
+        "startedAt": "2026-10-08T01:41:37Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:41:39Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:41:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:58Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:41:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:58Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:41:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:15Z",
+            "conclusion": "success",
+            "name": "登録と固定完成コードを完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:41:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:17Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:42:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:46Z",
+            "conclusion": "success",
+            "name": "S2全固定期待と失敗伝播の実exitを検査",
+            "number": 6,
+            "startedAt": "2026-10-08T01:42:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:46Z",
+            "conclusion": "success",
+            "name": "対象checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:51Z",
+            "conclusion": "success",
+            "name": "原入力・符号化bytes・全結果・原log保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:43:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:51Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:43:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:52Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:43:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:52Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:43:52Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045106/job/113106328174"
+      },
+      {
+        "completedAt": "2026-10-08T01:43:51Z",
+        "conclusion": "success",
+        "databaseId": 113106328268,
+        "name": "equipment-codec (fixed049)",
+        "startedAt": "2026-10-08T01:41:50Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:41:51Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:41:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:06Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:41:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:06Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:42:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:21Z",
+            "conclusion": "success",
+            "name": "登録と固定完成コードを完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:42:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:23Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:42:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:46Z",
+            "conclusion": "success",
+            "name": "S2全固定期待と失敗伝播の実exitを検査",
+            "number": 6,
+            "startedAt": "2026-10-08T01:42:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:46Z",
+            "conclusion": "success",
+            "name": "対象checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:49Z",
+            "conclusion": "success",
+            "name": "原入力・符号化bytes・全結果・原log保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:43:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:43:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:50Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:43:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:50Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:43:50Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045106/job/113106328268"
+      }
+    ],
+    "name": "Equipment Codec CI",
+    "status": "completed",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045106",
+    "run_id": 37714045106
+  },
+  {
+    "conclusion": "success",
+    "event": "push",
+    "headSha": "361009af03205c969ced2b33495444df2882c655",
+    "jobs": [
+      {
+        "completedAt": "2026-10-08T01:41:39Z",
+        "conclusion": "success",
+        "databaseId": 113106327919,
+        "name": "equipment-legacy (041)",
+        "startedAt": "2026-10-08T01:39:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:12Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:12Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:27Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:28Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:36Z",
+            "conclusion": "success",
+            "name": "旧入口142検証・10更新",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:36Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:37Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:37Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:41:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:37Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:41:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:37Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:41:37Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106327919"
+      },
+      {
+        "completedAt": "2026-10-08T01:40:52Z",
+        "conclusion": "success",
+        "databaseId": 113106328008,
+        "name": "equipment-failure-propagation",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:17Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:17Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:37Z",
+            "conclusion": "success",
+            "name": "失敗伝播fixtureの固定原本・当時の旧出力を読取り取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:47Z",
+            "conclusion": "success",
+            "name": "専用fixtureで実際のexit1・警告・件数欠落・timeout拒否を実証",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:47Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:49Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:40:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 13,
+            "startedAt": "2026-10-08T01:40:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 14,
+            "startedAt": "2026-10-08T01:40:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:49Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 15,
+            "startedAt": "2026-10-08T01:40:49Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328008"
+      },
+      {
+        "completedAt": "2026-10-08T01:43:30Z",
+        "conclusion": "success",
+        "databaseId": 113106328029,
+        "name": "equipment-legacy (latest)",
+        "startedAt": "2026-10-08T01:42:04Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:42:05Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:42:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:23Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:42:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:23Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:42:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:39Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:42:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:40Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:42:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:26Z",
+            "conclusion": "success",
+            "name": "旧入口142検証・10更新",
+            "number": 6,
+            "startedAt": "2026-10-08T01:42:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:26Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:27Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:43:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:27Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:43:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:28Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:43:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:28Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:43:28Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328029"
+      },
+      {
+        "completedAt": "2026-10-08T01:41:48Z",
+        "conclusion": "success",
+        "databaseId": 113106328041,
+        "name": "equipment-core (036)",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:14Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:14Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:33Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:35Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:45Z",
+            "conclusion": "success",
+            "name": "正常装備5394条件と038以降の追加93条件",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:45Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:46Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:46Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:41:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:46Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:41:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:46Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:41:46Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328041"
+      },
+      {
+        "completedAt": "2026-10-08T01:41:14Z",
+        "conclusion": "success",
+        "databaseId": 113106328059,
+        "name": "equipment-invalid (041)",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:57Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:14Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:14Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:27Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:29Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:10Z",
+            "conclusion": "success",
+            "name": "異常定義202ケース・各子30秒",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:10Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:11Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:41:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:12Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:41:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:12Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:41:12Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328059"
+      },
+      {
+        "completedAt": "2026-10-08T01:43:22Z",
+        "conclusion": "success",
+        "databaseId": 113106328063,
+        "name": "equipment-invalid (latest)",
+        "startedAt": "2026-10-08T01:41:47Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:41:49Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:41:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:05Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:41:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:05Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:42:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:21Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:42:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:23Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:42:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:20Z",
+            "conclusion": "success",
+            "name": "異常定義202ケース・各子30秒",
+            "number": 6,
+            "startedAt": "2026-10-08T01:42:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:20Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:21Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:43:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:21Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:43:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:21Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:43:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:21Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:43:21Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328063"
+      },
+      {
+        "completedAt": "2026-10-08T01:41:13Z",
+        "conclusion": "success",
+        "databaseId": 113106328065,
+        "name": "equipment-invalid (038)",
+        "startedAt": "2026-10-08T01:39:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:30Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:31Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:10Z",
+            "conclusion": "success",
+            "name": "異常定義202ケース・各子30秒",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:10Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:11Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:41:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:41:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:11Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:41:11Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328065"
+      },
+      {
+        "completedAt": "2026-10-08T01:41:35Z",
+        "conclusion": "success",
+        "databaseId": 113106328095,
+        "name": "equipment-legacy (baseline)",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:14Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:14Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:32Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:34Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:31Z",
+            "conclusion": "success",
+            "name": "旧入口142検証・10更新",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:31Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:32Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:41:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:41:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:32Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:41:32Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328095"
+      },
+      {
+        "completedAt": "2026-10-08T01:41:46Z",
+        "conclusion": "success",
+        "databaseId": 113106328099,
+        "name": "equipment-migration (latest)",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:30Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:32Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:43Z",
+            "conclusion": "success",
+            "name": "S1純粋移行61ケース",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:43Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:44Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:44Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:41:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:44Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:41:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:44Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:41:44Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328099"
+      },
+      {
+        "completedAt": "2026-10-08T01:44:37Z",
+        "conclusion": "success",
+        "databaseId": 113106328114,
+        "name": "equipment-migration (041)",
+        "startedAt": "2026-10-08T01:42:34Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:42:35Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:42:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:52Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:42:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:53Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:42:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:07Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:42:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:09Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:43:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:34Z",
+            "conclusion": "success",
+            "name": "S1純粋移行61ケース",
+            "number": 6,
+            "startedAt": "2026-10-08T01:43:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:34Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:44:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:35Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:44:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:35Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:44:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:35Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:44:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:35Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:44:35Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328114"
+      },
+      {
+        "completedAt": "2026-10-08T01:43:03Z",
+        "conclusion": "success",
+        "databaseId": 113106328119,
+        "name": "equipment-core (041)",
+        "startedAt": "2026-10-08T01:41:14Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:41:16Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:41:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:34Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:41:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:34Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:41:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:53Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:41:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:54Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:41:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:00Z",
+            "conclusion": "success",
+            "name": "正常装備5394条件と038以降の追加93条件",
+            "number": 6,
+            "startedAt": "2026-10-08T01:41:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:00Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:01Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:43:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:01Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:43:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:01Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:43:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:01Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:43:01Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328119"
+      },
+      {
+        "completedAt": "2026-10-08T01:45:00Z",
+        "conclusion": "success",
+        "databaseId": 113106328133,
+        "name": "equipment-core (latest)",
+        "startedAt": "2026-10-08T01:42:52Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:42:54Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:42:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:26Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:42:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:26Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:43:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:47Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:43:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:49Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:43:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:56Z",
+            "conclusion": "success",
+            "name": "正常装備5394条件と038以降の追加93条件",
+            "number": 6,
+            "startedAt": "2026-10-08T01:43:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:56Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:44:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:57Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:44:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:44:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:44:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:57Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:44:57Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328133"
+      },
+      {
+        "completedAt": "2026-10-08T01:43:13Z",
+        "conclusion": "success",
+        "databaseId": 113106328150,
+        "name": "equipment-core (038)",
+        "startedAt": "2026-10-08T01:41:41Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:41:42Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:41:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:41:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:42:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:20Z",
+            "conclusion": "success",
+            "name": "完成版・基点・当時の原証拠を完全SHAで取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:42:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:21Z",
+            "conclusion": "success",
+            "name": "公式Godotを既存指定hashで照合",
+            "number": 5,
+            "startedAt": "2026-10-08T01:42:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:09Z",
+            "conclusion": "success",
+            "name": "正常装備5394条件と038以降の追加93条件",
+            "number": 6,
+            "startedAt": "2026-10-08T01:42:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:09Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:10Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:43:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:43:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:43:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:11Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:43:11Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113106328150"
+      },
+      {
+        "completedAt": "2026-10-08T01:44:12Z",
+        "conclusion": "success",
+        "databaseId": 113107269908,
+        "name": "equipment-legacy-comparison",
+        "startedAt": "2026-10-08T01:43:33Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:43:35Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:43:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:52Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:43:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:52Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-08T01:43:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:06Z",
+            "conclusion": "success",
+            "name": "旧基点・固定041の原本と当時の旧出力を読取り取得",
+            "number": 4,
+            "startedAt": "2026-10-08T01:43:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:09Z",
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@v4",
+            "number": 5,
+            "startedAt": "2026-10-08T01:44:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:09Z",
+            "conclusion": "success",
+            "name": "固定と最新を基点出力へbyte照合（欠落・失敗も拒否）",
+            "number": 6,
+            "startedAt": "2026-10-08T01:44:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:09Z",
+            "conclusion": "success",
+            "name": "最新checkoutの保護照合（失敗時も実行）",
+            "number": 7,
+            "startedAt": "2026-10-08T01:44:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:10Z",
+            "conclusion": "success",
+            "name": "原ログ・対象SHA・全結果を保存（失敗時も実行）",
+            "number": 8,
+            "startedAt": "2026-10-08T01:44:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:10Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 15,
+            "startedAt": "2026-10-08T01:44:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:10Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 16,
+            "startedAt": "2026-10-08T01:44:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:11Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 17,
+            "startedAt": "2026-10-08T01:44:10Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067/job/113107269908"
+      }
+    ],
+    "name": "Equipment and Save CI",
+    "status": "completed",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045067",
+    "run_id": 37714045067
+  },
+  {
+    "conclusion": "success",
+    "event": "push",
+    "headSha": "361009af03205c969ced2b33495444df2882c655",
+    "jobs": [
+      {
+        "completedAt": "2026-10-08T01:42:05Z",
+        "conclusion": "success",
+        "databaseId": 113106327763,
+        "name": "acceptance-and-regression (latest)",
+        "startedAt": "2026-10-08T01:39:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:29Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:29Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:31Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:34Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:34Z",
+            "conclusion": "skipped",
+            "name": "固定006の全範囲監査・7592項目・20保存・5別プロセス",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:02Z",
+            "conclusion": "success",
+            "name": "最新SHAの継続条件・20保存・5別プロセス",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:03Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 9,
+            "startedAt": "2026-10-08T01:42:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:03Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 16,
+            "startedAt": "2026-10-08T01:42:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:04Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 17,
+            "startedAt": "2026-10-08T01:42:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:04Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "startedAt": "2026-10-08T01:42:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:04Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "startedAt": "2026-10-08T01:42:04Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106327763"
+      },
+      {
+        "completedAt": "2026-10-08T01:43:08Z",
+        "conclusion": "success",
+        "databaseId": 113106327879,
+        "name": "normal-input-and-rendering (fixed, restart-4)",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:57Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:16Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:51Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:51Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:07Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:09Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:41:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:04Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:30Z",
+            "conclusion": "success",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:42:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:02Z",
+            "conclusion": "success",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:42:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:02Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:43:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:02Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:43:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:02Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:43:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:04Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:43:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:04Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:43:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:05Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:43:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:05Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:43:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:05Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:43:05Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106327879"
+      },
+      {
+        "completedAt": "2026-10-08T01:43:00Z",
+        "conclusion": "success",
+        "databaseId": 113106327983,
+        "name": "normal-input-and-rendering (fixed, restart-2)",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:57Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:28Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:51Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:51Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:03Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:05Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:41:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:26Z",
+            "conclusion": "success",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:42:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:53Z",
+            "conclusion": "success",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:42:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:53Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:42:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:53Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:42:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:53Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:42:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:56Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:42:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:56Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:42:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:42:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:42:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:57Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:42:57Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106327983"
+      },
+      {
+        "completedAt": "2026-10-08T01:42:02Z",
+        "conclusion": "success",
+        "databaseId": 113106327989,
+        "name": "acceptance-and-regression (fixed)",
+        "startedAt": "2026-10-08T01:39:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:16Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:34Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:34Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:36Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:32Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:58Z",
+            "conclusion": "success",
+            "name": "固定006の全範囲監査・7592項目・20保存・5別プロセス",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:58Z",
+            "conclusion": "skipped",
+            "name": "最新SHAの継続条件・20保存・5別プロセス",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 9,
+            "startedAt": "2026-10-08T01:41:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 16,
+            "startedAt": "2026-10-08T01:42:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 17,
+            "startedAt": "2026-10-08T01:42:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "startedAt": "2026-10-08T01:42:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:00Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "startedAt": "2026-10-08T01:42:00Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106327989"
+      },
+      {
+        "completedAt": "2026-10-08T01:48:10Z",
+        "conclusion": "success",
+        "databaseId": 113106328038,
+        "name": "lifecycle-audit",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:29Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:47Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:03Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:20Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 6,
+            "startedAt": "2026-10-08T01:41:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:21Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 7,
+            "startedAt": "2026-10-08T01:41:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:29Z",
+            "conclusion": "success",
+            "name": "NPC正例の実描画用仮想画面を用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:30Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 9,
+            "startedAt": "2026-10-08T01:41:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:34Z",
+            "conclusion": "success",
+            "name": "最新コードを600秒以内にインポート",
+            "number": 10,
+            "startedAt": "2026-10-08T01:41:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:36Z",
+            "conclusion": "success",
+            "name": "006・009・012の不変完成点と後続編集の反証",
+            "number": 11,
+            "startedAt": "2026-10-08T01:42:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:43Z",
+            "conclusion": "success",
+            "name": "既存固定記録を信頼基点に012の全参照と実checkoutを独立照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:42:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:02Z",
+            "conclusion": "success",
+            "name": "016完成点だけを固定範囲監査し後続編集と異常完成差分を反証",
+            "number": 13,
+            "startedAt": "2026-10-08T01:42:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:02Z",
+            "conclusion": "success",
+            "name": "009完成点だけを独立範囲監査",
+            "number": 14,
+            "startedAt": "2026-10-08T01:43:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:05Z",
+            "conclusion": "success",
+            "name": "異常SHA・誤接続・不正保存受理を別コピーで拒否",
+            "number": 15,
+            "startedAt": "2026-10-08T01:43:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:05Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 16,
+            "startedAt": "2026-10-08T01:48:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:07Z",
+            "conclusion": "success",
+            "name": "監査証拠を保存",
+            "number": 17,
+            "startedAt": "2026-10-08T01:48:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:07Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 29,
+            "startedAt": "2026-10-08T01:48:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 30,
+            "startedAt": "2026-10-08T01:48:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 31,
+            "startedAt": "2026-10-08T01:48:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 32,
+            "startedAt": "2026-10-08T01:48:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 33,
+            "startedAt": "2026-10-08T01:48:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:09Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 34,
+            "startedAt": "2026-10-08T01:48:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:48:09Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 35,
+            "startedAt": "2026-10-08T01:48:09Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328038"
+      },
+      {
+        "completedAt": "2026-10-08T01:43:35Z",
+        "conclusion": "success",
+        "databaseId": 113106328069,
+        "name": "normal-input-and-rendering (latest, details)",
+        "startedAt": "2026-10-08T01:39:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:30Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:30Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:39Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:41Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:42Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:40:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:43Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:43Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:41:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:11Z",
+            "conclusion": "success",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:41:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:31Z",
+            "conclusion": "success",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:42:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:31Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:43:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:33Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:43:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:33Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:43:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:34Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:43:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:34Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:43:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:34Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:43:34Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328069"
+      },
+      {
+        "completedAt": "2026-10-08T01:42:34Z",
+        "conclusion": "success",
+        "databaseId": 113106328077,
+        "name": "normal-input-and-rendering (latest, restart-4)",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:57Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:14Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:32Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:32Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:48Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:49Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:41Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:40:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:41Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:41Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:41:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:04Z",
+            "conclusion": "success",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:41:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:31Z",
+            "conclusion": "success",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:42:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:31Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:42:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:32Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:42:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:42:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:33Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:42:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:33Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:42:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:33Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:42:33Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328077"
+      },
+      {
+        "completedAt": "2026-10-08T01:42:51Z",
+        "conclusion": "success",
+        "databaseId": 113106328081,
+        "name": "normal-input-and-rendering (latest, restart-2)",
+        "startedAt": "2026-10-08T01:39:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:13Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:29Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:29Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:42Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:44Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:51Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:40:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:51Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:51Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:41:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:19Z",
+            "conclusion": "success",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:41:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:47Z",
+            "conclusion": "success",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:42:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:47Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:42:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:49Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:42:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:42:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:42:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:42:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:49Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:42:49Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328081"
+      },
+      {
+        "completedAt": "2026-10-08T01:44:00Z",
+        "conclusion": "success",
+        "databaseId": 113106328088,
+        "name": "normal-input-and-rendering (fixed, journey)",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:57Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:19Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:41Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:41Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:57Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:58Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:45Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:40:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:05Z",
+            "conclusion": "success",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:54Z",
+            "conclusion": "success",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:42:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:54Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:43:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:54Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:43:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:54Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:43:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:56Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:43:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:56Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:43:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:43:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:43:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:57Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:43:57Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328088"
+      },
+      {
+        "completedAt": "2026-10-08T01:42:32Z",
+        "conclusion": "success",
+        "databaseId": 113106328089,
+        "name": "normal-input-and-rendering (fixed, restart-1)",
+        "startedAt": "2026-10-08T01:39:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:14Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:31Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:31Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:40Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:42Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:38Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:40:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:04Z",
+            "conclusion": "success",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "success",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:42:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:42:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:42:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:42:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:30Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:42:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:30Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:42:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:30Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:42:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:30Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:42:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:30Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:42:30Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328089"
+      },
+      {
+        "completedAt": "2026-10-08T01:45:46Z",
+        "conclusion": "success",
+        "databaseId": 113106328090,
+        "name": "normal-input-and-rendering (latest, restart-1)",
+        "startedAt": "2026-10-08T01:43:01Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:43:02Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:43:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:19Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:43:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:35Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:43:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:36Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:43:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:47Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:43:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:48Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:43:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:53Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:53Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:44:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:53Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:44:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:20Z",
+            "conclusion": "success",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:44:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:42Z",
+            "conclusion": "success",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:45:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:42Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:45:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:44Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:45:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:44Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:45:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:44Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:45:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:44Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:45:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:44Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:45:44Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328090"
+      },
+      {
+        "completedAt": "2026-10-08T01:42:31Z",
+        "conclusion": "success",
+        "databaseId": 113106328111,
+        "name": "normal-input-and-rendering (latest, restart-0)",
+        "startedAt": "2026-10-08T01:39:55Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:39:56Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:39:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:14Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:39:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:31Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:40:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:31Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:40:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:39Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:40:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:40:41Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:40:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:44Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:40:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:44Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:41:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:41:44Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:41:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:11Z",
+            "conclusion": "success",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:41:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:26Z",
+            "conclusion": "success",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:42:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:26Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:42:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:42:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:28Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:42:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:29Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:42:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:29Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:42:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:29Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:42:29Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328111"
+      },
+      {
+        "completedAt": "2026-10-08T01:46:33Z",
+        "conclusion": "success",
+        "databaseId": 113106328117,
+        "name": "normal-input-and-rendering (latest, journey)",
+        "startedAt": "2026-10-08T01:42:32Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:42:34Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:42:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:52Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:42:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:10Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:42:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:10Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:43:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:23Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:43:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:24Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:43:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:12Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:12Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:44:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:12Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:44:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:32Z",
+            "conclusion": "success",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:44:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:46:28Z",
+            "conclusion": "success",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:44:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:46:28Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:46:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:46:30Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:46:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:46:30Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:46:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:46:30Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:46:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:46:30Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:46:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:46:30Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:46:30Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328117"
+      },
+      {
+        "completedAt": "2026-10-08T01:45:44Z",
+        "conclusion": "success",
+        "databaseId": 113106328126,
+        "name": "normal-input-and-rendering (fixed, details)",
+        "startedAt": "2026-10-08T01:42:36Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:42:37Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:42:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:01Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:42:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:23Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:43:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:23Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:43:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:34Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:43:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:35Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:43:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:13Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:32Z",
+            "conclusion": "success",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:44:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:38Z",
+            "conclusion": "success",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:44:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:38Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:45:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:38Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:45:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:38Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:45:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:40Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:45:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:41Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:45:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:41Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:45:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:41Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:45:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:41Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:45:41Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328126"
+      },
+      {
+        "completedAt": "2026-10-08T01:44:38Z",
+        "conclusion": "success",
+        "databaseId": 113106328134,
+        "name": "normal-input-and-rendering (latest, restart-3)",
+        "startedAt": "2026-10-08T01:42:07Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:42:09Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:42:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:26Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:42:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:45Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:42:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:45Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:42:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:58Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:42:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:59Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:42:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:50Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:42:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:50Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:43:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:50Z",
+            "conclusion": "skipped",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:43:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:10Z",
+            "conclusion": "success",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:43:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:34Z",
+            "conclusion": "success",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:44:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:34Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:44:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:36Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:44:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:36Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:44:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:36Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:44:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:36Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:44:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:36Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:44:36Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328134"
+      },
+      {
+        "completedAt": "2026-10-08T01:44:59Z",
+        "conclusion": "success",
+        "databaseId": 113106328144,
+        "name": "normal-input-and-rendering (fixed, restart-3)",
+        "startedAt": "2026-10-08T01:42:18Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:42:20Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:42:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:37Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:42:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:53Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:42:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:53Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:42:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:04Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:42:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:06Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:43:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:00Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:26Z",
+            "conclusion": "success",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:44:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:55Z",
+            "conclusion": "success",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:44:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:55Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:44:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:55Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:44:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:55Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:44:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:57Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:44:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:44:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:44:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:44:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:57Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:44:57Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328144"
+      },
+      {
+        "completedAt": "2026-10-08T01:45:14Z",
+        "conclusion": "success",
+        "databaseId": 113106328151,
+        "name": "normal-input-and-rendering (fixed, restart-0)",
+        "startedAt": "2026-10-08T01:42:32Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-08T01:42:34Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-08T01:42:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:42:53Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-08T01:42:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:12Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 3,
+            "startedAt": "2026-10-08T01:42:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:12Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 4,
+            "startedAt": "2026-10-08T01:43:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:27Z",
+            "conclusion": "success",
+            "name": "実描画の仮想画面とソフトウェアドライバを用意",
+            "number": 5,
+            "startedAt": "2026-10-08T01:43:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:43:28Z",
+            "conclusion": "success",
+            "name": "指定ハッシュのGodotを取得",
+            "number": 6,
+            "startedAt": "2026-10-08T01:43:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:25Z",
+            "conclusion": "success",
+            "name": "対象checkoutを600秒以内にインポート",
+            "number": 7,
+            "startedAt": "2026-10-08T01:43:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:44:50Z",
+            "conclusion": "success",
+            "name": "固定版の通常保存を当時の全検査で用意",
+            "number": 8,
+            "startedAt": "2026-10-08T01:44:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:09Z",
+            "conclusion": "success",
+            "name": "固定版の通常操作・画素検査を180秒で再実行",
+            "number": 9,
+            "startedAt": "2026-10-08T01:44:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:09Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常保存を全継続検査で用意",
+            "number": 10,
+            "startedAt": "2026-10-08T01:45:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:09Z",
+            "conclusion": "skipped",
+            "name": "最新版の通常操作・画素検査を180秒で実行",
+            "number": 11,
+            "startedAt": "2026-10-08T01:45:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:09Z",
+            "conclusion": "success",
+            "name": "保護照合",
+            "number": 12,
+            "startedAt": "2026-10-08T01:45:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:11Z",
+            "conclusion": "success",
+            "name": "証拠を保存",
+            "number": 13,
+            "startedAt": "2026-10-08T01:45:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 24,
+            "startedAt": "2026-10-08T01:45:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 25,
+            "startedAt": "2026-10-08T01:45:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 26,
+            "startedAt": "2026-10-08T01:45:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-08T01:45:11Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 27,
+            "startedAt": "2026-10-08T01:45:11Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060/job/113106328151"
+      }
+    ],
+    "name": "006 固定受入と最新回帰",
+    "status": "completed",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37714045060",
+    "run_id": 37714045060
+  }
+]

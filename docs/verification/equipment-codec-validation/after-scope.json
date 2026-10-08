@@ -1,0 +1,42 @@
+[
+  {
+    "case": "later-document",
+    "source_sha": "57fe1d679bb2080b7970983768e10300b791492c",
+    "scope_sha": "99e9d03d4e095b4627b510efd4806f82276617c9",
+    "expected_exit": 0,
+    "observed_exit": 0,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--scope-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--profile",
+      "latest",
+      "--source-sha",
+      "57fe1d679bb2080b7970983768e10300b791492c",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051"
+    ]
+  },
+  {
+    "case": "fixed-outside",
+    "source_sha": "b8500ed23c00aa67780983b659c8bdce86679b33",
+    "scope_sha": "b8500ed23c00aa67780983b659c8bdce86679b33",
+    "expected_exit": 1,
+    "observed_exit": 1,
+    "argv": [
+      "D:\\codex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051\\tools\\fixtures\\equipment-save-codec\\run_ci.py",
+      "--scope-only",
+      "--checkout",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\impl051",
+      "--profile",
+      "fixed049",
+      "--source-sha",
+      "b8500ed23c00aa67780983b659c8bdce86679b33",
+      "--output",
+      "D:\\codex\\Documents-Codex\\2026-10-08\\task-2\\evidence051"
+    ]
+  }
+]

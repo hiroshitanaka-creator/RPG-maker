@@ -1,0 +1,48 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+QA_USER_DIR D:/codex/Documents-Codex/2026-10-08/task-2/qa-profile/APPDATA/Godot/app_userdata/RPG-maker
+BEGIN context missing-session
+OBS missing-session {"caps":[],"document":false,"errors":[{"reason_code":"invalid_context","target":"context.legacy_session"}],"ok":false,"reason":"invalid_context"}
+END context missing-session
+BEGIN context missing-abilities
+OBS missing-abilities {"caps":[],"document":false,"errors":[{"reason_code":"invalid_catalog","target":"context.abilities"}],"ok":false,"reason":"invalid_catalog"}
+END context missing-abilities
+BEGIN context null-catalog
+SCRIPT ERROR: Invalid call. Nonexistent function 'equipment_context_abilities' in base 'Nil'.
+   at: context_errors (res://scripts/game/equipment_document_validation.gd:14)
+   GDScript backtrace (most recent call first):
+       [0] context_errors (res://scripts/game/equipment_document_validation.gd:14)
+       [1] encode_candidate (res://scripts/game/equipment_save_codec.gd:125)
+       [2] context (res://independent050.gd:123)
+       [3] _initialize (res://independent050.gd:131)
+SCRIPT ERROR: Invalid call. Nonexistent function 'equipment_context_abilities' in base 'Nil'.
+   at: context_errors (res://scripts/game/equipment_document_validation.gd:14)
+   GDScript backtrace (most recent call first):
+       [0] context_errors (res://scripts/game/equipment_document_validation.gd:14)
+       [1] validate (res://scripts/game/equipment_document_validation.gd:97)
+       [2] encode_candidate (res://scripts/game/equipment_save_codec.gd:136)
+       [3] context (res://independent050.gd:123)
+       [4] _initialize (res://independent050.gd:131)
+SCRIPT ERROR: Invalid call. Nonexistent function 'equipment_context_abilities' in base 'Nil'.
+   at: context_errors (res://scripts/game/equipment_document_validation.gd:14)
+   GDScript backtrace (most recent call first):
+       [0] context_errors (res://scripts/game/equipment_document_validation.gd:14)
+       [1] decode_source (res://scripts/game/equipment_save_codec.gd:59)
+       [2] encode_candidate (res://scripts/game/equipment_save_codec.gd:140)
+       [3] context (res://independent050.gd:123)
+       [4] _initialize (res://independent050.gd:131)
+SCRIPT ERROR: Invalid call. Nonexistent function 'equipment_context_abilities' in base 'Nil'.
+   at: context_errors (res://scripts/game/equipment_document_validation.gd:14)
+   GDScript backtrace (most recent call first):
+       [0] context_errors (res://scripts/game/equipment_document_validation.gd:14)
+       [1] validate (res://scripts/game/equipment_document_validation.gd:97)
+       [2] decode_source (res://scripts/game/equipment_save_codec.gd:117)
+       [3] encode_candidate (res://scripts/game/equipment_save_codec.gd:140)
+       [4] context (res://independent050.gd:123)
+       [5] _initialize (res://independent050.gd:131)
+OBS null-catalog {"caps":[],"document":true,"errors":[],"ok":true,"reason":"ok"}
+END context null-catalog
+BEGIN context catalog-errors
+OBS catalog-errors {"caps":[],"document":false,"errors":[{"reason_code":"invalid_catalog","target":"context.abilities"}],"ok":false,"reason":"invalid_catalog"}
+END context catalog-errors
+REVIEW050 {"checks":5,"failures":["context rejects null-catalog"],"mode":"context"}
