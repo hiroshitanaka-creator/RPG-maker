@@ -207,3 +207,8 @@ Check status with: `python3 D:\Codex\.codex\scope-lock\scripts/verify_cli.py`
 - NPCの占有と地形の通行を区別し、入口・出口への到達を守る。未実装の後続機能を成功扱いせず、引継ぎと未検証を明示する。
 - 検査項目の削除・省略・黙ったskip・continue-on-error・実装から期待値を作る自己一致・時間上限の延長で合格させない。別job化する場合も既存の各job・コマンド上限を超えない。時間が不足する場合は証拠とともに報告する。
 - この追記は既存の権限・保護・承認の規則を変更しない。
+
+
+## 2026年10月9日の限定承認（保存I/O拡張）
+
+依頼者は「保存操作に限ってC++拡張と専用のWindows・Linux検査を追加する」案Aを採用した。ゲーム本体はGodot4.7.2/GDScriptのまま、第1節の言語固定の例外を保存専用の内部C++ GDExtensionだけに認める。対象は native/equipment_save_io/ と新 addons/equipment_save_io/、そのビルド/配布物および専用Windows/Linux QA・新workflowに限定する。既存addons・test/.scope-lock・保護検査・原画・ゲーム規則は変更しない。具体範囲は055依頼書に従い、ユーザーPC/OS設定やmount/VHD等の環境準備の承認には拡張しない。
