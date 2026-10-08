@@ -1,0 +1,3340 @@
+{
+  "version": 1,
+  "budget_seconds": 180,
+  "child_seconds": 30,
+  "points": [
+    "read.open.before",
+    "read.open.after",
+    "read.buffer.before",
+    "read.buffer.after",
+    "directory.create.before",
+    "directory.create.after",
+    "lease.acquire.before",
+    "lease.acquire.after",
+    "owner.open.before",
+    "owner.open.after",
+    "owner.store.before",
+    "owner.store.after",
+    "owner.flush.before",
+    "owner.flush.after",
+    "owner.close.before",
+    "owner.close.after",
+    "owner.readback.before",
+    "owner.readback.after",
+    "intent.open.before",
+    "intent.open.after",
+    "intent.store.before",
+    "intent.store.after",
+    "intent.flush.before",
+    "intent.flush.after",
+    "intent.close.before",
+    "intent.close.after",
+    "intent.readback.before",
+    "intent.readback.after",
+    "intent.rename.before",
+    "intent.rename.after",
+    "source.open.before",
+    "source.open.after",
+    "source.store.before",
+    "source.store.after",
+    "source.flush.before",
+    "source.flush.after",
+    "source.close.before",
+    "source.close.after",
+    "source.readback.before",
+    "source.readback.after",
+    "source.rename.before",
+    "source.rename.after",
+    "history.open.before",
+    "history.open.after",
+    "history.store.before",
+    "history.store.after",
+    "history.flush.before",
+    "history.flush.after",
+    "history.close.before",
+    "history.close.after",
+    "history.readback.before",
+    "history.readback.after",
+    "history.rename.before",
+    "history.rename.after",
+    "candidate.open.before",
+    "candidate.open.after",
+    "candidate.store.before",
+    "candidate.store.after",
+    "candidate.flush.before",
+    "candidate.flush.after",
+    "candidate.close.before",
+    "candidate.close.after",
+    "candidate.readback.before",
+    "candidate.readback.after",
+    "receipt-prepared.open.before",
+    "receipt-prepared.open.after",
+    "receipt-prepared.store.before",
+    "receipt-prepared.store.after",
+    "receipt-prepared.flush.before",
+    "receipt-prepared.flush.after",
+    "receipt-prepared.close.before",
+    "receipt-prepared.close.after",
+    "receipt-prepared.readback.before",
+    "receipt-prepared.readback.after",
+    "receipt-prepared.rename.before",
+    "receipt-prepared.rename.after",
+    "receipt-committed.open.before",
+    "receipt-committed.open.after",
+    "receipt-committed.store.before",
+    "receipt-committed.store.after",
+    "receipt-committed.flush.before",
+    "receipt-committed.flush.after",
+    "receipt-committed.close.before",
+    "receipt-committed.close.after",
+    "receipt-committed.readback.before",
+    "receipt-committed.readback.after",
+    "receipt-committed.rename.before",
+    "receipt-committed.rename.after",
+    "commit.rename.before",
+    "commit.rename.after",
+    "owner.store.partial",
+    "intent.store.partial",
+    "source.store.partial",
+    "history.store.partial",
+    "candidate.store.partial",
+    "receipt-prepared.store.partial",
+    "receipt-committed.store.partial"
+  ],
+  "cases": {
+    "kill-read.open.before": {
+      "kind": "kill",
+      "point": "read.open.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-read.open.after": {
+      "kind": "kill",
+      "point": "read.open.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-read.buffer.before": {
+      "kind": "kill",
+      "point": "read.buffer.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-read.buffer.after": {
+      "kind": "kill",
+      "point": "read.buffer.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-directory.create.before": {
+      "kind": "kill",
+      "point": "directory.create.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-directory.create.after": {
+      "kind": "kill",
+      "point": "directory.create.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-lease.acquire.before": {
+      "kind": "kill",
+      "point": "lease.acquire.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-lease.acquire.after": {
+      "kind": "kill",
+      "point": "lease.acquire.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.open.before": {
+      "kind": "kill",
+      "point": "owner.open.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.open.after": {
+      "kind": "kill",
+      "point": "owner.open.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.store.before": {
+      "kind": "kill",
+      "point": "owner.store.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.store.after": {
+      "kind": "kill",
+      "point": "owner.store.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.flush.before": {
+      "kind": "kill",
+      "point": "owner.flush.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.flush.after": {
+      "kind": "kill",
+      "point": "owner.flush.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.close.before": {
+      "kind": "kill",
+      "point": "owner.close.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.close.after": {
+      "kind": "kill",
+      "point": "owner.close.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.readback.before": {
+      "kind": "kill",
+      "point": "owner.readback.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-owner.readback.after": {
+      "kind": "kill",
+      "point": "owner.readback.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.open.before": {
+      "kind": "kill",
+      "point": "intent.open.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.open.after": {
+      "kind": "kill",
+      "point": "intent.open.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.store.before": {
+      "kind": "kill",
+      "point": "intent.store.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.store.after": {
+      "kind": "kill",
+      "point": "intent.store.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.flush.before": {
+      "kind": "kill",
+      "point": "intent.flush.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.flush.after": {
+      "kind": "kill",
+      "point": "intent.flush.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.close.before": {
+      "kind": "kill",
+      "point": "intent.close.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.close.after": {
+      "kind": "kill",
+      "point": "intent.close.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.readback.before": {
+      "kind": "kill",
+      "point": "intent.readback.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.readback.after": {
+      "kind": "kill",
+      "point": "intent.readback.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.rename.before": {
+      "kind": "kill",
+      "point": "intent.rename.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.rename.after": {
+      "kind": "kill",
+      "point": "intent.rename.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.open.before": {
+      "kind": "kill",
+      "point": "source.open.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.open.after": {
+      "kind": "kill",
+      "point": "source.open.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.store.before": {
+      "kind": "kill",
+      "point": "source.store.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.store.after": {
+      "kind": "kill",
+      "point": "source.store.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.flush.before": {
+      "kind": "kill",
+      "point": "source.flush.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.flush.after": {
+      "kind": "kill",
+      "point": "source.flush.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.close.before": {
+      "kind": "kill",
+      "point": "source.close.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.close.after": {
+      "kind": "kill",
+      "point": "source.close.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.readback.before": {
+      "kind": "kill",
+      "point": "source.readback.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.readback.after": {
+      "kind": "kill",
+      "point": "source.readback.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.rename.before": {
+      "kind": "kill",
+      "point": "source.rename.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.rename.after": {
+      "kind": "kill",
+      "point": "source.rename.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.open.before": {
+      "kind": "kill",
+      "point": "history.open.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.open.after": {
+      "kind": "kill",
+      "point": "history.open.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.store.before": {
+      "kind": "kill",
+      "point": "history.store.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.store.after": {
+      "kind": "kill",
+      "point": "history.store.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.flush.before": {
+      "kind": "kill",
+      "point": "history.flush.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.flush.after": {
+      "kind": "kill",
+      "point": "history.flush.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.close.before": {
+      "kind": "kill",
+      "point": "history.close.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.close.after": {
+      "kind": "kill",
+      "point": "history.close.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.readback.before": {
+      "kind": "kill",
+      "point": "history.readback.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.readback.after": {
+      "kind": "kill",
+      "point": "history.readback.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.rename.before": {
+      "kind": "kill",
+      "point": "history.rename.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.rename.after": {
+      "kind": "kill",
+      "point": "history.rename.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.open.before": {
+      "kind": "kill",
+      "point": "candidate.open.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.open.after": {
+      "kind": "kill",
+      "point": "candidate.open.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.store.before": {
+      "kind": "kill",
+      "point": "candidate.store.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.store.after": {
+      "kind": "kill",
+      "point": "candidate.store.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.flush.before": {
+      "kind": "kill",
+      "point": "candidate.flush.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.flush.after": {
+      "kind": "kill",
+      "point": "candidate.flush.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.close.before": {
+      "kind": "kill",
+      "point": "candidate.close.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.close.after": {
+      "kind": "kill",
+      "point": "candidate.close.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.readback.before": {
+      "kind": "kill",
+      "point": "candidate.readback.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.readback.after": {
+      "kind": "kill",
+      "point": "candidate.readback.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.open.before": {
+      "kind": "kill",
+      "point": "receipt-prepared.open.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.open.after": {
+      "kind": "kill",
+      "point": "receipt-prepared.open.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.store.before": {
+      "kind": "kill",
+      "point": "receipt-prepared.store.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.store.after": {
+      "kind": "kill",
+      "point": "receipt-prepared.store.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.flush.before": {
+      "kind": "kill",
+      "point": "receipt-prepared.flush.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.flush.after": {
+      "kind": "kill",
+      "point": "receipt-prepared.flush.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.close.before": {
+      "kind": "kill",
+      "point": "receipt-prepared.close.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.close.after": {
+      "kind": "kill",
+      "point": "receipt-prepared.close.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.readback.before": {
+      "kind": "kill",
+      "point": "receipt-prepared.readback.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.readback.after": {
+      "kind": "kill",
+      "point": "receipt-prepared.readback.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.rename.before": {
+      "kind": "kill",
+      "point": "receipt-prepared.rename.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.rename.after": {
+      "kind": "kill",
+      "point": "receipt-prepared.rename.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.open.before": {
+      "kind": "kill",
+      "point": "receipt-committed.open.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.open.after": {
+      "kind": "kill",
+      "point": "receipt-committed.open.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.store.before": {
+      "kind": "kill",
+      "point": "receipt-committed.store.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.store.after": {
+      "kind": "kill",
+      "point": "receipt-committed.store.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.flush.before": {
+      "kind": "kill",
+      "point": "receipt-committed.flush.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.flush.after": {
+      "kind": "kill",
+      "point": "receipt-committed.flush.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.close.before": {
+      "kind": "kill",
+      "point": "receipt-committed.close.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.close.after": {
+      "kind": "kill",
+      "point": "receipt-committed.close.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.readback.before": {
+      "kind": "kill",
+      "point": "receipt-committed.readback.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.readback.after": {
+      "kind": "kill",
+      "point": "receipt-committed.readback.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.rename.before": {
+      "kind": "kill",
+      "point": "receipt-committed.rename.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.rename.after": {
+      "kind": "kill",
+      "point": "receipt-committed.rename.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-commit.rename.before": {
+      "kind": "kill",
+      "point": "commit.rename.before",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-commit.rename.after": {
+      "kind": "kill",
+      "point": "commit.rename.after",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "fault-read.open.before": {
+      "kind": "fault",
+      "point": "read.open.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-read.buffer.before": {
+      "kind": "fault",
+      "point": "read.buffer.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-source.open.before": {
+      "kind": "fault",
+      "point": "source.open.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-source.store.before": {
+      "kind": "fault",
+      "point": "source.store.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-source.flush.before": {
+      "kind": "fault",
+      "point": "source.flush.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-source.readback.before": {
+      "kind": "fault",
+      "point": "source.readback.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-source.rename.before": {
+      "kind": "fault",
+      "point": "source.rename.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-history.open.before": {
+      "kind": "fault",
+      "point": "history.open.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-history.store.before": {
+      "kind": "fault",
+      "point": "history.store.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-history.flush.before": {
+      "kind": "fault",
+      "point": "history.flush.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-history.readback.before": {
+      "kind": "fault",
+      "point": "history.readback.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-history.rename.before": {
+      "kind": "fault",
+      "point": "history.rename.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-candidate.open.before": {
+      "kind": "fault",
+      "point": "candidate.open.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-candidate.store.before": {
+      "kind": "fault",
+      "point": "candidate.store.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-candidate.flush.before": {
+      "kind": "fault",
+      "point": "candidate.flush.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-candidate.readback.before": {
+      "kind": "fault",
+      "point": "candidate.readback.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-receipt-prepared.open.before": {
+      "kind": "fault",
+      "point": "receipt-prepared.open.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-receipt-prepared.rename.before": {
+      "kind": "fault",
+      "point": "receipt-prepared.rename.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-commit.rename.before": {
+      "kind": "fault",
+      "point": "commit.rename.before",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-receipt-committed.open.before": {
+      "kind": "fault",
+      "point": "receipt-committed.open.before",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-receipt-committed.rename.before": {
+      "kind": "fault",
+      "point": "receipt-committed.rename.before",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "normal-pending": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "normal-granted": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "trial-missing": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "trial-corrupt": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "trial-unclean": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "absent-id": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "inspect-readonly": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "same-raw-alias": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "different-raw": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "new-input": {
+      "kind": "special",
+      "reason": "already_migrated",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "stale-prepare": {
+      "kind": "special",
+      "reason": "stale_state",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "stale-commit": {
+      "kind": "special",
+      "reason": "stale_state",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "wrong-hash": {
+      "kind": "special",
+      "reason": "source_changed",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "source-changed": {
+      "kind": "special",
+      "reason": "source_changed",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "receipt-corrupt": {
+      "kind": "special",
+      "reason": "recovery_required",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "receipt-intent": {
+      "kind": "special",
+      "reason": "recovery_required",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "receipt-phase-stale": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "backup-changed": {
+      "kind": "special",
+      "reason": "recovery_required",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "output-changed": {
+      "kind": "special",
+      "reason": "recovery_required",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "intent-changed": {
+      "kind": "special",
+      "reason": "recovery_required",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "history-changed": {
+      "kind": "special",
+      "reason": "recovery_required",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "candidate-value": {
+      "kind": "special",
+      "reason": "candidate_changed",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "candidate-quantity": {
+      "kind": "special",
+      "reason": "orphan_instance",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "candidate-types": {
+      "kind": "special",
+      "reason": "invalid_types",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "parent-path": {
+      "kind": "special",
+      "reason": "path_invalid",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "outside-path": {
+      "kind": "special",
+      "reason": "path_invalid",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "source-link": {
+      "kind": "special",
+      "reason": "path_invalid",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "directory-link": {
+      "kind": "special",
+      "reason": "path_invalid",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "output-link": {
+      "kind": "special",
+      "reason": "path_invalid",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "backup-hardlink": {
+      "kind": "special",
+      "reason": "same_file",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "transaction-source": {
+      "kind": "special",
+      "reason": "same_file",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "token-invalid": {
+      "kind": "special",
+      "reason": "path_invalid",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "target-collision": {
+      "kind": "special",
+      "reason": "recovery_required",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "backup-collision": {
+      "kind": "special",
+      "reason": "conflict",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "null-session": {
+      "kind": "special",
+      "reason": "invalid_context",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "null-abilities": {
+      "kind": "special",
+      "reason": "invalid_catalog",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "nonroot-permission": {
+      "kind": "special",
+      "reason": "backup_failed",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "writer-busy": {
+      "kind": "special",
+      "reason": "busy",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "commit-source-race": {
+      "kind": "special",
+      "reason": "source_changed",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "commit-target-race": {
+      "kind": "special",
+      "reason": "recovery_required",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "commit-tmp-race": {
+      "kind": "special",
+      "reason": "not_prepared",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "injected-enospc": {
+      "kind": "special",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "kill-owner.store.partial": {
+      "kind": "kill",
+      "point": "owner.store.partial",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-intent.store.partial": {
+      "kind": "kill",
+      "point": "intent.store.partial",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-source.store.partial": {
+      "kind": "kill",
+      "point": "source.store.partial",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-history.store.partial": {
+      "kind": "kill",
+      "point": "history.store.partial",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-candidate.store.partial": {
+      "kind": "kill",
+      "point": "candidate.store.partial",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-prepared.store.partial": {
+      "kind": "kill",
+      "point": "receipt-prepared.store.partial",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "kill-receipt-committed.store.partial": {
+      "kind": "kill",
+      "point": "receipt-committed.store.partial",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "same_migration",
+        "quantity",
+        "preserved_backups",
+        "committed_bytes",
+        "no_double_grant",
+        "boundary_files"
+      ]
+    },
+    "fault-source.store.partial": {
+      "kind": "fault",
+      "point": "source.store.partial",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-history.store.partial": {
+      "kind": "fault",
+      "point": "history.store.partial",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "fault-candidate.store.partial": {
+      "kind": "fault",
+      "point": "candidate.store.partial",
+      "reason": "injected_io_failure",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "recovery_phase",
+        "quantity",
+        "no_double_grant"
+      ]
+    },
+    "stale-current": {
+      "kind": "special",
+      "reason": "stale_state",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "stale-committed": {
+      "kind": "special",
+      "reason": "stale_state",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "inspect-missing": {
+      "kind": "special",
+      "reason": "read_failed",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "inspect-null-context": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "inspect-prepared": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "inspect-committed": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "initial-tmp-hardlink": {
+      "kind": "special",
+      "reason": "conflict",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "receipt-tmp-hardlink": {
+      "kind": "special",
+      "reason": "ok",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    },
+    "owner-corrupt": {
+      "kind": "special",
+      "reason": "recovery_required",
+      "checks": [
+        "process_exit",
+        "clean_logs",
+        "memory_unchanged",
+        "source_bytes",
+        "history_bytes",
+        "qa_user_dir",
+        "expected_result",
+        "file_evidence",
+        "specific_invariant"
+      ]
+    }
+  }
+}
