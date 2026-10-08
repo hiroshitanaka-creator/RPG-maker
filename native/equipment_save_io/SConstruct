@@ -1,0 +1,22 @@
+import os
+cpp = os.environ.get('EQUIPMENT_GODOT_CPP', os.path.abspath('.deps/godot-cpp'))
+binding_env = Environment(tools=['default'], PLATFORM='')
+binding_env.Append(CXXFLAGS=['-include', 'cstdlib'] if ARGUMENTS.get('use_llvm') == 'yes' else [])
+env = binding_env
+Export('env')
+env = SConscript(os.path.join(cpp, 'SConstruct'))
+env.Append(CPPPATH=['src'])
+env['SHLIBPREFIX'] = ''
+if env['platform'] == 'windows':
+    env.Append(CPPDEFINES=['NOMINMAX', 'WIN32_LEAN_AND_MEAN', ('_WIN32_WINNT', '0x0602')])
+    if env.get('use_mingw'):
+        if env.get('use_llvm'):
+            env['LINKFLAGS'] = [flag for flag in env['LINKFLAGS'] if flag != '-static-libstdc++']
+        env.Append(LINKFLAGS=['-Wl,--no-insert-timestamp'])
+    else:
+        env.Append(LINKFLAGS=['/Brepro'])
+else:
+    env.Append(LINKFLAGS=['-static-libgcc', '-static-libstdc++', '-Wl,--build-id=none'])
+sources = Glob('src/*.cpp')
+name = '../../addons/equipment_save_io/bin/equipment_save_io' + env['suffix'] + env['SHLIBSUFFIX']
+Default(env.SharedLibrary(name, source=sources))

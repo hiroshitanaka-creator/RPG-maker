@@ -10,18 +10,26 @@ var generation: String
 var hook: Callable
 var owner := ""
 var owned := ""
-var devices: Dictionary={}
-var root_device := ""
-var planned_cache: Dictionary={}
-var dependency_bytes := PackedByteArray()
-var verified_bytes := PackedByteArray()
+var io: RefCounted
+var io_ready := false
 var lease_index := -1
 
 func _init(qa_root: String, explicit_context: Dictionary, session_generation: String, qa_hook: Callable = Callable()) -> void:
-	root=qa_root.trim_suffix("/")
+	root=qa_root.replace("\\","/").trim_suffix("/")
 	context=explicit_context
 	generation=session_generation
 	hook=qa_hook
+	# 配布binaryをmanifestと照合してから利用。欠落/不正/未登録は全入口を閉じる。
+	var platform := "windows" if OS.get_name()=="Windows" else "linux" if OS.get_name()=="Linux" else ""
+	var target := "template_debug" if OS.has_feature("debug") else "template_release"
+	var suffix := ".dll" if platform=="windows" else ".so"
+	var binary := "res://addons/equipment_save_io/bin/equipment_save_io.%s.%s.x86_64%s" % [platform,target,suffix]
+	var manifest: Variant=JSON.parse_string(FileAccess.get_file_as_string("res://addons/equipment_save_io/manifest.json")) if FileAccess.file_exists("res://addons/equipment_save_io/manifest.json") else null
+	if platform.is_empty() or not manifest is Dictionary or not manifest.get("files") is Dictionary:return
+	if not FileAccess.file_exists(binary) or manifest.files.get(binary.trim_prefix("res://"),"")!=FileAccess.get_sha256(binary):return
+	if not ClassDB.class_exists("EquipmentSaveIO"):return
+	io=ClassDB.instantiate("EquipmentSaveIO")
+	io_ready=io!=null and io.configure(root)
 
 func fail(code: String, path: String) -> Dictionary:
 	return Codec.failure(code,path)
@@ -30,57 +38,27 @@ func boundary(point: String) -> bool:
 	return not hook.is_valid() or hook.call(point)
 
 func path_ok(path: String) -> bool:
-	# S3で実証するLinuxだけを受理。リンクは内部向きも拒否し、未実証OSへfallbackしない。
-	if OS.get_name()!="Linux" or not root.is_absolute_path() or not path.is_absolute_path():return false
-	if root=="/" or root.contains("\\") or path.contains("\\") or root.contains(":") or path.contains(":"):return false
-	if ".." in root.split("/") or ".." in path.split("/") or "." in path.split("/"):return false
-	if path!=root and not path.begins_with(root+"/"):return false
-	var cursor := "/"
-	for part in path.split("/",false):
-		cursor=cursor.path_join(part)
-		var parent := DirAccess.open(cursor.get_base_dir())
-		if parent!=null and parent.is_link(cursor):return false
-	# mount/device逸脱も検査。存在しない末尾は最初の既存親を使う。
-	var existing := path
-	while not FileAccess.file_exists(existing) and not DirAccess.dir_exists_absolute(existing):existing=existing.get_base_dir()
-	# 同一プロセス中にmount設定が変わらない隔離QA契約で、親directoryのdeviceを再利用。
-	var directory := existing
-	if existing.begins_with(root.path_join("transactions")+"/") and FileAccess.file_exists(existing):directory=existing.get_base_dir()
-	if root_device.is_empty():
-		var output: Array=[]
-		if OS.execute("stat",["-c","%d","--",root],output,true)!=0:return false
-		root_device=str(output[0]).strip_edges()
-	if not devices.has(directory):
-		var output: Array=[]
-		if OS.execute("stat",["-c","%d","--",directory],output,true)!=0:return false
-		devices[directory]=str(output[0]).strip_edges()
-	return devices[directory]==root_device
+	return io_ready and io.path_ok(path)
 
 static func hash_raw(bytes: PackedByteArray) -> String:
 	return "".sha256_text() if bytes.is_empty() else Codec.hash_bytes(bytes)
 
 func make_directories(path: String) -> bool:
-	if not path_ok(path):return false
-	var current := root
-	for part in path.trim_prefix(root+"/").split("/",false):
-		current=current.path_join(part)
-		if not DirAccess.dir_exists_absolute(current) and DirAccess.make_dir_absolute(current)!=OK:return false
-	return true
+	return io_ready and io.make_directories(path)
 
 func read_bytes(path: String) -> Dictionary:
 	if not path_ok(path):return fail("path_invalid",path)
 	if not boundary("read.open.before"):return fail("injected_io_failure",path)
-	var file := FileAccess.open(path,FileAccess.READ)
-	if file==null:return fail("read_failed",path)
-	if not boundary("read.open.after"):file.close();return fail("injected_io_failure",path)
-	var size := file.get_length()
-	if not boundary("read.buffer.before"):file.close();return fail("injected_io_failure",path)
-	var bytes := file.get_buffer(size)
-	var error := file.get_error()
-	file.close()
+	var opened: Dictionary=io.open_read(path)
+	if not opened.ok:return fail(opened.reason_code,path)
+	var handle: int=opened.handle
+	if not boundary("read.open.after"):io.close_file(handle);return fail("injected_io_failure",path)
+	if not boundary("read.buffer.before"):io.close_file(handle);return fail("injected_io_failure",path)
+	var read: Dictionary=io.read_all(handle)
+	var closed: Dictionary=io.close_file(handle)
 	if not boundary("read.buffer.after"):return fail("injected_io_failure",path)
-	if bytes.size()!=size or error!=OK:return fail("read_failed",path)
-	return {"ok":true,"bytes":bytes,"size":size,"sha256":hash_raw(bytes)}
+	if not read.ok or not closed.ok:return fail("read_failed",path)
+	return {"ok":true,"bytes":read.bytes,"size":read.size,"sha256":hash_raw(read.bytes)}
 
 func read_json(path: String) -> Dictionary:
 	var read := read_bytes(path)
@@ -97,14 +75,7 @@ func transaction_path(token: String) -> String:
 func plan(raw: PackedByteArray) -> Dictionary:
 	var context_errors := Validation.context_errors(context)
 	if not context_errors.is_empty():return Codec.failure(context_errors[0].reason_code,"context",context_errors)
-	# 同process内だけの純粋計画cache。別processは必ずrawから再計算。
-	var dependencies := var_to_bytes([context.abilities,context.legacy_session.jobs,context.get("source_build","")])
-	if dependencies!=dependency_bytes:
-		planned_cache.clear()
-		verified_bytes=PackedByteArray()
-		dependency_bytes=dependencies
-	var source_hash := hash_raw(raw)
-	if planned_cache.has(source_hash):return planned_cache[source_hash].duplicate(true)
+	# validatorの実依存を毎回使い、純粋計画cacheで再検証を省略しない。
 	var decoded := Codec.decode_source(raw,context)
 	if not decoded.ok:return decoded
 	if decoded.source_format=="equipment-v1":return fail("already_migrated","source")
@@ -115,7 +86,6 @@ func plan(raw: PackedByteArray) -> Dictionary:
 	var encoded := Codec.encode_candidate(prepared.document,context)
 	if not encoded.ok:return encoded
 	var result := {"ok":true,"source":decoded,"document":encoded.document,"bytes":encoded.bytes,"sha256":encoded.document_sha256,"token":migrated.migration_id}
-	planned_cache[source_hash]=result.duplicate(true)
 	return result
 
 func history(document: Dictionary) -> Dictionary:
@@ -156,10 +126,13 @@ func acquire(tx: String) -> Dictionary:
 	if not boundary("directory.create.before"):return fail("injected_io_failure",tx)
 	if not make_directories(tx):return fail("backup_failed",tx)
 	if not boundary("directory.create.after"):return fail("injected_io_failure",tx)
+	if not boundary("kernel.lock.before"):return fail("injected_io_failure",tx)
+	var lock: Dictionary=io.acquire_lock(tx)
+	if not lock.ok:return fail(lock.reason_code,tx)
+	if not boundary("kernel.lock.after"):return fail("injected_io_failure",tx)
 	var leases := tx.path_join("leases")
 	if not path_ok(leases) or not make_directories(leases):return fail("backup_failed",leases)
 	var dir := DirAccess.open(leases)
-	# leaseはownerを指すsymlink。検証済み相対リンクだけ読取り、旧leaseは削除しない。
 	var links: Array=[]
 	dir.list_dir_begin()
 	var name := dir.get_next()
@@ -168,39 +141,42 @@ func acquire(tx: String) -> Dictionary:
 		name=dir.get_next()
 	dir.list_dir_end()
 	links.sort()
-	var next := 0
+	for index in range(links.size()):
+		if links[index]!="lease-%08d" % index:return fail("recovery_required",leases)
 	if not links.is_empty():
 		var last: String=links.back()
-		if last!="lease-%08d" % (links.size()-1):return fail("recovery_required",leases)
-		for index in range(links.size()):
-			if links[index]!="lease-%08d" % index:return fail("recovery_required",leases)
-		if not dir.is_link(last):return fail("recovery_required",leases)
-		var ref := dir.read_link(last)
-		if ref.get_file()!=ref or not ref.begins_with("owner-") or not ref.ends_with(".json"):return fail("recovery_required",leases)
-		var prior := read_json(leases.path_join(ref))
+		var link_path := leases.path_join(last)
+		var ref: String=io.legacy_link(link_path)
+		var metadata_path := link_path
+		if not ref.is_empty():
+			if ref.get_file()!=ref or not ref.begins_with("owner-") or not ref.ends_with(".json"):return fail("recovery_required",leases)
+			metadata_path=leases.path_join(ref)
+		var prior := read_json(metadata_path)
 		if not prior.ok or prior.value.size()!=2 or not prior.value.get("pid") is int or not prior.value.get("nonce") is String:return fail("recovery_required",leases)
-		if prior.value.pid<=0 or prior.value.nonce.length()!=32 or not prior.value.nonce.is_valid_hex_number(false) or ref!="owner-%d-%s.json" % [prior.value.pid,prior.value.nonce]:return fail("recovery_required",leases)
+		if prior.value.pid<=0 or prior.value.nonce.length()!=32 or not prior.value.nonce.is_valid_hex_number(false):return fail("recovery_required",leases)
+		if not ref.is_empty() and ref!="owner-%d-%s.json" % [prior.value.pid,prior.value.nonce]:return fail("recovery_required",leases)
 		if owned==tx and owner==prior.value.nonce and prior.value.pid==OS.get_process_id():return {"ok":true}
-		# Godotのis_process_runningは未spawn PIDでERRORを出すため、OSの読取り照会を使う。
-		var process_info: Array=[]
-		if OS.execute("ps",["-p",str(prior.value.pid),"-o","pid="],process_info,true)==0:return fail("busy",tx)
-		next=links.size()
+		# 旧symlink writerはdead確定以外拒否。新regular leaseはkernel lockが唯一の所有権。
+		if not ref.is_empty() and io.process_state(prior.value.pid)!=0:return fail("busy",tx)
 	owner=Crypto.new().generate_random_bytes(16).hex_encode()
 	var owner_name := "owner-%d-%s.json" % [OS.get_process_id(),owner]
-	var written := write_raw(leases.path_join(owner_name),JSON.stringify({"pid":OS.get_process_id(),"nonce":owner}).to_utf8_buffer(),"owner",false)
+	var metadata := JSON.stringify({"pid":OS.get_process_id(),"nonce":owner}).to_utf8_buffer()
+	var written := write_raw(leases.path_join(owner_name),metadata,"owner",false)
 	if not written.ok:return written
 	if not boundary("lease.acquire.before"):return fail("injected_io_failure",tx)
-	if dir.create_link(owner_name,"lease-%08d" % next)!=OK:return fail("busy",tx)
+	# regular exclusive leaseが旧053のis_link検証をfail-closedにする。旧原物は残す。
+	var barrier: Dictionary=io.rename_file(leases.path_join(owner_name),leases.path_join("lease-%08d" % links.size()),false)
+	if not barrier.ok:return fail("busy",tx)
 	owned=tx
-	lease_index=next
+	lease_index=links.size()
 	if not boundary("lease.acquire.after"):return fail("injected_io_failure",tx)
 	return {"ok":true}
 
 func writable_file(path: String) -> bool:
 	if not path_ok(path):return false
 	if FileAccess.file_exists(path):
-		var info: Array=[]
-		if OS.execute("stat",["-c","%h","--",path],info,true)!=0 or str(info[0]).strip_edges()!="1":return false
+		var identity: Dictionary=io.inspect_identity(path)
+		return identity.ok and identity.links==1
 	return true
 
 func write_raw(path: String, bytes: PackedByteArray, label: String, replace_tmp: bool) -> Dictionary:
@@ -208,24 +184,25 @@ func write_raw(path: String, bytes: PackedByteArray, label: String, replace_tmp:
 	if FileAccess.file_exists(path) and not replace_tmp:return fail("conflict",path)
 	if not boundary(label+".open.before"):return fail("injected_io_failure",path)
 	if not writable_file(path):return fail("conflict",path)
-	var file := FileAccess.open(path,FileAccess.WRITE)
-	if file==null:return fail("write_failed",path)
-	if not boundary(label+".open.after"):file.close();return fail("injected_io_failure",path)
-	if not boundary(label+".store.before"):file.close();return fail("injected_io_failure",path)
+	var opened: Dictionary=io.open_write(path,replace_tmp)
+	if not opened.ok:return fail(opened.reason_code,path)
+	var handle: int=opened.handle
+	if not boundary(label+".open.after"):io.close_file(handle);return fail("injected_io_failure",path)
+	if not boundary(label+".store.before"):io.close_file(handle);return fail("injected_io_failure",path)
 	var middle := floori(float(bytes.size())/2.0)
-	file.store_buffer(bytes.slice(0,middle))
-	if not boundary(label+".store.partial"):file.close();return fail("injected_io_failure",path)
-	file.store_buffer(bytes.slice(middle))
-	var error := file.get_error()
-	if error!=OK or file.get_position()!=bytes.size():file.close();return fail("write_failed",path)
-	if not boundary(label+".store.after"):file.close();return fail("injected_io_failure",path)
-	if not boundary(label+".flush.before"):file.close();return fail("injected_io_failure",path)
-	file.flush()
-	error=file.get_error()
-	if error!=OK:file.close();return fail("write_failed",path)
-	if not boundary(label+".flush.after"):file.close();return fail("injected_io_failure",path)
-	if not boundary(label+".close.before"):file.close();return fail("injected_io_failure",path)
-	file.close()
+	var first: Dictionary=io.write_exact(handle,bytes.slice(0,middle))
+	if not first.ok:io.close_file(handle);return fail("write_failed",path)
+	if not boundary(label+".store.partial"):io.close_file(handle);return fail("injected_io_failure",path)
+	var second: Dictionary=io.write_exact(handle,bytes.slice(middle))
+	if not second.ok:io.close_file(handle);return fail("write_failed",path)
+	if not boundary(label+".store.after"):io.close_file(handle);return fail("injected_io_failure",path)
+	if not boundary(label+".flush.before"):io.close_file(handle);return fail("injected_io_failure",path)
+	var flushed: Dictionary=io.flush(handle)
+	if not flushed.ok:io.close_file(handle);return fail("write_failed",path)
+	if not boundary(label+".flush.after"):io.close_file(handle);return fail("injected_io_failure",path)
+	if not boundary(label+".close.before"):io.close_file(handle);return fail("injected_io_failure",path)
+	var closed: Dictionary=io.close_file(handle)
+	if not closed.ok:return fail("write_failed",path)
 	if not boundary(label+".close.after"):return fail("injected_io_failure",path)
 	if not boundary(label+".readback.before"):return fail("injected_io_failure",path)
 	var read := read_bytes(path)
@@ -237,15 +214,15 @@ func rename_new(from: String, to: String, label: String, token: String = "") -> 
 	if not path_ok(from) or not path_ok(to):return fail("path_invalid",to)
 	if FileAccess.file_exists(to) or DirAccess.dir_exists_absolute(to):return fail("target_conflict",to)
 	if not boundary(label+".rename.before"):return fail("injected_io_failure",to)
-	# Linux GNU mvのno-clobberを使用。外部競合で既存targetを置換しない。
+	# nativeの同volume・置換禁止rename。存在確認は補助であり排他primitiveで確定する。
 	if not token.is_empty():
 		var rechecked := recover(token)
 		if not rechecked.ok:return rechecked
 		if rechecked.phase!="prepared":return fail("not_prepared",from)
 	if not path_ok(from) or not path_ok(to):return fail("path_invalid",to)
-	var output: Array=[]
-	if OS.execute("mv",["-T","--no-clobber","--",from,to],output,true)!=0:return fail("rename_failed",to)
-	if FileAccess.file_exists(from):return fail("target_conflict",to)
+	if not boundary(label+".native.rename.before"):return fail("injected_io_failure",to)
+	var renamed: Dictionary=io.rename_file(from,to,false)
+	if not renamed.ok:return fail(renamed.reason_code,to)
 	if not boundary(label+".rename.after"):return fail("injected_io_failure",to)
 	return {"ok":true}
 
@@ -262,7 +239,7 @@ func ensure_copy(tx: String, name: String, bytes: PackedByteArray, label: String
 	return rename_new(tmp,final,label)
 
 func intent_for(source_path: String, expected_sha: String, token: String, candidate: Dictionary, h: Dictionary, session_token: String) -> Dictionary:
-	return {"version":1,"source_path":source_path.trim_prefix(root+"/"),"source_sha256":expected_sha,"source_size":candidate.source.source_bytes.size(),"candidate_sha256":candidate.sha256,"candidate_size":candidate.bytes.size(),"migration_id":token,"generation":session_token,"policy_id":Migration.POLICY,"catalog_revision":1,"trial_id":candidate.source.document.get("_trial_id",""),"history":{"status":h.status,"path":h.path,"sha256":h.sha256,"size":h.size,"history_complete":h.history_complete},"target":"converted.json"}
+	return {"version":1,"source_path":io.relative_path(source_path),"source_sha256":expected_sha,"source_size":candidate.source.source_bytes.size(),"candidate_sha256":candidate.sha256,"candidate_size":candidate.bytes.size(),"migration_id":token,"generation":session_token,"policy_id":Migration.POLICY,"catalog_revision":1,"trial_id":candidate.source.document.get("_trial_id",""),"history":{"status":h.status,"path":h.path,"sha256":h.sha256,"size":h.size,"history_complete":h.history_complete},"target":"converted.json"}
 
 func prepare(source_path: String, expected_sha: String, candidate_document: Dictionary, session_token: String) -> Dictionary:
 	if session_token.is_empty() or session_token!=generation:return fail("stale_state","generation")
@@ -320,11 +297,9 @@ func verify_candidate(path: String, candidate: Dictionary) -> Dictionary:
 	var raw := read_bytes(path)
 	if not raw.ok:return raw
 	if raw.bytes!=candidate.bytes or raw.sha256!=candidate.sha256:return fail("recovery_required",path)
-	if verified_bytes==raw.bytes:return {"ok":true}
 	var decoded := Codec.decode_source(raw.bytes,context)
 	if not decoded.ok or not S1.differences(decoded.document,candidate.document).is_empty() or not SavedValueTypes.same_types(decoded.document,candidate.document):return fail("recovery_required",path)
 	if decoded.document.equipment_migration.migration_id!=candidate.token:return fail("recovery_required",path)
-	verified_bytes=raw.bytes.duplicate()
 	return {"ok":true}
 
 func write_receipt(tx: String, intent: Dictionary, phase: String) -> Dictionary:
@@ -335,7 +310,7 @@ func write_receipt(tx: String, intent: Dictionary, phase: String) -> Dictionary:
 	var final := tx.path_join("receipt.json")
 	if not path_ok(final):return fail("path_invalid",final)
 	if not boundary("receipt-"+phase+".rename.before"):return fail("injected_io_failure",final)
-	if DirAccess.rename_absolute(temp,final)!=OK:return fail("receipt_failed",final)
+	if not io.rename_file(temp,final,true).ok:return fail("receipt_failed",final)
 	if not boundary("receipt-"+phase+".rename.after"):return fail("injected_io_failure",final)
 	return {"ok":true}
 
