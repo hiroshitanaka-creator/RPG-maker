@@ -92,8 +92,11 @@ class RestartBatch:
                 if self.stopping.is_set():raise RuntimeError('restart_shutdown: 未実行batch')
                 results = self.suite.run_restart_batch(requests, batch)
                 for request, result in zip(requests, results):
-                    if not request['future'].done():request['future'].set_result(result)
-                    request['completed'] = True
+                    if not request['future'].done():
+                        request['future'].set_result(result)
+                        request['completed'] = True
+                        request['future_delivered'] = True
+                    else:request['future_delivered'] = False
             except BaseException as exc:
                 for request in requests:
                     request['exception'] = type(exc).__name__+': '+str(exc)
@@ -106,15 +109,31 @@ class RestartBatch:
         with self.lock:
             for request in self.requests:
                 if not request['future'].done():
-                    request['future'].set_exception(RuntimeError('restart_shutdown: 未完future'))
+                    request['exception'] = 'restart_shutdown: 未完future'
+                    request['future'].set_exception(RuntimeError(request['exception']))
         self.suite.stop_children()
         for thread in self.threads:
             thread.join(timeout=max(0, self.suite.cleanup_deadline-time.monotonic()))
+        for request in self.requests:
+            request['future_done'] = request['future'].done()
+            if request['worker_started'] is None:
+                request['missing_reason'] = 'not_started_queue_shutdown: suite内側174秒の受付/待機終了'
+                label = request['cfg'].get('result','restarted-result.json').removesuffix('-result.json')
+                record = self.suite.output/request['root'].name/(label+'-execution.json')
+                write(record, dict(argv=None, pid=None, started_utc=None, ended_utc=utc(), exit_code=None,
+                      exit_unavailable_reason=request['missing_reason'], timed_out=True,
+                      timeout_kind='restart_future_deadline', result={}, log=None, log_sha256=None,
+                      queued_utc=request['queued_utc'], batch_id=None, options=request['cfg']))
+        unreaped = []
+        for record in self.suite.output.rglob('*-execution.json'):
+            value = load(record)
+            if value.get('pid') is not None and (value.get('exit_code') is None or value.get('wait',{}).get('ok') is not True):
+                unreaped.append(record.relative_to(self.suite.output).as_posix())
         rows = [{key:(str(value) if key=='root' else value) for key,value in request.items()
                  if key not in ['future','cfg']} for request in self.requests]
         live = [thread.name for thread in self.threads if thread.is_alive()]
         write(self.suite.output/'restart-queue.json', dict(requests=rows, live_workers=live,
-              recovery_complete=not live, deadline_remaining=self.suite.cleanup_deadline-time.monotonic()))
+              recovery_complete=not live and not unreaped, unreaped_process_records=unreaped, deadline_remaining=self.suite.cleanup_deadline-time.monotonic()))
         return live
 
 
@@ -551,6 +570,8 @@ class Suite:
         finally:
             live = self.restarts.close()
             if live:self.failures.append('worker未回収:'+','.join(live))
+            recovery = load(self.output/'restart-queue.json')
+            if recovery['unreaped_process_records']:self.failures.append('process未回収:'+','.join(recovery['unreaped_process_records']))
             write(self.output/'timing.json', dict(suite_started=self.start, observations=self.timings,
                   units='monotonic_seconds', snapshot='inclusive; 累積並行時間、wall-timeへ単純加算禁止'))
         self.rows.sort(key=lambda row:row['case'])
