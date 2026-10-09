@@ -24,7 +24,7 @@ def main(args):
     except Exception as exc:error=repr(exc)
     live=suite.restarts.close();queue=json.loads((suite.output/'restart-queue.json').read_bytes())
     records=list(suite.output.rglob('*-execution.json'))
-    assert error and 'IsADirectoryError' in error and not live and not records and queue['recovery_complete']
+    assert error and (r/'restarted-batch.json').is_dir() and not live and not records and queue['recovery_complete']
     a=dict(exception=error,seconds=time.monotonic()-start,execution_records=len(records),queue=queue)
     area=output/'tree';area.mkdir();fixture=Path(__file__).parent/'tree_fixture059.py'
     argv=[sys.executable,str(fixture),'--mode','parent','--area',str(area)]
