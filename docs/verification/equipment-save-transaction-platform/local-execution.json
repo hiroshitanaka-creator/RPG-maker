@@ -1,0 +1,595 @@
+{
+  "source_sha": "c8f22dbe4edb8ff5e4dcd699ce0887a25f9b0974",
+  "fixed_sha": null,
+  "status": "PASS",
+  "summary": {
+    "status": "PASS",
+    "case_count": 172,
+    "checks": 2178,
+    "failures": [],
+    "seconds": 154.6921282559997,
+    "budget_seconds": 180,
+    "cases": [
+      "absent-id",
+      "backup-changed",
+      "backup-collision",
+      "backup-hardlink",
+      "candidate-quantity",
+      "candidate-types",
+      "candidate-value",
+      "commit-source-race",
+      "commit-target-race",
+      "commit-tmp-race",
+      "different-raw",
+      "directory-link",
+      "fault-candidate.flush.before",
+      "fault-candidate.open.before",
+      "fault-candidate.readback.before",
+      "fault-candidate.store.before",
+      "fault-candidate.store.partial",
+      "fault-commit.rename.before",
+      "fault-history.flush.before",
+      "fault-history.open.before",
+      "fault-history.readback.before",
+      "fault-history.rename.before",
+      "fault-history.store.before",
+      "fault-history.store.partial",
+      "fault-read.buffer.before",
+      "fault-read.open.before",
+      "fault-receipt-committed.open.before",
+      "fault-receipt-committed.rename.before",
+      "fault-receipt-prepared.open.before",
+      "fault-receipt-prepared.rename.before",
+      "fault-source.flush.before",
+      "fault-source.open.before",
+      "fault-source.readback.before",
+      "fault-source.rename.before",
+      "fault-source.store.before",
+      "fault-source.store.partial",
+      "history-changed",
+      "initial-tmp-hardlink",
+      "injected-enospc",
+      "inspect-committed",
+      "inspect-missing",
+      "inspect-null-context",
+      "inspect-prepared",
+      "inspect-readonly",
+      "intent-changed",
+      "kill-candidate.close.after",
+      "kill-candidate.close.before",
+      "kill-candidate.flush.after",
+      "kill-candidate.flush.before",
+      "kill-candidate.open.after",
+      "kill-candidate.open.before",
+      "kill-candidate.readback.after",
+      "kill-candidate.readback.before",
+      "kill-candidate.store.after",
+      "kill-candidate.store.before",
+      "kill-candidate.store.partial",
+      "kill-commit.rename.after",
+      "kill-commit.rename.before",
+      "kill-directory.create.after",
+      "kill-directory.create.before",
+      "kill-history.close.after",
+      "kill-history.close.before",
+      "kill-history.flush.after",
+      "kill-history.flush.before",
+      "kill-history.open.after",
+      "kill-history.open.before",
+      "kill-history.readback.after",
+      "kill-history.readback.before",
+      "kill-history.rename.after",
+      "kill-history.rename.before",
+      "kill-history.store.after",
+      "kill-history.store.before",
+      "kill-history.store.partial",
+      "kill-intent.close.after",
+      "kill-intent.close.before",
+      "kill-intent.flush.after",
+      "kill-intent.flush.before",
+      "kill-intent.open.after",
+      "kill-intent.open.before",
+      "kill-intent.readback.after",
+      "kill-intent.readback.before",
+      "kill-intent.rename.after",
+      "kill-intent.rename.before",
+      "kill-intent.store.after",
+      "kill-intent.store.before",
+      "kill-intent.store.partial",
+      "kill-lease.acquire.after",
+      "kill-lease.acquire.before",
+      "kill-owner.close.after",
+      "kill-owner.close.before",
+      "kill-owner.flush.after",
+      "kill-owner.flush.before",
+      "kill-owner.open.after",
+      "kill-owner.open.before",
+      "kill-owner.readback.after",
+      "kill-owner.readback.before",
+      "kill-owner.store.after",
+      "kill-owner.store.before",
+      "kill-owner.store.partial",
+      "kill-read.buffer.after",
+      "kill-read.buffer.before",
+      "kill-read.open.after",
+      "kill-read.open.before",
+      "kill-receipt-committed.close.after",
+      "kill-receipt-committed.close.before",
+      "kill-receipt-committed.flush.after",
+      "kill-receipt-committed.flush.before",
+      "kill-receipt-committed.open.after",
+      "kill-receipt-committed.open.before",
+      "kill-receipt-committed.readback.after",
+      "kill-receipt-committed.readback.before",
+      "kill-receipt-committed.rename.after",
+      "kill-receipt-committed.rename.before",
+      "kill-receipt-committed.store.after",
+      "kill-receipt-committed.store.before",
+      "kill-receipt-committed.store.partial",
+      "kill-receipt-prepared.close.after",
+      "kill-receipt-prepared.close.before",
+      "kill-receipt-prepared.flush.after",
+      "kill-receipt-prepared.flush.before",
+      "kill-receipt-prepared.open.after",
+      "kill-receipt-prepared.open.before",
+      "kill-receipt-prepared.readback.after",
+      "kill-receipt-prepared.readback.before",
+      "kill-receipt-prepared.rename.after",
+      "kill-receipt-prepared.rename.before",
+      "kill-receipt-prepared.store.after",
+      "kill-receipt-prepared.store.before",
+      "kill-receipt-prepared.store.partial",
+      "kill-source.close.after",
+      "kill-source.close.before",
+      "kill-source.flush.after",
+      "kill-source.flush.before",
+      "kill-source.open.after",
+      "kill-source.open.before",
+      "kill-source.readback.after",
+      "kill-source.readback.before",
+      "kill-source.rename.after",
+      "kill-source.rename.before",
+      "kill-source.store.after",
+      "kill-source.store.before",
+      "kill-source.store.partial",
+      "new-input",
+      "nonroot-permission",
+      "normal-granted",
+      "normal-pending",
+      "null-abilities",
+      "null-session",
+      "output-changed",
+      "output-link",
+      "outside-path",
+      "owner-corrupt",
+      "parent-path",
+      "receipt-corrupt",
+      "receipt-intent",
+      "receipt-phase-stale",
+      "receipt-tmp-hardlink",
+      "same-raw-alias",
+      "source-changed",
+      "source-link",
+      "stale-commit",
+      "stale-committed",
+      "stale-current",
+      "stale-prepare",
+      "target-collision",
+      "token-invalid",
+      "transaction-source",
+      "trial-corrupt",
+      "trial-missing",
+      "trial-unclean",
+      "writer-busy",
+      "wrong-hash"
+    ],
+    "engine_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e",
+    "limits": {
+      "real_enospc": "unverified: dedicated small filesystem unavailable; injection is separate",
+      "power_loss": "unverified",
+      "platform": "posix",
+      "termination": "SIGKILL/exit-9",
+      "directory_toctou": "unverified hostile concurrent directory replacement",
+      "real_cross_volume": "unverified dedicated nested volume unavailable"
+    },
+    "real_permission": {
+      "uid": 1000,
+      "mechanism": "directory-mode-0500",
+      "os_settings_changed": false
+    }
+  },
+  "commands": [
+    {
+      "name": "version",
+      "argv": [
+        "/workspace/qa055/bin/Godot_v4.7.2-stable_linux.x86_64",
+        "--version"
+      ],
+      "budget_seconds": 30,
+      "seconds": 0.28758288500011986,
+      "exit_code": 0,
+      "log_sha256": "edff16c1721dd4ae989cadf29a01f574ae8d51b118221f664725bd6980bbba5d"
+    },
+    {
+      "name": "frozen-before",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "budget_seconds": 30,
+      "seconds": 0.025219332999768085,
+      "exit_code": 0,
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+    },
+    {
+      "name": "import",
+      "argv": [
+        "/workspace/qa055/bin/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "budget_seconds": 600,
+      "seconds": 3.7913328590002493,
+      "exit_code": 0,
+      "log_sha256": "f15ffd4c558b01611d562c8c257508942bdc2dc542124f423ae2a592a46edfa6"
+    },
+    {
+      "name": "transaction",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_equipment_save_transaction_platform.py",
+        "--godot",
+        "/workspace/qa055/bin/Godot_v4.7.2-stable_linux.x86_64",
+        "--fixture-root",
+        "/workspace/qa055/final-code-validation/qa",
+        "--output",
+        "/workspace/qa055/final-code-validation/results"
+      ],
+      "budget_seconds": 180,
+      "seconds": 155.12694847699913,
+      "exit_code": 0,
+      "log_sha256": "0dc786c1ae7fabf889e2343599fbf409a20a6efad9a519beac29796ba02a48ff"
+    },
+    {
+      "name": "legacy-checkout",
+      "argv": [
+        "git",
+        "worktree",
+        "add",
+        "--detach",
+        "/workspace/qa055/final-code-validation/legacy053",
+        "e003b126de6695fa131e07a3db14c3011fb74f2e"
+      ],
+      "budget_seconds": 30,
+      "seconds": 3.089185933000408,
+      "exit_code": 0,
+      "log_sha256": "e77f6ee3fd4fb8c674e787a49ec4a1d3073b85439f49a9b605f2af147e5bbb2f"
+    },
+    {
+      "name": "legacy-import",
+      "argv": [
+        "/workspace/qa055/bin/Godot_v4.7.2-stable_linux.x86_64",
+        "--headless",
+        "--editor",
+        "--path",
+        "/workspace/qa055/final-code-validation/legacy053",
+        "--import",
+        "--quit"
+      ],
+      "budget_seconds": 600,
+      "seconds": 39.89343064700006,
+      "exit_code": 0,
+      "log_sha256": "5ad99e364ea3c5b2656569dc6647ad044c8f5caa3adba6d5e7fd9cd2f981914b"
+    },
+    {
+      "name": "native-extra",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/fixtures/equipment-save-transaction-platform/extra.py",
+        "--godot",
+        "/workspace/qa055/bin/Godot_v4.7.2-stable_linux.x86_64",
+        "--output",
+        "/workspace/qa055/final-code-validation/extra",
+        "--legacy-checkout",
+        "/workspace/qa055/final-code-validation/legacy053"
+      ],
+      "budget_seconds": 180,
+      "seconds": 64.33358452500033,
+      "exit_code": 0,
+      "log_sha256": "d3b9115890ec1d685f5fd5e15174fee8b217795a485f6f40f8e85a8b667f8754"
+    },
+    {
+      "name": "binary-checks",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/fixtures/equipment-save-transaction-platform/binary_checks.py",
+        "--godot",
+        "/workspace/qa055/bin/Godot_v4.7.2-stable_linux.x86_64",
+        "--output",
+        "/workspace/qa055/final-code-validation/binary-checks"
+      ],
+      "budget_seconds": 180,
+      "seconds": 4.012621905000742,
+      "exit_code": 0,
+      "log_sha256": "73507eaf2b578498f6c1dde27a95919840a3149a6b9b0958c20fe2ffda7a6ab1"
+    },
+    {
+      "name": "frozen-after",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "budget_seconds": 30,
+      "seconds": 0.027803473999483685,
+      "exit_code": 0,
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+    }
+  ],
+  "propagation": [
+    {
+      "case": "control",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "seconds": 0.6233905349999986,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "missing-case",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.4276029539996671,
+      "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+    },
+    {
+      "case": "zero-checks",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.041004833999977564,
+      "log_sha256": "bfdf64d6641fb8c84c82e8e0dbf60aa5e5754e4d71e5ff547653aab3285e31d4"
+    },
+    {
+      "case": "warning-log",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.4126088709999749,
+      "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+    },
+    {
+      "case": "failed-exit",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.39657686699956685,
+      "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+    },
+    {
+      "case": "timeout",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.38019449599960353,
+      "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+    },
+    {
+      "case": "modified-bytes",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.38682574199992814,
+      "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+    },
+    {
+      "case": "missing-bytes",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.3824942530000044,
+      "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+    },
+    {
+      "case": "false-assert",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.3962574310007767,
+      "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+    },
+    {
+      "case": "wrong-phase",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.43893440600004396,
+      "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+    },
+    {
+      "case": "missing-manifest",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.19718939300037164,
+      "log_sha256": "825f3fff7ece883ead06019546f5051b8a0e89a099faf97df2c48d65cb15f028"
+    },
+    {
+      "case": "missing-summary",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.03906854500019108,
+      "log_sha256": "d51ed9cbebc0a70f9cde51fff94fc5be3f5112cdc4ff4d3eeb9427664d54fff7"
+    },
+    {
+      "case": "rehash-output",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.39045668600010686,
+      "log_sha256": "82fdfa6b421374db63e36b6b1c90461b8bcfeeb8c138f72f0ab7e21e8d0451e5"
+    },
+    {
+      "case": "rehash-backup",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.40146598199953587,
+      "log_sha256": "26e61fc6efc2ae7c0df6d763f174091de03cf469b65bda8a17acc663de345ddb"
+    },
+    {
+      "case": "empty-log",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.3904470709994712,
+      "log_sha256": "d6ea0bbe6460e69bf8d0373e48209019bf0cee172aef71ccd24903ac401e97c1"
+    },
+    {
+      "case": "count-log-rehash",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "seconds": 0.0376607830003195,
+      "log_sha256": "bfdf64d6641fb8c84c82e8e0dbf60aa5e5754e4d71e5ff547653aab3285e31d4"
+    }
+  ],
+  "scope_changes": [
+    "A\t.github/workflows/equipment-transaction-platform.yml",
+    "A\taddons/equipment_save_io/.gitignore",
+    "A\taddons/equipment_save_io/bin/equipment_save_io.linux.template_debug.x86_64.so",
+    "A\taddons/equipment_save_io/bin/equipment_save_io.linux.template_release.x86_64.so",
+    "A\taddons/equipment_save_io/bin/equipment_save_io.windows.template_debug.x86_64.dll",
+    "A\taddons/equipment_save_io/bin/equipment_save_io.windows.template_release.x86_64.dll",
+    "A\taddons/equipment_save_io/equipment_save_io.gdextension",
+    "A\taddons/equipment_save_io/equipment_save_io.gdextension.uid",
+    "A\taddons/equipment_save_io/licenses/COPYING.MinGW-w64-runtime.txt",
+    "A\taddons/equipment_save_io/licenses/COPYING.MinGW-w64.txt",
+    "A\taddons/equipment_save_io/licenses/COPYING.winpthreads.txt",
+    "A\taddons/equipment_save_io/licenses/COPYING.winstorecompat.txt",
+    "A\taddons/equipment_save_io/licenses/GCC-runtime-copyright.txt",
+    "A\taddons/equipment_save_io/licenses/GODOT_CPP_LICENSE.txt",
+    "A\taddons/equipment_save_io/licenses/LLVM-LICENSE.TXT",
+    "A\taddons/equipment_save_io/manifest.json",
+    "M\tdocs/tasks/055-native-save-io.md",
+    "A\tdocs/verification/equipment-save-transaction-platform/code-fixed-inventory.json",
+    "A\tdocs/verification/equipment-save-transaction-platform/code-fixed-sha.txt",
+    "A\tnative/equipment_save_io/.gitignore",
+    "A\tnative/equipment_save_io/GODOT_CPP_LICENSE.txt",
+    "A\tnative/equipment_save_io/README.md",
+    "A\tnative/equipment_save_io/SConstruct",
+    "A\tnative/equipment_save_io/build-profile.json",
+    "A\tnative/equipment_save_io/build.py",
+    "A\tnative/equipment_save_io/dependencies.json",
+    "A\tnative/equipment_save_io/licenses/COPYING.MinGW-w64-runtime.txt",
+    "A\tnative/equipment_save_io/licenses/COPYING.MinGW-w64.txt",
+    "A\tnative/equipment_save_io/licenses/COPYING.winpthreads.txt",
+    "A\tnative/equipment_save_io/licenses/COPYING.winstorecompat.txt",
+    "A\tnative/equipment_save_io/licenses/GCC-runtime-copyright.txt",
+    "A\tnative/equipment_save_io/licenses/GODOT_CPP_LICENSE.txt",
+    "A\tnative/equipment_save_io/licenses/LLVM-LICENSE.TXT",
+    "A\tnative/equipment_save_io/src/save_io.cpp",
+    "A\tnative/equipment_save_io/src/save_io.h",
+    "M\tscripts/game/equipment_save_transaction.gd",
+    "A\ttools/check_equipment_save_transaction_platform.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/binary_checks.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/binary_probe.gd",
+    "A\ttools/fixtures/equipment-save-transaction-platform/binary_probe.gd.uid",
+    "A\ttools/fixtures/equipment-save-transaction-platform/contract.md",
+    "A\ttools/fixtures/equipment-save-transaction-platform/dependencies.gd",
+    "A\ttools/fixtures/equipment-save-transaction-platform/dependencies.gd.uid",
+    "A\ttools/fixtures/equipment-save-transaction-platform/evidence.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/expectations.json",
+    "A\ttools/fixtures/equipment-save-transaction-platform/extra-expectations.json",
+    "A\ttools/fixtures/equipment-save-transaction-platform/extra.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/launch.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/native_probe.gd",
+    "A\ttools/fixtures/equipment-save-transaction-platform/native_probe.gd.uid",
+    "A\ttools/fixtures/equipment-save-transaction-platform/recovery-phases.json",
+    "A\ttools/fixtures/equipment-save-transaction-platform/run_ci.py"
+  ],
+  "source_files": {
+    "native/equipment_save_io/SConstruct": {
+      "raw_sha256": "4b968590fb4da25c914ff0b850f636dca463767a1114a12c055f636492189d2c",
+      "git_blob": "476e58bf7e5c40f7d8ffb4aa69037aedcaa85383"
+    },
+    "native/equipment_save_io/build-profile.json": {
+      "raw_sha256": "8b29eacd2bde13bf5ee5143924e95779fae1170f546d583b08b888d2bbd550b2",
+      "git_blob": "00a79333444ad00169753ffdf14c5f1ab6a77358"
+    },
+    "native/equipment_save_io/build.py": {
+      "raw_sha256": "b3be21c85ed0edbe07eb98cb92df9b0d8deef440da0dbb7bd30c5a6714f2a0e7",
+      "git_blob": "014c184abf349dfb580600c8030917d3db573303"
+    },
+    "native/equipment_save_io/dependencies.json": {
+      "raw_sha256": "b7ca8537bdb9529f5eb3a009b893c5e4725573a93852c21cf3618e4b1d06300a",
+      "git_blob": "65616ce6a1e2f439a055acddae2784fa2d79bbf3"
+    },
+    "native/equipment_save_io/src/save_io.cpp": {
+      "raw_sha256": "870993272a4e2cd9d9d42b2b95123c9c8919a21a78035e008fbce148eb302bcd",
+      "git_blob": "99b45171a10559d0e97034bfe89e44821aff1a98"
+    },
+    "native/equipment_save_io/src/save_io.h": {
+      "raw_sha256": "12e974e0ed31e748c2931bcbdb9325010bc4ca1a67221ad6739836240302634b",
+      "git_blob": "71438c0a622d9a8c4e7341ebe19d4cada9dff1c7"
+    },
+    "scripts/game/equipment_save_transaction.gd": {
+      "raw_sha256": "392375cecd9d59e7246bc3e67c81b8c3a23269e3e1bbfe2a7ecc94b3d5942cc2",
+      "git_blob": "820245069a8bc82ca2d00868c12e713ad9f80afd"
+    },
+    "tools/check_equipment_save_transaction_platform.py": {
+      "raw_sha256": "3e3ce7b9a05370d4d23796d191908f9dd5930cd216393994774a005b473923df",
+      "git_blob": "11b8ba1ffaa874cd926581da32cae6aebf9644f8"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/binary_checks.py": {
+      "raw_sha256": "e3717501c6ff3590608480016b97ec26022af452e7d1792ba0ccdaec153aa106",
+      "git_blob": "53e35c848777f7ec14cded1487e37aed4731bcfd"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/binary_probe.gd": {
+      "raw_sha256": "2eb043855aa3e5ff8747334051de1d46ff762f3a5ae049146469055e793559d6",
+      "git_blob": "11bbbc21efd74f695a96e9040c6fa1a2f410ff19"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/dependencies.gd": {
+      "raw_sha256": "b968d3e8a08ba5ee9055473bfa6218afdb3b8686fbc8e901da5d6a8a5a955b2e",
+      "git_blob": "8b62060108f70947e4e5cffeaba741c0b94df1b0"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/evidence.py": {
+      "raw_sha256": "ba7115e049ef739fe8effe21125c6352f73e6250e06019d6d3f8a71f1c98938c",
+      "git_blob": "25581a3202f68075c4d0ed4f13e233b44855793b"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/expectations.json": {
+      "raw_sha256": "7995ff0a1a69935ecd5ea54de22e5f17d902985e8191732063a76b3a9e48290d",
+      "git_blob": "b47db36b5cde816c51d7d206816168858ea7d2ff"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/extra-expectations.json": {
+      "raw_sha256": "2ee687664be2fa542114e8949c1f060c4f063849828b36982b0bfecba2e6ba4d",
+      "git_blob": "89e522e12bfdf283e09543e6e9089176ff9e82dd"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/extra.py": {
+      "raw_sha256": "cb7a92af73c693ca4658edcc33b8764f1ea2644b213bbf382141af9ca2cfef9f",
+      "git_blob": "90cfba19fe242e04a3cc131a832cd95cafb32df6"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/launch.py": {
+      "raw_sha256": "24ed4681fb8690a380b75d24abc42c64cad4bc219f5f5acf15feea9b2357bdf7",
+      "git_blob": "7201a98b48a27b38d742b531d84d2aa607cbd05f"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/native_probe.gd": {
+      "raw_sha256": "995ca9f74d6d672dc031c6d575bce0e3f6ad22de66a1562291e6024abf94ada7",
+      "git_blob": "e51a06c4711f6e065495a5ce1fdc31acba09c931"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/recovery-phases.json": {
+      "raw_sha256": "af637d521e5dccfbca1bc0364a21f737cd2396826c358bee88ad38ef9cb89f8a",
+      "git_blob": "701a48361423556cb177e19c526459cabf34b4eb"
+    },
+    "tools/fixtures/equipment-save-transaction-platform/run_ci.py": {
+      "raw_sha256": "060e8d30618c6ed2f81e172158fc370654cb13f7e91de62656014954e42d5047",
+      "git_blob": "99ab19b9ad2ced50e5023a86326d9aa3fac509de"
+    }
+  },
+  "scope_propagation": [
+    {
+      "case": "later-document",
+      "source_sha": "40e57e1b87e834e6b819996623ca54b5dbcbaa96",
+      "fixed_sha": "c8f22dbe4edb8ff5e4dcd699ce0887a25f9b0974",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "outside-fixed",
+      "source_sha": "ed426062d62f1d86e46d787f50145d40ad74c3b4",
+      "fixed_sha": "c8f22dbe4edb8ff5e4dcd699ce0887a25f9b0974",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "log_sha256": "cc1f446df3aadbbc326fffd9def40fbcda2abc3ec1d239529f87b8768621ce0b"
+    }
+  ],
+  "engine_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e"
+}

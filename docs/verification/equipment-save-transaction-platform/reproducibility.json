@@ -1,0 +1,100 @@
+[
+  {
+    "platform": "linux",
+    "target": "template_debug",
+    "argv": [
+      "python",
+      "-m",
+      "SCons",
+      "-C",
+      "/workspace/RPG-maker/native/equipment_save_io",
+      "build_profile=/workspace/RPG-maker/native/equipment_save_io/build-profile.json",
+      "platform=linux",
+      "target=template_debug",
+      "arch=x86_64",
+      "-j4"
+    ],
+    "exit_code": 0,
+    "seconds": 10.864163863000613,
+    "budget_seconds": 600,
+    "before_sha256": "2cedcf39304344289f895325c5dc974cab6f024946c2fe9e53d36733ecf3f2b8",
+    "after_sha256": "2cedcf39304344289f895325c5dc974cab6f024946c2fe9e53d36733ecf3f2b8",
+    "identical": true,
+    "log_sha256": "d1261550052751d940d9eb63a50ab24ccc602e3831e07da31dad652d24a1f7c7"
+  },
+  {
+    "platform": "linux",
+    "target": "template_release",
+    "argv": [
+      "python",
+      "-m",
+      "SCons",
+      "-C",
+      "/workspace/RPG-maker/native/equipment_save_io",
+      "build_profile=/workspace/RPG-maker/native/equipment_save_io/build-profile.json",
+      "platform=linux",
+      "target=template_release",
+      "arch=x86_64",
+      "-j4"
+    ],
+    "exit_code": 0,
+    "seconds": 9.906208241000058,
+    "budget_seconds": 600,
+    "before_sha256": "be147776f58477c978d7e46da070abca4746838cd82c36ae287ce3b603a57de4",
+    "after_sha256": "be147776f58477c978d7e46da070abca4746838cd82c36ae287ce3b603a57de4",
+    "identical": true,
+    "log_sha256": "59a95d2f3d8236ffa66d3b154296f8d30a6bbd0f5318a7029aa51e5d7761faae"
+  },
+  {
+    "platform": "windows",
+    "target": "template_debug",
+    "argv": [
+      "python",
+      "-m",
+      "SCons",
+      "-C",
+      "/workspace/RPG-maker/native/equipment_save_io",
+      "build_profile=/workspace/RPG-maker/native/equipment_save_io/build-profile.json",
+      "platform=windows",
+      "target=template_debug",
+      "arch=x86_64",
+      "-j4",
+      "use_mingw=yes",
+      "use_llvm=yes",
+      "mingw_prefix=/workspace/qa055/llvm-mingw-20261006-ucrt-ubuntu-22.04-x86_64"
+    ],
+    "exit_code": 0,
+    "seconds": 7.819581476999701,
+    "budget_seconds": 600,
+    "before_sha256": "11fa4b9e23a5b72a6b0fe48db6405045e8cf55514adf6c2446e0228ea74ab72a",
+    "after_sha256": "11fa4b9e23a5b72a6b0fe48db6405045e8cf55514adf6c2446e0228ea74ab72a",
+    "identical": true,
+    "log_sha256": "3fb2bbe30768997b2619bd4e97c801366b79df4a0937145727c20ee1fecb9d0d"
+  },
+  {
+    "platform": "windows",
+    "target": "template_release",
+    "argv": [
+      "python",
+      "-m",
+      "SCons",
+      "-C",
+      "/workspace/RPG-maker/native/equipment_save_io",
+      "build_profile=/workspace/RPG-maker/native/equipment_save_io/build-profile.json",
+      "platform=windows",
+      "target=template_release",
+      "arch=x86_64",
+      "-j4",
+      "use_mingw=yes",
+      "use_llvm=yes",
+      "mingw_prefix=/workspace/qa055/llvm-mingw-20261006-ucrt-ubuntu-22.04-x86_64"
+    ],
+    "exit_code": 0,
+    "seconds": 8.124848975000532,
+    "budget_seconds": 600,
+    "before_sha256": "593fccadd13f10ca9eed74695b36877c112305fe9552bb0fa8faec4d05e97500",
+    "after_sha256": "593fccadd13f10ca9eed74695b36877c112305fe9552bb0fa8faec4d05e97500",
+    "identical": true,
+    "log_sha256": "8c847d75a4f08520470641ccfe1ceeba95c7f39c19c15854004f2cb1a30d626e"
+  }
+]

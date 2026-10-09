@@ -1,0 +1,79 @@
+{
+  "rows": [
+    {
+      "argv": [
+        "id"
+      ],
+      "exit_code": 0,
+      "raw": "uid=1000(agent) gid=1000(agent) groups=1000(agent)\n",
+      "raw_sha256": "924734f21bac5059b74fc00d7bc690dd998347a52bfab79cba2ea0ff0ff08864"
+    },
+    {
+      "argv": [
+        "df",
+        "-PT",
+        "/workspace",
+        "/tmp",
+        "/dev/shm"
+      ],
+      "exit_code": 0,
+      "raw": "Filesystem     Type    1024-blocks    Used Available Capacity Mounted on\noverlay        overlay    32978704 5886236  25398364      19% /workspace\nnone           tmpfs       9220068      36   9220032       1% /tmp\nshm            tmpfs       9220068       0   9220068       0% /dev/shm\n",
+      "raw_sha256": "cebdced220b5518e68660c1831b89f821cf99a06139841dc807b2d26a6e87db6"
+    },
+    {
+      "argv": [
+        "findmnt",
+        "-T",
+        "/workspace"
+      ],
+      "exit_code": 0,
+      "raw": "TARGET     SOURCE              FSTYPE  OPTIONS\n/workspace overlay[/workspace] overlay rw,nosuid,nodev,relatime,lowerdir=/run/kata-containers/erofs-multi-layer/63a7e1963ecd48d1bced69498d496613/lower-0,upperdir=/run/kata-containers/erofs-multi-layer/63a7e1963ecd48d1bced69498d496613/upper/upper,workdir=/run/kata-containers/erofs-multi-layer/63a7e1963ecd48d1bced69498d496613/upper/work,index=off,metacopy=off\n",
+      "raw_sha256": "da0ca682d4c6a62a1be71c709dab96d41228d5cf9a95c6ecb956fb3e9c76db24"
+    },
+    {
+      "argv": [
+        "findmnt",
+        "-T",
+        "/tmp"
+      ],
+      "exit_code": 0,
+      "raw": "TARGET SOURCE FSTYPE OPTIONS\n/tmp   none   tmpfs  ro,nosuid,nodev,relatime\n/tmp   none   tmpfs  rw,nosuid,nodev,relatime\n",
+      "raw_sha256": "5636b47cfa5cdff7bb40c340358575919df7b7b325b8b32172c6c3f0381e38a9"
+    },
+    {
+      "argv": [
+        "findmnt",
+        "-T",
+        "/dev/shm"
+      ],
+      "exit_code": 0,
+      "raw": "TARGET   SOURCE FSTYPE OPTIONS\n/dev/shm shm    tmpfs  ro,nosuid,nodev,relatime\n",
+      "raw_sha256": "34e7d499812b3df9aa56b0b27179b5f70cadda9dcd4bf8ba618bd9c373a817f0"
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--short"
+      ],
+      "exit_code": 0,
+      "raw": "?? docs/verification/equipment-validation/core-checks.json\n?? scripts/game/equipment_rules.gd.uid\n?? tools/check_equipment_rules.gd.uid\n",
+      "raw_sha256": "cd1f09c469defc5aeb1f2e1b386fcd72760ced3319433c89ec7aaa4e69f22c1b"
+    },
+    {
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/codex/task-055-native-save-io"
+      ],
+      "exit_code": 0,
+      "raw": "9f889c788a5f15aeabe5428b2cf4ccb5f7955289\trefs/heads/codex/task-055-native-save-io\n",
+      "raw_sha256": "37223cc73c852723c13e70ef0ad55cf2e73076efb221fb3c8da6aeffa88d0440"
+    }
+  ],
+  "dedicated_small_volume_provided": false,
+  "dedicated_nested_cross_volume_provided": false,
+  "mount_vhd_acl_os_setting_changes": false,
+  "shared_volume_filling": false
+}

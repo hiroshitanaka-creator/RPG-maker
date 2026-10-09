@@ -1,0 +1,61 @@
+{
+  "godot_cpp": {
+    "url": "https://github.com/godotengine/godot-cpp.git",
+    "commit": "e83fd0904c13356ed1d4c3d09f8bb9132bdc6b77",
+    "tag": "godot-4.5-stable",
+    "license": "MIT",
+    "abi": "4.5; 4.7.2で実ロード検証"
+  },
+  "scons": "SCons by Steven Knight et al.:\n\tSCons: v4.10.0.b3e979a3e42c43b91f7624895910afb869a19806, Thu, 02 Oct 2025 10:16:02 -0700, by bdbaddog on M1Dog2021\n\tSCons path: ['/workspace/qa055/python/SCons']\nCopyright (c) 2001 - 2025 The SCons Foundation\n",
+  "compiler": "c++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "commands": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "SCons",
+        "-C",
+        "/workspace/RPG-maker/native/equipment_save_io",
+        "build_profile=/workspace/RPG-maker/native/equipment_save_io/build-profile.json",
+        "platform=linux",
+        "target=template_debug",
+        "arch=x86_64",
+        "-j4"
+      ],
+      "seconds": 2.7282058790005976,
+      "budget_seconds": 600,
+      "exit_code": 0,
+      "log_sha256": "066b4d9e788ad1a3b2f50ebe70de5ad70a8eba39ed0fe5fdef135b6e80e2ee4e"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "SCons",
+        "-C",
+        "/workspace/RPG-maker/native/equipment_save_io",
+        "build_profile=/workspace/RPG-maker/native/equipment_save_io/build-profile.json",
+        "platform=linux",
+        "target=template_release",
+        "arch=x86_64",
+        "-j4"
+      ],
+      "seconds": 2.8074699030003103,
+      "budget_seconds": 600,
+      "exit_code": 0,
+      "log_sha256": "ca7ce9397906428e7f2f93250ea86e02f482a170e2b7bd759b3d0df26e654678"
+    }
+  ],
+  "files": {
+    "addons/equipment_save_io/bin/equipment_save_io.linux.template_debug.x86_64.so": "2cedcf39304344289f895325c5dc974cab6f024946c2fe9e53d36733ecf3f2b8",
+    "addons/equipment_save_io/bin/equipment_save_io.windows.template_release.x86_64.dll": "5eb52ad6f9a895593fc606b15db4c293f79d52deecd6ad9e91ae419b87ffc3eb",
+    "addons/equipment_save_io/bin/equipment_save_io.windows.template_debug.x86_64.dll": "57a9f82df6004f3a2174653fba5b4fde107e26166f85d8b0b241eaee4a22bc44",
+    "addons/equipment_save_io/bin/equipment_save_io.linux.template_release.x86_64.so": "be147776f58477c978d7e46da070abca4746838cd82c36ae287ce3b603a57de4"
+  },
+  "source_files": {
+    "native/equipment_save_io/build-profile.json": "8b29eacd2bde13bf5ee5143924e95779fae1170f546d583b08b888d2bbd550b2",
+    "native/equipment_save_io/dependencies.json": "b7ca8537bdb9529f5eb3a009b893c5e4725573a93852c21cf3618e4b1d06300a",
+    "native/equipment_save_io/src/save_io.h": "12e974e0ed31e748c2931bcbdb9325010bc4ca1a67221ad6739836240302634b",
+    "native/equipment_save_io/src/save_io.cpp": "870993272a4e2cd9d9d42b2b95123c9c8919a21a78035e008fbce148eb302bcd"
+  }
+}

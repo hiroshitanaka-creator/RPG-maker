@@ -1,0 +1,49 @@
+{
+  "time_utc": "2026-10-09T01:02:10Z",
+  "rows": [
+    {
+      "argv": [
+        "id"
+      ],
+      "exit_code": 0,
+      "raw": "uid=1000(agent) gid=1000(agent) groups=1000(agent)\n",
+      "raw_sha256": "924734f21bac5059b74fc00d7bc690dd998347a52bfab79cba2ea0ff0ff08864"
+    },
+    {
+      "argv": [
+        "df",
+        "-PT",
+        "/workspace",
+        "/tmp",
+        "/dev/shm"
+      ],
+      "exit_code": 0,
+      "raw": "Filesystem     Type    1024-blocks     Used Available Capacity Mounted on\noverlay        overlay    32978704 14976140  16308460      48% /workspace\nnone           tmpfs       9220068       36   9220032       1% /tmp\nshm            tmpfs       9220068        0   9220068       0% /dev/shm\n",
+      "raw_sha256": "f9dfbeb8e0126ab809a1c4a5a34cbb473adec615d7a43f62857684a4d336d900"
+    },
+    {
+      "argv": [
+        "stat",
+        "-f",
+        "-c",
+        "%T %i",
+        "/workspace"
+      ],
+      "exit_code": 0,
+      "raw": "overlayfs b2db367d37360842\n",
+      "raw_sha256": "cf0a9086a0fbb82d27140e84c8162f971a0bc008dae76fcb67a882811cdbaa75"
+    },
+    {
+      "argv": [
+        "cat",
+        "/sys/fs/cgroup/cpu.max"
+      ],
+      "exit_code": 0,
+      "raw": "400000 100000\n",
+      "raw_sha256": "bd8ea316d63ccab47af9329b4b4b427cb510d04fe500195f5aa332d211d9fd3f"
+    }
+  ],
+  "dedicated_enospc_area_provided": false,
+  "dedicated_nested_cross_volume_area_provided": false,
+  "mount_vhd_acl_os_setting_changes": false
+}
