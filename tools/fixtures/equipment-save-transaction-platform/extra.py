@@ -87,10 +87,11 @@ class Suite:
             other=root/'other.json';other.write_bytes(source.read_bytes());source.rename(root/'source-preserved.json');other.rename(source)
         value=self.run(root,'swap',label='file-swap',path=str(source),kill_point='native.swap.after',hold=swap);self.check('file-swap-same-bytes-denied',not value['result']['ok'] and source.read_bytes()==(root/'source-preserved.json').read_bytes(),value)
         if os.name=='nt':
+            alias_root=self.new('native-case-alias-identity');alias_source=alias_root/'source.json';alias_source.write_bytes(b'original identity')
             def swap_alias(child):
-                other=root/'other-alias.json';other.write_bytes(source.read_bytes());source.rename(root/'source-alias-preserved.json');other.rename(source)
-            value=self.run(root,'swap',label='file-swap-alias',path=str(source),reopen_path=str(source).swapcase(),kill_point='native.swap.after',hold=swap_alias)
-            self.check('file-swap-case-alias-denied',not value['result']['ok'] and source.read_bytes()==(root/'source-alias-preserved.json').read_bytes(),value)
+                other=alias_root/'other-alias.json';other.write_bytes(alias_source.read_bytes());alias_source.rename(alias_root/'source-preserved.json');other.rename(alias_source)
+            value=self.run(alias_root,'swap',label='file-swap-alias',path=str(alias_source),reopen_path=str(alias_source).swapcase(),kill_point='native.swap.after',hold=swap_alias)
+            self.check('file-swap-case-alias-denied',not value['result']['ok'] and alias_source.read_bytes()==(alias_root/'source-preserved.json').read_bytes(),value)
         paths={'root-prefix':str(root)+'-outside/file','parent':str(root/'../escape'),'dot':str(root)+'/./file','nonascii-space':str(root/'保存 領域'/'file.tmp')}
         if os.name=='nt':paths.update({'drive-relative':'C:save.json','unc':'//server/share/save.json','ads':str(root/'save.json:stream'),'reserved':str(root/'CON.txt'),'dot-suffix':str(root/'file.'),'space-suffix':str(root/'file '),'case-alias':str(root).swapcase()+'/file.tmp','long-path':str(root)+'/'+('/'.join(['long_component'*3]*8))+'/file.tmp','other-drive':'Z:/055/save.json'})
         else:paths.update({'long-path':str(root)+'/'+('/'.join(['long_component'*3]*8))+'/file.tmp'})
@@ -148,4 +149,6 @@ class Suite:
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--godot',required=True);p.add_argument('--output',required=True);p.add_argument('--legacy-checkout')
     try:Suite(p.parse_args()).main()
-    except Exception as exc:print('NATIVE_EXTRA_FAIL:',exc);sys.exit(1)
+    except Exception as exc:
+        import traceback
+        traceback.print_exc();print('NATIVE_EXTRA_FAIL:',exc);sys.exit(1)
