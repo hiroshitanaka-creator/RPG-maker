@@ -196,6 +196,29 @@ def run(args):
     index['status']='RECORDED';save(output/'inventory.json',index)
     return 0
 
+
+def finalize_output(output):
+    """採取済み原物から比較器が必要とする版情報と候補区間を生成する。"""
+    from compare_results import CODE, candidate_costs, unpack
+    output=Path(output)
+    index=json.loads((output/'inventory.json').read_bytes())
+    source=index['code_sha']
+    files={}
+    for path in CODE:
+        raw=subprocess.check_output(['git','show',source+':'+path],cwd=ROOT)
+        files[path]=dict(sha256=digest(raw),blob=git('rev-parse',source+':'+path))
+    (output/'code-fixed-sha.txt').write_text(source+'\n')
+    save(output/'code-inventory.json',dict(code_sha=source,files=files))
+    index['candidate_costs']=[dict(run=row['name'],phase=row['phase'],repetition=row['repetition'],costs=candidate_costs(unpack(json.loads((output/row['name']/'results.json').read_bytes())['archive']))) for row in index['runs'] if row['mode']=='on']
+    save(output/'inventory.json',index)
+
+
+def collect_and_finalize(args):
+    result=run(args)
+    finalize_output(args.output)
+    return result
+
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--godot');parser.add_argument('--base-sha');parser.add_argument('--output');parser.add_argument('--exec-json')
     args=parser.parse_args()
@@ -205,5 +228,5 @@ if __name__=='__main__':
             os.dup2(out.fileno(),1);os.dup2(err.fileno(),2)
             os.chdir(spec['cwd']);os.execvpe(spec['argv'][0],spec['argv'],os.environ.copy())
     else:
-        try:sys.exit(run(args))
+        try:sys.exit(collect_and_finalize(args))
         except Exception as exc:print('COST060_FAIL:',type(exc).__name__,str(exc));sys.exit(1)
