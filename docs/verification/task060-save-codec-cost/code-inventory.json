@@ -22,15 +22,15 @@
       "blob": "ec087e6233e06ea3d44ad8927353bc94195cfa09"
     }
   },
-  "analysis_code_sha": "43fa030d9500bf1414673c5c857ea96ee5ec1f4f",
+  "analysis_code_sha": "5d941bfe23715be0c2300b0263fcbea7ae7059fe",
   "analysis_files": {
     "tools/check_equipment_save_codec_cost.gd": {
       "sha256": "149b110fe79c2f27ff56af0f86de2c995b355f2addcfe41c2d2529b046e78b35",
       "blob": "506db02df87b776db4897d48f8802ce3546873e1"
     },
     "tools/check_equipment_save_codec_cost.py": {
-      "sha256": "946843b064e18699ae5b431fcd6b78768c9b5ae28601efecb43f2f40ac91ce9b",
-      "blob": "f683cf2f3ad76d48d0940b276746e60b057398b1"
+      "sha256": "3d01573fa18beae2e988f18296e0db36ff362fe592c851bebbdc84dd1bf5854c",
+      "blob": "42fb9ff0b33e1c57c5326662afdfbddd43e367e3"
     },
     "tools/fixtures/equipment-save-codec-cost/cases.json": {
       "sha256": "20e0759b74585de80d154cedffbb7ed185ac0ff3c7604731436a6c3ef52f1720",
@@ -71,5 +71,7 @@
       "sha256": "636e18a1cc1c8e118a437501d5cb0356d93e407a81126bb99ad262988695570d"
     }
   },
-  "exec_dispatch_unchanged": true
+  "exec_dispatch_unchanged": false,
+  "exec_json_branch_unchanged": true,
+  "dispatch_change": "非採取分岐でrunの後にfinalize_outputを呼ぶだけ。採取子processのexec-json分岐とrun関数は開始版と同一。"
 }

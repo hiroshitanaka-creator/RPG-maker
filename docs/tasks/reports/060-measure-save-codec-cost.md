@@ -6,7 +6,7 @@
 
 - 登録 `e37ddbaf4e84526c8e3f2816438dc9626875c00e`、固定基点 `6695d7b802137e9d6b7e468a1414c04d658a5380`。登録の親が基点であることを照合した。AGENTS.mdと060依頼書は全文確認し、「未採番」「正式時」等は冒頭と正式化補足を優先した。実作業を妨げる矛盾なし。
 - 保存済みクラウドで実施。依頼のモデル指定は GPT-6 Astra／High。実行基盤内部のモデル名はこの証拠から独立検証できない。追加委譲なし。
-- 採取開始版 `c126bc84870225b38842054f20e1784b023384d6`、最終集計コード `43fa030d9500bf1414673c5c857ea96ee5ec1f4f`。最新回帰の実checkoutは `2c6fef966576bb38fcaa0863b3982b1777c4fdff`。最後のコード変更は集計対象区間の再計算照合のみ。本番bytesは全版で基点と同一。
+- 採取開始版 `c126bc84870225b38842054f20e1784b023384d6`、最終専用コード `5d941bfe23715be0c2300b0263fcbea7ae7059fe`。最新回帰の実checkoutは `2c6fef966576bb38fcaa0863b3982b1777c4fdff`。最後のコード変更は採取終了後に固定版情報と候補区間をCLIから自動生成する処理のみ。本番bytesは全版で基点と同一。
 - 変更は専用コード5ファイル、060状態行、本報告、専用証拠だけ。scripts、既存driver/fixture/原証拠、保護26、CI、assets、native/addons、project.godot、decision-log、tasks READMEは不変。PR/main反映なし。新規CI接続なし。
 - Linux 6.18.44 / AMD EPYC 9V45、可視CPU5、cgroup CPU 4相当・メモリ16GiB。Godot `4.7.2.stable.official.ed1daf0bf`、実行体SHA256 `8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e`。既存launch.pyに固定された公式ZIPとhashを用いて一時領域に取得。既存4.6.3は検証に使用していない。OS設定変更なし。原run_ci同様のprocess専用profileを使用。
 
@@ -23,7 +23,9 @@ python tools/fixtures/equipment-save-codec-cost/compare_results.py --output docs
 
 原archiveの取り出しは `base64.b64decode(archive['data'])` をgzip展開してTARとして読む。SHA256をarchive/memberの記録と照合する。最新回帰の原archiveは `inventory.latest_regression.raw_archive`。16伝播負例は同archiveのpropagation-deltasとoff-07の元証拠から再構成できる。
 
-採取後に、同じbatchログのケース別projectionとprofile複製を重複加算していた集計を修正した。projection bytesと元batch bytesの一致を確認し、元batchのみ一度集計する。原証拠・試行順・予算・実行本体は変更していない。採取中にPython集計ファイルの改訂があるためファイル全体不変とは主張しない。code-inventoryは採取関数6個とexec dispatchの開始版/最終版同一性、両版のblob/hashを記録し、inventory.reaggregationには旧集計hashと再集計理由を残した。旧集計は開始版コードと保存原物で再現可能。
+採取後に、同じbatchログのケース別projectionとprofile複製を重複加算していた集計を修正した。projection bytesと元batch bytesの一致を確認し、元batchのみ一度集計する。原証拠・試行順・予算・実行本体は変更していない。採取中にPython集計ファイルの改訂があるためファイル全体不変とは主張しない。code-inventoryは採取関数6個と採取子processのexec-json分岐の開始版/最終版同一性、両版のblob/hashを記録し、inventory.reaggregationには旧集計hashと再集計理由を残した。旧集計は開始版コードと保存原物で再現可能。
+
+初回提出後の再現手順確認で、手動補完した版情報・候補区間がCLI単独では生成されない問題を発見し、採取終了後のfinalize_outputを追加した。採取run本体は変更なし。原証拠のコピーからcode-fixed-sha/code-inventory/candidate_costsを取り除いて再生成し、元候補区間と完全一致、比較器が同じINCOMPLETE/exit1になることを確認。結果はinventory.cli_finalization_checkに保存。exec dispatch全体はこの後処理の呼出し分だけ変更がある。
 
 ## 入力と測り方
 

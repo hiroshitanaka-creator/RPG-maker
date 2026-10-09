@@ -543,7 +543,7 @@
     }
   ],
   "status": "RECORDED",
-  "analysis_code_sha": "43fa030d9500bf1414673c5c857ea96ee5ec1f4f",
+  "analysis_code_sha": "5d941bfe23715be0c2300b0263fcbea7ae7059fe",
   "reaggregation": [
     {
       "run": "run-linux-off-01",
@@ -10549,5 +10549,13 @@
       }
     },
     "note": "原059 validator/16伝播を実行。negative-deltasの基礎原物はrun-linux-off-07/results.json。最新本番bytesは基点と一致。"
+  },
+  "cli_finalization_check": {
+    "candidate_costs_equal": true,
+    "missing_code_metadata_regenerated": true,
+    "exec_json_branch_unchanged": true,
+    "comparison_exit": 1,
+    "comparison_stdout": "COST060_COMPARE_INCOMPLETE: evidence=valid codec_pairs=3 transaction_pairs=3\n",
+    "comparison_stderr": ""
   }
 }
