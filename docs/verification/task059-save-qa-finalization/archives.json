@@ -40,7 +40,7 @@
     "bytes": 1936603,
     "members": 5711,
     "member_index": "local-full-9d4-failure-members.json",
-    "kind": "059 local \u539fbytes\u3001\u73fe\u5728\u5168\u53d6\u5f15\u306e\u6210\u529f\u3068\u306f\u5206\u96e2"
+    "kind": "059 local 原bytes、現在全取引の成功とは分離"
   },
   {
     "archive": "local-regression-7f4.tar.gz",
@@ -48,7 +48,7 @@
     "bytes": 34206,
     "members": 20,
     "member_index": "local-regression-7f4-members.json",
-    "kind": "059 local \u539fbytes\u3001\u73fe\u5728\u5168\u53d6\u5f15\u306e\u6210\u529f\u3068\u306f\u5206\u96e2"
+    "kind": "059 local 原bytes、現在全取引の成功とは分離"
   },
   {
     "archive": "local-primitives-9d4.tar.gz",
@@ -56,7 +56,7 @@
     "bytes": 5268159,
     "members": 1890,
     "member_index": "local-primitives-9d4-members.json",
-    "kind": "059 local \u539fbytes\u3001\u73fe\u5728\u5168\u53d6\u5f15\u306e\u6210\u529f\u3068\u306f\u5206\u96e2"
+    "kind": "059 local 原bytes、現在全取引の成功とは分離"
   },
   {
     "archive": "local-propagation-059.tar.gz",
@@ -64,7 +64,7 @@
     "bytes": 2405171,
     "members": 4471,
     "member_index": "local-propagation-059-members.json",
-    "kind": "059 local \u539fbytes\u3001\u73fe\u5728\u5168\u53d6\u5f15\u306e\u6210\u529f\u3068\u306f\u5206\u96e2"
+    "kind": "059 local 原bytes、現在全取引の成功とは分離"
   },
   {
     "archive": "ci-first-fixed057-windows.tar.gz",
@@ -72,7 +72,7 @@
     "bytes": 2837515,
     "members": 3884,
     "member_index": "ci-first-fixed057-windows-members.json",
-    "kind": "057\u56fa\u5b9a\u30fb\u521d\u56de9d4 CI\u539farchive\u3001\u73fe059\u306e\u6210\u529f\u3067\u306f\u306a\u3044"
+    "kind": "057固定・初回9d4 CI原archive、現059の成功ではない"
   },
   {
     "archive": "capture057-linux-exit-race.tar.gz",
@@ -80,7 +80,7 @@
     "bytes": 29828,
     "members": 128,
     "member_index": "capture057-linux-exit-race-members.json",
-    "kind": "\u30e2\u30c7\u30eb\u5909\u66f4\u6642\u4fdd\u5b58\u3001\u65e2\u306b\u5b9f\u884c\u6e08\u307fLinux\u539f\u7269\u3002\u4e21OS\u6700\u7d42\u53d7\u5165\u306f\u672a\u5b8c\u4e86"
+    "kind": "モデル変更時保存、既に実行済みLinux原物。両OS最終受入は未完了"
   },
   {
     "archive": "capture059-linux-22.tar.gz",
@@ -88,7 +88,7 @@
     "bytes": 42381,
     "members": 211,
     "member_index": "capture059-linux-22-members.json",
-    "kind": "\u30e2\u30c7\u30eb\u5909\u66f4\u6642\u4fdd\u5b58\u3001\u65e2\u306b\u5b9f\u884c\u6e08\u307fLinux\u539f\u7269\u3002\u4e21OS\u6700\u7d42\u53d7\u5165\u306f\u672a\u5b8c\u4e86"
+    "kind": "モデル変更時保存、既に実行済みLinux原物。両OS最終受入は未完了"
   },
   {
     "archive": "capture059-linux-exit-race-intermediate-failure.tar.gz",
@@ -96,7 +96,7 @@
     "bytes": 40574,
     "members": 206,
     "member_index": "capture059-linux-exit-race-intermediate-failure-members.json",
-    "kind": "\u30e2\u30c7\u30eb\u5909\u66f4\u6642\u4fdd\u5b58\u3001\u65e2\u306b\u5b9f\u884c\u6e08\u307fLinux\u539f\u7269\u3002\u4e21OS\u6700\u7d42\u53d7\u5165\u306f\u672a\u5b8c\u4e86"
+    "kind": "モデル変更時保存、既に実行済みLinux原物。両OS最終受入は未完了"
   },
   {
     "archive": "ci-second-linux-latest.tar.gz",
@@ -104,6 +104,70 @@
     "bytes": 4265560,
     "members": 6392,
     "member_index": "ci-second-linux-latest-members.json",
-    "kind": "HEAD6a62fd7 Linux latest transaction CI\u539f\u7269\u3002\u8ffd\u52a021\u6210\u529f\u3001\u65e2\u5b5812\u306eshutdown\u691c\u8a3c\u5931\u6557\u3001\u5168\u53d6\u5f15\u6642\u9593\u672a\u9054"
+    "kind": "HEAD6a62fd7 Linux latest transaction CI原物。追加21成功、既存12のshutdown検証失敗、全取引時間未達"
+  },
+  {
+    "archive": "ci-second-windows-transaction.tar.gz",
+    "raw_sha256": "8d33c1defa6018d29ddfc8e14e3a2b9bef2b1f7009d4866c07496ad5f86d6f27",
+    "bytes": 3084932,
+    "members": 3574,
+    "member_index": "ci-second-windows-transaction-members.json",
+    "kind": "HEAD6a62fd7 Windows latest transaction原archive。既存12・追加21・058反例・診断成功、全取引時間未達"
+  },
+  {
+    "archive": "astra-linux-before-batch.tar.gz",
+    "raw_sha256": "2728172640496c15f002f63cc35df3d9ba6e07ada5f944eba133754f5f22e6cf",
+    "bytes": 45164,
+    "members": 227,
+    "member_index": "astra-linux-before-batch-members.json",
+    "kind": "共有batch照合追加3反例の修正前実失敗、25件中3失敗"
+  },
+  {
+    "archive": "astra-linux-capture025.tar.gz",
+    "raw_sha256": "5b1dcaa22241d9039814180df11ad78db70b6cfdcdefd2e3896ea52ee3d59452",
+    "bytes": 49389,
+    "members": 232,
+    "member_index": "astra-linux-capture025-members.json",
+    "kind": "固定faa459eの追加25件全成功、外側180秒capture経由"
+  },
+  {
+    "archive": "astra-linux-capture012.tar.gz",
+    "raw_sha256": "7eec44ab050116e00b30e6c8f5bdb7f31419b1b591814772d19115efa0ce4657",
+    "bytes": 35969,
+    "members": 141,
+    "member_index": "astra-linux-capture012-members.json",
+    "kind": "固定faa459eで既存不変12件全成功、外側180秒capture経由"
+  },
+  {
+    "archive": "astra-linux-before-accept-close.tar.gz",
+    "raw_sha256": "f6f16a46b94502f2183d670007c5cdf9448dfe13bddb94c52a251f7bfbed5e56",
+    "bytes": 47887,
+    "members": 223,
+    "member_index": "astra-linux-before-accept-close-members.json",
+    "kind": "受付構築とclose競合の修正前実失敗、26件中1失敗"
+  },
+  {
+    "archive": "astra-linux-capture026.tar.gz",
+    "raw_sha256": "95dedd13665c622a89e59b47d819b138bb0f8a43676c2cd28dd50eea03f9cb05",
+    "bytes": 47720,
+    "members": 224,
+    "member_index": "astra-linux-capture026-members.json",
+    "kind": "固定30aca09の追加26件全成功、外側180秒capture経由"
+  },
+  {
+    "archive": "astra-linux-capture012-final.tar.gz",
+    "raw_sha256": "2a8b03f29475ec99ba2a677992166ca068e9de0ca3848f5b6e93b2c2f2f3e4e6",
+    "bytes": 32696,
+    "members": 125,
+    "member_index": "astra-linux-capture012-final-members.json",
+    "kind": "固定30aca09で既存不変12件全成功、外側180秒capture経由"
+  },
+  {
+    "archive": "astra-linux-full-faa459e.tar.gz",
+    "raw_sha256": "ee25c125245d47bde826da0a5c1420e73065ecc49edce5adb12ee83cbf7c7955",
+    "bytes": 15700628,
+    "members": 10956,
+    "member_index": "astra-linux-full-faa459e-members.json",
+    "kind": "共有batch修正faa459eの全取引154/1968・174.438秒未達、319受付回収照合true"
   }
 ]

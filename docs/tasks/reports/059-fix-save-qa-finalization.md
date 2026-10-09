@@ -6,7 +6,7 @@
 
 登録a6022f1e4a7689440928efe65db444336e9128e4、基点579ca1f463aaf9e93275039a59cf9d1ffb86adb5、指定branch codex/task-059-fix-save-qa-finalization。開始dirtyなし・未pushなし。AGENTS.md、059/057依頼、伝言板、057/058報告全文と反例、専用driver/helpers/workflow、素材規約・職業/魔物化の企画・台帳構造・優先仕様、040保存計画、原053/055/057固定証拠を確認。checkout/workspaceに適用可能な追加AGENTS/.agents/skillsは存在しない。追加委譲・別環境切替なし。
 
-最小変更と全assertion世代対応は[実装前plan](../../verification/task059-save-qa-finalization/plan.md)に先に記録した。完成コードは8282248971482790a62485b9b510684e4469e2c7。旧057 3cf4b6c、055 0a44409c、053 e003b126の完全SHA・inventory・期待・契約・旧scopeは変更していない。
+最小変更と全assertion世代対応は[実装前plan](../../verification/task059-save-qa-finalization/plan.md)に先に記録した。現在の完成コード完全SHAは[code-fixed-sha.txt](../../verification/task059-save-qa-finalization/code-fixed-sha.txt)に固定する。8282248は切替前の過去固定として保持する。旧057 3cf4b6c、055 0a44409c、053 e003b126の完全SHA・inventory・期待・契約・旧scopeは変更していない。
 
 ## 修正内容
 
@@ -20,7 +20,7 @@ Linuxは自分が作った専用sessionとgroup、exec前から渡す継承owner
 
 ## CIの世代分離とscope
 
-専用workflowの元fixed055/latest、Windows/Linux、transaction/primitivesを保持し、fixed057を別jobへ追加した。当時のcheckout3cf4b6cから当時のprocess_capture・12検証・scope057正負・6seed対照を実行する。旧code-fixed-shaが当時b4ee1eaを指すため、別checkoutの検査引数を完全SHA3cf4b6cへ明示し、固定文書自体は変更しない。最新側は既存12検証・059追加21検証・scope059・基点058反例・6seed対照。sample計測は全取引受入と別。
+専用workflowの元fixed055/latest、Windows/Linux、transaction/primitivesを保持し、fixed057を別jobへ追加した。当時のcheckout3cf4b6cから当時のprocess_capture・12検証・scope057正負・6seed対照を実行する。旧code-fixed-shaが当時b4ee1eaを指すため、別checkoutの検査引数を完全SHA3cf4b6cへ明示し、固定文書自体は変更しない。最新側は既存12検証・059追加26検証・scope059・基点058反例・6seed対照。sample計測は全取引受入と別。
 
 親の提出前確認を受け、scope059の後続文書許可を059依頼書状態行・059報告・059証拠だけへ限定した。最新担当指示に従い、decision-logの後続追記も拒否する。10正負例を実Git tree/commit/子exitで確認。旧057証拠、058過去報告、担当外文書、依頼本文変更、decision-log書換えはexit1。旧scope057/055 prefixを広げていない。原2259パスのblob不変と44archive/317273全member照合もscopeとは独立して実行した。最終SHAについても全許可パスと原不変を再照合する。
 
@@ -76,3 +76,21 @@ WindowsのHEAD6a62fd7 latest primitives job113942743366はcompleted/successと�
 [モデル変更時CI snapshot](../../verification/task059-save-qa-finalization/model-transition-ci-snapshot.json)はHEAD1fcb54fの6workflowと当時返った50job、旧HEAD6a62fd7の専用12jobの収集結果。HEAD1fcbの全終了を待ち切っていない。Equipment and Saveの後続jobはまだ未生成の可能性があるため50件を全件確定数としない。旧HEAD6aのWindows latest transactionも収集時in_progress。他の失敗/成功/queued/in_progressはsnapshotのとおりで、取消しはしていない。
 
 次のAstraターンで必要な作業は、保存修正のレビュー、新コードの完全SHA固定/code inventory/scope10正負の再照合、Windows/Linuxの既存12＋追加22と全受付照合の最終CI原証拠回収、原2259blob不変と全archive再照合、059報告/状態の最終化、指定branch最終SHA全CI終了・clean/未push確認。code-fixed-sha.txt/code-inventory.json/scope059-current-policy.jsonは8282248の過去固定を保持したままで、bdc1097の新固定はまだ行っていない。この段階のpush CIで旧固定との差が失敗する可能性を隠さず、次ターンで固定更新と検証を行う。F1時間未達、F4実ENOSPC/nested別volume NOT_RUNは継続。decision-log/tasks READMEは以後も更新しない。
+
+
+## 再開後の品質修正と検証
+
+同じ/workspace/RPG-maker、引継ぎ83466d2aaee55ecdeee4e51e89c8d1036525fa54、dirtyなし・未pushなしで再開した。GPT-6 Astra／Highの指定とモデル切替通知を受領したが、runtimeのモデル名/effortを独立に取得するツールはなく、実行値を独立確認済みとは記さない。新環境・OS設定・依存導入・追加委譲は行っていない。
+
+レビューで共有batch原記録の照合不足を修正した。起動前のenv失敗＋原batch保存失敗、起動済みbatch本文改変、未起動batch本文改変の3実反例は修正前に全て失敗した。予定原batch先を未起動の終端にも結び、所有するbatch終端全内容と保存原物を照合し、保存失敗を各受付の上位inventoryへ伝える。要求ID/PIDだけが同じでも本文が異なれば非0となる。元のcase/assertion本文、057の12検証、055/057 scope、worker/batch/全予算はbyte不変を再確認した。
+
+受付ID構築途中とcloseの競合も実反例で確認した。受付側が構築中にcloseが空一覧でrecovery_complete=trueとなる旧動作を、新しいacceptance-close-raceで検出した。受付と停止確定に同じrequest_lockを使い、進行中受付が一覧から落ちないようにした。未終端の受付はfalseと欠落理由を残す。close競合/再呼出しの既存検証に加えたため、059追加は26件となる。
+
+Windows HEAD6a62fd7のlatest transaction原ログを別経路で取得し、raw archive 8d33c1defa6018d29ddfc8e14e3a2b9bef2b1f7009d4866c07496ad5f86d6f27、3084932bytes、3574member全hash/sizeを照合した。既存12、当時追加21、scope、基点058反例、6seed診断は全exit0。058ではWindows実PermissionError後にexecution0/recovery_complete=true、外側0.5秒kill後も孫heartbeatが継続した。実174/180秒の反例とは呼ばない。同jobの全取引は49/735・174.797秒で失敗し、231受付の回収照合はtrue。新26件の結果とは分離する。
+
+Windows primitives旧job113942743366の直接ログはTransport closedが継続した。artifact11634293939のZIP参照は取得できたが、既存環境から参照先への取得はproxy tunnel 403 Forbiddenで遮断されたため、ZIP bytes/digestは未照合。OS/通信設定は変更していない。transaction原archive取得成功を、このprimitives原物の照合成功へ置き換えない。
+
+
+再開後のローカル固定30aca09e21783f228c00847029060fa03ecb86e9は、既存12件34.308007秒/exit0、追加26件11.194464秒/exit0、いずれも外側run_commandの180秒以内でsupervision.stopped=true。scope10正負は正例exit0・9負例各exit1。専用archiveはastra-linux-capture012-final/astra-linux-capture026。対応する修正前の3件失敗と受付closeの1件失敗も独立archiveとして保持する。
+
+共有batch修正faa459ee5cc101e708477792b1c7891a9ba4beeaを既存の隔離checkoutで実行した全取引は154件/1968条件、suite174.437967秒、transaction外側175.147200秒/exit1。319受付、worker0、future未完0、evidence_errors0、未回収0、recovery_complete=true。これを原172/2178の成功や性能改善の証明にはしない。受付close修正前の全取引結果であることも区別する。元174/180/30/600秒・15分の制限を維持した。
