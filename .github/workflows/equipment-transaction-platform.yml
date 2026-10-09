@@ -41,12 +41,16 @@ jobs:
         run: git fetch --no-tags --depth=1 origin e003b126de6695fa131e07a3db14c3011fb74f2e b17f2b475ff8c58924720ea24cce8f205422c50b
       - name: 固定ビルド依存を導入
         run: python -m pip install scons==4.10.0
+      - name: 提出済みDLL・SOを実ロード照合用に保持
+        run: python -c "import os,shutil; shutil.copytree('addons/equipment_save_io',os.environ['RUNNER_TEMP']+'/native-evidence/shipped/equipment_save_io')"
       - name: 固定依存からdebug/release DLL・SOを構築
         shell: bash
         run: |
           python native/equipment_save_io/build.py --platform "${{ runner.os == 'Windows' && 'windows' || 'linux' }}" --output "$RUNNER_TEMP/native-evidence/build"
       - name: 公式4.7.2と専用検査
         shell: bash
+        env:
+          EQUIPMENT_SHIPPED_ADDON_ROOT: ${{ runner.temp }}/native-evidence/shipped/equipment_save_io
         run: |
           python tools/fixtures/equipment-save-transaction-platform/launch.py --output "$RUNNER_TEMP/native-evidence" --profile "${{ matrix.profile }}"
       - name: 保護照合（失敗時も実行）

@@ -141,6 +141,8 @@ def main(args):
         extra_args=['--legacy-checkout',str(legacy)]
     extra=command('native-extra',[sys.executable,'tools/fixtures/equipment-save-transaction-platform/extra.py','--godot',GODOT,'--output',str(output.parent/'extra')]+extra_args,180)
     command('binary-checks',[sys.executable,'tools/fixtures/equipment-save-transaction-platform/binary_checks.py','--godot',GODOT,'--output',str(output.parent/'binary-checks')],180)
+    shipped=os.environ.get('EQUIPMENT_SHIPPED_ADDON_ROOT')
+    if shipped:command('shipped-binary-checks',[sys.executable,'tools/fixtures/equipment-save-transaction-platform/binary_checks.py','--godot',GODOT,'--output',str(output.parent/'shipped-binary-checks'),'--addon-root',shipped],180)
     command('frozen-after',[sys.executable,'tools/check_frozen_files.py'],30)
     target=args.source_sha if args.profile=='fixed055' else args.fixed_sha
     changes=scope(checkout,target) if target else []
