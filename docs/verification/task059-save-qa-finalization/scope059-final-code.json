@@ -1,0 +1,174 @@
+{
+  "base": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
+  "registration": "a6022f1e4a7689440928efe65db444336e9128e4",
+  "code_sha": "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+  "source_sha": "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+  "changes": [
+    "M\t.github/workflows/equipment-transaction-platform.yml",
+    "M\tdocs/decision-log.md",
+    "A\tdocs/tasks/059-fix-save-qa-finalization.md",
+    "A\tdocs/verification/task059-save-qa-finalization/archives.json",
+    "A\tdocs/verification/task059-save-qa-finalization/baseline058-linux-members.json",
+    "A\tdocs/verification/task059-save-qa-finalization/baseline058-linux.tar.gz",
+    "A\tdocs/verification/task059-save-qa-finalization/before.json",
+    "A\tdocs/verification/task059-save-qa-finalization/capture057-linux-members.json",
+    "A\tdocs/verification/task059-save-qa-finalization/capture057-linux.tar.gz",
+    "A\tdocs/verification/task059-save-qa-finalization/capture059-linux-members.json",
+    "A\tdocs/verification/task059-save-qa-finalization/capture059-linux.tar.gz",
+    "A\tdocs/verification/task059-save-qa-finalization/code-fixed-sha.txt",
+    "A\tdocs/verification/task059-save-qa-finalization/code-inventory.json",
+    "A\tdocs/verification/task059-save-qa-finalization/method-preservation.json",
+    "A\tdocs/verification/task059-save-qa-finalization/old-archives-audit.json",
+    "A\tdocs/verification/task059-save-qa-finalization/plan.md",
+    "A\tdocs/verification/task059-save-qa-finalization/scope059-code.json",
+    "A\tdocs/verification/task059-save-qa-finalization/unchanged-inventory.json",
+    "M\ttools/check_equipment_save_transaction_platform.py",
+    "M\ttools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/diagnostic_fixed057.py",
+    "M\ttools/fixtures/equipment-save-transaction-platform/process_capture.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/process_tree059.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+    "M\ttools/fixtures/equipment-save-transaction-platform/run_ci.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/scope059.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/tree_fixture059.py"
+  ],
+  "inventory": {
+    ".github/workflows/equipment-transaction-platform.yml": {
+      "git_blob": "fb0c79d412c852f548dc739d98498e0bdff8c25c",
+      "raw_sha256": "1d638479106bbb292722d7fa10097a98c7c3ac1d6132e378ffa2f397c87eca61",
+      "bytes": 5828
+    },
+    "tools/check_equipment_save_transaction_platform.py": {
+      "git_blob": "efa871a88fa23e4484eaeed9c653169c37689d6b",
+      "raw_sha256": "41e83616e7696369a47c51471ddbb231c6aa2dfa9e5135dbaa52a09c610d2819",
+      "bytes": 44558
+    },
+    "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py": {
+      "git_blob": "389c3169d5f9579e73b5c15a93e8ab560ff686b9",
+      "raw_sha256": "ac67bded53c077fa8b9fb74afa08a967060e56c537c5ae98f9ca4b9267b86bc3",
+      "bytes": 2913
+    },
+    "tools/fixtures/equipment-save-transaction-platform/diagnostic_fixed057.py": {
+      "git_blob": "0e59f201540f6c6a3ee8b1d971ff700d4c3c2356",
+      "raw_sha256": "70557b7fbcea7c6a3d84163676a3c24e199d7b94a2323f06d76ea6ef74869c0b",
+      "bytes": 2137
+    },
+    "tools/fixtures/equipment-save-transaction-platform/process_capture.py": {
+      "git_blob": "cc115fc25c92b1161147504993a7d8ca1aced74e",
+      "raw_sha256": "1ffac0335127826c4d29e7cc57053e244b14dd13ef659f9609de8725255f6967",
+      "bytes": 7154
+    },
+    "tools/fixtures/equipment-save-transaction-platform/process_exec059.py": {
+      "git_blob": "504e94b22653de8631d2ed036bd7cbe8c2425cd6",
+      "raw_sha256": "ea1bf041031442daca9ec18e14f431e4c94b74400c7f884edb562d971b13e7bb",
+      "bytes": 231
+    },
+    "tools/fixtures/equipment-save-transaction-platform/process_tree059.py": {
+      "git_blob": "f6b678fa7cf2938a1ef10304a09205d92371a631",
+      "raw_sha256": "54fb16f93cb4fa9a680b266f5a3a6856e4b1495239a8b7552269a7c8cb39b0df",
+      "bytes": 10453
+    },
+    "tools/fixtures/equipment-save-transaction-platform/reproduce058.py": {
+      "git_blob": "1ade8765cb125583de09c9c77045111968c7d482",
+      "raw_sha256": "53709c4e368627c3a997fa8b6079cda6d55f9b957d92a83622fbbe7b68d1f6d2",
+      "bytes": 3158
+    },
+    "tools/fixtures/equipment-save-transaction-platform/run_ci.py": {
+      "git_blob": "50f4d8d583ee98b0c384ed5fadaba76db3a251b7",
+      "raw_sha256": "62749d5ec787ec9cb86f4b3d1fd96840180054eed6668ab95e6f4e5500f42e64",
+      "bytes": 15926
+    },
+    "tools/fixtures/equipment-save-transaction-platform/scope059.py": {
+      "git_blob": "29255473a0cee4c1ae59da914e8df62e696fe2af",
+      "raw_sha256": "7122cd1b9856ccea8698fc642bb3f4c93498ea6e824617024854f6f49f5b7c42",
+      "bytes": 5030
+    },
+    "tools/fixtures/equipment-save-transaction-platform/test_capture059.py": {
+      "git_blob": "212248bb3968b1207bd33242ea39b4b6f0450dbf",
+      "raw_sha256": "4ae7049d6e7f9e4c230980d0a36bda39e3a82e5dc9294001e20dd182b4aebab7",
+      "bytes": 14484
+    },
+    "tools/fixtures/equipment-save-transaction-platform/tree_fixture059.py": {
+      "git_blob": "492d3ff06b39eab7fcbd02bf42b2636079f48323",
+      "raw_sha256": "86f5626aae05d5284001aa73504f0db3377721d9ffbd8c5b30a105ef42bf7307",
+      "bytes": 1719
+    }
+  },
+  "later_documents": [],
+  "propagation": [
+    {
+      "case": "later-document",
+      "code_sha": "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+      "source_sha": "2d9cf1318717c98f2cec28db7592f961970fa8e1",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+        "--checkout",
+        "/workspace/RPG-maker",
+        "--code-sha",
+        "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+        "--source-sha",
+        "2d9cf1318717c98f2cec28db7592f961970fa8e1"
+      ],
+      "seconds": 0.1541882159999659
+    },
+    {
+      "case": "outside-code",
+      "code_sha": "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+      "source_sha": "aa0da87add314f6c96c653266fa78a0a2bf2633c",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+        "--checkout",
+        "/workspace/RPG-maker",
+        "--code-sha",
+        "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+        "--source-sha",
+        "aa0da87add314f6c96c653266fa78a0a2bf2633c"
+      ],
+      "seconds": 0.19932906400003958
+    },
+    {
+      "case": "outside-fixed",
+      "code_sha": "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+      "source_sha": "4d1c44d2c7183dcbaf386b20b7c6ddfa0f809539",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+        "--checkout",
+        "/workspace/RPG-maker",
+        "--code-sha",
+        "4d1c44d2c7183dcbaf386b20b7c6ddfa0f809539",
+        "--source-sha",
+        "4d1c44d2c7183dcbaf386b20b7c6ddfa0f809539"
+      ],
+      "seconds": 0.07052856800009977
+    },
+    {
+      "case": "changed-fixed-code",
+      "code_sha": "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+      "source_sha": "bd8d333869285459e7508e3690ef1b1c57f7abb4",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+        "--checkout",
+        "/workspace/RPG-maker",
+        "--code-sha",
+        "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+        "--source-sha",
+        "bd8d333869285459e7508e3690ef1b1c57f7abb4"
+      ],
+      "seconds": 0.08114214700003686
+    }
+  ]
+}
