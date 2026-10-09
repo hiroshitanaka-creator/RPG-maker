@@ -93,6 +93,18 @@ jobs:
           else
             python tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py --output "$RUNNER_TEMP/native-evidence"
           fi
+      - name: 059診断の原物と失敗内訳を独立保存（全原証拠も保持）
+        if: always() && matrix.profile == 'latest'
+        shell: bash
+        run: |
+          python tools/fixtures/equipment-save-transaction-platform/diagnostic_evidence059.py --output "$RUNNER_TEMP/native-evidence" --destination "$RUNNER_TEMP/diagnostic059-small" --source-sha "$(git rev-parse HEAD)" --code-sha "$(cat docs/verification/task059-save-qa-finalization/code-fixed-sha.txt)"
+      - name: 059診断だけの小さい原証拠を保存（失敗時も実行）
+        if: always() && matrix.profile == 'latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostic059-${{ matrix.os }}-${{ matrix.phase }}
+          path: ${{ runner.temp }}/diagnostic059-small/
+          if-no-files-found: error
       - name: 原bytesとarchive hashをjobにも保持（失敗時も実行）
         if: always()
         shell: bash

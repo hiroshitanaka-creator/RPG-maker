@@ -5,7 +5,8 @@ import json
 from pathlib import Path
 import subprocess
 import sys
-from process_capture import run_command, save
+import time
+from process_capture import ProcessCapture, save
 ROOT=Path(__file__).resolve().parents[3]
 
 def main(args):
@@ -20,18 +21,31 @@ def main(args):
               ('capture059',[sys.executable,str(fixture/'test_capture059.py'),'--output',str(out/'capture059')],180),
               ('baseline058',[sys.executable,str(fixture/'reproduce058.py'),'--checkout',str(baseline),'--output',str(out/'baseline058')],30),
               ('measurements',[sys.executable,str(fixture/'diagnostics057.py'),'--godot',str(engine),'--output',str(out/'measurements')],180)]
-    subprocess.run(['git','worktree','add','--detach',str(baseline),'579ca1f463aaf9e93275039a59cf9d1ffb86adb5'],cwd=ROOT,check=True,timeout=30)
-    rows=[];failures=[]
-    for label,argv,budget in commands:
+    rows=[];setup=[];failures=[]
+    report=dict(schema=2,source_sha=source,code_sha=code,status='RUNNING',setup=setup,commands=rows,failures=failures,acceptance='追加診断。既存job/全取引結果は独立維持')
+    save(out/'execution.json',report)
+    def execute(label,argv,budget,destination):
         path=out/(label+'-process.json')
+        deadline=time.monotonic()+budget
+        capture=ProcessCapture(argv,out/(label+'.log'),path,cwd=ROOT,deadline=deadline,cleanup_deadline=deadline,budget=budget,timeout_kind='diagnostic_outer_'+str(budget)+'_seconds')
         try:
-            run_command(argv,out/(label+'.log'),path,cwd=ROOT,budget=budget,timeout_kind='diagnostic_outer_'+str(budget)+'_seconds')
+            with capture:capture.wait()
         except Exception as exc:failures.append(label+': '+type(exc).__name__+': '+str(exc))
-        row=json.loads(path.read_bytes());rows.append(dict(row,label=label))
-        print((out/(label+'.log')).read_text(errors='replace'),flush=True)
+        # 保存失敗時も所有captureの実状態を上位に残す。欠落を未起動へ補完しない。
+        row=dict(capture.row,label=label);destination.append(row)
+        try:
+            persisted=json.loads(path.read_bytes())
+            if persisted!=capture.row:failures.append(label+': 原process記録と所有状態が不一致')
+        except (OSError,ValueError) as exc:failures.append(label+': process記録未確認: '+str(exc))
+        try:print((out/(label+'.log')).read_text(errors='replace'),flush=True)
+        except OSError as exc:failures.append(label+': log未確認: '+str(exc))
         if row['supervision'].get('stopped') is not True:failures.append(label+': 専用tree停止未確認')
         if row['exit_code']!=0:failures.append(label+': exit='+str(row['exit_code']))
-        save(out/'execution.json',dict(source_sha=source,code_sha=code,status='FAIL' if failures else 'PASS',commands=rows,failures=failures,acceptance='追加診断。既存job/全取引結果は独立維持'))
+        if not row['record_saved']:failures.append(label+': 原process記録の保存失敗')
+        report['status']='FAIL' if failures else 'RUNNING';save(out/'execution.json',report)
+    execute('baseline-checkout',['git','worktree','add','--detach',str(baseline),'579ca1f463aaf9e93275039a59cf9d1ffb86adb5'],30,setup)
+    for label,argv,budget in commands:execute(label,argv,budget,rows)
+    report['status']='FAIL' if failures else 'PASS';save(out/'execution.json',report)
     print('DIAGNOSTIC_CI059_'+('FAIL' if failures else 'PASS')+' source='+source)
     return 1 if failures else 0
 if __name__=='__main__':
