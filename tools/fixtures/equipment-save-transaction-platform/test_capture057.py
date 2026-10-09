@@ -93,6 +93,14 @@ def main(args):
                 except Exception as exc:caught.append(type(exc).__name__+': '+str(exc))
         live=suite.restarts.close();assert not live
         queue=json.loads((suite.output/'restart-queue.json').read_bytes());assert len(queue['requests'])==8 and queue['recovery_complete']
+        for request in queue['requests']:
+            path=suite.output/Path(request['root']).name/'restarted-execution.json'
+            assert path.exists(), 'dequeued but not launched request must retain termination record'
+            row=json.loads(path.read_bytes())
+            if row['pid'] is None:
+                assert row['exit_code'] is None and row['exit_unavailable_reason'].startswith('not_started_queue_shutdown:')
+                assert row['argv'] is None and row['log'] is None and row['ended_utc']
+                assert row['batch_id']==request['batch_id']
         if bad or stop:assert caught and all(not r['completed'] for r in queue['requests'])
         else:assert not caught and all(r['completed'] for r in queue['requests'])
         batches=list((suite.output/'batches').glob('*-execution.json'));assert batches

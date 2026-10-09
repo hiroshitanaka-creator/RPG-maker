@@ -116,14 +116,15 @@ class RestartBatch:
             thread.join(timeout=max(0, self.suite.cleanup_deadline-time.monotonic()))
         for request in self.requests:
             request['future_done'] = request['future'].done()
-            if request['worker_started'] is None:
+            if request['worker_started'] is None or request.get('exception') == 'RuntimeError: restart_shutdown: 未実行batch':
                 request['missing_reason'] = 'not_started_queue_shutdown: suite内側174秒の受付/待機終了'
                 label = request['cfg'].get('result','restarted-result.json').removesuffix('-result.json')
                 record = self.suite.output/request['root'].name/(label+'-execution.json')
                 write(record, dict(argv=None, pid=None, started_utc=None, ended_utc=utc(), exit_code=None,
                       exit_unavailable_reason=request['missing_reason'], timed_out=True,
                       timeout_kind='restart_future_deadline', result={}, log=None, log_sha256=None,
-                      queued_utc=request['queued_utc'], batch_id=None, options=request['cfg']))
+                      queued_utc=request['queued_utc'], batch_id=request['batch_id'],
+                      dequeued=request.get('dequeued'), batch_started=request.get('batch_started'), options=request['cfg']))
         unreaped = []
         for record in self.suite.output.rglob('*-execution.json'):
             value = load(record)
