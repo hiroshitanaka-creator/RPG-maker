@@ -141,6 +141,24 @@ def transaction_breakdown(files, expected):
     return dict(by_operation=totals,groups=groups,assignment_errors=assignment_errors,units='process内wall microsecondsの並行累積。全体wallと加算/除算しない。',classification='一意batch原logを元config順/TRANSACTION_PROBE終端で対応。operation/kill_point/fail_pointで正常・注入異常・kill前・再開・specialを分離。codec単体154件の各成否別時間は未測（値と成否は全件対照）。')
 
 
+
+def candidate_costs(files):
+    sys.path.insert(0,str(ROOT/'tools'))
+    from check_equipment_save_codec_cost import canonical_logs
+    totals={k:dict(count=0,microseconds=0) for k in ['second_decompress','second_parse','encode_metadata_regeneration','encode_metadata_copy','encode_original_metadata_check']}
+    for name,raw in canonical_logs(files):
+        for line in raw.splitlines():
+            if not line.startswith(b'COST060 '):continue
+            spans=json.loads(line[8:])['spans']
+            for span in spans:
+                label=span['label'];parent=spans[span['parent']] if span['parent']>=0 else None
+                grand=spans[parent['parent']] if parent is not None and parent['parent']>=0 else None
+                in_encode=parent is not None and parent['label']=='equipment_document_validation.native_metadata_errors' and grand is not None and grand['label']=='equipment_save_codec.encode_candidate'
+                key='second_decompress' if label=='saved_document.decompress' else 'second_parse' if label=='saved_document.parse' else 'encode_original_metadata_check' if label=='equipment_document_validation.native_metadata_errors' and parent is not None and parent['label']=='equipment_save_codec.encode_candidate' else 'encode_metadata_regeneration' if label=='saved_value_types.describe' and in_encode else 'encode_metadata_copy' if label=='validation.copy.document' and in_encode else None
+                if key:totals[key]['count']+=1;totals[key]['microseconds']+=span['end_us']-span['start_us']
+    return totals
+
+
 def validate_run(output,item):
     path=output/item['name'];require(path.is_dir(),'run欠落:'+item['name'])
     require({p.name for p in path.iterdir()}==FILES,'run固定file集合')
@@ -200,6 +218,8 @@ def main(args):
         for mode in ['off','on']:
             values=[r['seconds'] for r in index['runs'] if r['phase']==phase and r['mode']==mode]
             times[phase+'-'+mode]=dict(all=values,median=statistics.median(values),minimum=min(values),maximum=max(values))
+    measured_costs=[dict(run=row['name'],phase=row['phase'],repetition=row['repetition'],costs=candidate_costs(data[(row['phase'],'on',row['repetition'])])) for row in index['runs'] if row['mode']=='on']
+    require(measured_costs==index['candidate_costs'],'候補区間の原span再計算')
     code=(output/'code-fixed-sha.txt').read_text().strip();require(code==index['code_sha'],'計測code固定SHA')
     code_scope=scope(code);head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     result=dict(evidence_integrity=True,analysis_code_sha=head,measurement_code_sha=code,transaction_breakdown={str(rep):transaction_breakdown(data[('transaction','on',rep)],{x['case']:x for x in cases['transaction_cases']}) for rep in [1,2,3]},pairs=pairs,times=times,code_scope=code_scope,latest_scope=scope(head),self_tests=[])
