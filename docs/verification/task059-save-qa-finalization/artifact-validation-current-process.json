@@ -1,0 +1,61 @@
+{
+  "planned_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "docs/verification/task059-save-qa-finalization/evidence-tools/verify_artifacts.py"
+  ],
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "docs/verification/task059-save-qa-finalization/evidence-tools/verify_artifacts.py"
+  ],
+  "cwd": "/workspace/RPG-maker",
+  "pid": 23980,
+  "started_utc": "2026-10-09T18:55:39.066297+00:00",
+  "started_monotonic": 6731.087945242,
+  "accepted_utc": "2026-10-09T18:55:39.063160+00:00",
+  "accepted_monotonic": 6731.084788599,
+  "ended_utc": "2026-10-09T18:55:49.177046+00:00",
+  "ended_monotonic": 6741.198679037,
+  "terminal": true,
+  "seconds": 10.113890438000453,
+  "budget_seconds": 30,
+  "exit_code": 0,
+  "timed_out": false,
+  "timeout_kind": null,
+  "exception": null,
+  "exit_unavailable_reason": null,
+  "deadline_remaining_start": 29.999990005000654,
+  "deadline_remaining_end": 19.8860995670002,
+  "kill": {
+    "attempted": false,
+    "ok": null
+  },
+  "wait": {
+    "attempted": true,
+    "ok": true
+  },
+  "streams": "stdout+stderr",
+  "planned_log": "docs/verification/task059-save-qa-finalization/artifact-validation-current.log",
+  "log": "docs/verification/task059-save-qa-finalization/artifact-validation-current.log",
+  "log_sha256": "c5c6ba8ac8faf2bf02636a380e825dc15da9332b3ee54d6026928261094a269f",
+  "result": {},
+  "kill_point": null,
+  "record_path": "docs/verification/task059-save-qa-finalization/artifact-validation-current-process.json",
+  "record_saved": true,
+  "supervision": {
+    "mechanism": "Linux dedicated session",
+    "configured": true,
+    "ownership": {
+      "session": 23980,
+      "group": 23980,
+      "root_pid": 23980,
+      "token": "204586a33d30488aa0ac12e612eacc71"
+    },
+    "stopped": true,
+    "stop_attempted": false,
+    "reason": null,
+    "observed_members": []
+  },
+  "cleanup_remaining_end": 19.8860995670002
+}

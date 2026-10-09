@@ -1,0 +1,54 @@
+[
+  {
+    "status": "PASS",
+    "archive": "ci-code55-linux-transaction.tar.gz",
+    "raw_sha256": "83ae1a52a351d2222788ae0f5a101ed5e9acf54d1cfa21d8c22a1fd42a4a443b",
+    "head_sha": "ac768dee939783d41b8a6788af4b61551fd96d7b",
+    "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+    "platform": "linux",
+    "checks": {
+      "capture-tests": 12,
+      "capture059": 27
+    },
+    "scope_cases": 10,
+    "requests": 297,
+    "started_request_rows": 275,
+    "unstarted_request_rows": 22,
+    "unique_batch_records": 69,
+    "receipt_records_and_log_bytes_match": true,
+    "recovery_complete": true,
+    "transaction": {
+      "status": "FAIL",
+      "cases": 133,
+      "checks": 1773,
+      "seconds": 174.708151408
+    },
+    "note": "受付数と共有process数は別。取引の成功を回収成功で補完しない"
+  },
+  {
+    "status": "PASS",
+    "archive": "ci-code55-windows-transaction.tar.gz",
+    "raw_sha256": "9df6f3121f5b13c99dfb55ffd302ce94ec3c9b3af37977ca4f8548a4b621a16d",
+    "head_sha": "ac768dee939783d41b8a6788af4b61551fd96d7b",
+    "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+    "platform": "win32",
+    "checks": {
+      "capture-tests": 12,
+      "capture059": 27
+    },
+    "scope_cases": 10,
+    "requests": 258,
+    "started_request_rows": 172,
+    "unstarted_request_rows": 86,
+    "unique_batch_records": 57,
+    "receipt_records_and_log_bytes_match": true,
+    "recovery_complete": true,
+    "transaction": {
+      "status": "FAIL",
+      "cases": 78,
+      "checks": 1170,
+      "seconds": 174.39100000000008
+    },
+    "note": "受付数と共有process数は別。取引の成功を回収成功で補完しない"
+  }
+]

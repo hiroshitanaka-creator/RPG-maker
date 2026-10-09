@@ -1,0 +1,3577 @@
+[
+  {
+    "archive": "ci-first-fixed057-windows.tar.gz",
+    "raw_sha256": "9e7d7948f8a82c9a4e790280895db3ac9391492ef0016b157b2338904f7b49a4",
+    "results": [
+      {
+        "member": "evidence/results/restart-queue.json",
+        "recovery_complete": true,
+        "live_workers": [],
+        "unreaped_process_records": [],
+        "request_count": 154
+      },
+      {
+        "member": "evidence/results/summary.json",
+        "status": "FAIL",
+        "case_count": 69,
+        "checks": 1035,
+        "seconds": 174.40699999999998,
+        "failures": [
+          "kill-intent.rename.after:PermissionError: [Errno 13] Permission denied: 'D:\\\\a\\\\_temp\\\\native-evidence\\\\qa\\\\kill-intent.rename.after\\\\paused.json'",
+          "kill-receipt-prepared.close.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-prepared.close.before batch=batch-000034",
+          "kill-receipt-prepared.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-prepared.readback.before batch=batch-000035",
+          "kill-receipt-prepared.close.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-prepared.close.after batch=batch-000034",
+          "kill-receipt-prepared.readback.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-prepared.readback.after batch=batch-000035",
+          "kill-receipt-committed.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-committed.open.before batch=None",
+          "kill-receipt-prepared.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-prepared.rename.before batch=None",
+          "kill-receipt-prepared.rename.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-prepared.rename.after batch=None",
+          "kill-receipt-committed.open.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-committed.open.after batch=None",
+          "kill-receipt-committed.flush.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.store.after:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-receipt-committed.close.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.close.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.readback.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.flush.before:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-receipt-committed.store.before:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-receipt-committed.readback.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-commit.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-commit.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-read.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-read.open.before batch=None",
+          "fault-read.buffer.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-read.buffer.before batch=batch-000037",
+          "fault-source.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.store.before batch=batch-000037",
+          "fault-source.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.open.before batch=batch-000037",
+          "fault-source.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.flush.before batch=batch-000038",
+          "fault-source.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.readback.before batch=batch-000038",
+          "fault-history.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.store.before batch=batch-000038",
+          "fault-source.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.rename.before batch=batch-000038",
+          "fault-history.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.open.before batch=batch-000039",
+          "fault-history.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.flush.before batch=batch-000039",
+          "fault-history.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.rename.before batch=batch-000039",
+          "fault-history.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.readback.before batch=batch-000039",
+          "fault-candidate.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.open.before batch=batch-000040",
+          "fault-candidate.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.store.before batch=batch-000040",
+          "fault-candidate.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.readback.before batch=batch-000040",
+          "fault-candidate.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.flush.before batch=batch-000040",
+          "fault-receipt-prepared.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-prepared.rename.before batch=batch-000041",
+          "fault-receipt-prepared.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-prepared.open.before batch=batch-000041",
+          "fault-receipt-committed.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-committed.open.before batch=batch-000041",
+          "fault-receipt-committed.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-committed.rename.before batch=batch-000041",
+          "normal-pending:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\normal-pending batch=batch-000042",
+          "fault-commit.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-commit.rename.before batch=batch-000042",
+          "trial-missing:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-missing batch=batch-000042",
+          "normal-granted:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\normal-granted batch=batch-000042",
+          "absent-id:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\absent-id batch=batch-000043",
+          "trial-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-corrupt batch=batch-000043",
+          "inspect-readonly:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-readonly batch=batch-000043",
+          "trial-unclean:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-unclean batch=batch-000043",
+          "same-raw-alias:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\same-raw-alias batch=batch-000044",
+          "new-input:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\new-input batch=batch-000044",
+          "different-raw:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\different-raw batch=batch-000044",
+          "stale-commit:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-commit batch=batch-000044",
+          "stale-prepare:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-prepare batch=batch-000045",
+          "source-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\source-changed batch=batch-000045",
+          "wrong-hash:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\wrong-hash batch=batch-000045",
+          "receipt-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-corrupt batch=batch-000045",
+          "receipt-phase-stale:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-phase-stale batch=batch-000046",
+          "receipt-intent:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-intent batch=batch-000046",
+          "output-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\output-changed batch=batch-000046",
+          "backup-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-changed batch=batch-000046",
+          "intent-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\intent-changed batch=batch-000047",
+          "candidate-value:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-value batch=batch-000047",
+          "history-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\history-changed batch=batch-000047",
+          "candidate-quantity:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-quantity batch=batch-000047",
+          "candidate-types:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-types batch=batch-000048",
+          "outside-path:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\outside-path batch=batch-000048",
+          "parent-path:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\parent-path batch=batch-000048",
+          "source-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\source-link batch=batch-000048",
+          "backup-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-hardlink batch=batch-000049",
+          "output-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\output-link batch=batch-000049",
+          "directory-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\directory-link batch=batch-000049",
+          "transaction-source:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\transaction-source batch=batch-000049",
+          "writer-busy:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "null-session:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\null-session batch=batch-000050",
+          "target-collision:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\target-collision batch=batch-000050",
+          "token-invalid:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\token-invalid batch=batch-000050",
+          "backup-collision:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-collision batch=batch-000050",
+          "commit-source-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "null-abilities:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\null-abilities batch=None",
+          "nonroot-permission:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\nonroot-permission batch=None",
+          "commit-target-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-intent.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-source.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-tmp-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-owner.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "injected-enospc:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\injected-enospc batch=None",
+          "kill-history.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-source.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.store.partial batch=batch-000052",
+          "fault-history.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.store.partial batch=batch-000051",
+          "fault-candidate.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.store.partial batch=batch-000052",
+          "stale-current:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-current batch=batch-000052",
+          "stale-committed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-committed batch=batch-000052",
+          "inspect-committed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-committed batch=batch-000053",
+          "inspect-null-context:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-null-context batch=batch-000053",
+          "inspect-prepared:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-prepared batch=batch-000053",
+          "inspect-missing:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-missing batch=batch-000053",
+          "initial-tmp-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\initial-tmp-hardlink batch=None",
+          "receipt-tmp-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-tmp-hardlink batch=None",
+          "owner-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\owner-corrupt batch=None"
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "ci-second-linux-latest.tar.gz",
+    "raw_sha256": "cd3d5ae69f3b8f8404671e581fc032fb9f811398af8d55ef69c4947c788a83f0",
+    "results": [
+      {
+        "member": "evidence/results/restart-queue.json",
+        "recovery_complete": false,
+        "live_workers": [],
+        "pending_futures": [],
+        "evidence_errors": [],
+        "unreaped_process_records": [
+          "requests/request-000013-execution.json",
+          "requests/request-000226-execution.json",
+          "requests/request-000227-execution.json",
+          "requests/request-000228-execution.json",
+          "requests/request-000229-execution.json"
+        ],
+        "request_count": 299
+      },
+      {
+        "member": "evidence/results/summary.json",
+        "status": "FAIL",
+        "case_count": 119,
+        "checks": 1653,
+        "seconds": 174.655821929,
+        "failures": [
+          "stale-commit:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/stale-commit batch=batch-000061",
+          "backup-changed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/backup-changed batch=batch-000061",
+          "candidate-types:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/candidate-types batch=batch-000064",
+          "candidate-value:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/candidate-value batch=batch-000063",
+          "different-raw:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/different-raw batch=batch-000064",
+          "intent-changed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/intent-changed batch=batch-000062",
+          "receipt-intent:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/receipt-intent batch=batch-000063",
+          "source-changed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/source-changed batch=batch-000063",
+          "output-changed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/output-changed batch=batch-000061",
+          "same-raw-alias:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/same-raw-alias batch=batch-000062",
+          "receipt-phase-stale:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/receipt-phase-stale batch=batch-000061",
+          "history-changed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/history-changed batch=batch-000062",
+          "new-input:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/new-input batch=batch-000064",
+          "candidate-quantity:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/candidate-quantity batch=batch-000064",
+          "receipt-corrupt:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/receipt-corrupt batch=batch-000063",
+          "absent-id:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/absent-id batch=batch-000062",
+          "source-link:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/source-link batch=None",
+          "null-session:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/null-session batch=None",
+          "token-invalid:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/token-invalid batch=None",
+          "output-link:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/output-link batch=None",
+          "directory-link:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/directory-link batch=None",
+          "nonroot-permission:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/nonroot-permission batch=None",
+          "backup-collision:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/backup-collision batch=None",
+          "backup-hardlink:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/backup-hardlink batch=None",
+          "kill-candidate.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "target-collision:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/target-collision batch=None",
+          "writer-busy:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "parent-path:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/parent-path batch=None",
+          "outside-path:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/outside-path batch=None",
+          "injected-enospc:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/injected-enospc batch=None",
+          "null-abilities:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/null-abilities batch=None",
+          "fault-source.store.partial:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/fault-source.store.partial batch=None",
+          "transaction-source:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/transaction-source batch=None",
+          "commit-source-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-history.store.partial:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/fault-history.store.partial batch=None",
+          "kill-owner.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-candidate.store.partial:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/fault-candidate.store.partial batch=None",
+          "kill-history.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-intent.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-source.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-tmp-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "inspect-missing:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/inspect-missing batch=None",
+          "stale-current:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/stale-current batch=None",
+          "stale-committed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/stale-committed batch=None",
+          "kill-receipt-committed.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-target-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "inspect-prepared:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/inspect-prepared batch=None",
+          "inspect-committed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/inspect-committed batch=None",
+          "initial-tmp-hardlink:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/initial-tmp-hardlink batch=None",
+          "inspect-null-context:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/inspect-null-context batch=None",
+          "owner-corrupt:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/owner-corrupt batch=None",
+          "receipt-tmp-hardlink:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/receipt-tmp-hardlink batch=None",
+          "process未回収:requests/request-000013-execution.json,requests/request-000226-execution.json,requests/request-000227-execution.json,requests/request-000228-execution.json,requests/request-000229-execution.json",
+          "全受付終端/監督の照合未完了:[]"
+        ]
+      },
+      {
+        "member": "evidence/task059/baseline058/counterexamples.json",
+        "source_sha": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
+        "f5a": {
+          "exception": "IsADirectoryError(21, 'Is a directory')",
+          "execution_records": 0,
+          "recovery_complete": true
+        },
+        "f5b": {
+          "grandchild_executing_after_outer_kill": true,
+          "scope": "0.5秒縮尺、実180秒検査ではない"
+        }
+      },
+      {
+        "member": "evidence/task059/capture-tests/tests.json",
+        "status": "FAIL",
+        "cases": [
+          {
+            "case": "normal",
+            "status": "PASS",
+            "seconds": 0.04770245600002454
+          },
+          {
+            "case": "abnormal-child",
+            "status": "PASS",
+            "seconds": 0.048201611999957095
+          },
+          {
+            "case": "parent-exception",
+            "status": "PASS",
+            "seconds": 0.0512217019999639
+          },
+          {
+            "case": "forced-child-kill",
+            "status": "PASS",
+            "seconds": 0.051122455999973226
+          },
+          {
+            "case": "child-real-30-seconds",
+            "status": "PASS",
+            "seconds": 30.024325955999984
+          },
+          {
+            "case": "suite-inner-deadline",
+            "status": "PASS",
+            "seconds": 0.3028048639999952
+          },
+          {
+            "case": "launch-failure",
+            "status": "PASS",
+            "seconds": 0.0668563319999862
+          },
+          {
+            "case": "suite-run-parent-exception",
+            "status": "PASS",
+            "seconds": 0.5436384190000467
+          },
+          {
+            "case": "parallel-batch-normal",
+            "status": "PASS",
+            "seconds": 0.45765028599998914
+          },
+          {
+            "case": "parallel-worker-exception",
+            "status": "PASS",
+            "seconds": 0.5175828959999649
+          },
+          {
+            "case": "shutdown-active-and-futures",
+            "status": "FAIL",
+            "seconds": 0.5089697969999634,
+            "exception": "AssertionError()"
+          },
+          {
+            "case": "outer-timeout-scaled",
+            "status": "PASS",
+            "seconds": 0.2951784279999856
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/capture059/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.12441353799999888
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.12407103800001096
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.12438972199998943
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.12585808599999382
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.12562346499998966
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.1737238869999942
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.06239923399999725
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.12570627100001275
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.2792092219999631
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.2851527640000313
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.2831740539999714
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.28185258499996735
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.17771364600002926
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.6102679400000284
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.2110642060000032
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.619617116000029
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 1.3327158060000102
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.13433687100001634
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.053214977999971325
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.3831722719999675
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.002625230999967698
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/execution.json",
+        "source_sha": "6a62fd7f7bd01cb7f508440e98a41dccea0c4cac",
+        "code_sha": "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+        "status": "FAIL",
+        "failures": [
+          "capture-tests: exit=1"
+        ],
+        "commands": [
+          {
+            "label": "capture-tests",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/capture-tests"
+            ],
+            "seconds": 33.286628682000014,
+            "exit_code": 1,
+            "supervision_stopped": true
+          },
+          {
+            "label": "scope059",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+              "--code-sha",
+              "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+              "--source-sha",
+              "6a62fd7f7bd01cb7f508440e98a41dccea0c4cac",
+              "--self-test",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/scope.json"
+            ],
+            "seconds": 0.6736815199999455,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "capture059",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/capture059"
+            ],
+            "seconds": 6.043179012999985,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "baseline058",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+              "--checkout",
+              "/home/runner/work/_temp/qa059-baseline058",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/baseline058"
+            ],
+            "seconds": 0.7806587669999772,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "measurements",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+              "--godot",
+              "/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/measurements"
+            ],
+            "seconds": 34.932395776999954,
+            "exit_code": 0,
+            "supervision_stopped": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "ci-second-windows-transaction.tar.gz",
+    "raw_sha256": "8d33c1defa6018d29ddfc8e14e3a2b9bef2b1f7009d4866c07496ad5f86d6f27",
+    "results": [
+      {
+        "member": "evidence/results/restart-queue.json",
+        "recovery_complete": true,
+        "live_workers": [],
+        "pending_futures": [],
+        "evidence_errors": [],
+        "unreaped_process_records": [],
+        "request_count": 231
+      },
+      {
+        "member": "evidence/results/summary.json",
+        "status": "FAIL",
+        "case_count": 49,
+        "checks": 735,
+        "seconds": 174.79700000000003,
+        "failures": [
+          "kill-history.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.rename.before batch=batch-000027",
+          "kill-candidate.open.after:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-history.close.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.close.after batch=batch-000026",
+          "kill-history.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.readback.before batch=batch-000026",
+          "kill-history.readback.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.readback.after batch=batch-000027",
+          "kill-candidate.open.before:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-history.rename.after:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-candidate.store.before:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-candidate.store.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.flush.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.close.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.flush.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.close.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.readback.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.readback.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.open.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.open.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.flush.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.close.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.flush.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.close.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.readback.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.readback.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.store.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.open.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.open.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.store.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.flush.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.close.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.close.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.flush.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.readback.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.readback.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-commit.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-commit.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-read.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-read.open.before batch=None",
+          "fault-source.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.readback.before batch=batch-000029",
+          "fault-source.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.flush.before batch=batch-000028",
+          "fault-source.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.rename.before batch=batch-000028",
+          "fault-read.buffer.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-read.buffer.before batch=batch-000029",
+          "fault-source.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.store.before batch=batch-000029",
+          "fault-source.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.open.before batch=batch-000028",
+          "fault-history.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.store.before batch=batch-000029",
+          "fault-history.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.open.before batch=None",
+          "fault-history.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.flush.before batch=batch-000031",
+          "fault-candidate.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.readback.before batch=batch-000031",
+          "fault-history.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.rename.before batch=batch-000030",
+          "fault-candidate.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.open.before batch=batch-000030",
+          "fault-history.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.readback.before batch=batch-000031",
+          "fault-candidate.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.store.before batch=batch-000030",
+          "fault-candidate.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.flush.before batch=batch-000031",
+          "fault-receipt-prepared.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-prepared.open.before batch=None",
+          "normal-pending:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\normal-pending batch=batch-000032",
+          "fault-receipt-committed.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-committed.rename.before batch=batch-000033",
+          "normal-granted:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\normal-granted batch=batch-000032",
+          "fault-receipt-committed.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-committed.open.before batch=batch-000032",
+          "fault-commit.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-commit.rename.before batch=batch-000033",
+          "fault-receipt-prepared.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-prepared.rename.before batch=batch-000033",
+          "trial-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-corrupt batch=batch-000034",
+          "trial-missing:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-missing batch=batch-000033",
+          "same-raw-alias:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\same-raw-alias batch=batch-000035",
+          "inspect-readonly:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-readonly batch=batch-000035",
+          "absent-id:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\absent-id batch=batch-000034",
+          "trial-unclean:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-unclean batch=batch-000034",
+          "different-raw:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\different-raw batch=batch-000034",
+          "stale-commit:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-commit batch=batch-000036",
+          "new-input:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\new-input batch=batch-000035",
+          "stale-prepare:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-prepare batch=batch-000035",
+          "receipt-phase-stale:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-phase-stale batch=batch-000037",
+          "source-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\source-changed batch=batch-000037",
+          "receipt-intent:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-intent batch=batch-000036",
+          "wrong-hash:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\wrong-hash batch=batch-000036",
+          "receipt-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-corrupt batch=batch-000036",
+          "output-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\output-changed batch=batch-000037",
+          "intent-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\intent-changed batch=batch-000037",
+          "backup-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-changed batch=batch-000038",
+          "candidate-value:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-value batch=batch-000038",
+          "parent-path:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\parent-path batch=batch-000038",
+          "history-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\history-changed batch=batch-000038",
+          "candidate-quantity:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-quantity batch=batch-000039",
+          "candidate-types:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-types batch=batch-000039",
+          "source-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\source-link batch=batch-000039",
+          "directory-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\directory-link batch=batch-000040",
+          "outside-path:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\outside-path batch=batch-000039",
+          "output-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\output-link batch=batch-000040",
+          "transaction-source:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\transaction-source batch=batch-000041",
+          "target-collision:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\target-collision batch=batch-000040",
+          "backup-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-hardlink batch=batch-000041",
+          "token-invalid:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\token-invalid batch=batch-000040",
+          "null-session:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\null-session batch=batch-000041",
+          "backup-collision:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-collision batch=None",
+          "null-abilities:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\null-abilities batch=batch-000041",
+          "nonroot-permission:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\nonroot-permission batch=None",
+          "commit-source-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-tmp-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-target-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "writer-busy:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "injected-enospc:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\injected-enospc batch=None",
+          "kill-intent.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-owner.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-source.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-history.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-source.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.store.partial batch=batch-000042",
+          "stale-current:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-current batch=batch-000043",
+          "fault-history.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.store.partial batch=batch-000043",
+          "fault-candidate.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.store.partial batch=batch-000043",
+          "stale-committed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-committed batch=batch-000044",
+          "inspect-prepared:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-prepared batch=batch-000044",
+          "inspect-missing:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-missing batch=batch-000043",
+          "inspect-committed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-committed batch=batch-000044",
+          "inspect-null-context:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-null-context batch=batch-000044",
+          "owner-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\owner-corrupt batch=None",
+          "initial-tmp-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\initial-tmp-hardlink batch=None",
+          "receipt-tmp-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-tmp-hardlink batch=None"
+        ]
+      },
+      {
+        "member": "evidence/task059/baseline058/counterexamples.json",
+        "source_sha": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
+        "f5a": {
+          "exception": "PermissionError(13, 'Permission denied')",
+          "execution_records": 0,
+          "recovery_complete": true
+        },
+        "f5b": {
+          "grandchild_executing_after_outer_kill": true,
+          "scope": "0.5秒縮尺、実180秒検査ではない"
+        }
+      },
+      {
+        "member": "evidence/task059/capture-tests/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "normal",
+            "status": "PASS",
+            "seconds": 0.06299999999987449
+          },
+          {
+            "case": "abnormal-child",
+            "status": "PASS",
+            "seconds": 0.047000000000025466
+          },
+          {
+            "case": "parent-exception",
+            "status": "PASS",
+            "seconds": 0.047000000000025466
+          },
+          {
+            "case": "forced-child-kill",
+            "status": "PASS",
+            "seconds": 0.04600000000004911
+          },
+          {
+            "case": "child-real-30-seconds",
+            "status": "PASS",
+            "seconds": 30.0
+          },
+          {
+            "case": "suite-inner-deadline",
+            "status": "PASS",
+            "seconds": 0.2039999999999509
+          },
+          {
+            "case": "launch-failure",
+            "status": "PASS",
+            "seconds": 0.015000000000100044
+          },
+          {
+            "case": "suite-run-parent-exception",
+            "status": "PASS",
+            "seconds": 0.06299999999987449
+          },
+          {
+            "case": "parallel-batch-normal",
+            "status": "PASS",
+            "seconds": 0.15599999999994907
+          },
+          {
+            "case": "parallel-worker-exception",
+            "status": "PASS",
+            "seconds": 0.15600000000017644
+          },
+          {
+            "case": "shutdown-active-and-futures",
+            "status": "PASS",
+            "seconds": 2.046999999999798
+          },
+          {
+            "case": "outer-timeout-scaled",
+            "status": "PASS",
+            "seconds": 0.20299999999997453
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/capture059/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.125
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.15599999999994907
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.15699999999992542
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.125
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.14000000000010004
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.20299999999997453
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.07899999999995089
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.14000000000010004
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.32799999999997453
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.32799999999997453
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.3129999999998745
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.31199999999989814
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.2030000000002019
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.625
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.23499999999989996
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.625
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 0.6089999999999236
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.17200000000002547
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.06299999999987449
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.29700000000002547
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.0
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/execution.json",
+        "source_sha": "6a62fd7f7bd01cb7f508440e98a41dccea0c4cac",
+        "code_sha": "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+        "status": "PASS",
+        "failures": [],
+        "commands": [
+          {
+            "label": "capture-tests",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\test_capture057.py",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\capture-tests"
+            ],
+            "seconds": 33.202999999999975,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "scope059",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\scope059.py",
+              "--code-sha",
+              "b5402ee339c6e071fad4c59613dcefb04e1b9539",
+              "--source-sha",
+              "6a62fd7f7bd01cb7f508440e98a41dccea0c4cac",
+              "--self-test",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\scope.json"
+            ],
+            "seconds": 3.719000000000051,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "capture059",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\test_capture059.py",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\capture059"
+            ],
+            "seconds": 5.906999999999925,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "baseline058",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\reproduce058.py",
+              "--checkout",
+              "D:\\a\\_temp\\qa059-baseline058",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\baseline058"
+            ],
+            "seconds": 0.7970000000000255,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "measurements",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\diagnostics057.py",
+              "--godot",
+              "D:\\a\\_temp\\native-evidence\\bin\\Godot_v4.7.2-stable_win64.exe",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\measurements"
+            ],
+            "seconds": 69.3119999999999,
+            "exit_code": 0,
+            "supervision_stopped": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-before-batch.tar.gz",
+    "raw_sha256": "2728172640496c15f002f63cc35df3d9ba6e07ada5f944eba133754f5f22e6cf",
+    "results": [
+      {
+        "member": "tests.json",
+        "status": "FAIL",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.12575483599994186
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.12593618900018555
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.12472717499986175
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.12629542499962554
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.1294215709999662
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.24823228900004324
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "FAIL",
+            "seconds": 0.12400642900001912,
+            "exception": "AssertionError()"
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.06455725699970571
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.28834120500005156
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.3768879429999288
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.3715420590001486
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.35238438000033057
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.3506313000002592
+          },
+          {
+            "case": "record-batch-content",
+            "status": "FAIL",
+            "seconds": 0.19502309100016646,
+            "exception": "AssertionError()"
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "FAIL",
+            "seconds": 0.12549117699973067,
+            "exception": "AssertionError()"
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.2087479169999824
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.6159563659998639
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.19779167599972425
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.5959049369998866
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 1.3495958000003156
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.13649640799985718
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.05370116199992481
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.4646953490000669
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.036334397999780776
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.0023111489999791957
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-capture025.tar.gz",
+    "raw_sha256": "5b1dcaa22241d9039814180df11ad78db70b6cfdcdefd2e3896ea52ee3d59452",
+    "results": [
+      {
+        "member": "tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.12427597399982915
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.1270328780001364
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.12564806399996087
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.12442727100005868
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.12502784600019368
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.1960405519998858
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "PASS",
+            "seconds": 0.12543926499984082
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.06275914700017893
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.2729610119999961
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.3993075029998181
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.3353706329999113
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.29350305600019055
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.3114046900000176
+          },
+          {
+            "case": "record-batch-content",
+            "status": "PASS",
+            "seconds": 0.31724291800037463
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "PASS",
+            "seconds": 0.24592189800023334
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.1649593580000328
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.5998660349996499
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.17897059000006266
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.595415070999934
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 1.3232880600003227
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.1433671689997027
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.04845259999956397
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.24785541799974453
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.03418227799966189
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.0024110989998007426
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-capture012.tar.gz",
+    "raw_sha256": "7eec44ab050116e00b30e6c8f5bdb7f31419b1b591814772d19115efa0ce4657",
+    "results": [
+      {
+        "member": "tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "normal",
+            "status": "PASS",
+            "seconds": 0.07606320400009281
+          },
+          {
+            "case": "abnormal-child",
+            "status": "PASS",
+            "seconds": 0.03648927099993671
+          },
+          {
+            "case": "parent-exception",
+            "status": "PASS",
+            "seconds": 0.03842483399967023
+          },
+          {
+            "case": "forced-child-kill",
+            "status": "PASS",
+            "seconds": 0.033325276999676134
+          },
+          {
+            "case": "child-real-30-seconds",
+            "status": "PASS",
+            "seconds": 30.030212942000162
+          },
+          {
+            "case": "suite-inner-deadline",
+            "status": "PASS",
+            "seconds": 0.20781172399983916
+          },
+          {
+            "case": "launch-failure",
+            "status": "PASS",
+            "seconds": 0.0018968450003740145
+          },
+          {
+            "case": "suite-run-parent-exception",
+            "status": "PASS",
+            "seconds": 0.06634576099986589
+          },
+          {
+            "case": "parallel-batch-normal",
+            "status": "PASS",
+            "seconds": 0.2053930729998683
+          },
+          {
+            "case": "parallel-worker-exception",
+            "status": "PASS",
+            "seconds": 0.1748294829999395
+          },
+          {
+            "case": "shutdown-active-and-futures",
+            "status": "PASS",
+            "seconds": 0.12261950399988564
+          },
+          {
+            "case": "outer-timeout-scaled",
+            "status": "PASS",
+            "seconds": 0.20520669300003647
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-before-accept-close.tar.gz",
+    "raw_sha256": "f6f16a46b94502f2183d670007c5cdf9448dfe13bddb94c52a251f7bfbed5e56",
+    "results": [
+      {
+        "member": "tests.json",
+        "status": "FAIL",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.1327417500001502
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.18154500399987228
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.14670745100011118
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.15358972400008497
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.15894352400027856
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.3415103090001139
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "PASS",
+            "seconds": 0.16109091399994213
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.08396785800005091
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.5104390630003763
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.4185104999996838
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.7533809240003393
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.8035864359999323
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.7076823019997391
+          },
+          {
+            "case": "record-batch-content",
+            "status": "PASS",
+            "seconds": 0.847549713999797
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "PASS",
+            "seconds": 0.5893684970001232
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.3193834210001114
+          },
+          {
+            "case": "acceptance-close-race",
+            "status": "FAIL",
+            "seconds": 0.07744283700003507,
+            "exception": "AssertionError()"
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.6667718280000372
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.3171353860002455
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.6417758809998304
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 1.4883838370001286
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.5045958850000716
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.13332398500006093
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 1.6147910119998414
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.17268838200016035
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.017734628999733104
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-capture026.tar.gz",
+    "raw_sha256": "95dedd13665c622a89e59b47d819b138bb0f8a43676c2cd28dd50eea03f9cb05",
+    "results": [
+      {
+        "member": "tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.14914311400025326
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.13821978400028456
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.1674775649998992
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.16350847800003976
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.14183831299988015
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.2594460169998456
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "PASS",
+            "seconds": 0.13691598800005522
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.10742147600012686
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.35895490800021435
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.8339366599998357
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.8184374000002208
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.7777098940000542
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.7138825970000653
+          },
+          {
+            "case": "record-batch-content",
+            "status": "PASS",
+            "seconds": 0.7625248420004027
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "PASS",
+            "seconds": 0.6538433939999777
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.20843279900009293
+          },
+          {
+            "case": "acceptance-close-race",
+            "status": "PASS",
+            "seconds": 0.24903681000023425
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.610036700999899
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.2608802710001328
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.6123988780000218
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 1.3635432799997034
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.18222755600027085
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.07345373099997232
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.39380864399981874
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.04647826299969893
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.013509327000065241
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-capture012-final.tar.gz",
+    "raw_sha256": "2a8b03f29475ec99ba2a677992166ca068e9de0ca3848f5b6e93b2c2f2f3e4e6",
+    "results": [
+      {
+        "member": "tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "normal",
+            "status": "PASS",
+            "seconds": 0.057554213000003074
+          },
+          {
+            "case": "abnormal-child",
+            "status": "PASS",
+            "seconds": 0.03721153000014965
+          },
+          {
+            "case": "parent-exception",
+            "status": "PASS",
+            "seconds": 0.037504872000226896
+          },
+          {
+            "case": "forced-child-kill",
+            "status": "PASS",
+            "seconds": 0.07587835399999676
+          },
+          {
+            "case": "child-real-30-seconds",
+            "status": "PASS",
+            "seconds": 30.04820756199979
+          },
+          {
+            "case": "suite-inner-deadline",
+            "status": "PASS",
+            "seconds": 0.22422319499992227
+          },
+          {
+            "case": "launch-failure",
+            "status": "PASS",
+            "seconds": 0.01148673699981373
+          },
+          {
+            "case": "suite-run-parent-exception",
+            "status": "PASS",
+            "seconds": 0.26475014400011787
+          },
+          {
+            "case": "parallel-batch-normal",
+            "status": "PASS",
+            "seconds": 0.5632360929998868
+          },
+          {
+            "case": "parallel-worker-exception",
+            "status": "PASS",
+            "seconds": 0.44704899699991074
+          },
+          {
+            "case": "shutdown-active-and-futures",
+            "status": "PASS",
+            "seconds": 2.0711755899997115
+          },
+          {
+            "case": "outer-timeout-scaled",
+            "status": "PASS",
+            "seconds": 0.22239242499972534
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-full-faa459e.tar.gz",
+    "raw_sha256": "ee25c125245d47bde826da0a5c1420e73065ecc49edce5adb12ee83cbf7c7955",
+    "results": [
+      {
+        "member": "results/restart-queue.json",
+        "recovery_complete": true,
+        "live_workers": [],
+        "pending_futures": [],
+        "evidence_errors": [],
+        "unreaped_process_records": [],
+        "request_count": 319
+      },
+      {
+        "member": "results/summary.json",
+        "status": "FAIL",
+        "case_count": 154,
+        "checks": 1968,
+        "seconds": 174.43796719300008,
+        "failures": [
+          "inspect-committed:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/inspect-committed batch=batch-000079",
+          "initial-tmp-hardlink:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/initial-tmp-hardlink batch=None",
+          "kill-intent.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/kill-intent.store.partial batch=batch-000078",
+          "kill-owner.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/kill-owner.store.partial batch=batch-000079",
+          "kill-receipt-prepared.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/kill-receipt-prepared.store.partial batch=batch-000078",
+          "fault-history.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/fault-history.store.partial batch=batch-000076",
+          "kill-candidate.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/kill-candidate.store.partial batch=batch-000075",
+          "kill-history.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/kill-history.store.partial batch=batch-000079",
+          "fault-source.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/fault-source.store.partial batch=batch-000076",
+          "kill-source.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/kill-source.store.partial batch=batch-000078",
+          "inspect-prepared:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/inspect-prepared batch=None",
+          "fault-candidate.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/fault-candidate.store.partial batch=batch-000075",
+          "stale-committed:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/stale-committed batch=batch-000075",
+          "stale-current:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/stale-current batch=batch-000079",
+          "kill-receipt-committed.store.partial:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/kill-receipt-committed.store.partial batch=batch-000078",
+          "receipt-tmp-hardlink:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/receipt-tmp-hardlink batch=None",
+          "owner-corrupt:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/owner-corrupt batch=None",
+          "writer-busy:TimeoutError: restart_future_deadline: root=/tmp/qa059/astra-full-run/qa/writer-busy batch=batch-000075"
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "ci-faa-linux-transaction.tar.gz",
+    "raw_sha256": "090ff81e53ee91d9216f317a4c2c4b9b12ca6eeb182a409eae48e5e0becccad5",
+    "results": [
+      {
+        "member": "evidence/results/restart-queue.json",
+        "recovery_complete": true,
+        "live_workers": [],
+        "pending_futures": [],
+        "evidence_errors": [],
+        "unreaped_process_records": [],
+        "request_count": 323
+      },
+      {
+        "member": "evidence/results/summary.json",
+        "status": "FAIL",
+        "case_count": 172,
+        "checks": 2178,
+        "seconds": 153.142940458,
+        "failures": [
+          "inspect-prepared:specific_invariant"
+        ]
+      },
+      {
+        "member": "evidence/task059/baseline058/counterexamples.json",
+        "source_sha": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
+        "f5a": {
+          "exception": "IsADirectoryError(21, 'Is a directory')",
+          "execution_records": 0,
+          "recovery_complete": true
+        },
+        "f5b": {
+          "grandchild_executing_after_outer_kill": true,
+          "scope": "0.5秒縮尺、実180秒検査ではない"
+        }
+      },
+      {
+        "member": "evidence/task059/capture-tests/tests.json",
+        "status": "FAIL",
+        "cases": [
+          {
+            "case": "normal",
+            "status": "PASS",
+            "seconds": 0.03776256500003683
+          },
+          {
+            "case": "abnormal-child",
+            "status": "PASS",
+            "seconds": 0.037402472999986
+          },
+          {
+            "case": "parent-exception",
+            "status": "PASS",
+            "seconds": 0.031607832999952734
+          },
+          {
+            "case": "forced-child-kill",
+            "status": "PASS",
+            "seconds": 0.03156966599999578
+          },
+          {
+            "case": "child-real-30-seconds",
+            "status": "PASS",
+            "seconds": 30.02025226699999
+          },
+          {
+            "case": "suite-inner-deadline",
+            "status": "PASS",
+            "seconds": 0.24627835699999423
+          },
+          {
+            "case": "launch-failure",
+            "status": "PASS",
+            "seconds": 0.09480080100001942
+          },
+          {
+            "case": "suite-run-parent-exception",
+            "status": "PASS",
+            "seconds": 0.24231630600002063
+          },
+          {
+            "case": "parallel-batch-normal",
+            "status": "PASS",
+            "seconds": 0.5413361189999932
+          },
+          {
+            "case": "parallel-worker-exception",
+            "status": "PASS",
+            "seconds": 0.2694754400000079
+          },
+          {
+            "case": "shutdown-active-and-futures",
+            "status": "FAIL",
+            "seconds": 3.181928856000013,
+            "exception": "AssertionError()"
+          },
+          {
+            "case": "outer-timeout-scaled",
+            "status": "PASS",
+            "seconds": 0.2651506810000228
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/capture059/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.12331575599995404
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.1234577360000344
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.12381403099999488
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.12448359000001119
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.12423452300004101
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.1618850920000341
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "PASS",
+            "seconds": 0.12339197799997237
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.06178463699995973
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.20059280699996407
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.24461632999998528
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.24553900099999737
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.2416031839999846
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.24605114799999228
+          },
+          {
+            "case": "record-batch-content",
+            "status": "PASS",
+            "seconds": 0.24556019299996024
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "PASS",
+            "seconds": 0.20911408500001016
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.16677690900002062
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.5979506240000205
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.1696818059999714
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.5980192139999758
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 1.323514954000018
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.11612675399999262
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.04731618699997853
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.2534555830000045
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.032092404000025
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.0023135229999979856
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/execution.json",
+        "source_sha": "7f91d0460298dd074cb6974733aa5a16ba484139",
+        "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "status": "FAIL",
+        "failures": [
+          "capture-tests: exit=1"
+        ],
+        "commands": [
+          {
+            "label": "capture-tests",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/capture-tests"
+            ],
+            "seconds": 35.46157030799998,
+            "exit_code": 1,
+            "supervision_stopped": true
+          },
+          {
+            "label": "scope059",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+              "--code-sha",
+              "faa459ee5cc101e708477792b1c7891a9ba4beea",
+              "--source-sha",
+              "7f91d0460298dd074cb6974733aa5a16ba484139",
+              "--self-test",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/scope.json"
+            ],
+            "seconds": 1.6388518350000254,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "capture059",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/capture059"
+            ],
+            "seconds": 6.332116083000017,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "baseline058",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+              "--checkout",
+              "/home/runner/work/_temp/qa059-baseline058",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/baseline058"
+            ],
+            "seconds": 0.7706579630000192,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "measurements",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+              "--godot",
+              "/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/measurements"
+            ],
+            "seconds": 27.089863705000027,
+            "exit_code": 0,
+            "supervision_stopped": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "ci-faa-windows-transaction.tar.gz",
+    "raw_sha256": "84bac24b7c0ae005f099807fec61df722b2455463ccfe8692a64240c43b8d5fb",
+    "results": [
+      {
+        "member": "evidence/results/restart-queue.json",
+        "recovery_complete": true,
+        "live_workers": [],
+        "pending_futures": [],
+        "evidence_errors": [],
+        "unreaped_process_records": [],
+        "request_count": 234
+      },
+      {
+        "member": "evidence/results/summary.json",
+        "status": "FAIL",
+        "case_count": 48,
+        "checks": 720,
+        "seconds": 174.74999999999994,
+        "failures": [
+          "kill-history.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.rename.before batch=batch-000028",
+          "kill-history.close.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.close.before batch=batch-000027",
+          "kill-candidate.open.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-candidate.open.after batch=None",
+          "kill-history.rename.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.rename.after batch=batch-000028",
+          "kill-candidate.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-candidate.open.before batch=batch-000028",
+          "kill-history.close.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.close.after batch=batch-000027",
+          "kill-history.readback.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.readback.after batch=batch-000028",
+          "kill-candidate.store.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-history.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.readback.before batch=batch-000027",
+          "kill-candidate.store.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.close.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.flush.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.flush.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.close.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.readback.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.readback.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.open.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.flush.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.open.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.flush.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.close.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.close.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.readback.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.readback.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.open.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.open.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.store.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.flush.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.store.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.close.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.flush.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.close.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.readback.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.readback.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-commit.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-commit.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-source.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.flush.before batch=batch-000031",
+          "fault-read.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-read.open.before batch=batch-000031",
+          "fault-source.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.readback.before batch=batch-000030",
+          "fault-read.buffer.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-read.buffer.before batch=batch-000030",
+          "fault-source.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.store.before batch=batch-000030",
+          "fault-source.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.open.before batch=batch-000030",
+          "fault-source.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.rename.before batch=batch-000031",
+          "fault-history.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.open.before batch=batch-000031",
+          "fault-history.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.readback.before batch=batch-000033",
+          "fault-candidate.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.store.before batch=batch-000033",
+          "fault-history.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.rename.before batch=batch-000032",
+          "fault-candidate.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.open.before batch=batch-000033",
+          "fault-history.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.store.before batch=batch-000032",
+          "fault-candidate.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.flush.before batch=batch-000032",
+          "fault-history.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.flush.before batch=batch-000032",
+          "fault-candidate.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.readback.before batch=batch-000033",
+          "fault-receipt-prepared.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-prepared.open.before batch=batch-000034",
+          "fault-receipt-prepared.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-prepared.rename.before batch=batch-000035",
+          "fault-receipt-committed.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-committed.rename.before batch=batch-000034",
+          "fault-commit.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-commit.rename.before batch=batch-000034",
+          "trial-missing:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-missing batch=batch-000034",
+          "fault-receipt-committed.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-committed.open.before batch=batch-000035",
+          "normal-granted:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\normal-granted batch=batch-000035",
+          "normal-pending:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\normal-pending batch=batch-000035",
+          "trial-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-corrupt batch=None",
+          "same-raw-alias:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\same-raw-alias batch=batch-000037",
+          "trial-unclean:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-unclean batch=batch-000037",
+          "new-input:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\new-input batch=batch-000036",
+          "absent-id:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\absent-id batch=batch-000036",
+          "different-raw:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\different-raw batch=batch-000037",
+          "stale-prepare:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-prepare batch=batch-000036",
+          "inspect-readonly:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-readonly batch=batch-000037",
+          "stale-commit:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-commit batch=None",
+          "receipt-phase-stale:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-phase-stale batch=batch-000039",
+          "receipt-intent:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-intent batch=batch-000039",
+          "receipt-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-corrupt batch=batch-000039",
+          "backup-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-changed batch=batch-000038",
+          "wrong-hash:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\wrong-hash batch=batch-000038",
+          "source-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\source-changed batch=batch-000038",
+          "output-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\output-changed batch=batch-000039",
+          "intent-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\intent-changed batch=None",
+          "history-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\history-changed batch=batch-000040",
+          "candidate-value:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-value batch=batch-000041",
+          "candidate-types:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-types batch=batch-000041",
+          "parent-path:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\parent-path batch=batch-000040",
+          "outside-path:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\outside-path batch=batch-000041",
+          "candidate-quantity:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-quantity batch=batch-000040",
+          "output-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\output-link batch=None",
+          "directory-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\directory-link batch=None",
+          "source-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\source-link batch=batch-000041",
+          "target-collision:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\target-collision batch=batch-000042",
+          "token-invalid:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\token-invalid batch=batch-000043",
+          "backup-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-hardlink batch=batch-000042",
+          "transaction-source:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\transaction-source batch=batch-000043",
+          "null-session:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\null-session batch=batch-000043",
+          "backup-collision:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-collision batch=batch-000043",
+          "nonroot-permission:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\nonroot-permission batch=None",
+          "null-abilities:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\null-abilities batch=None",
+          "writer-busy:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-source-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-target-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-tmp-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "injected-enospc:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\injected-enospc batch=None",
+          "kill-intent.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-owner.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-source.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-history.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-candidate.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-history.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.store.partial batch=batch-000044",
+          "inspect-null-context:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-null-context batch=None",
+          "fault-candidate.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.store.partial batch=batch-000045",
+          "inspect-missing:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-missing batch=None",
+          "stale-current:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-current batch=batch-000045",
+          "stale-committed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-committed batch=batch-000045",
+          "fault-source.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.store.partial batch=batch-000045",
+          "inspect-prepared:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-prepared batch=batch-000046",
+          "inspect-committed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-committed batch=batch-000046",
+          "initial-tmp-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\initial-tmp-hardlink batch=None",
+          "receipt-tmp-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-tmp-hardlink batch=None",
+          "owner-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\owner-corrupt batch=None"
+        ]
+      },
+      {
+        "member": "evidence/task059/baseline058/counterexamples.json",
+        "source_sha": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
+        "f5a": {
+          "exception": "PermissionError(13, 'Permission denied')",
+          "execution_records": 0,
+          "recovery_complete": true
+        },
+        "f5b": {
+          "grandchild_executing_after_outer_kill": true,
+          "scope": "0.5秒縮尺、実180秒検査ではない"
+        }
+      },
+      {
+        "member": "evidence/task059/capture-tests/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "normal",
+            "status": "PASS",
+            "seconds": 0.047000000000025466
+          },
+          {
+            "case": "abnormal-child",
+            "status": "PASS",
+            "seconds": 0.047000000000025466
+          },
+          {
+            "case": "parent-exception",
+            "status": "PASS",
+            "seconds": 0.04600000000004911
+          },
+          {
+            "case": "forced-child-kill",
+            "status": "PASS",
+            "seconds": 0.03199999999992542
+          },
+          {
+            "case": "child-real-30-seconds",
+            "status": "PASS",
+            "seconds": 30.0
+          },
+          {
+            "case": "suite-inner-deadline",
+            "status": "PASS",
+            "seconds": 0.20300000000008822
+          },
+          {
+            "case": "launch-failure",
+            "status": "PASS",
+            "seconds": 0.0
+          },
+          {
+            "case": "suite-run-parent-exception",
+            "status": "PASS",
+            "seconds": 0.06299999999998818
+          },
+          {
+            "case": "parallel-batch-normal",
+            "status": "PASS",
+            "seconds": 0.15599999999994907
+          },
+          {
+            "case": "parallel-worker-exception",
+            "status": "PASS",
+            "seconds": 0.15600000000006276
+          },
+          {
+            "case": "shutdown-active-and-futures",
+            "status": "PASS",
+            "seconds": 2.0310000000000628
+          },
+          {
+            "case": "outer-timeout-scaled",
+            "status": "PASS",
+            "seconds": 0.20299999999997453
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/capture059/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.125
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.1409999999999627
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.125
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.13999999999998636
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.1410000000000764
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.18700000000001182
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "PASS",
+            "seconds": 0.1409999999999627
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.07799999999997453
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.14000000000010004
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.32799999999997453
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.3129999999999882
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.3280000000000882
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.3289999999999509
+          },
+          {
+            "case": "record-batch-content",
+            "status": "PASS",
+            "seconds": 0.3120000000000118
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "PASS",
+            "seconds": 0.26499999999998636
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.20300000000008822
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.6090000000000373
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.21899999999993724
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.6090000000000373
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 0.625
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.17199999999991178
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.06200000000001182
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.2969999999999118
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.04699999999991178
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.015000000000100044
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/execution.json",
+        "source_sha": "7f91d0460298dd074cb6974733aa5a16ba484139",
+        "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "status": "PASS",
+        "failures": [],
+        "commands": [
+          {
+            "label": "capture-tests",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\test_capture057.py",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\capture-tests"
+            ],
+            "seconds": 33.172000000000025,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "scope059",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\scope059.py",
+              "--code-sha",
+              "faa459ee5cc101e708477792b1c7891a9ba4beea",
+              "--source-sha",
+              "7f91d0460298dd074cb6974733aa5a16ba484139",
+              "--self-test",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\scope.json"
+            ],
+            "seconds": 10.280999999999949,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "capture059",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\test_capture059.py",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\capture059"
+            ],
+            "seconds": 8.406000000000063,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "baseline058",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\reproduce058.py",
+              "--checkout",
+              "D:\\a\\_temp\\qa059-baseline058",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\baseline058"
+            ],
+            "seconds": 0.7809999999999491,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "measurements",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\diagnostics057.py",
+              "--godot",
+              "D:\\a\\_temp\\native-evidence\\bin\\Godot_v4.7.2-stable_win64.exe",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\measurements"
+            ],
+            "seconds": 77.875,
+            "exit_code": 0,
+            "supervision_stopped": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-before-stop-retry.tar.gz",
+    "raw_sha256": "5e3b26734fda80e9d10bbb48b9ef7f1928fe0f7bde45e64aed38ff02f57c4517",
+    "results": [
+      {
+        "member": "tests.json",
+        "status": "FAIL",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.12662414300029923
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.12791480600026262
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.12550095200003852
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.1261163580002176
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.12635140099973796
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.2504284300002837
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "PASS",
+            "seconds": 0.1246339720000833
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.06479947100069694
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.32982540099965263
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.3980495180003345
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.37865833999967435
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.37309691599966754
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.3745524679998198
+          },
+          {
+            "case": "record-batch-content",
+            "status": "PASS",
+            "seconds": 0.36737020300006407
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "PASS",
+            "seconds": 0.27862121500038484
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.20095144600054482
+          },
+          {
+            "case": "acceptance-close-race",
+            "status": "PASS",
+            "seconds": 0.24352234100024361
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.6095489979998092
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.19763139099995897
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.6023944939997818
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 1.3569466890003241
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.14660743100012041
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.048807705999934115
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.5492326519997732
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.060066449000260036
+          },
+          {
+            "case": "stop-retry-before-wait-consumes-deadline",
+            "status": "FAIL",
+            "seconds": 1.0151836029999686,
+            "exception": "AssertionError()"
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.003782316000069841
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-capture027.tar.gz",
+    "raw_sha256": "e2284719e4ac031a0f7b7ea6c31200149aba57f23bc3641312ad088f224c0814",
+    "results": [
+      {
+        "member": "tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.1258676759998707
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.12603498699991178
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.1259529040007692
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.1307599419997132
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.12820192000071984
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.19981726600053662
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "PASS",
+            "seconds": 0.1250444460001745
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.06540175899954193
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.33278950699968846
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.37556777200006763
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.40885301099933713
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.3138683930001207
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.3069609069998478
+          },
+          {
+            "case": "record-batch-content",
+            "status": "PASS",
+            "seconds": 0.41366142199967726
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "PASS",
+            "seconds": 0.3416801960001976
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.2081194560005315
+          },
+          {
+            "case": "acceptance-close-race",
+            "status": "PASS",
+            "seconds": 0.24317405199963105
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.621060015000694
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.2211348150003687
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.6108499980000488
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 1.3226908329997968
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.12327024600017467
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.05409670700009883
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.36824010200052726
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.03594614299981913
+          },
+          {
+            "case": "stop-retry-before-wait-consumes-deadline",
+            "status": "PASS",
+            "seconds": 0.010340339999856951
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.0027436010004748823
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "astra-linux-capture012-stop-order.tar.gz",
+    "raw_sha256": "54e2059f3dda5592ca7d4a8344bd66f4d7d27bb28ab0512c0a4aceb6ceeda46c",
+    "results": [
+      {
+        "member": "tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "normal",
+            "status": "PASS",
+            "seconds": 0.0361951989998488
+          },
+          {
+            "case": "abnormal-child",
+            "status": "PASS",
+            "seconds": 0.03791062599975703
+          },
+          {
+            "case": "parent-exception",
+            "status": "PASS",
+            "seconds": 0.03566556099940499
+          },
+          {
+            "case": "forced-child-kill",
+            "status": "PASS",
+            "seconds": 0.02698727400002099
+          },
+          {
+            "case": "child-real-30-seconds",
+            "status": "PASS",
+            "seconds": 30.01692830799948
+          },
+          {
+            "case": "suite-inner-deadline",
+            "status": "PASS",
+            "seconds": 0.20704870499957906
+          },
+          {
+            "case": "launch-failure",
+            "status": "PASS",
+            "seconds": 0.0009852930006672977
+          },
+          {
+            "case": "suite-run-parent-exception",
+            "status": "PASS",
+            "seconds": 0.06370472900016466
+          },
+          {
+            "case": "parallel-batch-normal",
+            "status": "PASS",
+            "seconds": 0.2181945550000819
+          },
+          {
+            "case": "parallel-worker-exception",
+            "status": "PASS",
+            "seconds": 0.21786945100029698
+          },
+          {
+            "case": "shutdown-active-and-futures",
+            "status": "PASS",
+            "seconds": 2.022009453999999
+          },
+          {
+            "case": "outer-timeout-scaled",
+            "status": "PASS",
+            "seconds": 0.20528595099949598
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "ci-code55-linux-transaction.tar.gz",
+    "raw_sha256": "83ae1a52a351d2222788ae0f5a101ed5e9acf54d1cfa21d8c22a1fd42a4a443b",
+    "results": [
+      {
+        "member": "evidence/results/restart-queue.json",
+        "recovery_complete": true,
+        "live_workers": [],
+        "pending_futures": [],
+        "evidence_errors": [],
+        "unreaped_process_records": [],
+        "request_count": 297
+      },
+      {
+        "member": "evidence/results/summary.json",
+        "status": "FAIL",
+        "case_count": 133,
+        "checks": 1773,
+        "seconds": 174.708151408,
+        "failures": [
+          "kill-intent.store.after:TimeoutExpired: Command '['/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64', '--headless', '--path', '/home/runner/work/RPG-maker/RPG-maker', '--script', 'res://tools/equipment_save_transaction_probe.gd', '--', '/home/runner/work/_temp/native-evidence/qa/kill-intent.store.after/killed-config.json']' timed out after 23.03261106100001 seconds",
+          "receipt-corrupt:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/receipt-corrupt batch=batch-000059",
+          "candidate-value:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/candidate-value batch=batch-000060",
+          "null-session:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/null-session batch=batch-000064",
+          "output-changed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/output-changed batch=batch-000060",
+          "backup-collision:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/backup-collision batch=batch-000064",
+          "intent-changed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/intent-changed batch=batch-000060",
+          "output-link:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/output-link batch=batch-000065",
+          "receipt-intent:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/receipt-intent batch=batch-000059",
+          "receipt-phase-stale:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/receipt-phase-stale batch=batch-000059",
+          "nonroot-permission:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/nonroot-permission batch=batch-000065",
+          "target-collision:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/target-collision batch=batch-000064",
+          "backup-changed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/backup-changed batch=batch-000059",
+          "history-changed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/history-changed batch=batch-000060",
+          "null-abilities:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/null-abilities batch=batch-000064",
+          "kill-receipt-committed.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "injected-enospc:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/injected-enospc batch=None",
+          "fault-source.store.partial:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/fault-source.store.partial batch=None",
+          "inspect-missing:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/inspect-missing batch=None",
+          "kill-candidate.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-source.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "inspect-null-context:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/inspect-null-context batch=None",
+          "kill-history.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "stale-committed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/stale-committed batch=None",
+          "fault-history.store.partial:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/fault-history.store.partial batch=None",
+          "commit-tmp-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "stale-current:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/stale-current batch=None",
+          "commit-target-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "inspect-prepared:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/inspect-prepared batch=None",
+          "fault-candidate.store.partial:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/fault-candidate.store.partial batch=None",
+          "kill-intent.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-owner.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "initial-tmp-hardlink:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/initial-tmp-hardlink batch=None",
+          "inspect-committed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/inspect-committed batch=None",
+          "receipt-tmp-hardlink:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/receipt-tmp-hardlink batch=None",
+          "owner-corrupt:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/owner-corrupt batch=None",
+          "commit-source-race:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "writer-busy:TimeoutError: suite_inner_174_seconds: 境界待機超過"
+        ]
+      },
+      {
+        "member": "evidence/task059/baseline058/counterexamples.json",
+        "source_sha": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
+        "f5a": {
+          "exception": "IsADirectoryError(21, 'Is a directory')",
+          "execution_records": 0,
+          "recovery_complete": true
+        },
+        "f5b": {
+          "grandchild_executing_after_outer_kill": true,
+          "scope": "0.5秒縮尺、実180秒検査ではない"
+        }
+      },
+      {
+        "member": "evidence/task059/capture-tests/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "normal",
+            "status": "PASS",
+            "seconds": 0.04145348899999135
+          },
+          {
+            "case": "abnormal-child",
+            "status": "PASS",
+            "seconds": 0.040787585000089166
+          },
+          {
+            "case": "parent-exception",
+            "status": "PASS",
+            "seconds": 0.04215236599998207
+          },
+          {
+            "case": "forced-child-kill",
+            "status": "PASS",
+            "seconds": 0.04283315800000764
+          },
+          {
+            "case": "child-real-30-seconds",
+            "status": "PASS",
+            "seconds": 30.18037540900002
+          },
+          {
+            "case": "suite-inner-deadline",
+            "status": "PASS",
+            "seconds": 0.25501069599999937
+          },
+          {
+            "case": "launch-failure",
+            "status": "PASS",
+            "seconds": 0.0016969209999615487
+          },
+          {
+            "case": "suite-run-parent-exception",
+            "status": "PASS",
+            "seconds": 0.30268752300003143
+          },
+          {
+            "case": "parallel-batch-normal",
+            "status": "PASS",
+            "seconds": 0.36362993300008384
+          },
+          {
+            "case": "parallel-worker-exception",
+            "status": "PASS",
+            "seconds": 0.32041368800003056
+          },
+          {
+            "case": "shutdown-active-and-futures",
+            "status": "PASS",
+            "seconds": 0.2048016370000596
+          },
+          {
+            "case": "outer-timeout-scaled",
+            "status": "PASS",
+            "seconds": 0.21563260499999615
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/capture059/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.1243933510000943
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.12396280400002979
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.12439168699995662
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.12712520100001257
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.12530015400000138
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.1655826100000013
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "PASS",
+            "seconds": 0.12405937500000164
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.06204699499994604
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.19351111200001014
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.2705383609999217
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.2692933120000589
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.26985920300001
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.2689371490000667
+          },
+          {
+            "case": "record-batch-content",
+            "status": "PASS",
+            "seconds": 0.2695343249999951
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "PASS",
+            "seconds": 0.22845641099991099
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.17050479900001392
+          },
+          {
+            "case": "acceptance-close-race",
+            "status": "PASS",
+            "seconds": 0.2451351639999757
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.6085310739999841
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.1981566889999158
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.6100721799999747
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 1.3568029470000056
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.13897011899996414
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.053192635000073096
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.29457934000004116
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.043958867000014834
+          },
+          {
+            "case": "stop-retry-before-wait-consumes-deadline",
+            "status": "PASS",
+            "seconds": 0.026257398999973702
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.002763292000054207
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/execution.json",
+        "source_sha": "ac768dee939783d41b8a6788af4b61551fd96d7b",
+        "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "status": "PASS",
+        "failures": [],
+        "commands": [
+          {
+            "label": "capture-tests",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/capture-tests"
+            ],
+            "seconds": 32.3104439089999,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "scope059",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+              "--code-sha",
+              "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+              "--source-sha",
+              "ac768dee939783d41b8a6788af4b61551fd96d7b",
+              "--self-test",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/scope.json"
+            ],
+            "seconds": 1.6257467930000757,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "capture059",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/capture059"
+            ],
+            "seconds": 6.937714836000055,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "baseline058",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+              "--checkout",
+              "/home/runner/work/_temp/qa059-baseline058",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/baseline058"
+            ],
+            "seconds": 0.7740624109999317,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "measurements",
+            "argv": [
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+              "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+              "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+              "--godot",
+              "/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+              "--output",
+              "/home/runner/work/_temp/native-evidence/task059/measurements"
+            ],
+            "seconds": 33.96379012600005,
+            "exit_code": 0,
+            "supervision_stopped": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "ci-code55-windows-transaction.tar.gz",
+    "raw_sha256": "9df6f3121f5b13c99dfb55ffd302ce94ec3c9b3af37977ca4f8548a4b621a16d",
+    "results": [
+      {
+        "member": "evidence/results/restart-queue.json",
+        "recovery_complete": true,
+        "live_workers": [],
+        "pending_futures": [],
+        "evidence_errors": [],
+        "unreaped_process_records": [],
+        "request_count": 258
+      },
+      {
+        "member": "evidence/results/summary.json",
+        "status": "FAIL",
+        "case_count": 78,
+        "checks": 1170,
+        "seconds": 174.39100000000008,
+        "failures": [
+          "kill-receipt-committed.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-committed.store.before batch=batch-000039",
+          "kill-receipt-committed.store.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-committed.store.after batch=batch-000039",
+          "kill-receipt-committed.readback.after:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-receipt-committed.readback.before:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-commit.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.flush.before:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-receipt-committed.rename.before:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.close.before:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-receipt-committed.flush.after:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-receipt-committed.close.after:TimeoutError: suite_inner_174_seconds: 境界待機超過",
+          "kill-receipt-committed.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-commit.rename.after:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-read.buffer.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-read.buffer.before batch=batch-000040",
+          "fault-read.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-read.open.before batch=batch-000040",
+          "fault-source.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.flush.before batch=batch-000040",
+          "fault-source.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.store.before batch=batch-000040",
+          "fault-source.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.open.before batch=batch-000041",
+          "fault-history.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.open.before batch=batch-000041",
+          "fault-source.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.readback.before batch=batch-000041",
+          "fault-source.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.rename.before batch=batch-000041",
+          "fault-history.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.rename.before batch=batch-000042",
+          "fault-history.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.flush.before batch=batch-000042",
+          "fault-history.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.store.before batch=batch-000042",
+          "fault-history.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.readback.before batch=batch-000042",
+          "fault-candidate.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.flush.before batch=batch-000043",
+          "fault-candidate.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.open.before batch=batch-000043",
+          "fault-candidate.readback.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.readback.before batch=batch-000043",
+          "fault-candidate.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.store.before batch=batch-000043",
+          "fault-receipt-prepared.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-prepared.open.before batch=batch-000044",
+          "fault-commit.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-commit.rename.before batch=batch-000044",
+          "fault-receipt-committed.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-committed.open.before batch=batch-000044",
+          "normal-pending:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\normal-pending batch=batch-000044",
+          "trial-missing:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-missing batch=batch-000045",
+          "normal-granted:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\normal-granted batch=batch-000045",
+          "fault-receipt-committed.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-committed.rename.before batch=batch-000045",
+          "fault-receipt-prepared.rename.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-receipt-prepared.rename.before batch=batch-000045",
+          "absent-id:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\absent-id batch=batch-000046",
+          "trial-unclean:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-unclean batch=batch-000046",
+          "trial-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\trial-corrupt batch=batch-000046",
+          "inspect-readonly:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-readonly batch=batch-000046",
+          "same-raw-alias:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\same-raw-alias batch=batch-000047",
+          "new-input:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\new-input batch=batch-000047",
+          "stale-prepare:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-prepare batch=batch-000047",
+          "different-raw:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\different-raw batch=batch-000047",
+          "wrong-hash:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\wrong-hash batch=batch-000048",
+          "receipt-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-corrupt batch=batch-000048",
+          "source-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\source-changed batch=batch-000048",
+          "stale-commit:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-commit batch=batch-000048",
+          "receipt-intent:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-intent batch=batch-000049",
+          "output-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\output-changed batch=batch-000049",
+          "receipt-phase-stale:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-phase-stale batch=batch-000049",
+          "backup-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-changed batch=batch-000049",
+          "history-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\history-changed batch=batch-000050",
+          "intent-changed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\intent-changed batch=batch-000050",
+          "candidate-value:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-value batch=batch-000050",
+          "candidate-quantity:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-quantity batch=batch-000050",
+          "candidate-types:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\candidate-types batch=batch-000051",
+          "parent-path:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\parent-path batch=batch-000051",
+          "outside-path:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\outside-path batch=batch-000051",
+          "source-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\source-link batch=batch-000051",
+          "backup-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-hardlink batch=batch-000052",
+          "output-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\output-link batch=batch-000052",
+          "transaction-source:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\transaction-source batch=batch-000052",
+          "directory-link:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\directory-link batch=batch-000052",
+          "token-invalid:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\token-invalid batch=batch-000053",
+          "target-collision:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\target-collision batch=batch-000053",
+          "backup-collision:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\backup-collision batch=batch-000053",
+          "null-session:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\null-session batch=batch-000053",
+          "commit-source-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "writer-busy:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-tmp-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "commit-target-race:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-owner.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-intent.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-source.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "nonroot-permission:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\nonroot-permission batch=None",
+          "null-abilities:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\null-abilities batch=None",
+          "injected-enospc:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\injected-enospc batch=None",
+          "kill-candidate.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-history.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-prepared.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "kill-receipt-committed.store.partial:TimeoutError: suite_inner_174_seconds: 起動前に締切",
+          "fault-candidate.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-candidate.store.partial batch=batch-000054",
+          "fault-source.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-source.store.partial batch=batch-000055",
+          "fault-history.store.partial:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\fault-history.store.partial batch=batch-000055",
+          "stale-current:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-current batch=batch-000055",
+          "stale-committed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\stale-committed batch=batch-000055",
+          "inspect-missing:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-missing batch=batch-000056",
+          "inspect-null-context:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-null-context batch=batch-000056",
+          "inspect-committed:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-committed batch=batch-000056",
+          "inspect-prepared:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\inspect-prepared batch=batch-000056",
+          "initial-tmp-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\initial-tmp-hardlink batch=None",
+          "receipt-tmp-hardlink:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\receipt-tmp-hardlink batch=None",
+          "owner-corrupt:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\owner-corrupt batch=None"
+        ]
+      },
+      {
+        "member": "evidence/task059/baseline058/counterexamples.json",
+        "source_sha": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
+        "f5a": {
+          "exception": "PermissionError(13, 'Permission denied')",
+          "execution_records": 0,
+          "recovery_complete": true
+        },
+        "f5b": {
+          "grandchild_executing_after_outer_kill": true,
+          "scope": "0.5秒縮尺、実180秒検査ではない"
+        }
+      },
+      {
+        "member": "evidence/task059/capture-tests/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "normal",
+            "status": "PASS",
+            "seconds": 0.03199999999992542
+          },
+          {
+            "case": "abnormal-child",
+            "status": "PASS",
+            "seconds": 0.03099999999994907
+          },
+          {
+            "case": "parent-exception",
+            "status": "PASS",
+            "seconds": 0.03099999999994907
+          },
+          {
+            "case": "forced-child-kill",
+            "status": "PASS",
+            "seconds": 0.031000000000176442
+          },
+          {
+            "case": "child-real-30-seconds",
+            "status": "PASS",
+            "seconds": 30.01599999999985
+          },
+          {
+            "case": "suite-inner-deadline",
+            "status": "PASS",
+            "seconds": 0.20299999999997453
+          },
+          {
+            "case": "launch-failure",
+            "status": "PASS",
+            "seconds": 0.016000000000076398
+          },
+          {
+            "case": "suite-run-parent-exception",
+            "status": "PASS",
+            "seconds": 0.06200000000012551
+          },
+          {
+            "case": "parallel-batch-normal",
+            "status": "PASS",
+            "seconds": 0.14099999999984902
+          },
+          {
+            "case": "parallel-worker-exception",
+            "status": "PASS",
+            "seconds": 0.125
+          },
+          {
+            "case": "shutdown-active-and-futures",
+            "status": "PASS",
+            "seconds": 2.0779999999999745
+          },
+          {
+            "case": "outer-timeout-scaled",
+            "status": "PASS",
+            "seconds": 0.20299999999997453
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/capture059/tests.json",
+        "status": "PASS",
+        "cases": [
+          {
+            "case": "prelaunch-config",
+            "status": "PASS",
+            "seconds": 0.125
+          },
+          {
+            "case": "prelaunch-env",
+            "status": "PASS",
+            "seconds": 0.14000000000010004
+          },
+          {
+            "case": "prelaunch-capture",
+            "status": "PASS",
+            "seconds": 0.15699999999992542
+          },
+          {
+            "case": "prelaunch-log",
+            "status": "PASS",
+            "seconds": 0.125
+          },
+          {
+            "case": "prelaunch-capture-record",
+            "status": "PASS",
+            "seconds": 0.15599999999994907
+          },
+          {
+            "case": "prelaunch-request-record",
+            "status": "PASS",
+            "seconds": 0.17200000000002547
+          },
+          {
+            "case": "prelaunch-unstarted-batch-record",
+            "status": "PASS",
+            "seconds": 0.125
+          },
+          {
+            "case": "suite-run-queue-before-config",
+            "status": "PASS",
+            "seconds": 0.07799999999997453
+          },
+          {
+            "case": "four-root-shared-batch",
+            "status": "PASS",
+            "seconds": 0.1410000000000764
+          },
+          {
+            "case": "record-missing",
+            "status": "PASS",
+            "seconds": 0.25
+          },
+          {
+            "case": "record-broken",
+            "status": "PASS",
+            "seconds": 0.2969999999997981
+          },
+          {
+            "case": "record-id",
+            "status": "PASS",
+            "seconds": 0.2660000000000764
+          },
+          {
+            "case": "record-batch",
+            "status": "PASS",
+            "seconds": 0.25
+          },
+          {
+            "case": "record-batch-content",
+            "status": "PASS",
+            "seconds": 0.25
+          },
+          {
+            "case": "record-unstarted-batch",
+            "status": "PASS",
+            "seconds": 0.21900000000005093
+          },
+          {
+            "case": "close-race-and-repeated",
+            "status": "PASS",
+            "seconds": 0.17200000000002547
+          },
+          {
+            "case": "acceptance-close-race",
+            "status": "PASS",
+            "seconds": 0.25
+          },
+          {
+            "case": "outer-kill-owned-grandchild",
+            "status": "PASS",
+            "seconds": 0.5940000000000509
+          },
+          {
+            "case": "parent-exits-first-log-holder",
+            "status": "PASS",
+            "seconds": 0.1719999999997981
+          },
+          {
+            "case": "nested-capture-stays-in-outer-supervision",
+            "status": "PASS",
+            "seconds": 0.5930000000000746
+          },
+          {
+            "case": "ownership-unknown-preserved",
+            "status": "PASS",
+            "seconds": 0.6099999999999
+          },
+          {
+            "case": "zero-deadline-unconfirmed",
+            "status": "PASS",
+            "seconds": 0.125
+          },
+          {
+            "case": "supervision-setup-failure",
+            "status": "PASS",
+            "seconds": 0.06200000000012551
+          },
+          {
+            "case": "assignment-exit-races",
+            "status": "PASS",
+            "seconds": 0.21899999999982356
+          },
+          {
+            "case": "ownership-read-child-exit-race",
+            "status": "PASS",
+            "seconds": 0.03099999999994907
+          },
+          {
+            "case": "stop-retry-before-wait-consumes-deadline",
+            "status": "PASS",
+            "seconds": 0.016000000000076398
+          },
+          {
+            "case": "created-before-supervision-failure",
+            "status": "PASS",
+            "seconds": 0.0
+          }
+        ]
+      },
+      {
+        "member": "evidence/task059/execution.json",
+        "source_sha": "ac768dee939783d41b8a6788af4b61551fd96d7b",
+        "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "status": "PASS",
+        "failures": [],
+        "commands": [
+          {
+            "label": "capture-tests",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\test_capture057.py",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\capture-tests"
+            ],
+            "seconds": 33.062000000000126,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "scope059",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\scope059.py",
+              "--code-sha",
+              "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+              "--source-sha",
+              "ac768dee939783d41b8a6788af4b61551fd96d7b",
+              "--self-test",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\scope.json"
+            ],
+            "seconds": 7.2349999999999,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "capture059",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\test_capture059.py",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\capture059"
+            ],
+            "seconds": 6.1720000000000255,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "baseline058",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\reproduce058.py",
+              "--checkout",
+              "D:\\a\\_temp\\qa059-baseline058",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\baseline058"
+            ],
+            "seconds": 0.7809999999999491,
+            "exit_code": 0,
+            "supervision_stopped": true
+          },
+          {
+            "label": "measurements",
+            "argv": [
+              "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+              "D:\\a\\RPG-maker\\RPG-maker\\tools\\fixtures\\equipment-save-transaction-platform\\diagnostics057.py",
+              "--godot",
+              "D:\\a\\_temp\\native-evidence\\bin\\Godot_v4.7.2-stable_win64.exe",
+              "--output",
+              "D:\\a\\_temp\\native-evidence\\task059\\measurements"
+            ],
+            "seconds": 40.7030000000002,
+            "exit_code": 0,
+            "supervision_stopped": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "archive": "ci-code55-protected-godot.tar.gz",
+    "raw_sha256": "9c747797a33943de4108aecf9a99bde649b9a63a2659e6aab9e252d6aaf80af0",
+    "results": []
+  }
+]

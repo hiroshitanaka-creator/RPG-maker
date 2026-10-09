@@ -169,5 +169,85 @@
     "members": 10956,
     "member_index": "astra-linux-full-faa459e-members.json",
     "kind": "共有batch修正faa459eの全取引154/1968・174.438秒未達、319受付回収照合true"
+  },
+  {
+    "archive": "ci-faa-linux-transaction.tar.gz",
+    "raw_sha256": "090ff81e53ee91d9216f317a4c2c4b9b12ca6eeb182a409eae48e5e0becccad5",
+    "bytes": 6189600,
+    "members": 7726,
+    "member_index": "ci-faa-linux-transaction-members.json",
+    "kind": "HEAD7f91d04 Linux transaction。172/2178時間内だが1条件失敗、追加25成功、既存12の1件失敗"
+  },
+  {
+    "archive": "ci-faa-windows-transaction.tar.gz",
+    "raw_sha256": "84bac24b7c0ae005f099807fec61df722b2455463ccfe8692a64240c43b8d5fb",
+    "bytes": 4527902,
+    "members": 3661,
+    "member_index": "ci-faa-windows-transaction-members.json",
+    "kind": "HEAD7f91d04 Windows。既存12・追加25・scope10・058反例・診断成功、全取引時間未達"
+  },
+  {
+    "archive": "astra-linux-before-stop-retry.tar.gz",
+    "raw_sha256": "5e3b26734fda80e9d10bbb48b9ef7f1928fe0f7bde45e64aed38ff02f57c4517",
+    "bytes": 49284,
+    "members": 228,
+    "member_index": "astra-linux-before-stop-retry-members.json",
+    "kind": "停止初回失敗後のwait残量消費。27件中1件の修正前実失敗"
+  },
+  {
+    "archive": "astra-linux-capture027.tar.gz",
+    "raw_sha256": "e2284719e4ac031a0f7b7ea6c31200149aba57f23bc3641312ad088f224c0814",
+    "bytes": 49747,
+    "members": 232,
+    "member_index": "astra-linux-capture027-members.json",
+    "kind": "固定55a56d0の追加27件全成功。初回停止失敗を保持し期限内再試行・wait確認"
+  },
+  {
+    "archive": "astra-linux-capture012-stop-order.tar.gz",
+    "raw_sha256": "54e2059f3dda5592ca7d4a8344bd66f4d7d27bb28ab0512c0a4aceb6ceeda46c",
+    "bytes": 38060,
+    "members": 144,
+    "member_index": "astra-linux-capture012-stop-order-members.json",
+    "kind": "固定55a56d0で既存不変12件全成功"
+  },
+  {
+    "archive": "inspect-condition-observation-0.tar.gz",
+    "raw_sha256": "daa617a26f65c5b8448be919e6546417dfc153d4bf6829083ffd87355aa02ec5",
+    "bytes": 90930,
+    "members": 78,
+    "member_index": "inspect-condition-observation-0-members.json",
+    "kind": "faa459eの元inspect-prepared条件失敗を追加読取りだけで観測。godot.log bytes変化、条件変更なし"
+  },
+  {
+    "archive": "inspect-condition-observation-1.tar.gz",
+    "raw_sha256": "3cb2d771f33e93801ab764ebdcf0d39d3607b502df6fc19ec20e5c1e804e2423",
+    "bytes": 89886,
+    "members": 76,
+    "member_index": "inspect-condition-observation-1-members.json",
+    "kind": "inspect-prepared条件失敗の2回目の独立専用root観測。条件変更なし"
+  },
+  {
+    "archive": "ci-code55-linux-transaction.tar.gz",
+    "raw_sha256": "83ae1a52a351d2222788ae0f5a101ed5e9acf54d1cfa21d8c22a1fd42a4a443b",
+    "bytes": 5783753,
+    "members": 6581,
+    "member_index": "ci-code55-linux-transaction-members.json",
+    "kind": "HEADac768de・固定55a56d09 Linux。既存12/追加27/scope10/058反例/6seed成功、全取引時間未達"
+  },
+  {
+    "archive": "ci-code55-windows-transaction.tar.gz",
+    "raw_sha256": "9df6f3121f5b13c99dfb55ffd302ce94ec3c9b3af37977ca4f8548a4b621a16d",
+    "bytes": 4969006,
+    "members": 4816,
+    "member_index": "ci-code55-windows-transaction-members.json",
+    "kind": "HEADac768de・固定55a56d09 Windows。既存12/追加27/scope10/058反例/6seed成功、全取引時間未達"
+  },
+  {
+    "archive": "ci-code55-protected-godot.tar.gz",
+    "raw_sha256": "9c747797a33943de4108aecf9a99bde649b9a63a2659e6aab9e252d6aaf80af0",
+    "bytes": 91334,
+    "members": 2,
+    "member_index": "ci-code55-protected-godot-members.json",
+    "kind": "HEADac768de Godot・凍結受入テスト成功のdecoded UTF-8全job text。raw tar/ZIP digestとは分離"
   }
 ]

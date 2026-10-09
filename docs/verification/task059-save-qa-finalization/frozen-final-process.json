@@ -1,0 +1,61 @@
+{
+  "planned_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tools/check_frozen_files.py"
+  ],
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tools/check_frozen_files.py"
+  ],
+  "cwd": "/workspace/RPG-maker",
+  "pid": 23982,
+  "started_utc": "2026-10-09T18:55:49.179779+00:00",
+  "started_monotonic": 6741.201423469,
+  "accepted_utc": "2026-10-09T18:55:49.178454+00:00",
+  "accepted_monotonic": 6741.200086155,
+  "ended_utc": "2026-10-09T18:55:49.249249+00:00",
+  "ended_monotonic": 6741.270882536,
+  "terminal": true,
+  "seconds": 0.07079638100003649,
+  "budget_seconds": 30,
+  "exit_code": 0,
+  "timed_out": false,
+  "timeout_kind": null,
+  "exception": null,
+  "exit_unavailable_reason": null,
+  "deadline_remaining_start": 29.999984327000675,
+  "deadline_remaining_end": 29.92918794600064,
+  "kill": {
+    "attempted": false,
+    "ok": null
+  },
+  "wait": {
+    "attempted": true,
+    "ok": true
+  },
+  "streams": "stdout+stderr",
+  "planned_log": "docs/verification/task059-save-qa-finalization/frozen-final.log",
+  "log": "docs/verification/task059-save-qa-finalization/frozen-final.log",
+  "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+  "result": {},
+  "kill_point": null,
+  "record_path": "docs/verification/task059-save-qa-finalization/frozen-final-process.json",
+  "record_saved": true,
+  "supervision": {
+    "mechanism": "Linux dedicated session",
+    "configured": true,
+    "ownership": {
+      "session": 23982,
+      "group": 23982,
+      "root_pid": 23982,
+      "token": "097ff399d7ff43e684a9ce579d0bdc28"
+    },
+    "stopped": true,
+    "stop_attempted": false,
+    "reason": null,
+    "observed_members": []
+  },
+  "cleanup_remaining_end": 29.92918794600064
+}

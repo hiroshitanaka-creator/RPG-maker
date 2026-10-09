@@ -2,6 +2,28 @@
 
 **未達を含む提出。F5の修正・専用検証と、保存全体の受入を分ける。F1時間未達、F4実ENOSPC/nested別volume NOT_RUNは継続。** 最終文書SHAの全CI終了とclean/未pushは最終応答で確定する。自身のSHAを文書へ再帰固定しない。
 
+## 最新固定コードと両OS原証拠の対応
+
+**固定コード55a56d09d7c74becaeacdecede16836d93ba8cbc。実行HEAD ac768dee939783d41b8a6788af4b61551fd96d7b。** 30aca09の26件は途中版であり、最新成功へ流用しない。最新は既存12件＋追加27件（負例の所定非0/未確認も含む）を両OSで実行した。両OSともscope10正負・基点058の2反例・6seed診断はexit0。
+
+| OS / job（run37973730943） | 既存12 / 追加27の秒・exit | 全受付原証拠の独立照合 | 全取引 |
+|---|---|---|---|
+| Linux / 113966598488 | 32.310444秒/0、6.937715秒/0 | 297受付（起動行275/未起動22）、一意batch69、全canonical/root投影/batch終端/実log bytes一致、worker/future/未回収0 | 133件/1773条件、174.708151秒、FAIL |
+| Windows / 113966598644 | 33.062秒/0、6.172秒/0 | 258受付（起動行172/未起動86）、一意batch57、同じ全照合成功、worker/future/未回収0 | 78件/1170条件、174.391秒、FAIL |
+
+受付行数はprocess数や取引完了ケース数ではない。共有batchを二重加算せず、未起動はPID/実argv/log/exitなしと理由を保持した。回収成功は全172/2178・97killの取引受入成功を意味しない。
+
+| 原archive | raw SHA-256 / bytes / members |
+|---|---|
+| [Linux](../../verification/task059-save-qa-finalization/ci-code55-linux-transaction.tar.gz) | 83ae1a52a351d2222788ae0f5a101ed5e9acf54d1cfa21d8c22a1fd42a4a443b / 5783753 / 6581 |
+| [Windows](../../verification/task059-save-qa-finalization/ci-code55-windows-transaction.tar.gz) | 9df6f3121f5b13c99dfb55ffd302ce94ec3c9b3af37977ca4f8548a4b621a16d / 4969006 / 4816 |
+
+[全受付・実log bytesの独立照合](../../verification/task059-save-qa-finalization/latest-ci-receipt-audit.json)はarchiveを変更せず、実行HEAD/固定SHA、既存12/追加27、scope10、058反例、全要求ID・原record・batch全内容・log SHAを再検証した。Windows区切りはtarのPOSIX member表記へ対応させるだけでJSON原値を変更していない。
+
+HEADac768deの専用CIは12job終了、primitivesの6job成功、transactionの6job失敗。最新・固定055・固定057の全jobを保持した。最新primitives両OSはjob metadata上成功だが、両方の原log取得はTransport closedのためraw bytes再照合は未確認。transactionの原bytes取得成功とは区別する。
+
+同HEADの通常CI3jobは成功。Godot・凍結受入job113966597878のdecoded UTF-8全job textを[原物archive](../../verification/task059-save-qa-finalization/ci-code55-protected-godot.tar.gz)に保存し、R-01〜R-08の各exit0/tests_ran=true/parser_failed=falseと保護検査の前後成功を確認した。[code55-ci-snapshot](../../verification/task059-save-qa-finalization/code55-ci-snapshot.json)は収集時点で他workflowが進行中のため、このHEADの全workflow終了を表すものではない。最終文書SHAは別に全workflow/job終了を待ち、最終応答に件数と結果を記す。
+
 ## 計画・登録・範囲
 
 登録a6022f1e4a7689440928efe65db444336e9128e4、基点579ca1f463aaf9e93275039a59cf9d1ffb86adb5、指定branch codex/task-059-fix-save-qa-finalization。開始dirtyなし・未pushなし。AGENTS.md、059/057依頼、伝言板、057/058報告全文と反例、専用driver/helpers/workflow、素材規約・職業/魔物化の企画・台帳構造・優先仕様、040保存計画、原053/055/057固定証拠を確認。checkout/workspaceに適用可能な追加AGENTS/.agents/skillsは存在しない。追加委譲・別環境切替なし。
@@ -20,11 +42,11 @@ Linuxは自分が作った専用sessionとgroup、exec前から渡す継承owner
 
 ## CIの世代分離とscope
 
-専用workflowの元fixed055/latest、Windows/Linux、transaction/primitivesを保持し、fixed057を別jobへ追加した。当時のcheckout3cf4b6cから当時のprocess_capture・12検証・scope057正負・6seed対照を実行する。旧code-fixed-shaが当時b4ee1eaを指すため、別checkoutの検査引数を完全SHA3cf4b6cへ明示し、固定文書自体は変更しない。最新側は既存12検証・059追加26検証・scope059・基点058反例・6seed対照。sample計測は全取引受入と別。
+専用workflowの元fixed055/latest、Windows/Linux、transaction/primitivesを保持し、fixed057を別jobへ追加した。当時のcheckout3cf4b6cから当時のprocess_capture・12検証・scope057正負・6seed対照を実行する。旧code-fixed-shaが当時b4ee1eaを指すため、別checkoutの検査引数を完全SHA3cf4b6cへ明示し、固定文書自体は変更しない。最新側は既存12検証・059追加27検証・scope059・基点058反例・6seed対照。sample計測は全取引受入と別。
 
 親の提出前確認を受け、scope059の後続文書許可を059依頼書状態行・059報告・059証拠だけへ限定した。最新担当指示に従い、decision-logの後続追記も拒否する。10正負例を実Git tree/commit/子exitで確認。旧057証拠、058過去報告、担当外文書、依頼本文変更、decision-log書換えはexit1。旧scope057/055 prefixを広げていない。原2259パスのblob不変と44archive/317273全member照合もscopeとは独立して実行した。最終SHAについても全許可パスと原不変を再照合する。
 
-## Linuxの実行・照合・未実施
+## Linux初期実行・照合・未実施（途中版の履歴）
 
 | 実行/証拠 | 実秒・exit・結果 |
 |---|---|
@@ -47,7 +69,7 @@ Linuxは自分が作った専用sessionとgroup、exec前から渡す継承owner
 
 初回HEAD9d4d361のfixed057 Windows原archiveを復元し、宣言raw hash/sizeと3884memberを照合。12捕捉・scope3例成功、全取引69/1035・174.407秒未達、診断のGet-CimInstanceが既存30秒でtimeout。この当時固定側の失敗を059の監督不備や成功へ混同しない。初回latestの原checkout位置が証拠archive内に入る点を修正し、以後は原checkoutをarchiveの外に分離した。
 
-現在の059両OS原証拠・全jobの終了結果は取得中。未取得の原bytesを確認済みとはしない。最終更新で実結果と取得不能の理由を記録する。
+この節は初期提出の履歴である。最新固定55a56d09の両OS原証拠は冒頭の対応表、取得限界は末尾を参照する。最終文書SHAの全CI終了結果は最終応答で確定する。
 
 ## 永続原証拠・変更一覧
 
@@ -94,3 +116,23 @@ Windows primitives旧job113942743366の直接ログはTransport closedが継続�
 再開後のローカル固定30aca09e21783f228c00847029060fa03ecb86e9は、既存12件34.308007秒/exit0、追加26件11.194464秒/exit0、いずれも外側run_commandの180秒以内でsupervision.stopped=true。scope10正負は正例exit0・9負例各exit1。専用archiveはastra-linux-capture012-final/astra-linux-capture026。対応する修正前の3件失敗と受付closeの1件失敗も独立archiveとして保持する。
 
 共有batch修正faa459ee5cc101e708477792b1c7891a9ba4beeaを既存の隔離checkoutで実行した全取引は154件/1968条件、suite174.437967秒、transaction外側175.147200秒/exit1。319受付、worker0、future未完0、evidence_errors0、未回収0、recovery_complete=true。これを原172/2178の成功や性能改善の証明にはしない。受付close修正前の全取引結果であることも区別する。元174/180/30/600秒・15分の制限を維持した。
+
+
+## CIで追加観測した停止順序と担当外条件
+
+HEAD7f91d04のLinux transaction（run37969914859/job113953604600）は172件/2178条件・153.143秒まで実行したがinspect-prepared:specific_invariantが失敗し、既存12のshutdown-active-and-futuresも失敗した。原archive090ff81e53ee91d9216f317a4c2c4b9b12ca6eeb182a409eae48e5e0becccad5、6189600bytes、7726memberを保存照合。追加25件は成功。Windows同HEAD（job113953604579）は既存12・追加25・scope10・058反例・6seed診断が成功し、全取引は時間未達だった。原archive84bac24b7c0ae005f099807fec61df722b2455463ccfe8692a64240c43b8d5fb、4527902bytes、3661memberを保存照合した。
+
+Linux shutdown原物では初回停止がPermissionErrorとなり、直接子waitで回収残量を使い切った後にtree.finishが呼ばれ、worker2個と4要求の未確認が残った。PermissionErrorの発生箇所自体は旧reprではpathが欠落しており、OS設定の問題と断定しない。所有tree停止の再試行を直接子waitの前へ移し、初回失敗はkill.ok=falseのまま記録し、同じ残量内の停止確認とwaitを別に確定する。例外理由はtypeとstrでpathも保持する。実子を使った初回停止失敗の追加反例は旧順序で失敗、修正後は成功。元予算・既存12検証は変更せず、固定55a56d09d7c74becaeacdecede16836d93ba8cbcで既存12件33.220674秒/exit0・追加27件7.712963秒/exit0、scope10正負を確認した。
+
+inspect-preparedは、元case/assertionを変えずにinspect呼出し前後の既存file bytesを追加読取りし、独立した2rootで再現した。変化した既存fileはprofile/XDG_DATA_HOME/godot/app_userdata/RPG-maker/logs/godot.logだけで、prepareのphase=prepared出力142bytesからinspectのphase空文字出力134bytesへ変わった。保存source/history・decoder・prepared状態・process exit等の他8条件は成功。before SHA-256 ac9c55d62c8cdb7b93b925386d257df560cf34bffe4f937a42ed543940db1418、after c7f651706a62b9c9ce6ee94b20d82ef0591e79a6b9112eeea084e002e362d0b2。inspect-condition-observation-0/1に実argv・原log・case条件・観測手順とbytesを保存した。
+
+この1条件はF1時間未達ともF5回収とも分けて保留する。親への具体的な追加判断事項は「保存不変性の全file条件にGodotのQA監査logを含めるか、その契約とQA出力先を別作業で整理するか」。profile/logの除外による条件弱化、ログ設定変更、本番codec変更は059で実施しない。元special/case/assertion本文のbytesは保持している。独立したF5回収修正・両OS検証は継続する。
+
+
+## 提出時の保証範囲と取得不能
+
+F5-a/F5-bは上記最新固定の両OS原証拠で検証済み。Linuxは専用session/start_ticks/継承token/pidfd、Windowsはsuspended作成→専用Job所属→resumeの範囲で今回起動したQA processを監督する。所有不明・期限0・保存不能・設定失敗を成功へ補完しない。既存180/174/30/600秒・15分、元assertion、worker/batch、原固定SHA/旧scope/原証拠、保護26を保持した。OS全体停止・権限/namespaceにより所有確認できないprocess・監督から意図的に離脱するQAまで保証しない。
+
+残件はF1時間内の全取引未達、F4実ENOSPC/nested別volume NOT_RUN、観測済みinspect-preparedのQA log不変条件の別判断、最新primitives原bytes未照合。後者の対象はrun37973730943のLinux job113966598499/Windows job113966598640で、各fetch_workflow_job_logsがTransport closed。job metadata成功だけで原log再照合済みとはしない。旧artifact11634293939の代替取得がproxy tunnel 403 Forbiddenだったことも別に保持する。環境を切り替えず、OS設定や検査条件を変えない。
+
+原archive/member索引は追加保存し、途中失敗も保持した。提出直前の独立再照合は32archive・62833member・原2259blobすべて一致（10.113890秒/exit0）、保護対象26件も26件一致（0.070796秒/exit0）。artifact-validation-current/frozen-finalの原logとprocess記録に保存した。最終文書SHAのall CI/clean/未pushは最終応答で確定する。main/PR33/新PR、force、削除、追加委譲、decision-log/tasks READMEの追加更新は行っていない。依頼書は状態行だけを報告済みへ変更する。
