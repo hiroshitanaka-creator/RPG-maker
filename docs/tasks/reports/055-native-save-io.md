@@ -48,7 +48,11 @@ godot-cpp `e83fd0904c13356ed1d4c3d09f8bb9132bdc6b77` (公式godot-4.5-stable/MIT
 
 latest側がscope参照する完成commitを明示fetchするよう新workflowを修正した。旧workflowのshallow checkoutでは参照commitの取得が明示されていなかった。修正前latest primitiveの失敗原因は大きい原logが未取得のため未確定であり、この変更だけで修正成功を断定しない。ローカルのshallow再現試行は参照commitが既に存在して想定条件を再現できず、成功証拠には数えない。
 
-## F1の予算未達、F4・残事項
+## 初回提出のF1予算未達、F4・残事項
+
+初回提出4f1e6129cea612da657ae389a8e59db217581394は全47job終了、既存39と専用primitive4が成功、専用transaction4が予算内未完走。Windows固定48件/720・174.203秒、最新51件/765・174.187秒、Linux固定107件/1537・174.097秒、最新107件/1537・174.095秒。4失敗archiveと計14,630 memberのraw hashを復元・照合し、ci-4f1e-all-jobs.jsonとci-4f1e-*-transactionへ保存した。原053固定と最新の172/2178・14伝播・scope2成功logも別々に残した。
+
+11:00 JSTの継続指示を受け、同じ専用runnerの復旧workerを2→4、case workerを8→16へ変更する。fresh Godotでkill済み要求だけを4件までまとめ、各要求のfresh Tと実GameSessionを維持する。保存コード、validator、cache、件数/期待、180/30/600秒・job15分は変更しない。ローカルの作業ツリー診断では172/2178・97killが124.256秒、元独立validatorのraw/数量/phase照合も成功した。source.jsonに実行開始HEADと未commitの2行変更、実driver SHA256を分けて記録し、完成SHAのCI成功とは呼ばない。Windows/Linux固定・最新CIでこの並列構成を別途確認する。
 
 全172件を180秒以内で完走する専用CIは未達。初期Windowsはconsole wrapperと本体のPID差も失敗原因だった。公式本体exeへ修正後は早期kill/restartの15条件と実終了exit1を確認したが、815 Windowsは45件/675検査・174.187秒、ede Windowsは50件/750検査・174.187秒で停止。Linux CIも815で116件/1626検査・174.082秒、4388で107件/1535検査・174.053秒、edeで117件/1635検査・174.081秒。ローカル通過でCIの予算未達を代用しない。2並列×4再開を1並列×8へ変えた実験は悪化し、元構成へ戻した。検証cacheは削除したままで、予算延長・件数減・skip・continue-on-errorをしていない。F1を全受入済みとはしない。
 

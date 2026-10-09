@@ -46,7 +46,7 @@ class RestartBatch:
     def __init__(self,suite):
         self.suite=suite
         self.queue=queue.Queue()
-        self.threads=[threading.Thread(target=self.worker,daemon=True) for _ in range(2)]
+        self.threads=[threading.Thread(target=self.worker,daemon=True) for _ in range(4)]
         for thread in self.threads:thread.start()
 
     def submit(self,root,cfg):
@@ -450,7 +450,7 @@ class Suite:
         self.seed('trial-missing',typed=True,trial=True,history='missing')
         self.seed('trial-corrupt',typed=True,trial=True,history='corrupt')
         self.seed('trial-unclean',typed=True,trial=True,history='unclean')
-        with ThreadPoolExecutor(max_workers=8) as workers:
+        with ThreadPoolExecutor(max_workers=16) as workers:
             pending={workers.submit(self.run_case,name,spec):name for name,spec in self.expected['cases'].items()}
             for future in as_completed(pending):
                 name=pending[future]
