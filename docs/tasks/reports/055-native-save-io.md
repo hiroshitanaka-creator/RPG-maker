@@ -1,6 +1,6 @@
 # 055 保存専用native I/O 実装報告
 
-未達を含む実装提出。コード固定SHAは `b96658b66c313655b276603d4ead92b507f2b6cd`。Windows/Linuxの固定055／最新専用8jobと最終SHA全CIの終了結果は、同一SHAのActions原記録と最終応答で確定する。全受入済みとはしていない。
+未達を含む実装提出。コード固定SHAは `0a44409c99b06569b9e6088ffeb46c2238c821fa`。Windows/Linuxの固定055／最新専用8jobと最終SHA全CIの終了結果は、同一SHAのActions原記録と最終応答で確定する。全受入済みとはしていない。
 
 基点は登録b17f2b475ff8c58924720ea24cce8f205422c50b、054提出71908a13bcf704287fbc653ca307c504b4bc7f08。指定branch `codex/task-055-native-save-io` で作業し、Gitの実read/push、公式Godot4.7.2とcompilerの実アクセスを確認した。ゲーム本体はGDScriptのままで、通常UI・実ユーザー保存・S4/S5には接続していない。新PR・main反映・merge・強制push・削除・追加委譲・別実行環境の起動は行っていない。
 
