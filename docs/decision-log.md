@@ -112,3 +112,7 @@
 - 2026-10-08：051で049当時scopeを完成SHAへ固定し、051修正版固定と最新の全動作回帰・証拠完全性を別検査にした。後続文書の追加だけで原回帰を阻害せず当時条件も維持するため。未公開codecと今回専用検査の変更はGitで今回2コードcommitを戻して復元可能。旧検査・保護・049証拠は不変。
 - 2026-10-09：053のS3は明示QA rootだけを使い、Linuxのappend-only排他leaseとno-clobber renameで原本・既存確定物を保持する。理由：通常保存/履歴へ接続せずプロセス中断と同一取引の再試行を区別するため。戻す方法：未公開の新S3モジュール・専用検査/CIをGitで差し戻す。既存source/backup/出力は削除しない。
 - 2026-10-09：053のkill後復旧は完了済み要求を新Godotへまとめ、各要求でfresh context/transactionを生成する。理由：全172ケースと97地点を全体180秒・子30秒の既存予算で実行するため。戻す方法：専用probe/runnerだけを変更し、全固定条件を維持する。
+
+- 2026-10-09 JST（055）：08:28 JSTに承認された保存専用C++拡張だけを追加し、ゲーム規則・phase・codec・migrationはGDScriptに保持する。理由：Windowsのroot/identity・排他create・kernel lock・no-clobber renameをOSのhandleで実施するため。通常UI・実ユーザー保存・S4/S5・保護export設定へは接続しない。戻す方法：055担当内の追加・変更を通常revertし、既存source/backup/確定出力と原証拠は保全する。
+- 2026-10-09 JST（055）：単一writerは生存kernel lock handleを根拠にし、照会拒否・型範囲外PIDはunknownとする。検証依存のplan/verify cacheを削除し、同一T・fresh T・commitで実依存を再検証する。理由：054 F2/F3の生存owner重複と依存変更後の古い成功を拒否するため。戻す方法：未公開S3の今回差分だけを通常revertする。
+- 2026-10-09 JST（055）：原053固定検査を保持し、追加Windows/Linuxの完成SHAと最新の取引・primitive検査を独立jobにする。全172/2178・97kill、180/30/600秒・各job15分を維持し、CIの予算不足は未達として提出する。実ENOSPC・nested別volumeは専用領域未提供のためNOT_RUNとし、共有disk充填・mount/VHD/ACL/OS設定変更は行わない。理由：未実測や検査削減を受入成功と混同しないため。戻す方法：055専用検査/CIだけを通常revertし、旧固定検査・時間上限・原証拠は保持する。

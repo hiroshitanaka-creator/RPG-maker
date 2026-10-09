@@ -1,0 +1,367 @@
+{
+  "observed_at_utc": "2026-10-09 01:27:21 UTC",
+  "repository": "hiroshitanaka-creator/RPG-maker",
+  "local_raw_acquisition": {
+    "large_primitive_job_logs": "NOT_DOWNLOADED: connector Transport closed",
+    "signed_artifact_urls": "NOT_DOWNLOADED: execution-environment proxy CONNECT403",
+    "github_digest_is_local_raw_verification": false
+  },
+  "runs": [
+    {
+      "id": 37866071159,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37866071159",
+      "head_sha": "6999197564ad259dfe84009eb23f0b4e833dacb4",
+      "code_fixed_sha": "80fa6d430d391dd97b8166604c6b0b8ab1804bd5",
+      "jobs": [
+        {
+          "id": 113612991123,
+          "name": "equipment-native (ubuntu-latest, latest, transaction)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113612991358,
+          "name": "equipment-native (windows-latest, fixed055, transaction)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113612991365,
+          "name": "equipment-native (ubuntu-latest, fixed055, primitives)",
+          "status": "completed",
+          "conclusion": "success",
+          "failed_steps": []
+        },
+        {
+          "id": 113612991452,
+          "name": "equipment-native (windows-latest, latest, transaction)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113612991461,
+          "name": "equipment-native (windows-latest, fixed055, primitives)",
+          "status": "completed",
+          "conclusion": "success",
+          "failed_steps": []
+        },
+        {
+          "id": 113612991473,
+          "name": "equipment-native (ubuntu-latest, fixed055, transaction)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113612991569,
+          "name": "equipment-native (ubuntu-latest, latest, primitives)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113612991570,
+          "name": "equipment-native (windows-latest, latest, primitives)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 11589516351,
+          "name": "equipment-native-ubuntu-latest-fixed055-transaction",
+          "size_in_bytes": 169303442,
+          "digest": "sha256:f472dfe66aa4f1b087076f3edc7100de27d5aea4797f35c8c8a167e460460c61",
+          "expired": false,
+          "created_at": "2026-10-09T01:08:40Z",
+          "expires_at": "2027-01-07T00:41:44Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11589355291,
+          "name": "equipment-native-windows-latest-fixed055-transaction",
+          "size_in_bytes": 183687637,
+          "digest": "sha256:84419aa321ac044ac7d97528ec2ad3939162cc940159513f42ec7f13ef4fca49",
+          "expired": false,
+          "created_at": "2026-10-09T00:59:26Z",
+          "expires_at": "2027-01-07T00:41:44Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11589272130,
+          "name": "equipment-native-windows-latest-latest-primitives",
+          "size_in_bytes": 215932860,
+          "digest": "sha256:b0743db48e14f676b6f0c5fa85fa4c8ca37740e17f4ef8cd8a97d0f3e630a0c2",
+          "expired": false,
+          "created_at": "2026-10-09T01:10:19Z",
+          "expires_at": "2027-01-07T00:41:44Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11589141405,
+          "name": "equipment-native-ubuntu-latest-latest-transaction",
+          "size_in_bytes": 169849531,
+          "digest": "sha256:1ad7ed515f3a03845cbf518946da399672e9282aace36c34a00de6b07d69494b",
+          "expired": false,
+          "created_at": "2026-10-09T01:07:16Z",
+          "expires_at": "2027-01-07T00:41:44Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11589082083,
+          "name": "equipment-native-ubuntu-latest-latest-primitives",
+          "size_in_bytes": 1154020811,
+          "digest": "sha256:ffe39e3e2c563b3c10130d4be3a78090f2a5f97158e45a1ff890bc119453a551",
+          "expired": false,
+          "created_at": "2026-10-09T01:10:02Z",
+          "expires_at": "2027-01-07T00:41:44Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11588814579,
+          "name": "equipment-native-windows-latest-latest-transaction",
+          "size_in_bytes": 182828320,
+          "digest": "sha256:40861577e03be65aa99128e2319f5f45d08866e2b4a547ef2504d9dcf6242b18",
+          "expired": false,
+          "created_at": "2026-10-09T01:07:44Z",
+          "expires_at": "2027-01-07T00:41:44Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11588794754,
+          "name": "equipment-native-windows-latest-fixed055-primitives",
+          "size_in_bytes": 216400902,
+          "digest": "sha256:fc0cbfd80bc57a8f717103aa74fad953b61054e618faa2a246b5bf4bf7756f36",
+          "expired": false,
+          "created_at": "2026-10-09T01:09:15Z",
+          "expires_at": "2027-01-07T00:41:44Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11588623656,
+          "name": "equipment-native-ubuntu-latest-fixed055-primitives",
+          "size_in_bytes": 1154490606,
+          "digest": "sha256:0ad7b9ca8f2cab2bf9fa478a0e15db365949286ab84577d8370d8bf2f0c7511b",
+          "expired": false,
+          "created_at": "2026-10-09T01:08:48Z",
+          "expires_at": "2027-01-07T00:41:44Z",
+          "raw_downloaded_and_verified_locally": false
+        }
+      ]
+    },
+    {
+      "id": 37867231378,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37867231378",
+      "head_sha": "44dac5840abd7822301fa30e2868af94c333e643",
+      "code_fixed_sha": "dda64d436a03975ffb71abebce65b30dd2928ba3",
+      "jobs": [
+        {
+          "id": 113616739938,
+          "name": "equipment-native (windows-latest, latest, primitives)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113616740109,
+          "name": "equipment-native (ubuntu-latest, fixed055, primitives)",
+          "status": "completed",
+          "conclusion": "success",
+          "failed_steps": []
+        },
+        {
+          "id": 113616740157,
+          "name": "equipment-native (ubuntu-latest, latest, transaction)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113616740188,
+          "name": "equipment-native (windows-latest, latest, transaction)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113616740196,
+          "name": "equipment-native (windows-latest, fixed055, transaction)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113616740312,
+          "name": "equipment-native (ubuntu-latest, latest, primitives)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113616740320,
+          "name": "equipment-native (ubuntu-latest, fixed055, transaction)",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_steps": [
+            "公式4.7.2と専用検査"
+          ]
+        },
+        {
+          "id": 113616740658,
+          "name": "equipment-native (windows-latest, fixed055, primitives)",
+          "status": "in_progress",
+          "conclusion": null,
+          "failed_steps": []
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 11589667426,
+          "name": "equipment-native-ubuntu-latest-latest-transaction",
+          "size_in_bytes": 169456352,
+          "digest": "sha256:828c9ef26381439ad43cc7583a55bb674532a1c7250b8a44e44b03659d02a1e7",
+          "expired": false,
+          "created_at": "2026-10-09T01:20:20Z",
+          "expires_at": "2027-01-07T00:55:43Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11589417952,
+          "name": "equipment-native-windows-latest-latest-primitives",
+          "size_in_bytes": 215972461,
+          "digest": "sha256:5e96dad744d0f73af7d1829d8f8e6950b73f79d4e2df9c4baa40080547717cde",
+          "expired": false,
+          "created_at": "2026-10-09T01:19:04Z",
+          "expires_at": "2027-01-07T00:55:43Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11589193961,
+          "name": "equipment-native-ubuntu-latest-latest-primitives",
+          "size_in_bytes": 1154046638,
+          "digest": "sha256:071761ad07f24d00f7d18728ef69664a2905c80a53f0bcc911db68a751cd0399",
+          "expired": false,
+          "created_at": "2026-10-09T01:21:05Z",
+          "expires_at": "2027-01-07T00:55:43Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11589164301,
+          "name": "equipment-native-windows-latest-fixed055-transaction",
+          "size_in_bytes": 182831003,
+          "digest": "sha256:471fe6aac3282bb4466a59298e16e52ebc923fc4f9700c6ea89262c411f880aa",
+          "expired": false,
+          "created_at": "2026-10-09T01:21:37Z",
+          "expires_at": "2027-01-07T00:55:43Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11589094828,
+          "name": "equipment-native-ubuntu-latest-fixed055-transaction",
+          "size_in_bytes": 169341296,
+          "digest": "sha256:c416eb70500fc83f339c953d087a72315ff067693b1e892d8144f4d3932d2e64",
+          "expired": false,
+          "created_at": "2026-10-09T01:21:09Z",
+          "expires_at": "2027-01-07T00:55:43Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11588819530,
+          "name": "equipment-native-ubuntu-latest-fixed055-primitives",
+          "size_in_bytes": 1154515934,
+          "digest": "sha256:05c563307995ebb1adc8df01276bcb2878efe12eb35637d727404f0b5d324385",
+          "expired": false,
+          "created_at": "2026-10-09T01:20:48Z",
+          "expires_at": "2027-01-07T00:55:43Z",
+          "raw_downloaded_and_verified_locally": false
+        },
+        {
+          "id": 11588714898,
+          "name": "equipment-native-windows-latest-latest-transaction",
+          "size_in_bytes": 182776129,
+          "digest": "sha256:2c53e0c1bff2f8dc3a07726103d87bbae4672c5f06f554f79a29c606eaf8e740",
+          "expired": false,
+          "created_at": "2026-10-09T01:22:19Z",
+          "expires_at": "2027-01-07T00:55:43Z",
+          "raw_downloaded_and_verified_locally": false
+        }
+      ]
+    }
+  ],
+  "next_runs": [
+    {
+      "id": 37869034693,
+      "head_sha": "1795ae02693a796774b74b64178ae05293dcb405",
+      "name": "装備保存I/O・中断復旧CI",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37869034693"
+    },
+    {
+      "id": 37869034706,
+      "head_sha": "1795ae02693a796774b74b64178ae05293dcb405",
+      "name": "Equipment Codec CI",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37869034706"
+    },
+    {
+      "id": 37869034745,
+      "head_sha": "1795ae02693a796774b74b64178ae05293dcb405",
+      "name": "006 固定受入と最新回帰",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37869034745"
+    },
+    {
+      "id": 37869034797,
+      "head_sha": "1795ae02693a796774b74b64178ae05293dcb405",
+      "name": "CI",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37869034797"
+    },
+    {
+      "id": 37869034697,
+      "head_sha": "1795ae02693a796774b74b64178ae05293dcb405",
+      "name": "Equipment and Save CI",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37869034697"
+    },
+    {
+      "id": 37869034809,
+      "head_sha": "1795ae02693a796774b74b64178ae05293dcb405",
+      "name": "保存専用native Windows・Linux CI",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37869034809"
+    }
+  ]
+}
