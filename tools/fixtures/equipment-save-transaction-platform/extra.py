@@ -89,6 +89,18 @@ class Suite:
         else:paths.update({'long-path':str(root)+'/'+('/'.join(['long_component'*3]*8))+'/file.tmp'})
         for name,path in paths.items():
             value=self.run(root,'path',label='path-'+name,path=path);self.check('path-'+name,value['result']['ok']==(name in ['nonascii-space','case-alias','long-path']),value)
+        for name,part in [('nonascii-space','保存 領域/file.tmp'),('long-path','/'.join(['long_component'*3]*8)+'/file.tmp')]:
+            path=str(tx/part);value=self.run(root,'roundtrip',label='io-'+name,path=path)
+            self.check('io-'+name,value['result']['ok'] and (Path(path+'.done')).read_bytes()=='保存 native exact bytes'.encode(),value)
+        value=self.run(root,'process',label='query-unknown',pid=0);self.check('query-unknown-is-not-dead',value['result']['state']==-1,value)
+        if os.name=='nt':
+            path=str(tx/'case.tmp').swapcase();value=self.run(root,'roundtrip',label='io-case',path=path);self.check('io-case-alias',value['result']['ok'] and Path(path+'.done').read_bytes()=='保存 native exact bytes'.encode(),value)
+            outside=self.new('junction-destination');junction=root/'junction'
+            p=subprocess.run(['cmd','/c','mklink','/J',str(junction),str(outside)],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30);(root/'junction-command.log').write_bytes(p.stdout);assert p.returncode==0,'専用QA junction作成失敗'
+            value=self.run(root,'path',label='junction',path=str(junction/'file.tmp'));self.check('junction-denied',not value['result']['ok'] and not (outside/'file.tmp').exists(),value)
+        root=self.new('transaction-source-alias');seed=self.fixture(root);nested=root/'transactions/other/source.json';nested.parent.mkdir(parents=True);nested.write_bytes((root/'source.json').read_bytes())
+        source=str(nested).swapcase() if os.name=='nt' else str(nested)
+        value=self.run(root,'prepare','worker',label='transaction-source',source=source);self.check('transaction-source-alias-denied',value['result'].get('reason_code')=='same_file' and not (root/'transactions'/seed['token']).exists(),value)
         root=self.new('inspect-recover-write-zero');seed=self.fixture(root,typed=True,trial=True,history='normal');done=self.run(root,'full','worker',label='done')
         def snapshot():
             return {p.relative_to(root).as_posix():(p.stat().st_size,p.stat().st_mtime_ns,digest(p.read_bytes())) for p in [root/'source.json',*list((root/'history').glob('*')),*list((root/'transactions').rglob('*'))] if p.is_file()}

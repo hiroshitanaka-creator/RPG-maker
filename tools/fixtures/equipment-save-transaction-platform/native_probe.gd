@@ -9,6 +9,20 @@ func _initialize() -> void:
 		match config.operation:
 			"path":result={"ok":io.path_ok(config.path),"reason_code":"path_result"}
 			"identity":result=io.inspect_identity(config.path)
+			"roundtrip":
+				if io.make_directories(config.path.get_base_dir()) and io.acquire_lock(tx).ok:
+					var opened: Dictionary=io.open_write(config.path,false)
+					if opened.ok:
+						var bytes: PackedByteArray="保存 native exact bytes".to_utf8_buffer()
+						var written: Dictionary=io.write_exact(opened.handle,bytes)
+						var flushed: Dictionary=io.flush(opened.handle)
+						var closed: Dictionary=io.close_file(opened.handle)
+						var renamed: Dictionary=io.rename_file(config.path,config.path+".done",false)
+						var reading: Dictionary=io.open_read(config.path+".done")
+						if reading.ok:
+							var read: Dictionary=io.read_all(reading.handle)
+							var read_closed: Dictionary=io.close_file(reading.handle)
+							result={"ok":written.ok and flushed.ok and closed.ok and renamed.ok and read.ok and read_closed.ok and read.bytes==bytes,"identity":io.inspect_identity(config.path+".done")}
 			"lock":
 				if io.make_directories(tx):result=io.acquire_lock(tx)
 			"unowned_write":result=io.open_write(config.path,false)

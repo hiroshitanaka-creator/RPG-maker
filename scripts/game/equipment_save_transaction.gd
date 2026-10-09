@@ -262,7 +262,9 @@ func prepare(source_path: String, expected_sha: String, candidate_document: Dict
 		if directory!=null:
 			for name in ["source.bin","converted.tmp","converted.json"]:
 				if FileAccess.file_exists(tx.path_join(name)) and directory.is_equivalent(source_path,tx.path_join(name)):return fail("same_file",source_path)
-	if source_path.begins_with(root.path_join("transactions")+"/"):return fail("same_file",source_path)
+	var source_relative: String=io.relative_path(source_path)
+	if OS.get_name()=="Windows":source_relative=source_relative.to_lower()
+	if source_relative.begins_with("transactions/"):return fail("same_file",source_path)
 	var h := history(candidate.source.document)
 	if not h.ok:return h
 	var intent := intent_for(source_path,expected_sha,candidate.token,candidate,h,session_token)
@@ -328,7 +330,9 @@ func recover(token: String) -> Dictionary:
 	var intent: Dictionary=stored.value
 	if not intent.get("source_path") is String or not intent.get("source_sha256") is String or not intent.get("generation") is String:return fail("recovery_required",tx)
 	var source_path := root.path_join(intent.source_path)
-	if source_path.begins_with(root.path_join("transactions")+"/"):return fail("same_file",source_path)
+	var source_relative: String=io.relative_path(source_path)
+	if OS.get_name()=="Windows":source_relative=source_relative.to_lower()
+	if source_relative.begins_with("transactions/"):return fail("same_file",source_path)
 	var dir := DirAccess.open(tx)
 	for name in ["source.bin","source.bin.tmp","converted.tmp","converted.json","history.bin","intent.json","receipt.json"]:
 		var check_path := tx.path_join(name)
