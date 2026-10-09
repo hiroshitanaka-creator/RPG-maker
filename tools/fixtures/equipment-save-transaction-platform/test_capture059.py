@@ -141,6 +141,11 @@ def main(args):
             assert sentinel.poll() is None,'無関係専用sentinelを終了してはならない'
             if fail:
                 assert row['pid'] is None and row['argv'] is None and row['log'] is None and error
+            elif mode=='unowned' and os.name!='nt':
+                assert row['supervision']['stopped'] is False and 'ownership token' in row['supervision']['reason']
+                heartbeat=area/'grandchild.heartbeat';before=heartbeat.read_text();time.sleep(.04)
+                assert heartbeat.read_text()!=before,'所有不明の孫を終了してはならない'
+                assert row['exit_code'] is None and error
             elif zero:
                 assert row['supervision']['stopped'] is False and 'deadline' in row['supervision']['reason'] and error
             else:
@@ -159,6 +164,7 @@ def main(args):
     record('outer-kill-owned-grandchild',lambda:process_tree('outer-tree','parent'))
     record('parent-exits-first-log-holder',lambda:process_tree('early-tree','early'))
     record('nested-capture-stays-in-outer-supervision',lambda:process_tree('nested-tree','nested'))
+    record('ownership-unknown-preserved',lambda:process_tree('unknown-tree','unowned'))
     record('zero-deadline-unconfirmed',lambda:process_tree('zero-tree','parent',zero=True))
     record('supervision-setup-failure',lambda:process_tree('setup-failure','parent',fail=True))
     def launch_races():

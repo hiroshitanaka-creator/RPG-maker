@@ -94,11 +94,11 @@ class OwnedTree:
 
     def belongs(self, pid, fields):
         if int(fields[3])!=self.session:return False
-        if self.outer or int(fields[2])==self.group:return True
         # 同一専用session内でも兄弟QAを終了しない。exec前から渡した自分のtokenだけ。
         raw=Path('/proc',str(pid),'environ').read_bytes()
         prefix=(OWNER_KEY+'=').encode()
         owners=next((item[len(prefix):] for item in raw.split(b'\0') if item.startswith(prefix)),b'')
+        if not owners:raise OSError('専用session内processのownership token未確認。終了しない')
         return self.token.encode() in owners.split(b',')
 
     def members(self):

@@ -22,7 +22,9 @@ def main(args):
         try:run_command([sys.executable,__file__,'--mode','parent','--area',str(area)],area/'nested.log',area/'nested.json',cwd=area,budget=5)
         except Exception:return 1
         return 0
-    child=subprocess.Popen([sys.executable,__file__,'--mode','grandchild','--area',str(area)])
+    child_env=os.environ.copy()
+    if args.mode=='unowned':child_env.pop('EQUIPMENT_QA059_OWNERS',None)
+    child=subprocess.Popen([sys.executable,__file__,'--mode','grandchild','--area',str(area)],env=child_env)
     until=time.monotonic()+3
     while not (area/'grandchild.json').exists() and time.monotonic()<until:time.sleep(.005)
     print('tree-parent pid='+str(os.getpid())+' child='+str(child.pid),flush=True)
@@ -33,5 +35,5 @@ def main(args):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--mode',choices=['parent','early','nested','grandchild','sentinel'],required=True);p.add_argument('--area',required=True)
+    p=argparse.ArgumentParser();p.add_argument('--mode',choices=['parent','early','nested','unowned','grandchild','sentinel'],required=True);p.add_argument('--area',required=True)
     sys.exit(main(p.parse_args()))
