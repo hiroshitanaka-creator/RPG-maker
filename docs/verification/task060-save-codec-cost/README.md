@@ -13,3 +13,5 @@
 - 各runは指定の10ファイルのみ。results.json内のgzip/base64 archiveに原コマンド出力・旧検査のJSON/入力・型付きgdv・取引file証拠を無加工で格納し、member hashを列挙する。stdout/stderrは別保存。時間切れも部分原物・実exit・監督状態を残し、未取得を成功にしない。
 - 既存公式4.7.2取得URLとZIP hashをlaunch.pyから参照し、一時領域へ取得。既存4.6.3は使用しない。OS/プロジェクト設定を変えず、既存run_ci同様の専用process profileを使う。
 - 新CI接続なし。既存全CI、旧固定版と最新回帰、今回ローカル計測を分けて最終報告する。decision-log/tasks READMEは更新しない。
+
+結果は [060日本語報告](../../tasks/reports/060-measure-save-codec-cost.md) を参照。12試行を全保存。専用比較器は証拠整合性成功、取引未達を保持してINCOMPLETE/exit 1。inventory.latest_regressionに最新回帰の原archive、baseline_ciに059元提出の全終了記録を収録。候補は未実装。

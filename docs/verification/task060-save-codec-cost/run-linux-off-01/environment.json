@@ -1,0 +1,30 @@
+{
+  "os": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "cpu": "AMD EPYC 9V45 96-Core Processor",
+  "cpu_count": 5,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "engine": "/tmp/qa060/engine/Godot_v4.7.2-stable_linux.x86_64",
+  "engine_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e",
+  "source_sha": "c126bc84870225b38842054f20e1784b023384d6",
+  "base_sha": "6695d7b802137e9d6b7e468a1414c04d658a5380",
+  "mode": "off",
+  "case_workers": 16,
+  "restart_workers": 4,
+  "batch_roots": 4,
+  "budgets": {
+    "codec": 120,
+    "transaction_outer": 180,
+    "transaction_inner": 174,
+    "transaction_child": 30,
+    "import_seconds": 600
+  },
+  "clock": "monotonic microseconds per process; parallel cumulative is not wall",
+  "limits": {
+    "/sys/fs/cgroup/cpu.max": "400000 100000",
+    "/sys/fs/cgroup/memory.max": "17179869184"
+  },
+  "phase": "codec",
+  "repetition": 1,
+  "fixture_contract_sha256": "20e0759b74585de80d154cedffbb7ed185ac0ff3c7604731436a6c3ef52f1720",
+  "generated": {}
+}

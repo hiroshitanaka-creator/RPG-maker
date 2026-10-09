@@ -1,0 +1,76 @@
+{
+  "planned_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/check_equipment_save_codec_cost.py",
+    "--exec-json",
+    "/workspace/qa060-10du8eeq/run-linux-on-03/exec.json"
+  ],
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/check_equipment_save_codec_cost.py",
+    "--exec-json",
+    "/workspace/qa060-10du8eeq/run-linux-on-03/exec.json"
+  ],
+  "cwd": "/workspace/qa060-10du8eeq/checkout-on",
+  "pid": 1966,
+  "started_utc": "2026-10-09T23:26:08.939087+00:00",
+  "started_monotonic": 675.686278845,
+  "accepted_utc": "2026-10-09T23:26:08.938435+00:00",
+  "accepted_monotonic": 675.685613502,
+  "ended_utc": "2026-10-09T23:26:16.521848+00:00",
+  "ended_monotonic": 683.269027221,
+  "terminal": true,
+  "seconds": 7.583413718999964,
+  "budget_seconds": 120,
+  "exit_code": 0,
+  "timed_out": false,
+  "timeout_kind": null,
+  "exception": null,
+  "exit_unavailable_reason": null,
+  "deadline_remaining_start": 119.99995725500003,
+  "deadline_remaining_end": 112.41654353600006,
+  "kill": {
+    "attempted": false,
+    "ok": null
+  },
+  "wait": {
+    "attempted": true,
+    "ok": true
+  },
+  "streams": "stdout+stderr",
+  "planned_log": "/workspace/qa060-10du8eeq/run-linux-on-03/supervisor.log",
+  "log": "/workspace/qa060-10du8eeq/run-linux-on-03/supervisor.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "result": {},
+  "kill_point": null,
+  "record_path": "/workspace/qa060-10du8eeq/run-linux-on-03/process.json",
+  "record_saved": true,
+  "supervision": {
+    "mechanism": "Linux dedicated session",
+    "configured": true,
+    "ownership": {
+      "session": 1966,
+      "group": 1966,
+      "root_pid": 1966,
+      "token": "dc268cb79d4c4224b6c94f90eb042252"
+    },
+    "stopped": true,
+    "stop_attempted": false,
+    "reason": null,
+    "observed_members": []
+  },
+  "cleanup_remaining_end": 112.41654353600006,
+  "requested_argv": [
+    "/tmp/qa060/engine/Godot_v4.7.2-stable_linux.x86_64",
+    "--headless",
+    "--path",
+    "/workspace/qa060-10du8eeq/checkout-on",
+    "--script",
+    "res://tools/check_equipment_save_codec.gd"
+  ],
+  "runner_error": null,
+  "clean_logs": true,
+  "ok": true
+}

@@ -1,0 +1,1917 @@
+{
+  "labels": {
+    "equipment_save_codec.decode_source": {
+      "count": 55,
+      "inclusive_us": 2784103,
+      "exclusive_us": 280038,
+      "parents": {
+        "(root)": 45,
+        "equipment_save_codec.encode_candidate": 10
+      }
+    },
+    "equipment_document_validation.context_errors": {
+      "count": 263,
+      "inclusive_us": 544208,
+      "exclusive_us": 544208,
+      "parents": {
+        "equipment_save_codec.decode_source": 55,
+        "equipment_document_validation.prepare_candidate": 52,
+        "equipment_document_validation.validate": 122,
+        "equipment_save_codec.encode_candidate": 34
+      }
+    },
+    "equipment_save_codec.valid_utf8": {
+      "count": 53,
+      "inclusive_us": 158755,
+      "exclusive_us": 158755,
+      "parents": {
+        "equipment_save_codec.decode_source": 53
+      }
+    },
+    "codec.parse.outer": {
+      "count": 49,
+      "inclusive_us": 6565,
+      "exclusive_us": 6565,
+      "parents": {
+        "equipment_save_codec.decode_source": 49
+      }
+    },
+    "equipment_save_codec.unique_json_keys": {
+      "count": 49,
+      "inclusive_us": 634564,
+      "exclusive_us": 634564,
+      "parents": {
+        "equipment_save_codec.decode_source": 49
+      }
+    },
+    "saved_document.decode": {
+      "count": 39,
+      "inclusive_us": 46639,
+      "exclusive_us": 9039,
+      "parents": {
+        "equipment_save_codec.decode_source": 39
+      }
+    },
+    "codec.copy.raw": {
+      "count": 39,
+      "inclusive_us": 14262,
+      "exclusive_us": 14262,
+      "parents": {
+        "equipment_save_codec.decode_source": 39
+      }
+    },
+    "equipment_document_validation.schema": {
+      "count": 200,
+      "inclusive_us": 712514,
+      "exclusive_us": 117477,
+      "parents": {
+        "equipment_save_codec.decode_source": 38,
+        "equipment_document_validation.prepare_candidate": 40,
+        "equipment_document_validation.validate": 122
+      }
+    },
+    "equipment_document_validation.auxiliary": {
+      "count": 200,
+      "inclusive_us": 595037,
+      "exclusive_us": 595037,
+      "parents": {
+        "equipment_document_validation.schema": 200
+      }
+    },
+    "codec.copy.document": {
+      "count": 46,
+      "inclusive_us": 38080,
+      "exclusive_us": 38080,
+      "parents": {
+        "equipment_save_codec.decode_source": 20,
+        "equipment_save_codec.encode_candidate": 26
+      }
+    },
+    "saved_value_types.describe": {
+      "count": 83,
+      "inclusive_us": 140961,
+      "exclusive_us": 140961,
+      "parents": {
+        "(root)": 16,
+        "equipment_save_codec.decode_source": 15,
+        "equipment_save_codec.encode_candidate": 26,
+        "equipment_document_validation.native_metadata_errors": 21,
+        "equipment_document_validation.prepare_candidate": 4,
+        "equipment_document_validation.compare_migration": 1
+      }
+    },
+    "equipment_document_validation.metadata_errors": {
+      "count": 49,
+      "inclusive_us": 291,
+      "exclusive_us": 291,
+      "parents": {
+        "equipment_save_codec.decode_source": 20,
+        "equipment_document_validation.native_metadata_errors": 29
+      }
+    },
+    "saved_value_types.restore": {
+      "count": 18,
+      "inclusive_us": 30734,
+      "exclusive_us": 3765,
+      "parents": {
+        "equipment_save_codec.decode_source": 18
+      }
+    },
+    "types.copy.value": {
+      "count": 18,
+      "inclusive_us": 26901,
+      "exclusive_us": 26901,
+      "parents": {
+        "saved_value_types.restore": 18
+      }
+    },
+    "types.copy.metadata_arrays": {
+      "count": 16,
+      "inclusive_us": 68,
+      "exclusive_us": 68,
+      "parents": {
+        "saved_value_types.restore": 16
+      }
+    },
+    "equipment_document_validation.prepare_candidate": {
+      "count": 52,
+      "inclusive_us": 1366413,
+      "exclusive_us": 503355,
+      "parents": {
+        "(root)": 41,
+        "equipment_document_validation.compare_migration": 11
+      }
+    },
+    "equipment_document_validation.native_metadata_errors": {
+      "count": 65,
+      "inclusive_us": 10116,
+      "exclusive_us": 2055,
+      "parents": {
+        "equipment_document_validation.prepare_candidate": 47,
+        "equipment_save_codec.encode_candidate": 16,
+        "(root)": 2
+      }
+    },
+    "validation.copy.candidate": {
+      "count": 40,
+      "inclusive_us": 1635,
+      "exclusive_us": 1635,
+      "parents": {
+        "equipment_document_validation.prepare_candidate": 40
+      }
+    },
+    "equipment_document_validation.validate": {
+      "count": 122,
+      "inclusive_us": 2916000,
+      "exclusive_us": 2138760,
+      "parents": {
+        "equipment_document_validation.prepare_candidate": 38,
+        "equipment_save_codec.decode_source": 15,
+        "equipment_save_codec.encode_candidate": 10,
+        "(root)": 59
+      }
+    },
+    "equipment_document_validation.audit_errors": {
+      "count": 84,
+      "inclusive_us": 91575,
+      "exclusive_us": 91575,
+      "parents": {
+        "equipment_document_validation.validate": 84
+      }
+    },
+    "equipment_save_codec.encode_candidate": {
+      "count": 34,
+      "inclusive_us": 2091934,
+      "exclusive_us": 122670,
+      "parents": {
+        "(root)": 34
+      }
+    },
+    "saved_document.encode": {
+      "count": 10,
+      "inclusive_us": 34115,
+      "exclusive_us": 34115,
+      "parents": {
+        "equipment_save_codec.encode_candidate": 10
+      }
+    },
+    "validation.copy.document": {
+      "count": 21,
+      "inclusive_us": 951,
+      "exclusive_us": 951,
+      "parents": {
+        "equipment_document_validation.native_metadata_errors": 21
+      }
+    },
+    "codec.decompress": {
+      "count": 3,
+      "inclusive_us": 1187,
+      "exclusive_us": 1187,
+      "parents": {
+        "equipment_save_codec.decode_source": 3
+      }
+    },
+    "codec.parse.inner": {
+      "count": 2,
+      "inclusive_us": 39200,
+      "exclusive_us": 39200,
+      "parents": {
+        "equipment_save_codec.decode_source": 2
+      }
+    },
+    "saved_document.decompress": {
+      "count": 2,
+      "inclusive_us": 1237,
+      "exclusive_us": 1237,
+      "parents": {
+        "saved_document.decode": 2
+      }
+    },
+    "saved_document.parse": {
+      "count": 2,
+      "inclusive_us": 36363,
+      "exclusive_us": 36363,
+      "parents": {
+        "saved_document.decode": 2
+      }
+    },
+    "equipment_document_validation.compare_migration": {
+      "count": 11,
+      "inclusive_us": 502652,
+      "exclusive_us": 134141,
+      "parents": {
+        "(root)": 11
+      }
+    }
+  },
+  "roots": [
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 0,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 486249,
+      "end_us": 494342
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 1,
+      "label": "saved_value_types.describe",
+      "start_us": 496292,
+      "end_us": 496514
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 2,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 496759,
+      "end_us": 505636
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 3,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 507522,
+      "end_us": 514851
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 4,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 527627,
+      "end_us": 562738
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 5,
+      "label": "saved_value_types.describe",
+      "start_us": 562889,
+      "end_us": 563116
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 6,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 563420,
+      "end_us": 589458
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 7,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 591144,
+      "end_us": 642727
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 8,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 644888,
+      "end_us": 672672
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 9,
+      "label": "saved_value_types.describe",
+      "start_us": 672839,
+      "end_us": 673211
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 10,
+      "label": "saved_value_types.describe",
+      "start_us": 673987,
+      "end_us": 674361
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 11,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 674530,
+      "end_us": 727442
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 12,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 745406,
+      "end_us": 2351077
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 13,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 2462962,
+      "end_us": 3602840
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 14,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3607231,
+      "end_us": 3613122
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 15,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3615242,
+      "end_us": 3621118
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 16,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3623021,
+      "end_us": 3628945
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 17,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3630976,
+      "end_us": 3637000
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 18,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3638975,
+      "end_us": 3642056
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 19,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3643734,
+      "end_us": 3649699
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 20,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3669040,
+      "end_us": 3697246
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 21,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3705282,
+      "end_us": 3760298
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 22,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3762728,
+      "end_us": 3765360
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 23,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3767195,
+      "end_us": 3769768
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 24,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3771585,
+      "end_us": 3774116
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 25,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3775889,
+      "end_us": 3778496
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 26,
+      "label": "saved_value_types.describe",
+      "start_us": 3780181,
+      "end_us": 3780570
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 27,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3780926,
+      "end_us": 3787278
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 28,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3788834,
+      "end_us": 3791981
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 29,
+      "label": "saved_value_types.describe",
+      "start_us": 3793746,
+      "end_us": 3794105
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 30,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3794461,
+      "end_us": 3800290
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 31,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3801764,
+      "end_us": 3804910
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 32,
+      "label": "saved_value_types.describe",
+      "start_us": 3806657,
+      "end_us": 3807018
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 33,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3807395,
+      "end_us": 3813160
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 34,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3814769,
+      "end_us": 3817955
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 35,
+      "label": "saved_value_types.describe",
+      "start_us": 3819794,
+      "end_us": 3820154
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 36,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3820519,
+      "end_us": 3826445
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 37,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3828242,
+      "end_us": 3830925
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 38,
+      "label": "saved_value_types.describe",
+      "start_us": 3832709,
+      "end_us": 3833074
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 39,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3833438,
+      "end_us": 3839066
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 40,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3840495,
+      "end_us": 3843026
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 41,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3844787,
+      "end_us": 3846930
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 42,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3848137,
+      "end_us": 3850265
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 43,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3851472,
+      "end_us": 3853708
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 44,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3854924,
+      "end_us": 3857198
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 45,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3858383,
+      "end_us": 3860554
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 46,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3862023,
+      "end_us": 3867145
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 47,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3868647,
+      "end_us": 3877567
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 48,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 3897850,
+      "end_us": 3929520
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 49,
+      "label": "equipment_document_validation.validate",
+      "start_us": 3929816,
+      "end_us": 3946649
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 50,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 3948443,
+      "end_us": 3981765
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 51,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 3995519,
+      "end_us": 4033341
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 52,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4033856,
+      "end_us": 4087746
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 53,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4090728,
+      "end_us": 4134687
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 54,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 4136786,
+      "end_us": 4179437
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 55,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 4179719,
+      "end_us": 4223836
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 56,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4248260,
+      "end_us": 4250757
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 57,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4252623,
+      "end_us": 4255222
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 58,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4257055,
+      "end_us": 4259669
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 59,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4261482,
+      "end_us": 4264071
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 60,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4265837,
+      "end_us": 4268280
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 61,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4269975,
+      "end_us": 4272465
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 62,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4274194,
+      "end_us": 4288899
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 63,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4290701,
+      "end_us": 4305170
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 64,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4306926,
+      "end_us": 4320125
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 65,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4321817,
+      "end_us": 4334891
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 66,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4336674,
+      "end_us": 4345983
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 67,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4347927,
+      "end_us": 4353307
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 68,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4355139,
+      "end_us": 4357713
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 69,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4359449,
+      "end_us": 4361932
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 70,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4363589,
+      "end_us": 4365956
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 71,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4367615,
+      "end_us": 4370072
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 72,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4371729,
+      "end_us": 4377087
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 73,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4378770,
+      "end_us": 4384144
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 74,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4385811,
+      "end_us": 4391114
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 75,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4392777,
+      "end_us": 4398087
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 76,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4399774,
+      "end_us": 4416351
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 77,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4418011,
+      "end_us": 4434767
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 78,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4436450,
+      "end_us": 4452293
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 79,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4454022,
+      "end_us": 4469990
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 80,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4471758,
+      "end_us": 4487750
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 81,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4489400,
+      "end_us": 4506309
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 82,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4508370,
+      "end_us": 4513808
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 83,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4515608,
+      "end_us": 4520822
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 84,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4522423,
+      "end_us": 4527485
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 85,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4529095,
+      "end_us": 4534246
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 86,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4535880,
+      "end_us": 4540955
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 87,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4542536,
+      "end_us": 4547766
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 88,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4549349,
+      "end_us": 4554470
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 89,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4556029,
+      "end_us": 4556037
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 90,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4557617,
+      "end_us": 4558189
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 91,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4559781,
+      "end_us": 4560371
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 92,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4629580,
+      "end_us": 4664996
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 93,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4665302,
+      "end_us": 4700331
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 94,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4702549,
+      "end_us": 4738963
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 95,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4755542,
+      "end_us": 4788789
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 96,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4789192,
+      "end_us": 4791677
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 97,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4793488,
+      "end_us": 4795925
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 98,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4797606,
+      "end_us": 4799971
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 99,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4801628,
+      "end_us": 4812738
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 100,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4814389,
+      "end_us": 4825241
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 101,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4826890,
+      "end_us": 4829282
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 102,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4830969,
+      "end_us": 4833386
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 103,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4835041,
+      "end_us": 4837431
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 104,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4839066,
+      "end_us": 4848547
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 105,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4850161,
+      "end_us": 4859626
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 106,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4861222,
+      "end_us": 4870686
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 107,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4872343,
+      "end_us": 4883265
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 108,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4884928,
+      "end_us": 4898059
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 109,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4899769,
+      "end_us": 4912506
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 110,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4914189,
+      "end_us": 4926857
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 111,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4928572,
+      "end_us": 4941873
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 112,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4943633,
+      "end_us": 4952905
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 113,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4954583,
+      "end_us": 4963932
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 114,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4977097,
+      "end_us": 5013718
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 115,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5014158,
+      "end_us": 5035704
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 116,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5049580,
+      "end_us": 5086025
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 117,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5086489,
+      "end_us": 5107596
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 118,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5121028,
+      "end_us": 5156783
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 119,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5157090,
+      "end_us": 5177657
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 120,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5190653,
+      "end_us": 5225781
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 121,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5226277,
+      "end_us": 5246983
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 122,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5260499,
+      "end_us": 5298583
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 123,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5299177,
+      "end_us": 5320785
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 124,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5335029,
+      "end_us": 5372465
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 125,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5372944,
+      "end_us": 5393949
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 126,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5407306,
+      "end_us": 5442559
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 127,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5442843,
+      "end_us": 5463267
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 128,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5476390,
+      "end_us": 5512382
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 129,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5512828,
+      "end_us": 5532495
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 130,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5546165,
+      "end_us": 5582401
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 131,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5582844,
+      "end_us": 5603893
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 132,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5617831,
+      "end_us": 5653164
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 133,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5653463,
+      "end_us": 5673744
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 134,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5686729,
+      "end_us": 5721905
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 135,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5722258,
+      "end_us": 5743181
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 136,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5756798,
+      "end_us": 5792941
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 137,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5793399,
+      "end_us": 5814207
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 138,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5827993,
+      "end_us": 5864510
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 139,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5864966,
+      "end_us": 5885988
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 140,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5887985,
+      "end_us": 5890379
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 141,
+      "label": "saved_value_types.describe",
+      "start_us": 5892215,
+      "end_us": 5892317
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 142,
+      "label": "saved_value_types.describe",
+      "start_us": 5896917,
+      "end_us": 5897133
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 143,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5903936,
+      "end_us": 5936218
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 144,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 5936441,
+      "end_us": 5980429
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 145,
+      "label": "saved_value_types.describe",
+      "start_us": 5994972,
+      "end_us": 5995187
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 146,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6002538,
+      "end_us": 6049833
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 147,
+      "label": "equipment_document_validation.validate",
+      "start_us": 6050117,
+      "end_us": 6068081
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 148,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6068309,
+      "end_us": 6114335
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 149,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6114799,
+      "end_us": 6163680
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 150,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6164173,
+      "end_us": 6214196
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 151,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6214714,
+      "end_us": 6264448
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 152,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6264938,
+      "end_us": 6308694
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 153,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6309076,
+      "end_us": 6352235
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 154,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6352661,
+      "end_us": 6396788
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 155,
+      "label": "equipment_document_validation.validate",
+      "start_us": 6397205,
+      "end_us": 6410035
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 156,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6423514,
+      "end_us": 6455656
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 157,
+      "label": "saved_value_types.describe",
+      "start_us": 6455881,
+      "end_us": 6456224
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 158,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6456467,
+      "end_us": 6458688
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 159,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6460423,
+      "end_us": 6462945
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 160,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6464717,
+      "end_us": 6466840
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 161,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6468552,
+      "end_us": 6471069
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 162,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6472872,
+      "end_us": 6475497
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 163,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6477171,
+      "end_us": 6480186
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 164,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6481936,
+      "end_us": 6484555
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 165,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6486229,
+      "end_us": 6489228
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 166,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6490975,
+      "end_us": 6493601
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 167,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6495289,
+      "end_us": 6498272
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 168,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6500048,
+      "end_us": 6502158
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 169,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6503850,
+      "end_us": 6506343
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 170,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6508115,
+      "end_us": 6510693
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 171,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6512368,
+      "end_us": 6515339
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 172,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6517035,
+      "end_us": 6562388
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 173,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6601108,
+      "end_us": 6601124
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 174,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6602526,
+      "end_us": 6602535
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 175,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6604182,
+      "end_us": 6604190
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 176,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6643030,
+      "end_us": 6643047
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 177,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6643659,
+      "end_us": 6643669
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 178,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6644475,
+      "end_us": 6644500
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 179,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6682360,
+      "end_us": 6682379
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 180,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6683928,
+      "end_us": 6683941
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 181,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6685692,
+      "end_us": 6685705
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 182,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6726690,
+      "end_us": 6726711
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 183,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6728153,
+      "end_us": 6728165
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 184,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6729823,
+      "end_us": 6729833
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 185,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6766827,
+      "end_us": 6766843
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 186,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6768213,
+      "end_us": 6768224
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 187,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6769853,
+      "end_us": 6769862
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 188,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6772223,
+      "end_us": 6775591
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 189,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6777068,
+      "end_us": 6780465
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 190,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6781922,
+      "end_us": 6785198
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 191,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6786680,
+      "end_us": 6790108
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 192,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6791689,
+      "end_us": 6795096
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 193,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6796623,
+      "end_us": 6800014
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 194,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6801471,
+      "end_us": 6804884
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 195,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6817976,
+      "end_us": 6854865
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 196,
+      "label": "saved_value_types.describe",
+      "start_us": 6855130,
+      "end_us": 6855572
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 197,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6855899,
+      "end_us": 6894908
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 198,
+      "label": "equipment_document_validation.native_metadata_errors",
+      "start_us": 6897650,
+      "end_us": 6898197
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 199,
+      "label": "saved_value_types.describe",
+      "start_us": 6898382,
+      "end_us": 6898757
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 200,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6898986,
+      "end_us": 6937290
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 201,
+      "label": "equipment_document_validation.native_metadata_errors",
+      "start_us": 6939606,
+      "end_us": 6940141
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 202,
+      "label": "saved_value_types.describe",
+      "start_us": 6940363,
+      "end_us": 6940712
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 203,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6940894,
+      "end_us": 6989393
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 204,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6991708,
+      "end_us": 7016937
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 205,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 7017948,
+      "end_us": 7060831
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 206,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 7097512,
+      "end_us": 7129925
+    },
+    {
+      "log": "stdout.log",
+      "pid": 2013,
+      "sequence": 207,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 7132295,
+      "end_us": 7177597
+    }
+  ],
+  "errors": [],
+  "units": "microseconds",
+  "scope": "完結したspanのみ。kill/timeout時の未出力部分は未測。並行累積をwall寄与率にしない。",
+  "group_count": 208
+}

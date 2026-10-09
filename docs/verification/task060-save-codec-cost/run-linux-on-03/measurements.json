@@ -1,0 +1,1917 @@
+{
+  "labels": {
+    "equipment_save_codec.decode_source": {
+      "count": 55,
+      "inclusive_us": 2740030,
+      "exclusive_us": 282626,
+      "parents": {
+        "(root)": 45,
+        "equipment_save_codec.encode_candidate": 10
+      }
+    },
+    "equipment_document_validation.context_errors": {
+      "count": 263,
+      "inclusive_us": 541113,
+      "exclusive_us": 541113,
+      "parents": {
+        "equipment_save_codec.decode_source": 55,
+        "equipment_document_validation.prepare_candidate": 52,
+        "equipment_document_validation.validate": 122,
+        "equipment_save_codec.encode_candidate": 34
+      }
+    },
+    "equipment_save_codec.valid_utf8": {
+      "count": 53,
+      "inclusive_us": 154709,
+      "exclusive_us": 154709,
+      "parents": {
+        "equipment_save_codec.decode_source": 53
+      }
+    },
+    "codec.parse.outer": {
+      "count": 49,
+      "inclusive_us": 6695,
+      "exclusive_us": 6695,
+      "parents": {
+        "equipment_save_codec.decode_source": 49
+      }
+    },
+    "equipment_save_codec.unique_json_keys": {
+      "count": 49,
+      "inclusive_us": 625438,
+      "exclusive_us": 625438,
+      "parents": {
+        "equipment_save_codec.decode_source": 49
+      }
+    },
+    "saved_document.decode": {
+      "count": 39,
+      "inclusive_us": 46856,
+      "exclusive_us": 9089,
+      "parents": {
+        "equipment_save_codec.decode_source": 39
+      }
+    },
+    "codec.copy.raw": {
+      "count": 39,
+      "inclusive_us": 14813,
+      "exclusive_us": 14813,
+      "parents": {
+        "equipment_save_codec.decode_source": 39
+      }
+    },
+    "equipment_document_validation.schema": {
+      "count": 200,
+      "inclusive_us": 719319,
+      "exclusive_us": 117251,
+      "parents": {
+        "equipment_save_codec.decode_source": 38,
+        "equipment_document_validation.prepare_candidate": 40,
+        "equipment_document_validation.validate": 122
+      }
+    },
+    "equipment_document_validation.auxiliary": {
+      "count": 200,
+      "inclusive_us": 602068,
+      "exclusive_us": 602068,
+      "parents": {
+        "equipment_document_validation.schema": 200
+      }
+    },
+    "codec.copy.document": {
+      "count": 46,
+      "inclusive_us": 38715,
+      "exclusive_us": 38715,
+      "parents": {
+        "equipment_save_codec.decode_source": 20,
+        "equipment_save_codec.encode_candidate": 26
+      }
+    },
+    "saved_value_types.describe": {
+      "count": 83,
+      "inclusive_us": 142286,
+      "exclusive_us": 142286,
+      "parents": {
+        "(root)": 16,
+        "equipment_save_codec.decode_source": 15,
+        "equipment_save_codec.encode_candidate": 26,
+        "equipment_document_validation.native_metadata_errors": 21,
+        "equipment_document_validation.prepare_candidate": 4,
+        "equipment_document_validation.compare_migration": 1
+      }
+    },
+    "equipment_document_validation.metadata_errors": {
+      "count": 49,
+      "inclusive_us": 296,
+      "exclusive_us": 296,
+      "parents": {
+        "equipment_save_codec.decode_source": 20,
+        "equipment_document_validation.native_metadata_errors": 29
+      }
+    },
+    "saved_value_types.restore": {
+      "count": 18,
+      "inclusive_us": 30819,
+      "exclusive_us": 3758,
+      "parents": {
+        "equipment_save_codec.decode_source": 18
+      }
+    },
+    "types.copy.value": {
+      "count": 18,
+      "inclusive_us": 26990,
+      "exclusive_us": 26990,
+      "parents": {
+        "saved_value_types.restore": 18
+      }
+    },
+    "types.copy.metadata_arrays": {
+      "count": 16,
+      "inclusive_us": 71,
+      "exclusive_us": 71,
+      "parents": {
+        "saved_value_types.restore": 16
+      }
+    },
+    "equipment_document_validation.prepare_candidate": {
+      "count": 52,
+      "inclusive_us": 1354101,
+      "exclusive_us": 501032,
+      "parents": {
+        "(root)": 41,
+        "equipment_document_validation.compare_migration": 11
+      }
+    },
+    "equipment_document_validation.native_metadata_errors": {
+      "count": 65,
+      "inclusive_us": 10077,
+      "exclusive_us": 2049,
+      "parents": {
+        "equipment_document_validation.prepare_candidate": 47,
+        "equipment_save_codec.encode_candidate": 16,
+        "(root)": 2
+      }
+    },
+    "validation.copy.candidate": {
+      "count": 40,
+      "inclusive_us": 1629,
+      "exclusive_us": 1629,
+      "parents": {
+        "equipment_document_validation.prepare_candidate": 40
+      }
+    },
+    "equipment_document_validation.validate": {
+      "count": 122,
+      "inclusive_us": 2888872,
+      "exclusive_us": 2106321,
+      "parents": {
+        "equipment_document_validation.prepare_candidate": 38,
+        "equipment_save_codec.decode_source": 15,
+        "equipment_save_codec.encode_candidate": 10,
+        "(root)": 59
+      }
+    },
+    "equipment_document_validation.audit_errors": {
+      "count": 84,
+      "inclusive_us": 90654,
+      "exclusive_us": 90654,
+      "parents": {
+        "equipment_document_validation.validate": 84
+      }
+    },
+    "equipment_save_codec.encode_candidate": {
+      "count": 34,
+      "inclusive_us": 2112495,
+      "exclusive_us": 120738,
+      "parents": {
+        "(root)": 34
+      }
+    },
+    "saved_document.encode": {
+      "count": 10,
+      "inclusive_us": 38628,
+      "exclusive_us": 38628,
+      "parents": {
+        "equipment_save_codec.encode_candidate": 10
+      }
+    },
+    "validation.copy.document": {
+      "count": 21,
+      "inclusive_us": 961,
+      "exclusive_us": 961,
+      "parents": {
+        "equipment_document_validation.native_metadata_errors": 21
+      }
+    },
+    "codec.decompress": {
+      "count": 3,
+      "inclusive_us": 1289,
+      "exclusive_us": 1289,
+      "parents": {
+        "equipment_save_codec.decode_source": 3
+      }
+    },
+    "codec.parse.inner": {
+      "count": 2,
+      "inclusive_us": 39798,
+      "exclusive_us": 39798,
+      "parents": {
+        "equipment_save_codec.decode_source": 2
+      }
+    },
+    "saved_document.decompress": {
+      "count": 2,
+      "inclusive_us": 1276,
+      "exclusive_us": 1276,
+      "parents": {
+        "saved_document.decode": 2
+      }
+    },
+    "saved_document.parse": {
+      "count": 2,
+      "inclusive_us": 36491,
+      "exclusive_us": 36491,
+      "parents": {
+        "saved_document.decode": 2
+      }
+    },
+    "equipment_document_validation.compare_migration": {
+      "count": 11,
+      "inclusive_us": 486566,
+      "exclusive_us": 130125,
+      "parents": {
+        "(root)": 11
+      }
+    }
+  },
+  "roots": [
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 0,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 521410,
+      "end_us": 529672
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 1,
+      "label": "saved_value_types.describe",
+      "start_us": 531599,
+      "end_us": 531840
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 2,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 532058,
+      "end_us": 540981
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 3,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 542945,
+      "end_us": 550292
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 4,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 563424,
+      "end_us": 599889
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 5,
+      "label": "saved_value_types.describe",
+      "start_us": 600103,
+      "end_us": 600333
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 6,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 600675,
+      "end_us": 628651
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 7,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 630872,
+      "end_us": 684342
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 8,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 686971,
+      "end_us": 716370
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 9,
+      "label": "saved_value_types.describe",
+      "start_us": 716626,
+      "end_us": 717015
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 10,
+      "label": "saved_value_types.describe",
+      "start_us": 717802,
+      "end_us": 718160
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 11,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 718490,
+      "end_us": 775104
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 12,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 794119,
+      "end_us": 2418019
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 13,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 2524210,
+      "end_us": 3626234
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 14,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3630655,
+      "end_us": 3636555
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 15,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3638915,
+      "end_us": 3644673
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 16,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3646956,
+      "end_us": 3653041
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 17,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3655429,
+      "end_us": 3661436
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 18,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3663563,
+      "end_us": 3666830
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 19,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3668441,
+      "end_us": 3674451
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 20,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3695509,
+      "end_us": 3724159
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 21,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3733981,
+      "end_us": 3788670
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 22,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3791162,
+      "end_us": 3793774
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 23,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3795564,
+      "end_us": 3798123
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 24,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3799913,
+      "end_us": 3802485
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 25,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3804239,
+      "end_us": 3806827
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 26,
+      "label": "saved_value_types.describe",
+      "start_us": 3808531,
+      "end_us": 3808910
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 27,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3809262,
+      "end_us": 3815287
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 28,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3816779,
+      "end_us": 3819889
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 29,
+      "label": "saved_value_types.describe",
+      "start_us": 3821554,
+      "end_us": 3821944
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 30,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3822296,
+      "end_us": 3827992
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 31,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3829436,
+      "end_us": 3832532
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 32,
+      "label": "saved_value_types.describe",
+      "start_us": 3834253,
+      "end_us": 3834635
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 33,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3835009,
+      "end_us": 3840543
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 34,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3841991,
+      "end_us": 3845088
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 35,
+      "label": "saved_value_types.describe",
+      "start_us": 3846772,
+      "end_us": 3847130
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 36,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3847483,
+      "end_us": 3852905
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 37,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3854303,
+      "end_us": 3856844
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 38,
+      "label": "saved_value_types.describe",
+      "start_us": 3858510,
+      "end_us": 3858884
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 39,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3859232,
+      "end_us": 3864646
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 40,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 3866051,
+      "end_us": 3868593
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 41,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3870276,
+      "end_us": 3872408
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 42,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3873681,
+      "end_us": 3875810
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 43,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3876999,
+      "end_us": 3879168
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 44,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3880377,
+      "end_us": 3882579
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 45,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3883753,
+      "end_us": 3885827
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 46,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3887264,
+      "end_us": 3892271
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 47,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 3893752,
+      "end_us": 3902996
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 48,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 3923118,
+      "end_us": 3954499
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 49,
+      "label": "equipment_document_validation.validate",
+      "start_us": 3954765,
+      "end_us": 3971410
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 50,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 3973065,
+      "end_us": 4004156
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 51,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4016914,
+      "end_us": 4052180
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 52,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4052427,
+      "end_us": 4105187
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 53,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4107756,
+      "end_us": 4150327
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 54,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 4152417,
+      "end_us": 4194858
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 55,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 4195113,
+      "end_us": 4238287
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 56,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4260783,
+      "end_us": 4263154
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 57,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4264864,
+      "end_us": 4267425
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 58,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4269092,
+      "end_us": 4271558
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 59,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4273198,
+      "end_us": 4275567
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 60,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4277205,
+      "end_us": 4279561
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 61,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4281210,
+      "end_us": 4283730
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 62,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4285402,
+      "end_us": 4299338
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 63,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4301056,
+      "end_us": 4314563
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 64,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4316215,
+      "end_us": 4328598
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 65,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4330243,
+      "end_us": 4342588
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 66,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4344244,
+      "end_us": 4353379
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 67,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4355059,
+      "end_us": 4360459
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 68,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4362106,
+      "end_us": 4364564
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 69,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4366217,
+      "end_us": 4368653
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 70,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4370290,
+      "end_us": 4372648
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 71,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4374283,
+      "end_us": 4376732
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 72,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4378350,
+      "end_us": 4383609
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 73,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4385241,
+      "end_us": 4390508
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 74,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4392141,
+      "end_us": 4397397
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 75,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4399046,
+      "end_us": 4404288
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 76,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4405908,
+      "end_us": 4421699
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 77,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4423366,
+      "end_us": 4440824
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 78,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4442512,
+      "end_us": 4458057
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 79,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4460106,
+      "end_us": 4475792
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 80,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4477437,
+      "end_us": 4492928
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 81,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4494569,
+      "end_us": 4511766
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 82,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4513646,
+      "end_us": 4518986
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 83,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4520561,
+      "end_us": 4525633
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 84,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4527216,
+      "end_us": 4532165
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 85,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4533724,
+      "end_us": 4538708
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 86,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4540245,
+      "end_us": 4545222
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 87,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4546796,
+      "end_us": 4551782
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 88,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 4553317,
+      "end_us": 4558281
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 89,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4559727,
+      "end_us": 4559735
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 90,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4561302,
+      "end_us": 4561887
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 91,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 4563468,
+      "end_us": 4564053
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 92,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4630098,
+      "end_us": 4665076
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 93,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4665364,
+      "end_us": 4700229
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 94,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4702277,
+      "end_us": 4738059
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 95,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4753573,
+      "end_us": 4785006
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 96,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4785411,
+      "end_us": 4787842
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 97,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4789521,
+      "end_us": 4791924
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 98,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4793556,
+      "end_us": 4795937
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 99,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4797584,
+      "end_us": 4808589
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 100,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4810251,
+      "end_us": 4820920
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 101,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4822559,
+      "end_us": 4824947
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 102,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4826589,
+      "end_us": 4828963
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 103,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4830602,
+      "end_us": 4832998
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 104,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4834630,
+      "end_us": 4844136
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 105,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4845770,
+      "end_us": 4855167
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 106,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4856855,
+      "end_us": 4866345
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 107,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4868013,
+      "end_us": 4878928
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 108,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4880531,
+      "end_us": 4893073
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 109,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4894748,
+      "end_us": 4907076
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 110,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4908726,
+      "end_us": 4921124
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 111,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4922836,
+      "end_us": 4935210
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 112,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4936879,
+      "end_us": 4946028
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 113,
+      "label": "equipment_document_validation.validate",
+      "start_us": 4947694,
+      "end_us": 4956816
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 114,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 4969423,
+      "end_us": 5005609
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 115,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5005936,
+      "end_us": 5026508
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 116,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5039378,
+      "end_us": 5074717
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 117,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5074994,
+      "end_us": 5095324
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 118,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5108027,
+      "end_us": 5146386
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 119,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5146976,
+      "end_us": 5167825
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 120,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5181602,
+      "end_us": 5218732
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 121,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5219264,
+      "end_us": 5240290
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 122,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5254661,
+      "end_us": 5291890
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 123,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5292482,
+      "end_us": 5313564
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 124,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5327781,
+      "end_us": 5364781
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 125,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5365250,
+      "end_us": 5385777
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 126,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5398829,
+      "end_us": 5433616
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 127,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5433910,
+      "end_us": 5453941
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 128,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5467007,
+      "end_us": 5503333
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 129,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5503958,
+      "end_us": 5524251
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 130,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5538573,
+      "end_us": 5575629
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 131,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5576226,
+      "end_us": 5597463
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 132,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5611947,
+      "end_us": 5648238
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 133,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5648623,
+      "end_us": 5668929
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 134,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5682101,
+      "end_us": 5717467
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 135,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5717885,
+      "end_us": 5738311
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 136,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5752222,
+      "end_us": 5789156
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 137,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5789728,
+      "end_us": 5811037
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 138,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5825411,
+      "end_us": 5862543
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 139,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5863125,
+      "end_us": 5884242
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 140,
+      "label": "equipment_document_validation.validate",
+      "start_us": 5886720,
+      "end_us": 5889211
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 141,
+      "label": "saved_value_types.describe",
+      "start_us": 5891071,
+      "end_us": 5891169
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 142,
+      "label": "saved_value_types.describe",
+      "start_us": 5896255,
+      "end_us": 5896467
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 143,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 5903219,
+      "end_us": 5935743
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 144,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 5935987,
+      "end_us": 5978700
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 145,
+      "label": "saved_value_types.describe",
+      "start_us": 5992765,
+      "end_us": 5992993
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 146,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6000297,
+      "end_us": 6046558
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 147,
+      "label": "equipment_document_validation.validate",
+      "start_us": 6046880,
+      "end_us": 6064816
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 148,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6065051,
+      "end_us": 6109885
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 149,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6110294,
+      "end_us": 6154725
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 150,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6155159,
+      "end_us": 6198381
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 151,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6198783,
+      "end_us": 6241775
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 152,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6242177,
+      "end_us": 6286194
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 153,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6286679,
+      "end_us": 6332674
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 154,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 6333113,
+      "end_us": 6378597
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 155,
+      "label": "equipment_document_validation.validate",
+      "start_us": 6379156,
+      "end_us": 6392399
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 156,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6406837,
+      "end_us": 6439668
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 157,
+      "label": "saved_value_types.describe",
+      "start_us": 6439885,
+      "end_us": 6440230
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 158,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6440475,
+      "end_us": 6442690
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 159,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6444405,
+      "end_us": 6446982
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 160,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6448711,
+      "end_us": 6450823
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 161,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6452492,
+      "end_us": 6455035
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 162,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6456776,
+      "end_us": 6459410
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 163,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6461084,
+      "end_us": 6464079
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 164,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6465814,
+      "end_us": 6468389
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 165,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6470066,
+      "end_us": 6473071
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 166,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6474817,
+      "end_us": 6477396
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 167,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6479091,
+      "end_us": 6482061
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 168,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6483806,
+      "end_us": 6485923
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 169,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6487584,
+      "end_us": 6490090
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 170,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6491835,
+      "end_us": 6494382
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 171,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6496057,
+      "end_us": 6499074
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 172,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6500745,
+      "end_us": 6548206
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 173,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6588500,
+      "end_us": 6588516
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 174,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6590002,
+      "end_us": 6590014
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 175,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6591785,
+      "end_us": 6591795
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 176,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6632300,
+      "end_us": 6632319
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 177,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6632969,
+      "end_us": 6632980
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 178,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6633853,
+      "end_us": 6633863
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 179,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6671729,
+      "end_us": 6671749
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 180,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6673162,
+      "end_us": 6673176
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 181,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6674911,
+      "end_us": 6674923
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 182,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6714126,
+      "end_us": 6714146
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 183,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6715551,
+      "end_us": 6715563
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 184,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6717225,
+      "end_us": 6717234
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 185,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6754627,
+      "end_us": 6754659
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 186,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6756099,
+      "end_us": 6756112
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 187,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6757769,
+      "end_us": 6757780
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 188,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6760385,
+      "end_us": 6763833
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 189,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6765339,
+      "end_us": 6768791
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 190,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6770254,
+      "end_us": 6773605
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 191,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6775174,
+      "end_us": 6778681
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 192,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6780174,
+      "end_us": 6783622
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 193,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6785113,
+      "end_us": 6788559
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 194,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6790038,
+      "end_us": 6793458
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 195,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6807248,
+      "end_us": 6844586
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 196,
+      "label": "saved_value_types.describe",
+      "start_us": 6844880,
+      "end_us": 6845259
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 197,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6845551,
+      "end_us": 6884247
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 198,
+      "label": "equipment_document_validation.native_metadata_errors",
+      "start_us": 6886978,
+      "end_us": 6887522
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 199,
+      "label": "saved_value_types.describe",
+      "start_us": 6887740,
+      "end_us": 6888101
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 200,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 6888347,
+      "end_us": 6927334
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 201,
+      "label": "equipment_document_validation.native_metadata_errors",
+      "start_us": 6929835,
+      "end_us": 6930366
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 202,
+      "label": "saved_value_types.describe",
+      "start_us": 6930627,
+      "end_us": 6930981
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 203,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 6931186,
+      "end_us": 6980023
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 204,
+      "label": "equipment_save_codec.decode_source",
+      "start_us": 6982357,
+      "end_us": 7007817
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 205,
+      "label": "equipment_document_validation.compare_migration",
+      "start_us": 7008736,
+      "end_us": 7052451
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 206,
+      "label": "equipment_document_validation.prepare_candidate",
+      "start_us": 7092978,
+      "end_us": 7125573
+    },
+    {
+      "log": "stdout.log",
+      "pid": 1966,
+      "sequence": 207,
+      "label": "equipment_save_codec.encode_candidate",
+      "start_us": 7127805,
+      "end_us": 7171715
+    }
+  ],
+  "errors": [],
+  "units": "microseconds",
+  "scope": "完結したspanのみ。kill/timeout時の未出力部分は未測。並行累積をwall寄与率にしない。",
+  "group_count": 208
+}

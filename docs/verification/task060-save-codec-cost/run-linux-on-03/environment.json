@@ -1,0 +1,95 @@
+{
+  "os": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "cpu": "AMD EPYC 9V45 96-Core Processor",
+  "cpu_count": 5,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "engine": "/tmp/qa060/engine/Godot_v4.7.2-stable_linux.x86_64",
+  "engine_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e",
+  "source_sha": "c126bc84870225b38842054f20e1784b023384d6",
+  "base_sha": "6695d7b802137e9d6b7e468a1414c04d658a5380",
+  "mode": "on",
+  "case_workers": 16,
+  "restart_workers": 4,
+  "batch_roots": 4,
+  "budgets": {
+    "codec": 120,
+    "transaction_outer": 180,
+    "transaction_inner": 174,
+    "transaction_child": 30,
+    "import_seconds": 600
+  },
+  "clock": "monotonic microseconds per process; parallel cumulative is not wall",
+  "limits": {
+    "/sys/fs/cgroup/cpu.max": "400000 100000",
+    "/sys/fs/cgroup/memory.max": "17179869184"
+  },
+  "phase": "codec",
+  "repetition": 2,
+  "fixture_contract_sha256": "20e0759b74585de80d154cedffbb7ed185ac0ff3c7604731436a6c3ef52f1720",
+  "generated": {
+    "scripts/game/equipment_save_codec.gd": {
+      "before": "57d1cd0ad63172c08fdb696ea7f0b009f12219ffd4f2aa9360c78d0ab15a0a49",
+      "after": "ba0e4c1d77d5fec0598f0ab5fd7d7a0b48cdd281d3bed0b3191b0b5e5068c169",
+      "expressions": {
+        "parser.parse(text)": 1,
+        "inner_parser.parse(inner_text)": 1,
+        "compressed.decompress(int(outer.decoded_bytes),FileAccess.COMPRESSION_GZIP)": 1,
+        "raw.duplicate(true)": 1,
+        "document.duplicate(true)": 2
+      },
+      "functions": [
+        "decode_source",
+        "encode_candidate",
+        "valid_utf8",
+        "unique_json_keys"
+      ],
+      "original_body_restored": true
+    },
+    "scripts/game/equipment_document_validation.gd": {
+      "before": "e978c2eb2ccf2c207bb337673a364e10665d603f0b7ebb56f4be6294631e6ad4",
+      "after": "9467daae27ae2a0afb3e794ad349b171765c4c024e5a20b0dc61ec6dc7ff5f32",
+      "expressions": {
+        "document.duplicate(true)": 1,
+        "candidate.duplicate(true)": 1
+      },
+      "functions": [
+        "context_errors",
+        "metadata_errors",
+        "native_metadata_errors",
+        "auxiliary",
+        "schema",
+        "validate",
+        "audit_errors",
+        "prepare_candidate",
+        "compare_migration"
+      ],
+      "original_body_restored": true
+    },
+    "scripts/game/saved_document.gd": {
+      "before": "7c97f0154ce5d518de94c5c1700fb9b43cc862e0e20c8f7d35a80c6a7bc7bcc9",
+      "after": "8abab5c4a7226c5e7aa780f1d776cc79700ae9104c2a672698426d3811622ef5",
+      "expressions": {
+        "parser.parse(text)": 1,
+        "compressed.decompress(int(length),FileAccess.COMPRESSION_GZIP)": 1
+      },
+      "functions": [
+        "encode",
+        "decode"
+      ],
+      "original_body_restored": true
+    },
+    "scripts/game/saved_value_types.gd": {
+      "before": "63158c4fd9b747d614e2e792a7e3e27b12e180ddd3c446efa33cc7f40cfb00da",
+      "after": "4dc83aad7265936905c0b51edcdcc5dd8376060c003c6e4b0c5f95f29f973b61",
+      "expressions": {
+        "value.duplicate(true)": 1,
+        "metadata[\"arrays\"].duplicate(true)": 1
+      },
+      "functions": [
+        "describe",
+        "restore"
+      ],
+      "original_body_restored": true
+    }
+  }
+}

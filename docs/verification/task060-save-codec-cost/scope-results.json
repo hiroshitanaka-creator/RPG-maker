@@ -1,0 +1,2554 @@
+{
+  "evidence_integrity": true,
+  "analysis_code_sha": "43fa030d9500bf1414673c5c857ea96ee5ec1f4f",
+  "measurement_code_sha": "c126bc84870225b38842054f20e1784b023384d6",
+  "transaction_breakdown": {
+    "1": {
+      "by_operation": {
+        "fixture": {
+          "saved_value_types.describe": {
+            "count": 5,
+            "inclusive_us": 1243,
+            "exclusive_us": 1243
+          }
+        },
+        "restart": {
+          "equipment_document_validation.context_errors": {
+            "count": 8082,
+            "inclusive_us": 27803929,
+            "exclusive_us": 27803929
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 2333,
+            "inclusive_us": 68626637,
+            "exclusive_us": 8932162
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 4583,
+            "inclusive_us": 1241006,
+            "exclusive_us": 1241006
+          },
+          "codec.parse.outer": {
+            "count": 2333,
+            "inclusive_us": 546490,
+            "exclusive_us": 546490
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 3850,
+            "inclusive_us": 6174439,
+            "exclusive_us": 6174439
+          },
+          "saved_document.decode": {
+            "count": 2333,
+            "inclusive_us": 12319,
+            "exclusive_us": 12319
+          },
+          "codec.copy.raw": {
+            "count": 2333,
+            "inclusive_us": 144421,
+            "exclusive_us": 144421
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 4041,
+            "inclusive_us": 53099,
+            "exclusive_us": 53099
+          },
+          "saved_value_types.restore": {
+            "count": 2333,
+            "inclusive_us": 542851,
+            "exclusive_us": 404900
+          },
+          "types.copy.value": {
+            "count": 2333,
+            "inclusive_us": 126289,
+            "exclusive_us": 126289
+          },
+          "types.copy.metadata_arrays": {
+            "count": 2333,
+            "inclusive_us": 11662,
+            "exclusive_us": 11662
+          },
+          "saved_value_types.describe": {
+            "count": 6603,
+            "inclusive_us": 2902096,
+            "exclusive_us": 2902096
+          },
+          "equipment_document_validation.schema": {
+            "count": 7228,
+            "inclusive_us": 4906459,
+            "exclusive_us": 1159783
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 7228,
+            "inclusive_us": 3746676,
+            "exclusive_us": 3746676
+          },
+          "codec.copy.document": {
+            "count": 3187,
+            "inclusive_us": 219413,
+            "exclusive_us": 219413
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 854,
+            "inclusive_us": 45221711,
+            "exclusive_us": 16912925
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 1708,
+            "inclusive_us": 1216060,
+            "exclusive_us": 242180
+          },
+          "validation.copy.document": {
+            "count": 1708,
+            "inclusive_us": 142465,
+            "exclusive_us": 142465
+          },
+          "validation.copy.candidate": {
+            "count": 854,
+            "inclusive_us": 58094,
+            "exclusive_us": 58094
+          },
+          "equipment_document_validation.validate": {
+            "count": 3187,
+            "inclusive_us": 86951065,
+            "exclusive_us": 68632470
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 3187,
+            "inclusive_us": 5298907,
+            "exclusive_us": 5298907
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 854,
+            "inclusive_us": 60386288,
+            "exclusive_us": 949783
+          },
+          "saved_document.encode": {
+            "count": 854,
+            "inclusive_us": 270977,
+            "exclusive_us": 270977
+          }
+        },
+        "abnormal": {
+          "equipment_document_validation.context_errors": {
+            "count": 488,
+            "inclusive_us": 1283627,
+            "exclusive_us": 1283627
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 130,
+            "inclusive_us": 2786503,
+            "exclusive_us": 472294
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 192,
+            "inclusive_us": 43971,
+            "exclusive_us": 43971
+          },
+          "codec.parse.outer": {
+            "count": 130,
+            "inclusive_us": 17537,
+            "exclusive_us": 17537
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 158,
+            "inclusive_us": 272060,
+            "exclusive_us": 272060
+          },
+          "saved_document.decode": {
+            "count": 130,
+            "inclusive_us": 378,
+            "exclusive_us": 378
+          },
+          "codec.copy.raw": {
+            "count": 130,
+            "inclusive_us": 5476,
+            "exclusive_us": 5476
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 244,
+            "inclusive_us": 1904,
+            "exclusive_us": 1904
+          },
+          "saved_value_types.restore": {
+            "count": 130,
+            "inclusive_us": 26784,
+            "exclusive_us": 21575
+          },
+          "types.copy.value": {
+            "count": 130,
+            "inclusive_us": 4523,
+            "exclusive_us": 4523
+          },
+          "types.copy.metadata_arrays": {
+            "count": 130,
+            "inclusive_us": 686,
+            "exclusive_us": 686
+          },
+          "saved_value_types.describe": {
+            "count": 415,
+            "inclusive_us": 154152,
+            "exclusive_us": 154152
+          },
+          "equipment_document_validation.schema": {
+            "count": 431,
+            "inclusive_us": 231307,
+            "exclusive_us": 49486
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 431,
+            "inclusive_us": 181821,
+            "exclusive_us": 181821
+          },
+          "codec.copy.document": {
+            "count": 187,
+            "inclusive_us": 7299,
+            "exclusive_us": 7299
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 57,
+            "inclusive_us": 2354293,
+            "exclusive_us": 892048
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 114,
+            "inclusive_us": 99224,
+            "exclusive_us": 12747
+          },
+          "validation.copy.document": {
+            "count": 114,
+            "inclusive_us": 30998,
+            "exclusive_us": 30998
+          },
+          "validation.copy.candidate": {
+            "count": 57,
+            "inclusive_us": 2858,
+            "exclusive_us": 2858
+          },
+          "equipment_document_validation.validate": {
+            "count": 187,
+            "inclusive_us": 3931999,
+            "exclusive_us": 3079946
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 187,
+            "inclusive_us": 235248,
+            "exclusive_us": 235248
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 57,
+            "inclusive_us": 3168926,
+            "exclusive_us": 44888
+          },
+          "saved_document.encode": {
+            "count": 57,
+            "inclusive_us": 23617,
+            "exclusive_us": 23617
+          }
+        },
+        "normal": {
+          "equipment_document_validation.context_errors": {
+            "count": 180,
+            "inclusive_us": 404683,
+            "exclusive_us": 404683
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 54,
+            "inclusive_us": 1085103,
+            "exclusive_us": 131374
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 94,
+            "inclusive_us": 20922,
+            "exclusive_us": 20922
+          },
+          "codec.parse.outer": {
+            "count": 54,
+            "inclusive_us": 7644,
+            "exclusive_us": 7644
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 84,
+            "inclusive_us": 93357,
+            "exclusive_us": 93357
+          },
+          "saved_document.decode": {
+            "count": 54,
+            "inclusive_us": 191,
+            "exclusive_us": 191
+          },
+          "codec.copy.raw": {
+            "count": 54,
+            "inclusive_us": 2244,
+            "exclusive_us": 2244
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 72,
+            "inclusive_us": 515,
+            "exclusive_us": 515
+          },
+          "saved_value_types.restore": {
+            "count": 48,
+            "inclusive_us": 6267,
+            "exclusive_us": 4229
+          },
+          "types.copy.value": {
+            "count": 48,
+            "inclusive_us": 1863,
+            "exclusive_us": 1863
+          },
+          "types.copy.metadata_arrays": {
+            "count": 48,
+            "inclusive_us": 175,
+            "exclusive_us": 175
+          },
+          "saved_value_types.describe": {
+            "count": 114,
+            "inclusive_us": 34288,
+            "exclusive_us": 34288
+          },
+          "equipment_document_validation.schema": {
+            "count": 162,
+            "inclusive_us": 68744,
+            "exclusive_us": 18344
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 162,
+            "inclusive_us": 50400,
+            "exclusive_us": 50400
+          },
+          "codec.copy.document": {
+            "count": 72,
+            "inclusive_us": 2698,
+            "exclusive_us": 2698
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 18,
+            "inclusive_us": 616156,
+            "exclusive_us": 234746
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 30,
+            "inclusive_us": 12040,
+            "exclusive_us": 2817
+          },
+          "validation.copy.document": {
+            "count": 24,
+            "inclusive_us": 1137,
+            "exclusive_us": 1137
+          },
+          "validation.copy.candidate": {
+            "count": 18,
+            "inclusive_us": 785,
+            "exclusive_us": 785
+          },
+          "equipment_document_validation.validate": {
+            "count": 72,
+            "inclusive_us": 1310875,
+            "exclusive_us": 1033199
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 72,
+            "inclusive_us": 82226,
+            "exclusive_us": 82226
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 18,
+            "inclusive_us": 850334,
+            "exclusive_us": 13220
+          },
+          "saved_document.encode": {
+            "count": 18,
+            "inclusive_us": 4223,
+            "exclusive_us": 4223
+          }
+        },
+        "special": {
+          "equipment_document_validation.context_errors": {
+            "count": 1518,
+            "inclusive_us": 4017806,
+            "exclusive_us": 4017806
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 435,
+            "inclusive_us": 9717921,
+            "exclusive_us": 1364949
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 772,
+            "inclusive_us": 159880,
+            "exclusive_us": 159880
+          },
+          "codec.parse.outer": {
+            "count": 434,
+            "inclusive_us": 61166,
+            "exclusive_us": 61166
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 657,
+            "inclusive_us": 893880,
+            "exclusive_us": 893880
+          },
+          "saved_document.decode": {
+            "count": 434,
+            "inclusive_us": 1559,
+            "exclusive_us": 1559
+          },
+          "codec.copy.raw": {
+            "count": 434,
+            "inclusive_us": 32985,
+            "exclusive_us": 32985
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 759,
+            "inclusive_us": 6481,
+            "exclusive_us": 6481
+          },
+          "saved_value_types.restore": {
+            "count": 434,
+            "inclusive_us": 70951,
+            "exclusive_us": 53228
+          },
+          "types.copy.value": {
+            "count": 434,
+            "inclusive_us": 15625,
+            "exclusive_us": 15625
+          },
+          "types.copy.metadata_arrays": {
+            "count": 434,
+            "inclusive_us": 2098,
+            "exclusive_us": 2098
+          },
+          "saved_value_types.describe": {
+            "count": 1244,
+            "inclusive_us": 418890,
+            "exclusive_us": 418890
+          },
+          "equipment_document_validation.schema": {
+            "count": 1353,
+            "inclusive_us": 735755,
+            "exclusive_us": 170462
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 1353,
+            "inclusive_us": 565293,
+            "exclusive_us": 565293
+          },
+          "codec.copy.document": {
+            "count": 598,
+            "inclusive_us": 28038,
+            "exclusive_us": 28038
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 161,
+            "inclusive_us": 6720817,
+            "exclusive_us": 2484590
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 325,
+            "inclusive_us": 163220,
+            "exclusive_us": 35705
+          },
+          "validation.copy.document": {
+            "count": 324,
+            "inclusive_us": 21169,
+            "exclusive_us": 21169
+          },
+          "validation.copy.candidate": {
+            "count": 161,
+            "inclusive_us": 8074,
+            "exclusive_us": 8074
+          },
+          "equipment_document_validation.validate": {
+            "count": 594,
+            "inclusive_us": 12605501,
+            "exclusive_us": 9939518
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 593,
+            "inclusive_us": 766094,
+            "exclusive_us": 766094
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 164,
+            "inclusive_us": 9102322,
+            "exclusive_us": 133139
+          },
+          "saved_document.encode": {
+            "count": 162,
+            "inclusive_us": 64355,
+            "exclusive_us": 64355
+          }
+        },
+        "interrupted": {
+          "equipment_document_validation.context_errors": {
+            "count": 2322,
+            "inclusive_us": 12363309,
+            "exclusive_us": 12363309
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 631,
+            "inclusive_us": 28325673,
+            "exclusive_us": 5421999
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 981,
+            "inclusive_us": 499701,
+            "exclusive_us": 499701
+          },
+          "codec.parse.outer": {
+            "count": 631,
+            "inclusive_us": 163671,
+            "exclusive_us": 163671
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 813,
+            "inclusive_us": 2405429,
+            "exclusive_us": 2405429
+          },
+          "saved_document.decode": {
+            "count": 631,
+            "inclusive_us": 2170,
+            "exclusive_us": 2170
+          },
+          "codec.copy.raw": {
+            "count": 631,
+            "inclusive_us": 62191,
+            "exclusive_us": 62191
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 1161,
+            "inclusive_us": 14749,
+            "exclusive_us": 14749
+          },
+          "saved_value_types.restore": {
+            "count": 631,
+            "inclusive_us": 291442,
+            "exclusive_us": 199274
+          },
+          "types.copy.value": {
+            "count": 631,
+            "inclusive_us": 64907,
+            "exclusive_us": 64907
+          },
+          "types.copy.metadata_arrays": {
+            "count": 631,
+            "inclusive_us": 27261,
+            "exclusive_us": 27261
+          },
+          "saved_value_types.describe": {
+            "count": 1956,
+            "inclusive_us": 1050100,
+            "exclusive_us": 1050100
+          },
+          "equipment_document_validation.schema": {
+            "count": 2057,
+            "inclusive_us": 2383045,
+            "exclusive_us": 616903
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 2057,
+            "inclusive_us": 1766142,
+            "exclusive_us": 1766142
+          },
+          "codec.copy.document": {
+            "count": 896,
+            "inclusive_us": 72743,
+            "exclusive_us": 72743
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 265,
+            "inclusive_us": 22618791,
+            "exclusive_us": 8501956
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 530,
+            "inclusive_us": 528519,
+            "exclusive_us": 184035
+          },
+          "validation.copy.document": {
+            "count": 530,
+            "inclusive_us": 55091,
+            "exclusive_us": 55091
+          },
+          "validation.copy.candidate": {
+            "count": 265,
+            "inclusive_us": 40036,
+            "exclusive_us": 40036
+          },
+          "equipment_document_validation.validate": {
+            "count": 896,
+            "inclusive_us": 38142022,
+            "exclusive_us": 29892530
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 896,
+            "inclusive_us": 2516888,
+            "exclusive_us": 2516888
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 265,
+            "inclusive_us": 28828226,
+            "exclusive_us": 463402
+          },
+          "saved_document.encode": {
+            "count": 265,
+            "inclusive_us": 108672,
+            "exclusive_us": 108672
+          }
+        }
+      },
+      "groups": 12672,
+      "assignment_errors": [],
+      "units": "process内wall microsecondsの並行累積。全体wallと加算/除算しない。",
+      "classification": "一意batch原logを元config順/TRANSACTION_PROBE終端で対応。operation/kill_point/fail_pointで正常・注入異常・kill前・再開・specialを分離。codec単体154件の各成否別時間は未測（値と成否は全件対照）。"
+    },
+    "2": {
+      "by_operation": {
+        "fixture": {
+          "saved_value_types.describe": {
+            "count": 5,
+            "inclusive_us": 1253,
+            "exclusive_us": 1253
+          }
+        },
+        "restart": {
+          "equipment_document_validation.context_errors": {
+            "count": 8082,
+            "inclusive_us": 28860176,
+            "exclusive_us": 28860176
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 2333,
+            "inclusive_us": 72169573,
+            "exclusive_us": 9376504
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 4583,
+            "inclusive_us": 1164886,
+            "exclusive_us": 1164886
+          },
+          "codec.parse.outer": {
+            "count": 2333,
+            "inclusive_us": 444009,
+            "exclusive_us": 444009
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 3850,
+            "inclusive_us": 6793371,
+            "exclusive_us": 6793371
+          },
+          "saved_document.decode": {
+            "count": 2333,
+            "inclusive_us": 24172,
+            "exclusive_us": 24172
+          },
+          "codec.copy.raw": {
+            "count": 2333,
+            "inclusive_us": 148053,
+            "exclusive_us": 148053
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 4041,
+            "inclusive_us": 97772,
+            "exclusive_us": 97772
+          },
+          "saved_value_types.restore": {
+            "count": 2333,
+            "inclusive_us": 537452,
+            "exclusive_us": 398917
+          },
+          "types.copy.value": {
+            "count": 2333,
+            "inclusive_us": 118001,
+            "exclusive_us": 118001
+          },
+          "types.copy.metadata_arrays": {
+            "count": 2333,
+            "inclusive_us": 20534,
+            "exclusive_us": 20534
+          },
+          "saved_value_types.describe": {
+            "count": 6603,
+            "inclusive_us": 3066598,
+            "exclusive_us": 3066598
+          },
+          "equipment_document_validation.schema": {
+            "count": 7228,
+            "inclusive_us": 5240720,
+            "exclusive_us": 1271054
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 7228,
+            "inclusive_us": 3969666,
+            "exclusive_us": 3969666
+          },
+          "codec.copy.document": {
+            "count": 3187,
+            "inclusive_us": 237583,
+            "exclusive_us": 237583
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 854,
+            "inclusive_us": 47575504,
+            "exclusive_us": 17799615
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 1708,
+            "inclusive_us": 1224548,
+            "exclusive_us": 263256
+          },
+          "validation.copy.document": {
+            "count": 1708,
+            "inclusive_us": 126533,
+            "exclusive_us": 126533
+          },
+          "validation.copy.candidate": {
+            "count": 854,
+            "inclusive_us": 89105,
+            "exclusive_us": 89105
+          },
+          "equipment_document_validation.validate": {
+            "count": 3187,
+            "inclusive_us": 91108518,
+            "exclusive_us": 71932759
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 3187,
+            "inclusive_us": 5684894,
+            "exclusive_us": 5684894
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 854,
+            "inclusive_us": 63945406,
+            "exclusive_us": 1036615
+          },
+          "saved_document.encode": {
+            "count": 854,
+            "inclusive_us": 300307,
+            "exclusive_us": 300307
+          }
+        },
+        "abnormal": {
+          "equipment_document_validation.context_errors": {
+            "count": 488,
+            "inclusive_us": 1233230,
+            "exclusive_us": 1233230
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 130,
+            "inclusive_us": 2607397,
+            "exclusive_us": 406541
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 192,
+            "inclusive_us": 44667,
+            "exclusive_us": 44667
+          },
+          "codec.parse.outer": {
+            "count": 130,
+            "inclusive_us": 36026,
+            "exclusive_us": 36026
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 158,
+            "inclusive_us": 245672,
+            "exclusive_us": 245672
+          },
+          "saved_document.decode": {
+            "count": 130,
+            "inclusive_us": 437,
+            "exclusive_us": 437
+          },
+          "codec.copy.raw": {
+            "count": 130,
+            "inclusive_us": 5938,
+            "exclusive_us": 5938
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 244,
+            "inclusive_us": 1957,
+            "exclusive_us": 1957
+          },
+          "saved_value_types.restore": {
+            "count": 130,
+            "inclusive_us": 24369,
+            "exclusive_us": 15640
+          },
+          "types.copy.value": {
+            "count": 130,
+            "inclusive_us": 8112,
+            "exclusive_us": 8112
+          },
+          "types.copy.metadata_arrays": {
+            "count": 130,
+            "inclusive_us": 617,
+            "exclusive_us": 617
+          },
+          "saved_value_types.describe": {
+            "count": 415,
+            "inclusive_us": 133276,
+            "exclusive_us": 133276
+          },
+          "equipment_document_validation.schema": {
+            "count": 431,
+            "inclusive_us": 203375,
+            "exclusive_us": 52860
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 431,
+            "inclusive_us": 150515,
+            "exclusive_us": 150515
+          },
+          "codec.copy.document": {
+            "count": 187,
+            "inclusive_us": 8909,
+            "exclusive_us": 8909
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 57,
+            "inclusive_us": 2226207,
+            "exclusive_us": 866717
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 114,
+            "inclusive_us": 57209,
+            "exclusive_us": 12338
+          },
+          "validation.copy.document": {
+            "count": 114,
+            "inclusive_us": 5409,
+            "exclusive_us": 5409
+          },
+          "validation.copy.candidate": {
+            "count": 57,
+            "inclusive_us": 2819,
+            "exclusive_us": 2819
+          },
+          "equipment_document_validation.validate": {
+            "count": 187,
+            "inclusive_us": 3739771,
+            "exclusive_us": 2927864
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 187,
+            "inclusive_us": 219667,
+            "exclusive_us": 219667
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 57,
+            "inclusive_us": 2974548,
+            "exclusive_us": 49982
+          },
+          "saved_document.encode": {
+            "count": 57,
+            "inclusive_us": 13896,
+            "exclusive_us": 13896
+          }
+        },
+        "normal": {
+          "equipment_document_validation.context_errors": {
+            "count": 180,
+            "inclusive_us": 446180,
+            "exclusive_us": 446180
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 54,
+            "inclusive_us": 1134946,
+            "exclusive_us": 140680
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 94,
+            "inclusive_us": 20463,
+            "exclusive_us": 20463
+          },
+          "codec.parse.outer": {
+            "count": 54,
+            "inclusive_us": 7547,
+            "exclusive_us": 7547
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 84,
+            "inclusive_us": 101219,
+            "exclusive_us": 101219
+          },
+          "saved_document.decode": {
+            "count": 54,
+            "inclusive_us": 256,
+            "exclusive_us": 256
+          },
+          "codec.copy.raw": {
+            "count": 54,
+            "inclusive_us": 2355,
+            "exclusive_us": 2355
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 72,
+            "inclusive_us": 641,
+            "exclusive_us": 641
+          },
+          "saved_value_types.restore": {
+            "count": 48,
+            "inclusive_us": 6609,
+            "exclusive_us": 4593
+          },
+          "types.copy.value": {
+            "count": 48,
+            "inclusive_us": 1829,
+            "exclusive_us": 1829
+          },
+          "types.copy.metadata_arrays": {
+            "count": 48,
+            "inclusive_us": 187,
+            "exclusive_us": 187
+          },
+          "saved_value_types.describe": {
+            "count": 114,
+            "inclusive_us": 41983,
+            "exclusive_us": 41983
+          },
+          "equipment_document_validation.schema": {
+            "count": 162,
+            "inclusive_us": 71005,
+            "exclusive_us": 19163
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 162,
+            "inclusive_us": 51842,
+            "exclusive_us": 51842
+          },
+          "codec.copy.document": {
+            "count": 72,
+            "inclusive_us": 2731,
+            "exclusive_us": 2731
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 18,
+            "inclusive_us": 639031,
+            "exclusive_us": 239059
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 30,
+            "inclusive_us": 14293,
+            "exclusive_us": 2671
+          },
+          "validation.copy.document": {
+            "count": 24,
+            "inclusive_us": 1282,
+            "exclusive_us": 1282
+          },
+          "validation.copy.candidate": {
+            "count": 18,
+            "inclusive_us": 832,
+            "exclusive_us": 832
+          },
+          "equipment_document_validation.validate": {
+            "count": 72,
+            "inclusive_us": 1343704,
+            "exclusive_us": 1058873
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 72,
+            "inclusive_us": 85343,
+            "exclusive_us": 85343
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 18,
+            "inclusive_us": 872544,
+            "exclusive_us": 14332
+          },
+          "saved_document.encode": {
+            "count": 18,
+            "inclusive_us": 4267,
+            "exclusive_us": 4267
+          }
+        },
+        "special": {
+          "equipment_document_validation.context_errors": {
+            "count": 1518,
+            "inclusive_us": 4085675,
+            "exclusive_us": 4085675
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 435,
+            "inclusive_us": 9701806,
+            "exclusive_us": 1355673
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 772,
+            "inclusive_us": 169894,
+            "exclusive_us": 169894
+          },
+          "codec.parse.outer": {
+            "count": 434,
+            "inclusive_us": 81686,
+            "exclusive_us": 81686
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 657,
+            "inclusive_us": 811773,
+            "exclusive_us": 811773
+          },
+          "saved_document.decode": {
+            "count": 434,
+            "inclusive_us": 1502,
+            "exclusive_us": 1502
+          },
+          "codec.copy.raw": {
+            "count": 434,
+            "inclusive_us": 18878,
+            "exclusive_us": 18878
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 759,
+            "inclusive_us": 6196,
+            "exclusive_us": 6196
+          },
+          "saved_value_types.restore": {
+            "count": 434,
+            "inclusive_us": 98433,
+            "exclusive_us": 55802
+          },
+          "types.copy.value": {
+            "count": 434,
+            "inclusive_us": 40457,
+            "exclusive_us": 40457
+          },
+          "types.copy.metadata_arrays": {
+            "count": 434,
+            "inclusive_us": 2174,
+            "exclusive_us": 2174
+          },
+          "saved_value_types.describe": {
+            "count": 1244,
+            "inclusive_us": 424769,
+            "exclusive_us": 424769
+          },
+          "equipment_document_validation.schema": {
+            "count": 1353,
+            "inclusive_us": 757106,
+            "exclusive_us": 170814
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 1353,
+            "inclusive_us": 586292,
+            "exclusive_us": 586292
+          },
+          "codec.copy.document": {
+            "count": 598,
+            "inclusive_us": 24097,
+            "exclusive_us": 24097
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 161,
+            "inclusive_us": 6698784,
+            "exclusive_us": 2460328
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 325,
+            "inclusive_us": 176442,
+            "exclusive_us": 45580
+          },
+          "validation.copy.document": {
+            "count": 324,
+            "inclusive_us": 15695,
+            "exclusive_us": 15695
+          },
+          "validation.copy.candidate": {
+            "count": 161,
+            "inclusive_us": 9967,
+            "exclusive_us": 9967
+          },
+          "equipment_document_validation.validate": {
+            "count": 594,
+            "inclusive_us": 12424806,
+            "exclusive_us": 9776765
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 593,
+            "inclusive_us": 788844,
+            "exclusive_us": 788844
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 164,
+            "inclusive_us": 8999799,
+            "exclusive_us": 141680
+          },
+          "saved_document.encode": {
+            "count": 162,
+            "inclusive_us": 43876,
+            "exclusive_us": 43876
+          }
+        },
+        "interrupted": {
+          "equipment_document_validation.context_errors": {
+            "count": 2322,
+            "inclusive_us": 15683344,
+            "exclusive_us": 15683344
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 631,
+            "inclusive_us": 34665999,
+            "exclusive_us": 6402129
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 981,
+            "inclusive_us": 502802,
+            "exclusive_us": 502802
+          },
+          "codec.parse.outer": {
+            "count": 631,
+            "inclusive_us": 236035,
+            "exclusive_us": 236035
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 813,
+            "inclusive_us": 3027197,
+            "exclusive_us": 3027197
+          },
+          "saved_document.decode": {
+            "count": 631,
+            "inclusive_us": 2448,
+            "exclusive_us": 2448
+          },
+          "codec.copy.raw": {
+            "count": 631,
+            "inclusive_us": 39437,
+            "exclusive_us": 39437
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 1161,
+            "inclusive_us": 23011,
+            "exclusive_us": 23011
+          },
+          "saved_value_types.restore": {
+            "count": 631,
+            "inclusive_us": 233406,
+            "exclusive_us": 149843
+          },
+          "types.copy.value": {
+            "count": 631,
+            "inclusive_us": 68130,
+            "exclusive_us": 68130
+          },
+          "types.copy.metadata_arrays": {
+            "count": 631,
+            "inclusive_us": 15433,
+            "exclusive_us": 15433
+          },
+          "saved_value_types.describe": {
+            "count": 1956,
+            "inclusive_us": 1433421,
+            "exclusive_us": 1433421
+          },
+          "equipment_document_validation.schema": {
+            "count": 2057,
+            "inclusive_us": 2821948,
+            "exclusive_us": 642942
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 2057,
+            "inclusive_us": 2179006,
+            "exclusive_us": 2179006
+          },
+          "codec.copy.document": {
+            "count": 896,
+            "inclusive_us": 127772,
+            "exclusive_us": 127772
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 265,
+            "inclusive_us": 27765927,
+            "exclusive_us": 10663364
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 530,
+            "inclusive_us": 626285,
+            "exclusive_us": 111968
+          },
+          "validation.copy.document": {
+            "count": 530,
+            "inclusive_us": 112493,
+            "exclusive_us": 112493
+          },
+          "validation.copy.candidate": {
+            "count": 265,
+            "inclusive_us": 57074,
+            "exclusive_us": 57074
+          },
+          "equipment_document_validation.validate": {
+            "count": 896,
+            "inclusive_us": 46281013,
+            "exclusive_us": 36399036
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 896,
+            "inclusive_us": 2781869,
+            "exclusive_us": 2781869
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 265,
+            "inclusive_us": 35109703,
+            "exclusive_us": 502482
+          },
+          "saved_document.encode": {
+            "count": 265,
+            "inclusive_us": 102266,
+            "exclusive_us": 102266
+          }
+        }
+      },
+      "groups": 12672,
+      "assignment_errors": [],
+      "units": "process内wall microsecondsの並行累積。全体wallと加算/除算しない。",
+      "classification": "一意batch原logを元config順/TRANSACTION_PROBE終端で対応。operation/kill_point/fail_pointで正常・注入異常・kill前・再開・specialを分離。codec単体154件の各成否別時間は未測（値と成否は全件対照）。"
+    },
+    "3": {
+      "by_operation": {
+        "fixture": {
+          "saved_value_types.describe": {
+            "count": 5,
+            "inclusive_us": 1247,
+            "exclusive_us": 1247
+          }
+        },
+        "restart": {
+          "equipment_document_validation.context_errors": {
+            "count": 8082,
+            "inclusive_us": 28392782,
+            "exclusive_us": 28392782
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 2333,
+            "inclusive_us": 70366758,
+            "exclusive_us": 9243984
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 4583,
+            "inclusive_us": 1283414,
+            "exclusive_us": 1283414
+          },
+          "codec.parse.outer": {
+            "count": 2333,
+            "inclusive_us": 459078,
+            "exclusive_us": 459078
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 3850,
+            "inclusive_us": 6329455,
+            "exclusive_us": 6329455
+          },
+          "saved_document.decode": {
+            "count": 2333,
+            "inclusive_us": 9530,
+            "exclusive_us": 9530
+          },
+          "codec.copy.raw": {
+            "count": 2333,
+            "inclusive_us": 165671,
+            "exclusive_us": 165671
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 4041,
+            "inclusive_us": 47179,
+            "exclusive_us": 47179
+          },
+          "saved_value_types.restore": {
+            "count": 2333,
+            "inclusive_us": 538617,
+            "exclusive_us": 411002
+          },
+          "types.copy.value": {
+            "count": 2333,
+            "inclusive_us": 114144,
+            "exclusive_us": 114144
+          },
+          "types.copy.metadata_arrays": {
+            "count": 2333,
+            "inclusive_us": 13471,
+            "exclusive_us": 13471
+          },
+          "saved_value_types.describe": {
+            "count": 6603,
+            "inclusive_us": 2915478,
+            "exclusive_us": 2915478
+          },
+          "equipment_document_validation.schema": {
+            "count": 7228,
+            "inclusive_us": 5317485,
+            "exclusive_us": 1252842
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 7228,
+            "inclusive_us": 4064643,
+            "exclusive_us": 4064643
+          },
+          "codec.copy.document": {
+            "count": 3187,
+            "inclusive_us": 210664,
+            "exclusive_us": 210664
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 854,
+            "inclusive_us": 46325372,
+            "exclusive_us": 17074470
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 1708,
+            "inclusive_us": 1196867,
+            "exclusive_us": 315132
+          },
+          "validation.copy.document": {
+            "count": 1708,
+            "inclusive_us": 156034,
+            "exclusive_us": 156034
+          },
+          "validation.copy.candidate": {
+            "count": 854,
+            "inclusive_us": 63005,
+            "exclusive_us": 63005
+          },
+          "equipment_document_validation.validate": {
+            "count": 3187,
+            "inclusive_us": 88999065,
+            "exclusive_us": 69873474
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 3187,
+            "inclusive_us": 5544853,
+            "exclusive_us": 5544853
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 854,
+            "inclusive_us": 61090775,
+            "exclusive_us": 1165451
+          },
+          "saved_document.encode": {
+            "count": 854,
+            "inclusive_us": 301973,
+            "exclusive_us": 301973
+          }
+        },
+        "abnormal": {
+          "equipment_document_validation.context_errors": {
+            "count": 488,
+            "inclusive_us": 1543409,
+            "exclusive_us": 1543409
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 130,
+            "inclusive_us": 3159965,
+            "exclusive_us": 515005
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 192,
+            "inclusive_us": 57320,
+            "exclusive_us": 57320
+          },
+          "codec.parse.outer": {
+            "count": 130,
+            "inclusive_us": 24367,
+            "exclusive_us": 24367
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 158,
+            "inclusive_us": 280976,
+            "exclusive_us": 280976
+          },
+          "saved_document.decode": {
+            "count": 130,
+            "inclusive_us": 432,
+            "exclusive_us": 432
+          },
+          "codec.copy.raw": {
+            "count": 130,
+            "inclusive_us": 6153,
+            "exclusive_us": 6153
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 244,
+            "inclusive_us": 2380,
+            "exclusive_us": 2380
+          },
+          "saved_value_types.restore": {
+            "count": 130,
+            "inclusive_us": 23554,
+            "exclusive_us": 17896
+          },
+          "types.copy.value": {
+            "count": 130,
+            "inclusive_us": 4982,
+            "exclusive_us": 4982
+          },
+          "types.copy.metadata_arrays": {
+            "count": 130,
+            "inclusive_us": 676,
+            "exclusive_us": 676
+          },
+          "saved_value_types.describe": {
+            "count": 415,
+            "inclusive_us": 160671,
+            "exclusive_us": 160671
+          },
+          "equipment_document_validation.schema": {
+            "count": 431,
+            "inclusive_us": 266818,
+            "exclusive_us": 64080
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 431,
+            "inclusive_us": 202738,
+            "exclusive_us": 202738
+          },
+          "codec.copy.document": {
+            "count": 187,
+            "inclusive_us": 12291,
+            "exclusive_us": 12291
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 57,
+            "inclusive_us": 2595148,
+            "exclusive_us": 927240
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 114,
+            "inclusive_us": 105589,
+            "exclusive_us": 38466
+          },
+          "validation.copy.document": {
+            "count": 114,
+            "inclusive_us": 6242,
+            "exclusive_us": 6242
+          },
+          "validation.copy.candidate": {
+            "count": 57,
+            "inclusive_us": 3093,
+            "exclusive_us": 3093
+          },
+          "equipment_document_validation.validate": {
+            "count": 187,
+            "inclusive_us": 4463853,
+            "exclusive_us": 3470201
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 187,
+            "inclusive_us": 271089,
+            "exclusive_us": 271089
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 57,
+            "inclusive_us": 3578358,
+            "exclusive_us": 58717
+          },
+          "saved_document.encode": {
+            "count": 57,
+            "inclusive_us": 15187,
+            "exclusive_us": 15187
+          }
+        },
+        "normal": {
+          "equipment_document_validation.context_errors": {
+            "count": 180,
+            "inclusive_us": 499584,
+            "exclusive_us": 499584
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 54,
+            "inclusive_us": 1398488,
+            "exclusive_us": 155380
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 94,
+            "inclusive_us": 22213,
+            "exclusive_us": 22213
+          },
+          "codec.parse.outer": {
+            "count": 54,
+            "inclusive_us": 10496,
+            "exclusive_us": 10496
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 84,
+            "inclusive_us": 109835,
+            "exclusive_us": 109835
+          },
+          "saved_document.decode": {
+            "count": 54,
+            "inclusive_us": 214,
+            "exclusive_us": 214
+          },
+          "codec.copy.raw": {
+            "count": 54,
+            "inclusive_us": 2827,
+            "exclusive_us": 2827
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 72,
+            "inclusive_us": 642,
+            "exclusive_us": 642
+          },
+          "saved_value_types.restore": {
+            "count": 48,
+            "inclusive_us": 15191,
+            "exclusive_us": 12883
+          },
+          "types.copy.value": {
+            "count": 48,
+            "inclusive_us": 2075,
+            "exclusive_us": 2075
+          },
+          "types.copy.metadata_arrays": {
+            "count": 48,
+            "inclusive_us": 233,
+            "exclusive_us": 233
+          },
+          "saved_value_types.describe": {
+            "count": 114,
+            "inclusive_us": 51407,
+            "exclusive_us": 51407
+          },
+          "equipment_document_validation.schema": {
+            "count": 162,
+            "inclusive_us": 84331,
+            "exclusive_us": 23886
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 162,
+            "inclusive_us": 60445,
+            "exclusive_us": 60445
+          },
+          "codec.copy.document": {
+            "count": 72,
+            "inclusive_us": 2927,
+            "exclusive_us": 2927
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 18,
+            "inclusive_us": 729770,
+            "exclusive_us": 280624
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 30,
+            "inclusive_us": 17798,
+            "exclusive_us": 2955
+          },
+          "validation.copy.document": {
+            "count": 24,
+            "inclusive_us": 3088,
+            "exclusive_us": 3088
+          },
+          "validation.copy.candidate": {
+            "count": 18,
+            "inclusive_us": 1080,
+            "exclusive_us": 1080
+          },
+          "equipment_document_validation.validate": {
+            "count": 72,
+            "inclusive_us": 1633047,
+            "exclusive_us": 1302760
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 72,
+            "inclusive_us": 106918,
+            "exclusive_us": 106918
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 18,
+            "inclusive_us": 1075346,
+            "exclusive_us": 16633
+          },
+          "saved_document.encode": {
+            "count": 18,
+            "inclusive_us": 4879,
+            "exclusive_us": 4879
+          }
+        },
+        "special": {
+          "equipment_document_validation.context_errors": {
+            "count": 1518,
+            "inclusive_us": 4185736,
+            "exclusive_us": 4185736
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 435,
+            "inclusive_us": 10404219,
+            "exclusive_us": 1434322
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 772,
+            "inclusive_us": 185960,
+            "exclusive_us": 185960
+          },
+          "codec.parse.outer": {
+            "count": 434,
+            "inclusive_us": 66310,
+            "exclusive_us": 66310
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 657,
+            "inclusive_us": 989548,
+            "exclusive_us": 989548
+          },
+          "saved_document.decode": {
+            "count": 434,
+            "inclusive_us": 1672,
+            "exclusive_us": 1672
+          },
+          "codec.copy.raw": {
+            "count": 434,
+            "inclusive_us": 20934,
+            "exclusive_us": 20934
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 759,
+            "inclusive_us": 6909,
+            "exclusive_us": 6909
+          },
+          "saved_value_types.restore": {
+            "count": 434,
+            "inclusive_us": 75538,
+            "exclusive_us": 56607
+          },
+          "types.copy.value": {
+            "count": 434,
+            "inclusive_us": 16668,
+            "exclusive_us": 16668
+          },
+          "types.copy.metadata_arrays": {
+            "count": 434,
+            "inclusive_us": 2263,
+            "exclusive_us": 2263
+          },
+          "saved_value_types.describe": {
+            "count": 1244,
+            "inclusive_us": 444636,
+            "exclusive_us": 444636
+          },
+          "equipment_document_validation.schema": {
+            "count": 1353,
+            "inclusive_us": 773352,
+            "exclusive_us": 188437
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 1353,
+            "inclusive_us": 584915,
+            "exclusive_us": 584915
+          },
+          "codec.copy.document": {
+            "count": 598,
+            "inclusive_us": 25514,
+            "exclusive_us": 25514
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 161,
+            "inclusive_us": 6779821,
+            "exclusive_us": 2526175
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 325,
+            "inclusive_us": 173133,
+            "exclusive_us": 38666
+          },
+          "validation.copy.document": {
+            "count": 324,
+            "inclusive_us": 22735,
+            "exclusive_us": 22735
+          },
+          "validation.copy.candidate": {
+            "count": 161,
+            "inclusive_us": 8572,
+            "exclusive_us": 8572
+          },
+          "equipment_document_validation.validate": {
+            "count": 594,
+            "inclusive_us": 13159637,
+            "exclusive_us": 10377924
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 593,
+            "inclusive_us": 779606,
+            "exclusive_us": 779606
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 164,
+            "inclusive_us": 9450164,
+            "exclusive_us": 141618
+          },
+          "saved_document.encode": {
+            "count": 162,
+            "inclusive_us": 45862,
+            "exclusive_us": 45862
+          }
+        },
+        "interrupted": {
+          "equipment_document_validation.context_errors": {
+            "count": 2322,
+            "inclusive_us": 16287572,
+            "exclusive_us": 16287572
+          },
+          "equipment_save_codec.decode_source": {
+            "count": 631,
+            "inclusive_us": 35904821,
+            "exclusive_us": 6533853
+          },
+          "equipment_save_codec.valid_utf8": {
+            "count": 981,
+            "inclusive_us": 531025,
+            "exclusive_us": 531025
+          },
+          "codec.parse.outer": {
+            "count": 631,
+            "inclusive_us": 231912,
+            "exclusive_us": 231912
+          },
+          "equipment_save_codec.unique_json_keys": {
+            "count": 813,
+            "inclusive_us": 3092597,
+            "exclusive_us": 3092597
+          },
+          "saved_document.decode": {
+            "count": 631,
+            "inclusive_us": 2542,
+            "exclusive_us": 2542
+          },
+          "codec.copy.raw": {
+            "count": 631,
+            "inclusive_us": 95286,
+            "exclusive_us": 95286
+          },
+          "equipment_document_validation.metadata_errors": {
+            "count": 1161,
+            "inclusive_us": 11994,
+            "exclusive_us": 11994
+          },
+          "saved_value_types.restore": {
+            "count": 631,
+            "inclusive_us": 293297,
+            "exclusive_us": 252342
+          },
+          "types.copy.value": {
+            "count": 631,
+            "inclusive_us": 33351,
+            "exclusive_us": 33351
+          },
+          "types.copy.metadata_arrays": {
+            "count": 631,
+            "inclusive_us": 7604,
+            "exclusive_us": 7604
+          },
+          "saved_value_types.describe": {
+            "count": 1956,
+            "inclusive_us": 1536933,
+            "exclusive_us": 1536933
+          },
+          "equipment_document_validation.schema": {
+            "count": 2057,
+            "inclusive_us": 2679748,
+            "exclusive_us": 741092
+          },
+          "equipment_document_validation.auxiliary": {
+            "count": 2057,
+            "inclusive_us": 1938656,
+            "exclusive_us": 1938656
+          },
+          "codec.copy.document": {
+            "count": 896,
+            "inclusive_us": 75664,
+            "exclusive_us": 75664
+          },
+          "equipment_document_validation.prepare_candidate": {
+            "count": 265,
+            "inclusive_us": 28030687,
+            "exclusive_us": 10331155
+          },
+          "equipment_document_validation.native_metadata_errors": {
+            "count": 530,
+            "inclusive_us": 626384,
+            "exclusive_us": 111242
+          },
+          "validation.copy.document": {
+            "count": 530,
+            "inclusive_us": 56429,
+            "exclusive_us": 56429
+          },
+          "validation.copy.candidate": {
+            "count": 265,
+            "inclusive_us": 62963,
+            "exclusive_us": 62963
+          },
+          "equipment_document_validation.validate": {
+            "count": 896,
+            "inclusive_us": 48370916,
+            "exclusive_us": 38154693
+          },
+          "equipment_document_validation.audit_errors": {
+            "count": 896,
+            "inclusive_us": 2773462,
+            "exclusive_us": 2773462
+          },
+          "equipment_save_codec.encode_candidate": {
+            "count": 265,
+            "inclusive_us": 37661522,
+            "exclusive_us": 533865
+          },
+          "saved_document.encode": {
+            "count": 265,
+            "inclusive_us": 158887,
+            "exclusive_us": 158887
+          }
+        }
+      },
+      "groups": 12672,
+      "assignment_errors": [],
+      "units": "process内wall microsecondsの並行累積。全体wallと加算/除算しない。",
+      "classification": "一意batch原logを元config順/TRANSACTION_PROBE終端で対応。operation/kill_point/fail_pointで正常・注入異常・kill前・再開・specialを分離。codec単体154件の各成否別時間は未測（値と成否は全件対照）。"
+    }
+  },
+  "pairs": [
+    {
+      "phase": "codec",
+      "repetition": 1,
+      "comparison": {
+        "cases": 154,
+        "checks": 975,
+        "input_output_native_bytes_equal": true,
+        "reason_errors_equal": true,
+        "input_context_memory_assertions": "原検査の全条件成功"
+      }
+    },
+    {
+      "phase": "codec",
+      "repetition": 2,
+      "comparison": {
+        "cases": 154,
+        "checks": 975,
+        "input_output_native_bytes_equal": true,
+        "reason_errors_equal": true,
+        "input_context_memory_assertions": "原検査の全条件成功"
+      }
+    },
+    {
+      "phase": "codec",
+      "repetition": 3,
+      "comparison": {
+        "cases": 154,
+        "checks": 975,
+        "input_output_native_bytes_equal": true,
+        "reason_errors_equal": true,
+        "input_context_memory_assertions": "原検査の全条件成功"
+      }
+    },
+    {
+      "phase": "transaction",
+      "repetition": 1,
+      "comparison": {
+        "common_cases": [
+          "absent-id",
+          "backup-changed",
+          "backup-collision",
+          "backup-hardlink",
+          "candidate-quantity",
+          "candidate-types",
+          "candidate-value",
+          "commit-source-race",
+          "commit-target-race",
+          "commit-tmp-race",
+          "different-raw",
+          "directory-link",
+          "fault-candidate.flush.before",
+          "fault-candidate.open.before",
+          "fault-candidate.readback.before",
+          "fault-candidate.store.before",
+          "fault-candidate.store.partial",
+          "fault-commit.rename.before",
+          "fault-history.flush.before",
+          "fault-history.open.before",
+          "fault-history.readback.before",
+          "fault-history.rename.before",
+          "fault-history.store.before",
+          "fault-history.store.partial",
+          "fault-read.buffer.before",
+          "fault-read.open.before",
+          "fault-receipt-committed.open.before",
+          "fault-receipt-committed.rename.before",
+          "fault-receipt-prepared.open.before",
+          "fault-receipt-prepared.rename.before",
+          "fault-source.flush.before",
+          "fault-source.open.before",
+          "fault-source.readback.before",
+          "fault-source.rename.before",
+          "fault-source.store.before",
+          "fault-source.store.partial",
+          "history-changed",
+          "initial-tmp-hardlink",
+          "injected-enospc",
+          "inspect-committed",
+          "inspect-missing",
+          "inspect-null-context",
+          "inspect-prepared",
+          "inspect-readonly",
+          "intent-changed",
+          "kill-candidate.close.after",
+          "kill-candidate.close.before",
+          "kill-candidate.flush.after",
+          "kill-candidate.flush.before",
+          "kill-candidate.open.after",
+          "kill-candidate.open.before",
+          "kill-candidate.readback.after",
+          "kill-candidate.readback.before",
+          "kill-candidate.store.after",
+          "kill-candidate.store.before",
+          "kill-candidate.store.partial",
+          "kill-commit.rename.after",
+          "kill-commit.rename.before",
+          "kill-directory.create.after",
+          "kill-directory.create.before",
+          "kill-history.close.after",
+          "kill-history.close.before",
+          "kill-history.flush.after",
+          "kill-history.flush.before",
+          "kill-history.open.after",
+          "kill-history.open.before",
+          "kill-history.readback.after",
+          "kill-history.readback.before",
+          "kill-history.rename.after",
+          "kill-history.rename.before",
+          "kill-history.store.after",
+          "kill-history.store.before",
+          "kill-history.store.partial",
+          "kill-intent.close.after",
+          "kill-intent.close.before",
+          "kill-intent.flush.after",
+          "kill-intent.flush.before",
+          "kill-intent.open.after",
+          "kill-intent.open.before",
+          "kill-intent.readback.after",
+          "kill-intent.readback.before",
+          "kill-intent.rename.after",
+          "kill-intent.rename.before",
+          "kill-intent.store.after",
+          "kill-intent.store.before",
+          "kill-intent.store.partial",
+          "kill-lease.acquire.after",
+          "kill-lease.acquire.before",
+          "kill-owner.close.after",
+          "kill-owner.close.before",
+          "kill-owner.flush.after",
+          "kill-owner.flush.before",
+          "kill-owner.open.after",
+          "kill-owner.open.before",
+          "kill-owner.readback.after",
+          "kill-owner.readback.before",
+          "kill-owner.store.after",
+          "kill-owner.store.before",
+          "kill-owner.store.partial",
+          "kill-read.buffer.after",
+          "kill-read.buffer.before",
+          "kill-read.open.after",
+          "kill-read.open.before",
+          "kill-receipt-committed.close.after",
+          "kill-receipt-committed.close.before",
+          "kill-receipt-committed.flush.after",
+          "kill-receipt-committed.flush.before",
+          "kill-receipt-committed.open.after",
+          "kill-receipt-committed.open.before",
+          "kill-receipt-committed.readback.after",
+          "kill-receipt-committed.readback.before",
+          "kill-receipt-committed.rename.after",
+          "kill-receipt-committed.rename.before",
+          "kill-receipt-committed.store.after",
+          "kill-receipt-committed.store.before",
+          "kill-receipt-committed.store.partial",
+          "kill-receipt-prepared.close.after",
+          "kill-receipt-prepared.close.before",
+          "kill-receipt-prepared.flush.after",
+          "kill-receipt-prepared.flush.before",
+          "kill-receipt-prepared.open.after",
+          "kill-receipt-prepared.open.before",
+          "kill-receipt-prepared.readback.after",
+          "kill-receipt-prepared.readback.before",
+          "kill-receipt-prepared.rename.after",
+          "kill-receipt-prepared.rename.before",
+          "kill-receipt-prepared.store.after",
+          "kill-receipt-prepared.store.before",
+          "kill-receipt-prepared.store.partial",
+          "kill-source.close.after",
+          "kill-source.close.before",
+          "kill-source.flush.after",
+          "kill-source.flush.before",
+          "kill-source.open.after",
+          "kill-source.open.before",
+          "kill-source.readback.after",
+          "kill-source.readback.before",
+          "kill-source.rename.after",
+          "kill-source.rename.before",
+          "kill-source.store.after",
+          "kill-source.store.before",
+          "kill-source.store.partial",
+          "new-input",
+          "nonroot-permission",
+          "normal-granted",
+          "normal-pending",
+          "null-abilities",
+          "null-session",
+          "output-changed",
+          "output-link",
+          "outside-path",
+          "owner-corrupt",
+          "parent-path",
+          "receipt-corrupt",
+          "receipt-intent",
+          "receipt-phase-stale",
+          "receipt-tmp-hardlink",
+          "same-raw-alias",
+          "source-changed",
+          "source-link",
+          "stale-commit",
+          "stale-committed",
+          "stale-current",
+          "stale-prepare",
+          "target-collision",
+          "token-invalid",
+          "transaction-source",
+          "trial-corrupt",
+          "trial-missing",
+          "trial-unclean",
+          "writer-busy",
+          "wrong-hash"
+        ],
+        "missing_off": [],
+        "missing_on": [],
+        "differences": [],
+        "complete": true,
+        "normalization": "process pidと専用user_dirを除き、実argvで確定した試行rootだけ$QAへ対応付ける。errorsの相対target/reason/他の値は保持。原JSONは全保存。"
+      }
+    },
+    {
+      "phase": "transaction",
+      "repetition": 2,
+      "comparison": {
+        "common_cases": [
+          "absent-id",
+          "backup-changed",
+          "backup-collision",
+          "backup-hardlink",
+          "candidate-quantity",
+          "candidate-types",
+          "candidate-value",
+          "commit-source-race",
+          "commit-target-race",
+          "commit-tmp-race",
+          "different-raw",
+          "directory-link",
+          "fault-candidate.flush.before",
+          "fault-candidate.open.before",
+          "fault-candidate.readback.before",
+          "fault-candidate.store.before",
+          "fault-candidate.store.partial",
+          "fault-commit.rename.before",
+          "fault-history.flush.before",
+          "fault-history.open.before",
+          "fault-history.readback.before",
+          "fault-history.rename.before",
+          "fault-history.store.before",
+          "fault-history.store.partial",
+          "fault-read.buffer.before",
+          "fault-read.open.before",
+          "fault-receipt-committed.open.before",
+          "fault-receipt-committed.rename.before",
+          "fault-receipt-prepared.open.before",
+          "fault-receipt-prepared.rename.before",
+          "fault-source.flush.before",
+          "fault-source.open.before",
+          "fault-source.readback.before",
+          "fault-source.rename.before",
+          "fault-source.store.before",
+          "fault-source.store.partial",
+          "history-changed",
+          "initial-tmp-hardlink",
+          "injected-enospc",
+          "inspect-committed",
+          "inspect-missing",
+          "inspect-null-context",
+          "inspect-prepared",
+          "inspect-readonly",
+          "intent-changed",
+          "kill-candidate.close.after",
+          "kill-candidate.close.before",
+          "kill-candidate.flush.after",
+          "kill-candidate.flush.before",
+          "kill-candidate.open.after",
+          "kill-candidate.open.before",
+          "kill-candidate.readback.after",
+          "kill-candidate.readback.before",
+          "kill-candidate.store.before",
+          "kill-candidate.store.partial",
+          "kill-commit.rename.after",
+          "kill-commit.rename.before",
+          "kill-directory.create.after",
+          "kill-directory.create.before",
+          "kill-history.close.after",
+          "kill-history.close.before",
+          "kill-history.flush.after",
+          "kill-history.flush.before",
+          "kill-history.open.after",
+          "kill-history.open.before",
+          "kill-history.readback.after",
+          "kill-history.readback.before",
+          "kill-history.rename.after",
+          "kill-history.rename.before",
+          "kill-history.store.after",
+          "kill-history.store.before",
+          "kill-history.store.partial",
+          "kill-intent.close.after",
+          "kill-intent.close.before",
+          "kill-intent.flush.after",
+          "kill-intent.flush.before",
+          "kill-intent.open.after",
+          "kill-intent.open.before",
+          "kill-intent.readback.after",
+          "kill-intent.readback.before",
+          "kill-intent.rename.after",
+          "kill-intent.rename.before",
+          "kill-intent.store.after",
+          "kill-intent.store.before",
+          "kill-intent.store.partial",
+          "kill-lease.acquire.after",
+          "kill-lease.acquire.before",
+          "kill-owner.close.after",
+          "kill-owner.close.before",
+          "kill-owner.flush.after",
+          "kill-owner.flush.before",
+          "kill-owner.open.after",
+          "kill-owner.open.before",
+          "kill-owner.readback.after",
+          "kill-owner.readback.before",
+          "kill-owner.store.after",
+          "kill-owner.store.before",
+          "kill-owner.store.partial",
+          "kill-read.buffer.after",
+          "kill-read.buffer.before",
+          "kill-read.open.after",
+          "kill-read.open.before",
+          "kill-receipt-committed.close.after",
+          "kill-receipt-committed.close.before",
+          "kill-receipt-committed.flush.after",
+          "kill-receipt-committed.flush.before",
+          "kill-receipt-committed.open.after",
+          "kill-receipt-committed.open.before",
+          "kill-receipt-committed.readback.after",
+          "kill-receipt-committed.readback.before",
+          "kill-receipt-committed.rename.after",
+          "kill-receipt-committed.rename.before",
+          "kill-receipt-committed.store.after",
+          "kill-receipt-committed.store.before",
+          "kill-receipt-committed.store.partial",
+          "kill-receipt-prepared.close.after",
+          "kill-receipt-prepared.close.before",
+          "kill-receipt-prepared.flush.after",
+          "kill-receipt-prepared.flush.before",
+          "kill-receipt-prepared.open.after",
+          "kill-receipt-prepared.open.before",
+          "kill-receipt-prepared.readback.after",
+          "kill-receipt-prepared.readback.before",
+          "kill-receipt-prepared.rename.after",
+          "kill-receipt-prepared.rename.before",
+          "kill-receipt-prepared.store.after",
+          "kill-receipt-prepared.store.before",
+          "kill-receipt-prepared.store.partial",
+          "kill-source.close.after",
+          "kill-source.close.before",
+          "kill-source.flush.after",
+          "kill-source.flush.before",
+          "kill-source.open.after",
+          "kill-source.open.before",
+          "kill-source.readback.after",
+          "kill-source.readback.before",
+          "kill-source.rename.after",
+          "kill-source.rename.before",
+          "kill-source.store.after",
+          "kill-source.store.before",
+          "kill-source.store.partial",
+          "new-input",
+          "nonroot-permission",
+          "normal-granted",
+          "normal-pending",
+          "null-abilities",
+          "null-session",
+          "output-changed",
+          "output-link",
+          "outside-path",
+          "owner-corrupt",
+          "parent-path",
+          "receipt-corrupt",
+          "receipt-intent",
+          "receipt-phase-stale",
+          "receipt-tmp-hardlink",
+          "same-raw-alias",
+          "source-changed",
+          "source-link",
+          "stale-commit",
+          "stale-committed",
+          "stale-current",
+          "stale-prepare",
+          "target-collision",
+          "token-invalid",
+          "transaction-source",
+          "trial-corrupt",
+          "trial-missing",
+          "trial-unclean",
+          "writer-busy",
+          "wrong-hash"
+        ],
+        "missing_off": [
+          "kill-candidate.store.after"
+        ],
+        "missing_on": [],
+        "differences": [
+          "inspect-committed:既存条件",
+          "inspect-prepared:既存条件"
+        ],
+        "complete": false,
+        "normalization": "process pidと専用user_dirを除き、実argvで確定した試行rootだけ$QAへ対応付ける。errorsの相対target/reason/他の値は保持。原JSONは全保存。"
+      }
+    },
+    {
+      "phase": "transaction",
+      "repetition": 3,
+      "comparison": {
+        "common_cases": [
+          "absent-id",
+          "backup-changed",
+          "backup-collision",
+          "backup-hardlink",
+          "candidate-quantity",
+          "candidate-types",
+          "candidate-value",
+          "commit-source-race",
+          "commit-target-race",
+          "commit-tmp-race",
+          "different-raw",
+          "directory-link",
+          "fault-candidate.flush.before",
+          "fault-candidate.open.before",
+          "fault-candidate.readback.before",
+          "fault-candidate.store.before",
+          "fault-candidate.store.partial",
+          "fault-commit.rename.before",
+          "fault-history.flush.before",
+          "fault-history.open.before",
+          "fault-history.readback.before",
+          "fault-history.rename.before",
+          "fault-history.store.before",
+          "fault-history.store.partial",
+          "fault-read.buffer.before",
+          "fault-read.open.before",
+          "fault-receipt-committed.open.before",
+          "fault-receipt-committed.rename.before",
+          "fault-receipt-prepared.open.before",
+          "fault-receipt-prepared.rename.before",
+          "fault-source.flush.before",
+          "fault-source.open.before",
+          "fault-source.readback.before",
+          "fault-source.rename.before",
+          "fault-source.store.before",
+          "fault-source.store.partial",
+          "history-changed",
+          "initial-tmp-hardlink",
+          "injected-enospc",
+          "inspect-committed",
+          "inspect-missing",
+          "inspect-null-context",
+          "inspect-prepared",
+          "inspect-readonly",
+          "intent-changed",
+          "kill-candidate.close.after",
+          "kill-candidate.close.before",
+          "kill-candidate.flush.after",
+          "kill-candidate.flush.before",
+          "kill-candidate.open.after",
+          "kill-candidate.open.before",
+          "kill-candidate.readback.after",
+          "kill-candidate.readback.before",
+          "kill-candidate.store.after",
+          "kill-candidate.store.before",
+          "kill-candidate.store.partial",
+          "kill-commit.rename.after",
+          "kill-commit.rename.before",
+          "kill-directory.create.after",
+          "kill-directory.create.before",
+          "kill-history.close.after",
+          "kill-history.close.before",
+          "kill-history.flush.after",
+          "kill-history.flush.before",
+          "kill-history.open.after",
+          "kill-history.open.before",
+          "kill-history.readback.after",
+          "kill-history.readback.before",
+          "kill-history.rename.after",
+          "kill-history.rename.before",
+          "kill-history.store.after",
+          "kill-history.store.before",
+          "kill-history.store.partial",
+          "kill-intent.close.after",
+          "kill-intent.close.before",
+          "kill-intent.flush.after",
+          "kill-intent.flush.before",
+          "kill-intent.open.after",
+          "kill-intent.open.before",
+          "kill-intent.readback.after",
+          "kill-intent.readback.before",
+          "kill-intent.rename.after",
+          "kill-intent.rename.before",
+          "kill-intent.store.after",
+          "kill-intent.store.before",
+          "kill-intent.store.partial",
+          "kill-lease.acquire.after",
+          "kill-lease.acquire.before",
+          "kill-owner.close.after",
+          "kill-owner.close.before",
+          "kill-owner.flush.after",
+          "kill-owner.flush.before",
+          "kill-owner.open.after",
+          "kill-owner.open.before",
+          "kill-owner.readback.after",
+          "kill-owner.readback.before",
+          "kill-owner.store.after",
+          "kill-owner.store.before",
+          "kill-owner.store.partial",
+          "kill-read.buffer.after",
+          "kill-read.buffer.before",
+          "kill-read.open.after",
+          "kill-read.open.before",
+          "kill-receipt-committed.close.after",
+          "kill-receipt-committed.close.before",
+          "kill-receipt-committed.flush.after",
+          "kill-receipt-committed.flush.before",
+          "kill-receipt-committed.open.after",
+          "kill-receipt-committed.open.before",
+          "kill-receipt-committed.readback.after",
+          "kill-receipt-committed.readback.before",
+          "kill-receipt-committed.rename.after",
+          "kill-receipt-committed.rename.before",
+          "kill-receipt-committed.store.after",
+          "kill-receipt-committed.store.before",
+          "kill-receipt-committed.store.partial",
+          "kill-receipt-prepared.close.after",
+          "kill-receipt-prepared.close.before",
+          "kill-receipt-prepared.flush.after",
+          "kill-receipt-prepared.flush.before",
+          "kill-receipt-prepared.open.after",
+          "kill-receipt-prepared.open.before",
+          "kill-receipt-prepared.readback.after",
+          "kill-receipt-prepared.readback.before",
+          "kill-receipt-prepared.rename.after",
+          "kill-receipt-prepared.rename.before",
+          "kill-receipt-prepared.store.after",
+          "kill-receipt-prepared.store.before",
+          "kill-receipt-prepared.store.partial",
+          "kill-source.close.after",
+          "kill-source.close.before",
+          "kill-source.flush.after",
+          "kill-source.flush.before",
+          "kill-source.open.after",
+          "kill-source.open.before",
+          "kill-source.readback.after",
+          "kill-source.readback.before",
+          "kill-source.rename.after",
+          "kill-source.rename.before",
+          "kill-source.store.after",
+          "kill-source.store.before",
+          "kill-source.store.partial",
+          "new-input",
+          "nonroot-permission",
+          "normal-granted",
+          "normal-pending",
+          "null-abilities",
+          "null-session",
+          "output-changed",
+          "output-link",
+          "outside-path",
+          "owner-corrupt",
+          "parent-path",
+          "receipt-corrupt",
+          "receipt-intent",
+          "receipt-phase-stale",
+          "receipt-tmp-hardlink",
+          "same-raw-alias",
+          "source-changed",
+          "source-link",
+          "stale-commit",
+          "stale-committed",
+          "stale-current",
+          "stale-prepare",
+          "target-collision",
+          "token-invalid",
+          "transaction-source",
+          "trial-corrupt",
+          "trial-missing",
+          "trial-unclean",
+          "writer-busy",
+          "wrong-hash"
+        ],
+        "missing_off": [],
+        "missing_on": [],
+        "differences": [
+          "inspect-committed:既存条件"
+        ],
+        "complete": false,
+        "normalization": "process pidと専用user_dirを除き、実argvで確定した試行rootだけ$QAへ対応付ける。errorsの相対target/reason/他の値は保持。原JSONは全保存。"
+      }
+    }
+  ],
+  "times": {
+    "codec-off": {
+      "all": [
+        7.582621560000007,
+        7.482268588000011,
+        7.582424580999941
+      ],
+      "median": 7.582424580999941,
+      "minimum": 7.482268588000011,
+      "maximum": 7.582621560000007
+    },
+    "codec-on": {
+      "all": [
+        7.434148499000003,
+        7.583413718999964,
+        7.535347581999986
+      ],
+      "median": 7.535347581999986,
+      "minimum": 7.434148499000003,
+      "maximum": 7.583413718999964
+    },
+    "transaction-off": {
+      "all": [
+        86.65992159200005,
+        88.22293300900003,
+        86.99608530500018
+      ],
+      "median": 86.99608530500018,
+      "minimum": 86.65992159200005,
+      "maximum": 88.22293300900003
+    },
+    "transaction-on": {
+      "all": [
+        87.554811223,
+        92.354004411,
+        92.35850785299999
+      ],
+      "median": 92.354004411,
+      "minimum": 87.554811223,
+      "maximum": 92.35850785299999
+    }
+  },
+  "code_scope": {
+    "target": "c126bc84870225b38842054f20e1784b023384d6",
+    "base": "e37ddbaf4e84526c8e3f2816438dc9626875c00e",
+    "changes": [
+      "M\tdocs/tasks/060-measure-save-codec-cost.md",
+      "A\tdocs/verification/task060-save-codec-cost/README.md",
+      "A\ttools/check_equipment_save_codec_cost.gd",
+      "A\ttools/check_equipment_save_codec_cost.py",
+      "A\ttools/fixtures/equipment-save-codec-cost/cases.json",
+      "A\ttools/fixtures/equipment-save-codec-cost/compare_results.py",
+      "A\ttools/fixtures/equipment-save-codec-cost/instrument_copy.py"
+    ],
+    "production_old_evidence_protected_unchanged": true
+  },
+  "latest_scope": {
+    "target": "43fa030d9500bf1414673c5c857ea96ee5ec1f4f",
+    "base": "e37ddbaf4e84526c8e3f2816438dc9626875c00e",
+    "changes": [
+      "M\tdocs/tasks/060-measure-save-codec-cost.md",
+      "A\tdocs/verification/task060-save-codec-cost/README.md",
+      "A\ttools/check_equipment_save_codec_cost.gd",
+      "A\ttools/check_equipment_save_codec_cost.py",
+      "A\ttools/fixtures/equipment-save-codec-cost/cases.json",
+      "A\ttools/fixtures/equipment-save-codec-cost/compare_results.py",
+      "A\ttools/fixtures/equipment-save-codec-cost/instrument_copy.py"
+    ],
+    "production_old_evidence_protected_unchanged": true
+  },
+  "self_tests": [
+    {
+      "name": "missing-input",
+      "rejected": true
+    },
+    {
+      "name": "changed-native-document",
+      "rejected": true
+    },
+    {
+      "name": "changed-reason",
+      "rejected": true
+    },
+    {
+      "name": "transaction-missing-case",
+      "rejected": true
+    },
+    {
+      "name": "transaction-error-target",
+      "rejected": true
+    },
+    {
+      "name": "transaction-memory",
+      "rejected": true
+    },
+    {
+      "name": "transaction-output-bytes",
+      "rejected": true
+    },
+    {
+      "name": "archive-tamper",
+      "rejected": true
+    }
+  ],
+  "scope_negative_tests": [
+    {
+      "name": "production",
+      "sha": "20287b1d4231a872488d6401808330c6038250d1",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "log": "COST060_COMPARE_FAIL: 060担当外:M\tscripts/game/equipment_save_codec.gd\n"
+    },
+    {
+      "name": "old-evidence",
+      "sha": "3d2b6876f9d4ab2082fa2a5a59ea247dddb70f87",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "log": "COST060_COMPARE_FAIL: 060担当外:M\tdocs/verification/task059-save-qa-finalization/code-fixed-sha.txt\n"
+    },
+    {
+      "name": "decision-log",
+      "sha": "3f91409d7d440274d86cfced065e556253045463",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "log": "COST060_COMPARE_FAIL: 060担当外:M\tdocs/decision-log.md\n"
+    },
+    {
+      "name": "workflow",
+      "sha": "972711f227d148f28cfc45e8066e2b61a62e2013",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "log": "COST060_COMPARE_FAIL: 060担当外:M\t.github/workflows/ci.yml\n"
+    },
+    {
+      "name": "unlisted-code",
+      "sha": "90252b52817b9eb796cecce03abb37fe1a55b70e",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "log": "COST060_COMPARE_FAIL: 060担当外:A\ttools/unlisted060.py\n"
+    },
+    {
+      "name": "task-body",
+      "sha": "bca669b3b136464b8cea506034cf57289903392c",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "log": "COST060_COMPARE_FAIL: 依頼書本文不変\n"
+    }
+  ],
+  "full_transaction_equivalence": false,
+  "all_commands_pass": false,
+  "status": "INCOMPLETE"
+}

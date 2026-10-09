@@ -1,0 +1,78 @@
+{
+  "planned_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/check_equipment_save_codec_cost.py",
+    "--exec-json",
+    "/workspace/qa060-10du8eeq/run-linux-on-08/exec.json"
+  ],
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/check_equipment_save_codec_cost.py",
+    "--exec-json",
+    "/workspace/qa060-10du8eeq/run-linux-on-08/exec.json"
+  ],
+  "cwd": "/workspace/qa060-10du8eeq/checkout-on",
+  "pid": 3942,
+  "started_utc": "2026-10-09T23:28:08.501076+00:00",
+  "started_monotonic": 795.248263035,
+  "accepted_utc": "2026-10-09T23:28:08.500477+00:00",
+  "accepted_monotonic": 795.247655142,
+  "ended_utc": "2026-10-09T23:29:36.055287+00:00",
+  "ended_monotonic": 882.802466365,
+  "terminal": true,
+  "seconds": 87.554811223,
+  "budget_seconds": 180,
+  "exit_code": 0,
+  "timed_out": false,
+  "timeout_kind": null,
+  "exception": null,
+  "exit_unavailable_reason": null,
+  "deadline_remaining_start": 179.99995851799997,
+  "deadline_remaining_end": 92.44514729499997,
+  "kill": {
+    "attempted": false,
+    "ok": null
+  },
+  "wait": {
+    "attempted": true,
+    "ok": true
+  },
+  "streams": "stdout+stderr",
+  "planned_log": "/workspace/qa060-10du8eeq/run-linux-on-08/supervisor.log",
+  "log": "/workspace/qa060-10du8eeq/run-linux-on-08/supervisor.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "result": {},
+  "kill_point": null,
+  "record_path": "/workspace/qa060-10du8eeq/run-linux-on-08/process.json",
+  "record_saved": true,
+  "supervision": {
+    "mechanism": "Linux dedicated session",
+    "configured": true,
+    "ownership": {
+      "session": 3942,
+      "group": 3942,
+      "root_pid": 3942,
+      "token": "64be025cf09941e9bd407f1a83bd0a28"
+    },
+    "stopped": true,
+    "stop_attempted": false,
+    "reason": null,
+    "observed_members": []
+  },
+  "cleanup_remaining_end": 92.44514729499997,
+  "requested_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/qa060-10du8eeq/checkout-on/tools/check_equipment_save_transaction_platform.py",
+    "--godot",
+    "/tmp/qa060/engine/Godot_v4.7.2-stable_linux.x86_64",
+    "--fixture-root",
+    "/workspace/qa060-10du8eeq/run-linux-on-08/fixtures",
+    "--output",
+    "/workspace/qa060-10du8eeq/run-linux-on-08/evidence"
+  ],
+  "runner_error": null,
+  "clean_logs": true,
+  "ok": true
+}
