@@ -16,6 +16,7 @@ def main(args):
     (area/'engine.json').write_text(json.dumps({'archive_sha256':actual,'executable_sha256':hashlib.sha256(engine.read_bytes()).hexdigest(),'url':url,'source_sha':sha},indent=2)+'\n')
     argv=[sys.executable,str(ROOT/'tools/fixtures/equipment-save-transaction-platform/run_ci.py'),'--godot',str(engine),'--source-sha',sha,'--profile',args.profile,'--output',str(area/'results')]
     if fixed:argv+=['--fixed-sha',fixed]
+    if args.phase=='primitives':argv+=['--primitives-only']
     subprocess.run(argv,cwd=ROOT,check=True)
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--profile',required=True);main(p.parse_args())
+    p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--profile',required=True);p.add_argument('--phase',choices=['transaction','primitives'],default='transaction');main(p.parse_args())

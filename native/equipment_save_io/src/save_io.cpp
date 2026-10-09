@@ -144,18 +144,22 @@ NativeHandle EquipmentSaveIO::parent(const std::string &rel,std::string &leaf,bo
     auto end=rel.rfind('/');leaf=end==std::string::npos?rel:rel.substr(end+1);
     std::string dirs=end==std::string::npos?"":rel.substr(0,end);
 #ifdef _WIN32
-    std::string cursor=root;size_t start=0;
+    std::string cursor=root;size_t start=0;NativeHandle current=root_handle;
     while(start<dirs.size()) {
         auto finish=dirs.find('/',start);if(finish==std::string::npos)finish=dirs.size();
         cursor+="/"+dirs.substr(start,finish-start);
+        auto held=directory_pins.find(cursor);
+        if(held!=directory_pins.end()){current=held->second;start=finish+1;continue;}
         if(create && !CreateDirectoryW(os_path(cursor).c_str(),nullptr) && GetLastError()!=ERROR_ALREADY_EXISTS){last_error=os_error();return BAD_HANDLE;}
         auto h=CreateFileW(os_path(cursor).c_str(),FILE_READ_ATTRIBUTES|FILE_LIST_DIRECTORY,
             FILE_SHARE_READ|FILE_SHARE_WRITE,nullptr,OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS|FILE_FLAG_OPEN_REPARSE_POINT,nullptr);
         Identity i;if(h==BAD_HANDLE || !identity(h,i) || !i.directory || i.volume!=root_identity.volume){last_error=os_error();close_native(h);return BAD_HANDLE;}
-        pins.push_back(h);start=finish+1;
+        // delete共有を拒否している生存handleなので、名前の差替えはOSが拒否する。
+        // file内容・validator結果はcacheしない。
+        pins.push_back(h);directory_pins[cursor]=h;current=h;start=finish+1;
     }
     // 呼出しでcloseできる独立handle。
-    HANDLE copy=BAD_HANDLE;auto source=dirs.empty()?root_handle:pins.back();
+    HANDLE copy=BAD_HANDLE;auto source=current;
     if(!DuplicateHandle(GetCurrentProcess(),source,GetCurrentProcess(),&copy,0,FALSE,DUPLICATE_SAME_ACCESS))last_error=os_error();
     return copy;
 #else
@@ -205,23 +209,34 @@ String EquipmentSaveIO::relative_path(const String &path) {
 bool EquipmentSaveIO::path_ok(const String &path) {
     std::string rel;if(!relative(path,rel))return false;if(rel.empty())return true;
     // 未作成末尾も、全ての存在する成分をsymlink無し・同volumeで確認。
+#ifndef _WIN32
+    int fd=dup(root_handle);size_t start=0;
+    while(start<rel.size()) {
+        auto end=rel.find('/',start);if(end==std::string::npos)end=rel.size();
+        auto part=rel.substr(start,end-start);
+        auto next=openat(fd,part.c_str(),O_RDONLY|O_NOFOLLOW|O_CLOEXEC|O_NONBLOCK|(end<rel.size()?O_DIRECTORY:0));
+        int error=next<0?os_error():0;close_native(fd);
+        if(next<0){last_error=error;return absent(error);}
+        Identity i;bool valid=identity(next,i) && i.volume==root_identity.volume && (end==rel.size() || i.directory);
+        if(!valid){close_native(next);return false;}fd=next;start=end+1;
+    }
+    close_native(fd);return true;
+#else
     std::string cursor;size_t start=0;
     while(start<rel.size()) {
         auto end=rel.find('/',start);if(end==std::string::npos)end=rel.size();
         if(!cursor.empty())cursor+='/';cursor+=rel.substr(start,end-start);
+        if(directory_pins.count(root+"/"+cursor)){start=end+1;continue;}
         std::string leaf;auto p=parent(cursor,leaf);if(p==BAD_HANDLE)return false;
-#ifdef _WIN32
         auto h=CreateFileW(os_path(root+"/"+cursor).c_str(),FILE_READ_ATTRIBUTES,FILE_SHARE_READ|FILE_SHARE_WRITE,
             nullptr,OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS|FILE_FLAG_OPEN_REPARSE_POINT,nullptr);
-#else
-        auto h=openat(p,leaf.c_str(),O_RDONLY|O_NOFOLLOW|O_CLOEXEC|O_NONBLOCK);
-#endif
         int error=h==BAD_HANDLE?os_error():0;close_native(p);
         if(h==BAD_HANDLE){last_error=error;return absent(error);}
         Identity i;bool valid=identity(h,i) && i.volume==root_identity.volume && (end==rel.size() || i.directory);close_native(h);
         if(!valid)return false;start=end+1;
     }
     return true;
+#endif
 }
 bool EquipmentSaveIO::make_directories(const String &path) {
     std::string rel;if(!relative(path,rel) || rel.empty())return false;

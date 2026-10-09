@@ -17,7 +17,7 @@ env:
 
 jobs:
   platform:
-    name: equipment-native (${{ matrix.os }}, ${{ matrix.profile }})
+    name: equipment-native (${{ matrix.os }}, ${{ matrix.profile }}, ${{ matrix.phase }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     strategy:
@@ -25,6 +25,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         profile: [latest]
+        phase: [transaction, primitives]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,7 +53,7 @@ jobs:
         env:
           EQUIPMENT_SHIPPED_ADDON_ROOT: ${{ runner.temp }}/native-evidence/shipped/equipment_save_io
         run: |
-          python tools/fixtures/equipment-save-transaction-platform/launch.py --output "$RUNNER_TEMP/native-evidence" --profile "${{ matrix.profile }}"
+          python tools/fixtures/equipment-save-transaction-platform/launch.py --output "$RUNNER_TEMP/native-evidence" --profile "${{ matrix.profile }}" --phase "${{ matrix.phase }}"
       - name: 保護照合（失敗時も実行）
         if: always()
         run: python tools/check_frozen_files.py
@@ -64,7 +65,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: equipment-native-${{ matrix.os }}-${{ matrix.profile }}
+          name: equipment-native-${{ matrix.os }}-${{ matrix.profile }}-${{ matrix.phase }}
           path: |
             ${{ runner.temp }}/native-evidence/
             addons/equipment_save_io/

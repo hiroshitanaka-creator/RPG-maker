@@ -26,6 +26,7 @@ class EquipmentSaveIO : public RefCounted {
     std::map<std::string,NativeHandle> locks;
     std::map<std::string,Identity> observations;
     std::vector<NativeHandle> pins;
+    std::map<std::string,NativeHandle> directory_pins;
     int64_t next_id=1;
     int last_error=0;
     bool relative(const String &path,std::string &rel) const;

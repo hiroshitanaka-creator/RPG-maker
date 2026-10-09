@@ -131,8 +131,10 @@ def main(args):
     require('4.7.2.stable.official.ed1daf0bf' in command('version',[GODOT,'--version'],30).decode(),'公式4.7.2')
     command('frozen-before',[sys.executable,'tools/check_frozen_files.py'],30)
     command('import',[GODOT,'--headless','--editor','--import','--quit'],600)
-    command('transaction',[sys.executable,'tools/check_equipment_save_transaction_platform.py','--godot',GODOT,'--fixture-root',str(output.parent/'qa'),'--output',str(output)],180)
-    summary=validate(checkout,output)
+    if not args.primitives_only:
+        command('transaction',[sys.executable,'tools/check_equipment_save_transaction_platform.py','--godot',GODOT,'--fixture-root',str(output.parent/'qa'),'--output',str(output)],180)
+        summary=validate(checkout,output)
+    else:summary={'status':'PASS','phase':'primitives','transaction_acceptance':'別transaction jobで実行'}
     legacy=output.parent/'legacy053'
     extra_args=[]
     if os.name!='nt':
@@ -146,12 +148,12 @@ def main(args):
     command('frozen-after',[sys.executable,'tools/check_frozen_files.py'],30)
     target=args.source_sha if args.profile=='fixed055' else args.fixed_sha
     changes=scope(checkout,target) if target else []
-    negatives=propagation(checkout,output)
+    negatives=propagation(checkout,output) if not args.primitives_only else []
     scope_rows=scope_tests(checkout,target or args.source_sha,output.parent/'scope')
     require(source_audit(checkout,args.source_sha)==source_files,'検査後source不変')
     write(output.parent/'execution.json',{'source_sha':args.source_sha,'fixed_sha':args.fixed_sha,'status':'PASS','summary':summary,'commands':commands,'propagation':negatives,'scope_changes':changes,'source_files':source_files,'scope_propagation':scope_rows,'engine_sha256':digest(Path(GODOT).read_bytes())})
-    print('PLATFORM_CI_PASS: cases=172 checks=2178 kill=97 propagation=16 source='+args.source_sha)
+    print(('PRIMITIVES_CI_PASS: ' if args.primitives_only else 'PLATFORM_CI_PASS: cases=172 checks=2178 kill=97 propagation=16 ')+ 'source='+args.source_sha)
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--godot');p.add_argument('--output',required=True);p.add_argument('--source-sha');p.add_argument('--fixed-sha');p.add_argument('--profile',choices=['fixed055','latest']);p.add_argument('--checkout');p.add_argument('--scope-only',action='store_true');p.add_argument('--validate-only',action='store_true')
+    p=argparse.ArgumentParser();p.add_argument('--godot');p.add_argument('--output',required=True);p.add_argument('--source-sha');p.add_argument('--fixed-sha');p.add_argument('--profile',choices=['fixed055','latest']);p.add_argument('--checkout');p.add_argument('--scope-only',action='store_true');p.add_argument('--validate-only',action='store_true');p.add_argument('--primitives-only',action='store_true')
     try:main(p.parse_args())
     except Exception as exc:print('PLATFORM_CI_FAIL: '+str(exc));sys.exit(1)

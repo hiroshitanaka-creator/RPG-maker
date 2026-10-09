@@ -19,3 +19,5 @@ rootをhandle/fdで保持し、各componentをreparse/O_NOFOLLOW・volumeで照�
 writer.lockは生存handleでkernel lockを保持し、終了で解放する。PID/nonceは監査用。旧053 leaseの生存照会だけalive/dead/unknownで、確定dead以外拒否する。新regular leaseをexclusive renameで公開すると旧053のis_link検証が拒否する。既存symlink lease/owner/保存原物を削除しない。旧原物からの復旧はLinux実processで検査する。Windowsでは旧053自身が全pathを拒否する。
 
 確定backup/出力へ置換・切詰めを許さず、lock所有下の未完tmp再利用とreceipt.tmp→receipt.json置換を別API契約にする。取引intent/候補照合の責任はGDScript側。namespaceへの悪意ある非協調操作や電源断/媒体故障の全耐久性をprocess kill検査の成功から推定しない。実ENOSPC/専用nested別volumeは専用領域提供が必要で、注入を実測と呼ばない。
+
+配布物にはlicenses/も同梱する。godot-cpp MIT、LLVM Apache2/LLVM exception、MinGW-w64 runtime各本文とGCC runtime exceptionを原文で保持する。公式toolchain完全commitとarchive hashは今回検証のtoolchain-pins.jsonを参照。
