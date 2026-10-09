@@ -45,6 +45,11 @@ jobs:
       - name: 原固定053を完全SHAで取得
         shell: bash
         run: git fetch --no-tags --depth=1 origin e003b126de6695fa131e07a3db14c3011fb74f2e b17f2b475ff8c58924720ea24cce8f205422c50b
+      - name: 最新側のscope用完成SHAを完全SHAで取得
+        if: matrix.profile == 'latest'
+        shell: bash
+        run: |
+          python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/equipment-save-transaction-platform/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha],check=True)"
       - name: 固定ビルド依存を導入
         run: python -m pip install scons==4.10.0
       - name: 提出済みDLL・SOを実ロード照合用に保持
