@@ -24,12 +24,17 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        profile: [latest]
+        profile: [fixed055, latest]
         phase: [transaction, primitives]
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: 055完成コードを完全SHAで別checkout
+        if: matrix.profile == 'fixed055'
+        shell: bash
+        run: |
+          python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/equipment-save-transaction-platform/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha],check=True); subprocess.run(['git','checkout','--detach',sha],check=True)"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
