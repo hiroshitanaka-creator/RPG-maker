@@ -9,6 +9,9 @@ func _initialize() -> void:
 		match config.operation:
 			"path":result={"ok":io.path_ok(config.path),"reason_code":"path_result"}
 			"identity":result=io.inspect_identity(config.path)
+			"same_file_rename":
+				if io.acquire_lock(tx).ok and io.inspect_identity(config.path).ok:
+					result=io.rename_file(config.path,config.get("to",config.path),false)
 			"roundtrip":
 				if io.make_directories(config.path.get_base_dir()) and io.acquire_lock(tx).ok:
 					var opened: Dictionary=io.open_write(config.path,false)

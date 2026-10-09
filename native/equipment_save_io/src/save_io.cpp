@@ -376,6 +376,7 @@ Dictionary EquipmentSaveIO::close_file(int64_t id) {
 }
 Dictionary EquipmentSaveIO::rename_file(const String &from,const String &to,bool receipt_replace) {
     std::string a,b;if(!relative(from,a) || !relative(to,b) || !path_ok(from) || !path_ok(to))return result(false,"path_invalid");
+    NativePathLess names;if(!names(a,b) && !names(b,a))return result(false,"target_conflict");
     NativePathLess compare;auto source_dir=a.substr(0,a.rfind('/')),target_dir=b.substr(0,b.rfind('/'));
     if(!locked_path(a) || !locked_path(b) || compare(source_dir,target_dir) || compare(target_dir,source_dir))return result(false,"busy");
     if(receipt_replace && (a.substr(a.rfind('/')+1)!="receipt.tmp" || b.substr(b.rfind('/')+1)!="receipt.json"))return result(false,"conflict");
@@ -389,7 +390,7 @@ Dictionary EquipmentSaveIO::rename_file(const String &from,const String &to,bool
         // receipt置換先もlink数を確認。delete共有なしの他handleならOSが拒否する。
         bool target_safe=true;
         auto target=relative_open(q,dst,FILE_READ_ATTRIBUTES,FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,FILE_OPEN,FILE_NON_DIRECTORY_FILE);
-        if(target!=BAD_HANDLE){Identity t;target_safe=identity(target,t) && t.links==1 && !t.directory;close_native(target);}
+        if(target!=BAD_HANDLE){Identity t;target_safe=identity(target,t) && t.volume==root_identity.volume && t.links==1 && !t.directory && !same(i,t);close_native(target);}
         else target_safe=absent(os_error());
         if(target_safe)ok=relative_rename(h,q,dst,receipt_replace);
     }

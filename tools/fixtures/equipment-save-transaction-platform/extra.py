@@ -74,6 +74,8 @@ class Suite:
         values=[load(root/'a.json'),load(root/'b.json')];self.check('simultaneous-first-lock',sorted(v['ok'] for v in values)==[False,True] and all(p.returncode==0 for p in [a,b]) and all(not BAD.search((root/(l+'.log')).read_bytes()) for l in ['a','b']),values)
         root=self.new('native-primitives');tx=root/'transactions/native-probe';tx.mkdir(parents=True);sentinel=b'preexisting bytes';existing=tx/'existing.bin';existing.write_bytes(sentinel)
         value=self.run(root,'exclusive',path=str(existing));self.check('exclusive-no-truncate',not value['result']['ok'] and existing.read_bytes()==sentinel,value)
+        value=self.run(root,'same_file_rename',label='same-file',path=str(existing),to=str(existing).swapcase() if os.name=='nt' else str(existing))
+        self.check('same-file-rename-denied',not value['result']['ok'] and existing.read_bytes()==sentinel,value)
         value=self.run(root,'replace',label='replace-final',path=str(existing));self.check('replace-final-denied',not value['result']['ok'] and existing.read_bytes()==sentinel,value)
         tmp=tx/'owned.tmp';value=self.run(root,'replace',label='tmp-new',path=str(tmp));before=tmp.read_bytes();value=self.run(root,'replace',label='tmp-reuse',path=str(tmp),bytes='retry owned tmp');self.check('owned-tmp-reuse',value['result']['ok'] and before==b'native exact bytes' and tmp.read_bytes()==b'retry owned tmp',value)
         link=tx/'hard.tmp';os.link(existing,link);value=self.run(root,'replace',label='hardlink',path=str(link));self.check('hardlink-reuse-denied',not value['result']['ok'] and existing.read_bytes()==sentinel,value)
