@@ -240,6 +240,7 @@ class Suite:
                    exit_unavailable_reason=reason or 'not_started: '+type(exc).__name__+': '+str(exc),
                    timed_out=isinstance(exc,(TimeoutError,subprocess.TimeoutExpired)),
                    timeout_kind='restart_future_deadline' if isinstance(exc,TimeoutError) else None,
+                   batch_record=request.get('planned_batch_record'),
                    result={}, log=None, log_sha256=None, supervision={'configured':False,'stopped':None,'reason':'not_started'})
         return self.finalize_request(request, row)
 
@@ -264,6 +265,8 @@ class Suite:
                     batch=load(self.output/row['batch_record'])
                     if batch.get('terminal') is not True or batch.get('batch_id')!=request['batch_id'] or identity not in batch.get('request_ids',[]) or batch.get('pid')!=row.get('pid'):
                         raise ValueError('共有batch記録対応不一致')
+                    if request.get('batch_terminal_row') is None or batch!=request['batch_terminal_row']:
+                        raise ValueError('共有batchの所有終端情報と原record不一致')
             except Exception as exc:errors.append(identity+': '+type(exc).__name__+': '+str(exc))
             # live capture/future/workerはrecordの有無と独立した所有情報。
             capture=request.get('capture_object')
@@ -347,8 +350,11 @@ class Suite:
                     except BaseException as error:save_errors.append(repr(error))
                 unstarted=dict(requests[0].get('terminal_row',{}),batch_id=batch_id,
                                request_ids=[r['request_id'] for r in requests],batch_roots=[str(r['root']) for r in requests])
+                for request in requests:request['batch_terminal_row']=unstarted
                 try:write(record,unstarted)
-                except BaseException as error:save_errors.append(repr(error))
+                except BaseException as error:
+                    for request in requests:request['record_error']=repr(error)
+                    save_errors.append(repr(error))
             else:
                 try:
                     capture.row['root_completion']=[]
@@ -375,6 +381,7 @@ class Suite:
                         except BaseException as error:
                             request['record_error']=repr(error);save_errors.append(repr(error))
                     # 一意batch原記録を確定。各rootのcompletionは自身のstatusとして独立する。
+                    for request in requests:request['batch_terminal_row']=dict(capture.row)
                     write(record,capture.row)
                 finally:
                     with self.active_lock:self.active.discard(capture)

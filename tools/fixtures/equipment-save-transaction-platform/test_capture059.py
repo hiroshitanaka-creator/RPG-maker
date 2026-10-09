@@ -46,6 +46,9 @@ def main(args):
         if stage=='log':(value.output/'batches/batch-000000.log').mkdir(parents=True)
         if stage=='capture-record':(value.output/'batches/batch-000000-execution.json').mkdir(parents=True)
         if stage=='request-record':(value.output/'requests/request-000000-execution.json').mkdir(parents=True)
+        if stage=='unstarted-batch-record':
+            value.env=lambda _:(_ for _ in ()).throw(OSError('env準備fixture失敗'))
+            (value.output/'batches/batch-000000-execution.json').mkdir(parents=True)
         try:
             if direct:value.run(root,dict(root=str(root)), 'first')
             else:value.restarts.submit(root,dict(root=str(root),operation='normal'))
@@ -54,7 +57,7 @@ def main(args):
         value.restarts.close();queue=d.load(value.output/'restart-queue.json');request=queue['requests'][0];row=request['terminal_row']
         if stage not in ('request-record',):
             saved=d.load(value.output/request['planned_record']);assert saved==row
-        if stage in ('capture-record','request-record'):
+        if stage in ('capture-record','request-record','unstarted-batch-record'):
             assert not queue['recovery_complete'] and queue['evidence_errors']
         else:assert queue['recovery_complete'],queue['evidence_errors']
         assert row['request_id']==request['request_id'] and row['terminal'] and row['ended_utc']
@@ -62,7 +65,7 @@ def main(args):
             assert row['pid'] is None and row['argv'] is None and row['log'] is None and row['exit_code'] is None and row['exit_unavailable_reason']
         assert not request['completed']
         return dict(error=error,queue=queue)
-    for stage in ['config','env','capture','log','capture-record','request-record']:
+    for stage in ['config','env','capture','log','capture-record','request-record','unstarted-batch-record']:
         record('prelaunch-'+stage,lambda stage=stage:prelaunch(stage,stage))
     record('suite-run-queue-before-config',lambda:prelaunch('queue-config','queue-config',direct=True))
     def four_roots():
@@ -91,12 +94,20 @@ def main(args):
     record('four-root-shared-batch',four_roots)
     def damage(name):
         value,root=suite('damage-'+name)
-        value.restarts.submit(root,dict(root=str(root),operation='normal'));value.restarts.close()
+        if name=='unstarted-batch':
+            (root/'restarted-batch.json').mkdir()
+            try:value.restarts.submit(root,dict(root=str(root),operation='normal'))
+            except OSError:pass
+            else:raise AssertionError('実config失敗が必要')
+        else:value.restarts.submit(root,dict(root=str(root),operation='normal'))
+        value.restarts.close()
         request=value.accepted[0];path=value.output/request['planned_record'];original=path.read_bytes()
         if name=='missing':path.rename(path.with_suffix('.saved'))
         elif name=='broken':path.write_bytes(b'{broken')
         elif name=='id':row=d.load(path);row['request_id']='different-ID';save(path,row)
         elif name=='batch':row=d.load(value.output/'batches/batch-000000-execution.json');row['request_ids']=[];save(value.output/'batches/batch-000000-execution.json',row)
+        elif name in ('batch-content','unstarted-batch'):
+            row=d.load(value.output/'batches/batch-000000-execution.json');row['exception']='原batch改変';save(value.output/'batches/batch-000000-execution.json',row)
         value.restarts.close();q=d.load(value.output/'restart-queue.json')
         assert not q['recovery_complete'] and q['evidence_errors']
         # 照合失敗は親へ非0。記録の存在だけで成功にしない。
@@ -106,7 +117,7 @@ def main(args):
         p=subprocess.run(argv,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30)
         assert p.returncode==1;pout=value.output/'damage-validation.log';pout.write_bytes(p.stdout)
         return dict(queue=q,expected_exit=1,exit_code=p.returncode,argv=argv,original_sha256=__import__('hashlib').sha256(original).hexdigest())
-    for name in ['missing','broken','id','batch']:record('record-'+name,lambda name=name:damage(name))
+    for name in ['missing','broken','id','batch','batch-content','unstarted-batch']:record('record-'+name,lambda name=name:damage(name))
     def concurrent_close():
         value,root=suite('concurrent-close');value.restarts.submit(root,dict(root=str(root),operation='normal'))
         with ThreadPoolExecutor(max_workers=4) as pool:assert all(not v for v in pool.map(lambda _:value.restarts.close(),range(4)))
