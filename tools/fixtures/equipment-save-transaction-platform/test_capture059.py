@@ -176,6 +176,30 @@ def main(args):
             results.append(cap.row)
         return results
     record('assignment-exit-races',launch_races)
+    def ownership_exit_race():
+        area=output/'ownership-exit-race';area.mkdir()
+        cap=ProcessCapture([sys.executable,str(BATCH_FIXTURE),'sleep'],area/'child.log',area/'process.json',cwd=ROOT,budget=2)
+        with cap:
+            until=time.monotonic()+1
+            while (area/'child.log').stat().st_size==0 and time.monotonic()<until:time.sleep(.005)
+            if os.name=='nt':
+                # Windowsは専用Jobからの退出raceを同じ残量内で確認する。
+                cap.kill();cap.wait()
+            else:
+                original=cap.tree.belongs;hit=[]
+                def exiting(pid,fields):
+                    if pid==cap.child.pid and not hit:
+                        hit.append(pid);cap.child.kill();cap.child.wait(timeout=.5)
+                        raise PermissionError('実子exit直後のenviron読取りrace')
+                    return original(pid,fields)
+                cap.tree.belongs=exiting
+                assert cap.tree.finish(cap.cleanup_deadline)
+                assert hit and cap.child.returncode is not None
+                cap.wait()
+        assert cap.row['supervision']['stopped'] is True and cap.row['wait']['ok']
+        return cap.row
+    record('ownership-read-child-exit-race',ownership_exit_race)
+
     def assignment_failure():
         from process_tree059 import OwnedTree
         area=output/'assignment-failure';area.mkdir()

@@ -124,6 +124,14 @@ class OwnedTree:
                 continue
             try:owned=self.belongs(pid,fields)
             except (FileNotFoundError,ProcessLookupError):continue
+            except OSError:
+                # stat取得後に兄弟QAがexitするとenvironが空/EACCESになる。
+                # 同じPID世代の終端を再読取りで確認できた時だけ除外する。
+                try:
+                    refreshed=(path/'stat').read_text();current=refreshed[refreshed.rindex(')')+2:].split()
+                except (FileNotFoundError,ProcessLookupError):continue
+                if int(current[19])==int(fields[19]) and current[0] in ('Z','X'):continue
+                raise
             if owned:
                 rows.append({'pid':pid,'state':fields[0],'group':group,'session':session,'start_ticks':int(fields[19])})
         self.row['observed_members']=rows
@@ -153,25 +161,28 @@ class OwnedTree:
                 except (ProcessLookupError,FileNotFoundError):continue
 
     def finish(self,deadline):
-        # 所属確認と停止を残量内だけ行う。期限0は空treeを推測しない。
-        try:
-            if not self.configured:
-                self.stop();return False
-            if time.monotonic()>=deadline:
-                self.stop();self.row.update(stopped=False,reason='cleanup deadline exhausted; 所属停止の確認を行えない');return False
-            members=self.members()
-            if members:self.stop()
-            while time.monotonic()<deadline:
+        # 直接子waitと所属停止の再確認を分ける。残量0なら追加待機しない。
+        if not self.configured:
+            self.stop();return False
+        if time.monotonic()>=deadline:
+            try:self.stop()
+            except OSError as exc:self.row['stop_error']=repr(exc)
+            self.row.update(stopped=False,reason='cleanup deadline exhausted; 所属停止の確認を行えない; '+self.row.get('stop_error',''));return False
+        members=[];last_error=None
+        while time.monotonic()<deadline:
+            try:
                 members=self.members()
                 if not members:
                     self.row.update(stopped=True,reason=None);return True
-                # capture専用processだけ。再forkも所属を再確認して止める。
                 self.stop()
-                remaining=deadline-time.monotonic()
-                if remaining>0:time.sleep(min(.002,remaining))
-            self.row.update(stopped=False,reason='cleanup deadline exhausted; owned members='+str(members));return False
-        except Exception as exc:
-            self.row.update(stopped=False,reason=repr(exc));return False
+                last_error=None
+            except OSError as exc:
+                # 所有不明へsignalを送らない。同じ期限内の観測だけ再試行する。
+                last_error=repr(exc)
+            remaining=deadline-time.monotonic()
+            if remaining>0:time.sleep(min(.002,remaining))
+        self.row.update(stopped=False,reason=last_error or 'cleanup deadline exhausted; owned members='+str(members))
+        return False
 
     def close(self):
         if self.job:
