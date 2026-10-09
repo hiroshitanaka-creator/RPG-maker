@@ -115,7 +115,8 @@ class RestartBatch:
     def close(self):
         # 並行/再呼出しを直列化。workerが書いているrecordをcloseが補完しない。
         with self.suite.close_lock:
-            self.stopping.set()
+            # 受付IDの構築途中をcloseの一覧から落とさない。
+            with self.suite.request_lock:self.stopping.set()
             with self.lock:
                 for request in self.requests:
                     if not request['future'].done():

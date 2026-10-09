@@ -125,6 +125,28 @@ def main(args):
         assert (value.output/'requests/request-000000-execution.json').read_bytes()==first
         q=d.load(value.output/'restart-queue.json');assert q['recovery_complete'];return q
     record('close-race-and-repeated',concurrent_close)
+    def accepting_during_close():
+        value,root=suite('accept-close');entered=threading.Event();release=threading.Event();closing=threading.Event()
+        original=value.planned_argv
+        def paused_argv(path):
+            entered.set();assert release.wait(timeout=2);return original(path)
+        value.planned_argv=paused_argv
+        def close():closing.set();return value.restarts.close()
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            accepted=pool.submit(value.accept_request,root,dict(root=str(root)),'restarted')
+            assert entered.wait(timeout=1)
+            closed=pool.submit(close);assert closing.wait(timeout=1)
+            try:
+                try:closed.result(timeout=.2)
+                except TimeoutError:blocked=True
+                else:blocked=False
+            finally:release.set()
+            request=accepted.result(timeout=1);closed.result(timeout=1)
+        q=d.load(value.output/'restart-queue.json')
+        assert blocked and len(q['requests'])==1 and q['requests'][0]['request_id']==request['request_id']
+        assert not q['recovery_complete'] and q['evidence_errors'],'受付途中を存在しない扱いにしない'
+        return dict(queue=q,close_waited_for_acceptance=blocked)
+    record('acceptance-close-race',accepting_during_close)
     def process_tree(name,mode,zero=False,fail=False):
         area=output/name;area.mkdir();sentinel_area=area/'sentinel';sentinel_area.mkdir()
         sentinel=subprocess.Popen([sys.executable,str(FIXTURE),'--mode','sentinel','--area',str(sentinel_area)])
