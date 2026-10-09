@@ -11,7 +11,7 @@ import sys
 BASE='579ca1f463aaf9e93275039a59cf9d1ffb86adb5'
 REGISTER='a6022f1e4a7689440928efe65db444336e9128e4'
 FIXTURE='tools/fixtures/equipment-save-transaction-platform/'
-DOC_EXACT={'docs/decision-log.md','docs/tasks/059-fix-save-qa-finalization.md','docs/tasks/reports/059-fix-save-qa-finalization.md'}
+DOC_EXACT={'docs/tasks/059-fix-save-qa-finalization.md','docs/tasks/reports/059-fix-save-qa-finalization.md'}
 EVIDENCE='docs/verification/task059-save-qa-finalization/'
 EXACT={'tools/check_equipment_save_transaction_platform.py',FIXTURE+'process_capture.py',FIXTURE+'run_ci.py',FIXTURE+'test_capture057.py',FIXTURE+'capture_fixture.py',FIXTURE+'diagnostic_ci057.py','.github/workflows/equipment-transaction-platform.yml','docs/decision-log.md','docs/tasks/059-fix-save-qa-finalization.md','docs/tasks/reports/059-fix-save-qa-finalization.md'}
 
@@ -46,10 +46,11 @@ def check(checkout,code,source):
 
 def tests(checkout,code,output):
     output.mkdir(parents=True,exist_ok=True);rows=[]
-    for name,path,expected in [('later-document',EVIDENCE+'future-independent-review.md',0),('outside-code','scripts/game/outside059.gd',1),('outside-fixed','outside059.txt',1),('changed-fixed-code',FIXTURE+'process_capture.py',1),('old-evidence-document','docs/verification/task057-save-qa-diagnostics/README.md',1),('past-report','docs/tasks/reports/058-review-save-qa-diagnostics.md',1),('outside-document','docs/tasks/future-outside059.md',1),('changed-task-body','docs/tasks/059-fix-save-qa-finalization.md',1),('rewritten-decision-log','docs/decision-log.md',1)]:
+    for name,path,expected in [('later-document',EVIDENCE+'future-independent-review.md',0),('outside-code','scripts/game/outside059.gd',1),('outside-fixed','outside059.txt',1),('changed-fixed-code',FIXTURE+'process_capture.py',1),('old-evidence-document','docs/verification/task057-save-qa-diagnostics/README.md',1),('past-report','docs/tasks/reports/058-review-save-qa-diagnostics.md',1),('outside-document','docs/tasks/future-outside059.md',1),('changed-task-body','docs/tasks/059-fix-save-qa-finalization.md',1),('rewritten-decision-log','docs/decision-log.md',1),('appended-decision-log','docs/decision-log.md',1)]:
         env=dict(os.environ,GIT_INDEX_FILE=str(output/(name+'.index')))
         subprocess.run(['git','read-tree',code],cwd=checkout,env=env,check=True)
-        blob=git_input(checkout,['git','hash-object','-w','--stdin'],b'059 scope QA\n').decode().strip()
+        raw=git(checkout,'show',code+':'+path)+b'059 scope QA\n' if name=='appended-decision-log' else b'059 scope QA\n'
+        blob=git_input(checkout,['git','hash-object','-w','--stdin'],raw).decode().strip()
         subprocess.run(['git','update-index','--add','--cacheinfo','100644',blob,path],cwd=checkout,env=env,check=True)
         tree=subprocess.check_output(['git','write-tree'],cwd=checkout,env=env).decode().strip()
         sha=git_input(checkout,['git','-c','user.name=QA','-c','user.email=qa@example.invalid','commit-tree',tree,'-p',code],b'059 scope QA\n').decode().strip()
