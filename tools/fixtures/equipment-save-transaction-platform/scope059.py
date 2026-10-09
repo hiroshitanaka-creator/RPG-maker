@@ -11,6 +11,8 @@ import sys
 BASE='579ca1f463aaf9e93275039a59cf9d1ffb86adb5'
 REGISTER='a6022f1e4a7689440928efe65db444336e9128e4'
 FIXTURE='tools/fixtures/equipment-save-transaction-platform/'
+DOC_EXACT={'docs/decision-log.md','docs/tasks/059-fix-save-qa-finalization.md','docs/tasks/reports/059-fix-save-qa-finalization.md'}
+EVIDENCE='docs/verification/task059-save-qa-finalization/'
 EXACT={'tools/check_equipment_save_transaction_platform.py',FIXTURE+'process_capture.py',FIXTURE+'run_ci.py',FIXTURE+'test_capture057.py',FIXTURE+'capture_fixture.py',FIXTURE+'diagnostic_ci057.py','.github/workflows/equipment-transaction-platform.yml','docs/decision-log.md','docs/tasks/059-fix-save-qa-finalization.md','docs/tasks/reports/059-fix-save-qa-finalization.md'}
 
 
@@ -36,13 +38,15 @@ def check(checkout,code,source):
     strip=lambda raw:re.sub(rb'^- \xe7\x8a\xb6\xe6\x85\x8b.*$',b'',raw,flags=re.M)
     if strip(old)!=strip(new):raise ValueError('依頼書は状態行だけ')
     later=git(checkout,'diff','--name-only',code,source).decode().splitlines()
-    if any(not p.startswith('docs/') for p in later):raise ValueError('完成後担当外:'+str(later))
+    if any(p not in DOC_EXACT and not p.startswith(EVIDENCE) for p in later):raise ValueError('完成後担当外:'+str(later))
+    if not git(checkout,'show',source+':docs/decision-log.md').startswith(git(checkout,'show',code+':docs/decision-log.md')):raise ValueError('完成後decision-logは末尾追記だけ')
+    if strip(git(checkout,'show',source+':docs/tasks/059-fix-save-qa-finalization.md'))!=strip(git(checkout,'show',code+':docs/tasks/059-fix-save-qa-finalization.md')):raise ValueError('完成後依頼書は状態行だけ')
     return dict(base=BASE,registration=REGISTER,code_sha=code,source_sha=source,changes=changes,inventory=inventory,later_documents=later)
 
 
 def tests(checkout,code,output):
     output.mkdir(parents=True,exist_ok=True);rows=[]
-    for name,path,expected in [('later-document','docs/tasks/future-independent-review.md',0),('outside-code','scripts/game/outside059.gd',1),('outside-fixed','outside059.txt',1),('changed-fixed-code',FIXTURE+'process_capture.py',1)]:
+    for name,path,expected in [('later-document',EVIDENCE+'future-independent-review.md',0),('outside-code','scripts/game/outside059.gd',1),('outside-fixed','outside059.txt',1),('changed-fixed-code',FIXTURE+'process_capture.py',1),('old-evidence-document','docs/verification/task057-save-qa-diagnostics/README.md',1),('past-report','docs/tasks/reports/058-review-save-qa-diagnostics.md',1),('outside-document','docs/tasks/future-outside059.md',1),('changed-task-body','docs/tasks/059-fix-save-qa-finalization.md',1),('rewritten-decision-log','docs/decision-log.md',1)]:
         env=dict(os.environ,GIT_INDEX_FILE=str(output/(name+'.index')))
         subprocess.run(['git','read-tree',code],cwd=checkout,env=env,check=True)
         blob=git_input(checkout,['git','hash-object','-w','--stdin'],b'059 scope QA\n').decode().strip()
