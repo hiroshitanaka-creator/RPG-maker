@@ -1,8 +1,8 @@
 {
   "base": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
   "registration": "a6022f1e4a7689440928efe65db444336e9128e4",
-  "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-  "source_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+  "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+  "source_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
   "changes": [
     "M\t.github/workflows/equipment-transaction-platform.yml",
     "M\tdocs/decision-log.md",
@@ -10,27 +10,6 @@
     "A\tdocs/tasks/reports/059-fix-save-qa-finalization.md",
     "A\tdocs/verification/task059-save-qa-finalization/README.md",
     "A\tdocs/verification/task059-save-qa-finalization/archives.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-before-accept-close-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-before-accept-close-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-before-accept-close.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-before-batch-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-before-batch-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-before-batch.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture012-final-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture012-final-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture012-final.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture012-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture012-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture012.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture025-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture025-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture025.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture026-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture026-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-capture026.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-full-faa459e-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-full-faa459e-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/astra-linux-full-faa459e.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/baseline058-linux-members.json",
     "A\tdocs/verification/task059-save-qa-finalization/baseline058-linux.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/before.json",
@@ -54,14 +33,10 @@
     "A\tdocs/verification/task059-save-qa-finalization/ci-second-linux-latest-members.json",
     "A\tdocs/verification/task059-save-qa-finalization/ci-second-linux-latest-meta.json",
     "A\tdocs/verification/task059-save-qa-finalization/ci-second-linux-latest.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/ci-second-windows-transaction-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/ci-second-windows-transaction-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/ci-second-windows-transaction.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/code-fixed-sha.txt",
     "A\tdocs/verification/task059-save-qa-finalization/code-inventory.json",
     "A\tdocs/verification/task059-save-qa-finalization/engine-linux.json",
     "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/check_source.py",
-    "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/collect059.py",
     "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/package_local.py",
     "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/propagation.py",
     "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/regressions.py",
@@ -81,7 +56,6 @@
     "A\tdocs/verification/task059-save-qa-finalization/scope059-code.json",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-current-policy.json",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-final-code.json",
-    "A\tdocs/verification/task059-save-qa-finalization/scope059-policy-faa459e.json",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-policy828-before-astra.json",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-restricted-code.json",
     "A\tdocs/verification/task059-save-qa-finalization/unchanged-inventory.json",
@@ -119,9 +93,9 @@
       "bytes": 2137
     },
     "tools/fixtures/equipment-save-transaction-platform/process_capture.py": {
-      "git_blob": "6b14218a01ad1b70f503b23a65c00a4dd9a4e726",
-      "raw_sha256": "d94bf510adaf94f585c54c38f8a2116ef425c6478a55a9f1c04d1a894c341a04",
-      "bytes": 7274
+      "git_blob": "cc115fc25c92b1161147504993a7d8ca1aced74e",
+      "raw_sha256": "1ffac0335127826c4d29e7cc57053e244b14dd13ef659f9609de8725255f6967",
+      "bytes": 7154
     },
     "tools/fixtures/equipment-save-transaction-platform/process_exec059.py": {
       "git_blob": "504e94b22653de8631d2ed036bd7cbe8c2425cd6",
@@ -149,9 +123,9 @@
       "bytes": 6129
     },
     "tools/fixtures/equipment-save-transaction-platform/test_capture059.py": {
-      "git_blob": "30c98871e01a15866821bfc3f1d2edb9a5cafe9d",
-      "raw_sha256": "c8bdb933490321d9bc9aec50246c93753e1a158f9998b6a8b18dd4aa67c71960",
-      "bytes": 19162
+      "git_blob": "555b5674a2989b3a912c44e5c22a965f2d8f3c1f",
+      "raw_sha256": "aaa1cfefa01396bf3d2c6109f774b90658e875bba425f07ce143aab49c3e5ae5",
+      "bytes": 17888
     },
     "tools/fixtures/equipment-save-transaction-platform/tree_fixture059.py": {
       "git_blob": "492d3ff06b39eab7fcbd02bf42b2636079f48323",
@@ -163,8 +137,8 @@
   "propagation": [
     {
       "case": "later-document",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "a110b93b4d932af88e86a3c3ce3c4a0ab5315f07",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "ca17ef9becf59b076c350ef54062c1fd50611d30",
       "expected_exit": 0,
       "exit_code": 0,
       "argv": [
@@ -173,16 +147,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "30aca09e21783f228c00847029060fa03ecb86e9",
         "--source-sha",
-        "a110b93b4d932af88e86a3c3ce3c4a0ab5315f07"
+        "ca17ef9becf59b076c350ef54062c1fd50611d30"
       ],
-      "seconds": 0.1646210680000877
+      "seconds": 0.21066995399996813
     },
     {
       "case": "outside-code",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "ffd1d31dac7b45af62f3a57d2fc59d02676eb30e",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "790fc61e51bce360e4662acb608d655c0829367e",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -191,16 +165,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "30aca09e21783f228c00847029060fa03ecb86e9",
         "--source-sha",
-        "ffd1d31dac7b45af62f3a57d2fc59d02676eb30e"
+        "790fc61e51bce360e4662acb608d655c0829367e"
       ],
-      "seconds": 0.15137343300011707
+      "seconds": 0.18259447699983866
     },
     {
       "case": "outside-fixed",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "c86fd4eaf788ca03999872d0b1f6f96f85465973",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "63eb5573e521898f9e76d609581272783e1b71fc",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -209,16 +183,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "c86fd4eaf788ca03999872d0b1f6f96f85465973",
+        "63eb5573e521898f9e76d609581272783e1b71fc",
         "--source-sha",
-        "c86fd4eaf788ca03999872d0b1f6f96f85465973"
+        "63eb5573e521898f9e76d609581272783e1b71fc"
       ],
-      "seconds": 0.06535169000017049
+      "seconds": 0.06012973899987628
     },
     {
       "case": "changed-fixed-code",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "9bb559d329f8efb39a5c38d20f69a1d284e429bc",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "5592d7eeae5fb2c5279037ef3835401cc171aa69",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -227,16 +201,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "30aca09e21783f228c00847029060fa03ecb86e9",
         "--source-sha",
-        "9bb559d329f8efb39a5c38d20f69a1d284e429bc"
+        "5592d7eeae5fb2c5279037ef3835401cc171aa69"
       ],
-      "seconds": 0.1569277909993616
+      "seconds": 0.10259560799977407
     },
     {
       "case": "old-evidence-document",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "590f79c7bf65fca9add07b40ce4249fd9e7c7f37",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "ee1cc8a70852cf6cd51787ed2e71b8b449b71f23",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -245,16 +219,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "30aca09e21783f228c00847029060fa03ecb86e9",
         "--source-sha",
-        "590f79c7bf65fca9add07b40ce4249fd9e7c7f37"
+        "ee1cc8a70852cf6cd51787ed2e71b8b449b71f23"
       ],
-      "seconds": 0.2114616909993856
+      "seconds": 0.17414689099996394
     },
     {
       "case": "past-report",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "702c6ba1dd4af252f8aecbfd6c33c8ec20ac1c62",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "2d5b6bc79254888d581614a381e21a197301c5dc",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -263,16 +237,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "30aca09e21783f228c00847029060fa03ecb86e9",
         "--source-sha",
-        "702c6ba1dd4af252f8aecbfd6c33c8ec20ac1c62"
+        "2d5b6bc79254888d581614a381e21a197301c5dc"
       ],
-      "seconds": 0.18203339200044866
+      "seconds": 0.16352788099993631
     },
     {
       "case": "outside-document",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "3dfedc8fb27de6614731cc3a9fa8db02a1873fe0",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "f62893565ac752db1c665d22c512182de0ac4f36",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -281,16 +255,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "30aca09e21783f228c00847029060fa03ecb86e9",
         "--source-sha",
-        "3dfedc8fb27de6614731cc3a9fa8db02a1873fe0"
+        "f62893565ac752db1c665d22c512182de0ac4f36"
       ],
-      "seconds": 0.17333775099996274
+      "seconds": 0.16750469799990242
     },
     {
       "case": "changed-task-body",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "0e55201801d03679feb1005fd1741f3a8d66985b",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "945f947edfc292e41e1523b93d45233a8f848261",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -299,16 +273,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "30aca09e21783f228c00847029060fa03ecb86e9",
         "--source-sha",
-        "0e55201801d03679feb1005fd1741f3a8d66985b"
+        "945f947edfc292e41e1523b93d45233a8f848261"
       ],
-      "seconds": 0.1795100379995347
+      "seconds": 0.189452405999873
     },
     {
       "case": "rewritten-decision-log",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "81e621f44100d54462046966f2eb799d3243de3f",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "6231fd9347e4d7b2328fe77d24a5aab354ae02ec",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -317,16 +291,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "30aca09e21783f228c00847029060fa03ecb86e9",
         "--source-sha",
-        "81e621f44100d54462046966f2eb799d3243de3f"
+        "6231fd9347e4d7b2328fe77d24a5aab354ae02ec"
       ],
-      "seconds": 0.19598965299974225
+      "seconds": 0.29862447799996517
     },
     {
       "case": "appended-decision-log",
-      "code_sha": "55a56d09d7c74becaeacdecede16836d93ba8cbc",
-      "source_sha": "78556fa6ddc32681a5d98fdc2e9eb775e0e99f34",
+      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+      "source_sha": "ad282bd669272b9730faa286aac14f3bf9f2518b",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -335,11 +309,11 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "55a56d09d7c74becaeacdecede16836d93ba8cbc",
+        "30aca09e21783f228c00847029060fa03ecb86e9",
         "--source-sha",
-        "78556fa6ddc32681a5d98fdc2e9eb775e0e99f34"
+        "ad282bd669272b9730faa286aac14f3bf9f2518b"
       ],
-      "seconds": 0.19650880000062898
+      "seconds": 0.2649275429998852
     }
   ]
 }
