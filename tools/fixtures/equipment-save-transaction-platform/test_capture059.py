@@ -233,6 +233,27 @@ def main(args):
         return cap.row
     record('ownership-read-child-exit-race',ownership_exit_race)
 
+    def stop_failure_before_wait():
+        area=output/'stop-retry';area.mkdir();cap=ProcessCapture([sys.executable,str(BATCH_FIXTURE),'sleep'],area/'child.log',area/'process.json',cwd=ROOT,budget=1)
+        attempts=[]
+        try:
+            with cap:
+                original=cap.tree.stop
+                def transient_stop():
+                    attempts.append(time.monotonic())
+                    if len(attempts)==1:raise PermissionError(13,'一時的な所属読取りfixture失敗')
+                    return original()
+                cap.tree.stop=transient_stop
+                raise RuntimeError('終了処理fixture')
+        except RuntimeError as exc:assert str(exc)=='終了処理fixture'
+        finally:
+            if cap.child is not None:cap.child.wait(timeout=2)
+        assert len(attempts)>=2 and cap.row['kill']['ok'] is False,'初回停止の失敗記録は保持する'
+        assert cap.row['wait']['ok'] and cap.row['supervision']['stopped'] is True and cap.row['exit_code'] is not None
+        assert cap.row['cleanup_remaining_end']>0,'同じ回収残量内で実停止とwaitを確認する'
+        return dict(execution=cap.row,stop_attempts=attempts)
+    record('stop-retry-before-wait-consumes-deadline',stop_failure_before_wait)
+
     def assignment_failure():
         from process_tree059 import OwnedTree
         area=output/'assignment-failure';area.mkdir()

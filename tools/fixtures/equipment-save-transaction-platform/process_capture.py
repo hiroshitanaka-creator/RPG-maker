@@ -87,7 +87,7 @@ class ProcessCapture:
                 try:
                     self.tree.stop()
                     self.row['kill']['ok']=True
-                except OSError as exc:self.row['kill'].update(ok=False,reason=repr(exc))
+                except OSError as exc:self.row['kill'].update(ok=False,reason=type(exc).__name__+': '+str(exc))
 
     def wait(self):
         remaining=self.deadline-time.monotonic()
@@ -108,6 +108,8 @@ class ProcessCapture:
                 if self.row['timed_out']:self.row['timeout_kind']=self.kind
             if self.child is not None:
                 if self.child.poll() is None:self.kill()
+                # 初回停止が一時失敗しても、waitで残量を使い切る前に所有treeを再確認する。
+                self.tree.finish(self.cleanup_deadline)
                 self.row['wait']['attempted']=True
                 try:
                     self.child.wait(timeout=max(0,self.cleanup_deadline-time.monotonic()))
@@ -117,7 +119,6 @@ class ProcessCapture:
                 self.row['exit_unavailable_reason']=None if self.child.returncode is not None else 'kill/wait未回収: '+str(self.row['wait'])
             else:self.row['exit_unavailable_reason']='not_started: '+str(self.row['exception'])
             if self.tree is not None:
-                if self.child is not None:self.tree.finish(self.cleanup_deadline)
                 self.row['supervision']=dict(self.tree.row)
                 self.tree.close()
             if self.stream is not None:self.stream.close()
