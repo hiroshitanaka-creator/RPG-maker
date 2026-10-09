@@ -124,7 +124,10 @@ def main(args):
     def command(label,argv,budget):
         start=time.monotonic();p=subprocess.run(argv,cwd=checkout,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=budget);(output.parent/(label+'.log')).write_bytes(p.stdout)
         commands.append({'name':label,'argv':argv,'budget_seconds':budget,'seconds':time.monotonic()-start,'exit_code':p.returncode,'log_sha256':digest(p.stdout)});write(output.parent/'commands.json',commands)
-        require(p.returncode==0 and not BAD.search(p.stdout.decode(errors='replace')),'コマンド失敗:'+label);return p.stdout
+        if p.returncode!=0 or BAD.search(p.stdout.decode(errors='replace')):
+            print(p.stdout.decode(errors='replace'),flush=True)
+            raise RuntimeError('コマンド失敗:'+label)
+        return p.stdout
     require('4.7.2.stable.official.ed1daf0bf' in command('version',[GODOT,'--version'],30).decode(),'公式4.7.2')
     command('frozen-before',[sys.executable,'tools/check_frozen_files.py'],30)
     command('import',[GODOT,'--headless','--editor','--import','--quit'],600)

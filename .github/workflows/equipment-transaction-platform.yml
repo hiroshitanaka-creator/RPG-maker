@@ -52,6 +52,10 @@ jobs:
       - name: 保護照合（失敗時も実行）
         if: always()
         run: python tools/check_frozen_files.py
+      - name: 原bytesとarchive hashをjobにも保持（失敗時も実行）
+        if: always()
+        shell: bash
+        run: python tools/fixtures/equipment-save-transaction-platform/evidence.py --output "$RUNNER_TEMP/native-evidence"
       - name: 配布物・全原証拠を保存（失敗時も実行）
         if: always()
         uses: actions/upload-artifact@v4
