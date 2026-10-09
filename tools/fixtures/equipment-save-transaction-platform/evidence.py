@@ -9,7 +9,8 @@ def main(args):
     for base,prefix in [(area,'evidence'),(ROOT/'addons/equipment_save_io','distribution')]:
         for path in sorted(base.rglob('*')):
             relative=path.relative_to(base)
-            if any(part in ['profile','legacy053','.godot','bin','propagation','scope'] for part in relative.parts) and prefix=='evidence':continue
+            if any(part in ['profile','legacy053','.godot','bin','propagation'] for part in relative.parts) and prefix=='evidence':continue
+            if 'scope' in relative.parts and path.suffix!='.log':continue
             if path.name.startswith('Godot_') or path.name in ['raw-proof.tar.gz','raw-proof-members.json']:continue
             if not path.is_file() or path.is_symlink():continue
             paths.append((path,prefix+'/'+relative.as_posix()))

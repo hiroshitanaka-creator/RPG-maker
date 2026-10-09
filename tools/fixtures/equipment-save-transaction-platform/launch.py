@@ -8,7 +8,8 @@ def main(args):
     area=Path(args.output).resolve();area.mkdir(parents=True,exist_ok=True);platform,expected=PIN[os.name]
     name='Godot_v4.7.2-stable_'+platform;archive=area/(name+'.zip');url='https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/'+name+'.zip'
     urllib.request.urlretrieve(url,archive);actual=hashlib.sha256(archive.read_bytes()).hexdigest();assert actual==expected,'公式ZIP hash'
-    bin_dir=area/'bin';zipfile.ZipFile(archive).extractall(bin_dir);engine=bin_dir/(name if os.name!='nt' else name.replace('win64.exe','win64_console.exe'))
+    # console wrapperは別PIDのengineをCreateProcessする。本体を直接起動しkill PIDを照合する。
+    bin_dir=area/'bin';zipfile.ZipFile(archive).extractall(bin_dir);engine=bin_dir/name
     if os.name!='nt':engine.chmod(0o700)
     sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     fixed_path=ROOT/'docs/verification/equipment-save-transaction-platform/code-fixed-sha.txt';fixed=fixed_path.read_text().strip() if fixed_path.exists() else ''
