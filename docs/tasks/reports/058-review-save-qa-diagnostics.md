@@ -92,6 +92,27 @@ queue→dequeue→worker→batch→PID/argv→各rootの記録を対応づけ、
 
 6seed×off/on各1回の正常sampleは統計的性能保証でも172件全取引の代表性の証明でもない。最終057 Linuxは7763で、80cff71のLinux8573Cと異なる。同じSHA/hashの両OSでもCPU・負荷・FS・並列数を分離し、差をOSだけや修正効果に帰属させない。21d6a66、f6d5697、80cff71、fdd6ce0のarchive/実sourceとhelperを区別した。057報告の80cff71の153/1959・63/945を最終fdd6ce0の値と混同しない。
 
+## エラー原因の整理（観測・候補・未確定）
+
+**直接原因（確認済み）**：専用CI4件は内側174秒で全ケースが終わらず、future/子待機の残時間が尽きる。外側180秒の強制killとは別。F5-aはこの性能問題とは独立した、起動前例外の終了記録漏れである。旧053 latestのCI固有原因は子原物を取得できず未確定。
+
+**反復経路（コード読取り＋両OS6seedの実count一致）**：診断の新規正常取引ではplanが6回、verify_candidateが5回。各plan内でdecode_source・migration・prepare_candidate・encode_candidateが各1回、計各6回呼ばれる。
+
+| 正常経路 | plan / verify回数 | 守っている条件 |
+|---|---:|---|
+| 診断呼出元の最初のplan | 1 / 0 | prepareへ渡す候補を実旧入力から構築する |
+| prepare冒頭とtmp書込み後の明示verify | 1 / 1 | 現source/hash・contextで候補を再構築し、実tmpのbytes/hash・解読した型/値/IDを照合 |
+| prepare末尾のrecover | 1 / 1 | 保存したintent・原本/履歴backup・実tmpからpreparedを判定 |
+| commit冒頭のrecover | 1 / 1 | 独立入口で現在依存・原本・候補・保存状態を再確認 |
+| rename_newのcommit.rename.before境界後のrecover | 1 / 1 | 境界待機中のsource/tmp等の差替え後も、確定直前にpreparedを再確認 |
+| rename後のrecover | 1 / 1 | 実converted.jsonを再読取りし、rename戻り値やreceiptだけによらずcommittedを認識 |
+
+6/5はこの新規正常sampleの経路で、全172ケース、再開/既存intent/失敗経路に同じ回数を仮定しない。recoverは毎回planで現在contextを使い、F3のjob_progression/jobs/abilities/session変更後の拒否を守る。write/readback、確定直前、確定後の各境界には異なる安全上の役割があるため、同じ関数を呼ぶという理由だけでは省けない。
+
+**根本原因候補（未確定部分を含む）**：正常sampleの約98%はplan/verifyの経過時間であり、純粋な「検証だけ」でなく候補再構築・decode/encode・比較も含む。最終057の6回累積ではprepare_candidateがLinux約.361〜.386秒/Windows約.688〜.729秒、encode_candidateが約.473〜.515秒/約.877〜.941秒を占める。prepareはmetadata/schema/装備/状態検査と上限計算後にvalidateを行い、encodeはmetadata・全状態を検証して直列化後さらにdecode_source→validate→型/全値比較を行う。こうした純粋走査・構築・コピーの反復は次の調査候補だが、内部のどの箇所を安全に共通化できるか、減らせる時間、全172件での寄与率はまだ測れていない。
+
+したがって現段階で「再検証を減らせば直る」「I/Oが唯一の原因」「Windowsだけの不具合」とは断定しない。次は同じ安全条件を残した内部処理単位の計測・局所案レビューに留める。cache復活・検証省略・新たなcodec最適化・検査予算変更は行わない。
+
 ## 範囲・原証拠
 
 開始checkoutはwork/87f4e66、dirtyなし。指定branchをfetchし登録SHAを確認して切替、登録からの未pushは0。最初にAGENTS.md・058依頼全文を読み、更新後AGENTS、伝言板、053/055依頼・報告、056/057報告全文・057依頼、040保存計画、専用runner/helper/workflow・原証拠を確認。素材規約・企画書の旧記述と優先仕様、台帳構造も確認。checkoutの追加AGENTS・.agents/skillsは存在せず、適用可能なworkspaceローカルskillも発見していない。追加委譲なし。
