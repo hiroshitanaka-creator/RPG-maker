@@ -1,8 +1,8 @@
 {
   "base": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
   "registration": "a6022f1e4a7689440928efe65db444336e9128e4",
-  "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-  "source_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
+  "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+  "source_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
   "changes": [
     "M\t.github/workflows/equipment-transaction-platform.yml",
     "M\tdocs/decision-log.md",
@@ -56,7 +56,6 @@
     "A\tdocs/verification/task059-save-qa-finalization/scope059-code.json",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-current-policy.json",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-final-code.json",
-    "A\tdocs/verification/task059-save-qa-finalization/scope059-policy828-before-astra.json",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-restricted-code.json",
     "A\tdocs/verification/task059-save-qa-finalization/unchanged-inventory.json",
     "M\ttools/check_equipment_save_transaction_platform.py",
@@ -78,9 +77,9 @@
       "bytes": 5828
     },
     "tools/check_equipment_save_transaction_platform.py": {
-      "git_blob": "d45901fd8eb66fd2b6117fda516b5bfc88b8f305",
-      "raw_sha256": "add1532fdcb4ae52782f69a291e84aada57f37c392e5db3855716792378dc072",
-      "bytes": 45212
+      "git_blob": "c9a160f78407b290801a705f505d881664c5bcef",
+      "raw_sha256": "966d7d6465f9b28aa0fd3ed79872e1894f62b93acf67be51b83844705ed05e55",
+      "bytes": 45104
     },
     "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py": {
       "git_blob": "389c3169d5f9579e73b5c15a93e8ab560ff686b9",
@@ -123,9 +122,9 @@
       "bytes": 6129
     },
     "tools/fixtures/equipment-save-transaction-platform/test_capture059.py": {
-      "git_blob": "555b5674a2989b3a912c44e5c22a965f2d8f3c1f",
-      "raw_sha256": "aaa1cfefa01396bf3d2c6109f774b90658e875bba425f07ce143aab49c3e5ae5",
-      "bytes": 17888
+      "git_blob": "6d70bd6446f656d6658d3e2c948e3c6356cdc1c7",
+      "raw_sha256": "9af30e3c1109b59d64f6898b9af16eee57ada1da9e082f5531eb31ab1df3ce5e",
+      "bytes": 16571
     },
     "tools/fixtures/equipment-save-transaction-platform/tree_fixture059.py": {
       "git_blob": "492d3ff06b39eab7fcbd02bf42b2636079f48323",
@@ -137,8 +136,8 @@
   "propagation": [
     {
       "case": "later-document",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "ca17ef9becf59b076c350ef54062c1fd50611d30",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "741c36754bab12d8ada2d60c3f2cd624c83c2510",
       "expected_exit": 0,
       "exit_code": 0,
       "argv": [
@@ -147,16 +146,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "30aca09e21783f228c00847029060fa03ecb86e9",
+        "faa459ee5cc101e708477792b1c7891a9ba4beea",
         "--source-sha",
-        "ca17ef9becf59b076c350ef54062c1fd50611d30"
+        "741c36754bab12d8ada2d60c3f2cd624c83c2510"
       ],
-      "seconds": 0.21066995399996813
+      "seconds": 0.2083227769999212
     },
     {
       "case": "outside-code",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "790fc61e51bce360e4662acb608d655c0829367e",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "f81f4723c628754be5cf76451ee11f6d3afb50a1",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -165,16 +164,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "30aca09e21783f228c00847029060fa03ecb86e9",
+        "faa459ee5cc101e708477792b1c7891a9ba4beea",
         "--source-sha",
-        "790fc61e51bce360e4662acb608d655c0829367e"
+        "f81f4723c628754be5cf76451ee11f6d3afb50a1"
       ],
-      "seconds": 0.18259447699983866
+      "seconds": 0.18042739499969684
     },
     {
       "case": "outside-fixed",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "63eb5573e521898f9e76d609581272783e1b71fc",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "40297b6255eb4b5d382ad7ae293c04942a85b559",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -183,16 +182,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "63eb5573e521898f9e76d609581272783e1b71fc",
+        "40297b6255eb4b5d382ad7ae293c04942a85b559",
         "--source-sha",
-        "63eb5573e521898f9e76d609581272783e1b71fc"
+        "40297b6255eb4b5d382ad7ae293c04942a85b559"
       ],
-      "seconds": 0.06012973899987628
+      "seconds": 0.06310164899969095
     },
     {
       "case": "changed-fixed-code",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "5592d7eeae5fb2c5279037ef3835401cc171aa69",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "341572b893e23e66f4bdaf8c4a5edea4409027e5",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -201,16 +200,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "30aca09e21783f228c00847029060fa03ecb86e9",
+        "faa459ee5cc101e708477792b1c7891a9ba4beea",
         "--source-sha",
-        "5592d7eeae5fb2c5279037ef3835401cc171aa69"
+        "341572b893e23e66f4bdaf8c4a5edea4409027e5"
       ],
-      "seconds": 0.10259560799977407
+      "seconds": 0.11519464399998469
     },
     {
       "case": "old-evidence-document",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "ee1cc8a70852cf6cd51787ed2e71b8b449b71f23",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "c1520e7f33033615dbda0c7f0dae27aa2e47909d",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -219,16 +218,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "30aca09e21783f228c00847029060fa03ecb86e9",
+        "faa459ee5cc101e708477792b1c7891a9ba4beea",
         "--source-sha",
-        "ee1cc8a70852cf6cd51787ed2e71b8b449b71f23"
+        "c1520e7f33033615dbda0c7f0dae27aa2e47909d"
       ],
-      "seconds": 0.17414689099996394
+      "seconds": 0.15122286399991935
     },
     {
       "case": "past-report",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "2d5b6bc79254888d581614a381e21a197301c5dc",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "4a5f73bfdd6768780bf540d0583fb054b96e61cb",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -237,16 +236,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "30aca09e21783f228c00847029060fa03ecb86e9",
+        "faa459ee5cc101e708477792b1c7891a9ba4beea",
         "--source-sha",
-        "2d5b6bc79254888d581614a381e21a197301c5dc"
+        "4a5f73bfdd6768780bf540d0583fb054b96e61cb"
       ],
-      "seconds": 0.16352788099993631
+      "seconds": 0.23099501099977715
     },
     {
       "case": "outside-document",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "f62893565ac752db1c665d22c512182de0ac4f36",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "23827204ad2b4a7b4d8cbc5a4604156e21d5eff9",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -255,16 +254,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "30aca09e21783f228c00847029060fa03ecb86e9",
+        "faa459ee5cc101e708477792b1c7891a9ba4beea",
         "--source-sha",
-        "f62893565ac752db1c665d22c512182de0ac4f36"
+        "23827204ad2b4a7b4d8cbc5a4604156e21d5eff9"
       ],
-      "seconds": 0.16750469799990242
+      "seconds": 0.2965298819999589
     },
     {
       "case": "changed-task-body",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "945f947edfc292e41e1523b93d45233a8f848261",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "6011ed04b86d23756b574b9d5d4c70f673fb7f8a",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -273,16 +272,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "30aca09e21783f228c00847029060fa03ecb86e9",
+        "faa459ee5cc101e708477792b1c7891a9ba4beea",
         "--source-sha",
-        "945f947edfc292e41e1523b93d45233a8f848261"
+        "6011ed04b86d23756b574b9d5d4c70f673fb7f8a"
       ],
-      "seconds": 0.189452405999873
+      "seconds": 0.2615513529999589
     },
     {
       "case": "rewritten-decision-log",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "6231fd9347e4d7b2328fe77d24a5aab354ae02ec",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "202c8a308bd2ceca00bb1bd4cf629d87d035d8e8",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -291,16 +290,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "30aca09e21783f228c00847029060fa03ecb86e9",
+        "faa459ee5cc101e708477792b1c7891a9ba4beea",
         "--source-sha",
-        "6231fd9347e4d7b2328fe77d24a5aab354ae02ec"
+        "202c8a308bd2ceca00bb1bd4cf629d87d035d8e8"
       ],
-      "seconds": 0.29862447799996517
+      "seconds": 0.24854635199972108
     },
     {
       "case": "appended-decision-log",
-      "code_sha": "30aca09e21783f228c00847029060fa03ecb86e9",
-      "source_sha": "ad282bd669272b9730faa286aac14f3bf9f2518b",
+      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+      "source_sha": "257b389f727312f441dcb29bba7c2655c7e11c47",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -309,11 +308,11 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "30aca09e21783f228c00847029060fa03ecb86e9",
+        "faa459ee5cc101e708477792b1c7891a9ba4beea",
         "--source-sha",
-        "ad282bd669272b9730faa286aac14f3bf9f2518b"
+        "257b389f727312f441dcb29bba7c2655c7e11c47"
       ],
-      "seconds": 0.2649275429998852
+      "seconds": 0.15796688999989783
     }
   ]
 }
