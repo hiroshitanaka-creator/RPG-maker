@@ -72,9 +72,9 @@ def main(args):
         gate=threading.Barrier(4)
         def submit(r):gate.wait();return value.restarts.submit(r,dict(root=str(r),operation='normal'))
         with ThreadPoolExecutor(max_workers=4) as pool:results=list(pool.map(submit,roots))
-        value.restarts.close();q=d.load(value.output/'restart-queue.json')
-        assert q['recovery_complete'] and len({r['request_id'] for r in q['requests']})==4
-        batches={r['batch_id'] for r in q['requests']}
+        errors,unreaped=value.reconcile_requests()
+        assert not errors and not unreaped and len({r['request_id'] for r in value.accepted})==4
+        batches={r['batch_id'] for r in value.accepted}
         # 複数workerへ分散するraceも記録。4root共有batchはrun_restart_batchへ実4rootを別途渡す。
         direct=[]
         for i in range(4):
