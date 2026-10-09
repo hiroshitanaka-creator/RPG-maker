@@ -1,0 +1,163 @@
+{
+  "base": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
+  "registration": "a6022f1e4a7689440928efe65db444336e9128e4",
+  "code_sha": "7f4c608282a0ab865c1c78cc7f38ba9aab644eeb",
+  "source_sha": "7f4c608282a0ab865c1c78cc7f38ba9aab644eeb",
+  "changes": [
+    "M\t.github/workflows/equipment-transaction-platform.yml",
+    "M\tdocs/decision-log.md",
+    "A\tdocs/tasks/059-fix-save-qa-finalization.md",
+    "A\tdocs/verification/task059-save-qa-finalization/before.json",
+    "A\tdocs/verification/task059-save-qa-finalization/method-preservation.json",
+    "A\tdocs/verification/task059-save-qa-finalization/plan.md",
+    "A\tdocs/verification/task059-save-qa-finalization/unchanged-inventory.json",
+    "M\ttools/check_equipment_save_transaction_platform.py",
+    "M\ttools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/diagnostic_fixed057.py",
+    "M\ttools/fixtures/equipment-save-transaction-platform/process_capture.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/process_tree059.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+    "M\ttools/fixtures/equipment-save-transaction-platform/run_ci.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/scope059.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+    "A\ttools/fixtures/equipment-save-transaction-platform/tree_fixture059.py"
+  ],
+  "inventory": {
+    ".github/workflows/equipment-transaction-platform.yml": {
+      "git_blob": "fb0c79d412c852f548dc739d98498e0bdff8c25c",
+      "raw_sha256": "1d638479106bbb292722d7fa10097a98c7c3ac1d6132e378ffa2f397c87eca61",
+      "bytes": 5828
+    },
+    "tools/check_equipment_save_transaction_platform.py": {
+      "git_blob": "efa871a88fa23e4484eaeed9c653169c37689d6b",
+      "raw_sha256": "41e83616e7696369a47c51471ddbb231c6aa2dfa9e5135dbaa52a09c610d2819",
+      "bytes": 44558
+    },
+    "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py": {
+      "git_blob": "450e67cfb0fa50a55341efc6fc2c598d284af4da",
+      "raw_sha256": "525a7dac001473ed695139403bd6f0f74c6e9e917afedf5153ecd0220ad67db6",
+      "bytes": 2772
+    },
+    "tools/fixtures/equipment-save-transaction-platform/diagnostic_fixed057.py": {
+      "git_blob": "0e59f201540f6c6a3ee8b1d971ff700d4c3c2356",
+      "raw_sha256": "70557b7fbcea7c6a3d84163676a3c24e199d7b94a2323f06d76ea6ef74869c0b",
+      "bytes": 2137
+    },
+    "tools/fixtures/equipment-save-transaction-platform/process_capture.py": {
+      "git_blob": "cc115fc25c92b1161147504993a7d8ca1aced74e",
+      "raw_sha256": "1ffac0335127826c4d29e7cc57053e244b14dd13ef659f9609de8725255f6967",
+      "bytes": 7154
+    },
+    "tools/fixtures/equipment-save-transaction-platform/process_exec059.py": {
+      "git_blob": "504e94b22653de8631d2ed036bd7cbe8c2425cd6",
+      "raw_sha256": "ea1bf041031442daca9ec18e14f431e4c94b74400c7f884edb562d971b13e7bb",
+      "bytes": 231
+    },
+    "tools/fixtures/equipment-save-transaction-platform/process_tree059.py": {
+      "git_blob": "cd57ddc5d524094908cd4c84781a618de998daf8",
+      "raw_sha256": "9196282bc86a43afd6e3a24a7d465433bbb22ed01246e939f95b3661df16aa14",
+      "bytes": 10409
+    },
+    "tools/fixtures/equipment-save-transaction-platform/reproduce058.py": {
+      "git_blob": "d47da15669fc822b749ef23964b5b49333d82315",
+      "raw_sha256": "b6b55a22cf5f995aefa54d1eb4d8a5ea033f4dee294e7b57ba047852e5bc94f8",
+      "bytes": 3151
+    },
+    "tools/fixtures/equipment-save-transaction-platform/run_ci.py": {
+      "git_blob": "50f4d8d583ee98b0c384ed5fadaba76db3a251b7",
+      "raw_sha256": "62749d5ec787ec9cb86f4b3d1fd96840180054eed6668ab95e6f4e5500f42e64",
+      "bytes": 15926
+    },
+    "tools/fixtures/equipment-save-transaction-platform/scope059.py": {
+      "git_blob": "29255473a0cee4c1ae59da914e8df62e696fe2af",
+      "raw_sha256": "7122cd1b9856ccea8698fc642bb3f4c93498ea6e824617024854f6f49f5b7c42",
+      "bytes": 5030
+    },
+    "tools/fixtures/equipment-save-transaction-platform/test_capture059.py": {
+      "git_blob": "6d6041de5a481b809cb296a80da4b16c0297d228",
+      "raw_sha256": "32fb766abb3231291b96808aa4f6caf233804883a373745290caa00293b52c8d",
+      "bytes": 13967
+    },
+    "tools/fixtures/equipment-save-transaction-platform/tree_fixture059.py": {
+      "git_blob": "1bbf9e428c3320ece02663b6b937e7262b718b59",
+      "raw_sha256": "7dad66285214eb1ed903074c6f4584a34ce67b6cb3fd245a899e3af6df62f7f0",
+      "bytes": 1590
+    }
+  },
+  "later_documents": [],
+  "propagation": [
+    {
+      "case": "later-document",
+      "code_sha": "7f4c608282a0ab865c1c78cc7f38ba9aab644eeb",
+      "source_sha": "674f4ec20bc4a63e529a7622b01675934a3a5783",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+        "--checkout",
+        "/workspace/RPG-maker",
+        "--code-sha",
+        "7f4c608282a0ab865c1c78cc7f38ba9aab644eeb",
+        "--source-sha",
+        "674f4ec20bc4a63e529a7622b01675934a3a5783"
+      ],
+      "seconds": 0.22195824699997502
+    },
+    {
+      "case": "outside-code",
+      "code_sha": "7f4c608282a0ab865c1c78cc7f38ba9aab644eeb",
+      "source_sha": "8ef2493c38c675c5b5f8394e9b6708172a2598bd",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+        "--checkout",
+        "/workspace/RPG-maker",
+        "--code-sha",
+        "7f4c608282a0ab865c1c78cc7f38ba9aab644eeb",
+        "--source-sha",
+        "8ef2493c38c675c5b5f8394e9b6708172a2598bd"
+      ],
+      "seconds": 0.20753411100008634
+    },
+    {
+      "case": "outside-fixed",
+      "code_sha": "7f4c608282a0ab865c1c78cc7f38ba9aab644eeb",
+      "source_sha": "fe4165c2e08c1013707cd2c1afe4208e23b8c7d8",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+        "--checkout",
+        "/workspace/RPG-maker",
+        "--code-sha",
+        "fe4165c2e08c1013707cd2c1afe4208e23b8c7d8",
+        "--source-sha",
+        "fe4165c2e08c1013707cd2c1afe4208e23b8c7d8"
+      ],
+      "seconds": 0.060678082000094946
+    },
+    {
+      "case": "changed-fixed-code",
+      "code_sha": "7f4c608282a0ab865c1c78cc7f38ba9aab644eeb",
+      "source_sha": "fd39713c8173c5ad964678049b347a18c8e714b6",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+        "--checkout",
+        "/workspace/RPG-maker",
+        "--code-sha",
+        "7f4c608282a0ab865c1c78cc7f38ba9aab644eeb",
+        "--source-sha",
+        "fd39713c8173c5ad964678049b347a18c8e714b6"
+      ],
+      "seconds": 0.0868230159999257
+    }
+  ]
+}
