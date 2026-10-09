@@ -17,6 +17,9 @@ import subprocess
 import sys
 import time
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/"tools/fixtures/equipment-save-transaction-platform"))
+from process_capture import ProcessCapture, utc
+
 ROOT = Path(__file__).resolve().parents[1]
 BAD = re.compile(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error|Fontconfig error|_FAIL:')
 
@@ -42,28 +45,77 @@ def write(path, value):
 
 
 class RestartBatch:
-    """killがwait済みの要求だけをまとめ、新Godotで各々のfresh contextを再構築する。"""
-    def __init__(self,suite):
-        self.suite=suite
-        self.queue=queue.Queue()
-        self.threads=[threading.Thread(target=self.worker,daemon=True) for _ in range(2 if os.name=='nt' else 4)]
+    """killのwait済み要求だけをまとめる。受付・future・workerを終了時に確定する。"""
+    def __init__(self, suite):
+        self.suite = suite
+        self.queue = queue.Queue()
+        self.stopping = threading.Event()
+        self.lock = threading.Lock()
+        self.requests = []
+        self.next_batch = 0
+        self.threads = [threading.Thread(target=self.worker, name='restart-'+str(i), daemon=True)
+                        for i in range(2 if os.name=='nt' else 4)]
         for thread in self.threads:thread.start()
 
-    def submit(self,root,cfg):
-        future=Future();self.queue.put((root,cfg,future))
-        return future.result(timeout=max(.01,self.suite.deadline-time.monotonic()))
+    def submit(self, root, cfg):
+        future = Future()
+        request = dict(root=root, cfg=cfg, future=future, queued=time.monotonic(),
+                       queued_utc=utc(), worker_started=None, batch_id=None, completed=False)
+        with self.lock:
+            if self.stopping.is_set():raise RuntimeError('restart_shutdown: 受付終了')
+            self.requests.append(request)
+            self.queue.put(request)
+        try:
+            return future.result(timeout=max(.01, self.suite.deadline-time.monotonic()))
+        except TimeoutError as exc:
+            # Future timeoutの空文字をsuite/子timeoutと区別する。
+            raise TimeoutError('restart_future_deadline: root='+str(root)+' batch='+str(request['batch_id'])) from exc
 
     def worker(self):
-        while True:
-            requests=[self.queue.get()]
+        while not self.stopping.is_set():
+            try:first = self.queue.get(timeout=.06)
+            except queue.Empty:continue
+            first['dequeued'] = time.monotonic()
+            requests = [first]
             for _ in range(3):
-                try:requests.append(self.queue.get(timeout=.06))
+                try:
+                    request = self.queue.get(timeout=.06)
+                    request['dequeued'] = time.monotonic()
+                    requests.append(request)
                 except queue.Empty:break
+            with self.lock:
+                batch = 'batch-%06d' % self.next_batch
+                self.next_batch += 1
+                for request in requests:
+                    request.update(batch_id=batch, worker_started=request['dequeued'], batch_started=time.monotonic(), worker=threading.current_thread().name)
             try:
-                results=self.suite.run_restart_batch(requests)
-                for (_,_,future),result in zip(requests,results):future.set_result(result)
-            except Exception as exc:
-                for _,_,future in requests:future.set_exception(exc)
+                if self.stopping.is_set():raise RuntimeError('restart_shutdown: 未実行batch')
+                results = self.suite.run_restart_batch(requests, batch)
+                for request, result in zip(requests, results):
+                    if not request['future'].done():request['future'].set_result(result)
+                    request['completed'] = True
+            except BaseException as exc:
+                for request in requests:
+                    request['exception'] = type(exc).__name__+': '+str(exc)
+                    if not request['future'].done():request['future'].set_exception(exc)
+            finally:
+                for request in requests:request['worker_finished'] = time.monotonic()
+
+    def close(self):
+        self.stopping.set()
+        with self.lock:
+            for request in self.requests:
+                if not request['future'].done():
+                    request['future'].set_exception(RuntimeError('restart_shutdown: 未完future'))
+        self.suite.stop_children()
+        for thread in self.threads:
+            thread.join(timeout=max(0, self.suite.cleanup_deadline-time.monotonic()))
+        rows = [{key:(str(value) if key=='root' else value) for key,value in request.items()
+                 if key not in ['future','cfg']} for request in self.requests]
+        live = [thread.name for thread in self.threads if thread.is_alive()]
+        write(self.suite.output/'restart-queue.json', dict(requests=rows, live_workers=live,
+              recovery_complete=not live, deadline_remaining=self.suite.cleanup_deadline-time.monotonic()))
+        return live
 
 
 class Suite:
@@ -79,6 +131,10 @@ class Suite:
         if os.name=='nt':self.expected['cases']['nonroot-permission']['reason']='write_failed'
         self.start = time.monotonic()
         self.deadline = self.start + 174
+        self.cleanup_deadline = self.start + 180
+        self.active_lock = threading.Lock()
+        self.active = set()
+        self.timings = []
         self.seeds = {}
         self.restarts=RestartBatch(self)
         self.rows = []
@@ -97,77 +153,101 @@ class Suite:
             env['APPDATA']=str(root/'profile'/'APPDATA');env['LOCALAPPDATA']=str(root/'profile'/'LOCALAPPDATA')
         return env
 
+    def stop_children(self):
+        with self.active_lock:
+            for capture in self.active:capture.kill()
+
+    def capture(self, argv, log, record, env):
+        start = time.monotonic()
+        remaining = self.deadline-start
+        return ProcessCapture(argv, log, record, cwd=ROOT, env=env,
+                              deadline=min(start+30, self.deadline), cleanup_deadline=self.cleanup_deadline,
+                              timeout_kind='suite_inner_174_seconds' if remaining<30 else 'child_30_seconds')
+
     def run(self, root, cfg, label, kill=False, mutate=None):
-        remaining = self.deadline-time.monotonic()
-        if remaining <= 0:
-            raise TimeoutError('全体180秒を超過')
-        limit = min(30, remaining)
         config_path = root/(label+'-config.json')
         cfg = dict(cfg, result=label+'-result.json')
         write(config_path, cfg)
         argv = [str(self.godot), '--headless', '--path', str(ROOT), '--script',
                 'res://tools/equipment_save_transaction_probe.gd', '--', str(config_path)]
         if not kill and mutate is None:return self.restarts.submit(root,cfg)
-        start = time.monotonic()
         log_path = self.output/root.name/(label+'.log')
-        log_path.parent.mkdir(parents=True, exist_ok=True)
-        expired = False
-        hit = None
-        with log_path.open('wb') as log:
-            child = subprocess.Popen(argv, env=self.env(root), stdout=log, stderr=subprocess.STDOUT)
-            try:
-                if kill or mutate:
-                    marker = root/'paused.json'
-                    while not marker.exists():
-                        if child.poll() is not None:
-                            raise RuntimeError('境界到達前に終了:'+label+' '+log_path.read_text())
-                        if time.monotonic()-start > limit:
-                            raise TimeoutError('子30秒境界待機超過')
-                        time.sleep(.005)
-                    hit = load(marker)
-                    if hit['point'] != cfg['kill_point'] or hit['pid'] != child.pid:
-                        raise RuntimeError('kill地点/PID不一致')
-                    if kill:
-                        child.kill()
-                    else:
-                        mutate(child)
-                        (root/'release').write_bytes(b'continue')
-                child.wait(timeout=max(.01,limit-(time.monotonic()-start)))
-            except Exception:
-                if child.poll() is None:
-                    child.kill()
-                child.wait()
-                expired = True
-                raise
-        raw = log_path.read_bytes()
-        result_path = root/(label+'-result.json')
-        result = load(result_path) if result_path.exists() else {}
-        command = dict(argv=argv, cwd=str(ROOT), seconds=time.monotonic()-start,
-                       budget_seconds=30, exit_code=child.returncode, timed_out=expired,
-                       kill_point=hit, log=str(log_path.relative_to(self.output)), log_sha256=digest(raw), result=result)
-        write(self.output/root.name/(label+'-execution.json'), command)
-        return command
+        record = self.output/root.name/(label+'-execution.json')
+        capture = self.capture(argv, log_path, record, self.env(root))
+        with self.active_lock:self.active.add(capture)
+        try:
+            with capture:
+                child = capture.child
+                marker = root/'paused.json'
+                while not marker.exists():
+                    if child.poll() is not None:
+                        raise RuntimeError('境界到達前に終了:'+label+' '+log_path.read_text())
+                    if time.monotonic()>=capture.deadline:
+                        raise TimeoutError(capture.kind+': 境界待機超過')
+                    time.sleep(.005)
+                hit = load(marker)
+                capture.row['kill_point'] = hit
+                if hit['point'] != cfg['kill_point'] or hit['pid'] != child.pid:
+                    raise RuntimeError('kill地点/PID不一致')
+                if kill:capture.kill()
+                else:
+                    mutate(child)
+                    (root/'release').write_bytes(b'continue')
+                capture.wait()
+                result_path = root/(label+'-result.json')
+                capture.row['result'] = load(result_path) if result_path.exists() else {}
+        finally:
+            capture.row['log'] = str(log_path.relative_to(self.output))
+            write(record, capture.row)
+            with self.active_lock:self.active.discard(capture)
+        return capture.row
 
-    def run_restart_batch(self, requests):
-        if time.monotonic()>=self.deadline:raise TimeoutError('全体180秒を超過')
-        configurations=[dict(cfg,result=cfg.get('result','restarted-result.json')) for root,cfg,_ in requests]
-        first=requests[0][0]
-        path=first/(configurations[0]['result'].removesuffix('-result.json')+'-batch.json')
-        write(path,configurations)
-        argv=[str(self.godot),'--headless','--path',str(ROOT),'--script','res://tools/equipment_save_transaction_probe.gd','--',str(path)]
-        start=time.monotonic()
-        child=subprocess.run(argv,env=self.env(first),stdout=subprocess.PIPE,stderr=subprocess.STDOUT,
-                             timeout=min(30,self.deadline-start))
-        rows=[]
-        for (root,cfg,_),options in zip(requests,configurations):
-            label=options['result'].removesuffix('-result.json')
-            log=self.output/root.name/(label+'.log');log.parent.mkdir(parents=True,exist_ok=True);log.write_bytes(child.stdout)
-            result=load(root/options['result'])
-            row=dict(argv=argv,cwd=str(ROOT),seconds=time.monotonic()-start,budget_seconds=30,
-                     exit_code=child.returncode,timed_out=False,kill_point=None,
-                     log=str(log.relative_to(self.output)),log_sha256=digest(child.stdout),result=result,
-                     batch_roots=[str(item[0]) for item in requests])
-            write(self.output/root.name/(label+'-execution.json'),row);rows.append(row)
+    def run_restart_batch(self, requests, batch_id):
+        configurations = [dict(r['cfg'], result=r['cfg'].get('result','restarted-result.json')) for r in requests]
+        first = requests[0]['root']
+        path = first/(configurations[0]['result'].removesuffix('-result.json')+'-batch.json')
+        write(path, configurations)
+        argv = [str(self.godot), '--headless', '--path', str(ROOT), '--script',
+                'res://tools/equipment_save_transaction_probe.gd', '--', str(path)]
+        log = self.output/'batches'/(batch_id+'.log')
+        record = self.output/'batches'/(batch_id+'-execution.json')
+        capture = self.capture(argv, log, record, self.env(first))
+        capture.row.update(batch_id=batch_id, batch_roots=[str(r['root']) for r in requests])
+        with self.active_lock:self.active.add(capture)
+        rows = []
+        try:
+            with capture:
+                capture.wait()
+                for request, options in zip(requests, configurations):
+                    root = request['root']
+                    result = load(root/options['result'])
+                    request['result_observed'] = True
+                    rows.append(dict(result=result))
+        finally:
+            # 子timeout/異常exit/JSON例外にも全rootへlogと終了記録を残す。
+            capture.row['root_completion'] = []
+            raw = log.read_bytes() if log.exists() else b''
+            for request, options in zip(requests, configurations):
+                root = request['root'];label = options['result'].removesuffix('-result.json')
+                result_path = root/options['result']
+                result = {}
+                try:
+                    if result_path.exists():result = load(result_path)
+                    reason = None if result else 'result file未取得'
+                except Exception as exc:reason = type(exc).__name__+': '+str(exc)
+                status = dict(root=str(root), result_observed=bool(result), missing_reason=reason)
+                capture.row['root_completion'].append(status)
+                root_log = self.output/root.name/(label+'.log')
+                root_log.parent.mkdir(parents=True, exist_ok=True);root_log.write_bytes(raw)
+                row = dict(capture.row, result=result, batch_record=record.relative_to(self.output).as_posix(),
+                           log=root_log.relative_to(self.output).as_posix(),
+                           queue_seconds=(request['worker_started']-request['queued']),
+                           coalesce_seconds=request['batch_started']-request['worker_started'], root_completion=status)
+                write(self.output/root.name/(label+'-execution.json'), row)
+                for index, item in enumerate(requests):
+                    if item is request and index<len(rows):rows[index] = row
+            write(record, capture.row)
+            with self.active_lock:self.active.discard(capture)
         return rows
 
     def seed(self, name, **options):
@@ -192,6 +272,11 @@ class Suite:
         return digest(json.dumps(['equipment-migration-v1',digest(source),'equipment-q1a-q2a-q3a-v1',1], separators=(',',':')).encode())
 
     def snapshot(self, root, label):
+        start = time.monotonic()
+        try:return self._snapshot(root, label)
+        finally:self.timings.append(dict(kind="snapshot", root=str(root), label=label, start=start, end=time.monotonic()))
+
+    def _snapshot(self, root, label):
         destination = self.output/root.name/label
         destination.mkdir(parents=True, exist_ok=True)
         files = {}
@@ -443,7 +528,7 @@ class Suite:
         else:raise RuntimeError('未定義case:'+name)
         return commands,result,source,history,specific
 
-    def main(self):
+    def cases(self):
         self.seed('typed',typed=True,trial=True,history='normal')
         self.seed('plain')
         self.seed('granted',typed=True,trial=True,history='normal',unlocked=True)
@@ -459,7 +544,15 @@ class Suite:
                     for check,passed in row['checks'].items():
                         if passed is not True:self.failures.append(name+':'+check)
                 except Exception as exc:
-                    self.failures.append(name+':'+str(exc))
+                    self.failures.append(name+':'+type(exc).__name__+': '+str(exc))
+    def main(self):
+        try:self.cases()
+        except Exception as exc:self.failures.append(type(exc).__name__+': '+str(exc))
+        finally:
+            live = self.restarts.close()
+            if live:self.failures.append('worker未回収:'+','.join(live))
+            write(self.output/'timing.json', dict(suite_started=self.start, observations=self.timings,
+                  units='monotonic_seconds', snapshot='inclusive; 累積並行時間、wall-timeへ単純加算禁止'))
         self.rows.sort(key=lambda row:row['case'])
         summary={'status':'FAIL' if self.failures else 'PASS','case_count':len(self.rows),
                  'checks':sum(len(r['checks']) for r in self.rows),'failures':self.failures,

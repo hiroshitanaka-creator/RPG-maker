@@ -50,6 +50,11 @@ jobs:
         shell: bash
         run: |
           python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/equipment-save-transaction-platform/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha],check=True)"
+      - name: 057範囲用の基点・完成SHAを完全SHAで取得
+        if: matrix.profile == 'latest'
+        shell: bash
+        run: |
+          python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/task057-save-qa-diagnostics/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha,'849d02bd2ea4dd44298eef225fe9a12927858d1b','878c2316a4c9e72b253f7df001b6c6438ef7cb6d'],check=True)"
       - name: 固定ビルド依存を導入
         run: python -m pip install scons==4.10.0
       - name: 提出済みDLL・SOを実ロード照合用に保持
@@ -67,6 +72,10 @@ jobs:
       - name: 保護照合（失敗時も実行）
         if: always()
         run: python tools/check_frozen_files.py
+      - name: 057ログ回収正負・scope・6seed計測対照（既存判定と別）
+        if: always() && matrix.profile == 'latest'
+        shell: bash
+        run: python tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py --output "$RUNNER_TEMP/native-evidence"
       - name: 原bytesとarchive hashをjobにも保持（失敗時も実行）
         if: always()
         shell: bash
