@@ -67,9 +67,10 @@ def scope(target):
     return dict(target=target,base=REGISTERED,changes=changes,production_old_evidence_protected_unchanged=True)
 
 
-def normalized(value):
-    if isinstance(value,dict):return {k:normalized(v) for k,v in value.items() if k not in ['pid','user_dir']}
-    if isinstance(value,list):return [normalized(v) for v in value]
+def normalized(value, root=""):
+    if isinstance(value,str) and root and (value==root or value.startswith(root+"/")):return "$QA"+value[len(root):]
+    if isinstance(value,dict):return {k:normalized(v,root) for k,v in value.items() if k not in ['pid','user_dir']}
+    if isinstance(value,list):return [normalized(v,root) for v in value]
     return value
 
 
@@ -86,11 +87,16 @@ def compare_codec(left,right):
 def compare_transaction(left,right,expected):
     lcases={name.split('/')[1]:json.loads(raw) for name,raw in left.items() if re.fullmatch('evidence/[^/]+/case.json',name)}
     rcases={name.split('/')[1]:json.loads(raw) for name,raw in right.items() if re.fullmatch('evidence/[^/]+/case.json',name)}
+    def root(files):
+        argv=json.loads(files['exec.json'])['argv'];return str(Path(argv[argv.index('--fixture-root')+1]).parent)
+    left_root,right_root=root(left),root(right)
     differences=[];matched=[]
     for case in sorted(set(lcases)&set(rcases)):
         a,b=lcases[case],rcases[case]
-        if normalized(a['actual'])!=normalized(b['actual']):differences.append(case+':受理拒否/reason/結果')
+        if normalized(a['actual'],left_root)!=normalized(b['actual'],right_root):differences.append(case+':受理拒否/reason/結果')
         if a['checks']!=b['checks']:differences.append(case+':既存条件')
+        project=lambda row,root:[{key:normalized(command.get(key),root) for key in ['result','exit_code','timed_out','kill_point']} for command in row['commands']]
+        if project(a,left_root)!=project(b,right_root):differences.append(case+':初回/異常/再開の全command結果')
         for relative in ['source.json']:
             path=f'evidence/{case}/final/{relative}'
             if left.get(path)!=right.get(path):differences.append(case+':source bytes')
@@ -101,7 +107,38 @@ def compare_transaction(left,right,expected):
             if left[path]!=right[path]:differences.append(case+':保存原物bytes:'+path)
         matched.append(case)
     missing_left=sorted(set(expected)-set(lcases));missing_right=sorted(set(expected)-set(rcases))
-    return dict(common_cases=matched,missing_off=missing_left,missing_on=missing_right,differences=differences,complete=not (missing_left or missing_right or differences),normalization='process pidと専用user_dirだけを比較投影から外す。原JSONは全保存。')
+    return dict(common_cases=matched,missing_off=missing_left,missing_on=missing_right,differences=differences,complete=not (missing_left or missing_right or differences),normalization='process pidと専用user_dirを除き、実argvで確定した試行rootだけ$QAへ対応付ける。errorsの相対target/reason/他の値は保持。原JSONは全保存。')
+
+
+
+def transaction_breakdown(files, expected):
+    sys.path.insert(0,str(ROOT/'tools'))
+    from check_equipment_save_codec_cost import canonical_logs
+    argv=json.loads(files['exec.json'])['argv'];work=str(Path(argv[argv.index('--fixture-root')+1]).parent)
+    totals={};groups=0;assignment_errors=[]
+    for name,raw in canonical_logs(files):
+        record_name=name.removesuffix('.log')+'-execution.json'
+        configurations=[]
+        if record_name in files:
+            record=json.loads(files[record_name]);config_path=record.get('argv',[])[-1]
+            relative=config_path[len(work)+1:] if config_path.startswith(work+'/') else ''
+            if relative in files:
+                value=json.loads(files[relative]);configurations=value if isinstance(value,list) else [value]
+        current=0
+        for line in raw.splitlines():
+            if line.startswith(b'TRANSACTION_PROBE: '):current+=1;continue
+            if not line.startswith(b'COST060 '):continue
+            config=configurations[current] if current<len(configurations) else {}
+            case=Path(config.get('root','')).name;operation=config.get('operation')
+            role='fixture' if operation=='fixture' else 'restart' if operation=='resume' else 'interrupted' if config.get('kill_point') else 'abnormal' if config.get('fail_point') else 'normal' if case.startswith('normal-') or case=='absent-id' else 'special' if config else 'unassigned'
+            if not config:assignment_errors.append(dict(log=name,index=current))
+            spans=json.loads(line[8:])['spans'];groups+=1
+            for index,span in enumerate(spans):
+                elapsed=span['end_us']-span['start_us']
+                child=sum(x['end_us']-x['start_us'] for x in spans if x['parent']==index)
+                row=totals.setdefault(role,{}).setdefault(span['label'],dict(count=0,inclusive_us=0,exclusive_us=0))
+                row['count']+=1;row['inclusive_us']+=elapsed;row['exclusive_us']+=elapsed-child
+    return dict(by_operation=totals,groups=groups,assignment_errors=assignment_errors,units='process内wall microsecondsの並行累積。全体wallと加算/除算しない。',classification='一意batch原logを元config順/TRANSACTION_PROBE終端で対応。operation/kill_point/fail_pointで正常・注入異常・kill前・再開・specialを分離。codec単体154件の各成否別時間は未測（値と成否は全件対照）。')
 
 
 def validate_run(output,item):
@@ -116,9 +153,14 @@ def validate_run(output,item):
     summary='evidence/codec.json' if item['phase']=='codec' else 'evidence/summary.json'
     require(result['summary']==(json.loads(files[summary]) if summary in files else None),'原summary対応')
     for stream in ['stdout.log','stderr.log']:require(files.get(stream,b'')==(path/stream).read_bytes(),'原stream対応')
-    require(json.loads(files['execution.json'])==load(path/'exit.json'),'原実行記録対応')
+    execution=load(path/'exit.json')
+    require(json.loads(files['execution.json'])==execution,'原実行記録対応')
+    require(all(item[key]==execution[key] for key in ['seconds','exit_code','ok']),'索引の実行判定対応')
+    require(load(path/'environment.json')['case_workers']==(8 if load(path/'environment.json')['os'].startswith('Windows') else 16),'worker条件')
+    require(load(path/'argv.json')['budget']==(120 if item['phase']=='codec' else 180),'固定予算')
     module_spec=importlib.util.spec_from_file_location('cost060_driver',ROOT/'tools/check_equipment_save_codec_cost.py');driver=importlib.util.module_from_spec(module_spec);module_spec.loader.exec_module(driver)
     require(driver.summarize(files)==load(path/'measurements.json'),'原spanから再計算不一致')
+    require(not load(path/'measurements.json')['errors'],'span不整合を成功扱いしない')
     case_contract=load(Path(__file__).with_name('cases.json'))
     require(driver.inputs(files,case_contract)==load(path/'inputs.json'),'入力索引再計算不一致')
     return files
@@ -160,7 +202,7 @@ def main(args):
             times[phase+'-'+mode]=dict(all=values,median=statistics.median(values),minimum=min(values),maximum=max(values))
     code=(output/'code-fixed-sha.txt').read_text().strip();require(code==index['code_sha'],'計測code固定SHA')
     code_scope=scope(code);head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
-    result=dict(evidence_integrity=True,pairs=pairs,times=times,code_scope=code_scope,latest_scope=scope(head),self_tests=[])
+    result=dict(evidence_integrity=True,analysis_code_sha=head,measurement_code_sha=code,transaction_breakdown={str(rep):transaction_breakdown(data[('transaction','on',rep)],{x['case']:x for x in cases['transaction_cases']}) for rep in [1,2,3]},pairs=pairs,times=times,code_scope=code_scope,latest_scope=scope(head),self_tests=[])
     if args.self_test:
         baseline=data[('codec','off',1)];actual=data[('codec','on',1)]
         for name in ['missing-input','changed-native-document','changed-reason']:
@@ -174,6 +216,20 @@ def main(args):
             try:compare_codec(baseline,changed)
             except ValueError:rejected=True
             require(rejected,'改変を受理:'+name);result['self_tests'].append(dict(name=name,rejected=True))
+        transaction_off=data[('transaction','off',1)];transaction_on=data[('transaction','on',1)]
+        for name in ['transaction-missing-case','transaction-error-target','transaction-memory','transaction-output-bytes']:
+            altered=dict(transaction_on)
+            if name=='transaction-missing-case':altered.pop('evidence/normal-pending/case.json')
+            elif name=='transaction-output-bytes':
+                key=next(p for p in altered if p.endswith('/converted.json'));altered[key]+=b'changed'
+            else:
+                key='evidence/fault-source.open.before/case.json';row=json.loads(altered[key])
+                if name=='transaction-error-target':row['actual']['errors'][0]['target']+='/different'
+                else:row['commands'][-1]['result']['memory_unchanged']=False
+                altered[key]=json.dumps(row).encode()
+            comparison=compare_transaction(transaction_off,altered,{x['case'] for x in cases['transaction_cases']})
+            require(not comparison['complete'],'取引改変受理:'+name)
+            result['self_tests'].append(dict(name=name,rejected=True))
         sample=load(output/index['runs'][0]['name']/'results.json')['archive']
         damaged=dict(sample,sha256='0'*64)
         try:unpack(damaged)

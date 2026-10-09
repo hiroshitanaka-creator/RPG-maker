@@ -85,10 +85,23 @@ def archive(area):
     return dict(format='tar+gzip+base64',sha256=digest(packed),bytes=len(packed),data=base64.b64encode(packed).decode(),members={name:dict(bytes=len(raw),sha256=digest(raw)) for name,raw in files.items()}),files
 
 
+
+def canonical_logs(files):
+    for name,raw in files.items():
+        if not name.endswith('.log') or name=='supervisor.log' or 'profile' in Path(name).parts:continue
+        record_name=name.removesuffix('.log')+'-execution.json'
+        if record_name in files:
+            record=json.loads(files[record_name])
+            if record.get('batch_record'):
+                canonical='evidence/'+record['batch_record'].removesuffix('-execution.json')+'.log'
+                assert canonical in files and files[canonical]==raw, 'batch投影log不一致:'+name
+                continue
+        yield name,raw
+
+
 def summarize(files):
     labels={};roots=[];errors=[];groups=[]
-    for name,raw in files.items():
-        if not name.endswith('.log') or name=='supervisor.log' or '/profile/' in name:continue
+    for name,raw in canonical_logs(files):
         for line in raw.splitlines():
             if not line.startswith(b'COST060 '):continue
             try:

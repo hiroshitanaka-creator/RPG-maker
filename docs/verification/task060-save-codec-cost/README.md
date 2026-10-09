@@ -4,7 +4,7 @@
 
 - CLI: `python tools/check_equipment_save_codec_cost.py --godot /tmp/qa060/engine/Godot_v4.7.2-stable_linux.x86_64 --base-sha 6695d7b802137e9d6b7e468a1414c04d658a5380 --output docs/verification/task060-save-codec-cost`
 - 挿入器: `python tools/fixtures/equipment-save-codec-cost/instrument_copy.py --checkout <専用一時checkout>`。元4ファイルを固定hashで照合し、本体逆変換一致を必須にする。元条件式・return・検査本体は不変。
-- 比較器: `python tools/fixtures/equipment-save-codec-cost/compare_results.py --output <専用QA先> --self-test`。欠落・改変・担当外変更を拒否する。
+- 比較器: `python tools/fixtures/equipment-save-codec-cost/compare_results.py --output <専用QA先> --self-test`。欠落・改変・担当外変更を拒否する。scope負例の内部CLIは`--scope-sha <完全SHA>`。
 - 条件は既存codec全ケースと全取引172ケース、各off/on 3回。各反復はoff/on、on/off、off/onの順。固定基点の一時checkoutを使い、最新本番の固定基点とのbytes一致を別に確認する。
 - 予算はcodec120秒、取引外180/内174/子30秒、import600秒。既存workerはLinux16ケース/4再開、Windows8ケース/2再開、batch最大4を維持。試行を同hostで並列実行しない。
 - 既存codec検査・fixture・期待、取引driver・probe・172件/2178条件/97kill・16伝播を変更しない。6正常seedのみを全体の代表にしない。F4環境準備・inspect-prepared条件変更はしない。
