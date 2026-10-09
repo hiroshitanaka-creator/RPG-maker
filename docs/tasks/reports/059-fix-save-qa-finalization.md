@@ -2,7 +2,21 @@
 
 **未達を含む提出。F5の修正・専用検証と、保存全体の受入を分ける。F1時間未達、F4実ENOSPC/nested別volume NOT_RUNは継続。** 最終文書SHAの全CI終了とclean/未pushは最終応答で確定する。自身のSHAを文書へ再帰固定しない。
 
-## 最新固定コードと両OS原証拠の対応
+## 351最終Linux診断失敗への継続対応
+
+**現在の固定コードは41a34ea33fe184274e6722c88cdbca2a7ffd3708。元351ec408のLinux job113978145324の失敗原因は未確認のまま保持する。** [元提出の全51job](../../verification/task059-save-qa-finalization/submission351-ci.json)は45成功・6失敗。Linux最新は取引本体step成功、step16診断失敗。log取得はTransport closed、artifact11640835179は1,254,940,272bytesで取得ツールの536,870,912bytes上限を超えた。親も同じ取得不能を確認した。巨大artifactの再取得やアクセス拒否の迂回は行わない。
+
+同じ既存環境で、元351の実装12ファイルが固定55のhashと一致することを確認し、元5診断を180/30/180/30/180秒で再実行した。既存12（33.281173秒）、scope10正負（2.589834秒）、追加27（7.599010秒）、058反例（0.772162秒）、6seed/12sample（37.315539秒）は全exit0、全外側監督stopped=true。容量を圧迫する複製を避け、clean/SHA確認済みの既存058 checkoutを再利用した点はCIの準備操作と異なる。これは元job失敗の原因特定や再現成功ではない。初回importはexit0でもERRORを検出したため成功扱いせず原logを保持し、既存run_ciと同じ専用processのprofile環境でimportをやり直し、警告/ERRORなしと終了を確認した。OS設定・依存導入・別環境は変更していない。
+
+調査で別の実反例を確認した。旧診断runnerの058 checkout準備先に既存directoryがあると、Git実exit128で診断runnerはexit1となり、execution.jsonも準備process記録も欠落した。sentinelは不変。これが元job原因だったとは断定しない。41a34eaでは準備前にinventoryを保存し、同じ30秒上限の専用ProcessCaptureでGitの所有子孫も監督する。準備の実exit/保存失敗/未確認を上位に残し、5診断は失敗後も全て試行する。準備失敗の実再検証はGit128、全5試行、基点診断1、独立した既存12/scope10/追加27/6seedは0となり、全体FAILを維持した。
+
+既存全artifactは維持し、新helper diagnostic_evidence059.pyと専用workflowでtask059だけのZIP、全regular fileのhash索引、空directory/リンクtarget記録、失敗case/実exit/秒/予算を持つsummaryを別artifactへ保存する。失敗理由はGitHub annotationにも出す。既存証拠・一時checkoutは削除せず、既存archive出力/検査/予算/旧055/057配線を変えない。実成功・過去実失敗・証拠欠落の3入力は期待exit0/1/1、ZIP全member bytes一致。新準備失敗の633fileも一致し、ZIPは2,975,382bytes。小さい証拠を成功へ補完する仕組みではない。
+
+肥大については、既存upload-artifactがnative-evidence全体を含むため、Linuxの旧053 checkoutも含むことを確認した。手元の同経路legacy053は約1.4GB、binary検査の必要なmini project群は約73MBだった。元1.25GB ZIPの全bytesは未取得なので、その全内訳を照合したとはしない。新しい小さい診断artifactは旧checkoutやbinary mini projectの外に保存する。
+
+原証拠はresume351-code55-diagnostic、setup-diagnostic-before41/after41、compact-diagnostic-validation41（実行helper hashあり）。compact-diagnostic-validationはsetup欄追加前の途中helperで、最終41の証明と混ぜない。旧固定55のcode inventory/scope証拠は別名で保持した。新固定13ファイル・scope10正負を確認。coreのprocess_capture/process_tree/driver/既存12・追加27検査本文は55から不変。新固定の両OS CIと最終文書SHA全CIは後続確認として区別する。inspect-preparedのQA log条件、F1/F4、原351の未確認は別に保持する。
+
+## 351提出までの固定コードと両OS原証拠の対応
 
 **固定コード55a56d09d7c74becaeacdecede16836d93ba8cbc。実行HEAD ac768dee939783d41b8a6788af4b61551fd96d7b。** 30aca09の26件は途中版であり、最新成功へ流用しない。最新は既存12件＋追加27件（負例の所定非0/未確認も含む）を両OSで実行した。両OSともscope10正負・基点058の2反例・6seed診断はexit0。
 

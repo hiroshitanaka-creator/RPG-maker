@@ -2,7 +2,7 @@
 
 [実装前計画と世代対応](plan.md)、[059報告](../../tasks/reports/059-fix-save-qa-finalization.md)を入口とする。全取引のF1時間未達、F4実ENOSPC/nested別volume NOT_RUNを診断sampleや回収成功で置き換えない。
 
-- [完成コードSHA](code-fixed-sha.txt)は55a56d09d7c74becaeacdecede16836d93ba8cbc。[code inventory](code-inventory.json)でGit blob/raw SHA-256/bytesを区別する。
+- [完成コードSHA](code-fixed-sha.txt)は41a34ea33fe184274e6722c88cdbca2a7ffd3708。[code inventory](code-inventory.json)でGit blob/raw SHA-256/bytesを区別する。旧55はcode-fixed-55-before-diagnostic/code-inventory-55-before-diagnostic/scope059-policy-55-before-diagnosticに保持。
 - [制限済みscope正負](scope059-current-policy.json)は後続059文書正例、担当外code/固定差分/code改変/旧057証拠/058過去報告/担当外文書/依頼本文/decision-log書換えの10件を実exitで検証する。旧scope057は変更していない。古いscope059-code/scope059-final-codeは途中版として保持し、制限済み版の結果と混ぜない。
 - [本番・保護・原証拠不変inventory](unchanged-inventory.json)は基点579ca1fの2259パス。実bytesのGit blobとraw SHA-256を記録。[原archive照合](old-archives-audit.json)は053/055/057の44archive・317273member全照合。
 - [元検査保持](method-preservation.json)：元172/2178・97kill、16伝播、worker/batch、180/174/30/600秒・15分、case/assertion本文、055 scope、057の12検証を保持。
@@ -28,3 +28,5 @@ CI後の停止順序修正：固定55a56d0の既存12成功/追加27成功をast
 
 
 最新両OSの対応はci-code55-linux-transaction/ci-code55-windows-transaction。固定コード55a56d09、実行HEADac768de、既存12＋追加27＋scope10を両OSで確認。latest-ci-receipt-audit.jsonでLinux297/Windows258全受付・共有batch終端全内容・実log bytesを独立照合した。全取引は両OS時間未達。ci-code55-protected-godotは同HEADのR8/保護前後成功を含むdecoded UTF-8 job textで、GitHub raw job bytes/ZIPとは区別する。最新primitives両OSはjob metadata成功、原logはTransport closedで未取得。code55-ci-snapshotは途中収集時点であり、最終文書SHAの全CI結果は最終応答で確定する。
+
+351提出後の追記：submission351-ci.jsonは全51job・45成功6失敗。Linux最新診断失敗の内訳は取得不能で未確認。resume351-code55-diagnosticは同固定55の手元5診断再実行成功であり、元失敗の原因特定とは別。setup-diagnostic-before41/after41は別途実再現した準備Git失敗時の終端記録欠落と修正後の全5診断試行。compact-diagnostic-validation41は固定41 helper実hash付きの小さい独立ZIPの実成功/実失敗/欠落証拠の正負と全member bytes照合。全既存archiveを保持し、新固定41の小さいCI診断artifactも全原物へ追加する。

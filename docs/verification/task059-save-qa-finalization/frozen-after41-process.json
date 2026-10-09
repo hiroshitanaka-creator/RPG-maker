@@ -1,0 +1,61 @@
+{
+  "planned_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tools/check_frozen_files.py"
+  ],
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "tools/check_frozen_files.py"
+  ],
+  "cwd": "/workspace/RPG-maker",
+  "pid": 27946,
+  "started_utc": "2026-10-09T19:42:14.943561+00:00",
+  "started_monotonic": 9526.965203882,
+  "accepted_utc": "2026-10-09T19:42:14.942550+00:00",
+  "accepted_monotonic": 9526.964184498,
+  "ended_utc": "2026-10-09T19:42:15.010959+00:00",
+  "ended_monotonic": 9527.032592699,
+  "terminal": true,
+  "seconds": 0.06840820100114797,
+  "budget_seconds": 30,
+  "exit_code": 0,
+  "timed_out": false,
+  "timeout_kind": null,
+  "exception": null,
+  "exit_unavailable_reason": null,
+  "deadline_remaining_start": 29.999990645001162,
+  "deadline_remaining_end": 29.931582444000014,
+  "kill": {
+    "attempted": false,
+    "ok": null
+  },
+  "wait": {
+    "attempted": true,
+    "ok": true
+  },
+  "streams": "stdout+stderr",
+  "planned_log": "/workspace/RPG-maker/docs/verification/task059-save-qa-finalization/frozen-after41.log",
+  "log": "/workspace/RPG-maker/docs/verification/task059-save-qa-finalization/frozen-after41.log",
+  "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+  "result": {},
+  "kill_point": null,
+  "record_path": "/workspace/RPG-maker/docs/verification/task059-save-qa-finalization/frozen-after41-process.json",
+  "record_saved": true,
+  "supervision": {
+    "mechanism": "Linux dedicated session",
+    "configured": true,
+    "ownership": {
+      "session": 27946,
+      "group": 27946,
+      "root_pid": 27946,
+      "token": "02429fe29df34623bb1ef22d5776f6da"
+    },
+    "stopped": true,
+    "stop_attempted": false,
+    "reason": null,
+    "observed_members": []
+  },
+  "cleanup_remaining_end": 29.931582444000014
+}
