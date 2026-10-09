@@ -84,6 +84,11 @@ class Suite:
         def swap(child):
             other=root/'other.json';other.write_bytes(source.read_bytes());source.rename(root/'source-preserved.json');other.rename(source)
         value=self.run(root,'swap',label='file-swap',path=str(source),kill_point='native.swap.after',hold=swap);self.check('file-swap-same-bytes-denied',not value['result']['ok'] and source.read_bytes()==(root/'source-preserved.json').read_bytes(),value)
+        if os.name=='nt':
+            def swap_alias(child):
+                other=root/'other-alias.json';other.write_bytes(source.read_bytes());source.rename(root/'source-alias-preserved.json');other.rename(source)
+            value=self.run(root,'swap',label='file-swap-alias',path=str(source),reopen_path=str(source).swapcase(),kill_point='native.swap.after',hold=swap_alias)
+            self.check('file-swap-case-alias-denied',not value['result']['ok'] and source.read_bytes()==(root/'source-alias-preserved.json').read_bytes(),value)
         paths={'root-prefix':str(root)+'-outside/file','parent':str(root/'../escape'),'dot':str(root)+'/./file','nonascii-space':str(root/'保存 領域'/'file.tmp')}
         if os.name=='nt':paths.update({'drive-relative':'C:save.json','unc':'//server/share/save.json','ads':str(root/'save.json:stream'),'reserved':str(root/'CON.txt'),'dot-suffix':str(root/'file.'),'space-suffix':str(root/'file '),'case-alias':str(root).swapcase()+'/file.tmp','long-path':str(root)+'/'+('/'.join(['long_component'*3]*8))+'/file.tmp','other-drive':'Z:/055/save.json'})
         else:paths.update({'long-path':str(root)+'/'+('/'.join(['long_component'*3]*8))+'/file.tmp'})

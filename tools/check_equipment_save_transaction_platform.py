@@ -46,7 +46,7 @@ class RestartBatch:
     def __init__(self,suite):
         self.suite=suite
         self.queue=queue.Queue()
-        self.threads=[threading.Thread(target=self.worker,daemon=True)]
+        self.threads=[threading.Thread(target=self.worker,daemon=True) for _ in range(2)]
         for thread in self.threads:thread.start()
 
     def submit(self,root,cfg):
@@ -56,8 +56,8 @@ class RestartBatch:
     def worker(self):
         while True:
             requests=[self.queue.get()]
-            for _ in range(7):
-                try:requests.append(self.queue.get(timeout=.03))
+            for _ in range(3):
+                try:requests.append(self.queue.get(timeout=.06))
                 except queue.Empty:break
             try:
                 results=self.suite.run_restart_batch(requests)

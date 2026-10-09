@@ -50,6 +50,7 @@ def propagation(checkout,output):
     # 旧14改変を同じ実子exitで実行。改変後のmanifest再hashも原bytes/候補を照合する。
     original=module(checkout/'tools/fixtures/equipment-save-transaction/run_ci.py')
     rows=[]
+    baseline={p.relative_to(output).as_posix():digest(p.read_bytes()) for p in output.rglob('*') if p.is_file()}
     variants=['control','missing-case','zero-checks','warning-log','failed-exit','timeout','modified-bytes','missing-bytes','false-assert','wrong-phase','missing-manifest','missing-summary','rehash-output','rehash-backup','empty-log','count-log-rehash']
     for name in variants:
         area=output.parent/'propagation'/name;shutil.copytree(output,area)
@@ -79,6 +80,13 @@ def propagation(checkout,output):
             path=next((area/case/'final/transactions').glob('*/'+('converted.json' if name=='rehash-output' else 'source.bin')));path.write_bytes(path.read_bytes()+b'x')
             file_list=load(path.parents[1].parent/'files.json');relative=path.relative_to(area/case/'final').as_posix();file_list[relative]['sha256']=digest(path.read_bytes());file_list[relative]['bytes']=path.stat().st_size;write(area/case/'final/files.json',file_list)
             write(area/'sha256.json',{p.relative_to(area).as_posix():digest(p.read_bytes()) for p in area.rglob('*') if p.is_file() and p.name!='sha256.json'})
+        # 全正例原bytesと差分で各負例原物を再構築できる。巨大な同一コピーだけarchiveから除く。
+        delta=output.parent/'negative-deltas'/name;delta.mkdir(parents=True)
+        actual={p.relative_to(area).as_posix():digest(p.read_bytes()) for p in area.rglob('*') if p.is_file()}
+        changed={path:value for path,value in actual.items() if baseline.get(path)!=value}
+        for path in changed:
+            target=delta/'bytes'/path;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(area/path,target)
+        write(delta/'delta.json',{'baseline':'evidence/results','deleted':sorted(set(baseline)-set(actual)),'changed':changed,'reconstructed_files':len(actual)})
         argv=[sys.executable,str(Path(__file__).resolve()),'--validate-only','--checkout',str(checkout),'--godot',GODOT,'--output',str(area)]
         start=time.monotonic();child=subprocess.run(argv,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=30);(output.parent/(name+'-validation.log')).write_bytes(child.stdout)
         expected=0 if name=='control' else 1;require(child.returncode==expected,'改変伝播:'+name);rows.append({'case':name,'expected_exit':expected,'exit_code':child.returncode,'seconds':time.monotonic()-start,'log_sha256':digest(child.stdout)})

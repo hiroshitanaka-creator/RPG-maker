@@ -16,6 +16,8 @@ WindowsはMSVC環境shellから実行。任意の`--cpp`も完全commitを照合
 
 rootをhandle/fdで保持し、各componentをreparse/O_NOFOLLOW・volumeで照合する。Windows directory/fileはdelete共有を与えず保持する。Linuxはroot fdからopenat/fstat、flock、O_EXCL、renameat2(RENAME_NOREPLACE)を使う。write_exactは部分write/EINTRを処理し、flush/closeのOS errorを返す。未確認の機能へ通常WRITE/rename fallbackしない。
 
+WindowsはNtCreateFileのRootDirectory/OBJ_DONT_REPARSEとNtSetInformationFileの相対renameを用いる。drive root以降は親handleから解決し、各生存directory handleの属性・volumeを再確認する。lock/観測file/保持directoryのキーはCompareStringOrdinalのcase-insensitive比較へ統一する。API欠落は失敗にする。
+
 writer.lockは生存handleでkernel lockを保持し、終了で解放する。PID/nonceは監査用。旧053 leaseの生存照会だけalive/dead/unknownで、確定dead以外拒否する。新regular leaseをexclusive renameで公開すると旧053のis_link検証が拒否する。既存symlink lease/owner/保存原物を削除しない。旧原物からの復旧はLinux実processで検査する。Windowsでは旧053自身が全pathを拒否する。
 
 確定backup/出力へ置換・切詰めを許さず、lock所有下の未完tmp再利用とreceipt.tmp→receipt.json置換を別API契約にする。取引intent/候補照合の責任はGDScript側。namespaceへの悪意ある非協調操作や電源断/媒体故障の全耐久性をprocess kill検査の成功から推定しない。実ENOSPC/専用nested別volumeは専用領域提供が必要で、注入を実測と呼ばない。

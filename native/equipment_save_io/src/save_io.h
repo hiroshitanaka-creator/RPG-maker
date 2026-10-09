@@ -14,6 +14,7 @@ using NativeHandle = int;
 constexpr NativeHandle BAD_HANDLE = -1;
 #endif
 namespace godot {
+struct NativePathLess { bool operator()(const std::string &a,const std::string &b) const; };
 class EquipmentSaveIO : public RefCounted {
     GDCLASS(EquipmentSaveIO, RefCounted)
     struct Identity { uint64_t volume=0, file=0, links=0, size=0; bool directory=false; };
@@ -23,10 +24,10 @@ class EquipmentSaveIO : public RefCounted {
     bool ready=false;
     Identity root_identity;
     std::map<int64_t,OpenFile> files;
-    std::map<std::string,NativeHandle> locks;
-    std::map<std::string,Identity> observations;
+    std::map<std::string,NativeHandle,NativePathLess> locks;
+    std::map<std::string,Identity,NativePathLess> observations;
     std::vector<NativeHandle> pins;
-    std::map<std::string,NativeHandle> directory_pins;
+    std::map<std::string,NativeHandle,NativePathLess> directory_pins;
     int64_t next_id=1;
     int last_error=0;
     bool relative(const String &path,std::string &rel) const;

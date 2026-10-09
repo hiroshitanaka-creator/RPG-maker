@@ -46,7 +46,7 @@ func _initialize() -> void:
 					result=io.read_all(opened.handle)
 					io.close_file(opened.handle)
 					pause(config,"native.swap.after")
-					result=io.open_read(config.path)
+					result=io.open_read(config.get("reopen_path",config.path))
 			"process":result={"ok":true,"state":io.process_state(int(config.pid))}
 		if config.operation=="lock" and result.ok:pause(config,"native.lock.after")
 	result.erase("bytes")
