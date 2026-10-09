@@ -18,7 +18,7 @@ import sys
 import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/"tools/fixtures/equipment-save-transaction-platform"))
-from process_capture import ProcessCapture, utc
+from process_capture import ProcessCapture, utc, save
 
 ROOT = Path(__file__).resolve().parents[1]
 BAD = re.compile(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error|Fontconfig error|_FAIL:')
@@ -40,8 +40,7 @@ def load(path):
 
 
 def write(path, value):
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n')
+    save(path, value)
 
 
 class RestartBatch:
@@ -57,19 +56,25 @@ class RestartBatch:
                         for i in range(2 if os.name=='nt' else 4)]
         for thread in self.threads:thread.start()
 
-    def submit(self, root, cfg):
+    def submit(self, root, cfg, request=None):
+        request = request or self.suite.accept_request(root, cfg, cfg.get('result','restarted-result.json').removesuffix('-result.json'))
         future = Future()
-        request = dict(root=root, cfg=cfg, future=future, queued=time.monotonic(),
-                       queued_utc=utc(), worker_started=None, batch_id=None, completed=False)
-        with self.lock:
-            if self.stopping.is_set():raise RuntimeError('restart_shutdown: 受付終了')
-            self.requests.append(request)
-            self.queue.put(request)
+        request.update(future=future, queued=time.monotonic(), queued_utc=utc())
         try:
-            return future.result(timeout=max(.01, self.suite.deadline-time.monotonic()))
-        except TimeoutError as exc:
-            # Future timeoutの空文字をsuite/子timeoutと区別する。
-            raise TimeoutError('restart_future_deadline: root='+str(root)+' batch='+str(request['batch_id'])) from exc
+            with self.lock:
+                if self.stopping.is_set():raise RuntimeError('restart_shutdown: 受付終了')
+                self.requests.append(request)
+                self.queue.put(request)
+            try:
+                return future.result(timeout=max(.01, self.suite.deadline-time.monotonic()))
+            except TimeoutError as exc:
+                raise TimeoutError('restart_future_deadline: root='+str(root)+' batch='+str(request['batch_id'])) from exc
+        except BaseException as exc:
+            if request not in self.requests and self.stopping.is_set():
+                if not future.done():future.set_exception(exc)
+                request['future_done']=future.done()
+                self.suite.finalize_unstarted(request, exc, 'not_started_queue_shutdown: 受付終了')
+            raise
 
     def worker(self):
         while not self.stopping.is_set():
@@ -100,42 +105,45 @@ class RestartBatch:
             except BaseException as exc:
                 for request in requests:
                     request['exception'] = type(exc).__name__+': '+str(exc)
+                    if not request.get('terminal_row'):
+                        try:self.suite.finalize_unstarted(request, exc, 'not_started_queue_shutdown: 未実行batch' if self.stopping.is_set() else None)
+                        except BaseException as error:request['record_error'] = repr(error)
                     if not request['future'].done():request['future'].set_exception(exc)
             finally:
                 for request in requests:request['worker_finished'] = time.monotonic()
 
     def close(self):
-        self.stopping.set()
-        with self.lock:
+        # 並行/再呼出しを直列化。workerが書いているrecordをcloseが補完しない。
+        with self.suite.close_lock:
+            self.stopping.set()
+            with self.lock:
+                for request in self.requests:
+                    if not request['future'].done():
+                        request['exception'] = 'restart_shutdown: 未完future'
+                        request['future'].set_exception(RuntimeError(request['exception']))
+            self.suite.stop_children()
+            for thread in self.threads:
+                thread.join(timeout=max(0, self.suite.cleanup_deadline-time.monotonic()))
+            live = [thread.name for thread in self.threads if thread.is_alive()]
             for request in self.requests:
-                if not request['future'].done():
-                    request['exception'] = 'restart_shutdown: 未完future'
-                    request['future'].set_exception(RuntimeError(request['exception']))
-        self.suite.stop_children()
-        for thread in self.threads:
-            thread.join(timeout=max(0, self.suite.cleanup_deadline-time.monotonic()))
-        for request in self.requests:
-            request['future_done'] = request['future'].done()
-            if request['worker_started'] is None or request.get('exception') == 'RuntimeError: restart_shutdown: 未実行batch':
-                request['missing_reason'] = 'not_started_queue_shutdown: suite内側174秒の受付/待機終了'
-                label = request['cfg'].get('result','restarted-result.json').removesuffix('-result.json')
-                record = self.suite.output/request['root'].name/(label+'-execution.json')
-                write(record, dict(argv=None, pid=None, started_utc=None, ended_utc=utc(), exit_code=None,
-                      exit_unavailable_reason=request['missing_reason'], timed_out=True,
-                      timeout_kind='restart_future_deadline', result={}, log=None, log_sha256=None,
-                      queued_utc=request['queued_utc'], batch_id=request['batch_id'],
-                      dequeued=request.get('dequeued'), batch_started=request.get('batch_started'), options=request['cfg']))
-        unreaped = []
-        for record in self.suite.output.rglob('*-execution.json'):
-            value = load(record)
-            if value.get('pid') is not None and (value.get('exit_code') is None or value.get('wait',{}).get('ok') is not True):
-                unreaped.append(record.relative_to(self.suite.output).as_posix())
-        rows = [{key:(str(value) if key=='root' else value) for key,value in request.items()
-                 if key not in ['future','cfg']} for request in self.requests]
-        live = [thread.name for thread in self.threads if thread.is_alive()]
-        write(self.suite.output/'restart-queue.json', dict(requests=rows, live_workers=live,
-              recovery_complete=not live and not unreaped, unreaped_process_records=unreaped, deadline_remaining=self.suite.cleanup_deadline-time.monotonic()))
-        return live
+                request['future_done'] = request['future'].done()
+                if not request.get('terminal_row') and (request['worker_started'] is None or request.get('worker_finished') is not None):
+                    try:self.suite.finalize_unstarted(request, RuntimeError(request.get('exception','worker未起動')), 'not_started_queue_shutdown: suite内側174秒の受付/待機終了')
+                    except BaseException as error:request['record_error'] = repr(error)
+            errors, unreaped = self.suite.reconcile_requests()
+            rows = [self.suite.request_inventory(request) for request in self.suite.accepted]
+            pending = [r['request_id'] for r in self.suite.accepted if r.get('future') is not None and not r['future'].done()]
+            recovery = dict(requests=rows, live_workers=live, pending_futures=pending,
+                            recovery_complete=not live and not pending and not errors and not unreaped,
+                            evidence_errors=errors, unreaped_process_records=unreaped,
+                            deadline_remaining=self.suite.cleanup_deadline-time.monotonic())
+            try:write(self.suite.output/'restart-queue.json', recovery)
+            except BaseException as exc:
+                recovery.update(recovery_complete=False, inventory_save_error=repr(exc))
+                self.suite.recovery = recovery
+                raise
+            self.suite.recovery = recovery
+            return live
 
 
 class Suite:
@@ -156,6 +164,10 @@ class Suite:
         self.active = set()
         self.timings = []
         self.seeds = {}
+        self.request_lock = threading.RLock()
+        self.close_lock = threading.RLock()
+        self.accepted = []
+        self.recovery = None
         self.restarts=RestartBatch(self)
         self.rows = []
         self.failures = []
@@ -184,90 +196,189 @@ class Suite:
                               deadline=min(start+30, self.deadline), cleanup_deadline=self.cleanup_deadline,
                               timeout_kind='suite_inner_174_seconds' if remaining<30 else 'child_30_seconds')
 
-    def run(self, root, cfg, label, kill=False, mutate=None):
-        config_path = root/(label+'-config.json')
-        cfg = dict(cfg, result=label+'-result.json')
-        write(config_path, cfg)
-        argv = [str(self.godot), '--headless', '--path', str(ROOT), '--script',
-                'res://tools/equipment_save_transaction_probe.gd', '--', str(config_path)]
-        if not kill and mutate is None:return self.restarts.submit(root,cfg)
-        log_path = self.output/root.name/(label+'.log')
-        record = self.output/root.name/(label+'-execution.json')
-        capture = self.capture(argv, log_path, record, self.env(root))
-        with self.active_lock:self.active.add(capture)
+    def planned_argv(self, path):
+        return [str(self.godot), '--headless', '--path', str(ROOT), '--script',
+                'res://tools/equipment_save_transaction_probe.gd', '--', str(path)]
+
+    def accept_request(self, root, cfg, label):
+        with self.request_lock:
+            if self.restarts.stopping.is_set():raise RuntimeError('restart_shutdown: 受付終了')
+            request_id = 'request-%06d' % len(self.accepted)
+            request = dict(request_id=request_id, root=root, cfg=dict(cfg), label=label,
+                           planned_record='requests/'+request_id+'-execution.json',
+                           planned_projection=root.name+'/'+label+'-execution.json',
+                           planned_argv=self.planned_argv(root/(label+'-config.json')),
+                           queued=time.monotonic(), queued_utc=utc(), worker_started=None,
+                           batch_id=None, completed=False, future_done=None)
+            self.accepted.append(request)
+        return request
+
+    def request_inventory(self, request):
+        return {key:(str(value) if key=='root' else value) for key,value in list(request.items())
+                if key not in ['future','cfg','capture_object']}
+
+    def finalize_request(self, request, row):
+        row = dict(row, request_id=request['request_id'], batch_id=request['batch_id'],
+                   planned_record=request['planned_record'], queued_utc=request['queued_utc'],
+                   options=request['cfg'], terminal=True)
+        request['terminal_row'] = row
         try:
+            write(self.output/request['planned_record'], row)
+            write(self.output/request['planned_projection'], row)
+        except BaseException as exc:
+            request['record_error'] = repr(exc)
+            raise
+        return row
+
+    def finalize_unstarted(self, request, exc, reason=None):
+        # processに関する事実を持たない要求だけ。記録不在から未起動と推論しない。
+        if request.get('capture') is not None:
+            raise RuntimeError('起動状態不明captureを未起動へ補完しない')
+        row = dict(planned_argv=request['planned_argv'], argv=None, pid=None,
+                   started_utc=None, started_monotonic=None, ended_utc=utc(), ended_monotonic=time.monotonic(),
+                   exit_code=None, exception=type(exc).__name__+': '+str(exc),
+                   exit_unavailable_reason=reason or 'not_started: '+type(exc).__name__+': '+str(exc),
+                   timed_out=isinstance(exc,(TimeoutError,subprocess.TimeoutExpired)),
+                   timeout_kind='restart_future_deadline' if isinstance(exc,TimeoutError) else None,
+                   result={}, log=None, log_sha256=None, supervision={'configured':False,'stopped':None,'reason':'not_started'})
+        return self.finalize_request(request, row)
+
+    def reconcile_requests(self):
+        errors=[];unreaped=[]
+        for request in self.accepted:
+            identity=request['request_id']; path=self.output/request['planned_record']
+            if request.get('record_error'):errors.append(identity+': 保存失敗 '+request['record_error'])
+            try:
+                row=load(path)
+                if row.get('request_id')!=identity or row.get('batch_id')!=request['batch_id'] or row.get('planned_record')!=request['planned_record'] or row.get('terminal') is not True:
+                    raise ValueError('受付ID/batch/予定先/終端不一致')
+                memory=request.get('terminal_row')
+                if memory is None or row!=memory:raise ValueError('所有終端情報と原record不一致')
+                projection=load(self.output/request['planned_projection'])
+                if projection!=row:raise ValueError('root投影不一致')
+                if row.get('pid') is not None and (row.get('exit_code') is None or row.get('wait',{}).get('ok') is not True or row.get('supervision',{}).get('stopped') is not True):
+                    unreaped.append(request['planned_record'])
+                if row.get('pid') is None and (row.get('argv') is not None or row.get('log') is not None or row.get('exit_code') is not None or not row.get('exit_unavailable_reason')):
+                    raise ValueError('未起動の実process情報不正')
+                if row.get('batch_record'):
+                    batch=load(self.output/row['batch_record'])
+                    if batch.get('terminal') is not True or batch.get('batch_id')!=request['batch_id'] or identity not in batch.get('request_ids',[]) or batch.get('pid')!=row.get('pid'):
+                        raise ValueError('共有batch記録対応不一致')
+            except Exception as exc:errors.append(identity+': '+type(exc).__name__+': '+str(exc))
+            # live capture/future/workerはrecordの有無と独立した所有情報。
+            capture=request.get('capture_object')
+            if capture is not None and (not capture.finalized or (capture.child is not None and (capture.child.poll() is None or capture.row['supervision'].get('stopped') is not True))):
+                if request['planned_record'] not in unreaped:unreaped.append(request['planned_record'])
+        return errors,unreaped
+
+    def run(self, root, cfg, label, kill=False, mutate=None):
+        request=self.accept_request(root, cfg, label)
+        capture=None
+        try:
+            config_path=root/(label+'-config.json')
+            cfg=dict(cfg, result=label+'-result.json'); request['cfg']=cfg
+            write(config_path, cfg)
+            argv=self.planned_argv(config_path)
+            request['planned_argv']=argv
+            if not kill and mutate is None:return self.restarts.submit(root,cfg,request=request)
+            log_path=self.output/root.name/(label+'.log')
+            record=self.output/root.name/(label+'-execution.json')
+            capture=self.capture(argv,log_path,record,self.env(root))
+            request['capture_object']=capture;request['capture']='direct'
+            with self.active_lock:self.active.add(capture)
             with capture:
-                child = capture.child
-                marker = root/'paused.json'
+                child=capture.child
+                marker=root/'paused.json'
                 while not marker.exists():
-                    if child.poll() is not None:
-                        raise RuntimeError('境界到達前に終了:'+label+' '+log_path.read_text())
-                    if time.monotonic()>=capture.deadline:
-                        raise TimeoutError(capture.kind+': 境界待機超過')
+                    if child.poll() is not None:raise RuntimeError('境界到達前に終了:'+label+' '+log_path.read_text())
+                    if time.monotonic()>=capture.deadline:raise TimeoutError(capture.kind+': 境界待機超過')
                     time.sleep(.005)
-                hit = load(marker)
-                capture.row['kill_point'] = hit
-                if hit['point'] != cfg['kill_point'] or hit['pid'] != child.pid:
-                    raise RuntimeError('kill地点/PID不一致')
+                hit=load(marker);capture.row['kill_point']=hit
+                if hit['point']!=cfg['kill_point'] or hit['pid']!=child.pid:raise RuntimeError('kill地点/PID不一致')
                 if kill:capture.kill()
                 else:
-                    mutate(child)
-                    (root/'release').write_bytes(b'continue')
+                    mutate(child);(root/'release').write_bytes(b'continue')
                 capture.wait()
-                result_path = root/(label+'-result.json')
-                capture.row['result'] = load(result_path) if result_path.exists() else {}
+                result_path=root/(label+'-result.json')
+                capture.row['result']=load(result_path) if result_path.exists() else {}
+        except BaseException as exc:
+            request['exception']=type(exc).__name__+': '+str(exc)
+            if capture is None and not request.get('terminal_row') and 'future' not in request:
+                self.finalize_unstarted(request,exc)
+            raise
         finally:
-            capture.row['log'] = str(log_path.relative_to(self.output))
-            write(record, capture.row)
-            with self.active_lock:self.active.discard(capture)
-        return capture.row
+            if capture is not None:
+                try:
+                    row=dict(capture.row,log=str(log_path.relative_to(self.output)) if capture.child is not None else None)
+                    row=self.finalize_request(request,row)
+                finally:
+                    with self.active_lock:self.active.discard(capture)
+        return row
 
     def run_restart_batch(self, requests, batch_id):
-        configurations = [dict(r['cfg'], result=r['cfg'].get('result','restarted-result.json')) for r in requests]
-        first = requests[0]['root']
-        path = first/(configurations[0]['result'].removesuffix('-result.json')+'-batch.json')
-        write(path, configurations)
-        argv = [str(self.godot), '--headless', '--path', str(ROOT), '--script',
-                'res://tools/equipment_save_transaction_probe.gd', '--', str(path)]
-        log = self.output/'batches'/(batch_id+'.log')
-        record = self.output/'batches'/(batch_id+'-execution.json')
-        capture = self.capture(argv, log, record, self.env(first))
-        capture.row.update(batch_id=batch_id, batch_roots=[str(r['root']) for r in requests])
-        with self.active_lock:self.active.add(capture)
-        rows = []
+        configurations=[dict(r['cfg'],result=r['cfg'].get('result','restarted-result.json')) for r in requests]
+        first=requests[0]['root']
+        path=first/(configurations[0]['result'].removesuffix('-result.json')+'-batch.json')
+        argv=self.planned_argv(path)
+        log=self.output/'batches'/(batch_id+'.log')
+        record=self.output/'batches'/(batch_id+'-execution.json')
+        capture=None;rows=[];failure=None
+        for request in requests:request.update(planned_argv=argv, planned_batch_record=record.relative_to(self.output).as_posix())
         try:
+            write(path, configurations)
+            capture=self.capture(argv,log,record,self.env(first))
+            capture.row.update(batch_id=batch_id,batch_roots=[str(r['root']) for r in requests],request_ids=[r['request_id'] for r in requests])
+            for request in requests:request['capture_object']=capture;request['capture']=batch_id
+            with self.active_lock:self.active.add(capture)
             with capture:
                 capture.wait()
-                for request, options in zip(requests, configurations):
-                    root = request['root']
-                    result = load(root/options['result'])
-                    request['result_observed'] = True
+                for request,options in zip(requests,configurations):
+                    result=load(request['root']/options['result'])
+                    request['result_observed']=True
                     rows.append(dict(result=result))
+        except BaseException as exc:
+            failure=exc
+            raise
         finally:
-            # 子timeout/異常exit/JSON例外にも全rootへlogと終了記録を残す。
-            capture.row['root_completion'] = []
-            raw = log.read_bytes() if log.exists() else b''
-            for request, options in zip(requests, configurations):
-                root = request['root'];label = options['result'].removesuffix('-result.json')
-                result_path = root/options['result']
-                result = {}
+            save_errors=[]
+            if capture is None:
+                for request in requests:
+                    try:self.finalize_unstarted(request,failure or RuntimeError('capture構築未確認'))
+                    except BaseException as error:save_errors.append(repr(error))
+                unstarted=dict(requests[0].get('terminal_row',{}),batch_id=batch_id,
+                               request_ids=[r['request_id'] for r in requests],batch_roots=[str(r['root']) for r in requests])
+                try:write(record,unstarted)
+                except BaseException as error:save_errors.append(repr(error))
+            else:
                 try:
-                    if result_path.exists():result = load(result_path)
-                    reason = None if result else 'result file未取得'
-                except Exception as exc:reason = type(exc).__name__+': '+str(exc)
-                status = dict(root=str(root), result_observed=bool(result), missing_reason=reason)
-                capture.row['root_completion'].append(status)
-                root_log = self.output/root.name/(label+'.log')
-                root_log.parent.mkdir(parents=True, exist_ok=True);root_log.write_bytes(raw)
-                row = dict(capture.row, result=result, batch_record=record.relative_to(self.output).as_posix(),
-                           log=root_log.relative_to(self.output).as_posix(),
-                           queue_seconds=(request['worker_started']-request['queued']),
-                           coalesce_seconds=request['batch_started']-request['worker_started'], root_completion=status)
-                write(self.output/root.name/(label+'-execution.json'), row)
-                for index, item in enumerate(requests):
-                    if item is request and index<len(rows):rows[index] = row
-            write(record, capture.row)
-            with self.active_lock:self.active.discard(capture)
+                    capture.row['root_completion']=[]
+                    raw=log.read_bytes() if capture.child is not None and log.is_file() else None
+                    for index,(request,options) in enumerate(zip(requests,configurations)):
+                        root=request['root'];label=options['result'].removesuffix('-result.json')
+                        result_path=root/options['result'];result={}
+                        try:
+                            if result_path.exists():result=load(result_path)
+                            reason=None if result else 'result file未取得'
+                        except Exception as exc:reason=type(exc).__name__+': '+str(exc)
+                        status=dict(root=str(root),request_id=request['request_id'],result_observed=bool(result),missing_reason=reason)
+                        capture.row['root_completion'].append(status)
+                        root_log=self.output/root.name/(label+'.log')
+                        try:
+                            if raw is not None:
+                                root_log.parent.mkdir(parents=True,exist_ok=True);root_log.write_bytes(raw)
+                            row=dict(capture.row,result=result,batch_record=record.relative_to(self.output).as_posix(),
+                                     log=root_log.relative_to(self.output).as_posix() if raw is not None else None,
+                                     queue_seconds=request['worker_started']-request['queued'],
+                                     coalesce_seconds=request['batch_started']-request['worker_started'],root_completion=status)
+                            row=self.finalize_request(request,row)
+                            if index<len(rows):rows[index]=row
+                        except BaseException as error:
+                            request['record_error']=repr(error);save_errors.append(repr(error))
+                    # 一意batch原記録を確定。各rootのcompletionは自身のstatusとして独立する。
+                    write(record,capture.row)
+                finally:
+                    with self.active_lock:self.active.discard(capture)
+            if save_errors:raise RuntimeError('終端保存失敗: '+str(save_errors))
         return rows
 
     def seed(self, name, **options):
@@ -573,6 +684,7 @@ class Suite:
             if live:self.failures.append('worker未回収:'+','.join(live))
             recovery = load(self.output/'restart-queue.json')
             if recovery['unreaped_process_records']:self.failures.append('process未回収:'+','.join(recovery['unreaped_process_records']))
+            if not recovery['recovery_complete']:self.failures.append('全受付終端/監督の照合未完了:'+str(recovery['evidence_errors']))
             write(self.output/'timing.json', dict(suite_started=self.start, observations=self.timings,
                   units='monotonic_seconds', snapshot='inclusive; 累積並行時間、wall-timeへ単純加算禁止'))
         self.rows.sort(key=lambda row:row['case'])

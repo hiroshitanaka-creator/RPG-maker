@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        profile: [fixed055, latest]
+        profile: [fixed055, fixed057, latest]
         phase: [transaction, primitives]
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +35,13 @@ jobs:
         shell: bash
         run: |
           python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/equipment-save-transaction-platform/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha],check=True); subprocess.run(['git','checkout','--detach',sha],check=True)"
+      - name: 057完成コードを完全SHAで別checkout（当時の検査を保持）
+        if: matrix.profile == 'fixed057'
+        shell: bash
+        run: |
+          cp tools/fixtures/equipment-save-transaction-platform/diagnostic_fixed057.py "$RUNNER_TEMP/diagnostic_fixed057.py"
+          git fetch --no-tags --depth=1 origin 3cf4b6c293f6796220b43cf566f8eb792c3932ec
+          git checkout --detach 3cf4b6c293f6796220b43cf566f8eb792c3932ec
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -46,15 +53,20 @@ jobs:
         shell: bash
         run: git fetch --no-tags --depth=1 origin e003b126de6695fa131e07a3db14c3011fb74f2e b17f2b475ff8c58924720ea24cce8f205422c50b
       - name: 最新側のscope用完成SHAを完全SHAで取得
-        if: matrix.profile == 'latest'
+        if: matrix.profile != 'fixed055'
         shell: bash
         run: |
           python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/equipment-save-transaction-platform/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha],check=True)"
       - name: 057範囲用の基点・完成SHAを完全SHAで取得
-        if: matrix.profile == 'latest'
+        if: matrix.profile != 'fixed055'
         shell: bash
         run: |
           python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/task057-save-qa-diagnostics/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha,'849d02bd2ea4dd44298eef225fe9a12927858d1b','878c2316a4c9e72b253f7df001b6c6438ef7cb6d'],check=True)"
+      - name: 059範囲・058基点用の完全SHAを取得
+        if: matrix.profile == 'latest'
+        shell: bash
+        run: |
+          python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/task059-save-qa-finalization/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha,'579ca1f463aaf9e93275039a59cf9d1ffb86adb5','a6022f1e4a7689440928efe65db444336e9128e4'],check=True)"
       - name: 固定ビルド依存を導入
         run: python -m pip install scons==4.10.0
       - name: 提出済みDLL・SOを実ロード照合用に保持
@@ -68,14 +80,19 @@ jobs:
         env:
           EQUIPMENT_SHIPPED_ADDON_ROOT: ${{ runner.temp }}/native-evidence/shipped/equipment_save_io
         run: |
-          python tools/fixtures/equipment-save-transaction-platform/launch.py --output "$RUNNER_TEMP/native-evidence" --profile "${{ matrix.profile }}" --phase "${{ matrix.phase }}"
+          python tools/fixtures/equipment-save-transaction-platform/launch.py --output "$RUNNER_TEMP/native-evidence" --profile "${{ matrix.profile == 'fixed055' && 'fixed055' || 'latest' }}" --phase "${{ matrix.phase }}"
       - name: 保護照合（失敗時も実行）
         if: always()
         run: python tools/check_frozen_files.py
-      - name: 057ログ回収正負・scope・6seed計測対照（既存判定と別）
-        if: always() && matrix.profile == 'latest'
+      - name: 世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）
+        if: always() && matrix.profile != 'fixed055'
         shell: bash
-        run: python tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py --output "$RUNNER_TEMP/native-evidence"
+        run: |
+          if [ "${{ matrix.profile }}" = "fixed057" ]; then
+            python "$RUNNER_TEMP/diagnostic_fixed057.py" --checkout "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/native-evidence"
+          else
+            python tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py --output "$RUNNER_TEMP/native-evidence"
+          fi
       - name: 原bytesとarchive hashをjobにも保持（失敗時も実行）
         if: always()
         shell: bash

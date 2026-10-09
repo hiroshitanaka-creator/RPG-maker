@@ -141,7 +141,7 @@ def main(args):
             commands.append(dict(capture.row,name=label))
             write(output.parent/'commands.json',commands)
         raw=(output.parent/(label+'.log')).read_bytes()
-        if capture.row['exit_code']!=0 or BAD.search(raw.decode(errors='replace')):
+        if capture.row['exit_code']!=0 or capture.row['supervision'].get('stopped') is not True or BAD.search(raw.decode(errors='replace')):
             print(raw.decode(errors='replace'),flush=True)
             raise RuntimeError('コマンド失敗:'+label)
         return raw

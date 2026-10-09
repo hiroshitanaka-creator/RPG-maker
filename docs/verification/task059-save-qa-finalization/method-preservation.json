@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "case_assertions_bytes_unchanged": true,
+  "original055_scope_bytes_unchanged": true,
+  "original_capture057_12_checks_unchanged": true,
+  "limits": {
+    "suite": 180,
+    "inner": 174,
+    "child": 30,
+    "import": 600,
+    "job_minutes": 15,
+    "linux_restart_workers": 4,
+    "windows_restart_workers": 2,
+    "linux_case_workers": 16,
+    "windows_case_workers": 8,
+    "batch_max_roots": 4
+  },
+  "expected": {
+    "cases": 172,
+    "checks": 2178,
+    "kill": 97,
+    "propagation": 16
+  },
+  "F4": "NOT_RUN real_ENOSPC/nested_cross_volume"
+}
