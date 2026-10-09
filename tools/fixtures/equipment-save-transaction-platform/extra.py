@@ -40,6 +40,7 @@ class Suite:
         write(root/(label+'-execution.json'),record);return record
     def check(self,name,ok,evidence):
         assert ok,name;self.rows.append({'case':name,'checks_passed':True,'evidence':evidence})
+        write(self.output/'progress.json',{'status':'RUNNING','case_count':len(self.rows),'cases':self.rows})
     def dependency(self,name):
         root=self.new('dependency-'+name);argv=[self.godot,'--headless','--path',str(ROOT),'--script','res://tools/fixtures/equipment-save-transaction-platform/dependencies.gd','--',str(root),name]
         start=time.monotonic();p=subprocess.run(argv,env=self.env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=min(30,self.deadline-start));(root/'raw.log').write_bytes(p.stdout)
@@ -95,12 +96,17 @@ class Suite:
         paths={'root-prefix':str(root)+'-outside/file','parent':str(root/'../escape'),'dot':str(root)+'/./file','nonascii-space':str(root/'保存 領域'/'file.tmp')}
         if os.name=='nt':paths.update({'drive-relative':'C:save.json','unc':'//server/share/save.json','ads':str(root/'save.json:stream'),'reserved':str(root/'CON.txt'),'dot-suffix':str(root/'file.'),'space-suffix':str(root/'file '),'case-alias':str(root).swapcase()+'/file.tmp','long-path':str(root)+'/'+('/'.join(['long_component'*3]*8))+'/file.tmp','other-drive':'Z:/055/save.json'})
         else:paths.update({'long-path':str(root)+'/'+('/'.join(['long_component'*3]*8))+'/file.tmp'})
+        if os.name=='nt':
+            for stem in ['COM','LPT']:
+                for number,digit in enumerate(['¹','²','³'],1):paths['reserved-'+stem.lower()+'-sup'+str(number)]=str(root/(stem+digit+'.txt'))
         for name,path in paths.items():
             value=self.run(root,'path',label='path-'+name,path=path);self.check('path-'+name,value['result']['ok']==(name in ['nonascii-space','case-alias','long-path']),value)
         for name,part in [('nonascii-space','保存 領域/file.tmp'),('long-path','/'.join(['long_component'*3]*8)+'/file.tmp')]:
             path=str(tx/part);value=self.run(root,'roundtrip',label='io-'+name,path=path)
             self.check('io-'+name,value['result']['ok'] and (Path(path+'.done')).read_bytes()=='保存 native exact bytes'.encode(),value)
         value=self.run(root,'process',label='query-unknown',pid=0);self.check('query-unknown-is-not-dead',value['result']['state']==-1,value)
+        value=self.run(root,'process',label='query-range',pid=4294967296 if os.name=='nt' else 2147483648)
+        self.check('query-range-is-not-dead',value['result']['state']==-1,value)
         if os.name=='nt':
             path=str(tx/'case.tmp').swapcase();value=self.run(root,'roundtrip',label='io-case',path=path);self.check('io-case-alias',value['result']['ok'] and Path(path+'.done').read_bytes()=='保存 native exact bytes'.encode(),value)
             outside=self.new('junction-destination');junction=root/'junction'

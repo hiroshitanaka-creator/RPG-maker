@@ -1,5 +1,6 @@
 {
   "linux": [
+    "query-range-is-not-dead",
     "same-file-rename-denied",
     "dependency-control",
     "dependency-job_progression",
@@ -41,6 +42,7 @@
     "transaction-source-alias-denied"
   ],
   "windows": [
+    "query-range-is-not-dead",
     "same-file-rename-denied",
     "dependency-control",
     "dependency-job_progression",
@@ -87,6 +89,12 @@
     "transaction-source-alias-denied",
     "io-case-alias",
     "junction-denied",
-    "file-swap-case-alias-denied"
+    "file-swap-case-alias-denied",
+    "path-reserved-com-sup1",
+    "path-reserved-com-sup2",
+    "path-reserved-com-sup3",
+    "path-reserved-lpt-sup1",
+    "path-reserved-lpt-sup2",
+    "path-reserved-lpt-sup3"
   ]
 }

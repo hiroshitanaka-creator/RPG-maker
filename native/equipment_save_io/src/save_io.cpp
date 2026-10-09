@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cstring>
 #include <cerrno>
+#include <limits>
 #ifdef _WIN32
 #include <cwctype>
 #include <winternl.h>
@@ -80,6 +81,8 @@ bool components(const std::string &s) {
         std::transform(base.begin(),base.end(),base.begin(),[](unsigned char c){return std::toupper(c);});
         if(base=="CON" || base=="PRN" || base=="AUX" || base=="NUL" || base=="CONIN$" || base=="CONOUT$")return false;
         if(base.size()==4 && (base.substr(0,3)=="COM" || base.substr(0,3)=="LPT") && base[3]>='1' && base[3]<='9')return false;
+        if(base.size()==5 && (base.substr(0,3)=="COM" || base.substr(0,3)=="LPT") &&
+            (base.substr(3)=="\xC2\xB9" || base.substr(3)=="\xC2\xB2" || base.substr(3)=="\xC2\xB3"))return false;
 #endif
         start=end+1;
     }
@@ -442,10 +445,12 @@ String EquipmentSaveIO::legacy_link(const String &path) {
 int64_t EquipmentSaveIO::process_state(int64_t pid) {
     if(pid<=0)return -1;
 #ifdef _WIN32
+    if(uint64_t(pid)>MAXDWORD)return -1;
     auto h=OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION|SYNCHRONIZE,FALSE,DWORD(pid));
     if(!h)return GetLastError()==ERROR_INVALID_PARAMETER?0:-1;
     auto status=WaitForSingleObject(h,0);close_native(h);return status==WAIT_OBJECT_0?0:status==WAIT_TIMEOUT?1:-1;
 #else
+    if(uint64_t(pid)>uint64_t(std::numeric_limits<pid_t>::max()))return -1;
     if(kill(pid,0)==0)return 1;return errno==ESRCH?0:-1;
 #endif
 }
