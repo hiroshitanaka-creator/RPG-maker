@@ -1,0 +1,10 @@
+{
+  "previous_code_fixed_sha": "adbd4b1b1fde34a0fa8f5a48388571e25e996eb3",
+  "code_fixed_sha": "b96658b66c313655b276603d4ead92b507f2b6cd",
+  "compared_paths": 49,
+  "changed": [
+    "tools/check_equipment_save_transaction_platform.py"
+  ],
+  "unchanged_native_game_build_distribution_and_other_test_blobs": 48,
+  "driver_diff": "diff --git a/tools/check_equipment_save_transaction_platform.py b/tools/check_equipment_save_transaction_platform.py\nindex 11b8ba1..39e5981 100644\n--- a/tools/check_equipment_save_transaction_platform.py\n+++ b/tools/check_equipment_save_transaction_platform.py\n@@ -46,7 +46,7 @@ class RestartBatch:\n     def __init__(self,suite):\n         self.suite=suite\n         self.queue=queue.Queue()\n-        self.threads=[threading.Thread(target=self.worker,daemon=True) for _ in range(2)]\n+        self.threads=[threading.Thread(target=self.worker,daemon=True) for _ in range(4)]\n         for thread in self.threads:thread.start()\n \n     def submit(self,root,cfg):\n@@ -450,7 +450,7 @@ class Suite:\n         self.seed('trial-missing',typed=True,trial=True,history='missing')\n         self.seed('trial-corrupt',typed=True,trial=True,history='corrupt')\n         self.seed('trial-unclean',typed=True,trial=True,history='unclean')\n-        with ThreadPoolExecutor(max_workers=8) as workers:\n+        with ThreadPoolExecutor(max_workers=16) as workers:\n             pending={workers.submit(self.run_case,name,spec):name for name,spec in self.expected['cases'].items()}\n             for future in as_completed(pending):\n                 name=pending[future]\n"
+}

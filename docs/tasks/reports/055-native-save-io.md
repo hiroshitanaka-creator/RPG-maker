@@ -1,6 +1,6 @@
 # 055 保存専用native I/O 実装報告
 
-未達を含む実装提出。コード固定SHAは `adbd4b1b1fde34a0fa8f5a48388571e25e996eb3`。Windows/Linuxの固定055／最新専用8jobと最終SHA全CIの終了結果は、同一SHAのActions原記録と最終応答で確定する。全受入済みとはしていない。
+未達を含む実装提出。コード固定SHAは `b96658b66c313655b276603d4ead92b507f2b6cd`。Windows/Linuxの固定055／最新専用8jobと最終SHA全CIの終了結果は、同一SHAのActions原記録と最終応答で確定する。全受入済みとはしていない。
 
 基点は登録b17f2b475ff8c58924720ea24cce8f205422c50b、054提出71908a13bcf704287fbc653ca307c504b4bc7f08。指定branch `codex/task-055-native-save-io` で作業し、Gitの実read/push、公式Godot4.7.2とcompilerの実アクセスを確認した。ゲーム本体はGDScriptのままで、通常UI・実ユーザー保存・S4/S5には接続していない。新PR・main反映・merge・強制push・削除・追加委譲・別実行環境の起動は行っていない。
 
@@ -38,13 +38,13 @@ godot-cpp `e83fd0904c13356ed1d4c3d09f8bb9132bdc6b77` (公式godot-4.5-stable/MIT
 
 原053のe003b126de6695fa131e07a3db14c3011fb74f2eを元workflowで保持する。最新は独立コピーの同一bytesの期待／phase集合を使用し、Windowsのnonroot-permissionだけ専用readonly fileの実write_failedへ写像する。Linuxは従来0500/backup_failed。ACL/OS設定は変更しない。全体180秒・子30秒・import600秒・job15分を維持。完走失敗で後続検査が消えるのを避けるため、全取引jobと追加primitive/配布物jobを独立に置いた。後者の成功は172件の成功の代わりにしない。件数・期待・warning拒否・failure伝播を弱めていない。
 
-最終の保存・build・論理検査コードc8f22dbe4edb8ff5e4dcd699ce0887a25f9b0974では172/2178・97killが154.692秒（外側command155.127秒）、追加40ケース64.334秒、配布物正負7ケース4.013秒、改変伝播16・scope正負2・source前後照合を通過。固定adbdとの49pathの差は証拠archive helperとCIの固定commit明示fetchだけで、保存・build・検査・配布物47pathのGit blobは等しい（local-code-equivalence.json）。Windowsの追加固定集合は54ケース。開発時Linuxの156.803/154.189秒・追加38ケースの記録も成功世代を分けて保持する。途中に専用runnerを改訂した開発runは、最後の実source/Git blob不一致で正しく失敗しており、完成SHAの受入証拠へ数えない。初期ビルドprofile不足、LLVM宣言不足、Windows Python文字コード、console wrapper PIDの失敗と修正を分けて保持する。
+初回完成の保存・build・論理検査コードc8f22dbe4edb8ff5e4dcd699ce0887a25f9b0974では172/2178・97killが154.692秒（外側command155.127秒）、追加40ケース64.334秒、配布物正負7ケース4.013秒、改変伝播16・scope正負2・source前後照合を通過。固定adbdとの49pathの差は証拠archive helperとCIの固定commit明示fetchだけで、保存・build・検査・配布物47pathのGit blobは等しい（local-code-equivalence.json）。Windowsの追加固定集合は54ケース。開発時Linuxの156.803/154.189秒・追加38ケースの記録も成功世代を分けて保持する。途中に専用runnerを改訂した開発runは、最後の実source/Git blob不一致で正しく失敗しており、完成SHAの受入証拠へ数えない。初期ビルドprofile不足、LLVM宣言不足、Windows Python文字コード、console wrapper PIDの失敗と修正を分けて保持する。
 
 既存回帰の実argv／秒数／exit／log hashはdevelopment-raw内のregression/commands.json。import、保護26前後、run_locked_checks.py (R01〜R08)、装備、S1、S2、旧比較142/10全文、validate_assets.py --strictが全てexit0、検査ログにSCRIPT ERROR/ERROR/WARNINGなし。
 
 過去053の5 archive全raw hashと全member（file/hardlink/symlinkの参照bytesを含む）を照合した。original-evidence-check.jsonにGit blobを別欄で保存。新raw archiveも全member hashで検証し、欠落／空／改変／件数とlog同時偽装／manifest再hashを実子exitで拒否する。artifact取得制約に備え専用job logにも同じarchive bytesを保持し、復元hashを一致させる。負例の全正例copyはarchiveから除き、baseline原bytesとnegative-deltasの変更bytes/削除一覧で各原物を再構築可能にする。失敗原物は成功原物と別名で保存する。
 
-原証拠の入口は今回証拠のREADME.md。初期失敗・ローカル成功・未達の9 archiveを全memberまで再照合した。後続CI artifactのID／GitHub側digest／期限とjob原記録はci-observations.jsonに保存する。大きいprimitive job logはconnectorのTransport closed、artifactの署名URLは実行環境のproxy CONNECT403により、後続原bytesをローカル取得できていない。GitHub側digestをローカルraw検証済みhashとは扱わない。後続artifactはActionsに残るため、独立レビューで同じIDの原物を取得できる。
+原証拠の入口は今回証拠のREADME.md。初期失敗・ローカル成功・未達・並列構成診断の14 archiveを全memberまで再照合した。後続CI artifactのID／GitHub側digest／期限とjob原記録はci-observations.jsonに保存する。大きいprimitive job logはconnectorのTransport closed、artifactの署名URLは実行環境のproxy CONNECT403により、後続原bytesをローカル取得できていない。GitHub側digestをローカルraw検証済みhashとは扱わない。後続artifactはActionsに残るため、独立レビューで同じIDの原物を取得できる。
 
 latest側がscope参照する完成commitを明示fetchするよう新workflowを修正した。旧workflowのshallow checkoutでは参照commitの取得が明示されていなかった。修正前latest primitiveの失敗原因は大きい原logが未取得のため未確定であり、この変更だけで修正成功を断定しない。ローカルのshallow再現試行は参照commitが既に存在して想定条件を再現できず、成功証拠には数えない。
 

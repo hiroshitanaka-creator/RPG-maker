@@ -13,6 +13,10 @@
 - `environment*.json`：隔離小容量／nested別volume未提供と、切断通知後の実アクセス確認。環境設定や共有disk容量を変更していない。
 - `changed-files.txt`：登録b17f2bからの今回差分一覧。
 
+11:00 JSTの継続指示後、復旧worker 4／case worker 16へ専用runnerの2行だけを変更した。`scheduling-code-equivalence.json`に旧固定adbdとの49path比較を保存し、保存・ゲーム・build・配布物等48pathのblob不変を確認する。`schedule-four-working-tree-raw.tar.gz`は124.256秒の172/2178・97中断と独立validator照合の作業ツリー診断。実行開始HEADと未commit差分を原source.jsonへ明示し、完成SHAのCI証拠と区別する。
+
+初回提出4f1eの全47job終了・43成功/4失敗は`ci-4f1e-all-jobs.json`。専用取引4jobの原log・archive・member索引は`ci-4f1e-*-transaction*`、原053固定/最新の成功logは`ci-4f1e-original-*-job.log`。全14 archiveの一覧は`archives.json`。
+
 archiveは展開せずmemberのraw hashを照合できる。通常file/hardlinkはtarfile.extractfileで得たbytes、古いsymlinkはlinknameのUTF-8 bytes、新しいinert referenceは記録したtarget_base64を使う。archive自体のSHA256と各memberのsize/SHA256の両方を索引へ照合する。member数と名前集合も一致させる。自己生成した索引だけで受入を決めず、固定expectations、原PASS/FAIL log、Git blob、実exitを併せて読む。
 
 後続CI原物はActionsのartifactに保存される。ローカルでは大きいprimitive log取得がTransport closed、署名artifact URLの取得がproxy CONNECT403となり、原bytes未取得のものがある。期限とIDはci-observations.json参照。Windows54ケースの最終状態や最終SHA全CIを、以前の小さい世代archiveから推定しない。
