@@ -1,60 +1,30 @@
 {
   "base": "579ca1f463aaf9e93275039a59cf9d1ffb86adb5",
   "registration": "a6022f1e4a7689440928efe65db444336e9128e4",
-  "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-  "source_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
+  "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+  "source_sha": "8282248971482790a62485b9b510684e4469e2c7",
   "changes": [
     "M\t.github/workflows/equipment-transaction-platform.yml",
     "M\tdocs/decision-log.md",
     "A\tdocs/tasks/059-fix-save-qa-finalization.md",
-    "A\tdocs/tasks/reports/059-fix-save-qa-finalization.md",
-    "A\tdocs/verification/task059-save-qa-finalization/README.md",
     "A\tdocs/verification/task059-save-qa-finalization/archives.json",
     "A\tdocs/verification/task059-save-qa-finalization/baseline058-linux-members.json",
     "A\tdocs/verification/task059-save-qa-finalization/baseline058-linux.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/before.json",
-    "A\tdocs/verification/task059-save-qa-finalization/capture057-linux-exit-race-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/capture057-linux-exit-race.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/capture057-linux-final-members.json",
     "A\tdocs/verification/task059-save-qa-finalization/capture057-linux-final.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/capture057-linux-members.json",
     "A\tdocs/verification/task059-save-qa-finalization/capture057-linux.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/capture059-linux-21-members.json",
     "A\tdocs/verification/task059-save-qa-finalization/capture059-linux-21.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/capture059-linux-22-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/capture059-linux-22.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/capture059-linux-exit-race-intermediate-failure-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/capture059-linux-exit-race-intermediate-failure.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/capture059-linux-members.json",
     "A\tdocs/verification/task059-save-qa-finalization/capture059-linux.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/ci-first-fixed057-windows-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/ci-first-fixed057-windows-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/ci-first-fixed057-windows.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/ci-second-linux-latest-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/ci-second-linux-latest-meta.json",
-    "A\tdocs/verification/task059-save-qa-finalization/ci-second-linux-latest.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/code-fixed-sha.txt",
     "A\tdocs/verification/task059-save-qa-finalization/code-inventory.json",
-    "A\tdocs/verification/task059-save-qa-finalization/engine-linux.json",
-    "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/check_source.py",
-    "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/package_local.py",
-    "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/propagation.py",
-    "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/regressions.py",
-    "A\tdocs/verification/task059-save-qa-finalization/evidence-tools/verify_artifacts.py",
-    "A\tdocs/verification/task059-save-qa-finalization/local-full-9d4-failure-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/local-full-9d4-failure.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/local-primitives-9d4-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/local-primitives-9d4.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/local-propagation-059-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/local-propagation-059.tar.gz",
-    "A\tdocs/verification/task059-save-qa-finalization/local-regression-7f4-members.json",
-    "A\tdocs/verification/task059-save-qa-finalization/local-regression-7f4.tar.gz",
     "A\tdocs/verification/task059-save-qa-finalization/method-preservation.json",
-    "A\tdocs/verification/task059-save-qa-finalization/model-transition-ci-snapshot.json",
     "A\tdocs/verification/task059-save-qa-finalization/old-archives-audit.json",
     "A\tdocs/verification/task059-save-qa-finalization/plan.md",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-code.json",
-    "A\tdocs/verification/task059-save-qa-finalization/scope059-current-policy.json",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-final-code.json",
     "A\tdocs/verification/task059-save-qa-finalization/scope059-restricted-code.json",
     "A\tdocs/verification/task059-save-qa-finalization/unchanged-inventory.json",
@@ -77,9 +47,9 @@
       "bytes": 5828
     },
     "tools/check_equipment_save_transaction_platform.py": {
-      "git_blob": "c9a160f78407b290801a705f505d881664c5bcef",
-      "raw_sha256": "966d7d6465f9b28aa0fd3ed79872e1894f62b93acf67be51b83844705ed05e55",
-      "bytes": 45104
+      "git_blob": "efa871a88fa23e4484eaeed9c653169c37689d6b",
+      "raw_sha256": "41e83616e7696369a47c51471ddbb231c6aa2dfa9e5135dbaa52a09c610d2819",
+      "bytes": 44558
     },
     "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py": {
       "git_blob": "389c3169d5f9579e73b5c15a93e8ab560ff686b9",
@@ -102,9 +72,9 @@
       "bytes": 231
     },
     "tools/fixtures/equipment-save-transaction-platform/process_tree059.py": {
-      "git_blob": "f16d453f675bef96691432bc3968a7f0b03fd9cd",
-      "raw_sha256": "bfc929fdfb31a1634a96609fb87b1d042320f5026380519788ee7a0d69b15f64",
-      "bytes": 11074
+      "git_blob": "f6b678fa7cf2938a1ef10304a09205d92371a631",
+      "raw_sha256": "54fb16f93cb4fa9a680b266f5a3a6856e4b1495239a8b7552269a7c8cb39b0df",
+      "bytes": 10453
     },
     "tools/fixtures/equipment-save-transaction-platform/reproduce058.py": {
       "git_blob": "1ade8765cb125583de09c9c77045111968c7d482",
@@ -122,9 +92,9 @@
       "bytes": 6129
     },
     "tools/fixtures/equipment-save-transaction-platform/test_capture059.py": {
-      "git_blob": "6d70bd6446f656d6658d3e2c948e3c6356cdc1c7",
-      "raw_sha256": "9af30e3c1109b59d64f6898b9af16eee57ada1da9e082f5531eb31ab1df3ce5e",
-      "bytes": 16571
+      "git_blob": "212248bb3968b1207bd33242ea39b4b6f0450dbf",
+      "raw_sha256": "4ae7049d6e7f9e4c230980d0a36bda39e3a82e5dc9294001e20dd182b4aebab7",
+      "bytes": 14484
     },
     "tools/fixtures/equipment-save-transaction-platform/tree_fixture059.py": {
       "git_blob": "492d3ff06b39eab7fcbd02bf42b2636079f48323",
@@ -136,8 +106,8 @@
   "propagation": [
     {
       "case": "later-document",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "741c36754bab12d8ada2d60c3f2cd624c83c2510",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "92716fe3d10dcce0d00d6509f0eaaae96fe592d7",
       "expected_exit": 0,
       "exit_code": 0,
       "argv": [
@@ -146,16 +116,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "8282248971482790a62485b9b510684e4469e2c7",
         "--source-sha",
-        "741c36754bab12d8ada2d60c3f2cd624c83c2510"
+        "92716fe3d10dcce0d00d6509f0eaaae96fe592d7"
       ],
-      "seconds": 0.2083227769999212
+      "seconds": 0.23311637699998755
     },
     {
       "case": "outside-code",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "f81f4723c628754be5cf76451ee11f6d3afb50a1",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "a185a9d2321a2392286a78881e4cabd52f1cb59d",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -164,16 +134,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "8282248971482790a62485b9b510684e4469e2c7",
         "--source-sha",
-        "f81f4723c628754be5cf76451ee11f6d3afb50a1"
+        "a185a9d2321a2392286a78881e4cabd52f1cb59d"
       ],
-      "seconds": 0.18042739499969684
+      "seconds": 0.18255118999968545
     },
     {
       "case": "outside-fixed",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "40297b6255eb4b5d382ad7ae293c04942a85b559",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "4226676502a635f9c01efee4fd1f993fba2df79c",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -182,16 +152,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "40297b6255eb4b5d382ad7ae293c04942a85b559",
+        "4226676502a635f9c01efee4fd1f993fba2df79c",
         "--source-sha",
-        "40297b6255eb4b5d382ad7ae293c04942a85b559"
+        "4226676502a635f9c01efee4fd1f993fba2df79c"
       ],
-      "seconds": 0.06310164899969095
+      "seconds": 0.06593952100001843
     },
     {
       "case": "changed-fixed-code",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "341572b893e23e66f4bdaf8c4a5edea4409027e5",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "8a3d281112d9422f7d9cf43ec82fe0092460d79d",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -200,16 +170,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "8282248971482790a62485b9b510684e4469e2c7",
         "--source-sha",
-        "341572b893e23e66f4bdaf8c4a5edea4409027e5"
+        "8a3d281112d9422f7d9cf43ec82fe0092460d79d"
       ],
-      "seconds": 0.11519464399998469
+      "seconds": 0.11232797000002392
     },
     {
       "case": "old-evidence-document",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "c1520e7f33033615dbda0c7f0dae27aa2e47909d",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "a02810378e014c399712ca911d3819a10f38ff67",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -218,16 +188,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "8282248971482790a62485b9b510684e4469e2c7",
         "--source-sha",
-        "c1520e7f33033615dbda0c7f0dae27aa2e47909d"
+        "a02810378e014c399712ca911d3819a10f38ff67"
       ],
-      "seconds": 0.15122286399991935
+      "seconds": 0.20266701800028386
     },
     {
       "case": "past-report",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "4a5f73bfdd6768780bf540d0583fb054b96e61cb",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "56c7942179a448fef8537c6386bccf8335c82778",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -236,16 +206,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "8282248971482790a62485b9b510684e4469e2c7",
         "--source-sha",
-        "4a5f73bfdd6768780bf540d0583fb054b96e61cb"
+        "56c7942179a448fef8537c6386bccf8335c82778"
       ],
-      "seconds": 0.23099501099977715
+      "seconds": 0.1760435950000101
     },
     {
       "case": "outside-document",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "23827204ad2b4a7b4d8cbc5a4604156e21d5eff9",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "3ff82fd0dbc7b39d89247025a6f9b9da8b7c0b13",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -254,16 +224,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "8282248971482790a62485b9b510684e4469e2c7",
         "--source-sha",
-        "23827204ad2b4a7b4d8cbc5a4604156e21d5eff9"
+        "3ff82fd0dbc7b39d89247025a6f9b9da8b7c0b13"
       ],
-      "seconds": 0.2965298819999589
+      "seconds": 0.18594830499978343
     },
     {
       "case": "changed-task-body",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "6011ed04b86d23756b574b9d5d4c70f673fb7f8a",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "01aef7151b40c559a7c35d70a68ca66a808b65b2",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -272,16 +242,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "8282248971482790a62485b9b510684e4469e2c7",
         "--source-sha",
-        "6011ed04b86d23756b574b9d5d4c70f673fb7f8a"
+        "01aef7151b40c559a7c35d70a68ca66a808b65b2"
       ],
-      "seconds": 0.2615513529999589
+      "seconds": 0.18149293300029967
     },
     {
       "case": "rewritten-decision-log",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "202c8a308bd2ceca00bb1bd4cf629d87d035d8e8",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "66b257c6afc3b79ffda84086608d1df1101c5875",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -290,16 +260,16 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "8282248971482790a62485b9b510684e4469e2c7",
         "--source-sha",
-        "202c8a308bd2ceca00bb1bd4cf629d87d035d8e8"
+        "66b257c6afc3b79ffda84086608d1df1101c5875"
       ],
-      "seconds": 0.24854635199972108
+      "seconds": 0.16849188799960757
     },
     {
       "case": "appended-decision-log",
-      "code_sha": "faa459ee5cc101e708477792b1c7891a9ba4beea",
-      "source_sha": "257b389f727312f441dcb29bba7c2655c7e11c47",
+      "code_sha": "8282248971482790a62485b9b510684e4469e2c7",
+      "source_sha": "96afd086d02b54a467c159d66f88620c83544124",
       "expected_exit": 1,
       "exit_code": 1,
       "argv": [
@@ -308,11 +278,11 @@
         "--checkout",
         "/workspace/RPG-maker",
         "--code-sha",
-        "faa459ee5cc101e708477792b1c7891a9ba4beea",
+        "8282248971482790a62485b9b510684e4469e2c7",
         "--source-sha",
-        "257b389f727312f441dcb29bba7c2655c7e11c47"
+        "96afd086d02b54a467c159d66f88620c83544124"
       ],
-      "seconds": 0.15796688999989783
+      "seconds": 0.16412168899978496
     }
   ]
 }
