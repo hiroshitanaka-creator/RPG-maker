@@ -49,6 +49,32 @@ D:\a\_temp\native-evidence\bin\Godot_v4.7.2-stable_win64.exe --headless --path D
 
 ## Windows/Linux 実測
 
+最終修正コード3cf4b6cを実行したHEAD **80cff71fed017729bc30a5c36a1bd918588fb3bb** の[専用run37921360740](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37921360740)も8job終了、4成功4失敗。両OS両profileの全取引は時間未達、primitives4jobとlatest追加診断4stepは成功。**両OSの強化後CAPTURE057 12件／SCOPE057最終固定SHA／DIAGNOSTICS057 12sampleを原bytesで確認。** 全取引原archive4本を補足した。後続の最終文書HEAD結果は提出応答で確認する。
+
+| 最終コード計測 / profile | 実対象SHA | 件数 / 条件 | suite秒 | wrapper秒 / exit |
+|---|---|---:|---:|---:|
+| Linux fixed055 | 0a44409c99b06569b9e6088ffeb46c2238c821fa | 132 / 1770 | 174.044110 | 174.665448 / 1 |
+| Linux latest | 80cff71fed017729bc30a5c36a1bd918588fb3bb | 153 / 1959 | 174.141605 | 174.693917 / 1 |
+| Windows fixed055 | 0a44409c99b06569b9e6088ffeb46c2238c821fa | 49 / 735 | 174.219 | 174.812 / 1 |
+| Windows latest | 80cff71fed017729bc30a5c36a1bd918588fb3bb | 63 / 945 | 174.422 | 175.047 / 1 |
+
+このrunのLinuxはIntel Xeon Platinum8573C、WindowsはAMD EPYC9V74、各4 logical CPU（Windows2core）、QA FSはLinux stat ext2/ext3・Windows D: NTFS。元restart4/2・case16/8・batch最大4を維持。前runとはCPUも異なるため、差を修正効果やOSだけの差とは断定しない。
+
+最終コード6seed対照もoff/onのhash・数量・memory不変が一致し、各plan6/verify5。取引wall／plan+verify union占有／native binding unionはLinux1.188935〜1.294905秒／98.602〜98.823%／.006662〜.008420秒、Windows2.151825〜2.264911秒／98.464〜98.745%／.019351〜.024139秒。plan内部6回の累積秒：
+
+| seed | Linux decode / migration / prepare / encode | Windows decode / migration / prepare / encode |
+|---|---|---|
+| typed | .096533 / .120110 / .341442 / .458108 | .124407 / .229602 / .665481 / .810425 |
+| plain | .080502 / .114587 / .327042 / .433379 | .108924 / .218133 / .626641 / .801647 |
+| granted | .096126 / .121699 / .346762 / .472514 | .120507 / .218893 / .652199 / .811640 |
+| trial-missing | .095888 / .119876 / .339675 / .455078 | .119707 / .212807 / .628664 / .786494 |
+| trial-corrupt | .096841 / .121403 / .341528 / .461198 | .119985 / .211943 / .623458 / .782896 |
+| trial-unclean | .095678 / .119775 / .340437 / .456599 | .116860 / .210396 / .632604 / .782893 |
+
+起動/scriptロード観測境界はLinux約.519〜.524秒／Windows.616〜.633秒、依存構築.282640〜.291379秒／.296234〜.334109秒。native debug/release build16.765901/16.244004秒／46.641/21.391秒、import63.633011秒／71.625秒。全取引queue待ち累積/最大195.949258/7.101629秒（212要求）／185.290/7.531秒（148要求）、一意batch75/51、process累積606.689525/332.748秒・union168.556265/170.407秒、snapshot277/134回・累積6.251930/2.942秒・union3.537038/1.707秒。両OSともlive worker・未回収process記録0。累積並行時間をwallへ加算しない。
+
+ci-completed-*.tar.gzとmember索引に原bytesを保持。Linux latest raw SHA-256は412ed579a985c8bcd90a30d929ab5fe227ca6f5873ee5714fce076601f080d23、Windows latestは9c5f7a6805df716a736ddbbf972dcd84100e069addd52e81a72f77bbc9bdc3df。専用8job終端metadata／artifact API digestも保存。原053固定・最新もこのHEADで各172/2178・伝播14・scope2の原PASS出力を確認した。
+
 計測時HEADの全CIも終了を確認した。初回21d6a66は6workflow・47job終了、42成功5失敗（専用transaction4件と原053最新1件）。f6d5697は6workflow・47job終了、45成功2失敗（Windows専用fixed055/latest transaction）。ci-first-all-terminal.json／ci-code-all-terminal.jsonに全job数と終端metadataを保存。これは最終3cf4b6cを含む文書HEADの結果とは区別する。
 
 同一初回HEAD21d6a66の[専用run37917741675](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37917741675)は8job終了・4成功4失敗。次表は全取引の失敗。診断12sample（6seed×off/on）成功を全172ケース／2178条件／97killへ置き換えない。

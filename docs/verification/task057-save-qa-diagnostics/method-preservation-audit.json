@@ -1,0 +1,27 @@
+{
+  "base": "878c2316a4c9e72b253f7df001b6c6438ef7cb6d",
+  "code_sha": "3cf4b6c293f6796220b43cf566f8eb792c3932ec",
+  "unchanged_method_bodies": [
+    "Suite.config",
+    "Suite.env",
+    "Suite.seed",
+    "Suite.new",
+    "Suite.token",
+    "Suite.snapshot",
+    "Suite.quantities",
+    "Suite.common",
+    "Suite.run_case",
+    "Suite.boundary_files",
+    "Suite.special"
+  ],
+  "changed_method_bodies": [
+    "RestartBatch.__init__",
+    "RestartBatch.submit",
+    "RestartBatch.worker",
+    "Suite.__init__",
+    "Suite.run",
+    "Suite.run_restart_batch",
+    "Suite.main"
+  ],
+  "original_scope055_body_equal": true
+}

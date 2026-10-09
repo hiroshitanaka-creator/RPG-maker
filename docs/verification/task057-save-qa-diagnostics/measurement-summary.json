@@ -909,6 +909,1826 @@
     }
   },
   {
+    "evidence": "ci-completed-linux-fixed-verified",
+    "archive_sha256": "0d0090c8c9ce028e0823dc01a34e9b193a6849161bde476f83c9219964946b38",
+    "wrapper_commands": [
+      {
+        "name": "version",
+        "argv": [
+          "/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--version"
+        ],
+        "seconds": 0.0704106690000117,
+        "exit_code": 0,
+        "timed_out": null,
+        "timeout_kind": null
+      },
+      {
+        "name": "frozen-before",
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+          "tools/check_frozen_files.py"
+        ],
+        "seconds": 0.032767648000003646,
+        "exit_code": 0,
+        "timed_out": null,
+        "timeout_kind": null
+      },
+      {
+        "name": "import",
+        "argv": [
+          "/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--editor",
+          "--import",
+          "--quit"
+        ],
+        "seconds": 66.60808414600001,
+        "exit_code": 0,
+        "timed_out": null,
+        "timeout_kind": null
+      },
+      {
+        "name": "transaction",
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+          "tools/check_equipment_save_transaction_platform.py",
+          "--godot",
+          "/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--fixture-root",
+          "/home/runner/work/_temp/native-evidence/qa",
+          "--output",
+          "/home/runner/work/_temp/native-evidence/results"
+        ],
+        "seconds": 174.665447772,
+        "exit_code": 1,
+        "timed_out": null,
+        "timeout_kind": null
+      }
+    ],
+    "build": {
+      "godot_cpp": {
+        "url": "https://github.com/godotengine/godot-cpp.git",
+        "commit": "e83fd0904c13356ed1d4c3d09f8bb9132bdc6b77",
+        "tag": "godot-4.5-stable",
+        "license": "MIT",
+        "abi": "4.5; 4.7.2で実ロード検証"
+      },
+      "scons": "SCons by Steven Knight et al.:\n\tSCons: v4.10.0.b3e979a3e42c43b91f7624895910afb869a19806, Thu, 02 Oct 2025 10:16:02 -0700, by bdbaddog on M1Dog2021\n\tSCons path: ['/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/SCons']\nCopyright (c) 2001 - 2025 The SCons Foundation\n",
+      "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "commands": [
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "-m",
+            "SCons",
+            "-C",
+            "/home/runner/work/RPG-maker/RPG-maker/native/equipment_save_io",
+            "build_profile=/home/runner/work/RPG-maker/RPG-maker/native/equipment_save_io/build-profile.json",
+            "platform=linux",
+            "target=template_debug",
+            "arch=x86_64",
+            "-j4"
+          ],
+          "seconds": 18.387789026999997,
+          "budget_seconds": 600,
+          "exit_code": 0,
+          "log_sha256": "f304709ae0e96da4aee4d4823c0df081d3c75d73389b776ad6ffa871c2a14f46"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "-m",
+            "SCons",
+            "-C",
+            "/home/runner/work/RPG-maker/RPG-maker/native/equipment_save_io",
+            "build_profile=/home/runner/work/RPG-maker/RPG-maker/native/equipment_save_io/build-profile.json",
+            "platform=linux",
+            "target=template_release",
+            "arch=x86_64",
+            "-j4"
+          ],
+          "seconds": 18.00208302300001,
+          "budget_seconds": 600,
+          "exit_code": 0,
+          "log_sha256": "a4e466d0f7988b90b4239153aa7c717c26ccc23b2ba1992994255ff35971ee77"
+        }
+      ],
+      "files": {
+        "addons/equipment_save_io/bin/equipment_save_io.windows.template_release.x86_64.dll": "593fccadd13f10ca9eed74695b36877c112305fe9552bb0fa8faec4d05e97500",
+        "addons/equipment_save_io/bin/equipment_save_io.linux.template_release.x86_64.so": "0bf5a65f1ae2917ed0458b759f382133eaa79bc474c6cd6d71a06bd3495e35df",
+        "addons/equipment_save_io/bin/equipment_save_io.windows.template_debug.x86_64.dll": "11fa4b9e23a5b72a6b0fe48db6405045e8cf55514adf6c2446e0228ea74ab72a",
+        "addons/equipment_save_io/bin/equipment_save_io.linux.template_debug.x86_64.so": "2f211eaf8be2b1bd2a8f4c3f5675593e799cd1260ea45d6f2e99d50eab8b5a9c"
+      },
+      "source_files": {
+        "native/equipment_save_io/dependencies.json": "b7ca8537bdb9529f5eb3a009b893c5e4725573a93852c21cf3618e4b1d06300a",
+        "native/equipment_save_io/build-profile.json": "8b29eacd2bde13bf5ee5143924e95779fae1170f546d583b08b888d2bbd550b2",
+        "native/equipment_save_io/src/save_io.cpp": "870993272a4e2cd9d9d42b2b95123c9c8919a21a78035e008fbce148eb302bcd",
+        "native/equipment_save_io/src/save_io.h": "12e974e0ed31e748c2931bcbdb9325010bc4ca1a67221ad6739836240302634b"
+      }
+    }
+  },
+  {
+    "evidence": "ci-completed-linux-latest-verified",
+    "archive_sha256": "412ed579a985c8bcd90a30d929ab5fe227ca6f5873ee5714fce076601f080d23",
+    "wrapper_commands": [
+      {
+        "name": "version",
+        "argv": [
+          "/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--version"
+        ],
+        "seconds": 0.06426218099997527,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null
+      },
+      {
+        "name": "frozen-before",
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+          "tools/check_frozen_files.py"
+        ],
+        "seconds": 0.031945343000018056,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null
+      },
+      {
+        "name": "import",
+        "argv": [
+          "/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--editor",
+          "--import",
+          "--quit"
+        ],
+        "seconds": 63.63301103399999,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null
+      },
+      {
+        "name": "transaction",
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+          "tools/check_equipment_save_transaction_platform.py",
+          "--godot",
+          "/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--fixture-root",
+          "/home/runner/work/_temp/native-evidence/qa",
+          "--output",
+          "/home/runner/work/_temp/native-evidence/results"
+        ],
+        "seconds": 174.69391741300004,
+        "exit_code": 1,
+        "timed_out": false,
+        "timeout_kind": null
+      }
+    ],
+    "build": {
+      "godot_cpp": {
+        "url": "https://github.com/godotengine/godot-cpp.git",
+        "commit": "e83fd0904c13356ed1d4c3d09f8bb9132bdc6b77",
+        "tag": "godot-4.5-stable",
+        "license": "MIT",
+        "abi": "4.5; 4.7.2で実ロード検証"
+      },
+      "scons": "SCons by Steven Knight et al.:\n\tSCons: v4.10.0.b3e979a3e42c43b91f7624895910afb869a19806, Thu, 02 Oct 2025 10:16:02 -0700, by bdbaddog on M1Dog2021\n\tSCons path: ['/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/SCons']\nCopyright (c) 2001 - 2025 The SCons Foundation\n",
+      "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "commands": [
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "-m",
+            "SCons",
+            "-C",
+            "/home/runner/work/RPG-maker/RPG-maker/native/equipment_save_io",
+            "build_profile=/home/runner/work/RPG-maker/RPG-maker/native/equipment_save_io/build-profile.json",
+            "platform=linux",
+            "target=template_debug",
+            "arch=x86_64",
+            "-j4"
+          ],
+          "seconds": 16.765901065999998,
+          "budget_seconds": 600,
+          "exit_code": 0,
+          "log_sha256": "f304709ae0e96da4aee4d4823c0df081d3c75d73389b776ad6ffa871c2a14f46"
+        },
+        {
+          "argv": [
+            "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python",
+            "-m",
+            "SCons",
+            "-C",
+            "/home/runner/work/RPG-maker/RPG-maker/native/equipment_save_io",
+            "build_profile=/home/runner/work/RPG-maker/RPG-maker/native/equipment_save_io/build-profile.json",
+            "platform=linux",
+            "target=template_release",
+            "arch=x86_64",
+            "-j4"
+          ],
+          "seconds": 16.244003643000013,
+          "budget_seconds": 600,
+          "exit_code": 0,
+          "log_sha256": "a4e466d0f7988b90b4239153aa7c717c26ccc23b2ba1992994255ff35971ee77"
+        }
+      ],
+      "files": {
+        "addons/equipment_save_io/bin/equipment_save_io.windows.template_release.x86_64.dll": "593fccadd13f10ca9eed74695b36877c112305fe9552bb0fa8faec4d05e97500",
+        "addons/equipment_save_io/bin/equipment_save_io.linux.template_release.x86_64.so": "0bf5a65f1ae2917ed0458b759f382133eaa79bc474c6cd6d71a06bd3495e35df",
+        "addons/equipment_save_io/bin/equipment_save_io.windows.template_debug.x86_64.dll": "11fa4b9e23a5b72a6b0fe48db6405045e8cf55514adf6c2446e0228ea74ab72a",
+        "addons/equipment_save_io/bin/equipment_save_io.linux.template_debug.x86_64.so": "2f211eaf8be2b1bd2a8f4c3f5675593e799cd1260ea45d6f2e99d50eab8b5a9c"
+      },
+      "source_files": {
+        "native/equipment_save_io/dependencies.json": "b7ca8537bdb9529f5eb3a009b893c5e4725573a93852c21cf3618e4b1d06300a",
+        "native/equipment_save_io/build-profile.json": "8b29eacd2bde13bf5ee5143924e95779fae1170f546d583b08b888d2bbd550b2",
+        "native/equipment_save_io/src/save_io.cpp": "870993272a4e2cd9d9d42b2b95123c9c8919a21a78035e008fbce148eb302bcd",
+        "native/equipment_save_io/src/save_io.h": "12e974e0ed31e748c2931bcbdb9325010bc4ca1a67221ad6739836240302634b"
+      }
+    },
+    "diagnostic_source_sha": "80cff71fed017729bc30a5c36a1bd918588fb3bb",
+    "environment": {
+      "os": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "cpu": "x86_64",
+      "cpu_count": 4,
+      "python": "3.12.15 (main, Oct  1 2026, 02:35:59) [GCC 13.3.0]",
+      "fs_device": 2049,
+      "worker_count": 4,
+      "case_workers": 16,
+      "max_batch_roots": 4,
+      "cpu_details": [
+        "model name\t: INTEL(R) XEON(R) PLATINUM 8573C"
+      ],
+      "fs": "ext2/ext3"
+    },
+    "diagnostic_status": "PASS",
+    "diagnostic_wall_seconds": 32.10369458399998,
+    "seed_pairs": [
+      {
+        "seed": "granted",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 2.2186414570000466,
+        "on_execution_seconds": 2.2181907990000127,
+        "on_child_initialize_enter_seconds": 0.519419,
+        "on_dependency_seconds": 0.286508,
+        "transaction_wall_seconds": 1.294905,
+        "plan_verify_union_seconds": 1.27795,
+        "plan_verify_percent": 98.69063753711661,
+        "native_overlap_union_seconds": 0.007541,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1060455,
+            "exclusive_us": 23354
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 96126,
+            "exclusive_us": 96126
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 121699,
+            "exclusive_us": 121699
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 346762,
+            "exclusive_us": 346762
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 472514,
+            "exclusive_us": 472514
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 217495,
+            "exclusive_us": 217495
+          },
+          "native.path_ok": {
+            "count": 122,
+            "inclusive_us": 1025,
+            "exclusive_us": 1025
+          },
+          "native.open_read": {
+            "count": 41,
+            "inclusive_us": 636,
+            "exclusive_us": 636
+          },
+          "native.read_all": {
+            "count": 41,
+            "inclusive_us": 506,
+            "exclusive_us": 506
+          },
+          "native.close_file": {
+            "count": 48,
+            "inclusive_us": 109,
+            "exclusive_us": 109
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 39,
+            "exclusive_us": 39
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 126,
+            "exclusive_us": 126
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 39,
+            "exclusive_us": 39
+          },
+          "native.open_write": {
+            "count": 7,
+            "inclusive_us": 211,
+            "exclusive_us": 211
+          },
+          "native.write_exact": {
+            "count": 14,
+            "inclusive_us": 119,
+            "exclusive_us": 119
+          },
+          "native.flush": {
+            "count": 7,
+            "inclusive_us": 4179,
+            "exclusive_us": 4179
+          },
+          "native.rename_file": {
+            "count": 7,
+            "inclusive_us": 540,
+            "exclusive_us": 540
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 12,
+            "exclusive_us": 12
+          }
+        }
+      },
+      {
+        "seed": "plain",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 2.1191401859999814,
+        "on_execution_seconds": 2.1684826459999726,
+        "on_child_initialize_enter_seconds": 0.521366,
+        "on_dependency_seconds": 0.284013,
+        "transaction_wall_seconds": 1.188935,
+        "plan_verify_union_seconds": 1.174938,
+        "plan_verify_percent": 98.82272790354392,
+        "native_overlap_union_seconds": 0.006662,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 978752,
+            "exclusive_us": 23242
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 80502,
+            "exclusive_us": 80502
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 114587,
+            "exclusive_us": 114587
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 327042,
+            "exclusive_us": 327042
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 433379,
+            "exclusive_us": 433379
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 196186,
+            "exclusive_us": 196186
+          },
+          "native.path_ok": {
+            "count": 100,
+            "inclusive_us": 849,
+            "exclusive_us": 849
+          },
+          "native.open_read": {
+            "count": 31,
+            "inclusive_us": 488,
+            "exclusive_us": 488
+          },
+          "native.read_all": {
+            "count": 31,
+            "inclusive_us": 409,
+            "exclusive_us": 409
+          },
+          "native.close_file": {
+            "count": 37,
+            "inclusive_us": 132,
+            "exclusive_us": 132
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 66,
+            "exclusive_us": 66
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 131,
+            "exclusive_us": 131
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 50,
+            "exclusive_us": 50
+          },
+          "native.open_write": {
+            "count": 6,
+            "inclusive_us": 192,
+            "exclusive_us": 192
+          },
+          "native.write_exact": {
+            "count": 12,
+            "inclusive_us": 111,
+            "exclusive_us": 111
+          },
+          "native.flush": {
+            "count": 6,
+            "inclusive_us": 3730,
+            "exclusive_us": 3730
+          },
+          "native.rename_file": {
+            "count": 6,
+            "inclusive_us": 493,
+            "exclusive_us": 493
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 11,
+            "exclusive_us": 11
+          }
+        }
+      },
+      {
+        "seed": "trial-corrupt",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 2.218625416000009,
+        "on_execution_seconds": 2.218721311999957,
+        "on_child_initialize_enter_seconds": 0.523121,
+        "on_dependency_seconds": 0.289508,
+        "transaction_wall_seconds": 1.272365,
+        "plan_verify_union_seconds": 1.255633,
+        "plan_verify_percent": 98.68496854283165,
+        "native_overlap_union_seconds": 0.007966,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1044393,
+            "exclusive_us": 23423
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 96841,
+            "exclusive_us": 96841
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 121403,
+            "exclusive_us": 121403
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 341528,
+            "exclusive_us": 341528
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 461198,
+            "exclusive_us": 461198
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 211240,
+            "exclusive_us": 211240
+          },
+          "native.path_ok": {
+            "count": 122,
+            "inclusive_us": 1104,
+            "exclusive_us": 1104
+          },
+          "native.open_read": {
+            "count": 41,
+            "inclusive_us": 638,
+            "exclusive_us": 638
+          },
+          "native.read_all": {
+            "count": 41,
+            "inclusive_us": 493,
+            "exclusive_us": 493
+          },
+          "native.close_file": {
+            "count": 48,
+            "inclusive_us": 119,
+            "exclusive_us": 119
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 30,
+            "exclusive_us": 30
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 135,
+            "exclusive_us": 135
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 38,
+            "exclusive_us": 38
+          },
+          "native.open_write": {
+            "count": 7,
+            "inclusive_us": 228,
+            "exclusive_us": 228
+          },
+          "native.write_exact": {
+            "count": 14,
+            "inclusive_us": 122,
+            "exclusive_us": 122
+          },
+          "native.flush": {
+            "count": 7,
+            "inclusive_us": 4509,
+            "exclusive_us": 4509
+          },
+          "native.rename_file": {
+            "count": 7,
+            "inclusive_us": 538,
+            "exclusive_us": 538
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 12,
+            "exclusive_us": 12
+          }
+        }
+      },
+      {
+        "seed": "trial-missing",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 2.218563592999999,
+        "on_execution_seconds": 2.2182212870000058,
+        "on_child_initialize_enter_seconds": 0.522315,
+        "on_dependency_seconds": 0.285077,
+        "transaction_wall_seconds": 1.257584,
+        "plan_verify_union_seconds": 1.242435,
+        "plan_verify_percent": 98.7953886181758,
+        "native_overlap_union_seconds": 0.006841,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1033705,
+            "exclusive_us": 23188
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 95888,
+            "exclusive_us": 95888
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 119876,
+            "exclusive_us": 119876
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 339675,
+            "exclusive_us": 339675
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 455078,
+            "exclusive_us": 455078
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 208730,
+            "exclusive_us": 208730
+          },
+          "native.path_ok": {
+            "count": 105,
+            "inclusive_us": 903,
+            "exclusive_us": 903
+          },
+          "native.open_read": {
+            "count": 31,
+            "inclusive_us": 501,
+            "exclusive_us": 501
+          },
+          "native.read_all": {
+            "count": 31,
+            "inclusive_us": 441,
+            "exclusive_us": 441
+          },
+          "native.close_file": {
+            "count": 37,
+            "inclusive_us": 89,
+            "exclusive_us": 89
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 31,
+            "exclusive_us": 31
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 134,
+            "exclusive_us": 134
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 40,
+            "exclusive_us": 40
+          },
+          "native.open_write": {
+            "count": 6,
+            "inclusive_us": 205,
+            "exclusive_us": 205
+          },
+          "native.write_exact": {
+            "count": 12,
+            "inclusive_us": 100,
+            "exclusive_us": 100
+          },
+          "native.flush": {
+            "count": 6,
+            "inclusive_us": 3881,
+            "exclusive_us": 3881
+          },
+          "native.rename_file": {
+            "count": 6,
+            "inclusive_us": 504,
+            "exclusive_us": 504
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 12,
+            "exclusive_us": 12
+          }
+        }
+      },
+      {
+        "seed": "trial-unclean",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 2.2185181170000305,
+        "on_execution_seconds": 2.218400330999998,
+        "on_child_initialize_enter_seconds": 0.523778,
+        "on_dependency_seconds": 0.28264,
+        "transaction_wall_seconds": 1.261419,
+        "plan_verify_union_seconds": 1.243789,
+        "plan_verify_percent": 98.60236765103427,
+        "native_overlap_union_seconds": 0.00842,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1035731,
+            "exclusive_us": 23242
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 95678,
+            "exclusive_us": 95678
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 119775,
+            "exclusive_us": 119775
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 340437,
+            "exclusive_us": 340437
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 456599,
+            "exclusive_us": 456599
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 208058,
+            "exclusive_us": 208058
+          },
+          "native.path_ok": {
+            "count": 122,
+            "inclusive_us": 1042,
+            "exclusive_us": 1042
+          },
+          "native.open_read": {
+            "count": 41,
+            "inclusive_us": 626,
+            "exclusive_us": 626
+          },
+          "native.read_all": {
+            "count": 41,
+            "inclusive_us": 480,
+            "exclusive_us": 480
+          },
+          "native.close_file": {
+            "count": 48,
+            "inclusive_us": 105,
+            "exclusive_us": 105
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 30,
+            "exclusive_us": 30
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 130,
+            "exclusive_us": 130
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 39,
+            "exclusive_us": 39
+          },
+          "native.open_write": {
+            "count": 7,
+            "inclusive_us": 199,
+            "exclusive_us": 199
+          },
+          "native.write_exact": {
+            "count": 14,
+            "inclusive_us": 114,
+            "exclusive_us": 114
+          },
+          "native.flush": {
+            "count": 7,
+            "inclusive_us": 4931,
+            "exclusive_us": 4931
+          },
+          "native.rename_file": {
+            "count": 7,
+            "inclusive_us": 712,
+            "exclusive_us": 712
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 12,
+            "exclusive_us": 12
+          }
+        }
+      },
+      {
+        "seed": "typed",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 2.218803863000005,
+        "on_execution_seconds": 2.2184194139999818,
+        "on_child_initialize_enter_seconds": 0.523554,
+        "on_dependency_seconds": 0.291379,
+        "transaction_wall_seconds": 1.26688,
+        "plan_verify_union_seconds": 1.249392,
+        "plan_verify_percent": 98.61960090932054,
+        "native_overlap_union_seconds": 0.008066,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1039850,
+            "exclusive_us": 23657
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 96533,
+            "exclusive_us": 96533
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 120110,
+            "exclusive_us": 120110
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 341442,
+            "exclusive_us": 341442
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 458108,
+            "exclusive_us": 458108
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 209542,
+            "exclusive_us": 209542
+          },
+          "native.path_ok": {
+            "count": 122,
+            "inclusive_us": 1056,
+            "exclusive_us": 1056
+          },
+          "native.open_read": {
+            "count": 41,
+            "inclusive_us": 634,
+            "exclusive_us": 634
+          },
+          "native.read_all": {
+            "count": 41,
+            "inclusive_us": 501,
+            "exclusive_us": 501
+          },
+          "native.close_file": {
+            "count": 48,
+            "inclusive_us": 131,
+            "exclusive_us": 131
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 33,
+            "exclusive_us": 33
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 142,
+            "exclusive_us": 142
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 40,
+            "exclusive_us": 40
+          },
+          "native.open_write": {
+            "count": 7,
+            "inclusive_us": 234,
+            "exclusive_us": 234
+          },
+          "native.write_exact": {
+            "count": 14,
+            "inclusive_us": 130,
+            "exclusive_us": 130
+          },
+          "native.flush": {
+            "count": 7,
+            "inclusive_us": 4626,
+            "exclusive_us": 4626
+          },
+          "native.rename_file": {
+            "count": 7,
+            "inclusive_us": 527,
+            "exclusive_us": 527
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 12,
+            "exclusive_us": 12
+          }
+        }
+      }
+    ],
+    "acceptance": "diagnostic sample only; not 172/2178/97kill",
+    "full_suite_timing": {
+      "queue_requests": 212,
+      "unique_batches": 75,
+      "queue_wait_cumulative_seconds": 195.94925813200004,
+      "queue_wait_max_seconds": 7.1016294600000265,
+      "snapshot_count": 277,
+      "snapshot_cumulative_seconds": 6.251929926999878,
+      "snapshot_wall_union_seconds": 3.5370379920000232,
+      "batch_process_cumulative_seconds": 606.6895252429998,
+      "batch_process_wall_union_seconds": 168.55626521999994,
+      "live_workers": [],
+      "recovery_complete": true,
+      "unreaped_process_records": [],
+      "warning": "Cumulative parallel intervals and projected per-root batch records must not be added to suite wall-time."
+    }
+  },
+  {
+    "evidence": "ci-completed-windows-fixed-verified",
+    "archive_sha256": "2242e87c6bb3b4da03eff171ff650f6e6927e3a01ca6b300024a1f47cccb50df",
+    "wrapper_commands": [
+      {
+        "name": "version",
+        "argv": [
+          "D:\\a\\_temp\\native-evidence\\bin\\Godot_v4.7.2-stable_win64.exe",
+          "--version"
+        ],
+        "seconds": 0.09399999999993724,
+        "exit_code": 0,
+        "timed_out": null,
+        "timeout_kind": null
+      },
+      {
+        "name": "frozen-before",
+        "argv": [
+          "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+          "tools/check_frozen_files.py"
+        ],
+        "seconds": 0.06299999999998818,
+        "exit_code": 0,
+        "timed_out": null,
+        "timeout_kind": null
+      },
+      {
+        "name": "import",
+        "argv": [
+          "D:\\a\\_temp\\native-evidence\\bin\\Godot_v4.7.2-stable_win64.exe",
+          "--headless",
+          "--editor",
+          "--import",
+          "--quit"
+        ],
+        "seconds": 104.5,
+        "exit_code": 0,
+        "timed_out": null,
+        "timeout_kind": null
+      },
+      {
+        "name": "transaction",
+        "argv": [
+          "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+          "tools/check_equipment_save_transaction_platform.py",
+          "--godot",
+          "D:\\a\\_temp\\native-evidence\\bin\\Godot_v4.7.2-stable_win64.exe",
+          "--fixture-root",
+          "D:\\a\\_temp\\native-evidence\\qa",
+          "--output",
+          "D:\\a\\_temp\\native-evidence\\results"
+        ],
+        "seconds": 174.812,
+        "exit_code": 1,
+        "timed_out": null,
+        "timeout_kind": null
+      }
+    ],
+    "build": {
+      "godot_cpp": {
+        "url": "https://github.com/godotengine/godot-cpp.git",
+        "commit": "e83fd0904c13356ed1d4c3d09f8bb9132bdc6b77",
+        "tag": "godot-4.5-stable",
+        "license": "MIT",
+        "abi": "4.5; 4.7.2で実ロード検証"
+      },
+      "scons": "SCons by Steven Knight et al.:\n\tSCons: v4.10.0.b3e979a3e42c43b91f7624895910afb869a19806, Thu, 02 Oct 2025 10:16:02 -0700, by bdbaddog on M1Dog2021\n\tSCons path: ['C:\\\\hostedtoolcache\\\\windows\\\\Python\\\\3.12.10\\\\x64\\\\Lib\\\\site-packages\\\\SCons']\nCopyright (c) 2001 - 2025 The SCons Foundation\n",
+      "compiler": "Microsoft (R) C/C++ Optimizing Compiler Version 19.51.36260 for x64\r\nCopyright (C) Microsoft Corporation.  All rights reserved.\r\n\r\nusage: cl [ option... ] filename... [ /link linkoption... ]\r\n",
+      "commands": [
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+            "-m",
+            "SCons",
+            "-C",
+            "D:\\a\\RPG-maker\\RPG-maker\\native\\equipment_save_io",
+            "build_profile=D:\\a\\RPG-maker\\RPG-maker\\native\\equipment_save_io\\build-profile.json",
+            "platform=windows",
+            "target=template_debug",
+            "arch=x86_64",
+            "-j4"
+          ],
+          "seconds": 35.577999999999975,
+          "budget_seconds": 600,
+          "exit_code": 0,
+          "log_sha256": "d004d99267a959ef8dae40cf12e73dbcfde1ba608648d3aa7e7e1e97184d5b31"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+            "-m",
+            "SCons",
+            "-C",
+            "D:\\a\\RPG-maker\\RPG-maker\\native\\equipment_save_io",
+            "build_profile=D:\\a\\RPG-maker\\RPG-maker\\native\\equipment_save_io\\build-profile.json",
+            "platform=windows",
+            "target=template_release",
+            "arch=x86_64",
+            "-j4"
+          ],
+          "seconds": 31.234000000000037,
+          "budget_seconds": 600,
+          "exit_code": 0,
+          "log_sha256": "8855a21db76f17bd344a63fa19a0de7f3e30fb62dccf7b0cd35953d14d189040"
+        }
+      ],
+      "files": {
+        "addons/equipment_save_io/bin/equipment_save_io.linux.template_debug.x86_64.so": "2cedcf39304344289f895325c5dc974cab6f024946c2fe9e53d36733ecf3f2b8",
+        "addons/equipment_save_io/bin/equipment_save_io.linux.template_release.x86_64.so": "be147776f58477c978d7e46da070abca4746838cd82c36ae287ce3b603a57de4",
+        "addons/equipment_save_io/bin/equipment_save_io.windows.template_debug.x86_64.dll": "6a3491bef7a3da7012daf85276530082b19231b6a4dd8da39482e5e48408a036",
+        "addons/equipment_save_io/bin/equipment_save_io.windows.template_release.x86_64.dll": "90ea27f2957b9df741ec33c9a8e52b444b5ecd99a814ab66f2426d056ffac2d3"
+      },
+      "source_files": {
+        "native/equipment_save_io/build-profile.json": "8b29eacd2bde13bf5ee5143924e95779fae1170f546d583b08b888d2bbd550b2",
+        "native/equipment_save_io/dependencies.json": "b7ca8537bdb9529f5eb3a009b893c5e4725573a93852c21cf3618e4b1d06300a",
+        "native/equipment_save_io/src/save_io.cpp": "870993272a4e2cd9d9d42b2b95123c9c8919a21a78035e008fbce148eb302bcd",
+        "native/equipment_save_io/src/save_io.h": "12e974e0ed31e748c2931bcbdb9325010bc4ca1a67221ad6739836240302634b"
+      }
+    }
+  },
+  {
+    "evidence": "ci-completed-windows-latest-verified",
+    "archive_sha256": "9c5f7a6805df716a736ddbbf972dcd84100e069addd52e81a72f77bbc9bdc3df",
+    "wrapper_commands": [
+      {
+        "name": "version",
+        "argv": [
+          "D:\\a\\_temp\\native-evidence\\bin\\Godot_v4.7.2-stable_win64.exe",
+          "--version"
+        ],
+        "seconds": 0.7960000000000491,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null
+      },
+      {
+        "name": "frozen-before",
+        "argv": [
+          "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+          "tools/check_frozen_files.py"
+        ],
+        "seconds": 0.04699999999991178,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null
+      },
+      {
+        "name": "import",
+        "argv": [
+          "D:\\a\\_temp\\native-evidence\\bin\\Godot_v4.7.2-stable_win64.exe",
+          "--headless",
+          "--editor",
+          "--import",
+          "--quit"
+        ],
+        "seconds": 71.625,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null
+      },
+      {
+        "name": "transaction",
+        "argv": [
+          "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+          "tools/check_equipment_save_transaction_platform.py",
+          "--godot",
+          "D:\\a\\_temp\\native-evidence\\bin\\Godot_v4.7.2-stable_win64.exe",
+          "--fixture-root",
+          "D:\\a\\_temp\\native-evidence\\qa",
+          "--output",
+          "D:\\a\\_temp\\native-evidence\\results"
+        ],
+        "seconds": 175.04700000000003,
+        "exit_code": 1,
+        "timed_out": false,
+        "timeout_kind": null
+      }
+    ],
+    "build": {
+      "godot_cpp": {
+        "url": "https://github.com/godotengine/godot-cpp.git",
+        "commit": "e83fd0904c13356ed1d4c3d09f8bb9132bdc6b77",
+        "tag": "godot-4.5-stable",
+        "license": "MIT",
+        "abi": "4.5; 4.7.2で実ロード検証"
+      },
+      "scons": "SCons by Steven Knight et al.:\n\tSCons: v4.10.0.b3e979a3e42c43b91f7624895910afb869a19806, Thu, 02 Oct 2025 10:16:02 -0700, by bdbaddog on M1Dog2021\n\tSCons path: ['C:\\\\hostedtoolcache\\\\windows\\\\Python\\\\3.12.10\\\\x64\\\\Lib\\\\site-packages\\\\SCons']\nCopyright (c) 2001 - 2025 The SCons Foundation\n",
+      "compiler": "Microsoft (R) C/C++ Optimizing Compiler Version 19.51.36260 for x64\r\nCopyright (C) Microsoft Corporation.  All rights reserved.\r\n\r\nusage: cl [ option... ] filename... [ /link linkoption... ]\r\n",
+      "commands": [
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+            "-m",
+            "SCons",
+            "-C",
+            "D:\\a\\RPG-maker\\RPG-maker\\native\\equipment_save_io",
+            "build_profile=D:\\a\\RPG-maker\\RPG-maker\\native\\equipment_save_io\\build-profile.json",
+            "platform=windows",
+            "target=template_debug",
+            "arch=x86_64",
+            "-j4"
+          ],
+          "seconds": 46.64100000000002,
+          "budget_seconds": 600,
+          "exit_code": 0,
+          "log_sha256": "e7e38d141394e90b70c708bbbc79afbbc93c0114445704dbb2335d4ef7a78481"
+        },
+        {
+          "argv": [
+            "C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\python.exe",
+            "-m",
+            "SCons",
+            "-C",
+            "D:\\a\\RPG-maker\\RPG-maker\\native\\equipment_save_io",
+            "build_profile=D:\\a\\RPG-maker\\RPG-maker\\native\\equipment_save_io\\build-profile.json",
+            "platform=windows",
+            "target=template_release",
+            "arch=x86_64",
+            "-j4"
+          ],
+          "seconds": 21.390999999999963,
+          "budget_seconds": 600,
+          "exit_code": 0,
+          "log_sha256": "8855a21db76f17bd344a63fa19a0de7f3e30fb62dccf7b0cd35953d14d189040"
+        }
+      ],
+      "files": {
+        "addons/equipment_save_io/bin/equipment_save_io.linux.template_debug.x86_64.so": "2cedcf39304344289f895325c5dc974cab6f024946c2fe9e53d36733ecf3f2b8",
+        "addons/equipment_save_io/bin/equipment_save_io.linux.template_release.x86_64.so": "be147776f58477c978d7e46da070abca4746838cd82c36ae287ce3b603a57de4",
+        "addons/equipment_save_io/bin/equipment_save_io.windows.template_debug.x86_64.dll": "6a3491bef7a3da7012daf85276530082b19231b6a4dd8da39482e5e48408a036",
+        "addons/equipment_save_io/bin/equipment_save_io.windows.template_release.x86_64.dll": "90ea27f2957b9df741ec33c9a8e52b444b5ecd99a814ab66f2426d056ffac2d3"
+      },
+      "source_files": {
+        "native/equipment_save_io/build-profile.json": "8b29eacd2bde13bf5ee5143924e95779fae1170f546d583b08b888d2bbd550b2",
+        "native/equipment_save_io/dependencies.json": "b7ca8537bdb9529f5eb3a009b893c5e4725573a93852c21cf3618e4b1d06300a",
+        "native/equipment_save_io/src/save_io.cpp": "870993272a4e2cd9d9d42b2b95123c9c8919a21a78035e008fbce148eb302bcd",
+        "native/equipment_save_io/src/save_io.h": "12e974e0ed31e748c2931bcbdb9325010bc4ca1a67221ad6739836240302634b"
+      }
+    },
+    "diagnostic_source_sha": "80cff71fed017729bc30a5c36a1bd918588fb3bb",
+    "environment": {
+      "os": "Windows-2025Server-10.0.26100-SP0",
+      "cpu": "AMD64 Family 25 Model 17 Stepping 1, AuthenticAMD",
+      "cpu_count": 4,
+      "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "fs_device": 6680023927675566906,
+      "worker_count": 2,
+      "case_workers": 8,
+      "max_batch_roots": 4,
+      "cpu_fs_command": "{\r\n    \"Name\":  \"AMD EPYC 9V74 80-Core Processor                \",\r\n    \"NumberOfCores\":  2,\r\n    \"NumberOfLogicalProcessors\":  4\r\n}\r\n[\r\n    {\r\n        \"DriveLetter\":  null,\r\n        \"FileSystemType\":  \"FAT32\"\r\n    },\r\n    {\r\n        \"DriveLetter\":  \"C\",\r\n        \"FileSystemType\":  \"NTFS\"\r\n    },\r\n    {\r\n        \"DriveLetter\":  null,\r\n        \"FileSystemType\":  \"NTFS\"\r\n    },\r\n    {\r\n        \"DriveLetter\":  \"D\",\r\n        \"FileSystemType\":  \"NTFS\"\r\n    }\r\n]\r\n",
+      "cpu_fs_exit": 0
+    },
+    "diagnostic_status": "PASS",
+    "diagnostic_wall_seconds": 54.875,
+    "seed_pairs": [
+      {
+        "seed": "granted",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 3.344000000000051,
+        "on_execution_seconds": 3.25,
+        "on_child_initialize_enter_seconds": 0.626153,
+        "on_dependency_seconds": 0.303551,
+        "transaction_wall_seconds": 2.232094,
+        "plan_verify_union_seconds": 2.198907,
+        "plan_verify_percent": 98.51318985669958,
+        "native_overlap_union_seconds": 0.023504,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1839365,
+            "exclusive_us": 36126
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 120507,
+            "exclusive_us": 120507
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 218893,
+            "exclusive_us": 218893
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 652199,
+            "exclusive_us": 652199
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 811640,
+            "exclusive_us": 811640
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 359542,
+            "exclusive_us": 359542
+          },
+          "native.path_ok": {
+            "count": 122,
+            "inclusive_us": 9724,
+            "exclusive_us": 9724
+          },
+          "native.open_read": {
+            "count": 41,
+            "inclusive_us": 5592,
+            "exclusive_us": 5592
+          },
+          "native.read_all": {
+            "count": 41,
+            "inclusive_us": 743,
+            "exclusive_us": 743
+          },
+          "native.close_file": {
+            "count": 48,
+            "inclusive_us": 513,
+            "exclusive_us": 513
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 43,
+            "exclusive_us": 43
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 470,
+            "exclusive_us": 470
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 252,
+            "exclusive_us": 252
+          },
+          "native.open_write": {
+            "count": 7,
+            "inclusive_us": 1700,
+            "exclusive_us": 1700
+          },
+          "native.write_exact": {
+            "count": 14,
+            "inclusive_us": 396,
+            "exclusive_us": 396
+          },
+          "native.flush": {
+            "count": 7,
+            "inclusive_us": 1521,
+            "exclusive_us": 1521
+          },
+          "native.rename_file": {
+            "count": 7,
+            "inclusive_us": 2544,
+            "exclusive_us": 2544
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 6,
+            "exclusive_us": 6
+          }
+        }
+      },
+      {
+        "seed": "plain",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 3.155999999999949,
+        "on_execution_seconds": 3.25,
+        "on_child_initialize_enter_seconds": 0.632691,
+        "on_dependency_seconds": 0.309052,
+        "transaction_wall_seconds": 2.168881,
+        "plan_verify_union_seconds": 2.141661,
+        "plan_verify_percent": 98.74497494330026,
+        "native_overlap_union_seconds": 0.019351,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1792230,
+            "exclusive_us": 36885
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 108924,
+            "exclusive_us": 108924
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 218133,
+            "exclusive_us": 218133
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 626641,
+            "exclusive_us": 626641
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 801647,
+            "exclusive_us": 801647
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 349431,
+            "exclusive_us": 349431
+          },
+          "native.path_ok": {
+            "count": 100,
+            "inclusive_us": 8106,
+            "exclusive_us": 8106
+          },
+          "native.open_read": {
+            "count": 31,
+            "inclusive_us": 4190,
+            "exclusive_us": 4190
+          },
+          "native.read_all": {
+            "count": 31,
+            "inclusive_us": 558,
+            "exclusive_us": 558
+          },
+          "native.close_file": {
+            "count": 37,
+            "inclusive_us": 396,
+            "exclusive_us": 396
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 107,
+            "exclusive_us": 107
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 494,
+            "exclusive_us": 494
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 249,
+            "exclusive_us": 249
+          },
+          "native.open_write": {
+            "count": 6,
+            "inclusive_us": 1585,
+            "exclusive_us": 1585
+          },
+          "native.write_exact": {
+            "count": 12,
+            "inclusive_us": 370,
+            "exclusive_us": 370
+          },
+          "native.flush": {
+            "count": 6,
+            "inclusive_us": 1257,
+            "exclusive_us": 1257
+          },
+          "native.rename_file": {
+            "count": 6,
+            "inclusive_us": 2031,
+            "exclusive_us": 2031
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 8,
+            "exclusive_us": 8
+          }
+        }
+      },
+      {
+        "seed": "trial-corrupt",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 3.25,
+        "on_execution_seconds": 3.25,
+        "on_child_initialize_enter_seconds": 0.618676,
+        "on_dependency_seconds": 0.334109,
+        "transaction_wall_seconds": 2.151825,
+        "plan_verify_union_seconds": 2.118993,
+        "plan_verify_percent": 98.47422536683978,
+        "native_overlap_union_seconds": 0.024139,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1773253,
+            "exclusive_us": 34971
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 119985,
+            "exclusive_us": 119985
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 211943,
+            "exclusive_us": 211943
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 623458,
+            "exclusive_us": 623458
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 782896,
+            "exclusive_us": 782896
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 345740,
+            "exclusive_us": 345740
+          },
+          "native.path_ok": {
+            "count": 122,
+            "inclusive_us": 10133,
+            "exclusive_us": 10133
+          },
+          "native.open_read": {
+            "count": 41,
+            "inclusive_us": 5723,
+            "exclusive_us": 5723
+          },
+          "native.read_all": {
+            "count": 41,
+            "inclusive_us": 719,
+            "exclusive_us": 719
+          },
+          "native.close_file": {
+            "count": 48,
+            "inclusive_us": 479,
+            "exclusive_us": 479
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 51,
+            "exclusive_us": 51
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 452,
+            "exclusive_us": 452
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 292,
+            "exclusive_us": 292
+          },
+          "native.open_write": {
+            "count": 7,
+            "inclusive_us": 1718,
+            "exclusive_us": 1718
+          },
+          "native.write_exact": {
+            "count": 14,
+            "inclusive_us": 449,
+            "exclusive_us": 449
+          },
+          "native.flush": {
+            "count": 7,
+            "inclusive_us": 1553,
+            "exclusive_us": 1553
+          },
+          "native.rename_file": {
+            "count": 7,
+            "inclusive_us": 2548,
+            "exclusive_us": 2548
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 22,
+            "exclusive_us": 22
+          }
+        }
+      },
+      {
+        "seed": "trial-missing",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 3.1569999999999254,
+        "on_execution_seconds": 3.157000000000039,
+        "on_child_initialize_enter_seconds": 0.61589,
+        "on_dependency_seconds": 0.296234,
+        "transaction_wall_seconds": 2.164267,
+        "plan_verify_union_seconds": 2.13662,
+        "plan_verify_percent": 98.72256981231983,
+        "native_overlap_union_seconds": 0.019469,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1782958,
+            "exclusive_us": 35286
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 119707,
+            "exclusive_us": 119707
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 212807,
+            "exclusive_us": 212807
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 628664,
+            "exclusive_us": 628664
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 786494,
+            "exclusive_us": 786494
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 353662,
+            "exclusive_us": 353662
+          },
+          "native.path_ok": {
+            "count": 105,
+            "inclusive_us": 8546,
+            "exclusive_us": 8546
+          },
+          "native.open_read": {
+            "count": 31,
+            "inclusive_us": 4080,
+            "exclusive_us": 4080
+          },
+          "native.read_all": {
+            "count": 31,
+            "inclusive_us": 602,
+            "exclusive_us": 602
+          },
+          "native.close_file": {
+            "count": 37,
+            "inclusive_us": 401,
+            "exclusive_us": 401
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 45,
+            "exclusive_us": 45
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 451,
+            "exclusive_us": 451
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 281,
+            "exclusive_us": 281
+          },
+          "native.open_write": {
+            "count": 6,
+            "inclusive_us": 1546,
+            "exclusive_us": 1546
+          },
+          "native.write_exact": {
+            "count": 12,
+            "inclusive_us": 381,
+            "exclusive_us": 381
+          },
+          "native.flush": {
+            "count": 6,
+            "inclusive_us": 1209,
+            "exclusive_us": 1209
+          },
+          "native.rename_file": {
+            "count": 6,
+            "inclusive_us": 1921,
+            "exclusive_us": 1921
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 6,
+            "exclusive_us": 6
+          }
+        }
+      },
+      {
+        "seed": "trial-unclean",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 3.25,
+        "on_execution_seconds": 3.25,
+        "on_child_initialize_enter_seconds": 0.621567,
+        "on_dependency_seconds": 0.30484,
+        "transaction_wall_seconds": 2.155454,
+        "plan_verify_union_seconds": 2.122355,
+        "plan_verify_percent": 98.46440703443452,
+        "native_overlap_union_seconds": 0.023875,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1777234,
+            "exclusive_us": 34481
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 116860,
+            "exclusive_us": 116860
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 210396,
+            "exclusive_us": 210396
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 632604,
+            "exclusive_us": 632604
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 782893,
+            "exclusive_us": 782893
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 345121,
+            "exclusive_us": 345121
+          },
+          "native.path_ok": {
+            "count": 122,
+            "inclusive_us": 9892,
+            "exclusive_us": 9892
+          },
+          "native.open_read": {
+            "count": 41,
+            "inclusive_us": 5625,
+            "exclusive_us": 5625
+          },
+          "native.read_all": {
+            "count": 41,
+            "inclusive_us": 760,
+            "exclusive_us": 760
+          },
+          "native.close_file": {
+            "count": 48,
+            "inclusive_us": 487,
+            "exclusive_us": 487
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 47,
+            "exclusive_us": 47
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 473,
+            "exclusive_us": 473
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 226,
+            "exclusive_us": 226
+          },
+          "native.open_write": {
+            "count": 7,
+            "inclusive_us": 1715,
+            "exclusive_us": 1715
+          },
+          "native.write_exact": {
+            "count": 14,
+            "inclusive_us": 398,
+            "exclusive_us": 398
+          },
+          "native.flush": {
+            "count": 7,
+            "inclusive_us": 1589,
+            "exclusive_us": 1589
+          },
+          "native.rename_file": {
+            "count": 7,
+            "inclusive_us": 2655,
+            "exclusive_us": 2655
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 8,
+            "exclusive_us": 8
+          }
+        }
+      },
+      {
+        "seed": "typed",
+        "control_output_equal": true,
+        "control_quantity_equal": true,
+        "memory_unchanged": true,
+        "off_execution_seconds": 3.25,
+        "on_execution_seconds": 3.3279999999999745,
+        "on_child_initialize_enter_seconds": 0.621151,
+        "on_dependency_seconds": 0.304692,
+        "transaction_wall_seconds": 2.264911,
+        "plan_verify_union_seconds": 2.231411,
+        "plan_verify_percent": 98.52091318378514,
+        "native_overlap_union_seconds": 0.023548,
+        "labels": {
+          "plan": {
+            "count": 6,
+            "inclusive_us": 1866871,
+            "exclusive_us": 36956
+          },
+          "plan.decode_source": {
+            "count": 6,
+            "inclusive_us": 124407,
+            "exclusive_us": 124407
+          },
+          "plan.migration": {
+            "count": 6,
+            "inclusive_us": 229602,
+            "exclusive_us": 229602
+          },
+          "plan.prepare_candidate": {
+            "count": 6,
+            "inclusive_us": 665481,
+            "exclusive_us": 665481
+          },
+          "plan.encode_candidate": {
+            "count": 6,
+            "inclusive_us": 810425,
+            "exclusive_us": 810425
+          },
+          "verify_candidate": {
+            "count": 5,
+            "inclusive_us": 364540,
+            "exclusive_us": 364540
+          },
+          "native.path_ok": {
+            "count": 122,
+            "inclusive_us": 9800,
+            "exclusive_us": 9800
+          },
+          "native.open_read": {
+            "count": 41,
+            "inclusive_us": 5456,
+            "exclusive_us": 5456
+          },
+          "native.read_all": {
+            "count": 41,
+            "inclusive_us": 763,
+            "exclusive_us": 763
+          },
+          "native.close_file": {
+            "count": 48,
+            "inclusive_us": 525,
+            "exclusive_us": 525
+          },
+          "native.relative_path": {
+            "count": 10,
+            "inclusive_us": 47,
+            "exclusive_us": 47
+          },
+          "native.make_directories": {
+            "count": 4,
+            "inclusive_us": 448,
+            "exclusive_us": 448
+          },
+          "native.acquire_lock": {
+            "count": 2,
+            "inclusive_us": 225,
+            "exclusive_us": 225
+          },
+          "native.open_write": {
+            "count": 7,
+            "inclusive_us": 1695,
+            "exclusive_us": 1695
+          },
+          "native.write_exact": {
+            "count": 14,
+            "inclusive_us": 481,
+            "exclusive_us": 481
+          },
+          "native.flush": {
+            "count": 7,
+            "inclusive_us": 1551,
+            "exclusive_us": 1551
+          },
+          "native.rename_file": {
+            "count": 7,
+            "inclusive_us": 2549,
+            "exclusive_us": 2549
+          },
+          "native.legacy_link": {
+            "count": 1,
+            "inclusive_us": 8,
+            "exclusive_us": 8
+          }
+        }
+      }
+    ],
+    "acceptance": "diagnostic sample only; not 172/2178/97kill",
+    "full_suite_timing": {
+      "queue_requests": 148,
+      "unique_batches": 51,
+      "queue_wait_cumulative_seconds": 185.290000000001,
+      "queue_wait_max_seconds": 7.530999999999949,
+      "snapshot_count": 134,
+      "snapshot_cumulative_seconds": 2.941999999999325,
+      "snapshot_wall_union_seconds": 1.7069999999994252,
+      "batch_process_cumulative_seconds": 332.7480000000004,
+      "batch_process_wall_union_seconds": 170.40700000000015,
+      "live_workers": [],
+      "recovery_complete": true,
+      "unreaped_process_records": [],
+      "warning": "Cumulative parallel intervals and projected per-root batch records must not be added to suite wall-time."
+    }
+  },
+  {
     "evidence": "ci-first-linux-fixed-verified",
     "archive_sha256": "1b1ee9a445d4320487c7bfce5cdbe7e25daca35cbd618302598dcaed65c5d24b",
     "wrapper_commands": [

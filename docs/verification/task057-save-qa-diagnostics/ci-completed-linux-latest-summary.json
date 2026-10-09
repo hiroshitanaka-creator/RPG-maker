@@ -1,0 +1,56 @@
+{
+  "results/summary.json": {
+    "status": "FAIL",
+    "case_count": 153,
+    "checks": 1959,
+    "seconds": 174.141605473,
+    "failures": [
+      "kill-owner.store.partial:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/kill-owner.store.partial batch=batch-000070",
+      "inspect-committed:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/inspect-committed batch=None",
+      "kill-receipt-prepared.store.partial:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/kill-receipt-prepared.store.partial batch=None"
+    ]
+  },
+  "commands.json": [
+    [
+      "version",
+      0.06426218099997527,
+      0
+    ],
+    [
+      "frozen-before",
+      0.031945343000018056,
+      0
+    ],
+    [
+      "import",
+      63.63301103399999,
+      0
+    ],
+    [
+      "transaction",
+      174.69391741300004,
+      1
+    ]
+  ],
+  "task057/execution.json": {
+    "status": "PASS",
+    "case_count": null,
+    "checks": null,
+    "seconds": null,
+    "failures": []
+  },
+  "task057/measurements/diagnostics.json": {
+    "status": "PASS",
+    "case_count": null,
+    "checks": null,
+    "seconds": null,
+    "failures": []
+  },
+  "build/build.json": {
+    "status": null,
+    "case_count": null,
+    "checks": null,
+    "seconds": null
+  },
+  "manifest": "PASS"
+}

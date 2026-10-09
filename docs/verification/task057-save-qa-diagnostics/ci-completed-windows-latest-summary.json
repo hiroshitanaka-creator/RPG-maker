@@ -1,0 +1,56 @@
+{
+  "results/summary.json": {
+    "status": "FAIL",
+    "case_count": 63,
+    "checks": 945,
+    "seconds": 174.42200000000003,
+    "failures": [
+      "kill-receipt-prepared.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-prepared.flush.before batch=batch-000033",
+      "kill-receipt-prepared.flush.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-prepared.flush.after batch=None",
+      "kill-receipt-prepared.open.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-receipt-prepared.open.before batch=batch-000032"
+    ]
+  },
+  "commands.json": [
+    [
+      "version",
+      0.7960000000000491,
+      0
+    ],
+    [
+      "frozen-before",
+      0.04699999999991178,
+      0
+    ],
+    [
+      "import",
+      71.625,
+      0
+    ],
+    [
+      "transaction",
+      175.04700000000003,
+      1
+    ]
+  ],
+  "task057/execution.json": {
+    "status": "PASS",
+    "case_count": null,
+    "checks": null,
+    "seconds": null,
+    "failures": []
+  },
+  "task057/measurements/diagnostics.json": {
+    "status": "PASS",
+    "case_count": null,
+    "checks": null,
+    "seconds": null,
+    "failures": []
+  },
+  "build/build.json": {
+    "status": null,
+    "case_count": null,
+    "checks": null,
+    "seconds": null
+  },
+  "manifest": "PASS"
+}

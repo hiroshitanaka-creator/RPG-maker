@@ -1,0 +1,42 @@
+{
+  "results/summary.json": {
+    "status": "FAIL",
+    "case_count": 49,
+    "checks": 735,
+    "seconds": 174.21899999999994,
+    "failures": [
+      "kill-history.readback.before:",
+      "kill-history.rename.before:",
+      "kill-history.close.after:"
+    ]
+  },
+  "commands.json": [
+    [
+      "version",
+      0.09399999999993724,
+      0
+    ],
+    [
+      "frozen-before",
+      0.06299999999998818,
+      0
+    ],
+    [
+      "import",
+      104.5,
+      0
+    ],
+    [
+      "transaction",
+      174.812,
+      1
+    ]
+  ],
+  "build/build.json": {
+    "status": null,
+    "case_count": null,
+    "checks": null,
+    "seconds": null
+  },
+  "manifest": "PASS"
+}

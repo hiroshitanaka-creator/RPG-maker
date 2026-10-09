@@ -6,7 +6,7 @@
 
 ## 証拠の入口
 
-- [archives.json](archives.json)：18archiveの完全raw SHA-256、サイズ、member索引への対応。各*-members.jsonは全memberのraw hashとサイズ。
+- [archives.json](archives.json)：23archiveの完全raw SHA-256、サイズ、member索引への対応。各*-members.jsonは全memberのraw hashとサイズ。
 - local-capture-completed-code.tar.gz：最終12正負検証、停止時の全8要求の記録、b4ee1eaのdequeue未起動欠落4件の再確認、最終057 scope正負。旧local-capture-final.tar.gzはb4ee1ea段階の証拠で、名前だけを最終コードと解釈しない。
 - local-regression.tar.gz：R-01〜R-08／保護26前後／S1/S2／装備／旧比較142/10全文／素材strict。隔離clone21d6a66の結果。本番・保護検査のblobは最終コードまで同一。
 - local-propagation.tar.gz：検証済み過去正常証拠に現validatorを適用した16伝播＋055 scope正負。現在版の全取引成功ではない。
@@ -20,6 +20,10 @@
 - [unchanged-inventory.json](unchanged-inventory.json)：基点の7828不変ファイル、うち本番/保護/原証拠541ファイルのblob一致。
 - ci-code-platform-terminal.json：f6d5697専用8jobの終了記録（6成功2失敗）。ci-*-all-terminal.jsonはそれぞれ計測時HEAD全47jobの終了記録（初回42成功5失敗／f6 45成功2失敗）。ci-*-jobs-snapshot.json／ci-first-jobs.jsonは取得時点のsnapshotで、未終了jobを全終了と読まない。最終提出HEAD全CI結果は提出応答で確認。
 - ci-*-artifacts-*.json：API artifact ZIP digest、ID、サイズ、期限。ローカルZIP取得・hash照合の成功を意味しない。
+
+## 最終修正コードの両OS証拠補足
+
+HEAD80cff71fed017729bc30a5c36a1bd918588fb3bb／コード3cf4b6cのci-completed-{linux,windows}-{fixed,latest}.tar.gzを追加。専用8job終了・4成功4失敗。両OSで強化後F5 12件・057 scope正負・6seed対照の原bytesを確認した。計測JSON集計もこのrunを追加し、前runのCPU/速度を流用していない。ci-completed-code-platform-terminal.jsonとci-completed-code-artifacts.jsonに終端metadataとAPI digestを保存。原053固定・最新PASS出力もci-completed-decoded-logs.tar.gzへ保存。全CIの後続文書HEAD結果は提出応答で確定する。
 
 ## 取得とhashの区別
 

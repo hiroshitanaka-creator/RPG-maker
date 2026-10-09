@@ -1,0 +1,42 @@
+{
+  "results/summary.json": {
+    "status": "FAIL",
+    "case_count": 132,
+    "checks": 1770,
+    "seconds": 174.044109548,
+    "failures": [
+      "history-changed:",
+      "backup-changed:",
+      "backup-hardlink:"
+    ]
+  },
+  "commands.json": [
+    [
+      "version",
+      0.0704106690000117,
+      0
+    ],
+    [
+      "frozen-before",
+      0.032767648000003646,
+      0
+    ],
+    [
+      "import",
+      66.60808414600001,
+      0
+    ],
+    [
+      "transaction",
+      174.665447772,
+      1
+    ]
+  ],
+  "build/build.json": {
+    "status": null,
+    "case_count": null,
+    "checks": null,
+    "seconds": null
+  },
+  "manifest": "PASS"
+}
