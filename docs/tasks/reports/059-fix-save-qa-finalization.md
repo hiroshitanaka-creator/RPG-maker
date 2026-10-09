@@ -62,3 +62,17 @@ F1の全取引時間未達とF4実測不足は別の残件であり、今回承�
 ## 最新担当分担の適用
 
 最新の明示指示に従い、以後docs/decision-log.mdとdocs/tasks/README.mdは更新しない。既存commit d7ecd229baa2ce0cc56c65e9b474abca0e2595dcのdecision-log 126行に、受付ID/専用Linux session・Windows Job/057世代分離/全予算と本番不変/通常revertという059判断の1項目が保存済み。未コミット追記は0。既存項目は削除も履歴変更もせず保持する。以後の判断/検証は本059報告へ記載し、ルッカが取り込み後に記録とタスク表を更新する。scope059も後続decision-log書換え/追記の実exit1を確認する。
+
+## GPT-6 Astra／Highへの引継ぎ時点（受入未完了）
+
+依頼者の明示指定により、以後の実行はGPT-6 Astra／Highへ変更する。現行ターンでは追加実装・次段階の検証を開始せず、既に実行した結果と修正を保存して区切った。依頼書状態は作業中を維持し、本番性能修正の承認へ範囲を広げない。
+
+HEAD6a62fd7のLinux latest transaction CI（run37966701471/job113942743343）原archiveを復元してraw SHA-256 cd3d5ae69f3b8f8404671e581fc032fb9f811398af8d55ef69c4947c788a83f0、4265560bytes、6392member全hash/sizeを照合した。追加21検証・修正前反例・当時scope4検証は成功したが、既存12のshutdown-active-and-futuresは失敗、全取引も119/1653・174.656秒で未達。受付299のうち監督未確認5をfalseのまま保存し、回収成功へ補完していない。
+
+原物で、Linuxのstatからenviron読取りまでの間に所有子がexitすると、空token/EACCESが終端raceとして残ることを確認した。モデル変更指示以前に、同じPID世代の終了を再読取りで確認し、元cleanup_deadlineの残量内だけ再観測する修正と、実際の専用子exitによる回帰を追加済み。所有不明のlive processへsignalせず、予算延長・権限変更なし。変更はprocess_tree059.py/test_capture059.pyだけで、保存commitはbdc1097547a4e1243082f8433fb680683ddb4f1c。既に実行したLinux既存12件と追加22件はexit0/PASS。capture057-linux-exit-race、capture059-linux-22の原log/JSON/argvを保存した。途中の追加21件失敗もcapture059-linux-exit-race-intermediate-failureとして保持する。
+
+WindowsのHEAD6a62fd7 latest primitives job113942743366はcompleted/successというmetadataを確認したが、原job log取得は2回ともTransport closedで失敗した。原archiveと個々のF5結果は未確認。Linux/Windowsとも最新修正22件を最終CIで確認したとは言わない。
+
+[モデル変更時CI snapshot](../../verification/task059-save-qa-finalization/model-transition-ci-snapshot.json)はHEAD1fcb54fの6workflowと当時返った50job、旧HEAD6a62fd7の専用12jobの収集結果。HEAD1fcbの全終了を待ち切っていない。Equipment and Saveの後続jobはまだ未生成の可能性があるため50件を全件確定数としない。旧HEAD6aのWindows latest transactionも収集時in_progress。他の失敗/成功/queued/in_progressはsnapshotのとおりで、取消しはしていない。
+
+次のAstraターンで必要な作業は、保存修正のレビュー、新コードの完全SHA固定/code inventory/scope10正負の再照合、Windows/Linuxの既存12＋追加22と全受付照合の最終CI原証拠回収、原2259blob不変と全archive再照合、059報告/状態の最終化、指定branch最終SHA全CI終了・clean/未push確認。code-fixed-sha.txt/code-inventory.json/scope059-current-policy.jsonは8282248の過去固定を保持したままで、bdc1097の新固定はまだ行っていない。この段階のpush CIで旧固定との差が失敗する可能性を隠さず、次ターンで固定更新と検証を行う。F1時間未達、F4実ENOSPC/nested別volume NOT_RUNは継続。decision-log/tasks READMEは以後も更新しない。

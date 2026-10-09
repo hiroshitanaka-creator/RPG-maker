@@ -1,0 +1,2772 @@
+{
+  "phase": "モデル変更時の結果収集。追加実装・次段階検証を開始せず保存",
+  "requested_next_model": "GPT-6 Astra / High",
+  "collected_at_utc": "2026-10-09 17:50:48 UTC",
+  "head_sha": "1fcb54f5b6d38c582c81c09008566e12b7b30ddd",
+  "runs": [
+    {
+      "run_id": 37968062146,
+      "name": "CI",
+      "head_sha": "1fcb54f5b6d38c582c81c09008566e12b7b30ddd",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37968062146",
+      "jobs": [
+        {
+          "id": 113947332248,
+          "name": "試遊前の通常戦闘・案内・画面・復帰検査",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 37968062146,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "固定版Godotを取得してインポート",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "共通機構の実戦・育成・保存・画面・同予算比較を検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "ワールド構造のPhase 1定義を検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "ワールド構造のPhase 2と検査器の回帰を検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "広域地形の再現性・実経路・実時間記録を検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "60時間の時間判定を検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "追加受入の勝率と終了率・反応への対処を検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "保護対象を照合",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "試遊前検査の結果を保存",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            }
+          ]
+        },
+        {
+          "id": 113947332648,
+          "name": "Godot・凍結受入テスト",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_id": 37968062146,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "凍結ファイルのハッシュを確認",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Godot プロジェクトの有無を確認",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Godot を取得",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "インポートしてエラーを検出",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "凍結契約に登録された全verifyを実行",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "導入の固定比較基準を取得し台帳の異常検出を検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "第1地方の追加導入・見逃し・旧保存補完を検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "村の独立地形を既存の通行・移動APIで検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "007完成版と最新の住人・宿・祠・通常操作を検査",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 12
+            },
+            {
+              "name": "011遺跡の完成版と最新の通行・階段・保存・実描画を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 13
+            },
+            {
+              "name": "敵の行動予定と連戦の保存を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 14
+            },
+            {
+              "name": "戦闘前の自動保存と全滅からの復帰を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 15
+            },
+            {
+              "name": "保存値の型と破損時の状態保持を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 16
+            },
+            {
+              "name": "部屋の作りが変わった後の保存の置き直しを検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 17
+            },
+            {
+              "name": "第2地方の航路と岸の境界を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 18
+            },
+            {
+              "name": "最初の地方の画面と通常保存操作を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 19
+            },
+            {
+              "name": "第2港の外観（一枚絵の背景・通行地図・上の層）を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 20
+            },
+            {
+              "name": "第2地方の港町と6室・船・帰還・保存を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 21
+            },
+            {
+              "name": "職業衣装の参照と保存復元を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 22
+            },
+            {
+              "name": "版識別と保存後の再起動復旧を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 23
+            },
+            {
+              "name": "検証後も保護ファイルが不変であることを確認",
+              "status": "pending",
+              "conclusion": null,
+              "number": 24
+            },
+            {
+              "name": "ログを保存",
+              "status": "pending",
+              "conclusion": null,
+              "number": 25
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "pending",
+              "conclusion": null,
+              "number": 49
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "pending",
+              "conclusion": null,
+              "number": 50
+            }
+          ]
+        },
+        {
+          "id": 113947332748,
+          "name": "素材検査",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_id": 37968062146,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "pending",
+              "conclusion": null,
+              "number": 3
+            },
+            {
+              "name": "Pillow を導入",
+              "status": "pending",
+              "conclusion": null,
+              "number": 4
+            },
+            {
+              "name": "素材台帳に従って検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 5
+            },
+            {
+              "name": "第2港の背景が最近傍縮小と最近傍減色だけで作られていることを検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 6
+            },
+            {
+              "name": "村の独立背景・原画不変・再生成・実描画画素を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 7
+            },
+            {
+              "name": "進捗文書と検証結果の集計を検査",
+              "status": "pending",
+              "conclusion": null,
+              "number": 8
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "pending",
+              "conclusion": null,
+              "number": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 37968062167,
+      "name": "Equipment and Save CI",
+      "head_sha": "1fcb54f5b6d38c582c81c09008566e12b7b30ddd",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37968062167",
+      "jobs": [
+        {
+          "id": 113947332405,
+          "name": "equipment-failure-propagation",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332523,
+          "name": "equipment-legacy (latest)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332552,
+          "name": "equipment-core (041)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332635,
+          "name": "equipment-core (latest)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332640,
+          "name": "equipment-legacy (baseline)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332647,
+          "name": "equipment-core (036)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332656,
+          "name": "equipment-invalid (041)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332758,
+          "name": "equipment-invalid (038)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332832,
+          "name": "equipment-core (038)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332834,
+          "name": "equipment-migration (041)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332847,
+          "name": "equipment-legacy (041)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332863,
+          "name": "equipment-invalid (latest)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333006,
+          "name": "equipment-migration (latest)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062167,
+          "logs_url": null,
+          "steps": null
+        }
+      ]
+    },
+    {
+      "run_id": 37968062186,
+      "name": "保存専用native Windows・Linux CI",
+      "head_sha": "1fcb54f5b6d38c582c81c09008566e12b7b30ddd",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37968062186",
+      "jobs": [
+        {
+          "id": 113947332783,
+          "name": "equipment-native (ubuntu-latest, fixed057, primitives)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332884,
+          "name": "equipment-native (windows-latest, fixed055, primitives)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332951,
+          "name": "equipment-native (ubuntu-latest, fixed055, transaction)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332955,
+          "name": "equipment-native (ubuntu-latest, latest, transaction)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332969,
+          "name": "equipment-native (windows-latest, fixed057, primitives)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333018,
+          "name": "equipment-native (windows-latest, latest, transaction)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333025,
+          "name": "equipment-native (ubuntu-latest, fixed055, primitives)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333100,
+          "name": "equipment-native (ubuntu-latest, latest, primitives)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333110,
+          "name": "equipment-native (ubuntu-latest, fixed057, transaction)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333114,
+          "name": "equipment-native (windows-latest, fixed055, transaction)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333178,
+          "name": "equipment-native (windows-latest, fixed057, transaction)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333238,
+          "name": "equipment-native (windows-latest, latest, primitives)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062186,
+          "logs_url": null,
+          "steps": null
+        }
+      ]
+    },
+    {
+      "run_id": 37968062220,
+      "name": "006 固定受入と最新回帰",
+      "head_sha": "1fcb54f5b6d38c582c81c09008566e12b7b30ddd",
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37968062220",
+      "jobs": [
+        {
+          "id": 113947332861,
+          "name": "normal-input-and-rendering (fixed, details)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332877,
+          "name": "normal-input-and-rendering (fixed, restart-2)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332883,
+          "name": "normal-input-and-rendering (latest, details)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332886,
+          "name": "normal-input-and-rendering (latest, restart-1)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332890,
+          "name": "normal-input-and-rendering (fixed, journey)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332893,
+          "name": "normal-input-and-rendering (fixed, restart-3)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332920,
+          "name": "normal-input-and-rendering (fixed, restart-0)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332929,
+          "name": "normal-input-and-rendering (fixed, restart-4)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332937,
+          "name": "normal-input-and-rendering (latest, restart-0)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332938,
+          "name": "acceptance-and-regression (fixed)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332940,
+          "name": "normal-input-and-rendering (latest, restart-3)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332946,
+          "name": "normal-input-and-rendering (latest, restart-2)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332957,
+          "name": "normal-input-and-rendering (latest, journey)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332985,
+          "name": "normal-input-and-rendering (fixed, restart-1)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947332993,
+          "name": "normal-input-and-rendering (latest, restart-4)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333097,
+          "name": "lifecycle-audit",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        },
+        {
+          "id": 113947333825,
+          "name": "acceptance-and-regression (latest)",
+          "status": "queued",
+          "conclusion": null,
+          "run_id": 37968062220,
+          "logs_url": null,
+          "steps": null
+        }
+      ]
+    },
+    {
+      "run_id": 37968062224,
+      "name": "装備保存I/O・中断復旧CI",
+      "head_sha": "1fcb54f5b6d38c582c81c09008566e12b7b30ddd",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37968062224",
+      "jobs": [
+        {
+          "id": 113947332242,
+          "name": "equipment-transaction (latest)",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_id": 37968062224,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "登録と完成コードを完全SHAで取得",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "公式Godotの既存指定hashを照合",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "全172ケース・97地点・証拠改変と範囲世代の実exitを検査",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 6
+            },
+            {
+              "name": "対象checkoutの保護照合（失敗時も実行）",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "原入力・全bytes・全結果・実exit・原log保存（失敗時も実行）",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 15
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            }
+          ]
+        },
+        {
+          "id": 113947332609,
+          "name": "equipment-transaction (fixed053)",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_id": 37968062224,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "登録と完成コードを完全SHAで取得",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "公式Godotの既存指定hashを照合",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "全172ケース・97地点・証拠改変と範囲世代の実exitを検査",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "対象checkoutの保護照合（失敗時も実行）",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "原入力・全bytes・全結果・実exit・原log保存（失敗時も実行）",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 8
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "pending",
+              "conclusion": null,
+              "number": 15
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "pending",
+              "conclusion": null,
+              "number": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 37968062152,
+      "name": "Equipment Codec CI",
+      "head_sha": "1fcb54f5b6d38c582c81c09008566e12b7b30ddd",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37968062152",
+      "jobs": [
+        {
+          "id": 113947332349,
+          "name": "equipment-codec (fixed051)",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_id": 37968062152,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "登録と固定完成コードを完全SHAで取得",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "公式Godotを既存指定hashで照合",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "S2全固定期待と失敗伝播の実exitを検査",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 6
+            },
+            {
+              "name": "対象checkoutの保護照合（失敗時も実行）",
+              "status": "pending",
+              "conclusion": null,
+              "number": 7
+            },
+            {
+              "name": "原入力・符号化bytes・全結果・原log保存（失敗時も実行）",
+              "status": "pending",
+              "conclusion": null,
+              "number": 8
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "pending",
+              "conclusion": null,
+              "number": 15
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "pending",
+              "conclusion": null,
+              "number": 16
+            }
+          ]
+        },
+        {
+          "id": 113947332492,
+          "name": "equipment-codec (fixed049)",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_id": 37968062152,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "登録と固定完成コードを完全SHAで取得",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "公式Godotを既存指定hashで照合",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "S2全固定期待と失敗伝播の実exitを検査",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 6
+            },
+            {
+              "name": "対象checkoutの保護照合（失敗時も実行）",
+              "status": "pending",
+              "conclusion": null,
+              "number": 7
+            },
+            {
+              "name": "原入力・符号化bytes・全結果・原log保存（失敗時も実行）",
+              "status": "pending",
+              "conclusion": null,
+              "number": 8
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "pending",
+              "conclusion": null,
+              "number": 15
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "pending",
+              "conclusion": null,
+              "number": 16
+            }
+          ]
+        },
+        {
+          "id": 113947332539,
+          "name": "equipment-codec (latest)",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_id": 37968062152,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "登録と固定完成コードを完全SHAで取得",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "公式Godotを既存指定hashで照合",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "S2全固定期待と失敗伝播の実exitを検査",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 6
+            },
+            {
+              "name": "対象checkoutの保護照合（失敗時も実行）",
+              "status": "pending",
+              "conclusion": null,
+              "number": 7
+            },
+            {
+              "name": "原入力・符号化bytes・全結果・原log保存（失敗時も実行）",
+              "status": "pending",
+              "conclusion": null,
+              "number": 8
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "pending",
+              "conclusion": null,
+              "number": 15
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "pending",
+              "conclusion": null,
+              "number": 16
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "prior_platform_head_sha": "6a62fd7f7bd01cb7f508440e98a41dccea0c4cac",
+  "prior_platform_run_id": 37966701471,
+  "prior_platform_jobs": [
+    {
+      "id": 113942743080,
+      "name": "equipment-native (ubuntu-latest, fixed055, transaction)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743218,
+      "name": "equipment-native (windows-latest, fixed055, primitives)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743310,
+      "name": "equipment-native (windows-latest, fixed057, transaction)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743329,
+      "name": "equipment-native (ubuntu-latest, latest, primitives)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743343,
+      "name": "equipment-native (ubuntu-latest, latest, transaction)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743366,
+      "name": "equipment-native (windows-latest, latest, primitives)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743487,
+      "name": "equipment-native (windows-latest, fixed055, transaction)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743494,
+      "name": "equipment-native (ubuntu-latest, fixed057, transaction)",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743497,
+      "name": "equipment-native (windows-latest, fixed057, primitives)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743507,
+      "name": "equipment-native (ubuntu-latest, fixed055, primitives)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942743518,
+      "name": "equipment-native (ubuntu-latest, fixed057, primitives)",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37
+        }
+      ]
+    },
+    {
+      "id": 113942744196,
+      "name": "equipment-native (windows-latest, latest, transaction)",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_id": 37966701471,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "055完成コードを完全SHAで別checkout",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "057完成コードを完全SHAで別checkout（当時の検査を保持）",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run ilammy/msvc-dev-cmd@v1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "原固定053を完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "最新側のscope用完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "057範囲用の基点・完成SHAを完全SHAで取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "059範囲・058基点用の完全SHAを取得",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "固定ビルド依存を導入",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "提出済みDLL・SOを実ロード照合用に保持",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "固定依存からdebug/release DLL・SOを構築",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "公式4.7.2と専用検査",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14
+        },
+        {
+          "name": "保護照合（失敗時も実行）",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "世代別ログ回収正負・scope・6seed計測対照（全取引判定と別）",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 16
+        },
+        {
+          "name": "原bytesとarchive hashをjobにも保持（失敗時も実行）",
+          "status": "pending",
+          "conclusion": null,
+          "number": 17
+        },
+        {
+          "name": "配布物・全原証拠を保存（失敗時も実行）",
+          "status": "pending",
+          "conclusion": null,
+          "number": 18
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "pending",
+          "conclusion": null,
+          "number": 35
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "pending",
+          "conclusion": null,
+          "number": 36
+        }
+      ]
+    }
+  ],
+  "windows_log_collection": {
+    "job_id": 113942743366,
+    "result": "取得を2回試みたがTransport closed。completed/successのjob metadataは取得。原archive未取得、専用case成功は未確認"
+  }
+}

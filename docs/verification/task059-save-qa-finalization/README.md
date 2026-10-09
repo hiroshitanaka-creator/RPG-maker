@@ -17,3 +17,5 @@
 `evidence-tools/verify_artifacts.py`で059archive全memberと旧2259blobを再照合できる。package_local.py/regressions.py/propagation.py/check_source.pyは今回実際に使った手順で、所定の/tmp/qa059原物を前提にする。旧証拠を上書きしない。
 
 CIの原archiveは取得できたdecoded UTF-8 job textのNATIVE_RAW_PROOF_DATAを復元し、宣言hash/size/member数と照合する。decoded text hash・raw tar.gz hash・Git blob・API artifact ZIP digestは別物。取得不能は未確認として記録する。
+
+モデル変更時の保存：capture057-linux-exit-race（既存12/PASS）、capture059-linux-22（追加22/PASS）、capture059-linux-exit-race-intermediate-failure（途中21/FAIL）、ci-second-linux-latest（HEAD6a62fd7追加21成功・既存12の1件失敗・全取引時間未達）を追加した。原archiveは合計14。次のGPT-6 Astra／Highターンまで新修正の固定SHA更新と最終両OS検証を保留する。従来8282248のcode pin/inventory/scope証拠は過去固定のまま。[引継ぎCI snapshot](model-transition-ci-snapshot.json)は収集時点のmetadataで、全CI終了/全受入成功の証明ではない。
