@@ -8,12 +8,15 @@ import tarfile
 E=Path(__file__).resolve().parents[1]
 CODE='55a56d09d7c74becaeacdecede16836d93ba8cbc'
 
-def audit(name):
+def audit(name,code=CODE,source=None,require_setup=False):
     path=E/(name+'.tar.gz');catalog=next(r for r in json.loads((E/'archives.json').read_bytes()) if r['archive']==path.name)
     assert hashlib.sha256(path.read_bytes()).hexdigest()==catalog['raw_sha256']
     with tarfile.open(path) as tar:
         # gzipの同じ先頭から受付ごとに再展開せず、照合対象原bytesだけを一巡で読む。
+        labels=['capture-tests','scope059','capture059','baseline058','measurements']
         exact={'evidence/task059/'+p for p in ('execution.json','scope.json','capture-tests/tests.json','capture059/tests.json','baseline058/counterexamples.json')}
+        for label in labels+['baseline-checkout']:
+            exact.update('evidence/task059/'+label+suffix for suffix in ['-process.json','.log'])
         payload={}
         for member in tar:
             selected=member.name in exact or (member.name.startswith('evidence/results/') and member.name.endswith(('-execution.json','.log','restart-queue.json','summary.json')))
@@ -21,8 +24,16 @@ def audit(name):
         # 原recordのWindows区切りをtar memberのPOSIX表記へ対応させる。JSON原値は変更しない。
         def raw(path):return payload[path.replace('\\','/')]
         def data(path):return json.loads(raw(path))
-        execution=data('evidence/task059/execution.json');assert execution['code_sha']==CODE and execution['status']=='PASS'
-        scope=data('evidence/task059/scope.json');assert scope['code_sha']==CODE and scope['source_sha']==execution['source_sha']
+        execution=data('evidence/task059/execution.json');assert execution['code_sha']==code and execution['status']=='PASS'
+        if source is not None:assert execution['source_sha']==source
+        assert [row['label'] for row in execution['commands']]==labels
+        expected_budgets=dict(zip(labels,[180,30,180,30,180]));expected_budgets['baseline-checkout']=30
+        if require_setup:assert execution['schema']==2 and [row['label'] for row in execution['setup']]==['baseline-checkout']
+        for row in execution.get('setup',[])+execution['commands']:
+            label=row['label'];assert row['exit_code']==0 and row['supervision']['stopped'] is True and row['budget_seconds']==expected_budgets[label]
+            assert {k:v for k,v in row.items() if k!='label'}==data('evidence/task059/'+label+'-process.json')
+            assert hashlib.sha256(raw('evidence/task059/'+label+'.log')).hexdigest()==row['log_sha256']
+        scope=data('evidence/task059/scope.json');assert scope['code_sha']==code and scope['source_sha']==execution['source_sha']
         assert len(scope['propagation'])==10 and all(r['exit_code']==r['expected_exit'] for r in scope['propagation'])
         counts={}
         for folder,count in [('capture-tests',12),('capture059',27)]:
@@ -57,7 +68,7 @@ def audit(name):
                     assert raw(prefix+batchlog)==raw(prefix+row['log'])
                 batches.add(row['batch_record'])
         summary=data(prefix+'summary.json')
-        return dict(status='PASS',archive=path.name,raw_sha256=catalog['raw_sha256'],head_sha=execution['source_sha'],code_sha=CODE,platform=before['platform'],checks=counts,scope_cases=10,requests=len(identities),started_request_rows=started,unstarted_request_rows=unstarted,unique_batch_records=len(batches),receipt_records_and_log_bytes_match=True,recovery_complete=True,transaction=dict(status=summary['status'],cases=summary['case_count'],checks=summary['checks'],seconds=summary['seconds']),note='受付数と共有process数は別。取引の成功を回収成功で補完しない')
+        return dict(status='PASS',archive=path.name,raw_sha256=catalog['raw_sha256'],head_sha=execution['source_sha'],code_sha=code,platform=before['platform'],checks=counts,scope_cases=10,diagnostic_setup_required=require_setup,diagnostic_process_records_and_logs_match=True,requests=len(identities),started_request_rows=started,unstarted_request_rows=unstarted,unique_batch_records=len(batches),receipt_records_and_log_bytes_match=True,recovery_complete=True,transaction=dict(status=summary['status'],cases=summary['case_count'],checks=summary['checks'],seconds=summary['seconds']),note='受付数と共有process数は別。取引の成功を回収成功で補完しない')
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('names',nargs='+');p.add_argument('--output',required=True);a=p.parse_args();rows=[audit(name) for name in a.names];Path(a.output).write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n');print(json.dumps(rows,ensure_ascii=False))
+    p=argparse.ArgumentParser();p.add_argument('names',nargs='+');p.add_argument('--output',required=True);p.add_argument('--code-sha',default=CODE);p.add_argument('--source-sha');p.add_argument('--require-setup',action='store_true');a=p.parse_args();rows=[audit(name,a.code_sha,a.source_sha,a.require_setup) for name in a.names];Path(a.output).write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n');print(json.dumps(rows,ensure_ascii=False))

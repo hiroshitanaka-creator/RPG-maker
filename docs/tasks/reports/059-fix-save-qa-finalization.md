@@ -14,11 +14,26 @@
 
 肥大については、既存upload-artifactがnative-evidence全体を含むため、Linuxの旧053 checkoutも含むことを確認した。手元の同経路legacy053は約1.4GB、binary検査の必要なmini project群は約73MBだった。元1.25GB ZIPの全bytesは未取得なので、その全内訳を照合したとはしない。新しい小さい診断artifactは旧checkoutやbinary mini projectの外に保存する。
 
-原証拠はresume351-code55-diagnostic、setup-diagnostic-before41/after41、compact-diagnostic-validation41（実行helper hashあり）。compact-diagnostic-validationはsetup欄追加前の途中helperで、最終41の証明と混ぜない。旧固定55のcode inventory/scope証拠は別名で保持した。新固定13ファイル・scope10正負を確認。coreのprocess_capture/process_tree/driver/既存12・追加27検査本文は55から不変。新固定の両OS CIと最終文書SHA全CIは後続確認として区別する。inspect-preparedのQA log条件、F1/F4、原351の未確認は別に保持する。
+原証拠はresume351-code55-diagnostic、setup-diagnostic-before41/after41、compact-diagnostic-validation41（実行helper hashあり）。compact-diagnostic-validationはsetup欄追加前の途中helperで、最終41の証明と混ぜない。旧固定55のcode inventory/scope証拠は別名で保持した。新固定13ファイル・scope10正負を確認。coreのprocess_capture/process_tree/driver/既存12・追加27検査本文は55から不変。inspect-preparedのQA log条件、F1/F4、原351の未確認は別に保持する。
+
+### 新固定41の両OS CI原証拠
+
+実行HEAD8f03e280ab3bdb8cf772832e9393e8e8e22eeb77、専用run37982218518。全12job終了、7成功5失敗。最新両OSのtransaction/primitivesでは診断と独立証拠保存が全成功し、失敗5jobは取引本体stepである。旧固定055/057と全primitiveを保持。[job/step・小さいartifact metadata](../../verification/task059-save-qa-finalization/code41-native-ci.json)に記録した。
+
+| OS / transaction job | 準備 / 既存12 / 追加27 | 独立照合した全受付 | 取引本体 |
+|---|---|---|---|
+| Linux / 113995301202 | 3.682180 / 31.679262 / 8.191811秒、全exit0 | 300受付、起動行276/未起動24、batch68、全終端・実log bytes一致、回収true | 131件/1755条件、174.564731秒、FAIL |
+| Windows / 113995301326 | 5.750 / 31.063 / 6.547秒、全exit0 | 249受付、起動行151/未起動98、batch51、同じ全照合成功、回収true | 66件/990条件、174.563秒、FAIL |
+
+両OSともscope10正負・058反例・6seed/12sampleが成功。準備30秒、元5診断180/30/180/30/180秒を保持し、全processのstopped=trueを原record/log hashまで照合。[ci-code41-receipt-audit](../../verification/task059-save-qa-finalization/ci-code41-receipt-audit.json)は明示したcode41/source8f03を期待値にして検査した。
+
+Linux原tarは63f88cd97bd035769808b77e50c180f6ff842d59a462a8b1759e26ee616026e8、5,806,395bytes、6,606member。Windows原tarはc525b80104436aec9b1033ff951a3d5b2fdbc744add28771e39d392b661985e5、4,809,396bytes、4,333member。両方ともGitHub toolで取得できたdecoded job textから復元し、宣言hash/全member bytesを確認した。
+
+独立した小さいartifactは最新4jobで生成され、API metadata上の外側ZIPは約2.65〜2.68MB。Windows transaction artifact11642102037の参照は取得できたが、既存環境への転送はproxy tunnel403で拒否された。外側ZIP bytes/API digestと、内側ZIPの宣言hashは未照合。拒否を迂回せず、アクセス可能だったtransaction原tarの照合成功と区別する。小さいartifact生成の成功を元351jobの原因特定や未取得ZIPの照合成功へ置き換えない。最終文書SHAの全workflow/job終了・clean/未pushは最終応答で確定する。
 
 ## 351提出までの固定コードと両OS原証拠の対応
 
-**固定コード55a56d09d7c74becaeacdecede16836d93ba8cbc。実行HEAD ac768dee939783d41b8a6788af4b61551fd96d7b。** 30aca09の26件は途中版であり、最新成功へ流用しない。最新は既存12件＋追加27件（負例の所定非0/未確認も含む）を両OSで実行した。両OSともscope10正負・基点058の2反例・6seed診断はexit0。
+**固定コード55a56d09d7c74becaeacdecede16836d93ba8cbc。実行HEAD ac768dee939783d41b8a6788af4b61551fd96d7b。** 30aca09の26件は途中版であり、この55/ac768deの成功へ流用しない。この55/ac768deでは既存12件＋追加27件（負例の所定非0/未確認も含む）を両OSで実行した。両OSともscope10正負・基点058の2反例・6seed診断はexit0。
 
 | OS / job（run37973730943） | 既存12 / 追加27の秒・exit | 全受付原証拠の独立照合 | 全取引 |
 |---|---|---|---|
@@ -83,7 +98,7 @@ Linuxは自分が作った専用sessionとgroup、exec前から渡す継承owner
 
 初回HEAD9d4d361のfixed057 Windows原archiveを復元し、宣言raw hash/sizeと3884memberを照合。12捕捉・scope3例成功、全取引69/1035・174.407秒未達、診断のGet-CimInstanceが既存30秒でtimeout。この当時固定側の失敗を059の監督不備や成功へ混同しない。初回latestの原checkout位置が証拠archive内に入る点を修正し、以後は原checkoutをarchiveの外に分離した。
 
-この節は初期提出の履歴である。最新固定55a56d09の両OS原証拠は冒頭の対応表、取得限界は末尾を参照する。最終文書SHAの全CI終了結果は最終応答で確定する。
+この節は初期提出の履歴である。旧固定55a56d09／実行ac768deの両OS原証拠は「351提出まで」の対応表、新固定41a34ea／実行8f03の原証拠は別の冒頭表を参照する。最終文書SHAの全CI終了結果は最終応答で確定する。
 
 ## 永続原証拠・変更一覧
 
@@ -93,7 +108,7 @@ Linuxは自分が作った専用sessionとgroup、exec前から渡す継承owner
 
 ## 残件
 
-F1の全取引時間未達とF4実測不足は別の残件であり、今回承認済みのQA修正のために本番codec・検査時間・OS設定へ範囲を広げない。必要な保留はF1/F4および取得できないCI原物のみ。新PR・main/PR33反映・merge・force・削除・追加委譲なし。
+F1の全取引時間未達とF4実測不足は別の残件であり、今回承認済みのQA修正のために本番codec・検査時間・OS設定へ範囲を広げない。当初の保留はF1/F4および当時取得できなかったCI原物であり、再開後の残件は末尾に記す。新PR・main/PR33反映・merge・force・削除・追加委譲なし。
 
 ## 最新担当分担の適用
 
@@ -145,8 +160,10 @@ inspect-preparedは、元case/assertionを変えずにinspect呼出し前後の�
 
 ## 提出時の保証範囲と取得不能
 
-F5-a/F5-bは上記最新固定の両OS原証拠で検証済み。Linuxは専用session/start_ticks/継承token/pidfd、Windowsはsuspended作成→専用Job所属→resumeの範囲で今回起動したQA processを監督する。所有不明・期限0・保存不能・設定失敗を成功へ補完しない。既存180/174/30/600秒・15分、元assertion、worker/batch、原固定SHA/旧scope/原証拠、保護26を保持した。OS全体停止・権限/namespaceにより所有確認できないprocess・監督から意図的に離脱するQAまで保証しない。
+F5-a/F5-bの既存12＋追加27件は、旧固定55a56d09／実行ac768deと、新固定41a34ea／実行8f03の両OS原archiveで、それぞれ照合した。新41の準備監督・準備process記録・診断原logも8f03の原archiveで照合済み。元351のstep16失敗原因は未確認であり、後の成功から原因を補完しない。Linuxは専用session/start_ticks/継承token/pidfd、Windowsはsuspended作成→専用Job所属→resumeの範囲で今回起動したQA processを監督する。所有不明・期限0・保存不能・設定失敗を成功へ補完しない。既存180/174/30/600秒・15分、元assertion、worker/batch、原固定SHA/旧scope/原証拠、保護26を保持した。OS全体停止・権限/namespaceにより所有確認できないprocess・監督から意図的に離脱するQAまで保証しない。
 
-残件はF1時間内の全取引未達、F4実ENOSPC/nested別volume NOT_RUN、観測済みinspect-preparedのQA log不変条件の別判断、最新primitives原bytes未照合。後者の対象はrun37973730943のLinux job113966598499/Windows job113966598640で、各fetch_workflow_job_logsがTransport closed。job metadata成功だけで原log再照合済みとはしない。旧artifact11634293939の代替取得がproxy tunnel 403 Forbiddenだったことも別に保持する。環境を切り替えず、OS設定や検査条件を変えない。
+残件はF1時間内の全取引未達、F4実ENOSPC/nested別volume NOT_RUN、観測済みinspect-preparedのQA log不変条件の別判断、元351診断失敗の原因未確認、小型artifact転送/bytes未照合。旧55／実行ac768deのprimitives原bytes未照合の対象はrun37973730943のLinux job113966598499/Windows job113966598640で、各fetch_workflow_job_logsがTransport closed。job metadata成功だけで原log再照合済みとはしない。新41／実行8f03のprimitivesは両OS job/診断step metadata成功で、transaction原archiveの取得成功をprimitives原bytesの取得成功へ転用しない。新41の小型artifactは生成/参照取得まで、Windows外側ZIP転送はproxy403で未照合。旧artifact11634293939の代替取得がproxy tunnel 403 Forbiddenだったことも別に保持する。環境を切り替えず、OS設定や検査条件を変えない。
 
 原archive/member索引は追加保存し、途中失敗も保持した。提出直前の独立再照合は32archive・62833member・原2259blobすべて一致（10.113890秒/exit0）、保護対象26件も26件一致（0.070796秒/exit0）。artifact-validation-current/frozen-finalの原logとprocess記録に保存した。最終文書SHAのall CI/clean/未pushは最終応答で確定する。main/PR33/新PR、force、削除、追加委譲、decision-log/tasks READMEの追加更新は行っていない。依頼書は状態行だけを報告済みへ変更する。
+
+提出直前の再照合：39archive・73,827member・原2,259blobすべて一致（12.027200秒/exit0）、保護26件一致（0.071126秒/exit0）。artifact-validation-code41-ci-final/frozen-code41-ci-finalに保存。原照合toolの55既定動作も旧55両OSで再確認し、旧期待を41へ置き換えていない。

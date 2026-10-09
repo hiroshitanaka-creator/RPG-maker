@@ -1,0 +1,61 @@
+{
+  "planned_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/docs/verification/task059-save-qa-finalization/evidence-tools/verify_artifacts.py"
+  ],
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/RPG-maker/docs/verification/task059-save-qa-finalization/evidence-tools/verify_artifacts.py"
+  ],
+  "cwd": "/workspace/RPG-maker",
+  "pid": 29376,
+  "started_utc": "2026-10-09T19:59:24.728874+00:00",
+  "started_monotonic": 10556.750518578,
+  "accepted_utc": "2026-10-09T19:59:24.727453+00:00",
+  "accepted_monotonic": 10556.749080214,
+  "ended_utc": "2026-10-09T19:59:36.754646+00:00",
+  "ended_monotonic": 10568.776280701,
+  "terminal": true,
+  "seconds": 12.0272004870003,
+  "budget_seconds": 30,
+  "exit_code": 0,
+  "timed_out": false,
+  "timeout_kind": null,
+  "exception": null,
+  "exit_unavailable_reason": null,
+  "deadline_remaining_start": 29.999992949000443,
+  "deadline_remaining_end": 17.972792462000143,
+  "kill": {
+    "attempted": false,
+    "ok": null
+  },
+  "wait": {
+    "attempted": true,
+    "ok": true
+  },
+  "streams": "stdout+stderr",
+  "planned_log": "/workspace/RPG-maker/docs/verification/task059-save-qa-finalization/artifact-validation-code41-ci-final.log",
+  "log": "/workspace/RPG-maker/docs/verification/task059-save-qa-finalization/artifact-validation-code41-ci-final.log",
+  "log_sha256": "5d10288d650690b9014100110d22632d93f8cb9ceff30c46c88534c5d88e1a7a",
+  "result": {},
+  "kill_point": null,
+  "record_path": "/workspace/RPG-maker/docs/verification/task059-save-qa-finalization/artifact-validation-code41-ci-final-process.json",
+  "record_saved": true,
+  "supervision": {
+    "mechanism": "Linux dedicated session",
+    "configured": true,
+    "ownership": {
+      "session": 29376,
+      "group": 29376,
+      "root_pid": 29376,
+      "token": "719bf272c2854d7584e4ba10215f7c18"
+    },
+    "stopped": true,
+    "stop_attempted": false,
+    "reason": null,
+    "observed_members": []
+  },
+  "cleanup_remaining_end": 17.972792462000143
+}
