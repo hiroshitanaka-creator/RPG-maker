@@ -1,0 +1,62 @@
+{
+  "source_code_sha": "b4ee1ea28864fc2a081647b063ef1b11030d9fec",
+  "status": "FAIL",
+  "requests": [
+    {
+      "root": "/tmp/qa057/capture-shutdown-final/shutdown-qa/root-0",
+      "batch_id": "batch-000001",
+      "worker_started": 1237.821938488,
+      "exception": "RuntimeError: restart_shutdown: \u672a\u5b9f\u884cbatch",
+      "execution_exists": false
+    },
+    {
+      "root": "/tmp/qa057/capture-shutdown-final/shutdown-qa/root-1",
+      "batch_id": "batch-000001",
+      "worker_started": 1237.821942051,
+      "exception": "RuntimeError: restart_shutdown: \u672a\u5b9f\u884cbatch",
+      "execution_exists": false
+    },
+    {
+      "root": "/tmp/qa057/capture-shutdown-final/shutdown-qa/root-2",
+      "batch_id": "batch-000000",
+      "worker_started": 1237.822783711,
+      "exception": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/qa057/capture-shutdown-final/shutdown-qa/root-2/restarted-result.json'",
+      "execution_exists": true
+    },
+    {
+      "root": "/tmp/qa057/capture-shutdown-final/shutdown-qa/root-3",
+      "batch_id": "batch-000000",
+      "worker_started": 1237.822787046,
+      "exception": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/qa057/capture-shutdown-final/shutdown-qa/root-2/restarted-result.json'",
+      "execution_exists": true
+    },
+    {
+      "root": "/tmp/qa057/capture-shutdown-final/shutdown-qa/root-4",
+      "batch_id": "batch-000001",
+      "worker_started": 1237.823029588,
+      "exception": "RuntimeError: restart_shutdown: \u672a\u5b9f\u884cbatch",
+      "execution_exists": false
+    },
+    {
+      "root": "/tmp/qa057/capture-shutdown-final/shutdown-qa/root-5",
+      "batch_id": "batch-000000",
+      "worker_started": 1237.823542034,
+      "exception": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/qa057/capture-shutdown-final/shutdown-qa/root-2/restarted-result.json'",
+      "execution_exists": true
+    },
+    {
+      "root": "/tmp/qa057/capture-shutdown-final/shutdown-qa/root-6",
+      "batch_id": "batch-000000",
+      "worker_started": 1237.823544196,
+      "exception": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/qa057/capture-shutdown-final/shutdown-qa/root-2/restarted-result.json'",
+      "execution_exists": true
+    },
+    {
+      "root": "/tmp/qa057/capture-shutdown-final/shutdown-qa/root-7",
+      "batch_id": "batch-000002",
+      "worker_started": 1237.823690129,
+      "exception": "RuntimeError: restart_shutdown: \u672a\u5b9f\u884cbatch",
+      "execution_exists": false
+    }
+  ]
+}

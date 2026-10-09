@@ -1,0 +1,42 @@
+{
+  "results/summary.json": {
+    "status": "FAIL",
+    "case_count": 51,
+    "checks": 765,
+    "seconds": 174.20299999999997,
+    "failures": [
+      "kill-history.rename.before:",
+      "kill-candidate.flush.after:全体180秒を超過",
+      "kill-candidate.close.before:全体180秒を超過"
+    ]
+  },
+  "commands.json": [
+    [
+      "version",
+      0.09399999999999409,
+      0
+    ],
+    [
+      "frozen-before",
+      0.06200000000001182,
+      0
+    ],
+    [
+      "import",
+      93.25,
+      0
+    ],
+    [
+      "transaction",
+      174.82799999999997,
+      1
+    ]
+  ],
+  "build/build.json": {
+    "status": null,
+    "case_count": null,
+    "checks": null,
+    "seconds": null
+  },
+  "manifest": "PASS"
+}

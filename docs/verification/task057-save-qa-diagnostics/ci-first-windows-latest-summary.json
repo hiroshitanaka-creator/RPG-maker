@@ -1,0 +1,56 @@
+{
+  "results/summary.json": {
+    "status": "FAIL",
+    "case_count": 53,
+    "checks": 795,
+    "seconds": 174.48399999999998,
+    "failures": [
+      "kill-candidate.flush.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-candidate.flush.before batch=batch-000029",
+      "kill-candidate.store.before:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-candidate.store.before batch=batch-000028",
+      "kill-history.rename.after:TimeoutError: restart_future_deadline: root=D:\\a\\_temp\\native-evidence\\qa\\kill-history.rename.after batch=batch-000028"
+    ]
+  },
+  "commands.json": [
+    [
+      "version",
+      0.23500000000001364,
+      0
+    ],
+    [
+      "frozen-before",
+      0.04599999999999227,
+      0
+    ],
+    [
+      "import",
+      88.70400000000001,
+      0
+    ],
+    [
+      "transaction",
+      175.17200000000003,
+      1
+    ]
+  ],
+  "task057/execution.json": {
+    "status": "PASS",
+    "case_count": null,
+    "checks": null,
+    "seconds": null,
+    "failures": []
+  },
+  "task057/measurements/diagnostics.json": {
+    "status": "PASS",
+    "case_count": null,
+    "checks": null,
+    "seconds": null,
+    "failures": []
+  },
+  "build/build.json": {
+    "status": null,
+    "case_count": null,
+    "checks": null,
+    "seconds": null
+  },
+  "manifest": "PASS"
+}

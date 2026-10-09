@@ -1,0 +1,42 @@
+{
+  "results/summary.json": {
+    "status": "FAIL",
+    "case_count": 71,
+    "checks": 1065,
+    "seconds": 174.12500000000006,
+    "failures": [
+      "kill-receipt-committed.store.before:子30秒境界待機超過",
+      "kill-receipt-committed.open.before:子30秒境界待機超過",
+      "kill-receipt-prepared.rename.before:"
+    ]
+  },
+  "commands.json": [
+    [
+      "version",
+      0.7189999999999941,
+      0
+    ],
+    [
+      "frozen-before",
+      0.04699999999996862,
+      0
+    ],
+    [
+      "import",
+      70.26600000000002,
+      0
+    ],
+    [
+      "transaction",
+      174.71799999999996,
+      1
+    ]
+  ],
+  "build/build.json": {
+    "status": null,
+    "case_count": null,
+    "checks": null,
+    "seconds": null
+  },
+  "manifest": "PASS"
+}

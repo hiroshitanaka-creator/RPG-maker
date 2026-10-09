@@ -1,0 +1,56 @@
+{
+  "results/summary.json": {
+    "status": "FAIL",
+    "case_count": 131,
+    "checks": 1761,
+    "seconds": 174.162455732,
+    "failures": [
+      "normal-granted:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/normal-granted batch=batch-000061",
+      "receipt-intent:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/receipt-intent batch=batch-000060",
+      "null-session:TimeoutError: restart_future_deadline: root=/home/runner/work/_temp/native-evidence/qa/null-session batch=batch-000066"
+    ]
+  },
+  "commands.json": [
+    [
+      "version",
+      0.06431188199999838,
+      0
+    ],
+    [
+      "frozen-before",
+      0.06421771400002285,
+      0
+    ],
+    [
+      "import",
+      61.62197132100002,
+      0
+    ],
+    [
+      "transaction",
+      174.829585055,
+      1
+    ]
+  ],
+  "task057/execution.json": {
+    "status": "PASS",
+    "case_count": null,
+    "checks": null,
+    "seconds": null,
+    "failures": []
+  },
+  "task057/measurements/diagnostics.json": {
+    "status": "PASS",
+    "case_count": null,
+    "checks": null,
+    "seconds": null,
+    "failures": []
+  },
+  "build/build.json": {
+    "status": null,
+    "case_count": null,
+    "checks": null,
+    "seconds": null
+  },
+  "manifest": "PASS"
+}
