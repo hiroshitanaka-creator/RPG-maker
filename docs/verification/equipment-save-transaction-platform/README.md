@@ -17,6 +17,8 @@
 
 初回提出4f1eの全47job終了・43成功/4失敗は`ci-4f1e-all-jobs.json`。専用取引4jobの原log・archive・member索引は`ci-4f1e-*-transaction*`、原053固定/最新の成功logは`ci-4f1e-original-*-job.log`。全14 archiveの一覧は`archives.json`。
 
+4復旧worker/16case workerを両OSへ適用したdd909 CIではLinux固定141件へ改善、Windows最新12件へ悪化した。原logとarchive/member索引は`ci-dd909-*-four-worker*`。最終構成はWindowsを元の2/8に戻し、Linuxだけ4/16。全16 archiveは`archives.json`参照。各観測を異なる世代として保持し、旧構成の成功を新構成の完走と取り違えない。
+
 archiveは展開せずmemberのraw hashを照合できる。通常file/hardlinkはtarfile.extractfileで得たbytes、古いsymlinkはlinknameのUTF-8 bytes、新しいinert referenceは記録したtarget_base64を使う。archive自体のSHA256と各memberのsize/SHA256の両方を索引へ照合する。member数と名前集合も一致させる。自己生成した索引だけで受入を決めず、固定expectations、原PASS/FAIL log、Git blob、実exitを併せて読む。
 
 後続CI原物はActionsのartifactに保存される。ローカルでは大きいprimitive log取得がTransport closed、署名artifact URLの取得がproxy CONNECT403となり、原bytes未取得のものがある。期限とIDはci-observations.json参照。Windows54ケースの最終状態や最終SHA全CIを、以前の小さい世代archiveから推定しない。

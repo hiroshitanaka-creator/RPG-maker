@@ -44,7 +44,7 @@ godot-cpp `e83fd0904c13356ed1d4c3d09f8bb9132bdc6b77` (公式godot-4.5-stable/MIT
 
 過去053の5 archive全raw hashと全member（file/hardlink/symlinkの参照bytesを含む）を照合した。original-evidence-check.jsonにGit blobを別欄で保存。新raw archiveも全member hashで検証し、欠落／空／改変／件数とlog同時偽装／manifest再hashを実子exitで拒否する。artifact取得制約に備え専用job logにも同じarchive bytesを保持し、復元hashを一致させる。負例の全正例copyはarchiveから除き、baseline原bytesとnegative-deltasの変更bytes/削除一覧で各原物を再構築可能にする。失敗原物は成功原物と別名で保存する。
 
-原証拠の入口は今回証拠のREADME.md。初期失敗・ローカル成功・未達・並列構成診断の14 archiveを全memberまで再照合した。後続CI artifactのID／GitHub側digest／期限とjob原記録はci-observations.jsonに保存する。大きいprimitive job logはconnectorのTransport closed、artifactの署名URLは実行環境のproxy CONNECT403により、後続原bytesをローカル取得できていない。GitHub側digestをローカルraw検証済みhashとは扱わない。後続artifactはActionsに残るため、独立レビューで同じIDの原物を取得できる。
+原証拠の入口は今回証拠のREADME.md。初期失敗・ローカル成功・未達・並列構成診断の16 archiveを全memberまで再照合した。後続CI artifactのID／GitHub側digest／期限とjob原記録はci-observations.jsonに保存する。大きいprimitive job logはconnectorのTransport closed、artifactの署名URLは実行環境のproxy CONNECT403により、後続原bytesをローカル取得できていない。GitHub側digestをローカルraw検証済みhashとは扱わない。後続artifactはActionsに残るため、独立レビューで同じIDの原物を取得できる。
 
 latest側がscope参照する完成commitを明示fetchするよう新workflowを修正した。旧workflowのshallow checkoutでは参照commitの取得が明示されていなかった。修正前latest primitiveの失敗原因は大きい原logが未取得のため未確定であり、この変更だけで修正成功を断定しない。ローカルのshallow再現試行は参照commitが既に存在して想定条件を再現できず、成功証拠には数えない。
 
@@ -53,6 +53,8 @@ latest側がscope参照する完成commitを明示fetchするよう新workflow�
 初回提出4f1e6129cea612da657ae389a8e59db217581394は全47job終了、既存39と専用primitive4が成功、専用transaction4が予算内未完走。Windows固定48件/720・174.203秒、最新51件/765・174.187秒、Linux固定107件/1537・174.097秒、最新107件/1537・174.095秒。4失敗archiveと計14,630 memberのraw hashを復元・照合し、ci-4f1e-all-jobs.jsonとci-4f1e-*-transactionへ保存した。原053固定と最新の172/2178・14伝播・scope2成功logも別々に残した。
 
 11:00 JSTの継続指示を受け、同じ専用runnerの復旧workerを2→4、case workerを8→16へ変更する。fresh Godotでkill済み要求だけを4件までまとめ、各要求のfresh Tと実GameSessionを維持する。保存コード、validator、cache、件数/期待、180/30/600秒・job15分は変更しない。ローカルの作業ツリー診断では172/2178・97killが124.256秒、元独立validatorのraw/数量/phase照合も成功した。source.jsonに実行開始HEADと未commitの2行変更、実driver SHA256を分けて記録し、完成SHAのCI成功とは呼ばない。Windows/Linux固定・最新CIでこの並列構成を別途確認する。
+
+実CI dd909f2053366df8055760cf69fd97d434c69e62ではLinux固定が141件/1851・174.056秒へ進んだ一方、Windows最新は12件/180・174.218秒へ悪化した。両原archiveを復元・hash照合し、ci-dd909-*-four-workerへ保持する。Windowsの新並列構成を採用せず元の2復旧worker/8case workerへ戻し、Linuxだけ4/16を残す。保存・GDScript・native・build・配布物と期待値は不変。CIのCPU/I/O内訳は未分離で、並列数だけを唯一の原因とは断定しない。次の最終SHAの全CI終了を確認し、未達を含む正式引渡しとする。予算延長と環境準備は承認されておらず実施しない。
 
 全172件を180秒以内で完走する専用CIは未達。初期Windowsはconsole wrapperと本体のPID差も失敗原因だった。公式本体exeへ修正後は早期kill/restartの15条件と実終了exit1を確認したが、815 Windowsは45件/675検査・174.187秒、ede Windowsは50件/750検査・174.187秒で停止。Linux CIも815で116件/1626検査・174.082秒、4388で107件/1535検査・174.053秒、edeで117件/1635検査・174.081秒。ローカル通過でCIの予算未達を代用しない。2並列×4再開を1並列×8へ変えた実験は悪化し、元構成へ戻した。検証cacheは削除したままで、予算延長・件数減・skip・continue-on-errorをしていない。F1を全受入済みとはしない。
 

@@ -1,0 +1,509 @@
+﻿2026-10-09T02:17:14.8466078Z Current runner version: '2.337.0'
+2026-10-09T02:17:14.8491743Z ##[group]Runner Image Provisioner
+2026-10-09T02:17:14.8492562Z Hosted Compute Agent
+2026-10-09T02:17:14.8493249Z Version: 20261002.596
+2026-10-09T02:17:14.8493909Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-09T02:17:14.8494610Z Build Date: 2026-10-02T22:28:27Z
+2026-10-09T02:17:14.8495386Z Worker ID: {0c83c29e-8d94-4813-bbe1-24549c59ebd2}
+2026-10-09T02:17:14.8496101Z Region: centralus
+2026-10-09T02:17:14.8496680Z Cloud: Azure
+2026-10-09T02:17:14.8497258Z ##[endgroup]
+2026-10-09T02:17:14.8498709Z ##[group]Operating System
+2026-10-09T02:17:14.8499419Z Ubuntu
+2026-10-09T02:17:14.8499976Z 24.04.5
+2026-10-09T02:17:14.8500762Z LTS
+2026-10-09T02:17:14.8501335Z ##[endgroup]
+2026-10-09T02:17:14.8501903Z ##[group]Runner Image
+2026-10-09T02:17:14.8502537Z Image: ubuntu-24.04
+2026-10-09T02:17:14.8503101Z Version: 20261004.327.1
+2026-10-09T02:17:14.8504432Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-09T02:17:14.8505993Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-09T02:17:14.8507035Z ##[endgroup]
+2026-10-09T02:17:14.8508141Z ##[group]GITHUB_TOKEN Permissions
+2026-10-09T02:17:14.8510797Z Contents: read
+2026-10-09T02:17:14.8511423Z Metadata: read
+2026-10-09T02:17:14.8511961Z ##[endgroup]
+2026-10-09T02:17:14.8514245Z Secret source: Actions
+2026-10-09T02:17:14.8515170Z Cache mode: write
+2026-10-09T02:17:14.8516219Z Prepare workflow directory
+2026-10-09T02:17:14.8919218Z Prepare all required actions
+2026-10-09T02:17:14.8967602Z Getting action download info
+2026-10-09T02:17:15.1826395Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-09T02:17:15.2933546Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-09T02:17:15.3732671Z Download action repository 'ilammy/msvc-dev-cmd@v1' (SHA:0b201ec74fa43914dc39ae48a89fd1d8cb592756)
+2026-10-09T02:17:15.6241027Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-09T02:17:15.8374790Z Complete job name: equipment-native (ubuntu-latest, fixed055, transaction)
+2026-10-09T02:17:15.9184830Z ##[group]Run actions/checkout@v4
+2026-10-09T02:17:15.9185737Z with:
+2026-10-09T02:17:15.9186220Z   ref: dd909f2053366df8055760cf69fd97d434c69e62
+2026-10-09T02:17:15.9186866Z   repository: hiroshitanaka-creator/RPG-maker
+2026-10-09T02:17:15.9190960Z   token: ***
+2026-10-09T02:17:15.9191407Z   ssh-strict: true
+2026-10-09T02:17:15.9191843Z   ssh-user: git
+2026-10-09T02:17:15.9192284Z   persist-credentials: true
+2026-10-09T02:17:15.9192771Z   clean: true
+2026-10-09T02:17:15.9193208Z   sparse-checkout-cone-mode: true
+2026-10-09T02:17:15.9193727Z   fetch-depth: 1
+2026-10-09T02:17:15.9194148Z   fetch-tags: false
+2026-10-09T02:17:15.9194584Z   show-progress: true
+2026-10-09T02:17:15.9195021Z   lfs: false
+2026-10-09T02:17:15.9195425Z   submodules: false
+2026-10-09T02:17:15.9195879Z   set-safe-directory: true
+2026-10-09T02:17:15.9196377Z   allow-unsafe-pr-checkout: false
+2026-10-09T02:17:15.9197156Z env:
+2026-10-09T02:17:15.9197562Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:17:15.9198090Z   PYTHONUTF8: 1
+2026-10-09T02:17:15.9198524Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:17:15.9198981Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:17:15.9199502Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:17:15.9199976Z ##[endgroup]
+2026-10-09T02:17:16.0243423Z Syncing repository: hiroshitanaka-creator/RPG-maker
+2026-10-09T02:17:16.0246352Z ##[group]Getting Git version info
+2026-10-09T02:17:16.0247655Z Working directory is '/home/runner/work/RPG-maker/RPG-maker'
+2026-10-09T02:17:16.0249517Z [command]/usr/bin/git version
+2026-10-09T02:17:16.0356360Z git version 2.55.0
+2026-10-09T02:17:16.0381219Z ##[endgroup]
+2026-10-09T02:17:16.0396858Z Temporarily overriding HOME='/home/runner/work/_temp/4a796259-c116-4801-ae9f-f2390fb53a9f' before making global git config changes
+2026-10-09T02:17:16.0402958Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T02:17:16.0404981Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/RPG-maker/RPG-maker
+2026-10-09T02:17:16.0457742Z Deleting the contents of '/home/runner/work/RPG-maker/RPG-maker'
+2026-10-09T02:17:16.0461482Z ##[group]Initializing the repository
+2026-10-09T02:17:16.0466082Z [command]/usr/bin/git init /home/runner/work/RPG-maker/RPG-maker
+2026-10-09T02:17:16.0605304Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-09T02:17:16.0606898Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-09T02:17:16.0608547Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-09T02:17:16.0609755Z hint: call:
+2026-10-09T02:17:16.0610614Z hint:
+2026-10-09T02:17:16.0611419Z hint: 	git config --global init.defaultBranch <name>
+2026-10-09T02:17:16.0612487Z hint:
+2026-10-09T02:17:16.0613565Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-09T02:17:16.0615091Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-09T02:17:16.0616282Z hint:
+2026-10-09T02:17:16.0616946Z hint: 	git branch -m <name>
+2026-10-09T02:17:16.0617799Z hint:
+2026-10-09T02:17:16.0618876Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-09T02:17:16.0620784Z Initialized empty Git repository in /home/runner/work/RPG-maker/RPG-maker/.git/
+2026-10-09T02:17:16.0623354Z [command]/usr/bin/git remote add origin https://github.com/hiroshitanaka-creator/RPG-maker
+2026-10-09T02:17:16.0671710Z ##[endgroup]
+2026-10-09T02:17:16.0673043Z ##[group]Disabling automatic garbage collection
+2026-10-09T02:17:16.0676046Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-09T02:17:16.0719146Z ##[endgroup]
+2026-10-09T02:17:16.0720939Z ##[group]Setting up auth
+2026-10-09T02:17:16.0723258Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T02:17:16.0764941Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T02:17:16.1190943Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T02:17:16.1226856Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T02:17:16.1450593Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T02:17:16.1488723Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T02:17:16.1714928Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-09T02:17:16.1756593Z ##[endgroup]
+2026-10-09T02:17:16.1757538Z ##[group]Fetching the repository
+2026-10-09T02:17:16.1767101Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin dd909f2053366df8055760cf69fd97d434c69e62
+2026-10-09T02:17:34.8905353Z From https://github.com/hiroshitanaka-creator/RPG-maker
+2026-10-09T02:17:34.8906578Z  * branch            dd909f2053366df8055760cf69fd97d434c69e62 -> FETCH_HEAD
+2026-10-09T02:17:34.8909532Z ##[endgroup]
+2026-10-09T02:17:34.8913700Z ##[group]Determining the checkout info
+2026-10-09T02:17:34.8914750Z ##[endgroup]
+2026-10-09T02:17:34.8920684Z [command]/usr/bin/git sparse-checkout disable
+2026-10-09T02:17:34.8976588Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-09T02:17:34.9010765Z ##[group]Checking out the ref
+2026-10-09T02:17:34.9023644Z [command]/usr/bin/git checkout --progress --force dd909f2053366df8055760cf69fd97d434c69e62
+2026-10-09T02:17:35.9199071Z Updating files:  17% (1404/7824)
+2026-10-09T02:17:35.9364785Z Updating files:  18% (1409/7824)
+2026-10-09T02:17:35.9417127Z Updating files:  19% (1487/7824)
+2026-10-09T02:17:35.9475282Z Updating files:  20% (1565/7824)
+2026-10-09T02:17:35.9562422Z Updating files:  21% (1644/7824)
+2026-10-09T02:17:35.9608492Z Updating files:  22% (1722/7824)
+2026-10-09T02:17:35.9996268Z Updating files:  23% (1800/7824)
+2026-10-09T02:17:36.0080466Z Updating files:  24% (1878/7824)
+2026-10-09T02:17:36.0144491Z Updating files:  25% (1956/7824)
+2026-10-09T02:17:36.0670710Z Updating files:  26% (2035/7824)
+2026-10-09T02:17:36.0735947Z Updating files:  27% (2113/7824)
+2026-10-09T02:17:36.1079709Z Updating files:  28% (2191/7824)
+2026-10-09T02:17:36.1701597Z Updating files:  29% (2269/7824)
+2026-10-09T02:17:36.2191211Z Updating files:  30% (2348/7824)
+2026-10-09T02:17:36.2433243Z Updating files:  31% (2426/7824)
+2026-10-09T02:17:36.3111478Z Updating files:  32% (2504/7824)
+2026-10-09T02:17:36.3830628Z Updating files:  33% (2582/7824)
+2026-10-09T02:17:36.3866525Z Updating files:  34% (2661/7824)
+2026-10-09T02:17:36.3893421Z Updating files:  35% (2739/7824)
+2026-10-09T02:17:36.3921556Z Updating files:  36% (2817/7824)
+2026-10-09T02:17:36.3953000Z Updating files:  37% (2895/7824)
+2026-10-09T02:17:36.3980349Z Updating files:  38% (2974/7824)
+2026-10-09T02:17:36.4010235Z Updating files:  39% (3052/7824)
+2026-10-09T02:17:36.4458550Z Updating files:  40% (3130/7824)
+2026-10-09T02:17:36.4972621Z Updating files:  41% (3208/7824)
+2026-10-09T02:17:36.5001289Z Updating files:  42% (3287/7824)
+2026-10-09T02:17:36.5031011Z Updating files:  43% (3365/7824)
+2026-10-09T02:17:36.5075110Z Updating files:  44% (3443/7824)
+2026-10-09T02:17:36.9840851Z Updating files:  45% (3521/7824)
+2026-10-09T02:17:36.9874426Z Updating files:  45% (3599/7824)
+2026-10-09T02:17:36.9985885Z Updating files:  46% (3600/7824)
+2026-10-09T02:17:37.0014095Z Updating files:  47% (3678/7824)
+2026-10-09T02:17:37.0048367Z Updating files:  48% (3756/7824)
+2026-10-09T02:17:37.0076667Z Updating files:  49% (3834/7824)
+2026-10-09T02:17:37.0119534Z Updating files:  50% (3912/7824)
+2026-10-09T02:17:37.0144681Z Updating files:  51% (3991/7824)
+2026-10-09T02:17:37.0175730Z Updating files:  52% (4069/7824)
+2026-10-09T02:17:37.0207019Z Updating files:  53% (4147/7824)
+2026-10-09T02:17:37.0233309Z Updating files:  54% (4225/7824)
+2026-10-09T02:17:37.0263481Z Updating files:  55% (4304/7824)
+2026-10-09T02:17:37.0436088Z Updating files:  56% (4382/7824)
+2026-10-09T02:17:37.0476125Z Updating files:  57% (4460/7824)
+2026-10-09T02:17:37.0516098Z Updating files:  58% (4538/7824)
+2026-10-09T02:17:37.0557062Z Updating files:  59% (4617/7824)
+2026-10-09T02:17:37.0599410Z Updating files:  60% (4695/7824)
+2026-10-09T02:17:37.0899385Z Updating files:  61% (4773/7824)
+2026-10-09T02:17:37.1314149Z Updating files:  62% (4851/7824)
+2026-10-09T02:17:37.1695632Z Updating files:  63% (4930/7824)
+2026-10-09T02:17:37.1949957Z Updating files:  64% (5008/7824)
+2026-10-09T02:17:37.2319543Z Updating files:  65% (5086/7824)
+2026-10-09T02:17:37.3235731Z Updating files:  66% (5164/7824)
+2026-10-09T02:17:37.4621681Z Updating files:  67% (5243/7824)
+2026-10-09T02:17:37.5862229Z Updating files:  68% (5321/7824)
+2026-10-09T02:17:37.6051954Z Updating files:  69% (5399/7824)
+2026-10-09T02:17:37.6817904Z Updating files:  70% (5477/7824)
+2026-10-09T02:17:37.7120762Z Updating files:  71% (5556/7824)
+2026-10-09T02:17:37.7629648Z Updating files:  72% (5634/7824)
+2026-10-09T02:17:37.8353935Z Updating files:  73% (5712/7824)
+2026-10-09T02:17:37.8865643Z Updating files:  74% (5790/7824)
+2026-10-09T02:17:37.9144741Z Updating files:  75% (5868/7824)
+2026-10-09T02:17:37.9246756Z Updating files:  75% (5922/7824)
+2026-10-09T02:17:37.9590787Z Updating files:  76% (5947/7824)
+2026-10-09T02:17:37.9960469Z Updating files:  77% (6025/7824)
+2026-10-09T02:17:38.0248205Z Updating files:  78% (6103/7824)
+2026-10-09T02:17:38.0501346Z Updating files:  79% (6181/7824)
+2026-10-09T02:17:38.0601845Z Updating files:  80% (6260/7824)
+2026-10-09T02:17:38.0860907Z Updating files:  81% (6338/7824)
+2026-10-09T02:17:38.1049653Z Updating files:  82% (6416/7824)
+2026-10-09T02:17:38.1446845Z Updating files:  83% (6494/7824)
+2026-10-09T02:17:38.1543635Z Updating files:  84% (6573/7824)
+2026-10-09T02:17:38.1576169Z Updating files:  85% (6651/7824)
+2026-10-09T02:17:38.1935257Z Updating files:  86% (6729/7824)
+2026-10-09T02:17:38.1968304Z Updating files:  87% (6807/7824)
+2026-10-09T02:17:38.2030094Z Updating files:  88% (6886/7824)
+2026-10-09T02:17:38.2205676Z Updating files:  89% (6964/7824)
+2026-10-09T02:17:38.2304620Z Updating files:  90% (7042/7824)
+2026-10-09T02:17:38.2358837Z Updating files:  91% (7120/7824)
+2026-10-09T02:17:38.2401178Z Updating files:  92% (7199/7824)
+2026-10-09T02:17:38.2445349Z Updating files:  93% (7277/7824)
+2026-10-09T02:17:38.2487065Z Updating files:  94% (7355/7824)
+2026-10-09T02:17:38.2535117Z Updating files:  95% (7433/7824)
+2026-10-09T02:17:38.2575677Z Updating files:  96% (7512/7824)
+2026-10-09T02:17:38.2620434Z Updating files:  97% (7590/7824)
+2026-10-09T02:17:38.2672946Z Updating files:  98% (7668/7824)
+2026-10-09T02:17:38.2757467Z Updating files:  99% (7746/7824)
+2026-10-09T02:17:38.2758238Z Updating files: 100% (7824/7824)
+2026-10-09T02:17:38.2758820Z Updating files: 100% (7824/7824), done.
+2026-10-09T02:17:38.2839557Z Note: switching to 'dd909f2053366df8055760cf69fd97d434c69e62'.
+2026-10-09T02:17:38.2839865Z 
+2026-10-09T02:17:38.2840084Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-09T02:17:38.2841150Z changes and commit them, and you can discard any commits you make in this
+2026-10-09T02:17:38.2842233Z state without impacting any branches by switching back to a branch.
+2026-10-09T02:17:38.2842749Z 
+2026-10-09T02:17:38.2843104Z If you want to create a new branch to retain commits you create, you may
+2026-10-09T02:17:38.2843952Z do so (now or later) by using -c with the switch command. Example:
+2026-10-09T02:17:38.2844443Z 
+2026-10-09T02:17:38.2844630Z   git switch -c <new-branch-name>
+2026-10-09T02:17:38.2844926Z 
+2026-10-09T02:17:38.2845108Z Or undo this operation with:
+2026-10-09T02:17:38.2845388Z 
+2026-10-09T02:17:38.2845529Z   git switch -
+2026-10-09T02:17:38.2845741Z 
+2026-10-09T02:17:38.2846425Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-09T02:17:38.2846999Z 
+2026-10-09T02:17:38.2847465Z HEAD is now at dd909f2 docs: register four-worker validation code and retain first CI results
+2026-10-09T02:17:38.2993969Z ##[endgroup]
+2026-10-09T02:17:38.3053864Z [command]/usr/bin/git log -1 --format=%H
+2026-10-09T02:17:38.3086645Z dd909f2053366df8055760cf69fd97d434c69e62
+2026-10-09T02:17:38.3314862Z ##[group]Run python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/equipment-save-transaction-platform/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha],check=True); subprocess.run(['git','checkout','--detach',sha],check=True)"
+2026-10-09T02:17:38.3317294Z [36;1mpython -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/equipment-save-transaction-platform/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha],check=True); subprocess.run(['git','checkout','--detach',sha],check=True)"[0m
+2026-10-09T02:17:38.3589586Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T02:17:38.3589981Z env:
+2026-10-09T02:17:38.3590462Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:17:38.3590738Z   PYTHONUTF8: 1
+2026-10-09T02:17:38.3591029Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:17:38.3591280Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:17:38.3591560Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:17:38.3591813Z ##[endgroup]
+2026-10-09T02:17:59.7629661Z From https://github.com/hiroshitanaka-creator/RPG-maker
+2026-10-09T02:17:59.7630298Z  * branch            b96658b66c313655b276603d4ead92b507f2b6cd -> FETCH_HEAD
+2026-10-09T02:18:00.0550661Z Warning: you are leaving 1 commit behind, not connected to
+2026-10-09T02:18:00.0551725Z any of your branches:
+2026-10-09T02:18:00.0551967Z 
+2026-10-09T02:18:00.0552367Z   dd909f2 docs: register four-worker validation code and retain first CI results
+2026-10-09T02:18:00.0552935Z 
+2026-10-09T02:18:00.0553281Z If you want to keep it by creating a new branch, this may be a good time
+2026-10-09T02:18:00.0553959Z to do so with:
+2026-10-09T02:18:00.0554115Z 
+2026-10-09T02:18:00.0554222Z  git branch <new-branch-name> dd909f2
+2026-10-09T02:18:00.0554470Z 
+2026-10-09T02:18:00.0555683Z HEAD is now at b96658b perf: run independent save recovery batches on four workers
+2026-10-09T02:18:00.0705908Z ##[group]Run actions/setup-python@v5
+2026-10-09T02:18:00.0706199Z with:
+2026-10-09T02:18:00.0706400Z   python-version: 3.12
+2026-10-09T02:18:00.0706635Z   check-latest: false
+2026-10-09T02:18:00.0708959Z   token: ***
+2026-10-09T02:18:00.0709173Z   update-environment: true
+2026-10-09T02:18:00.0709423Z   allow-prereleases: false
+2026-10-09T02:18:00.0709660Z   freethreaded: false
+2026-10-09T02:18:00.0709864Z env:
+2026-10-09T02:18:00.0710053Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:18:00.0710588Z   PYTHONUTF8: 1
+2026-10-09T02:18:00.0710792Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:18:00.0711056Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:18:00.0711304Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:18:00.0711528Z ##[endgroup]
+2026-10-09T02:18:00.2011181Z ##[group]Installed versions
+2026-10-09T02:18:00.2107493Z (node:2374) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-09T02:18:00.2108520Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T02:18:00.2109391Z Successfully set up CPython (3.12.15)
+2026-10-09T02:18:00.2110342Z ##[endgroup]
+2026-10-09T02:18:00.2256224Z ##[group]Run git fetch --no-tags --depth=1 origin e003b126de6695fa131e07a3db14c3011fb74f2e b17f2b475ff8c58924720ea24cce8f205422c50b
+2026-10-09T02:18:00.2257173Z [36;1mgit fetch --no-tags --depth=1 origin e003b126de6695fa131e07a3db14c3011fb74f2e b17f2b475ff8c58924720ea24cce8f205422c50b[0m
+2026-10-09T02:18:00.2339000Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T02:18:00.2339563Z env:
+2026-10-09T02:18:00.2339776Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:18:00.2340025Z   PYTHONUTF8: 1
+2026-10-09T02:18:00.2340588Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:18:00.2340884Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:18:00.2341303Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:18:00.2341812Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:00.2342563Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-09T02:18:00.2343302Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:00.2343931Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:00.2344619Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:00.2345081Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-09T02:18:00.2345420Z ##[endgroup]
+2026-10-09T02:18:18.8533393Z From https://github.com/hiroshitanaka-creator/RPG-maker
+2026-10-09T02:18:18.8534342Z  * branch              e003b126de6695fa131e07a3db14c3011fb74f2e -> FETCH_HEAD
+2026-10-09T02:18:18.8535299Z  * branch              b17f2b475ff8c58924720ea24cce8f205422c50b -> FETCH_HEAD
+2026-10-09T02:18:18.8579515Z ##[group]Run python -m pip install scons==4.10.0
+2026-10-09T02:18:18.8579912Z [36;1mpython -m pip install scons==4.10.0[0m
+2026-10-09T02:18:18.8644354Z shell: /usr/bin/bash -e {0}
+2026-10-09T02:18:18.8644618Z env:
+2026-10-09T02:18:18.8644835Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:18:18.8645084Z   PYTHONUTF8: 1
+2026-10-09T02:18:18.8645293Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:18:18.8645525Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:18:18.8645787Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:18:18.8646097Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:18.8646553Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-09T02:18:18.8647192Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:18.8647601Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:18.8648007Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:18.8648447Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-09T02:18:18.8648792Z ##[endgroup]
+2026-10-09T02:18:19.7643830Z Collecting scons==4.10.0
+2026-10-09T02:18:19.8320830Z   Downloading scons-4.10.0-py3-none-any.whl.metadata (9.7 kB)
+2026-10-09T02:18:19.8489796Z Downloading scons-4.10.0-py3-none-any.whl (4.1 MB)
+2026-10-09T02:18:20.0882432Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 19.0 MB/s  0:00:00
+2026-10-09T02:18:20.1473753Z Installing collected packages: scons
+2026-10-09T02:18:20.8196999Z Successfully installed scons-4.10.0
+2026-10-09T02:18:20.8610067Z ##[group]Run python -c "import os,shutil; shutil.copytree('addons/equipment_save_io',os.environ['RUNNER_TEMP']+'/native-evidence/shipped/equipment_save_io')"
+2026-10-09T02:18:20.8611526Z [36;1mpython -c "import os,shutil; shutil.copytree('addons/equipment_save_io',os.environ['RUNNER_TEMP']+'/native-evidence/shipped/equipment_save_io')"[0m
+2026-10-09T02:18:20.8676384Z shell: /usr/bin/bash -e {0}
+2026-10-09T02:18:20.8676640Z env:
+2026-10-09T02:18:20.8676840Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:18:20.8677089Z   PYTHONUTF8: 1
+2026-10-09T02:18:20.8677291Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:18:20.8677516Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:18:20.8677775Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:18:20.8678074Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:20.8678508Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-09T02:18:20.8678935Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:20.8679361Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:20.8679750Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:20.8680313Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-09T02:18:20.8680640Z ##[endgroup]
+2026-10-09T02:18:20.9054460Z ##[group]Run python native/equipment_save_io/build.py --platform "linux" --output "$RUNNER_TEMP/native-evidence/build"
+2026-10-09T02:18:20.9055331Z [36;1mpython native/equipment_save_io/build.py --platform "linux" --output "$RUNNER_TEMP/native-evidence/build"[0m
+2026-10-09T02:18:20.9114942Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T02:18:20.9115282Z env:
+2026-10-09T02:18:20.9115478Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:18:20.9115722Z   PYTHONUTF8: 1
+2026-10-09T02:18:20.9115933Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:18:20.9116154Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:18:20.9116408Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:18:20.9116703Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:20.9117137Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-09T02:18:20.9117576Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:20.9117990Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:20.9118376Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:18:20.9118758Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-09T02:18:20.9119079Z ##[endgroup]
+2026-10-09T02:18:20.9564077Z Cloning into '/home/runner/work/RPG-maker/RPG-maker/native/equipment_save_io/.deps/godot-cpp'...
+2026-10-09T02:18:23.8059912Z HEAD is now at e83fd09 gdextension: Sync with upstream commit 876b290332ec6f2e6d173d08162a02aa7e6ca46d (4.5-stable)
+2026-10-09T02:19:00.0242852Z ##[group]Run python tools/fixtures/equipment-save-transaction-platform/launch.py --output "$RUNNER_TEMP/native-evidence" --profile "fixed055" --phase "transaction"
+2026-10-09T02:19:00.0244331Z [36;1mpython tools/fixtures/equipment-save-transaction-platform/launch.py --output "$RUNNER_TEMP/native-evidence" --profile "fixed055" --phase "transaction"[0m
+2026-10-09T02:19:00.0307456Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T02:19:00.0307836Z env:
+2026-10-09T02:19:00.0308046Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:19:00.0308318Z   PYTHONUTF8: 1
+2026-10-09T02:19:00.0308539Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:19:00.0308783Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:19:00.0309059Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:19:00.0309386Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:19:00.0309870Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-09T02:19:00.0310574Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:19:00.0311016Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:19:00.0311453Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:19:00.0311890Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-09T02:19:00.0312489Z   EQUIPMENT_SHIPPED_ADDON_ROOT: /home/runner/work/_temp/native-evidence/shipped/equipment_save_io
+2026-10-09T02:19:00.0313033Z ##[endgroup]
+2026-10-09T02:22:57.9302054Z TRANSACTION_FAIL: cases=141 checks=1851 seconds=174.056
+2026-10-09T02:22:57.9302745Z nonroot-permission:
+2026-10-09T02:22:57.9303124Z target-collision:
+2026-10-09T02:22:57.9303496Z injected-enospc:
+2026-10-09T02:22:57.9303881Z transaction-source:
+2026-10-09T02:22:57.9304269Z history-changed:
+2026-10-09T02:22:57.9304635Z token-invalid:
+2026-10-09T02:22:57.9304982Z intent-changed:
+2026-10-09T02:22:57.9305703Z kill-candidate.store.partial:全体180秒を超過
+2026-10-09T02:22:57.9306313Z fault-history.store.partial:全体180秒を超過
+2026-10-09T02:22:57.9306823Z backup-hardlink:
+2026-10-09T02:22:57.9307287Z kill-intent.store.partial:全体180秒を超過
+2026-10-09T02:22:57.9307816Z stale-committed:全体180秒を超過
+2026-10-09T02:22:57.9308281Z inspect-missing:全体180秒を超過
+2026-10-09T02:22:57.9308798Z kill-owner.store.partial:子30秒境界待機超過
+2026-10-09T02:22:57.9309238Z writer-busy:
+2026-10-09T02:22:57.9309716Z fault-candidate.store.partial:全体180秒を超過
+2026-10-09T02:22:57.9310573Z commit-source-race:子30秒境界待機超過
+2026-10-09T02:22:57.9310972Z commit-tmp-race:子30秒境界待機超過
+2026-10-09T02:22:57.9311313Z commit-target-race:子30秒境界待機超過
+2026-10-09T02:22:57.9311671Z kill-receipt-committed.store.partial:全体180秒を超過
+2026-10-09T02:22:57.9312043Z kill-history.store.partial:全体180秒を超過
+2026-10-09T02:22:57.9312347Z owner-corrupt:全体180秒を超過
+2026-10-09T02:22:57.9312629Z fault-source.store.partial:全体180秒を超過
+2026-10-09T02:22:57.9312978Z kill-receipt-prepared.store.partial:全体180秒を超過
+2026-10-09T02:22:57.9313331Z kill-source.store.partial:全体180秒を超過
+2026-10-09T02:22:57.9313670Z receipt-tmp-hardlink:全体180秒を超過
+2026-10-09T02:22:57.9313969Z initial-tmp-hardlink:全体180秒を超過
+2026-10-09T02:22:57.9314248Z inspect-committed:全体180秒を超過
+2026-10-09T02:22:57.9314524Z inspect-null-context:全体180秒を超過
+2026-10-09T02:22:57.9314806Z inspect-prepared:全体180秒を超過
+2026-10-09T02:22:57.9315067Z stale-current:全体180秒を超過
+2026-10-09T02:22:57.9315205Z 
+2026-10-09T02:22:57.9315387Z PLATFORM_CI_FAIL: コマンド失敗:transaction
+2026-10-09T02:22:57.9369534Z Traceback (most recent call last):
+2026-10-09T02:22:57.9377551Z   File "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/launch.py", line 22, in <module>
+2026-10-09T02:22:57.9378860Z     p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--profile',required=True);p.add_argument('--phase',choices=['transaction','primitives'],default='transaction');main(p.parse_args())
+2026-10-09T02:22:57.9380588Z                                                                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^
+2026-10-09T02:22:57.9381495Z   File "/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/launch.py", line 20, in main
+2026-10-09T02:22:57.9382128Z     subprocess.run(argv,cwd=ROOT,check=True)
+2026-10-09T02:22:57.9382825Z   File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+2026-10-09T02:22:57.9630624Z     raise CalledProcessError(retcode, process.args,
+2026-10-09T02:22:57.9635441Z subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/RPG-maker/RPG-maker/tools/fixtures/equipment-save-transaction-platform/run_ci.py', '--godot', '/home/runner/work/_temp/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64', '--source-sha', 'b96658b66c313655b276603d4ead92b507f2b6cd', '--profile', 'fixed055', '--output', '/home/runner/work/_temp/native-evidence/results', '--fixed-sha', 'adbd4b1b1fde34a0fa8f5a48388571e25e996eb3']' returned non-zero exit status 1.
+2026-10-09T02:22:57.9745386Z ##[error]Process completed with exit code 1.
+2026-10-09T02:22:57.9797285Z ##[group]Run python tools/check_frozen_files.py
+2026-10-09T02:22:57.9797679Z [36;1mpython tools/check_frozen_files.py[0m
+2026-10-09T02:22:57.9861771Z shell: /usr/bin/bash -e {0}
+2026-10-09T02:22:57.9862044Z env:
+2026-10-09T02:22:57.9862254Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:22:57.9862499Z   PYTHONUTF8: 1
+2026-10-09T02:22:57.9862706Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:22:57.9862935Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:22:57.9863186Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:22:57.9863481Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:22:57.9863929Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-09T02:22:57.9864370Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:22:57.9864752Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:22:57.9865133Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:22:57.9865570Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-09T02:22:57.9865896Z ##[endgroup]
+2026-10-09T02:22:58.0243302Z 保護対象26件、一致26件。
+2026-10-09T02:22:58.0318826Z ##[group]Run python tools/fixtures/equipment-save-transaction-platform/evidence.py --output "$RUNNER_TEMP/native-evidence"
+2026-10-09T02:22:58.0320043Z [36;1mpython tools/fixtures/equipment-save-transaction-platform/evidence.py --output "$RUNNER_TEMP/native-evidence"[0m
+2026-10-09T02:22:58.0384205Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-09T02:22:58.0384554Z env:
+2026-10-09T02:22:58.0384762Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:22:58.0385089Z   PYTHONUTF8: 1
+2026-10-09T02:22:58.0385315Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:22:58.0385535Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:22:58.0385782Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:22:58.0386077Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:22:58.0386513Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-09T02:22:58.0386940Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:22:58.0387358Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:22:58.0387759Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:22:58.0388141Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-09T02:22:58.0388462Z ##[endgroup]
+2026-10-09T02:23:00.8676678Z NATIVE_RAW_PROOF_META {"archive_sha256": "37d3c6b1ca0681a9372c523fdddd56c08ad1de4ea6168a293f8e4ef15d9fef10", "archive_bytes": 2811848, "members": 5743}
+2026-10-09T02:23:00.8677797Z NATIVE_RAW_PROOF_BEGIN
+2026-10-09T02:23:04.3864002Z NATIVE_RAW_PROOF_END
+2026-10-09T02:23:04.3925642Z ##[group]Run actions/upload-artifact@v4
+2026-10-09T02:23:04.3925940Z with:
+2026-10-09T02:23:04.3926223Z   name: equipment-native-ubuntu-latest-fixed055-transaction
+2026-10-09T02:23:04.3926966Z   path: /home/runner/work/_temp/native-evidence/
+addons/equipment_save_io/
+native/equipment_save_io/GODOT_CPP_LICENSE.txt
+
+2026-10-09T02:23:04.3927545Z   if-no-files-found: error
+2026-10-09T02:23:04.3927778Z   compression-level: 6
+2026-10-09T02:23:04.3927992Z   overwrite: false
+2026-10-09T02:23:04.3928206Z   include-hidden-files: false
+2026-10-09T02:23:04.3928432Z env:
+2026-10-09T02:23:04.3928634Z   GODOT_VERSION: 4.7.2-stable
+2026-10-09T02:23:04.3928890Z   PYTHONUTF8: 1
+2026-10-09T02:23:04.3929093Z   GIT_CONFIG_COUNT: 1
+2026-10-09T02:23:04.3929327Z   GIT_CONFIG_KEY_0: core.autocrlf
+2026-10-09T02:23:04.3929570Z   GIT_CONFIG_VALUE_0: false
+2026-10-09T02:23:04.3929889Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:23:04.3930553Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-09T02:23:04.3930994Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:23:04.3931378Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:23:04.3931759Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-09T02:23:04.3932146Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-09T02:23:04.3932500Z ##[endgroup]
+2026-10-09T02:23:04.5596502Z (node:4803) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-09T02:23:04.5597868Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-09T02:23:06.1938001Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-09T02:23:06.1940443Z The least common ancestor is /home/runner/work. This will be the root directory of the artifact
+2026-10-09T02:23:06.1941472Z With the provided path, there will be 5919 files uploaded
+2026-10-09T02:23:06.1948103Z Artifact name is valid!
+2026-10-09T02:23:06.1948611Z Root directory input is valid!
+2026-10-09T02:23:06.5107519Z Beginning upload of artifact content to blob storage
+2026-10-09T02:23:06.9218115Z (node:4803) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-09T02:23:07.3612437Z Uploaded bytes 8388608
+2026-10-09T02:23:07.6123544Z Uploaded bytes 16777216
+2026-10-09T02:23:07.6916687Z Uploaded bytes 25165824
+2026-10-09T02:23:07.9139898Z Uploaded bytes 33554432
+2026-10-09T02:23:08.2188209Z Uploaded bytes 41943040
+2026-10-09T02:23:08.4549703Z Uploaded bytes 50331648
+2026-10-09T02:23:08.6460260Z Uploaded bytes 58720256
+2026-10-09T02:23:08.8985709Z Uploaded bytes 67108864
+2026-10-09T02:23:09.1407796Z Uploaded bytes 75497472
+2026-10-09T02:23:09.7261192Z Uploaded bytes 83886080
+2026-10-09T02:23:10.4875541Z Uploaded bytes 92274688
+2026-10-09T02:23:11.2418054Z Uploaded bytes 100663296
+2026-10-09T02:23:11.9971241Z Uploaded bytes 109051904
+2026-10-09T02:23:12.5953582Z Uploaded bytes 117440512
+2026-10-09T02:23:12.8316983Z Uploaded bytes 125829120
+2026-10-09T02:23:13.1222223Z Uploaded bytes 134217728
+2026-10-09T02:23:13.4800751Z Uploaded bytes 142606336
+2026-10-09T02:23:13.7822663Z Uploaded bytes 150994944
+2026-10-09T02:23:14.3941299Z Uploaded bytes 159383552
+2026-10-09T02:23:17.1738999Z Uploaded bytes 167772160
+2026-10-09T02:23:17.2905735Z Uploaded bytes 170147061
+2026-10-09T02:23:17.3374647Z Finished uploading artifact content to blob storage!
+2026-10-09T02:23:17.3378489Z SHA256 digest of uploaded artifact zip is 98d0e48d15f837514fa09ab1aea1a1bcd4cf4d33d0e945b1f156ca2c42a2f0a2
+2026-10-09T02:23:17.3381810Z Finalizing artifact upload
+2026-10-09T02:23:17.6214150Z Artifact equipment-native-ubuntu-latest-fixed055-transaction.zip successfully finalized. Artifact ID 11591832090
+2026-10-09T02:23:17.6215866Z Artifact equipment-native-ubuntu-latest-fixed055-transaction has been successfully uploaded! Final size is 170147061 bytes. Artifact ID is 11591832090
+2026-10-09T02:23:17.6224343Z Artifact download URL: https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/37873844184/artifacts/11591832090
+2026-10-09T02:23:17.6692040Z Post job cleanup.
+2026-10-09T02:23:17.7581009Z [command]/usr/bin/git version
+2026-10-09T02:23:17.7613116Z git version 2.55.0
+2026-10-09T02:23:17.7657511Z Temporarily overriding HOME='/home/runner/work/_temp/828348ee-dc66-4bbf-8440-1a40bec269a1' before making global git config changes
+2026-10-09T02:23:17.7658973Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-09T02:23:17.7663932Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/RPG-maker/RPG-maker
+2026-10-09T02:23:17.7702038Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-09T02:23:17.7738219Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-09T02:23:17.8002392Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-09T02:23:17.8029941Z http.https://github.com/.extraheader
+2026-10-09T02:23:17.8041910Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-09T02:23:17.8083250Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-09T02:23:17.8370949Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-09T02:23:17.8409271Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-09T02:23:17.8885316Z Cleaning up orphan processes
+2026-10-09T02:23:17.9214735Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
