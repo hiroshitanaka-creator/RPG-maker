@@ -392,6 +392,30 @@ markdown
 
 城の人々の役割・見た目と、飛行船を修理する場面の細部は未決のまま残す。物語・人物・地名・新しい遊びの規則をこの記録で決めない。
 
+### 付録B追記：4体の主の居場所の採用原画（owner-2026-10-10-grok-lord-places）
+
+依頼者が2026年10月10日に採用した4枚を、指定commitのGit blobから同じパスへ1バイトも変えずに保管する。用途は、倒さなくてもよい強敵である4体の主の居場所の「一枚絵の背景」の原画。今回は保管と文書記録のみで、加工・再保存・改名、ゲームへの組込み、通行地図・場所データ・戦闘・会話の実装は行っていない。依頼と照合・検証は [063依頼書](tasks/063-record-lord-place-art.md) と [063報告書](tasks/reports/063-record-lord-place-art.md) を参照。
+
+| 原画 | 元ブランチ | 完全commit SHA | パス | SHA-256 | bytes |
+| --- | --- | --- | --- | --- | ---: |
+| 不死の主の書庫（描き直し版） | `incoming/owner-2026-10-10-grok-lord-undead-archive-v2` | `018df0a75711e68743835a7a0045723c954870b9` | `assets/_incoming/owner-2026-10-10-grok-lord-places/lord-place-undead-archive.png` | `fa64f976a79736c0084fc41eeaa5ac98b3e0c748fff3c206116b84d4a880b4af` | 1349538 |
+| 鳥の主の雪山の頂 | `incoming/owner-2026-10-10-grok-lord-bird-snow-peak` | `7a6bebd7b6eda5ff5431d45b891ae585401c0028` | `assets/_incoming/owner-2026-10-10-grok-lord-places/lord-place-bird-snow-peak.png` | `fee0b810ddb04bef46126e99c4dd2a9ed6cf2f9dd1a5c69da877ab530bccacf2` | 1714744 |
+| 精霊の主の凍った湖 | `incoming/owner-2026-10-10-grok-lord-spirit-frozen-lake` | `3ddfa356650221a4dfe7a28c58b38db290ce4537` | `assets/_incoming/owner-2026-10-10-grok-lord-places/lord-place-spirit-frozen-lake.png` | `71dde1c4300826cf444f65f06b8907c55fe051f8ca8d89b029f3ff8b07f23ee4` | 2068322 |
+| 竜の主の空に浮かぶ岩の島 | `incoming/owner-2026-10-10-grok-lord-dragon-sky-island` | `f0c32aeef5d97facbe70b8151968733fde50cb0a` | `assets/_incoming/owner-2026-10-10-grok-lord-places/lord-place-dragon-sky-island.png` | `bdf3eaf320df2d8b793367b43f7a5f6981e0eee1d52b1b955c3f306bd2860fe7` | 1541367 |
+
+| 原画 | 内容 | 用途 |
+| --- | --- | --- |
+| 不死の主の書庫（描き直し版） | 第2地方の遺跡の奥の隠れた書庫。不死の主（ジーク）の部屋の原画。真上から見た砂色の部屋で、下の真ん中に崩れた幅1の出入口、壁ぎわに本棚（一部は傾き・崩れ）、中ほどに本の開いた石の机、床に散らばった巻物と紙、奥に主が立つ空いた床とほこりの円い跡 | 主の居場所の一枚絵背景の原画 |
+| 鳥の主の雪山の頂 | 第3地方の雪山の頂。下の端の中央から上る山道、雪の広場、奥の中央に段のある平らな氷の台（主が来る場所）、周りの崖と雲海、左上の遠くの火山 | 主の居場所の一枚絵背景の原画 |
+| 精霊の主の凍った湖 | 第3地方の凍った湖。下の端の中央の入口から、白い厚い氷の道が湖の中央の円い氷（主が現れる場所）まで続く。歩けない薄い氷は暗い青。周りは針葉樹の森 | 主の居場所の一枚絵背景の原画 |
+| 竜の主の空に浮かぶ岩の島 | 雲の上に浮かぶ岩の島。手前の広い草地（飛行船が着く場所）、奥へ続く土の道、上に突き出た岬（その先の空に主が来る）、周りの小さな浮き岩と雲 | 主の居場所の一枚絵背景の原画 |
+
+4枚とも主は描かれていない。主は採用済みの `assets/_incoming/owner-2026-10-05-grok-batch4/` の原画（`optional-boss-undead.png`・`optional-boss-bird.png`・`optional-boss-spirit.png`・`optional-boss-dragon.png`）から作った絵を別に重ねる前提。鳥の主がつかむ凍った岩と、竜の主が立つ宙に浮いた岩も主の絵ごと重ねるものであり、背景側にはその岩を描いていない。背景の氷の台や周りの浮き岩とは区別する。空に浮かぶ島には飛行船も別絵で重ねる。
+
+竜の主の居場所を「空に浮かぶ岩の島」とするClaudeの案は、依頼者が採用した。書庫は `incoming/owner-2026-10-10-grok-lord-undead-archive-v2` の描き直し版を採用する。旧 `incoming/owner-2026-10-10-grok-lord-undead-archive`（完全commit `046de0555195ababbf98ea0baa6a8b540c98ee4e`、同名PNG、SHA-256 `06ad087c7c06d5f8595210dea0b24b4563c8c6830a6978127eac2cbff7bc0e82`）は不採用・未取り込み。旧branchや途中の200バイトのbase64文字列の履歴を取り込まず、旧branchは削除・改変しない。
+
+4つの居場所の呼び名（[魔物職の解放の記録](design/monster-job-unlock.md) にあるClaudeの仮案は決定ではない）、雪山の頂・凍った湖・空の島への行き方、主との戦いの実装時期は未決のまま残す。上表の入口・主が来る場所・歩ける氷・着船場所などは原画の用途と想定の記録であり、ゲーム上の通行や接続を実装したという意味ではない。
+
 ## 2026年9月27日の決定：旧本編のCIを手動実行へ分離
 
 - 依頼者はスプリント2の重なり修正、リオネ・ハルドの加入場面、スイナの会話案を採用した。
