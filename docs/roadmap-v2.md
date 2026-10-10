@@ -416,6 +416,55 @@ markdown
 
 4つの居場所の呼び名（[魔物職の解放の記録](design/monster-job-unlock.md) にあるClaudeの仮案は決定ではない）、雪山の頂・凍った湖・空の島への行き方、主との戦いの実装時期は未決のまま残す。上表の入口・主が来る場所・歩ける氷・着船場所などは原画の用途と想定の記録であり、ゲーム上の通行や接続を実装したという意味ではない。
 
+### 付録B追記：第4地方の採用原画（owner-2026-10-10-grok-region4）
+
+依頼者がGrokで制作し、Claudeが内容を確認した11枚を、依頼者が2026年10月10日に採用した。第4地方（薄暮の花原と湖）の後続制作に備え、固定commitのGit blobから同一パスへ原bytesのまま保管する。今回は保管・記録のみで、ゲーム組込み、背景加工、素材台帳追加、通行地図・場所・敵データ・コードの追加は行っていない。依頼と検証は [064依頼書](tasks/064-record-region4-art.md) と [064報告書](tasks/reports/064-record-region4-art.md) を参照。
+
+全11枚の取出し元は `incoming/owner-2026-10-10-grok-region4-shrine-v2`、固定完全commitは `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f`。対象folder treeは `5a9e80566b8982a419db9f0ba45dd90d4ffc7419`、指定11枚だけである。incomingの15段の履歴は取り込まず、採用11枚の追加を1回のcommitへまとめる。
+
+| 原画 | 取出し元ブランチ | 固定完全commit SHA | パス | SHA-256 | bytes | 実寸 |
+| --- | --- | --- | --- | --- | ---: | --- |
+| 世界マップの見本 | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-world-map.png` | `f732c4ea34b63e9554eed19094b837e5b6c3ae87dce567abc90aae5898f33647` | 1726130 | 1168×784 |
+| 湖の町の外観 | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-lake-town-exterior.png` | `8ec72d2497ded1ed1c60c80ebf8c975995aa3f9526090fabac4f39e54457012d` | 1842390 | 1168×784 |
+| 宿屋の中（描き直し版） | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-room-inn.png` | `5bbe986b3e58e7cae1ed910662c2608f8c139f429c194c464601c674368a71a1` | 901924 | 1168×784 |
+| 道具屋の中（描き直し版） | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-room-item-shop.png` | `5b6d56b2d21ae7f1995ed42c4fe0c4b5de7914a1feb8f0085638b0001e852330` | 964613 | 1168×784 |
+| 武器屋の中（描き直し版） | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-room-weapon-shop.png` | `dd618aeea7d71776ced9a2e3616047c23b449b4a6266f52b439e4fe4daa9af6b` | 1310750 | 1168×784 |
+| 祠の中（描き直し版） | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-room-shrine.png` | `636ebaacaef8fcce7a0613ace584356fa040e3fd06f6de42eee4f45dfd0731f4` | 1165890 | 1168×784 |
+| 町の住人10人 | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-town-residents-10.png` | `cf79e9e12af2847759ede03aa7feb0eec9517180f3d4db704a7692daebac1fa3` | 860784 | 1168×784 |
+| 花原の敵4体 | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-flower-field-enemies-4.png` | `2b9d4ba8c43cd5bc322102da479be7204305c535ab120bde0e4a18180faa9ceb` | 971134 | 1168×784 |
+| 湖の敵4体 | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-lake-enemies-4.png` | `0d1ac4099b7c27f4ee1462f982cf0ac851d2b91ac437205eeac8d245313232f9` | 889700 | 1168×784 |
+| 花原の戦闘背景 | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-battle-flower-field.png` | `1d45d98c0df92e9a4e3f6cdac2f9b2f20b0ecb266cbe77aa41e2cb392a26d259` | 1314939 | 1168×784 |
+| 湖のほとりの戦闘背景 | `incoming/owner-2026-10-10-grok-region4-shrine-v2` | `bcac33726578b80d2ce3e9d0bd3678c306c6bf1f` | `assets/_incoming/owner-2026-10-10-grok-region4/region4-battle-lakeshore.png` | `9e25c8f438612780b0d906fb0e15707ed002d36476e5f58240b1f8321e336716` | 1270386 | 1168×784 |
+
+| 原画 | 中身 | 用途 |
+| --- | --- | --- |
+| `region4-world-map.png` | 夕方の空、一面の紫と白の花原、白い幹の林、大きな湖（奥は霧で隠れている）、湖のほとりの小さな町と船着き場 | 第4地方の世界マップを作るときの見た目の手本 |
+| `region4-lake-town-exterior.png` | 湖に囲まれた町。左上に宿屋、左に道具屋、中央に三日月の飾りの祠、下に武器屋、中央に噴水と花壇の広場と水場、右下に花畑と木工の作業場、右上に船着き場、左下に花のアーチの門（町の出口） | 一枚絵の背景（町の外観） |
+| `region4-room-inn.png` | 形の違う4つの寝床（普通・2倍の幅・巣・水を張った石の寝床）、左の受付の台、右の色の違う椅子の丸いテーブル、湖の見える窓。下の真ん中に幅2の入口 | 一枚絵の背景（建物の中） |
+| `region4-room-item-shop.png` | 奥に薬瓶と乾かした花の棚と受付の台、右に鉢植え・袋・籠の台。下の真ん中に幅2の入口 | 一枚絵の背景（建物の中） |
+| `region4-room-weapon-shop.png` | 奥に剣・槍・盾・鎧の棚、左に弓、右に大きな籠手と形の違う鎧（体に合わせて作り直した道具）、中ほどに兜と籠手の台2つ。下の真ん中に幅2の入口 | 一枚絵の背景（建物の中） |
+| `region4-room-shrine.png` | 奥の中央に三日月の飾りの白い石の祭壇と三日月の掛け布、ろうそく、敷物2枚、壁ぎわの鉢植えと壺。下の真ん中に幅2の入口 | 一枚絵の背景（建物の中） |
+| `region4-town-residents-10.png` | 1列に10人。体が変わって元に戻れなくなった町の人たち（羽、獣の耳と尾、背中の殻、葉、竜のうろことしっぽ、すきとおった体、光る輪郭、青白い肌など） | 町の住人の絵の元 |
+| `region4-flower-field-enemies-4.png` | 左から、夜光の蛾、花をまとった狼、目のある花の株、蝶の群れの人影（呼び名は仮） | 戦闘の敵の絵の元 |
+| `region4-lake-enemies-4.png` | 左から、灯りのクラゲ、睡蓮のカエル、灯りを持つ霧の人影、葦の大蛇（呼び名は仮） | 戦闘の敵の絵の元 |
+| `region4-battle-flower-field.png` | 夕方の空、遠くの丘と白い幹の林、手前に背の低い花の花原 | 戦闘背景の元。依頼時の提示は3:2、実測は1168×784（73:49）。後の組込み時に上の空を少し切って16:9にする想定 |
+| `region4-battle-lakeshore.png` | 夕方の空、霧のかかった湖（建物なし）、手前に短い草と小石の岸、左右に葦と睡蓮 | 戦闘背景の元。依頼時の提示は3:2、実測は1168×784（73:49）。後の組込み時に上の空を少し切って16:9にする想定 |
+
+町と部屋の入口は、大きな体や尾のある人も通れるよう、普通の2倍の幅（幅2）で原画を依頼した。宿の幅広の寝床も2倍の幅という依頼内容を記録する。これらは原画依頼時の想定であり、画像からゲーム上のマス数・通行可能性を確定したものではない。
+
+全11枚の実寸は1168×784、比率は73:49（約1.4898:1）。2枚の戦闘背景について提示された3:2（1.5:1）とは厳密には一致しない。原画は変更しない。上の空を少し切って16:9にするのは後の組込み時の想定であり、今回は切抜き・縮小・色調整・再保存・改名を一切行っていない。
+
+宿屋・道具屋・武器屋・祠は描き直し版を採用した。次の最初の版は不採用・未取り込み。同名PNGでも上表の採用hashと区別する。元incoming全枝を残し、merge・cherry-pick・削除・上書き・履歴改変を行わない。
+
+| 不採用の元ブランチ | 元先頭の完全commit SHA | 対象PNG | 旧版SHA-256 |
+| --- | --- | --- | --- |
+| `incoming/owner-2026-10-10-grok-region4-inn` | `b040ee4ebda3bb113248b84a4875a0a793d4ca3c` | `region4-room-inn.png` | `daa898e4ac839c77b2965b12f4b19b8c375298c79c64472f7ef6472da15321d3` |
+| `incoming/owner-2026-10-10-grok-region4-item-shop` | `8b6201efd8777cb0b639461f3ac2a12ea66a9d8a` | `region4-room-item-shop.png` | `2abafe5222b3c40a39153b3383c05b3eaba789f41574880729fe1e29053aa209` |
+| `incoming/owner-2026-10-10-grok-region4-weapon-shop` | `373731eb5f1cda19bfc9a8d762e1a8f1655588bf` | `region4-room-weapon-shop.png` | `cf3083f7c03d11bc5c6d655e8bf9cdf069617027b9e573c3b510ef1804d241ae` |
+| `incoming/owner-2026-10-10-grok-region4-shrine` | `ccc2033f7a8ca3cb0dcd947c150505449ee0c68d` | `region4-room-shrine.png` | `714a555993e4a73b935bed0595521cda2fda413f3f7971cb00d194174a541662` |
+
+採用日は2026年10月10日で、原画の採用を意味する。正式名や台詞を採用したという意味ではない。町と地方の正式名、住人10人の名前・役割・台詞、敵8体の正式名と強さ、湖の奥の場所は未決のまま残す。湖の奥は後半の大事な場所のため今回の絵には描いていない。敵の呼び名は説明用の仮称であり、物語・名前・新しい遊びの規則をここで決めない。
+
 ## 2026年9月27日の決定：旧本編のCIを手動実行へ分離
 
 - 依頼者はスプリント2の重なり修正、リオネ・ハルドの加入場面、スイナの会話案を採用した。

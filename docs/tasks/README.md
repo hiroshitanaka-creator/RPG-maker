@@ -43,4 +43,6 @@
 
 | 番号 | 依頼書 | 報告書 | 状態・確認範囲 |
 | --- | --- | --- | --- |
-| 062 | [城と飛行船の原画保管](062-record-region3-castle-art.md) | [062報告](reports/062-record-region3-castle-art.md) | 確認済み。PR #34を2026-10-10にmain 5116756c7b4814fd8cf5f0886983f1949a1ae6d9へ通常取込。最終head f34efde0の全74CI成功、R-01〜R-08・凍結26件一致を直接確認。取込後の5枚のGit blob・サイズ・件数・記録と旧版branch残存を再確認。mainのCIは別途確認中。ゲームへの組込みは対象外。 |
+| 062 | [城と飛行船の原画保管](062-record-region3-castle-art.md) | [062報告](reports/062-record-region3-castle-art.md) | 確認済み。PR #34を2026-10-10にmain 5116756c7b4814fd8cf5f0886983f1949a1ae6d9へ通常取込。最終head f34efde0の全74CI成功、R-01〜R-08・凍結26件一致を直接確認。取込後の5枚のGit blob・サイズ・件数・記録と旧版branch残存を再確認。取込後mainの全37ジョブも成功。ゲームへの組込みは対象外。 |
+
+| 063 | [主の居場所の原画保管](063-record-lord-place-art.md) | [063報告](reports/063-record-lord-place-art.md) | 確認済み。PR #35を2026-10-10にmain a6cb2ebd3d86100b20978bca3503e8ddd4a5d911へ通常取込。最終head48f66b53の全74CI成功、R-01〜R-08・保護26件不変を直接確認。取込後の4枚の同一blob・サイズ・件数・記録、旧版branch残存を照合。main取込後CIは別途確認中。ゲームへの組込みは対象外。 |
