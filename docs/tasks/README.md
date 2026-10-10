@@ -43,4 +43,4 @@
 
 | 番号 | 依頼書 | 報告書 | 状態・確認範囲 |
 | --- | --- | --- | --- |
-| 062 | [城と飛行船の原画保管](062-record-region3-castle-art.md) | [062報告](reports/062-record-region3-castle-art.md) | 原画5枚の保管・付録B記録を報告済み。原本とのGit blob・バイト数一致、ローカルのSHA-256照合・R-01〜R-08・凍結26件一致の報告を確認。PR #34の全CI成功とmain取込は未完了。ゲームへの組込みは対象外。 |
+| 062 | [城と飛行船の原画保管](062-record-region3-castle-art.md) | [062報告](reports/062-record-region3-castle-art.md) | 確認済み。PR #34を2026-10-10にmain 5116756c7b4814fd8cf5f0886983f1949a1ae6d9へ通常取込。最終head f34efde0の全74CI成功、R-01〜R-08・凍結26件一致を直接確認。取込後の5枚のGit blob・サイズ・件数・記録と旧版branch残存を再確認。mainのCIは別途確認中。ゲームへの組込みは対象外。 |
