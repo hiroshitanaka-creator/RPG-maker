@@ -366,6 +366,32 @@ markdown
 
 鳥の主の凍った岩と竜の主の宙に浮いた岩は、どちらも岩を含む原画の姿のまま採用済み。岩の削除・画像加工は行わない。
 
+### 付録B追記：第3地方の城と飛行船の採用原画（owner-2026-10-10-grok-region3-castle）
+
+依頼者がGrokで制作し、Claudeが内容を確認した5枚を、依頼者が2026年10月10日に採用した。第3地方の城（節目9「飛行手段」）の後続制作に備え、指定commitのGit blobを同じパスへ1バイトも変えずに保管する。今回は原画保管と文書記録のみで、切抜き・縮小・色調整・再保存・改名、本番素材化、素材台帳への追加、ゲームへの組込みは行わない。依頼と検証は [062依頼書](tasks/062-record-region3-castle-art.md) と [062報告書](tasks/reports/062-record-region3-castle-art.md) を参照。
+
+| 原画 | ブランチ | 完全commit SHA | パス | SHA-256 | bytes |
+| --- | --- | --- | --- | --- | ---: |
+| 城の外観 | `incoming/owner-2026-10-10-grok-region3-castle` | `7cacdc724d776e9ee5365a5a7eb201c70e4f00d8` | `assets/_incoming/owner-2026-10-10-grok-region3-castle/region3-castle-exterior.png` | `d3f08bd5e3433848fe2d606175646605b083ac3e521c123a74fa45d566e2dcef` | 3659721 |
+| 大広間 | `incoming/owner-2026-10-10-grok-region3-great-hall` | `753290739362a4b97a5fc34d0788ab838f74bb1c` | `assets/_incoming/owner-2026-10-10-grok-region3-castle/region3-castle-great-hall.png` | `ff94696daeab01d2b39a9d5a8151942c9bd933017e2e5596ef43bc8c58765c7a` | 1224589 |
+| 謁見の間（描き直し版） | `incoming/owner-2026-10-10-grok-region3-throne-room-redo` | `6e029a22facc3262e4525ffcc52e269eb7962bfa` | `assets/_incoming/owner-2026-10-10-grok-region3-castle/region3-castle-throne-room.png` | `5f91e573956a5b4a60346e5635447657768f3eec829428a2c616e5aec8aa0bb2` | 2150096 |
+| 飛行船3姿 | `incoming/owner-2026-10-10-grok-region3-airship` | `a90cf6522f00f1589f19c8cd583c591718f48b34` | `assets/_incoming/owner-2026-10-10-grok-region3-castle/airship-views-3.png` | `a639308b9bc604c57a0c93b3f110fb27c63c8ddabe728e71f033cdf75193e1dc` | 724105 |
+| 飛行船の修理場 | `incoming/owner-2026-10-10-grok-region3-airship-dock` | `da43302bcb6d23f2780ce9ff53f46cdd35546e02` | `assets/_incoming/owner-2026-10-10-grok-region3-castle/region3-castle-airship-dock.png` | `5a25389151fb579ad667cdd4e8bbaea269daaa8c293198a521ba185eda3157bf` | 1367119 |
+
+| 原画 | 内容 | 用途 |
+| --- | --- | --- |
+| 城の外観 | 第3地方の城の外観。下の端の中央に石の門柱の出口、中央の前庭に火を灯した石の火鉢、上半分の中央に本館と両開きの大扉、右側に飛行船の修理場の建物と大きな両開きの扉、左上の遠くに煙を上げる火山 | 一枚絵背景の原画 |
+| 大広間 | 城の大広間。下の真ん中と上の真ん中に両開きの扉、中央に赤い敷物、左右に柱3本ずつ、四隅に火鉢 | 一枚絵背景の原画 |
+| 謁見の間（描き直し版） | 城の謁見の間（描き直し版）。下の真ん中に両開きの扉、奥の中央に段の上の空の玉座、扉から玉座へ赤い敷物、左右に柱2本ずつ、奥の窓に火山と雪の山 | 一枚絵背景の原画 |
+| 飛行船3姿 | 飛行船の3つの姿を1枚に並べた絵。左から、真横から見た修理後の姿（船首が右）、真上から見た修理後の姿（船首が上）、真上から見た修理前の壊れた姿（船首が上） | 世界マップの飛行船と、修理場へ重ねる修理前・修理後の動く絵の元 |
+| 飛行船の修理場 | 飛行船の修理場（船は描いていない）。下の真ん中に大きな両開きの扉、中央に船を置く空いた床と木の台座4本、奥に天窓、左に炉・金床・作業台、右に木材・布・ロープ・道具棚 | 一枚絵背景の原画。船は描かれておらず、飛行船の別絵を重ねる前提 |
+
+原画依頼時の部屋接続の想定は、外観本館の扉→大広間、大広間奥の扉→謁見の間、外観右の大扉→修理場。室内の扉は上・下の壁に配置する想定であり、これは原画依頼の想定を残す記録で、将来の接続・通行・イベントを実装したものではない。
+
+謁見の間は `incoming/owner-2026-10-10-grok-region3-throne-room-redo` の描き直し版を採用。旧 `incoming/owner-2026-10-10-grok-region3-throne-room`（完全commit `570fb9854509335f28235d74519bd9511c4a684d`、同名 `region3-castle-throne-room.png`、SHA-256 `dbb82458d251907eb83f842660013cbef57ea01c4db50f146a902208ad863b4a`）は不採用・未取り込みとする。旧branchを削除・上書き・改変しない。
+
+城の人々の役割・見た目と、飛行船を修理する場面の細部は未決のまま残す。物語・人物・地名・新しい遊びの規則をこの記録で決めない。
+
 ## 2026年9月27日の決定：旧本編のCIを手動実行へ分離
 
 - 依頼者はスプリント2の重なり修正、リオネ・ハルドの加入場面、スイナの会話案を採用した。
