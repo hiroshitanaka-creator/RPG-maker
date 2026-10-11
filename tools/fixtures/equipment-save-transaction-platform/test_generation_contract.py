@@ -124,12 +124,11 @@ def pins_probe(name, area, code):
 
 def timeout_probe(area, budget):
     from diagnostic_ci057 import capture_diagnostic
-    fixture = g.ROOT / g.FIXTURE / 'tree_fixture059.py'
     sentinel_area=area/'sentinel';sentinel_area.mkdir()
-    sentinel=subprocess.Popen([sys.executable,str(fixture),'--mode','sentinel','--area',str(sentinel_area)])
+    sentinel=subprocess.Popen([sys.executable,__file__,'--probe','pins-hanging-grandchild','--area',str(sentinel_area)])
     cap=None
     try:
-        argv=[sys.executable,str(fixture),'--mode','parent','--area',str(area)]
+        argv=[sys.executable,__file__,'--probe','pins-hanging-child','--area',str(area)]
         cap,errors=capture_diagnostic(argv,area/'child.log',area/'process.json',g.ROOT,budget,pins=True)
         row=cap.row
         assert errors and row['timed_out'] and row['exit_code'] != 0
@@ -148,6 +147,19 @@ def timeout_probe(area, budget):
         (area/'release').write_bytes(b'fixture cleanup');(sentinel_area/'release').write_bytes(b'fixture cleanup')
         sentinel.wait(timeout=2)
         if cap is not None and cap.child is not None:cap.child.wait(timeout=2)
+
+
+def hanging_fixture(area, parent):
+    if parent:
+        subprocess.Popen([sys.executable,__file__,'--probe','pins-hanging-grandchild','--area',str(area)])
+        (area/'parent-ready').write_text(str(os.getpid()))
+        time.sleep(60)
+    else:
+        # 実30秒枠の25秒実行停止を観測できる専用子。旧10秒縮尺fixtureは変更しない。
+        until=time.monotonic()+60
+        while time.monotonic()<until and not (area/'release').exists():
+            (area/'grandchild.heartbeat').write_text(str(time.monotonic()))
+            time.sleep(.01)
 
 
 def blocked_probe(area, unconfirmed=False):
@@ -270,7 +282,8 @@ if __name__ == '__main__':
     parser.add_argument('--budget',type=float,default=1)
     args = parser.parse_args()
     try:
-        if args.probe == 'pins-timeout-control': timeout_probe(Path(args.area),args.budget)
+        if args.probe in ('pins-hanging-child','pins-hanging-grandchild'):hanging_fixture(Path(args.area),args.probe=='pins-hanging-child')
+        elif args.probe == 'pins-timeout-control': timeout_probe(Path(args.area),args.budget)
         elif args.probe in ('pins-blocked-control','pins-unconfirmed-control'):blocked_probe(Path(args.area),args.probe=='pins-unconfirmed-control')
         elif args.probe and args.probe.startswith('pins-'):pins_probe(args.probe,Path(args.area),args.code_sha)
         elif args.probe == 'map': g.check_map(g.ROOT, g.load(Path(args.area) / 'map.json'))
