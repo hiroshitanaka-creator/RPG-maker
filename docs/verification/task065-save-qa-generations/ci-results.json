@@ -1,0 +1,38 @@
+{
+  "status": "NOT_VERIFIED",
+  "requested_source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+  "code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
+  "request": {
+    "argv": [
+      "gh",
+      "api",
+      "repos/hiroshitanaka-creator/RPG-maker/commits/3fe9d836efcc818230bca321eca4293db44669ef/check-runs",
+      "--paginate",
+      "--jq",
+      ".check_runs[] | [.name,.status,.conclusion] | @tsv"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "budget_seconds": 30.0,
+    "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+    "exit_code": 1,
+    "timed_out": false,
+    "seconds": 0.12299581299998863
+  },
+  "stderr": "Get \"https://api.github.com/repos/hiroshitanaka-creator/RPG-maker/commits/3fe9d836efcc818230bca321eca4293db44669ef/check-runs?per_page=100\": Forbidden\n",
+  "numeric_http_status": null,
+  "total_jobs": null,
+  "completed_jobs": null,
+  "successful_jobs": null,
+  "failed_jobs": null,
+  "retried": false,
+  "alternate_route_used": false,
+  "final_submission_sha": "最終応答で確定。最終提出CIも未確認。",
+  "unverified": [
+    "最終全workflow/jobの終了と結果",
+    "Linux/Windows latest transaction/primitivesのCI原bytes",
+    "fixed055/fixed057の全最終CI結果",
+    "Windowsでの45正負/12/27/12sample",
+    "GitHub shallow fetchと15分job全体"
+  ],
+  "workflow_changes": false
+}

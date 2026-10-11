@@ -1,0 +1,1317 @@
+{
+  "status": "PASS_LOCAL_ONLY",
+  "code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
+  "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+  "archive": {
+    "file": "linux-artifacts.tar.gz.b64",
+    "archive_sha256": "00e215fd2f629572999b2c199f072b37e3fbd9a3038c31981679fb71eb28043f",
+    "archive_bytes": 25557918,
+    "members": 13644,
+    "original_files": 13643,
+    "original_bytes": 230171541,
+    "verification": "全memberをbase64/TARから再読取りし集合/size/SHA-256一致"
+  },
+  "diagnostics": {
+    "schema": 3,
+    "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+    "code_sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+    "generation_code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
+    "checkout": "/workspace/RPG-maker",
+    "targets": {
+      "generation-pins": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "baseline-checkout": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "fixed059-checkout": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "capture-tests": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "scope059": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+      "capture059": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "baseline058": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "measurements": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "generation-contract": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "generation-tests": "3fe9d836efcc818230bca321eca4293db44669ef"
+    },
+    "status": "PASS",
+    "setup": [
+      {
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--fetch-pins"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--fetch-pins"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 4468,
+        "started_utc": "2026-10-11T00:12:51.487243+00:00",
+        "started_monotonic": 1056.80311527,
+        "accepted_utc": "2026-10-11T00:12:51.486807+00:00",
+        "accepted_monotonic": 1056.802669667,
+        "ended_utc": "2026-10-11T00:12:51.551693+00:00",
+        "ended_monotonic": 1056.867557165,
+        "terminal": true,
+        "seconds": 0.06488749800018923,
+        "budget_seconds": 30,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 29.999992238999994,
+        "deadline_remaining_end": 29.935104740999805,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/generation-pins.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/generation-pins.log",
+        "log_sha256": "c24b753e960279ba0a6c8793ad26b60b3f3aa3456e195dc261ecfc62078ca44d",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/generation-pins-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 4468,
+            "group": 4468,
+            "root_pid": 4468,
+            "token": "0cbb6edbe4fc4122b2f3c3c4c22c030f"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 29.935104740999805,
+        "label": "generation-pins"
+      },
+      {
+        "planned_argv": [
+          "git",
+          "worktree",
+          "add",
+          "--detach",
+          "/tmp/qa065/latest/qa059-baseline058",
+          "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "git",
+          "worktree",
+          "add",
+          "--detach",
+          "/tmp/qa065/latest/qa059-baseline058",
+          "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 4474,
+        "started_utc": "2026-10-11T00:12:51.552772+00:00",
+        "started_monotonic": 1056.868643565,
+        "accepted_utc": "2026-10-11T00:12:51.552164+00:00",
+        "accepted_monotonic": 1056.868029228,
+        "ended_utc": "2026-10-11T00:12:54.276040+00:00",
+        "ended_monotonic": 1059.591904394,
+        "terminal": true,
+        "seconds": 2.7238751659999707,
+        "budget_seconds": 30,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 29.999969704000023,
+        "deadline_remaining_end": 27.276094538000052,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/baseline-checkout.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/baseline-checkout.log",
+        "log_sha256": "1ca45f05ab81e6ddc05b5d9cb2e7239cb9a83ba582f54becdaa03dc923293e10",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/baseline-checkout-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 4474,
+            "group": 4474,
+            "root_pid": 4474,
+            "token": "f3f635118558434c99d034cdf2d1599a"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 27.276094538000052,
+        "label": "baseline-checkout"
+      },
+      {
+        "planned_argv": [
+          "git",
+          "worktree",
+          "add",
+          "--detach",
+          "/tmp/qa065/latest/qa065-fixed059",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "git",
+          "worktree",
+          "add",
+          "--detach",
+          "/tmp/qa065/latest/qa065-fixed059",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 4497,
+        "started_utc": "2026-10-11T00:12:54.277024+00:00",
+        "started_monotonic": 1059.592894557,
+        "accepted_utc": "2026-10-11T00:12:54.276592+00:00",
+        "accepted_monotonic": 1059.592458059,
+        "ended_utc": "2026-10-11T00:12:57.047501+00:00",
+        "ended_monotonic": 1062.363365596,
+        "terminal": true,
+        "seconds": 2.7709075370000846,
+        "budget_seconds": 30,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 29.999992709000026,
+        "deadline_remaining_end": 27.22908517199994,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/fixed059-checkout.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/fixed059-checkout.log",
+        "log_sha256": "98954e1892345774669353f2f8dab7a52e7bd3406e2f05bb18c65d6d9b3600ee",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/fixed059-checkout-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 4497,
+            "group": 4497,
+            "root_pid": 4497,
+            "token": "5aca84ed8eca4d7c95fe10ff907bb59a"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 27.22908517199994,
+        "label": "fixed059-checkout"
+      }
+    ],
+    "commands": [
+      {
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/capture-tests"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/capture-tests"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 4499,
+        "started_utc": "2026-10-11T00:12:57.048513+00:00",
+        "started_monotonic": 1062.364385925,
+        "accepted_utc": "2026-10-11T00:12:57.048035+00:00",
+        "accepted_monotonic": 1062.363901174,
+        "ended_utc": "2026-10-11T00:13:28.136631+00:00",
+        "ended_monotonic": 1093.45249575,
+        "terminal": true,
+        "seconds": 31.088594576000105,
+        "budget_seconds": 180,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 179.99999282900012,
+        "deadline_remaining_end": 148.91139825300002,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/capture-tests.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/capture-tests.log",
+        "log_sha256": "41cebcffe72bbd5dd5ca45c70b24d446ada564ad49d03c5933d81bdc0371ef2a",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/capture-tests-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 4499,
+            "group": 4499,
+            "root_pid": 4499,
+            "token": "a62c06adc3b44bd29b2173f297d73e6f"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 148.91139825300002,
+        "label": "capture-tests"
+      },
+      {
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/tmp/qa065/latest/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+          "--checkout",
+          "/tmp/qa065/latest/qa065-fixed059",
+          "--code-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--source-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--self-test",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/scope.json"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/tmp/qa065/latest/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+          "--checkout",
+          "/tmp/qa065/latest/qa065-fixed059",
+          "--code-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--source-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--self-test",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/scope.json"
+        ],
+        "cwd": "/tmp/qa065/latest/qa065-fixed059",
+        "pid": 5111,
+        "started_utc": "2026-10-11T00:13:28.169209+00:00",
+        "started_monotonic": 1093.485080195,
+        "accepted_utc": "2026-10-11T00:13:28.168722+00:00",
+        "accepted_monotonic": 1093.484585159,
+        "ended_utc": "2026-10-11T00:13:29.238808+00:00",
+        "ended_monotonic": 1094.554672406,
+        "terminal": true,
+        "seconds": 1.0700872469999467,
+        "budget_seconds": 30,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 29.999988542999972,
+        "deadline_remaining_end": 28.929901296000025,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/scope059.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/scope059.log",
+        "log_sha256": "0c8f5e180a2922a3d6147083515e29ebba556e50cdb7a271fc240f1c3ed3c23c",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/scope059-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 5111,
+            "group": 5111,
+            "root_pid": 5111,
+            "token": "072743d2c8f5470895df2de5d97ad5e9"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 28.929901296000025,
+        "label": "scope059"
+      },
+      {
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/capture059"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/capture059"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 5631,
+        "started_utc": "2026-10-11T00:13:29.250966+00:00",
+        "started_monotonic": 1094.566836853,
+        "accepted_utc": "2026-10-11T00:13:29.250623+00:00",
+        "accepted_monotonic": 1094.566487817,
+        "ended_utc": "2026-10-11T00:13:35.177481+00:00",
+        "ended_monotonic": 1100.493346303,
+        "terminal": true,
+        "seconds": 5.926858485999901,
+        "budget_seconds": 180,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 179.99999031499988,
+        "deadline_remaining_end": 174.07313182899998,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/capture059.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/capture059.log",
+        "log_sha256": "06db86565509143d5d50c028939b2bad18c3774552c67f4b468d289658e4270e",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/capture059-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 5631,
+            "group": 5631,
+            "root_pid": 5631,
+            "token": "d32abb16b867450387d530058409a014"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": [
+            {
+              "pid": 5730,
+              "state": "Z",
+              "group": 5729,
+              "session": 5631,
+              "start_ticks": 109751
+            },
+            {
+              "pid": 5733,
+              "state": "Z",
+              "group": 5732,
+              "session": 5631,
+              "start_ticks": 109809
+            },
+            {
+              "pid": 5736,
+              "state": "Z",
+              "group": 5736,
+              "session": 5631,
+              "start_ticks": 109822
+            },
+            {
+              "pid": 5737,
+              "state": "Z",
+              "group": 5736,
+              "session": 5631,
+              "start_ticks": 109824
+            },
+            {
+              "pid": 5743,
+              "state": "Z",
+              "group": 5742,
+              "session": 5631,
+              "start_ticks": 110010
+            }
+          ]
+        },
+        "cleanup_remaining_end": 174.07313182899998,
+        "label": "capture059"
+      },
+      {
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+          "--checkout",
+          "/tmp/qa065/latest/qa059-baseline058",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/baseline058"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+          "--checkout",
+          "/tmp/qa065/latest/qa059-baseline058",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/baseline058"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 5760,
+        "started_utc": "2026-10-11T00:13:35.179931+00:00",
+        "started_monotonic": 1100.495803045,
+        "accepted_utc": "2026-10-11T00:13:35.179468+00:00",
+        "accepted_monotonic": 1100.495333668,
+        "ended_utc": "2026-10-11T00:13:35.895635+00:00",
+        "ended_monotonic": 1101.211499601,
+        "terminal": true,
+        "seconds": 0.7161659329999566,
+        "budget_seconds": 30,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 29.99999452199995,
+        "deadline_remaining_end": 29.283828588999995,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/baseline058.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/baseline058.log",
+        "log_sha256": "f380758166a5f62c611a34cb3bb54d684f12b77dfad97d2d25d3f3373caae0ef",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/baseline058-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 5760,
+            "group": 5760,
+            "root_pid": 5760,
+            "token": "62a3ebb4509b4e03ad4b0ebb18ffc17c"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": [
+            {
+              "pid": 5767,
+              "state": "Z",
+              "group": 5760,
+              "session": 5760,
+              "start_ticks": 110067
+            }
+          ]
+        },
+        "cleanup_remaining_end": 29.283828588999995,
+        "label": "baseline058"
+      },
+      {
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+          "--godot",
+          "/tmp/qa065/latest/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/measurements"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+          "--godot",
+          "/tmp/qa065/latest/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/measurements"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 5768,
+        "started_utc": "2026-10-11T00:13:35.896751+00:00",
+        "started_monotonic": 1101.212622363,
+        "accepted_utc": "2026-10-11T00:13:35.896320+00:00",
+        "accepted_monotonic": 1101.212186306,
+        "ended_utc": "2026-10-11T00:13:56.868913+00:00",
+        "ended_monotonic": 1122.184758473,
+        "terminal": true,
+        "seconds": 20.97257216700018,
+        "budget_seconds": 180,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 179.99999267900012,
+        "deadline_remaining_end": 159.02742051199994,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/measurements.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/measurements.log",
+        "log_sha256": "9cee287081f27c3709d5f268cbb36a5838fd8209e8d9db0df620284aa4cb07cf",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/measurements-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 5768,
+            "group": 5768,
+            "root_pid": 5768,
+            "token": "12722e5e9846437aa536f46382654d02"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 159.02742051199994,
+        "label": "measurements"
+      },
+      {
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--source-sha",
+          "3fe9d836efcc818230bca321eca4293db44669ef",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/generation.json"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--source-sha",
+          "3fe9d836efcc818230bca321eca4293db44669ef",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/generation.json"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 5973,
+        "started_utc": "2026-10-11T00:13:56.873152+00:00",
+        "started_monotonic": 1122.189025089,
+        "accepted_utc": "2026-10-11T00:13:56.872435+00:00",
+        "accepted_monotonic": 1122.18830003,
+        "ended_utc": "2026-10-11T00:13:57.037837+00:00",
+        "ended_monotonic": 1122.353701992,
+        "terminal": true,
+        "seconds": 0.16540196200003265,
+        "budget_seconds": 30,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 29.99997883800006,
+        "deadline_remaining_end": 29.83457687600003,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/generation-contract.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/generation-contract.log",
+        "log_sha256": "c24b753e960279ba0a6c8793ad26b60b3f3aa3456e195dc261ecfc62078ca44d",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/generation-contract-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 5973,
+            "group": 5973,
+            "root_pid": 5973,
+            "token": "91f9e140069f4aacaa5da1eb0a91778b"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 29.83457687600003,
+        "label": "generation-contract"
+      },
+      {
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/generation-tests"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/generation-tests"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 6016,
+        "started_utc": "2026-10-11T00:13:57.039007+00:00",
+        "started_monotonic": 1122.354877727,
+        "accepted_utc": "2026-10-11T00:13:57.038582+00:00",
+        "accepted_monotonic": 1122.354447361,
+        "ended_utc": "2026-10-11T00:13:58.969268+00:00",
+        "ended_monotonic": 1124.285132816,
+        "terminal": true,
+        "seconds": 1.9306854550000025,
+        "budget_seconds": 30,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 29.999992679000115,
+        "deadline_remaining_end": 28.069307224000113,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/latest/native-evidence/task059/generation-tests.log",
+        "log": "/tmp/qa065/latest/native-evidence/task059/generation-tests.log",
+        "log_sha256": "c4774032454f617082be6383cf3300542d6eb68fd2ef4d7b1ed945505f111a27",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/latest/native-evidence/task059/generation-tests-process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 6016,
+            "group": 6016,
+            "root_pid": 6016,
+            "token": "3ca126f868df49748566d9ed40f9e0b7"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 28.069307224000113,
+        "label": "generation-tests"
+      }
+    ],
+    "failures": [],
+    "acceptance": "059固定範囲と最新継続診断。既存job/全取引結果は独立維持",
+    "fixed_checkout_before": {
+      "sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+      "scope_sha256": "d5d4a8c169436224ac742f054fed03fa89629b41c75ecd3e7df4b0ed54581d57",
+      "clean": true
+    },
+    "fixed_checkout_after": {
+      "sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+      "scope_sha256": "d5d4a8c169436224ac742f054fed03fa89629b41c75ecd3e7df4b0ed54581d57",
+      "clean": true
+    }
+  },
+  "compact_evidence": {
+    "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+    "code_sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+    "status": "PASS",
+    "errors": [],
+    "setup": [
+      {
+        "label": "generation-pins",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--fetch-pins"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "exit_code": 0,
+        "seconds": 0.06488749800018923,
+        "budget_seconds": 30,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      },
+      {
+        "label": "baseline-checkout",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "git",
+          "worktree",
+          "add",
+          "--detach",
+          "/tmp/qa065/latest/qa059-baseline058",
+          "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "exit_code": 0,
+        "seconds": 2.7238751659999707,
+        "budget_seconds": 30,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      },
+      {
+        "label": "fixed059-checkout",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "git",
+          "worktree",
+          "add",
+          "--detach",
+          "/tmp/qa065/latest/qa065-fixed059",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "exit_code": 0,
+        "seconds": 2.7709075370000846,
+        "budget_seconds": 30,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      }
+    ],
+    "commands": [
+      {
+        "label": "capture-tests",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/capture-tests"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "exit_code": 0,
+        "seconds": 31.088594576000105,
+        "budget_seconds": 180,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      },
+      {
+        "label": "scope059",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/tmp/qa065/latest/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+          "--checkout",
+          "/tmp/qa065/latest/qa065-fixed059",
+          "--code-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--source-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--self-test",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/scope.json"
+        ],
+        "cwd": "/tmp/qa065/latest/qa065-fixed059",
+        "exit_code": 0,
+        "seconds": 1.0700872469999467,
+        "budget_seconds": 30,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      },
+      {
+        "label": "capture059",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/capture059"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "exit_code": 0,
+        "seconds": 5.926858485999901,
+        "budget_seconds": 180,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      },
+      {
+        "label": "baseline058",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+          "--checkout",
+          "/tmp/qa065/latest/qa059-baseline058",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/baseline058"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "exit_code": 0,
+        "seconds": 0.7161659329999566,
+        "budget_seconds": 30,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      },
+      {
+        "label": "measurements",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+          "--godot",
+          "/tmp/qa065/latest/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/measurements"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "exit_code": 0,
+        "seconds": 20.97257216700018,
+        "budget_seconds": 180,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      },
+      {
+        "label": "generation-contract",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--source-sha",
+          "3fe9d836efcc818230bca321eca4293db44669ef",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/generation.json"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "exit_code": 0,
+        "seconds": 0.16540196200003265,
+        "budget_seconds": 30,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      },
+      {
+        "label": "generation-tests",
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence/task059/generation-tests"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "exit_code": 0,
+        "seconds": 1.9306854550000025,
+        "budget_seconds": 30,
+        "exception": null,
+        "timed_out": false,
+        "record_error": null,
+        "stopped": true
+      }
+    ],
+    "tests": {
+      "capture-tests": {
+        "status": "PASS",
+        "count": 12,
+        "failures": []
+      },
+      "capture059": {
+        "status": "PASS",
+        "count": 27,
+        "failures": []
+      }
+    },
+    "measurements": {
+      "status": "PASS",
+      "samples": 12,
+      "failures": []
+    },
+    "scope": "059診断だけ。全取引受入・元取得不能jobの原因特定とは別。既存全artifactは保持。",
+    "schema": 3,
+    "generation_code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
+    "targets": {
+      "generation-pins": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "baseline-checkout": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "fixed059-checkout": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "capture-tests": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "scope059": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+      "capture059": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "baseline058": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "measurements": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "generation-contract": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "generation-tests": "3fe9d836efcc818230bca321eca4293db44669ef"
+    },
+    "fixed_checkout": {
+      "sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+      "scope_sha256": "d5d4a8c169436224ac742f054fed03fa89629b41c75ecd3e7df4b0ed54581d57",
+      "clean": true
+    },
+    "archive": {
+      "file": "diagnostic-originals.zip",
+      "bytes": 5831118,
+      "sha256": "751788e428a311d484c62da4a60220bfb2d24a3d6ce98fb55ea5775fdda263f5",
+      "members": 1949,
+      "uncompressed_bytes": 25403869
+    }
+  },
+  "r8": {
+    "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+    "results": [
+      {
+        "id": "R-01",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 765,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 2
+        },
+        "failure_messages": []
+      },
+      {
+        "id": "R-02",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 946,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 5
+        },
+        "failure_messages": []
+      },
+      {
+        "id": "R-03",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 73,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 2
+        },
+        "failure_messages": []
+      },
+      {
+        "id": "R-04",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 293,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 1
+        },
+        "failure_messages": []
+      },
+      {
+        "id": "R-05",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 79,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 2
+        },
+        "failure_messages": []
+      },
+      {
+        "id": "R-06",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 87,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 2
+        },
+        "failure_messages": []
+      },
+      {
+        "id": "R-07",
+        "verify": "godot --headless --path . --script res://tools/smoke_first_region.gd",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": null,
+        "failure_messages": []
+      },
+      {
+        "id": "R-08",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 2302,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 17
+        },
+        "failure_messages": []
+      }
+    ]
+  },
+  "transaction": {
+    "status": "PASS",
+    "case_count": 172,
+    "checks": 2178,
+    "kill_cases": 97,
+    "seconds": 86.77993748400013,
+    "budget_seconds": 180,
+    "failures": []
+  },
+  "propagation": {
+    "status": "PASS",
+    "seconds": 8.907187022000016,
+    "rows": [
+      {
+        "case": "control",
+        "expected_exit": 0,
+        "exit_code": 0,
+        "seconds": 0.4071790289999626,
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "case": "missing-case",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.28410401899986937,
+        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      },
+      {
+        "case": "zero-checks",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.03024035599992203,
+        "log_sha256": "bfdf64d6641fb8c84c82e8e0dbf60aa5e5754e4d71e5ff547653aab3285e31d4"
+      },
+      {
+        "case": "warning-log",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.29154774400012684,
+        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      },
+      {
+        "case": "failed-exit",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.28796323999995366,
+        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      },
+      {
+        "case": "timeout",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.2824132670000381,
+        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      },
+      {
+        "case": "modified-bytes",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.28137348500013104,
+        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      },
+      {
+        "case": "missing-bytes",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.2813025899999957,
+        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      },
+      {
+        "case": "false-assert",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.27932486400004564,
+        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      },
+      {
+        "case": "wrong-phase",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.2899617349999062,
+        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      },
+      {
+        "case": "missing-manifest",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.13910617800002,
+        "log_sha256": "defa92b33f4ed15e49ca1a45403ba692afbf249cc8507f60ca7c2eef4cf70828"
+      },
+      {
+        "case": "missing-summary",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.02869703499982279,
+        "log_sha256": "f643adff67047c3229bdefc7f694609ceba3cc42ab6240d8caba22ba011edb92"
+      },
+      {
+        "case": "rehash-output",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.2797836219999681,
+        "log_sha256": "82fdfa6b421374db63e36b6b1c90461b8bcfeeb8c138f72f0ab7e21e8d0451e5"
+      },
+      {
+        "case": "rehash-backup",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.2815723139999591,
+        "log_sha256": "26e61fc6efc2ae7c0df6d763f174091de03cf469b65bda8a17acc663de345ddb"
+      },
+      {
+        "case": "empty-log",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.3543218249999427,
+        "log_sha256": "d6ea0bbe6460e69bf8d0373e48209019bf0cee172aef71ccd24903ac401e97c1"
+      },
+      {
+        "case": "count-log-rehash",
+        "expected_exit": 1,
+        "exit_code": 1,
+        "seconds": 0.030821324000044115,
+        "log_sha256": "bfdf64d6641fb8c84c82e8e0dbf60aa5e5754e4d71e5ff547653aab3285e31d4"
+      }
+    ]
+  },
+  "codec": {
+    "case_count": 154,
+    "checks": 975,
+    "failures": []
+  },
+  "limitations": [
+    "Linux専用の今回1回の原全取引結果。過去失敗やWindows、F1/S3受入へ一般化しない",
+    "15分job全体/Windows/GitHub shallow通信は未検証"
+  ]
+}

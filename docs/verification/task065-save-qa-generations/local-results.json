@@ -1,0 +1,728 @@
+{
+  "status": "PARTIAL_CI_NOT_VERIFIED",
+  "code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
+  "execution_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+  "archive": {
+    "file": "local-artifacts.tar.gz.b64",
+    "archive_sha256": "78b7a86a1b956ed3026315318cf25ed5d9fb6e12a1e0f97d1afa70881f9e5bf9",
+    "archive_bytes": 14882240,
+    "members": 4854,
+    "original_files": 4853,
+    "original_bytes": 72672233,
+    "verification": "全memberをbase64/TARから再読取りし集合/size/SHA-256一致"
+  },
+  "commands": [
+    {
+      "label": "assets",
+      "record": {
+        "planned_argv": [
+          "python",
+          "tools/validate_assets.py",
+          "--strict"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "python",
+          "tools/validate_assets.py",
+          "--strict"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 1715,
+        "started_utc": "2026-10-11T00:07:00.732305+00:00",
+        "started_monotonic": 706.048179011,
+        "accepted_utc": "2026-10-11T00:07:00.730403+00:00",
+        "accepted_monotonic": 706.046264908,
+        "ended_utc": "2026-10-11T00:07:07.190811+00:00",
+        "ended_monotonic": 712.506675891,
+        "terminal": true,
+        "seconds": 6.460410982999974,
+        "budget_seconds": 180.0,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 179.99999705599998,
+        "deadline_remaining_end": 173.539586073,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/runs/assets/stdout-stderr.log",
+        "log": "/tmp/qa065/runs/assets/stdout-stderr.log",
+        "log_sha256": "183dfcad6963493135f36ad1a47c24632725bbb02150381dde39d477216f870f",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/runs/assets/process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 1715,
+            "group": 1715,
+            "root_pid": 1715,
+            "token": "df1868f2c52f45c893e55d93c9fb1f30"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 173.539586073
+      },
+      "archive_path": "runs/assets/process.json"
+    },
+    {
+      "label": "ci-access",
+      "record": {
+        "argv": [
+          "gh",
+          "api",
+          "repos/hiroshitanaka-creator/RPG-maker/commits/3fe9d836efcc818230bca321eca4293db44669ef/check-runs",
+          "--paginate",
+          "--jq",
+          ".check_runs[] | [.name,.status,.conclusion] | @tsv"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 30.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.12299581299998863
+      },
+      "archive_path": "runs/ci-access/execution.json"
+    },
+    {
+      "label": "codec",
+      "record": {
+        "argv": [
+          "/tmp/qa065/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--path",
+          ".",
+          "--script",
+          "res://tools/check_equipment_save_codec.gd"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 120.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 7.332795579000049
+      },
+      "archive_path": "runs/codec/execution.json"
+    },
+    {
+      "label": "collect-latest",
+      "record": {
+        "argv": [
+          "python",
+          "tools/fixtures/equipment-save-transaction-platform/diagnostic_evidence059.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence",
+          "--destination",
+          "/tmp/qa065/latest/diagnostic059-small",
+          "--source-sha",
+          "3fe9d836efcc818230bca321eca4293db44669ef",
+          "--code-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 30.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.8165620139998282
+      },
+      "archive_path": "runs/collect-latest/execution.json"
+    },
+    {
+      "label": "diagnostic-final",
+      "record": {
+        "argv": [
+          "python",
+          "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py",
+          "--output",
+          "/tmp/qa065/final/native-evidence"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 900.0,
+        "source_sha": "5f4729639fe94550072b0aff2dfe7931eeb1b8ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 69.89000741999996
+      },
+      "archive_path": "runs/diagnostic-final/execution.json"
+    },
+    {
+      "label": "diagnostic-initial",
+      "record": {
+        "planned_argv": [
+          "python",
+          "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py",
+          "--output",
+          "/tmp/qa065/native-evidence"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "python",
+          "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py",
+          "--output",
+          "/tmp/qa065/native-evidence"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 1751,
+        "started_utc": "2026-10-11T00:07:33.933665+00:00",
+        "started_monotonic": 739.249536199,
+        "accepted_utc": "2026-10-11T00:07:33.933215+00:00",
+        "accepted_monotonic": 739.249079672,
+        "ended_utc": "2026-10-11T00:08:44.022122+00:00",
+        "ended_monotonic": 809.337986635,
+        "terminal": true,
+        "seconds": 70.088906963,
+        "budget_seconds": 900.0,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 899.9999984780001,
+        "deadline_remaining_end": 829.9110915150001,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/runs/diagnostic-initial/stdout-stderr.log",
+        "log": "/tmp/qa065/runs/diagnostic-initial/stdout-stderr.log",
+        "log_sha256": "24bd811b516634ba940e88147ad1ba306f715e07a339d0405e9292bf8b901369",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/runs/diagnostic-initial/process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 1751,
+            "group": 1751,
+            "root_pid": 1751,
+            "token": "2a514075adfb4156ab7fb8ca308ce6c9"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": [
+            {
+              "pid": 2489,
+              "state": "Z",
+              "group": 2488,
+              "session": 1751,
+              "start_ticks": 78342
+            },
+            {
+              "pid": 2492,
+              "state": "Z",
+              "group": 2491,
+              "session": 1751,
+              "start_ticks": 78400
+            },
+            {
+              "pid": 2495,
+              "state": "Z",
+              "group": 2495,
+              "session": 1751,
+              "start_ticks": 78418
+            },
+            {
+              "pid": 2496,
+              "state": "Z",
+              "group": 2495,
+              "session": 1751,
+              "start_ticks": 78420
+            },
+            {
+              "pid": 2510,
+              "state": "Z",
+              "group": 2509,
+              "session": 1751,
+              "start_ticks": 78602
+            },
+            {
+              "pid": 2534,
+              "state": "Z",
+              "group": 2527,
+              "session": 1751,
+              "start_ticks": 78655
+            }
+          ]
+        },
+        "cleanup_remaining_end": 829.9110915150001
+      },
+      "archive_path": "runs/diagnostic-initial/process.json"
+    },
+    {
+      "label": "diagnostic-latest",
+      "record": {
+        "argv": [
+          "python",
+          "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py",
+          "--output",
+          "/tmp/qa065/latest/native-evidence"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 900.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 67.75431277400003
+      },
+      "archive_path": "runs/diagnostic-latest/execution.json"
+    },
+    {
+      "label": "downgrade-before",
+      "record": {
+        "argv": [
+          "python",
+          "-c",
+          "import sys;sys.path.insert(0,\"tools/fixtures/equipment-save-transaction-platform\");import generation_contract as g;from diagnostic_evidence059 import collect;s=g.git(g.ROOT,\"rev-parse\",\"HEAD\").decode().strip();v=collect(\"/tmp/qa065/downgrade-before\",\"/tmp/qa065/downgrade-before-collected\",s,g.FIXED059);print(v[\"status\"]);sys.exit(0 if v[\"status\"]==\"PASS\" else 1)"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 30.0,
+        "source_sha": "5f4729639fe94550072b0aff2dfe7931eeb1b8ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.06543489299997418
+      },
+      "archive_path": "runs/downgrade-before/execution.json"
+    },
+    {
+      "label": "frozen-after",
+      "record": {
+        "argv": [
+          "python",
+          "tools/check_frozen_files.py"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 30.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.03756498099983219
+      },
+      "archive_path": "runs/frozen-after/execution.json"
+    },
+    {
+      "label": "generation-tests-initial",
+      "record": {
+        "planned_argv": [
+          "python",
+          "tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+          "--code-sha",
+          "9527046b4348bcee99f1648c4d8c96856b46dbe2",
+          "--output",
+          "/tmp/qa065/tests-initial"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "python",
+          "tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+          "--code-sha",
+          "9527046b4348bcee99f1648c4d8c96856b46dbe2",
+          "--output",
+          "/tmp/qa065/tests-initial"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 1068,
+        "started_utc": "2026-10-11T00:05:36.370062+00:00",
+        "started_monotonic": 621.68593381,
+        "accepted_utc": "2026-10-11T00:05:36.369521+00:00",
+        "accepted_monotonic": 621.685375576,
+        "ended_utc": "2026-10-11T00:05:37.944349+00:00",
+        "ended_monotonic": 623.260212849,
+        "terminal": true,
+        "seconds": 1.574837273000071,
+        "budget_seconds": 30.0,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 29.999998397000013,
+        "deadline_remaining_end": 28.425161123999942,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/runs/generation-tests-initial/stdout-stderr.log",
+        "log": "/tmp/qa065/runs/generation-tests-initial/stdout-stderr.log",
+        "log_sha256": "4d1b737c392a3c40d0546ecb70e6a4602106b1c2fc12307dd0864d9bbc53f8ce",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/runs/generation-tests-initial/process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 1068,
+            "group": 1068,
+            "root_pid": 1068,
+            "token": "8adc8d78fbc040f68a5d4614ac0fde93"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 28.425161123999942
+      },
+      "archive_path": "runs/generation-tests-initial/process.json"
+    },
+    {
+      "label": "import",
+      "record": {
+        "planned_argv": [
+          "/tmp/qa065/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--editor",
+          "--import",
+          "--quit"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/tmp/qa065/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--headless",
+          "--editor",
+          "--import",
+          "--quit"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 1470,
+        "started_utc": "2026-10-11T00:06:51.267489+00:00",
+        "started_monotonic": 696.583360887,
+        "accepted_utc": "2026-10-11T00:06:51.266935+00:00",
+        "accepted_monotonic": 696.582799481,
+        "ended_utc": "2026-10-11T00:07:22.387332+00:00",
+        "ended_monotonic": 727.703195908,
+        "terminal": true,
+        "seconds": 31.120396426999946,
+        "budget_seconds": 600.0,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 599.9999984379998,
+        "deadline_remaining_end": 568.8796020109999,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/runs/import/stdout-stderr.log",
+        "log": "/tmp/qa065/runs/import/stdout-stderr.log",
+        "log_sha256": "d512e44a03d5850a403b86ef08843aed3906dcf6b9a82c7f1ffd3e572916daa7",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/runs/import/process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 1470,
+            "group": 1470,
+            "root_pid": 1470,
+            "token": "63682ce51b2c4a4f975744101e3dbf59"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 568.8796020109999
+      },
+      "archive_path": "runs/import/process.json"
+    },
+    {
+      "label": "original-boundary-rejection",
+      "record": {
+        "argv": [
+          "python",
+          "tools/fixtures/equipment-save-transaction-platform/scope059.py",
+          "--code-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--source-sha",
+          "6ca6ccea70491cf66c8a4f478b142f1137f23874"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 30.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 1,
+        "timed_out": false,
+        "seconds": 0.11578559099984886
+      },
+      "archive_path": "runs/original-boundary-rejection/execution.json"
+    },
+    {
+      "label": "propagation",
+      "record": {
+        "argv": [
+          "python",
+          "/tmp/qa065/propagation.py"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 180.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 8.952727184999958
+      },
+      "archive_path": "runs/propagation/execution.json"
+    },
+    {
+      "label": "propagation-reconstruction",
+      "record": {
+        "argv": [
+          "python",
+          "/tmp/qa065/compact-propagation.py"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 30.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 5.478969416999917
+      },
+      "archive_path": "runs/propagation-reconstruction/execution.json"
+    },
+    {
+      "label": "r8",
+      "record": {
+        "argv": [
+          "python",
+          "/tmp/qa065/r8.py"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 900.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 71.03490971500014
+      },
+      "archive_path": "runs/r8/execution.json"
+    },
+    {
+      "label": "shallow-check",
+      "record": {
+        "argv": [
+          "python",
+          "/tmp/qa065/shallow-check.py"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "budget_seconds": 30.0,
+        "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 1.1679077979999875
+      },
+      "archive_path": "runs/shallow-check/execution.json"
+    },
+    {
+      "label": "transaction",
+      "record": {
+        "planned_argv": [
+          "python",
+          "tools/check_equipment_save_transaction_platform.py",
+          "--godot",
+          "/tmp/qa065/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--fixture-root",
+          "/tmp/qa065/transaction/qa",
+          "--output",
+          "/tmp/qa065/transaction/results"
+        ],
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "python",
+          "tools/check_equipment_save_transaction_platform.py",
+          "--godot",
+          "/tmp/qa065/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--fixture-root",
+          "/tmp/qa065/transaction/qa",
+          "--output",
+          "/tmp/qa065/transaction/results"
+        ],
+        "cwd": "/workspace/RPG-maker",
+        "pid": 6331,
+        "started_utc": "2026-10-11T00:15:45.054733+00:00",
+        "started_monotonic": 1230.370605245,
+        "accepted_utc": "2026-10-11T00:15:45.054072+00:00",
+        "accepted_monotonic": 1230.369935769,
+        "ended_utc": "2026-10-11T00:17:12.257965+00:00",
+        "ended_monotonic": 1317.573829473,
+        "terminal": true,
+        "seconds": 87.20389370399994,
+        "budget_seconds": 180.0,
+        "exit_code": 0,
+        "timed_out": false,
+        "timeout_kind": null,
+        "exception": null,
+        "exit_unavailable_reason": null,
+        "deadline_remaining_start": 179.99999842800003,
+        "deadline_remaining_end": 92.79610472400009,
+        "kill": {
+          "attempted": false,
+          "ok": null
+        },
+        "wait": {
+          "attempted": true,
+          "ok": true
+        },
+        "streams": "stdout+stderr",
+        "planned_log": "/tmp/qa065/runs/transaction/stdout-stderr.log",
+        "log": "/tmp/qa065/runs/transaction/stdout-stderr.log",
+        "log_sha256": "3a5247074d4057910c453be655e4be027a3d4405e9889d6454c2a97188368ccf",
+        "result": {},
+        "kill_point": null,
+        "record_path": "/tmp/qa065/runs/transaction/process.json",
+        "record_saved": true,
+        "supervision": {
+          "mechanism": "Linux dedicated session",
+          "configured": true,
+          "ownership": {
+            "session": 6331,
+            "group": 6331,
+            "root_pid": 6331,
+            "token": "6dd2e99e389b4aa68e461fc8a12ddf7e"
+          },
+          "stopped": true,
+          "stop_attempted": false,
+          "reason": null,
+          "observed_members": []
+        },
+        "cleanup_remaining_end": 92.79610472400009
+      },
+      "archive_path": "runs/transaction/process.json"
+    }
+  ],
+  "engine": {
+    "status": "DOWNLOADED",
+    "url": "https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip",
+    "seconds": 19.437769258999992,
+    "archive_sha256": "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4",
+    "executable_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e"
+  },
+  "assertion_categories": {
+    "最新でも継続": 103,
+    "当時だけ": 9
+  },
+  "shallow": {
+    "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+    "code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
+    "commands": [
+      {
+        "argv": [
+          "git",
+          "--git-dir=/tmp/qa065/shallow.git",
+          "rev-parse",
+          "--is-shallow-repository"
+        ],
+        "exit_code": 0,
+        "seconds": 0.0009063229999810574
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--checkout",
+          "/tmp/qa065/shallow.git",
+          "--scope-only",
+          "--code-sha",
+          "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
+          "--source-sha",
+          "3fe9d836efcc818230bca321eca4293db44669ef"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03356374999998479
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--checkout",
+          "/tmp/qa065/shallow.git",
+          "--fetch-pins",
+          "--code-sha",
+          "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c"
+        ],
+        "exit_code": 0,
+        "seconds": 0.03140765900002407
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+          "--checkout",
+          "/tmp/qa065/shallow.git",
+          "--code-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--source-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--self-test",
+          "--output",
+          "/tmp/qa065/shallow-check/scope.json"
+        ],
+        "exit_code": 0,
+        "seconds": 1.066225189999841
+      }
+    ],
+    "limitation": "depth1 bare clone、ローカル既存objectをreference使用。GitHubのfetch通信/Windows/15分jobの実証ではない。"
+  },
+  "known_initial_defect": {
+    "case": "collector-downgrade",
+    "before_actual_exit": 0,
+    "before_expected_exit": 1,
+    "after_actual_exit": 1,
+    "after_expected_exit": 1,
+    "original_evidence": "downgrade-before; runs/downgrade-before",
+    "scope": "合成validator反例。初回誤受理を保存し完成45例では拒否"
+  },
+  "manual_shallow_command_error": {
+    "status": "REJECTED",
+    "reason": "手入力した存在しないsource SHAを拒否。実rev-parseのSHAへ修正した",
+    "wrong_source": "3fe9d83d0c0937f59e63e449610d9a4423294d81",
+    "actual_source": "3fe9d836efcc818230bca321eca4293db44669ef",
+    "exit_code": 1
+  },
+  "format_check": {
+    "full_diff_exit": 2,
+    "reason": "原stdoutに既存test_capture059の末尾空白が81行ある。bytes不変を優先して原物を保持。",
+    "original_diff_stdout": "docs/verification/task065-save-qa-generations/local-stdout.log:201: trailing whitespace.\n+prelaunch-config: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:202: trailing whitespace.\n+prelaunch-env: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:203: trailing whitespace.\n+prelaunch-capture: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:204: trailing whitespace.\n+prelaunch-log: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:205: trailing whitespace.\n+prelaunch-capture-record: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:206: trailing whitespace.\n+prelaunch-request-record: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:207: trailing whitespace.\n+prelaunch-unstarted-batch-record: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:208: trailing whitespace.\n+suite-run-queue-before-config: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:209: trailing whitespace.\n+four-root-shared-batch: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:210: trailing whitespace.\n+record-missing: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:211: trailing whitespace.\n+record-broken: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:212: trailing whitespace.\n+record-id: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:213: trailing whitespace.\n+record-batch: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:214: trailing whitespace.\n+record-batch-content: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:215: trailing whitespace.\n+record-unstarted-batch: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:216: trailing whitespace.\n+close-race-and-repeated: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:217: trailing whitespace.\n+acceptance-close-race: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:218: trailing whitespace.\n+outer-kill-owned-grandchild: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:219: trailing whitespace.\n+parent-exits-first-log-holder: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:220: trailing whitespace.\n+nested-capture-stays-in-outer-supervision: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:221: trailing whitespace.\n+ownership-unknown-preserved: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:222: trailing whitespace.\n+zero-deadline-unconfirmed: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:223: trailing whitespace.\n+supervision-setup-failure: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:224: trailing whitespace.\n+assignment-exit-races: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:225: trailing whitespace.\n+ownership-read-child-exit-race: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:226: trailing whitespace.\n+stop-retry-before-wait-consumes-deadline: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:227: trailing whitespace.\n+created-before-supervision-failure: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:424: trailing whitespace.\n+prelaunch-config: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:425: trailing whitespace.\n+prelaunch-env: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:426: trailing whitespace.\n+prelaunch-capture: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:427: trailing whitespace.\n+prelaunch-log: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:428: trailing whitespace.\n+prelaunch-capture-record: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:429: trailing whitespace.\n+prelaunch-request-record: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:430: trailing whitespace.\n+prelaunch-unstarted-batch-record: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:431: trailing whitespace.\n+suite-run-queue-before-config: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:432: trailing whitespace.\n+four-root-shared-batch: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:433: trailing whitespace.\n+record-missing: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:434: trailing whitespace.\n+record-broken: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:435: trailing whitespace.\n+record-id: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:436: trailing whitespace.\n+record-batch: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:437: trailing whitespace.\n+record-batch-content: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:438: trailing whitespace.\n+record-unstarted-batch: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:439: trailing whitespace.\n+close-race-and-repeated: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:440: trailing whitespace.\n+acceptance-close-race: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:441: trailing whitespace.\n+outer-kill-owned-grandchild: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:442: trailing whitespace.\n+parent-exits-first-log-holder: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:443: trailing whitespace.\n+nested-capture-stays-in-outer-supervision: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:444: trailing whitespace.\n+ownership-unknown-preserved: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:445: trailing whitespace.\n+zero-deadline-unconfirmed: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:446: trailing whitespace.\n+supervision-setup-failure: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:447: trailing whitespace.\n+assignment-exit-races: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:448: trailing whitespace.\n+ownership-read-child-exit-race: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:449: trailing whitespace.\n+stop-retry-before-wait-consumes-deadline: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:450: trailing whitespace.\n+created-before-supervision-failure: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:623: trailing whitespace.\n+prelaunch-config: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:624: trailing whitespace.\n+prelaunch-env: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:625: trailing whitespace.\n+prelaunch-capture: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:626: trailing whitespace.\n+prelaunch-log: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:627: trailing whitespace.\n+prelaunch-capture-record: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:628: trailing whitespace.\n+prelaunch-request-record: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:629: trailing whitespace.\n+prelaunch-unstarted-batch-record: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:630: trailing whitespace.\n+suite-run-queue-before-config: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:631: trailing whitespace.\n+four-root-shared-batch: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:632: trailing whitespace.\n+record-missing: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:633: trailing whitespace.\n+record-broken: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:634: trailing whitespace.\n+record-id: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:635: trailing whitespace.\n+record-batch: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:636: trailing whitespace.\n+record-batch-content: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:637: trailing whitespace.\n+record-unstarted-batch: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:638: trailing whitespace.\n+close-race-and-repeated: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:639: trailing whitespace.\n+acceptance-close-race: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:640: trailing whitespace.\n+outer-kill-owned-grandchild: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:641: trailing whitespace.\n+parent-exits-first-log-holder: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:642: trailing whitespace.\n+nested-capture-stays-in-outer-supervision: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:643: trailing whitespace.\n+ownership-unknown-preserved: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:644: trailing whitespace.\n+zero-deadline-unconfirmed: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:645: trailing whitespace.\n+supervision-setup-failure: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:646: trailing whitespace.\n+assignment-exit-races: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:647: trailing whitespace.\n+ownership-read-child-exit-race: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:648: trailing whitespace.\n+stop-retry-before-wait-consumes-deadline: PASS \ndocs/verification/task065-save-qa-generations/local-stdout.log:649: trailing whitespace.\n+created-before-supervision-failure: PASS \n",
+    "code_and_other_documents_exit": 0
+  }
+}
