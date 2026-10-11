@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import sys
 import zipfile
+import generation_contract as generation
 
 
 def digest(raw):
@@ -37,15 +38,25 @@ def collect(area, destination, source_sha, code_sha):
     commands = []
     setup = []
     for row in execution.get('setup', []) + execution.get('commands', []):
-        value = {key: row.get(key) for key in ['label', 'exit_code', 'seconds', 'budget_seconds', 'exception', 'timed_out', 'record_error']}
+        value = {key: row.get(key) for key in ['label', 'argv', 'cwd', 'exit_code', 'seconds', 'budget_seconds', 'exception', 'timed_out', 'record_error']}
         value['stopped'] = row.get('supervision', {}).get('stopped')
         (setup if row in execution.get('setup', []) else commands).append(value)
         if value['exit_code'] != 0 or value['stopped'] is not True:
             errors.append(str(value['label']) + ': ' + json.dumps(value, ensure_ascii=False))
-    if [row['label'] for row in commands] != ['capture-tests', 'scope059', 'capture059', 'baseline058', 'measurements']:
+    schema = execution.get('schema')
+    expected_commands = list(generation.COMMANDS) if schema == 3 else ['capture-tests', 'scope059', 'capture059', 'baseline058', 'measurements']
+    if [row['label'] for row in commands] != expected_commands:
         errors.append('元5診断の実行記録が揃っていない')
     if execution.get('schema') == 2 and [row['label'] for row in setup] != ['baseline-checkout']:
         errors.append('058 checkout準備の実行記録が揃っていない')
+    if schema == 3:
+        try:
+            generation.require(code_sha == generation.FIXED059, '059固定SHA不一致')
+            generation.validate_execution(area, source_sha, execution.get('generation_code_sha'))
+        except Exception as exc:
+            errors.append('065世代証拠契約: ' + type(exc).__name__ + ': ' + str(exc))
+    elif schema not in (None, 1, 2):
+        errors.append('未知schema')
     tests = {}
     for label in ['capture-tests', 'capture059']:
         value = read(label + '/tests.json')
@@ -60,6 +71,9 @@ def collect(area, destination, source_sha, code_sha):
                    status='FAIL' if errors else 'PASS', errors=errors, setup=setup, commands=commands, tests=tests,
                    measurements=dict(status=measurements.get('status'), samples=len(measurements.get('samples', [])), failures=measurements.get('failures')),
                    scope='059診断だけ。全取引受入・元取得不能jobの原因特定とは別。既存全artifactは保持。')
+    if schema == 3:
+        summary.update(schema=3, generation_code_sha=execution.get('generation_code_sha'),
+                       targets=execution.get('targets'), fixed_checkout=execution.get('fixed_checkout_after'))
     members = []
     links = []
     directories = []
@@ -80,6 +94,16 @@ def collect(area, destination, source_sha, code_sha):
         index = dict(files=members, symbolic_links=links, directories=directories, omitted_regular_files=[])
         output.writestr('original-index.json', json.dumps(index, ensure_ascii=False, indent=2) + '\n')
     raw = archive.read_bytes()
+    # ZIPへ実際に入った全bytesを再読取り。失敗しても原archiveとFAIL内訳を残す。
+    try:
+        with zipfile.ZipFile(archive) as stored:
+            generation.require(stored.namelist() == ['task059/' + row['path'] for row in members] + ['original-index.json'], 'archive member欠落/重複')
+            for row in members:
+                data = stored.read('task059/' + row['path'])
+                generation.require(len(data) == row['bytes'] and digest(data) == row['sha256'], 'archive member bytes/hash')
+            generation.require(json.loads(stored.read('original-index.json')) == index, 'archive内部manifest')
+    except Exception as exc:
+        errors.append('archive再照合: ' + str(exc)); summary['status'] = 'FAIL'
     summary['archive'] = dict(file=archive.name, bytes=len(raw), sha256=digest(raw), members=len(members), uncompressed_bytes=sum(row['bytes'] for row in members))
     (destination / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     (destination / 'original-index.json').write_text(json.dumps(index, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
