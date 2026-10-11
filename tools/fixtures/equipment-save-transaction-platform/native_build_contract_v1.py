@@ -111,7 +111,7 @@ def legacy_scope(root, source, *, fixed=None):
 # 2026-10-11 条件付きA/世代分離B。承認原文・hash・正式SHAの受領前は未設定。
 # 環境変数や検査対象ファイルから許可hashを生成/補完しない。
 # 値の設定は親の具体承認後の別段階。旧BASE/REGISTER/CODE065/pinは変更しない。
-GENERATION_APPROVAL = None
+GENERATION_APPROVAL = {'baseline_sha': 'f71f8461fcceb289852b4cc4fd790063476ffeaa', 'baseline_tree': 'c4281369f6580ec4914be464e4a812ebb7c79e89'}
 TEST67 = FIXTURE + 'test_native_build_contract_v1.py'
 TEST67_SHA256 = 'fba1d492e1fbef4ea1296b82626707e7f3b216d9092e88c678c8f7000f83e8f7'
 DRIVE_INDEX = EVIDENCE + 'drive-evidence-index.json'

@@ -68,10 +68,43 @@ jobs:
         run: |
           python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/task059-save-qa-finalization/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha,'579ca1f463aaf9e93275039a59cf9d1ffb86adb5','a6022f1e4a7689440928efe65db444336e9128e4'],check=True)"
       - name: 066登録と065提出の完全SHAを取得
-        if: matrix.profile == 'latest'
+        if: always() && matrix.profile == 'latest'
         shell: bash
         run: |
-          python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/save-native-build-contract-v1/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin','962502020acc9446dfba13d8b177c8d3cd3aac84','e83bbce4018946da3e5f61f7b9f972474197f9e1',sha],check=True)"
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          sys.path.insert(0, 'tools/fixtures/equipment-save-transaction-platform')
+          import native_build_contract_v1 as n
+          roles = (
+              ('registration066', lambda: n.REGISTER),
+              ('submitted065', lambda: n.BASE),
+              ('code065', lambda: n.CODE065),
+              ('baseline066', lambda: n.GENERATION_APPROVAL['baseline_sha']),
+              ('pin066', lambda: Path(n.EVIDENCE + 'code-fixed-sha.txt').read_text().strip()),
+              ('code066', lambda: os.environ.get('RPG066_CODE_SHA')),
+              ('completion066', lambda: os.environ.get('RPG066_COMPLETION_SHA')),
+          )
+          failed = []
+          for role, read_sha in roles:
+              try:
+                  sha = n.old.sha(read_sha())
+                  print('066_FETCH_BEGIN ' + role + ' ' + sha, flush=True)
+                  shallow = subprocess.check_output(['git', 'rev-parse', '--is-shallow-repository'], text=True).strip()
+                  n.require(shallow in ('true', 'false'), 'shallow状態不明')
+                  argv = ['git', 'fetch', '--no-tags'] + (['--unshallow'] if shallow == 'true' else []) + ['origin', sha]
+                  result = subprocess.run(argv, check=False)
+                  if result.returncode != 0:
+                      raise RuntimeError('git fetch exit=' + str(result.returncode))
+                  print('066_FETCH_OK ' + role + ' ' + sha, flush=True)
+              except Exception as exc:
+                  failed.append(role)
+                  print('066_FETCH_FAIL ' + role + ' ' + type(exc).__name__ + ': ' + str(exc), flush=True)
+          print('066_FETCH_FAILED_ROLES ' + ','.join(failed), flush=True)
+          sys.exit(1 if failed else 0)
+          PY
       - name: 固定ビルド依存を導入
         run: python -m pip install scons==4.10.0
       - name: 066退避前のGit原物を先行記録

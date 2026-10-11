@@ -13,15 +13,19 @@ from diagnostic_ci057 import capture_diagnostic, blocked_dependencies
 from process_capture import save
 
 ROOT=n.ROOT
-COMMANDS=(*g.COMMANDS,'native-tests')
-SETUP=(*g.SETUP,'fixed065-checkout')
-BUDGETS=dict(g.BUDGETS,**{'fixed065-checkout':30,'native-tests':30})
+COMMANDS=(*g.COMMANDS,'native-tests','native-fixed-tests','native-completed-contract','native-generation-tests')
+SETUP=(*g.SETUP,'fixed065-checkout','native-fixed-checkouts')
+BUDGETS=dict(g.BUDGETS,**{'fixed065-checkout':30,'native-tests':30,'native-fixed-tests':30,
+                         'native-completed-contract':30,'native-generation-tests':30,'native-fixed-checkouts':30})
 
 
 def execute(label,argv,budget,out,cwd,previous):
     blocked=blocked_dependencies(label,previous)
     if label in ('generation-contract','generation-tests'):
         blocked += [r['label'] for r in previous if r['label']=='fixed065-checkout' and r['exit_code']!=0]
+    if label in ('native-fixed-tests','native-completed-contract'):
+        blocked += ['native-fixed-checkouts'] if not any(r['label']=='native-fixed-checkouts' and
+                    r['exit_code']==0 and r.get('supervision',{}).get('stopped') is True for r in previous) else []
     cap,errors=capture_diagnostic(argv,out/(label+'.log'),out/(label+'-process.json'),cwd,budget,
                                    pins=label=='generation-pins',blocked_by=sorted(set(blocked)))
     row=dict(cap.row,label=label)
@@ -82,6 +86,7 @@ def diagnostic(args):
     source=g.git(ROOT,'rev-parse','HEAD').decode().strip()
     fixture=ROOT/g.FIXTURE
     baseline=evidence.parent/'qa059-baseline058';fixed=evidence.parent/'qa065-fixed059';fixed065=evidence.parent/'qa066-fixed065'
+    fixed066=evidence.parent/'qa066-baseline';completed066=evidence.parent/'qa066-completed'
     engine=evidence/'bin'/('Godot_v4.7.2-stable_win64.exe' if args.platform=='windows' else 'Godot_v4.7.2-stable_linux.x86_64')
     commands=[
         ('capture-tests',[sys.executable,str(fixture/'test_capture057.py'),'--output',str(out/'capture-tests')],ROOT),
@@ -91,14 +96,22 @@ def diagnostic(args):
         ('measurements',[sys.executable,str(fixture/'diagnostics057.py'),'--godot',str(engine),'--output',str(out/'measurements')],ROOT),
         ('generation-contract',[sys.executable,str(fixed065/g.FIXTURE/'generation_contract.py'),'--source-sha',n.BASE,'--code-sha',n.CODE065,'--output',str(out/'generation.json')],fixed065),
         ('generation-tests',[sys.executable,str(fixed065/g.FIXTURE/'test_generation_contract.py'),'--code-sha',n.CODE065,'--output',str(out/'generation-tests')],fixed065),
-        ('native-tests',[sys.executable,str(fixture/'test_native_build_contract_v1.py'),'--output',str(out/'native-tests')],ROOT)]
+        ('native-tests',[sys.executable,str(fixture/'test_native_build_contract_v1.py'),'--output',str(out/'native-tests')],ROOT),
+        ('native-fixed-tests',[sys.executable,str(fixed066/g.FIXTURE/'test_native_build_contract_v1.py'),'--output',str(out/'native-fixed-tests')],fixed066),
+        ('native-completed-contract',[sys.executable,str(completed066/g.FIXTURE/'native_build_contract_v1.py'),'--completed-contract',
+                                      '--checkout',str(completed066),'--output',str(out/'completed066.json')],completed066),
+        ('native-generation-tests',[sys.executable,str(fixture/'native_build_contract_v1.py'),'--generation-tests',
+                                   '--output',str(out/'native-generation-tests')],ROOT)]
     setups=[
         ('generation-pins',[sys.executable,str(fixture/'generation_contract.py'),'--fetch-pins','--output',str(out/'pins.json')],ROOT),
         ('baseline-checkout',['git','worktree','add','--detach',str(baseline),g.BASE059],ROOT),
         ('fixed059-checkout',['git','worktree','add','--detach',str(fixed),g.FIXED059],ROOT),
-        ('fixed065-checkout',['git','worktree','add','--detach',str(fixed065),n.BASE],ROOT)]
-    report=dict(schema=4,source_sha=source,fixed059=g.FIXED059,fixed065=n.BASE,code065=n.CODE065,identity=n.identity(args),
+        ('fixed065-checkout',['git','worktree','add','--detach',str(fixed065),n.BASE],ROOT),
+        ('native-fixed-checkouts',[sys.executable,str(fixture/'native_build_contract_v1.py'),'--prepare-generations','--output',str(out)],ROOT)]
+    report=dict(schema=5,source_sha=source,fixed059=g.FIXED059,fixed065=n.BASE,code065=n.CODE065,identity=n.identity(args),
                 checkout=str(ROOT),setup=[],commands=[],failures=[],status='RUNNING')
+    try:report['generation_approval']=n.generation_policy()
+    except Exception as exc:report['generation_approval']=None;report['failures'].append('承認未提供: '+str(exc))
     save(out/'execution.json',report)
     try:n.validate_prefix(evidence.parent/'native-build-v1',report['identity'],'after-tests')
     except Exception as exc:report['failures'].append('実QA前後:'+str(exc))
@@ -114,6 +127,11 @@ def diagnostic(args):
                     g.scope(fixed065,n.CODE065,n.BASE)
                     report['fixed065_before']=g.snapshot(fixed065/g.FIXTURE)
                 except Exception as exc:report['failures'].append(str(exc))
+            if label in ('native-fixed-tests','native-completed-contract') and report['generation_approval'] is not None:
+                try:
+                    sha=report['generation_approval']['baseline_sha' if label=='native-fixed-tests' else 'completion_sha']
+                    report[label+'-before']=n.fixed_generation_state(cwd,sha)
+                except Exception as exc:report['failures'].append(str(exc))
             row,errors=execute(label,argv,BUDGETS[label],out,cwd,report['setup']+report['commands'])
             report[kind].append(row);report['failures'].extend(label+': '+x for x in errors)
             if label=='scope059':
@@ -126,6 +144,12 @@ def diagnostic(args):
                     for path in g.CODE:
                         n.require((fixed065/path).read_bytes()==g.git(ROOT,'show',n.CODE065+':'+path),'旧065 code原bytes')
                     report['fixed065_after']=dict(sha=n.BASE,code_sha=n.CODE065,tracked_clean=True)
+                except Exception as exc:report['failures'].append(str(exc))
+            if label in ('native-fixed-tests','native-completed-contract') and report['generation_approval'] is not None:
+                try:
+                    sha=report['generation_approval']['baseline_sha' if label=='native-fixed-tests' else 'completion_sha']
+                    report[label+'-after']=n.fixed_generation_state(cwd,sha)
+                    n.require(report[label+'-before']==report[label+'-after'],'066固定検査器/対象差替え')
                 except Exception as exc:report['failures'].append(str(exc))
             save(out/'execution.json',report)
     try:n.capture(ROOT,evidence.parent/'native-build-v1','after-diagnostics',report['identity'])

@@ -14,9 +14,11 @@ from diagnostic_ci_build_v1 import COMMANDS, SETUP, BUDGETS
 
 def validate_diagnostics(out,identity):
     v=g.load(out/'execution.json')
-    n.require(v['schema']==4 and v['identity']==identity and v['source_sha']==identity['source_sha'] and
+    n.require(v['schema']==5 and v['identity']==identity and v['source_sha']==identity['source_sha'] and
               (v['fixed059'],v['fixed065'],v['code065'])==(g.FIXED059,n.BASE,n.CODE065),'診断世代/schema')
     n.require(v['status']=='PASS' and v['failures']==[],'元診断失敗')
+    approval=n.generation_policy()
+    n.require(v.get('generation_approval')==approval,'066承認入力不一致/未提供')
     n.require([r['label'] for r in v['setup']]==list(SETUP) and [r['label'] for r in v['commands']]==list(COMMANDS),'全準備/診断集合')
     n.require(g.load(out/'generation-manifest.json')==g.snapshot(out,('generation-manifest.json',)),'診断原bytes集合')
     pins=g.load(out/'pins.json')
@@ -26,14 +28,15 @@ def validate_diagnostics(out,identity):
     n.require(v['fixed059_before']==v['fixed059_after']==dict(sha=g.FIXED059,scope_sha256=g.FIXED_SCOPE_SHA256,clean=True),'059固定原物')
     n.require(v['fixed065_after']==dict(sha=n.BASE,code_sha=n.CODE065,tracked_clean=True) and v['fixed065_before'],'065固定原物')
     scripts=dict(zip(COMMANDS,('test_capture057.py','scope059.py','test_capture059.py','reproduce058.py','diagnostics057.py',
-                              'generation_contract.py','test_generation_contract.py','test_native_build_contract_v1.py')))
+                              'generation_contract.py','test_generation_contract.py','test_native_build_contract_v1.py',
+                              'test_native_build_contract_v1.py','native_build_contract_v1.py','native_build_contract_v1.py')))
     for row in v['setup']+v['commands']:
         label=row['label'];g.record_ok(row,BUDGETS[label],v['checkout'])
         n.require(g.load(out/(label+'-process.json'))=={k:x for k,x in row.items() if k!='label'},'原process記録')
         raw=(out/(label+'.log')).read_bytes();n.require(raw and n.digest(raw)==row['log_sha256'],'診断原log')
         argv=row['planned_argv']
         if label in COMMANDS:
-            cwd=Path(v['checkout']) if label not in ('scope059','generation-contract','generation-tests') else Path(row['cwd'])
+            cwd=Path(v['checkout']) if label not in ('scope059','generation-contract','generation-tests','native-fixed-tests','native-completed-contract') else Path(row['cwd'])
             n.require(Path(row['cwd'])==cwd and Path(argv[1])==cwd/g.FIXTURE/scripts[label],'診断実argv/cwd')
             if label=='scope059':
                 n.require(cwd.name=='qa065-fixed059' and argv[argv.index('--code-sha')+1]==g.FIXED059 and
@@ -41,6 +44,16 @@ def validate_diagnostics(out,identity):
             if label in ('generation-contract','generation-tests'):
                 n.require(cwd.name=='qa066-fixed065' and argv[argv.index('--code-sha')+1]==n.CODE065,'固定065 argv')
             if label=='generation-contract':n.require(argv[argv.index('--source-sha')+1]==n.BASE,'065固定提出')
+            if label in ('native-fixed-tests','native-completed-contract'):
+                key='baseline_sha' if label=='native-fixed-tests' else 'completion_sha'
+                name='qa066-baseline' if label=='native-fixed-tests' else 'qa066-completed'
+                n.require(cwd.name==name and v[label+'-before']==v[label+'-after'] and
+                          v[label+'-after']['sha']==approval[key],'066固定検査器/対象/原bytes')
+                n.require(v[label+'-after']['files'][n.TEST67]['sha256']==n.TEST67_SHA256 and
+                          v[label+'-after']['files'][n.TEST67]['bytes']==13249,'066固定67原bytes')
+                if label=='native-completed-contract':
+                    n.require('--completed-contract' in argv and argv[argv.index('--checkout')+1]==str(cwd),'066完成固定argv')
+            if label=='native-generation-tests':n.require('--generation-tests' in argv,'066追加正負argv')
     for label,expected in (('capture-tests',g.CASES057),('capture059',g.CASES059)):
         tests=g.load(out/label/'tests.json')
         n.require(tests.get('status')=='PASS' and [r['case'] for r in tests['cases']]==list(expected) and
@@ -62,10 +75,37 @@ def validate_diagnostics(out,identity):
     n.require(tests['status']=='PASS' and [r['case'] for r in tests['cases']]==list(CASES) and len(CASES)==56 and
               all(r['exit_code']==r['expected_exit']==expected_exit(r['case']) for r in tests['cases']),'旧065全56')
     from test_native_build_contract_v1 import CASES as NEW_CASES
-    tests=g.load(out/'native-tests/tests.json')
-    n.require(tests['status']=='PASS' and [r['case'] for r in tests['cases']]==list(NEW_CASES) and
-              all(r['status']=='PASS' for r in tests['cases']),'066全正負')
+    n.require(len(NEW_CASES)==67,'066原67分母')
+    for label in ('native-tests','native-fixed-tests'):
+        tests=g.load(out/label/'tests.json')
+        n.require(tests['status']=='PASS' and tests.get('fixture_only') is True and [r['case'] for r in tests['cases']]==list(NEW_CASES) and
+                  all(r['status']=='PASS' for r in tests['cases']),'066固定/最新全67:'+label)
+        if label=='native-tests':
+            reasons={'scope-outside':'transition-path:outside066.txt','scope-old-code':'transition-path:'+g.CODE[0],
+                     'scope-old-evidence':'transition-path:'+g.EVIDENCE+'README.md','scope-task-body':'status-count'}
+            for row in tests['cases']:
+                if row['case'] in reasons:n.require(row['error']=='ValueError: '+reasons[row['case']],'066最新scope拒否理由')
+    extra=g.load(out/'native-generation-tests/tests.json')
+    n.require(extra['fixture_only'] is True and extra['real_approval_used'] is False and extra['status']=='PASS' and
+              [r['case'] for r in extra['cases']]==list(n.GENERATION_CASES) and all(r['status']=='PASS' for r in extra['cases']),'066追加正負全件')
+    for row in extra['cases']:
+        n.require(row['error'] is None if row['expected']=='accept' else row['error']=='ValueError: '+row['expected_reason'],'066追加拒否理由')
+    completed=g.load(out/'completed066.json')
+    n.require(completed['contract']==n.replay_generation(completed['objects'],approval),'066固定原Git資料の独立照合')
+    n.require(completed['checkout']==v['native-completed-contract-after'],'066完成checkout記録')
+    fixed=g.load(out/'fixed066.json')
+    n.require(fixed['approval']==approval and fixed['states']['qa066-baseline']==v['native-fixed-tests-before'] and
+              fixed['states']['qa066-completed']==v['native-completed-contract-before'],'066先行固定checkout原記録')
     return v
+
+
+def validate_generation_context(snapshots,out,identity):
+    raw=(snapshots/'generation-context.json').read_bytes();context=g.load(snapshots/'generation-context.json')
+    completed=g.load(out/'completed066.json')['contract']
+    n.require(context['source_sha']==identity['source_sha'] and context['completed']==completed and
+              context['test67_sha256']==n.TEST67_SHA256 and completed['approval']==n.generation_policy(),'066固定/最新先行identity')
+    for stage in n.STAGES:
+        n.require(g.load(snapshots/stage/'snapshot.json').get('generation_context_sha256')==n.digest(raw),'066先行契約hash欠落/差替え')
 
 
 BINARY_CASES=('debug-load','missing-manifest','malformed-manifest','missing-binary','corrupt-binary','binary-rehash','release-load')
@@ -123,6 +163,7 @@ def archive_originals(roots,destination):
             n.validate_prefix(root/'snapshots',identity,'after-diagnostics')
             n.validate_build(root/'snapshots',root/'evidence',identity,recorded_evidence=roots['evidence'])
             validate_diagnostics(root/'evidence/task059',identity)
+            validate_generation_context(root/'snapshots',root/'evidence/task059',identity)
         except Exception as exc:replay_errors.append(str(exc))
     n.write_new(destination/'original-index.json',index)
     return dict(file=archive.name,bytes=archive.stat().st_size,sha256=n.digest(archive.read_bytes()),members=len(members),replay_errors=replay_errors)
@@ -134,6 +175,7 @@ def collect(evidence,destination,identity):
         ('snapshots',lambda:n.validate_prefix(snapshots,identity,'after-diagnostics')),
         ('build',lambda:n.validate_build(snapshots,evidence,identity)),
         ('diagnostic',lambda:validate_diagnostics(evidence/'task059',identity)),
+        ('generation-context',lambda:validate_generation_context(snapshots,evidence/'task059',identity)),
         ('original-run-ci',lambda:n.require(g.load(evidence/'execution.json')['status']=='PASS','原run_ci非成功/未終端'))):
         try:call()
         except Exception as exc:errors.append(label+': '+type(exc).__name__+': '+str(exc))
