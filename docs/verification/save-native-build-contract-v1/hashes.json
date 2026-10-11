@@ -1,0 +1,60 @@
+{
+  "schema": "066-submitted-evidence-hashes-v1",
+  "formal_code_sha": "130cf60cf53450715c700b1441e9d3d12e249391",
+  "documents_sha": "baf43630a2ad55d6c01bd77ddffe8f6b4a46ce4d",
+  "scope": "提出原bytesの索引。この索引自身と提出自身のcommit SHAは自己参照のため含めない。",
+  "files": [
+    {
+      "path": "docs/tasks/066-save-native-build-contract-v1.md",
+      "bytes": 12602,
+      "sha256": "4f21abf3591d4dd4e3116495b04cb3abbf75c38e91c8d570be960d348c2925c6"
+    },
+    {
+      "path": "docs/verification/save-native-build-contract-v1/README.md",
+      "bytes": 8536,
+      "sha256": "9b8d42d969c709b83de6f50200fbf2f8da01638bf5b8405ed2f781eed361a3a5"
+    },
+    {
+      "path": "docs/verification/save-native-build-contract-v1/code-fixed-sha.txt",
+      "bytes": 41,
+      "sha256": "8005db56a609ed820a359002acc37b84c75f4091b1d740f6c33b796ad89bad61"
+    },
+    {
+      "path": "docs/verification/save-native-build-contract-v1/local-results.json",
+      "bytes": 1206128,
+      "sha256": "5d26bd12bee3328e91cfe128b20704d9650942694ca011fe3940a17e4d4f148c"
+    }
+  ],
+  "unchanged_code": [
+    {
+      "path": ".github/workflows/equipment-transaction-platform.yml",
+      "bytes": 10293,
+      "sha256": "4829a0a64f35bd0f6d866b4c630b41b5778c400e37cfa715e1782527b6244703"
+    },
+    {
+      "path": "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci_build_v1.py",
+      "bytes": 11964,
+      "sha256": "a60d8a7ce8dc8ce036d44c02f1f4f5c02fc60aa6747926b7ddf7c195c25937c6"
+    },
+    {
+      "path": "tools/fixtures/equipment-save-transaction-platform/diagnostic_evidence_build_v1.py",
+      "bytes": 15240,
+      "sha256": "756d0260327997dc8a0a33b559f0151202a046257d2b857f5fa55ac8dec0353a"
+    },
+    {
+      "path": "tools/fixtures/equipment-save-transaction-platform/native_build_contract_v1.py",
+      "bytes": 49762,
+      "sha256": "95621947aa0b07575e2fcc6caf9c8c814dd99c75dc860eedcb292c2748bfc805"
+    }
+  ],
+  "original67": {
+    "path": "tools/fixtures/equipment-save-transaction-platform/test_native_build_contract_v1.py",
+    "bytes": 13249,
+    "sha256": "fba1d492e1fbef4ea1296b82626707e7f3b216d9092e88c678c8f7000f83e8f7"
+  },
+  "assertion_map": {
+    "path": "docs/verification/save-native-build-contract-v1/assertion-map.json",
+    "sha256": "c166b8409c01fb4037ffc4578cc9af840eb92a6d6dc7738fa88cea26039500a6"
+  },
+  "task_body_sha256": "9cbdb54a558f04d45bcbea85fd05150416a2181ea0b61fe4054469f69cdb9f60"
+}
