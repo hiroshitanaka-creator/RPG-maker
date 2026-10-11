@@ -5,672 +5,926 @@
     {
       "id": "diagnostic_ci057.py:33:32",
       "ast_sha256": "39aa9c5227921d1a67c03918c3162cfffec1951917f383d67e5b8110e7e4e919",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/execution"
     },
     {
       "id": "diagnostic_ci057.py:38:38",
       "ast_sha256": "eba683ba796185b0d2487eaf731bf54e58fa3fb0a95f99624ddd7c0df48a2eb1",
+      "guards": [
+        "Compare(left=Name(id='persisted', ctx=Load()), ops=[NotEq()], comparators=[Attribute(value=Name(id='capture', ctx=Load()), attr='row', ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/execution"
     },
     {
       "id": "diagnostic_ci057.py:39:43",
       "ast_sha256": "62223db9a260fe603466ba17792fe8031c7de8a3ac0a1acda8723408d57d9f95",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/execution"
     },
     {
       "id": "diagnostic_ci057.py:41:30",
       "ast_sha256": "ae87e6213c1f5bdd1f25dd2830552009a3517eba72a91beef1a45b95d2b08109",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/execution"
     },
     {
       "id": "diagnostic_ci057.py:42:57",
       "ast_sha256": "c9541c4c5eb12030a4ebf91fb113cfb9854ecda72382a4e08f7063a2cce713e8",
+      "guards": [
+        "Compare(left=Call(func=Attribute(value=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='supervision'), ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='stopped')], keywords=[]), ops=[IsNot()], comparators=[Constant(value=True)])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/execution"
     },
     {
       "id": "diagnostic_ci057.py:43:31",
       "ast_sha256": "44c2017cbe1246ecc3c74e31dcf8558f3fe7044780e8bf7627b20d4604ad92ae",
+      "guards": [
+        "Compare(left=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='exit_code'), ctx=Load()), ops=[NotEq()], comparators=[Constant(value=0)])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/execution"
     },
     {
       "id": "diagnostic_ci057.py:44:35",
       "ast_sha256": "a15f93cb8bcfaa62e2aa28113eb8e36d9c572d9e94edd34db2bd2de4c843ee11",
+      "guards": [
+        "UnaryOp(op=Not(), operand=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='record_saved'), ctx=Load()))"
+      ],
       "category": "最新でも継続",
       "destination": "latest/execution"
     },
     {
       "id": "diagnostic_evidence059.py:20:8",
       "ast_sha256": "853b0579256f0aa7ce2d3ed3c2dd0480c616e6f13d526e921d0147ae15662d55",
+      "guards": [
+        "BoolOp(op=Or(), values=[Compare(left=Name(id='destination', ctx=Load()), ops=[Eq()], comparators=[Name(id='area', ctx=Load())]), Compare(left=Name(id='area', ctx=Load()), ops=[In()], comparators=[Attribute(value=Name(id='destination', ctx=Load()), attr='parents', ctx=Load())])])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostic_evidence059.py:28:12",
       "ast_sha256": "8c19b1e89016099d2ac5236651bc1388a225c0c232a83194c68eee46c52622e4",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostic_evidence059.py:33:8",
       "ast_sha256": "a609e57a0b99942ed604bb0829ece8c71fd0d33357e3aedb706666cd1b2c6d88",
+      "guards": [
+        "BoolOp(op=Or(), values=[Compare(left=Call(func=Attribute(value=Name(id='execution', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='source_sha')], keywords=[]), ops=[NotEq()], comparators=[Name(id='source_sha', ctx=Load())]), Compare(left=Call(func=Attribute(value=Name(id='execution', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='code_sha')], keywords=[]), ops=[NotEq()], comparators=[Name(id='code_sha', ctx=Load())])])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostic_evidence059.py:35:8",
       "ast_sha256": "7ffcf5abd33f70c960bf8341aff77d56aad4f390543c4e4b3ae470d754808089",
+      "guards": [
+        "Compare(left=Call(func=Attribute(value=Name(id='execution', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='status')], keywords=[]), ops=[NotEq()], comparators=[Constant(value='PASS')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostic_evidence059.py:36:4",
       "ast_sha256": "0963379140e3766ee868f50824c0f672eb64257f8ad284553c98d75530efab46",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostic_evidence059.py:44:12",
       "ast_sha256": "afeedf6ba345b495e8d9dcd6539be38bdc60f74c4409199d13042fec4733fd09",
+      "guards": [
+        "BoolOp(op=Or(), values=[Compare(left=Subscript(value=Name(id='value', ctx=Load()), slice=Constant(value='exit_code'), ctx=Load()), ops=[NotEq()], comparators=[Constant(value=0)]), Compare(left=Subscript(value=Name(id='value', ctx=Load()), slice=Constant(value='stopped'), ctx=Load()), ops=[IsNot()], comparators=[Constant(value=True)])])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostic_evidence059.py:46:8",
       "ast_sha256": "8a5755a6cfbb86621ac97fcca9b7d8820086c29cc8324a867be330823ab4ce64",
+      "guards": [
+        "Compare(left=ListComp(elt=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='label'), ctx=Load()), generators=[comprehension(target=Name(id='row', ctx=Store()), iter=Name(id='commands', ctx=Load()), ifs=[], is_async=0)]), ops=[NotEq()], comparators=[List(elts=[Constant(value='capture-tests'), Constant(value='scope059'), Constant(value='capture059'), Constant(value='baseline058'), Constant(value='measurements')], ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostic_evidence059.py:48:8",
       "ast_sha256": "996e2109671dcbe971b3337f61330d2e83695e3477bf2aa170f11b5a163e8f4f",
+      "guards": [
+        "BoolOp(op=And(), values=[Compare(left=Call(func=Attribute(value=Name(id='execution', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='schema')], keywords=[]), ops=[Eq()], comparators=[Constant(value=2)]), Compare(left=ListComp(elt=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='label'), ctx=Load()), generators=[comprehension(target=Name(id='row', ctx=Store()), iter=Name(id='setup', ctx=Load()), ifs=[], is_async=0)]), ops=[NotEq()], comparators=[List(elts=[Constant(value='baseline-checkout')], ctx=Load())])])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostic_evidence059.py:55:12",
       "ast_sha256": "ad1ecdc05602b1c9c5a64c4f05b5fff81e675a85d329dcbf83fac4f4b02c5871",
+      "guards": [
+        "BoolOp(op=Or(), values=[Compare(left=Call(func=Attribute(value=Name(id='value', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='status')], keywords=[]), ops=[NotEq()], comparators=[Constant(value='PASS')]), Name(id='failed', ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostic_evidence059.py:58:8",
       "ast_sha256": "b4a93e0e408e7c9d5aa9d8606d51f3149c6bddc6f0f9c4abe3e4f832a8acaf97",
+      "guards": [
+        "Compare(left=Call(func=Attribute(value=Name(id='measurements', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='status')], keywords=[]), ops=[NotEq()], comparators=[Constant(value='PASS')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/evidence"
     },
     {
       "id": "diagnostics057.py:102:103",
       "ast_sha256": "cf279cf2a13807ff72569c53752cd77641424b3e4988600ddce26db705f77425",
+      "guards": [
+        "BoolOp(op=Or(), values=[Compare(left=Subscript(value=Name(id='value', ctx=Load()), slice=Constant(value='quantity'), ctx=Load()), ops=[NotEq()], comparators=[IfExp(test=Compare(left=Name(id='name', ctx=Load()), ops=[Eq()], comparators=[Constant(value='granted')]), body=Constant(value=22), orelse=Constant(value=12))]), UnaryOp(op=Not(), operand=Subscript(value=Name(id='value', ctx=Load()), slice=Constant(value='memory_unchanged'), ctx=Load()))])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/measurements"
     },
     {
       "id": "diagnostics057.py:105:57",
       "ast_sha256": "cd1992215dd63334054a89be128047537b9c16a0b552853e067158932f57b5da",
+      "guards": [
+        "Compare(left=Subscript(value=Subscript(value=Name(id='values', ctx=Load()), slice=Constant(value='off'), ctx=Load()), slice=Name(id='key', ctx=Load()), ctx=Load()), ops=[NotEq()], comparators=[Subscript(value=Subscript(value=Name(id='values', ctx=Load()), slice=Constant(value='on'), ctx=Load()), slice=Name(id='key', ctx=Load()), ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/measurements"
     },
     {
       "id": "diagnostics057.py:108:32",
       "ast_sha256": "65ea39ab1bab57c1c0ddee1586cd005a16880355ca0dd0635e755b3dbe635287",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/measurements"
     },
     {
       "id": "diagnostics057.py:37:37",
       "ast_sha256": "f218c1aeb564fcdc732e0258c8329b574dbbdcd4b1416c7b928990e506ff4847",
+      "guards": [
+        "Compare(left=Call(func=Attribute(value=Constant(value='\\n'), attr='join', ctx=Load()), args=[Name(id='original', ctx=Load())], keywords=[]), ops=[NotEq()], comparators=[Name(id='measured', ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/measurements"
     },
     {
       "id": "diagnostics057.py:84:24",
       "ast_sha256": "cf6aefc17c1e8f048ba86aa73f12b6128845d24d9ce6f88141e5ca33fa1d7794",
+      "guards": [
+        "Compare(left=Name(id='remaining', ctx=Load()), ops=[LtE()], comparators=[Constant(value=0)])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/measurements"
     },
     {
       "id": "diagnostics057.py:90:83",
       "ast_sha256": "a9cfbc1937b1f5daa86fe1efb40c65a5d6abdabf6d1c42114a6614dc4997f969",
+      "guards": [
+        "BoolOp(op=Or(), values=[Compare(left=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='exit_code'), ctx=Load()), ops=[NotEq()], comparators=[Constant(value=0)]), Call(func=Attribute(value=Name(id='BAD', ctx=Load()), attr='search', ctx=Load()), args=[Call(func=Attribute(value=BinOp(left=Name(id='output', ctx=Load()), op=Div(), right=BinOp(left=Name(id='label', ctx=Load()), op=Add(), right=Constant(value='.log'))), attr='read_bytes', ctx=Load()), args=[], keywords=[])], keywords=[])])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/measurements"
     },
     {
       "id": "scope059.py:24:54",
       "ast_sha256": "30dfb473c008db79f8eff3151f3016655a855972edf4b86f5ce9b9e38f65d997",
+      "guards": [
+        "UnaryOp(op=Not(), operand=Call(func=Attribute(value=Name(id='re', ctx=Load()), attr='fullmatch', ctx=Load()), args=[Constant(value='[0-9a-f]{40}'), BoolOp(op=Or(), values=[Name(id='sha', ctx=Load()), Constant(value='')])], keywords=[]))"
+      ],
       "category": "当時だけ",
       "destination": "fixed059/scope059"
     },
     {
       "id": "scope059.py:30:12",
       "ast_sha256": "9f25056aad48ec9e77b887e3a9bdd5b3e6af42a4cd6e082a022981d7d718f8bf",
+      "guards": [
+        "BoolOp(op=Or(), values=[Compare(left=Name(id='status', ctx=Load()), ops=[NotIn()], comparators=[Tuple(elts=[Constant(value='A'), Constant(value='M')], ctx=Load())]), UnaryOp(op=Not(), operand=BoolOp(op=Or(), values=[Compare(left=Name(id='path', ctx=Load()), ops=[In()], comparators=[Name(id='EXACT', ctx=Load())]), Name(id='added_helper', ctx=Load()), Call(func=Attribute(value=Name(id='path', ctx=Load()), attr='startswith', ctx=Load()), args=[Constant(value='docs/verification/task059-save-qa-finalization/')], keywords=[])]))])"
+      ],
       "category": "当時だけ",
       "destination": "fixed059/scope059"
     },
     {
       "id": "scope059.py:33:57",
       "ast_sha256": "dfaa54f104f8e286de62383dfb7fbb95bbd3571ceaa33ed3140d6c43c8c6be0a",
+      "guards": [
+        "Compare(left=Name(id='raw', ctx=Load()), ops=[NotEq()], comparators=[Call(func=Name(id='git', ctx=Load()), args=[Name(id='checkout', ctx=Load()), Constant(value='show'), BinOp(left=BinOp(left=Name(id='source', ctx=Load()), op=Add(), right=Constant(value=':')), op=Add(), right=Name(id='path', ctx=Load()))], keywords=[])])",
+        "Call(func=Attribute(value=Name(id='path', ctx=Load()), attr='startswith', ctx=Load()), args=[Tuple(elts=[Constant(value='tools/'), Constant(value='.github/')], ctx=Load())], keywords=[])"
+      ],
       "category": "当時だけ",
       "destination": "fixed059/scope059"
     },
     {
       "id": "scope059.py:36:31",
       "ast_sha256": "d35cf73d3333ba4d16864eff7b3c74b3e3dc38350763f2426286426cc8a14b08",
+      "guards": [
+        "UnaryOp(op=Not(), operand=Call(func=Attribute(value=Name(id='new', ctx=Load()), attr='startswith', ctx=Load()), args=[Name(id='old', ctx=Load())], keywords=[]))"
+      ],
       "category": "当時だけ",
       "destination": "fixed059/scope059"
     },
     {
       "id": "scope059.py:39:30",
       "ast_sha256": "00f1f8a274030a606b8e0eee4ddf573c6eccd9ba90edfae1e0d33c9e13be7198",
+      "guards": [
+        "Compare(left=Call(func=Name(id='strip', ctx=Load()), args=[Name(id='old', ctx=Load())], keywords=[]), ops=[NotEq()], comparators=[Call(func=Name(id='strip', ctx=Load()), args=[Name(id='new', ctx=Load())], keywords=[])])"
+      ],
       "category": "当時だけ",
       "destination": "fixed059/scope059"
     },
     {
       "id": "scope059.py:41:77",
       "ast_sha256": "9e146f6ee0415189ee594718113e029a00985e33ff5e47c619ed7f3e58b89fc8",
+      "guards": [
+        "Call(func=Name(id='any', ctx=Load()), args=[GeneratorExp(elt=BoolOp(op=And(), values=[Compare(left=Name(id='p', ctx=Load()), ops=[NotIn()], comparators=[Name(id='DOC_EXACT', ctx=Load())]), UnaryOp(op=Not(), operand=Call(func=Attribute(value=Name(id='p', ctx=Load()), attr='startswith', ctx=Load()), args=[Name(id='EVIDENCE', ctx=Load())], keywords=[]))]), generators=[comprehension(target=Name(id='p', ctx=Store()), iter=Name(id='later', ctx=Load()), ifs=[], is_async=0)])], keywords=[])"
+      ],
       "category": "当時だけ",
       "destination": "fixed059/scope059"
     },
     {
       "id": "scope059.py:42:125",
       "ast_sha256": "82ccb08717072e9633f5d7c70085de1f0f544c0cdcf4f83a75c74ef33c15c165",
+      "guards": [
+        "UnaryOp(op=Not(), operand=Call(func=Attribute(value=Call(func=Name(id='git', ctx=Load()), args=[Name(id='checkout', ctx=Load()), Constant(value='show'), BinOp(left=Name(id='source', ctx=Load()), op=Add(), right=Constant(value=':docs/decision-log.md'))], keywords=[]), attr='startswith', ctx=Load()), args=[Call(func=Name(id='git', ctx=Load()), args=[Name(id='checkout', ctx=Load()), Constant(value='show'), BinOp(left=Name(id='code', ctx=Load()), op=Add(), right=Constant(value=':docs/decision-log.md'))], keywords=[])], keywords=[]))"
+      ],
       "category": "当時だけ",
       "destination": "fixed059/scope059"
     },
     {
       "id": "scope059.py:43:168",
       "ast_sha256": "c33e0140eff97ab4a6063f6c33702785501c417ffa0611c22a17febfb5b4e0f7",
+      "guards": [
+        "Compare(left=Call(func=Name(id='strip', ctx=Load()), args=[Call(func=Name(id='git', ctx=Load()), args=[Name(id='checkout', ctx=Load()), Constant(value='show'), BinOp(left=Name(id='source', ctx=Load()), op=Add(), right=Constant(value=':docs/tasks/059-fix-save-qa-finalization.md'))], keywords=[])], keywords=[]), ops=[NotEq()], comparators=[Call(func=Name(id='strip', ctx=Load()), args=[Call(func=Name(id='git', ctx=Load()), args=[Name(id='checkout', ctx=Load()), Constant(value='show'), BinOp(left=Name(id='code', ctx=Load()), op=Add(), right=Constant(value=':docs/tasks/059-fix-save-qa-finalization.md'))], keywords=[])], keywords=[])])"
+      ],
       "category": "当時だけ",
       "destination": "fixed059/scope059"
     },
     {
       "id": "scope059.py:60:34",
       "ast_sha256": "19c4d82c3e8e3343ee0d788001f8767c430e9be5633e58255cfe430efe6314ec",
+      "guards": [
+        "Compare(left=Attribute(value=Name(id='p', ctx=Load()), attr='returncode', ctx=Load()), ops=[NotEq()], comparators=[Name(id='expected', ctx=Load())])"
+      ],
       "category": "当時だけ",
       "destination": "fixed059/scope059"
     },
     {
       "id": "test_capture057.py:101:16",
       "ast_sha256": "e9459d8101198cd1be3e4c7e3bafac41beaf33cd12c27e7d27b297188a186f96",
+      "guards": [
+        "Compare(left=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='pid'), ctx=Load()), ops=[Is()], comparators=[Constant(value=None)])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:102:16",
       "ast_sha256": "be0901def34de5b9ba011115ba666a1ea55524c823f6e883e15aecb25a77c1de",
+      "guards": [
+        "Compare(left=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='pid'), ctx=Load()), ops=[Is()], comparators=[Constant(value=None)])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:103:16",
       "ast_sha256": "2e16989dfd0141ef084aad4fe0eff847c32e01c59ae7c276672d509c37988b21",
+      "guards": [
+        "Compare(left=Subscript(value=Name(id='row', ctx=Load()), slice=Constant(value='pid'), ctx=Load()), ops=[Is()], comparators=[Constant(value=None)])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:104:23",
       "ast_sha256": "f72efebac536a47ff1c934132cab9b2058c90e3c2105487e4081671a2c60d141",
+      "guards": [
+        "BoolOp(op=Or(), values=[Name(id='bad', ctx=Load()), Name(id='stop', ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:105:13",
       "ast_sha256": "fdf62bb7af457c71690572469e317b00d79922588dea1e44862b07bdc04e191e",
+      "guards": [
+        "BoolOp(op=Or(), values=[Name(id='bad', ctx=Load()), Name(id='stop', ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:106:72",
       "ast_sha256": "2fd61e0e21aad5857d1ff485bebd9ceb7c939ebf668984da9c9900e479ce566d",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:108:46",
       "ast_sha256": "df94d1165e4a5d7de59db2e56942ff47d8f23ef46d733d18fdb64f7be9be940d",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:109:12",
       "ast_sha256": "ef3379103f16a9bac6187818a6ee63f1ea8a40fb1ff608453f6d2f05484965ae",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:111:16",
       "ast_sha256": "dee3104e77bfab90f40174b6bee8d610f9baaeac9a3d5fac97d9379f5d628263",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:112:16",
       "ast_sha256": "841e48e2fc4fbaaeda97dea45afc372c5ae0f68f16e5986da2f211fc4a07d5c0",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:121:30",
       "ast_sha256": "ec58862d90fd16b2ab471cd8b34e6bb6d65f336ae708d118ccf8da92383f32f0",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:123:39",
       "ast_sha256": "eb09cfdfb6d212487a5f681db9f054bd9bf52461aab29814ac544258cd45f0e7",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:125:12",
       "ast_sha256": "5c92a2c4ccb1422ca80783aabd4317e855e5715723e24015538ac124e409a05d",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:126:12",
       "ast_sha256": "fda73226d8f0ecd189b8a6795d3263e4e0b9132e7489fc1744b1d10f434a6362",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:128:16",
       "ast_sha256": "3b5b87d12dec97ed6974f5bc25adb477c5a6c614efbd4bf43823735575b31b0f",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:137:59",
       "ast_sha256": "57c8d98ac54e7b5ab5b5aaf099c97d53db78bb24d3cf9617b16cd3d4ce69d56f",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:138:8",
       "ast_sha256": "a0fa6e299e66bf18f9a5d8960a4dda5b1c3d28f7be3e70ac6d994610c12fd0b1",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:44:20",
       "ast_sha256": "fe0bb6115e952759c9435930cd2c3f2fb2ac4eab4befaa5b392e0dbb7a358413",
+      "guards": [
+        "Name(id='parent_exception', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:52:8",
       "ast_sha256": "8b86392c98ac2e03fbf9b73fb8ee79100b2c14f7796724c07a25cb270f0aff5a",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:53:8",
       "ast_sha256": "26cf992c24fab4296b1d8950a33e5e9e094dd3a4a31878c7b95278f4ef5570b0",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:54:8",
       "ast_sha256": "7f517be9a90ee34706666c774fe0606ad11ff8f6b9a51203b91d4d87185c407d",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:55:28",
       "ast_sha256": "e1d996309e3f4401e6c4dd1bb4cd4b313cdd5fb1c24980aeb23ccbe044cff66b",
+      "guards": [
+        "Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='abnormal')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:56:30",
       "ast_sha256": "33eafff331a9bc06296b42d5b78ba6fd0da7c24678a6e067d8c173e19dd611ac",
+      "guards": [
+        "Name(id='parent_exception', ctx=Load())",
+        "Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='abnormal')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:57:18",
       "ast_sha256": "71e90e130a19728bb372c7a146a6a23a5a771d9523d110e214a7c3fa20d0c1ec",
+      "guards": [
+        "Name(id='kill', ctx=Load())",
+        "Name(id='parent_exception', ctx=Load())",
+        "Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='abnormal')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:58:27",
       "ast_sha256": "e50c9bd33a676a3e4e1b2c09d29db70d607f44d559d0a7aa6660ca017bc04fee",
+      "guards": [
+        "Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='sleep')])",
+        "Name(id='kill', ctx=Load())",
+        "Name(id='parent_exception', ctx=Load())",
+        "Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='abnormal')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:59:13",
       "ast_sha256": "42e0b1465f40e3e74b15aea5190aa6e0f21629c653e332e2672a51cc0a676b95",
+      "guards": [
+        "Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='sleep')])",
+        "Name(id='kill', ctx=Load())",
+        "Name(id='parent_exception', ctx=Load())",
+        "Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='abnormal')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:72:60",
       "ast_sha256": "235d8e4e48a79048d5e7be6efb5787df9804bf4fa164a632ca3eb3ef90ddf962",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:94:36",
       "ast_sha256": "b242c6216f6df4dbebebaa52c58ce245088ce2aef673e6a25ffb40d923546a0a",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:95:75",
       "ast_sha256": "aa76f76538806ce73e87eba746d3eefd0534c60b66f6dd1119dcf21fa4ce461f",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture057.py:98:12",
       "ast_sha256": "019c192d0e915dd99df42e83c9d198035c09b85fb7c1b7471e18d0a3b8d88656",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture-tests"
     },
     {
       "id": "test_capture059.py:101:17",
       "ast_sha256": "c05fb391c77a45385b203eb8bc996dac1a04fcbee38b7aab622ce48ea7401dd3",
+      "guards": [
+        "Compare(left=Name(id='name', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unstarted-batch')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:112:8",
       "ast_sha256": "8ba6072ad1de0b3a1f3e965b93cf794b94f2b57f201863bae6e9cac291c2046b",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:118:8",
       "ast_sha256": "996b0c0c03918356f1fa3148f7de935fcbc4fe6fd0a4849e7100de528e811280",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:123:55",
       "ast_sha256": "51412cf12ab79da6ce03ff2b2fbd53647e8b2e191c4beb196bdec508326b4e95",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:125:8",
       "ast_sha256": "904dcaea79ea2881f5bcb771939d6fe0757057a63f1b623e42d168c525a902e8",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:126:52",
       "ast_sha256": "d758111c16e163d4e13f70a3984b0a09294627d07e354f1fae7847980638a1a5",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:132:26",
       "ast_sha256": "67e39305aa7d704cc8dac7c4571be0a3f138f99952681ddbbf7b38e87531828e",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:137:12",
       "ast_sha256": "f1429b519900891d59a438311688b89ebaed6126d43fc775301361fee569bb37",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:138:38",
       "ast_sha256": "9c2aeb84c34cdc207e34658f8f91df1f11d961c6cbbcaaeef7d1b3b3f12e5963",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:146:8",
       "ast_sha256": "d29467edfb3c22d0ff778b556b0e7a09db0256ae0772619930987e1607acfed8",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:147:8",
       "ast_sha256": "b412259982c9ce0938703e585b8b75767a20a49871403543ff250766382a1bf2",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:157:12",
       "ast_sha256": "749dc4f0daab0607ee98712a221fdc6af17abf87166b158d73cd6f6949df1928",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:169:24",
       "ast_sha256": "0b0506d2effcd1f37dfc72ca4744fb35848deee359b9dad2a12138de63796dfb",
+      "guards": [
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:174:12",
       "ast_sha256": "193a97d93716dc962cd7eebfdec2ca8212c7537b089d1c803cbd3d6d6b7e59af",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:176:16",
       "ast_sha256": "0da3606c216c04eed8afb4ac5097714968a36b6ac6fdb9cd4831fd24ad29ffdb",
+      "guards": [
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:178:16",
       "ast_sha256": "cf75ea120061aa712e877cd11ac7305b3093e2d18bf6f8e86d0a3bca1e70eefc",
+      "guards": [
+        "BoolOp(op=And(), values=[Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unowned')]), Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='nt')])])",
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:180:16",
       "ast_sha256": "6927af8ce02d53db8c306e7efb4e13ca47d5d86c1e2146a4b75cde163c85adc5",
+      "guards": [
+        "BoolOp(op=And(), values=[Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unowned')]), Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='nt')])])",
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:181:16",
       "ast_sha256": "7172c9900948e35934d44e33e2b1a2084611a6e840f4a56dc74629f0268aba53",
+      "guards": [
+        "BoolOp(op=And(), values=[Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unowned')]), Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='nt')])])",
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:183:16",
       "ast_sha256": "c3b3e13c7e244f0b9fd46f10cbbcfab24fa05d97b76b7d92197f9156676b63b6",
+      "guards": [
+        "Name(id='zero', ctx=Load())",
+        "BoolOp(op=And(), values=[Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unowned')]), Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='nt')])])",
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:185:16",
       "ast_sha256": "62664ec82f39e80f2939a5ac2eac2708b1338cddae80161a80aff0820d0aa20f",
+      "guards": [
+        "Name(id='zero', ctx=Load())",
+        "BoolOp(op=And(), values=[Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unowned')]), Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='nt')])])",
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:186:16",
       "ast_sha256": "4b507bc3d95a17c75422312e73bfe0789d7896f5eb0797e67abaa9d3aa30f47f",
+      "guards": [
+        "Name(id='zero', ctx=Load())",
+        "BoolOp(op=And(), values=[Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unowned')]), Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='nt')])])",
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:188:16",
       "ast_sha256": "ef20767827825054c09b6bdbfccc9f6a48939f82989b93aad52e6a476c169584",
+      "guards": [
+        "Name(id='zero', ctx=Load())",
+        "BoolOp(op=And(), values=[Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unowned')]), Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='nt')])])",
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:189:33",
       "ast_sha256": "5f86cb63639601b20ef5c57d73e9cdd24bca7467889b0679253ce4fa466c91b2",
+      "guards": [
+        "Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='early')])",
+        "Name(id='zero', ctx=Load())",
+        "BoolOp(op=And(), values=[Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unowned')]), Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='nt')])])",
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:190:21",
       "ast_sha256": "d4733fc3d5f89c14e97706b78a37cabbc96ecd2362f94a93554ea0f523483ebb",
+      "guards": [
+        "Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='early')])",
+        "Name(id='zero', ctx=Load())",
+        "BoolOp(op=And(), values=[Compare(left=Name(id='mode', ctx=Load()), ops=[Eq()], comparators=[Constant(value='unowned')]), Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='nt')])])",
+        "Name(id='fail', ctx=Load())"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:208:12",
       "ast_sha256": "46b7cdd1854ae68cc156dc9f89c238f35058f29b006254ff893c1c3cf6015615",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:226:24",
       "ast_sha256": "8ecd87ebf87ed170d3681e2a75d78d6ae2aa1178ad585cdbfa5026aafbf7d82a",
+      "guards": [
+        "BoolOp(op=And(), values=[Compare(left=Name(id='pid', ctx=Load()), ops=[Eq()], comparators=[Attribute(value=Attribute(value=Name(id='cap', ctx=Load()), attr='child', ctx=Load()), attr='pid', ctx=Load())]), UnaryOp(op=Not(), operand=Name(id='hit', ctx=Load()))])",
+        "Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[Eq()], comparators=[Constant(value='nt')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:229:16",
       "ast_sha256": "2cea5fdeb3587d313791a4e5253d32067cc92a6a3e19f525fb3a18cde1a74e6a",
+      "guards": [
+        "Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[Eq()], comparators=[Constant(value='nt')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:230:16",
       "ast_sha256": "a30369181d7806d0948e14b4165212e9b42e76611d8bd3468c7168e3e04807d5",
+      "guards": [
+        "Compare(left=Attribute(value=Name(id='os', ctx=Load()), attr='name', ctx=Load()), ops=[Eq()], comparators=[Constant(value='nt')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:232:8",
       "ast_sha256": "fec9b25aa9862c8246ffa325d751976634538c45b4dd28970c97e2dd01c21af5",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:244:40",
       "ast_sha256": "c96e59dc86fa69ea5a3aeeb95d24ed780df6de51b46003095768d0919977a5fd",
+      "guards": [
+        "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='attempts', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=1)])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:247:16",
       "ast_sha256": "f9511c31e81cddcee1e28d5506855e0c0e5901b6a2085fef96ec6eb61722c8ac",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:248:35",
       "ast_sha256": "c70a4ee735c8560c4c206d8bba049304e02477d9427260bc37612aa054e5b058",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:251:8",
       "ast_sha256": "5f8be0a748ae152700a130df5b67aba4e135f9e2d2559c75255209fe5f845339",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:252:8",
       "ast_sha256": "14c027e50efbba471dc3e84f9cf94d7cad126d8e539b57a3281ac632eacd008f",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:253:8",
       "ast_sha256": "507f391337f01c917330d032e0c70a7e1e45ea117df99a71164a19794f04d1a8",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:264:12",
       "ast_sha256": "e1c421e0cfd5b2e506844df1d927d47b2ffe9a511d1da1a9ec457376251023fc",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:273:8",
       "ast_sha256": "169dfe50e0f263d2fc17fb1ee8fd01277859890c9d3e25fb0d5189e421c38d43",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:274:8",
       "ast_sha256": "1e9217361fb1627a4464a07d5bf3e5af1e8190543a025f936013e4fcfee256bf",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:56:8",
       "ast_sha256": "0bbc6e8cd6eb9d6a601681e1fb8d5e4c4ed20f4bbde5fdd59fa43db411e9562b",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:59:65",
       "ast_sha256": "c3e4ee379bda133355583890a7a32bda246c7bb6f00618fb2714492174da031c",
+      "guards": [
+        "Compare(left=Name(id='stage', ctx=Load()), ops=[NotIn()], comparators=[Tuple(elts=[Constant(value='request-record')], ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:61:12",
       "ast_sha256": "5f0ba663e59fb33b435c43d4a6515cac77fee67a7f60c33fd8af109fe85893b7",
+      "guards": [
+        "Compare(left=Name(id='stage', ctx=Load()), ops=[In()], comparators=[Tuple(elts=[Constant(value='capture-record'), Constant(value='request-record'), Constant(value='unstarted-batch-record')], ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:62:13",
       "ast_sha256": "65bb78dbcc8fef8c1d6409bd6888f0dd82fccba30ae8b4e6ccbd5ba92219e5ab",
+      "guards": [
+        "Compare(left=Name(id='stage', ctx=Load()), ops=[In()], comparators=[Tuple(elts=[Constant(value='capture-record'), Constant(value='request-record'), Constant(value='unstarted-batch-record')], ctx=Load())])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:63:8",
       "ast_sha256": "fcb481f69180e07d0fb17f54c5c0e29cc2a6049fdd45f997191565ee1bffcfa0",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:65:12",
       "ast_sha256": "99e6769c08475d4a6070b612f5a483871d7458beaa660da212a5b25e49b4204c",
+      "guards": [
+        "Compare(left=Name(id='stage', ctx=Load()), ops=[NotEq()], comparators=[Constant(value='request-record')])"
+      ],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:66:8",
       "ast_sha256": "e5387648299b1cecd9d113e59b35899403033f12059e6e9eecb1d12e8964219c",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:79:8",
       "ast_sha256": "dfef4a65b2d414713ed63a5777119f84d19a044b5282e83e8b10450a3985f0bc",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:87:8",
       "ast_sha256": "5bb5c9943a893f5987641d106918d85d62202deb971ca4ea2d78722e7aff8075",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:89:8",
       "ast_sha256": "64c68b6e842b54aaaa0fc9a68b1ad505a0ffc4b89caaf4d5a4d24860033069c5",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:91:12",
       "ast_sha256": "16e9a4933c70d0ea45b262bdd0fa10f26b0ca08ae2ced0f772f983bc4e6fe266",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     },
     {
       "id": "test_capture059.py:92:12",
       "ast_sha256": "ce1fb6d24705b85f76375182f30a56ce9adc1a720503be79e44861b432b5b76c",
+      "guards": [],
       "category": "最新でも継続",
       "destination": "latest/capture059"
     }

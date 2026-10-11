@@ -118,14 +118,22 @@ def assertion_inventory(root):
     for name in ('scope059.py', 'test_capture057.py', 'test_capture059.py',
                  'diagnostics057.py', 'diagnostic_ci057.py', 'diagnostic_evidence059.py'):
         raw = git(root, 'show', FIXED059 + ':' + FIXTURE + name)
-        for node in ast.walk(ast.parse(raw)):
+        tree = ast.parse(raw)
+        parents = {child: parent for parent in ast.walk(tree) for child in ast.iter_child_nodes(parent)}
+        for node in ast.walk(tree):
             # runner/collectorの失敗条件はraiseに加えてfailures/errors.appendで保持する。
             append = (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
                       and node.func.attr in ('append', 'extend') and isinstance(node.func.value, ast.Name)
                       and node.func.value.id in ('failures', 'errors'))
             if isinstance(node, (ast.Assert, ast.Raise)) or append:
+                guards = []; parent = parents.get(node)
+                while parent is not None:
+                    if isinstance(parent, ast.If):
+                        guards.append(ast.dump(parent.test, include_attributes=False))
+                    parent = parents.get(parent)
                 result.append(dict(id=name + ':' + str(node.lineno) + ':' + str(node.col_offset),
                                    ast_sha256=digest(ast.dump(node, include_attributes=False).encode()),
+                                   guards=guards,
                                    category='当時だけ' if name == 'scope059.py' else '最新でも継続',
                                    destination='fixed059/scope059' if name == 'scope059.py' else {
                                        'test_capture057.py': 'latest/capture-tests',
@@ -192,13 +200,17 @@ def snapshot(area, exclude=()):
     return dict(files=files, symbolic_links=links, directories=directories)
 
 
-def record_ok(row, budget):
+def record_ok(row, budget, supervisor_root=ROOT):
     require(row.get('exit_code') == 0 and type(row.get('exit_code')) is int, '実exit非0/欠落')
     require(row.get('terminal') is True and row.get('record_saved') is True, '終端/保存未確認')
     require(row.get('timed_out') is False and row.get('exception') is None, 'timeout/例外')
     require(row.get('supervision', {}).get('stopped') is True and row.get('wait', {}).get('ok') is True, '終了未確認')
     require(row.get('budget_seconds') == budget, '原予算変更')
-    require(row.get('argv') == row.get('planned_argv') and bool(row.get('argv')), '実argv欠落/相違')
+    planned = row.get('planned_argv'); actual = row.get('argv')
+    require(isinstance(planned, list) and bool(planned) and isinstance(actual, list), '実argv欠落')
+    wrapped = [sys.executable, str(Path(supervisor_root) / FIXTURE / 'process_exec059.py'), *planned]
+    require(actual == planned or (actual == wrapped and
+            row.get('supervision', {}).get('mechanism') == 'Linux dedicated session'), '実argv相違')
     require(row.get('pid') and row.get('ended_utc') and row.get('started_utc'), '起動/終了記録欠落')
     require(0 <= row['ended_monotonic'] - row['started_monotonic'] <= budget and
             0 <= row['seconds'] <= budget, '終了時刻/予算')
@@ -221,23 +233,24 @@ def validate_execution(area, source, code):
     manifest = load(area / 'generation-manifest.json')
     require(manifest == snapshot(area, ('generation-manifest.json',)), '証拠bytes/hash/集合改変')
     for row in value['setup'] + value['commands']:
-        label = row['label']; record_ok(row, BUDGETS[label])
+        label = row['label']; record_ok(row, BUDGETS[label], value['checkout'])
         persisted = load(area / (label + '-process.json'))
         require(persisted == {k: v for k, v in row.items() if k != 'label'}, '原process改変:' + label)
         raw = (area / (label + '.log')).read_bytes()
         require(raw and digest(raw) == row['log_sha256'], '原log欠落/改変:' + label)
         expected = FIXED059 if label == 'scope059' else source
         require(value['targets'].get(label) == expected, '実行世代:' + label)
+        argv = row['planned_argv']
         if label == 'scope059':
             require(Path(row['cwd']).name == 'qa065-fixed059' and
-                    '--code-sha' in row['argv'] and row['argv'][row['argv'].index('--code-sha') + 1] == FIXED059 and
-                    row['argv'][row['argv'].index('--source-sha') + 1] == FIXED059 and
-                    Path(row['argv'][1]).is_relative_to(Path(row['cwd'])), '固定059実argv/cwd')
+                    '--code-sha' in argv and argv[argv.index('--code-sha') + 1] == FIXED059 and
+                    argv[argv.index('--source-sha') + 1] == FIXED059 and
+                    Path(argv[1]) == Path(row['cwd']) / FIXTURE / 'scope059.py', '固定059実argv/cwd')
         elif label not in SETUP:
             scripts = dict(zip(COMMANDS, ('test_capture057.py', 'scope059.py', 'test_capture059.py',
                            'reproduce058.py', 'diagnostics057.py', 'generation_contract.py', 'test_generation_contract.py')))
             require(row['cwd'] == value['checkout'] and
-                    Path(row['argv'][1]) == Path(value['checkout']) / FIXTURE / scripts[label], '最新実argv/cwd')
+                    Path(argv[1]) == Path(value['checkout']) / FIXTURE / scripts[label], '最新実argv/cwd')
     for label, expected in (('capture-tests', CASES057), ('capture059', CASES059)):
         tests = load(area / label / 'tests.json')
         require(tests.get('status') == 'PASS' and [r['case'] for r in tests['cases']] == list(expected) and

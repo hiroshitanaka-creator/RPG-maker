@@ -14,7 +14,8 @@ CASES = ('scope-control', 'scope-outside', 'scope-production', 'scope-supervisor
          'scope-old-assertion', 'scope-workflow', 'scope-task-body', 'scope-old-evidence',
          'scope-submission-document', 'scope-submission-code',
          'map-control', 'map-missing', 'map-duplicate', 'map-replaced',
-         'evidence-control', 'evidence-generation', 'evidence-fixed-sha',
+         'evidence-control', 'wrapper-control', 'wrapper-altered', 'collector-control', 'collector-failure',
+         'evidence-generation', 'evidence-fixed-sha',
          'evidence-code-sha', 'evidence-fixed-code', 'evidence-missing-command', 'evidence-duplicate-command',
          'evidence-missing-setup', 'evidence-failed-exit', 'evidence-timeout',
          'evidence-unconfirmed', 'evidence-missing-record', 'evidence-modified-log',
@@ -112,6 +113,12 @@ def main(args):
         else:
             value = fixture(area, source, code)
             row = value['commands'][0]
+            if name.startswith('wrapper-'):
+                row['argv'] = [sys.executable, str(root / g.FIXTURE / 'process_exec059.py'), *row['planned_argv']]
+                row['supervision']['mechanism'] = 'Linux dedicated session'
+                if name == 'wrapper-altered': row['argv'][1] = str(root / 'unknown-wrapper.py')
+                write(area / 'capture-tests-process.json', {k: v for k, v in row.items() if k != 'label'})
+            if name == 'collector-failure': row['exit_code'] = 3
             if name == 'evidence-generation': value['source_sha'] = g.FIXED059
             if name == 'evidence-fixed-sha': value['code_sha'] = source
             if name == 'evidence-code-sha': value['generation_code_sha'] = g.FIXED059
@@ -144,7 +151,7 @@ def main(args):
             write(area / 'execution.json', value)
             write(area / 'generation-manifest.json', g.snapshot(area, ('generation-manifest.json',)))
             if name == 'evidence-modified-log': (area / 'capture-tests.log').write_bytes(b'altered\n')
-            argv = [sys.executable, __file__, '--probe', 'legacy' if name.startswith('legacy-') else 'evidence',
+            argv = [sys.executable, __file__, '--probe', 'collect' if name.startswith(('legacy-', 'collector-')) else 'evidence',
                     '--area', str(area), '--code-sha', code, '--source-sha', source]
         start = time.monotonic()
         child = subprocess.run(argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=30)
@@ -165,7 +172,7 @@ if __name__ == '__main__':
     try:
         if args.probe == 'map': g.check_map(g.ROOT, g.load(Path(args.area) / 'map.json'))
         elif args.probe == 'evidence': g.validate_execution(Path(args.area), args.source_sha, args.code_sha)
-        elif args.probe == 'legacy':
+        elif args.probe == 'collect':
             from diagnostic_evidence059 import collect
             result = collect(args.area, str(args.area) + '-collected', args.source_sha, g.FIXED059)
             g.require(result['status'] == 'PASS', '旧schema拒否:' + str(result['errors']))
