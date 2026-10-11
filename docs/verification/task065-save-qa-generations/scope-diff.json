@@ -2,8 +2,8 @@
   "status": "PASS",
   "registration_sha": "520169e72fd5a86d485bbf29577a9a22f34e96c8",
   "base061_sha": "6ca6ccea70491cf66c8a4f478b142f1137f23874",
-  "code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
-  "execution_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+  "code_sha": "7aa7c6ff6eba620b93b741d58290fb698fb7cf5e",
+  "execution_sha": "b04ffade8faf3a722dac35d072dba50818d50cec",
   "allowed_paths": [
     "docs/tasks/065-separate-save-qa-generations.md",
     "docs/tasks/reports/065-separate-save-qa-generations.md",
@@ -27,88 +27,31 @@
     "tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py"
   ],
   "changed_paths": [
-    {
-      "status": "M",
-      "path": "docs/tasks/065-separate-save-qa-generations.md"
-    },
-    {
-      "status": "A",
-      "path": "docs/tasks/reports/065-separate-save-qa-generations.md"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/README.md"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/assertion-map.json"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/ci-results.json"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/code-fixed-sha.txt"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/hashes.json"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/linux-artifacts.tar.gz.b64"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/linux-results.json"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/local-artifacts.tar.gz.b64"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/local-results.json"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/local-stderr.log"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/local-stdout.log"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/scope-diff.json"
-    },
-    {
-      "status": "A",
-      "path": "docs/verification/task065-save-qa-generations/windows-results.json"
-    },
-    {
-      "status": "M",
-      "path": "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py"
-    },
-    {
-      "status": "M",
-      "path": "tools/fixtures/equipment-save-transaction-platform/diagnostic_evidence059.py"
-    },
-    {
-      "status": "A",
-      "path": "tools/fixtures/equipment-save-transaction-platform/generation_contract.py"
-    },
-    {
-      "status": "A",
-      "path": "tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py"
-    }
+    "docs/tasks/065-separate-save-qa-generations.md",
+    "docs/tasks/reports/065-separate-save-qa-generations.md",
+    "docs/verification/task065-save-qa-generations/README.md",
+    "docs/verification/task065-save-qa-generations/assertion-map.json",
+    "docs/verification/task065-save-qa-generations/ci-results.json",
+    "docs/verification/task065-save-qa-generations/code-fixed-sha.txt",
+    "docs/verification/task065-save-qa-generations/hashes.json",
+    "docs/verification/task065-save-qa-generations/linux-artifacts.tar.gz.b64",
+    "docs/verification/task065-save-qa-generations/linux-results.json",
+    "docs/verification/task065-save-qa-generations/local-artifacts.tar.gz.b64",
+    "docs/verification/task065-save-qa-generations/local-results.json",
+    "docs/verification/task065-save-qa-generations/local-stderr.log",
+    "docs/verification/task065-save-qa-generations/local-stdout.log",
+    "docs/verification/task065-save-qa-generations/scope-diff.json",
+    "docs/verification/task065-save-qa-generations/windows-results.json",
+    "tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py",
+    "tools/fixtures/equipment-save-transaction-platform/diagnostic_evidence059.py",
+    "tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+    "tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py"
   ],
   "changed_count": 19,
   "not_created": [
     "docs/verification/task065-save-qa-generations/windows-artifacts.tar.gz.b64"
   ],
-  "not_created_reason": "Windows NOT_RUN。架空archiveを作らない。",
+  "not_created_reason": "未実行Windows原archiveを捏造しない",
   "unlisted_changes": [],
   "task_body_unchanged": true,
   "unchanged_groups": [
@@ -116,6 +59,7 @@
     "docs/tasks/README.md",
     "docs/decision-log.md",
     "AGENTS.md",
+    ".github",
     "scripts",
     "native",
     "addons",
@@ -123,7 +67,7 @@
     "project.godot",
     "test",
     ".scope-lock",
-    ".github"
+    "旧assertion/固定SHA/原証拠/監督/取引driver/予算"
   ],
   "deletions": []
 }

@@ -1,3 +1,61 @@
+# 065 保存QAの世代分離・pins修正報告
+
+2026-10-11 UTC。**pins修正をローカルで検証済み。修正後の全CIは親確認待ち。保存全体・F1/S3は未達を残す。**
+
+|対象|完全SHA|
+|---|---|
+|承認済み065登録|520169e72fd5a86d485bbf29577a9a22f34e96c8|
+|修正前の提出|37be1af2eea8f8612033607faed67e8a33eb94db|
+|修正後の完成コード|7aa7c6ff6eba620b93b741d58290fb698fb7cf5e|
+|修正後の実行HEAD|b04ffade8faf3a722dac35d072dba50818d50cec|
+|059固定検査|41a34ea33fe184274e6722c88cdbca2a7ffd3708|
+
+最終提出SHA・remote一致・clean/未pushは最終応答で確定する。20許可パスのうち19パスだけを使用し、README本体・tasks README・decision-log・CI YAML・本番・監督・原検査・原予算は変更していない。main取込み・PR作成はしていない。
+
+## 親が確認した初回CIの失敗
+
+親から、初回提出37be1afの全51 jobが41成功・9失敗・1取消で終了したと連絡を受けた。最新4 jobは065完成SHAを追加fetchするgeneration-pinsが30秒でtimeoutし、stopped=false、後続Gitが128になった。これは新設065配線の問題として修正した。親のメッセージを証拠へ保存したが、生ログbytesを当方で受領・照合したことにはしない。
+
+本体のUbuntu168ケース/2118条件/130.467秒・4 kill子timeout、Windows49/735/174.813秒、別途報告の108/1548/174.093秒は別の失敗として残す。Windows primitivesの旧診断は固定059全10・capture12/27が通った一方、既存PowerShell Get-CimInstance/Get-Volumeが30秒timeoutし12sampleがない。担当外diagnostics057.pyは変更しない。旧041 invalidは固定SHA取得中14分54秒で取消、202ケースNOT_RUN・artifactなし。取消主体/原因は未確定である。
+
+## 修正
+
+065の新規ネットワークfetchを廃止した。既存CLIの`--fetch-pins`は互換名のまま、[hashes.json](../../verification/task065-save-qa-generations/hashes.json)の`pin_objects`から元Git objectを照合して復元する。065登録・完成の元commit、全tree、必要な4コード・依頼・対応表blobの計1128 objectについて、型・長さ・原bytes・完全Git SHAを検証する。Gitへ一括保存後に全objectを再読取りして一致を確認する。元treeにある全path/mode/blob IDを保持し、巨大な過去証拠blobを取得せず完成差分を判定する。065全体をcheckoutする資料ではない。既存workflowが取得する059の3 SHAは引き続き必須で、欠落時の新fetchや代替経路はない。
+
+pinsの元30秒内を実行25秒・回収5秒に分けた。process_captureと既存予算は不変。pins失敗時は依存する世代契約・専用正負をNOT_RUNとし、予定argv・阻害理由を残す。未起動のpid/実argv/exitを補完しない。監督停止が未確認なら後続の子を起動しない。停止を確認できたpins失敗では、依存しない元5診断は継続し、全体FAILと非0を保持する。
+
+旧112 assertionの対応は維持し、新条件は14、専用正負は56へ増やした。独立した空のGit DBで復元/範囲違反拒否、元objectの欠落・重複・改変・SHAすり替え、実timeout回収、依存未起動と停止未確認を検査する。旧45正負も削除していない。新fixtureの反例commitは元tree全項目を保持して対象leafだけを変更し、旧範囲assertionの期待値は変更しない。
+
+## 修正後の検証
+
+alternatesなし・depth=1の独立cloneを使用した。開始時に065登録/完成objectの欠落（cat-file 128）を確認し、外部fetchなしで0.115秒で復元した。clone/既存059資料の準備にはローカルfileリモートを使用したため、GitHub通信速度の証明ではない。
+
+- 公式Godot4.7.2 import: 31.022秒、exit0、禁止警告/ERRORなし。
+- 診断全体: 72.598秒、exit0。pins0.116秒、全processの終了/監督停止を確認。
+- 固定059全10正負、最新capture12/27、6seedのoff/on計12sample、058反例を保持してPASS。
+- 新世代契約exit0、専用56正負すべて期待exit一致（3.226秒）。
+- 独立証拠集約: exit0、原証拠3175 member（索引込み3176）、ZIP 9,281,179 bytes、SHA-256 `98eef4533870f5b7591e19c8eded9ee04962d49c5d81529a7db4660869f19af7`。全member原bytes/hashを再読取り照合。
+- 実30秒枠: 専用の長時間親子処理を25秒で停止、25.120秒で検査終了。timeout/非0を保持し、監督停止・wait成功・約4.9秒の回収残量・無関係sentinel生存を確認した。
+- pins資料破損の実CLI: 全体exit1/FAIL、依存2件NOT_RUN、元5診断はPASS。独立collectorもexit1、Git128の連鎖なし。原記録と全memberを保存。
+
+実30秒枠の初回は自己終了10秒の既存fixtureを使用し、timeoutにならず検査exit1になった。その失敗を保存し、新専用長時間fixtureで測定した。旧fixtureを変更したり、初回結果を成功へ書き換えたりしていない。修正前の期限同値による停止未確認は縮尺1秒で再現し、その原記録も保存した。
+
+R8・保護26・原取引172/2178/97kill・16伝播・codecの初回ローカル原結果は下の履歴と`prior37`内へ保持する。対象実装/検査/予算の不変は最新の範囲検査で再確認した。本体を成功するまで再実行して今回のCI失敗を取り消すことはしていない。
+
+提出全体の書式検査は原stdoutの末尾空白163行でexit2。原bytesを保持した。原stdout以外のcode・文書・JSON等はexit0。
+
+## 証拠と残る出口
+
+[証拠README](../../verification/task065-save-qa-generations/README.md)から元bytes・実argv・exit・時間・親CI連絡・全member manifestを追跡できる。初回37の証拠はGitから元bytesで保存し、元archiveを内包した。旧失敗/初回結果と修正後結果を区別する。
+
+当環境のGitHub API Forbiddenは迂回/再試行していない。修正後の全CI/Windows両phase/15分job全体は未確認。Windowsの既存環境取得timeout、取引本体の未達、旧041取得中取消、従来F1/F4/060/元351/UI接続などは未解決で親へ引き継ぐ。PR・main・README・decision-logは親担当。
+
+---
+
+## 初回提出37be1afの報告履歴（下記SHA・結果は修正前）
+
+以下は初回報告の原文。ここにある追加fetch・45正負・03f完成SHA・CI未確認は初回時点の状態であり、現在の方式と結果は上記の追補による。原文bytesはarchiveの`prior37/065-separate-save-qa-generations.md`にも保存した。
+
 # 065 保存QAの世代分離報告
 
 2026-10-11 UTC。**ローカル実装・検証済み、CI受入は未確認。保存全体・F1/S3の受入完了とはしない。** 指定ブランチへcommit/pushし、最終SHAとremote一致・clean/未pushは最終応答で確定する。

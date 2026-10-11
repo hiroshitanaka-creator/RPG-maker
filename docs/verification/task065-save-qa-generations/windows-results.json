@@ -1,7 +1,24 @@
 {
-  "status": "NOT_RUN",
-  "code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
-  "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+  "status": "FOLLOWUP_NOT_RUN",
+  "code_sha": "7aa7c6ff6eba620b93b741d58290fb698fb7cf5e",
+  "source_sha": "b04ffade8faf3a722dac35d072dba50818d50cec",
   "archive": null,
-  "reason": "指定実行環境はLinux。GitHub APIはForbiddenで拒否。環境切替や拒否迂回を行わず、親がWindows両phaseの最終CIを確認する必要がある。"
+  "reason": "Linux指定環境。修正後Windowsは親CI確認待ち。",
+  "initial_submission_parent_report": {
+    "sha": "37be1af2eea8f8612033607faed67e8a33eb94db",
+    "primitives": {
+      "pins_timeout": true,
+      "parent_verified_members": 405,
+      "scope059": "10正負PASS",
+      "capture_tests": "12PASS",
+      "capture059": "27PASS",
+      "measurements": "既存PowerShell Get-CimInstance/Get-Volumeの30秒timeoutで12sampleなし"
+    },
+    "native_latest_body": {
+      "cases": 49,
+      "checks": 735,
+      "seconds": 174.813
+    },
+    "provenance": "親からのメッセージ。生ログbytesは未受領、当方による再取得/原member hash照合ではない。"
+  }
 }

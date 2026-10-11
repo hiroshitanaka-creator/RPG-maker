@@ -1,38 +1,103 @@
 {
-  "status": "NOT_VERIFIED",
-  "requested_source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
-  "code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
-  "request": {
-    "argv": [
-      "gh",
-      "api",
-      "repos/hiroshitanaka-creator/RPG-maker/commits/3fe9d836efcc818230bca321eca4293db44669ef/check-runs",
-      "--paginate",
-      "--jq",
-      ".check_runs[] | [.name,.status,.conclusion] | @tsv"
-    ],
-    "cwd": "/workspace/RPG-maker",
-    "budget_seconds": 30.0,
-    "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
-    "exit_code": 1,
-    "timed_out": false,
-    "seconds": 0.12299581299998863
+  "status": "FOLLOWUP_NOT_VERIFIED",
+  "code_sha": "7aa7c6ff6eba620b93b741d58290fb698fb7cf5e",
+  "execution_sha": "b04ffade8faf3a722dac35d072dba50818d50cec",
+  "final_submission_sha": "最終応答で確定",
+  "initial_submission_parent_report": {
+    "provenance": "親からのメッセージ。生ログbytesは未受領、当方による再取得/原member hash照合ではない。",
+    "submission_sha": "37be1af2eea8f8612033607faed67e8a33eb94db",
+    "native_run": 38098312808,
+    "ubuntu_latest_transaction": {
+      "job": 114348772117,
+      "generation_pins": {
+        "requested_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
+        "timeout_seconds": 30,
+        "exit_code": -9,
+        "stopped": false,
+        "following_git_exit": 128
+      },
+      "body": {
+        "cases": 168,
+        "checks": 2118,
+        "seconds": 130.467,
+        "failures": "4 kill子timeout。pinsとは別。"
+      }
+    },
+    "ubuntu_primitives": {
+      "pins_timeout_seconds": 30,
+      "parent_verified_members": 622
+    },
+    "windows_primitives": {
+      "pins_timeout": true,
+      "parent_verified_members": 405,
+      "scope059": "10正負PASS",
+      "capture_tests": "12PASS",
+      "capture059": "27PASS",
+      "measurements": "既存PowerShell Get-CimInstance/Get-Volumeの30秒timeoutで12sampleなし"
+    },
+    "other_parent_report": {
+      "transaction_cases": 108,
+      "transaction_checks": 1548,
+      "transaction_seconds": 174.093,
+      "scope": "親表記の旧transaction latest。job番号/OS未提示のため推測しない。"
+    },
+    "final_ci": {
+      "total": 51,
+      "success": 41,
+      "failure": 9,
+      "cancelled": 1,
+      "last_godot_success_utc": "2026-10-11 00:45:06",
+      "source": "親メッセージ。当方API取得ではない。"
+    },
+    "latest_diagnostics": "4job全てpins30秒timeout、stopped=false、後続128",
+    "old041_invalid": {
+      "checkout_elapsed": "14分54秒",
+      "stage": "固定SHA取得中cancelled",
+      "cases202": "NOT_RUN",
+      "artifact": null,
+      "cancellation_actor": "UNKNOWN",
+      "budget_cause": "15分上限と整合するが未確定"
+    },
+    "native_windows_latest_body": {
+      "cases": 49,
+      "checks": 735,
+      "seconds": 174.813
+    }
   },
-  "stderr": "Get \"https://api.github.com/repos/hiroshitanaka-creator/RPG-maker/commits/3fe9d836efcc818230bca321eca4293db44669ef/check-runs?per_page=100\": Forbidden\n",
-  "numeric_http_status": null,
-  "total_jobs": null,
-  "completed_jobs": null,
-  "successful_jobs": null,
-  "failed_jobs": null,
-  "retried": false,
-  "alternate_route_used": false,
-  "final_submission_sha": "最終応答で確定。最終提出CIも未確認。",
+  "access_denied": {
+    "request": {
+      "argv": [
+        "gh",
+        "api",
+        "repos/hiroshitanaka-creator/RPG-maker/commits/3fe9d836efcc818230bca321eca4293db44669ef/check-runs",
+        "--paginate",
+        "--jq",
+        ".check_runs[] | [.name,.status,.conclusion] | @tsv"
+      ],
+      "cwd": "/workspace/RPG-maker",
+      "budget_seconds": 30.0,
+      "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "exit_code": 1,
+      "timed_out": false,
+      "seconds": 0.12299581299998863
+    },
+    "stderr": "Get \"https://api.github.com/repos/hiroshitanaka-creator/RPG-maker/commits/3fe9d836efcc818230bca321eca4293db44669ef/check-runs?per_page=100\": Forbidden\n",
+    "numeric_http_status": null,
+    "retried": false,
+    "alternate_route_used": false
+  },
+  "followup": {
+    "total_jobs": null,
+    "completed_jobs": null,
+    "successful_jobs": null,
+    "failed_jobs": null,
+    "cancelled_jobs": null
+  },
   "unverified": [
-    "最終全workflow/jobの終了と結果",
-    "Linux/Windows latest transaction/primitivesのCI原bytes",
-    "fixed055/fixed057の全最終CI結果",
-    "Windowsでの45正負/12/27/12sample",
-    "GitHub shallow fetchと15分job全体"
+    "修正後の全workflow/job終了と結果",
+    "Windows latest transaction/primitivesの065修正実動作",
+    "Windows12sample（既存環境取得timeoutは担当外）",
+    "15分job全体と旧041取消原因"
   ],
   "workflow_changes": false
 }

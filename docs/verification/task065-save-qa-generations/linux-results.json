@@ -1,67 +1,71 @@
 {
-  "status": "PASS_LOCAL_ONLY",
-  "code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
-  "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+  "status": "FOLLOWUP_PASS_LOCAL_ONLY",
+  "code_sha": "7aa7c6ff6eba620b93b741d58290fb698fb7cf5e",
+  "source_sha": "b04ffade8faf3a722dac35d072dba50818d50cec",
   "archive": {
     "file": "linux-artifacts.tar.gz.b64",
-    "archive_sha256": "00e215fd2f629572999b2c199f072b37e3fbd9a3038c31981679fb71eb28043f",
-    "archive_bytes": 25557918,
-    "members": 13644,
-    "original_files": 13643,
-    "original_bytes": 230171541,
+    "archive_sha256": "7c6ec81a8fd48fc55b802f933ae4e3c8b900608ca029bf19e1c5929c808784ac",
+    "archive_bytes": 47190644,
+    "members": 3829,
+    "original_files": 3828,
+    "original_bytes": 81191757,
     "verification": "全memberをbase64/TARから再読取りし集合/size/SHA-256一致"
   },
   "diagnostics": {
     "schema": 3,
-    "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+    "source_sha": "b04ffade8faf3a722dac35d072dba50818d50cec",
     "code_sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
-    "generation_code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
-    "checkout": "/workspace/RPG-maker",
+    "generation_code_sha": "7aa7c6ff6eba620b93b741d58290fb698fb7cf5e",
+    "checkout": "/workspace/qa065-followup/isolated",
     "targets": {
-      "generation-pins": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "baseline-checkout": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "fixed059-checkout": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "capture-tests": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "generation-pins": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "baseline-checkout": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "fixed059-checkout": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "capture-tests": "b04ffade8faf3a722dac35d072dba50818d50cec",
       "scope059": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
-      "capture059": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "baseline058": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "measurements": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "generation-contract": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "generation-tests": "3fe9d836efcc818230bca321eca4293db44669ef"
+      "capture059": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "baseline058": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "measurements": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "generation-contract": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "generation-tests": "b04ffade8faf3a722dac35d072dba50818d50cec"
     },
     "status": "PASS",
     "setup": [
       {
         "planned_argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
-          "--fetch-pins"
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--fetch-pins",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/pins.json"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
-          "--fetch-pins"
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--fetch-pins",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/pins.json"
         ],
-        "cwd": "/workspace/RPG-maker",
-        "pid": 4468,
-        "started_utc": "2026-10-11T00:12:51.487243+00:00",
-        "started_monotonic": 1056.80311527,
-        "accepted_utc": "2026-10-11T00:12:51.486807+00:00",
-        "accepted_monotonic": 1056.802669667,
-        "ended_utc": "2026-10-11T00:12:51.551693+00:00",
-        "ended_monotonic": 1056.867557165,
+        "cwd": "/workspace/qa065-followup/isolated",
+        "pid": 10180,
+        "started_utc": "2026-10-11T00:57:14.717616+00:00",
+        "started_monotonic": 3720.033489132,
+        "accepted_utc": "2026-10-11T00:57:14.717049+00:00",
+        "accepted_monotonic": 3720.032906893,
+        "ended_utc": "2026-10-11T00:57:14.832888+00:00",
+        "ended_monotonic": 3720.148752088,
         "terminal": true,
-        "seconds": 0.06488749800018923,
+        "seconds": 0.11584519500001988,
         "budget_seconds": 30,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 29.999992238999994,
-        "deadline_remaining_end": 29.935104740999805,
+        "deadline_remaining_start": 24.999990675999925,
+        "deadline_remaining_end": 24.884145480999905,
         "kill": {
           "attempted": false,
           "ok": null
@@ -71,28 +75,28 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/generation-pins.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/generation-pins.log",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/generation-pins.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/generation-pins.log",
         "log_sha256": "c24b753e960279ba0a6c8793ad26b60b3f3aa3456e195dc261ecfc62078ca44d",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/generation-pins-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/generation-pins-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 4468,
-            "group": 4468,
-            "root_pid": 4468,
-            "token": "0cbb6edbe4fc4122b2f3c3c4c22c030f"
+            "session": 10180,
+            "group": 10180,
+            "root_pid": 10180,
+            "token": "ebd988a71ad743e997cf27e5469b740f"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
           "observed_members": []
         },
-        "cleanup_remaining_end": 29.935104740999805,
+        "cleanup_remaining_end": 29.884145480999905,
         "label": "generation-pins"
       },
       {
@@ -101,37 +105,37 @@
           "worktree",
           "add",
           "--detach",
-          "/tmp/qa065/latest/qa059-baseline058",
+          "/workspace/qa065-followup/valid/qa059-baseline058",
           "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "git",
           "worktree",
           "add",
           "--detach",
-          "/tmp/qa065/latest/qa059-baseline058",
+          "/workspace/qa065-followup/valid/qa059-baseline058",
           "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
         ],
-        "cwd": "/workspace/RPG-maker",
-        "pid": 4474,
-        "started_utc": "2026-10-11T00:12:51.552772+00:00",
-        "started_monotonic": 1056.868643565,
-        "accepted_utc": "2026-10-11T00:12:51.552164+00:00",
-        "accepted_monotonic": 1056.868029228,
-        "ended_utc": "2026-10-11T00:12:54.276040+00:00",
-        "ended_monotonic": 1059.591904394,
+        "cwd": "/workspace/qa065-followup/isolated",
+        "pid": 10186,
+        "started_utc": "2026-10-11T00:57:14.834120+00:00",
+        "started_monotonic": 3720.149991699,
+        "accepted_utc": "2026-10-11T00:57:14.833595+00:00",
+        "accepted_monotonic": 3720.149460848,
+        "ended_utc": "2026-10-11T00:57:17.957894+00:00",
+        "ended_monotonic": 3723.273757325,
         "terminal": true,
-        "seconds": 2.7238751659999707,
+        "seconds": 3.124296476999916,
         "budget_seconds": 30,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 29.999969704000023,
-        "deadline_remaining_end": 27.276094538000052,
+        "deadline_remaining_start": 29.99999134699965,
+        "deadline_remaining_end": 26.875694869999734,
         "kill": {
           "attempted": false,
           "ok": null
@@ -141,28 +145,28 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/baseline-checkout.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/baseline-checkout.log",
-        "log_sha256": "1ca45f05ab81e6ddc05b5d9cb2e7239cb9a83ba582f54becdaa03dc923293e10",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/baseline-checkout.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/baseline-checkout.log",
+        "log_sha256": "d5fa2428662f8c58afef75060cb4883c35c61b953d0fc1fe1f07612938eee196",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/baseline-checkout-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/baseline-checkout-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 4474,
-            "group": 4474,
-            "root_pid": 4474,
-            "token": "f3f635118558434c99d034cdf2d1599a"
+            "session": 10186,
+            "group": 10186,
+            "root_pid": 10186,
+            "token": "788d26779cf74c55b6de44a37d085bc5"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
           "observed_members": []
         },
-        "cleanup_remaining_end": 27.276094538000052,
+        "cleanup_remaining_end": 26.875694869999734,
         "label": "baseline-checkout"
       },
       {
@@ -171,37 +175,37 @@
           "worktree",
           "add",
           "--detach",
-          "/tmp/qa065/latest/qa065-fixed059",
+          "/workspace/qa065-followup/valid/qa065-fixed059",
           "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "git",
           "worktree",
           "add",
           "--detach",
-          "/tmp/qa065/latest/qa065-fixed059",
+          "/workspace/qa065-followup/valid/qa065-fixed059",
           "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
         ],
-        "cwd": "/workspace/RPG-maker",
-        "pid": 4497,
-        "started_utc": "2026-10-11T00:12:54.277024+00:00",
-        "started_monotonic": 1059.592894557,
-        "accepted_utc": "2026-10-11T00:12:54.276592+00:00",
-        "accepted_monotonic": 1059.592458059,
-        "ended_utc": "2026-10-11T00:12:57.047501+00:00",
-        "ended_monotonic": 1062.363365596,
+        "cwd": "/workspace/qa065-followup/isolated",
+        "pid": 10197,
+        "started_utc": "2026-10-11T00:57:17.959351+00:00",
+        "started_monotonic": 3723.275226481,
+        "accepted_utc": "2026-10-11T00:57:17.958755+00:00",
+        "accepted_monotonic": 3723.274619141,
+        "ended_utc": "2026-10-11T00:57:21.500403+00:00",
+        "ended_monotonic": 3726.816260595,
         "terminal": true,
-        "seconds": 2.7709075370000846,
+        "seconds": 3.5416414540000005,
         "budget_seconds": 30,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 29.999992709000026,
-        "deadline_remaining_end": 27.22908517199994,
+        "deadline_remaining_start": 29.999992838999788,
+        "deadline_remaining_end": 26.458351384999787,
         "kill": {
           "attempted": false,
           "ok": null
@@ -211,28 +215,28 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/fixed059-checkout.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/fixed059-checkout.log",
-        "log_sha256": "98954e1892345774669353f2f8dab7a52e7bd3406e2f05bb18c65d6d9b3600ee",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/fixed059-checkout.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/fixed059-checkout.log",
+        "log_sha256": "d435957e3ac1c2be59548756de2999f4b40fdec79f43cd81c0e7d5123a9003de",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/fixed059-checkout-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/fixed059-checkout-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 4497,
-            "group": 4497,
-            "root_pid": 4497,
-            "token": "5aca84ed8eca4d7c95fe10ff907bb59a"
+            "session": 10197,
+            "group": 10197,
+            "root_pid": 10197,
+            "token": "e78f28ced6cb486cab57add75393d9f5"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
           "observed_members": []
         },
-        "cleanup_remaining_end": 27.22908517199994,
+        "cleanup_remaining_end": 26.458351384999787,
         "label": "fixed059-checkout"
       }
     ],
@@ -240,36 +244,36 @@
       {
         "planned_argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/capture-tests"
+          "/workspace/qa065-followup/valid/native-evidence/task059/capture-tests"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/capture-tests"
+          "/workspace/qa065-followup/valid/native-evidence/task059/capture-tests"
         ],
-        "cwd": "/workspace/RPG-maker",
-        "pid": 4499,
-        "started_utc": "2026-10-11T00:12:57.048513+00:00",
-        "started_monotonic": 1062.364385925,
-        "accepted_utc": "2026-10-11T00:12:57.048035+00:00",
-        "accepted_monotonic": 1062.363901174,
-        "ended_utc": "2026-10-11T00:13:28.136631+00:00",
-        "ended_monotonic": 1093.45249575,
+        "cwd": "/workspace/qa065-followup/isolated",
+        "pid": 10199,
+        "started_utc": "2026-10-11T00:57:21.502894+00:00",
+        "started_monotonic": 3726.818767499,
+        "accepted_utc": "2026-10-11T00:57:21.501945+00:00",
+        "accepted_monotonic": 3726.81780998,
+        "ended_utc": "2026-10-11T00:57:54.541682+00:00",
+        "ended_monotonic": 3759.857547096,
         "terminal": true,
-        "seconds": 31.088594576000105,
+        "seconds": 33.03973711599974,
         "budget_seconds": 180,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 179.99999282900012,
-        "deadline_remaining_end": 148.91139825300002,
+        "deadline_remaining_start": 179.99999284899968,
+        "deadline_remaining_end": 146.96025573299994,
         "kill": {
           "attempted": false,
           "ok": null
@@ -279,77 +283,77 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/capture-tests.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/capture-tests.log",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/capture-tests.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/capture-tests.log",
         "log_sha256": "41cebcffe72bbd5dd5ca45c70b24d446ada564ad49d03c5933d81bdc0371ef2a",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/capture-tests-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/capture-tests-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 4499,
-            "group": 4499,
-            "root_pid": 4499,
-            "token": "a62c06adc3b44bd29b2173f297d73e6f"
+            "session": 10199,
+            "group": 10199,
+            "root_pid": 10199,
+            "token": "0fbd3b70579c4f93849516c0e0e2f1f5"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
           "observed_members": []
         },
-        "cleanup_remaining_end": 148.91139825300002,
+        "cleanup_remaining_end": 146.96025573299994,
         "label": "capture-tests"
       },
       {
         "planned_argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/tmp/qa065/latest/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+          "/workspace/qa065-followup/valid/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
           "--checkout",
-          "/tmp/qa065/latest/qa065-fixed059",
+          "/workspace/qa065-followup/valid/qa065-fixed059",
           "--code-sha",
           "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
           "--source-sha",
           "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
           "--self-test",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/scope.json"
+          "/workspace/qa065-followup/valid/native-evidence/task059/scope.json"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/tmp/qa065/latest/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+          "/workspace/qa065-followup/valid/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
           "--checkout",
-          "/tmp/qa065/latest/qa065-fixed059",
+          "/workspace/qa065-followup/valid/qa065-fixed059",
           "--code-sha",
           "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
           "--source-sha",
           "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
           "--self-test",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/scope.json"
+          "/workspace/qa065-followup/valid/native-evidence/task059/scope.json"
         ],
-        "cwd": "/tmp/qa065/latest/qa065-fixed059",
-        "pid": 5111,
-        "started_utc": "2026-10-11T00:13:28.169209+00:00",
-        "started_monotonic": 1093.485080195,
-        "accepted_utc": "2026-10-11T00:13:28.168722+00:00",
-        "accepted_monotonic": 1093.484585159,
-        "ended_utc": "2026-10-11T00:13:29.238808+00:00",
-        "ended_monotonic": 1094.554672406,
+        "cwd": "/workspace/qa065-followup/valid/qa065-fixed059",
+        "pid": 10362,
+        "started_utc": "2026-10-11T00:57:55.208211+00:00",
+        "started_monotonic": 3760.52408503,
+        "accepted_utc": "2026-10-11T00:57:55.205370+00:00",
+        "accepted_monotonic": 3760.521232347,
+        "ended_utc": "2026-10-11T00:57:56.225017+00:00",
+        "ended_monotonic": 3761.540881021,
         "terminal": true,
-        "seconds": 1.0700872469999467,
+        "seconds": 1.0196486740001092,
         "budget_seconds": 30,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 29.999988542999972,
-        "deadline_remaining_end": 28.929901296000025,
+        "deadline_remaining_start": 29.99999072599985,
+        "deadline_remaining_end": 28.98034205199974,
         "kill": {
           "attempted": false,
           "ok": null
@@ -359,63 +363,63 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/scope059.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/scope059.log",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/scope059.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/scope059.log",
         "log_sha256": "0c8f5e180a2922a3d6147083515e29ebba556e50cdb7a271fc240f1c3ed3c23c",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/scope059-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/scope059-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 5111,
-            "group": 5111,
-            "root_pid": 5111,
-            "token": "072743d2c8f5470895df2de5d97ad5e9"
+            "session": 10362,
+            "group": 10362,
+            "root_pid": 10362,
+            "token": "8428a916809242bc9ff2cee0bc885cf2"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
           "observed_members": []
         },
-        "cleanup_remaining_end": 28.929901296000025,
+        "cleanup_remaining_end": 28.98034205199974,
         "label": "scope059"
       },
       {
         "planned_argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/capture059"
+          "/workspace/qa065-followup/valid/native-evidence/task059/capture059"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/capture059"
+          "/workspace/qa065-followup/valid/native-evidence/task059/capture059"
         ],
-        "cwd": "/workspace/RPG-maker",
-        "pid": 5631,
-        "started_utc": "2026-10-11T00:13:29.250966+00:00",
-        "started_monotonic": 1094.566836853,
-        "accepted_utc": "2026-10-11T00:13:29.250623+00:00",
-        "accepted_monotonic": 1094.566487817,
-        "ended_utc": "2026-10-11T00:13:35.177481+00:00",
-        "ended_monotonic": 1100.493346303,
+        "cwd": "/workspace/qa065-followup/isolated",
+        "pid": 10882,
+        "started_utc": "2026-10-11T00:57:56.241379+00:00",
+        "started_monotonic": 3761.557250401,
+        "accepted_utc": "2026-10-11T00:57:56.240970+00:00",
+        "accepted_monotonic": 3761.556834464,
+        "ended_utc": "2026-10-11T00:58:02.171588+00:00",
+        "ended_monotonic": 3767.487452121,
         "terminal": true,
-        "seconds": 5.926858485999901,
+        "seconds": 5.930617656999857,
         "budget_seconds": 180,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 179.99999031499988,
-        "deadline_remaining_end": 174.07313182899998,
+        "deadline_remaining_start": 179.99999371000013,
+        "deadline_remaining_end": 174.06937605300027,
         "kill": {
           "attempted": false,
           "ok": null
@@ -425,103 +429,103 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/capture059.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/capture059.log",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/capture059.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/capture059.log",
         "log_sha256": "06db86565509143d5d50c028939b2bad18c3774552c67f4b468d289658e4270e",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/capture059-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/capture059-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 5631,
-            "group": 5631,
-            "root_pid": 5631,
-            "token": "d32abb16b867450387d530058409a014"
+            "session": 10882,
+            "group": 10882,
+            "root_pid": 10882,
+            "token": "b4ff36c2dca04f42a9cf5da26178afd8"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
           "observed_members": [
             {
-              "pid": 5730,
+              "pid": 10988,
               "state": "Z",
-              "group": 5729,
-              "session": 5631,
-              "start_ticks": 109751
+              "group": 10987,
+              "session": 10882,
+              "start_ticks": 376456
             },
             {
-              "pid": 5733,
+              "pid": 10991,
               "state": "Z",
-              "group": 5732,
-              "session": 5631,
-              "start_ticks": 109809
+              "group": 10990,
+              "session": 10882,
+              "start_ticks": 376514
             },
             {
-              "pid": 5736,
+              "pid": 10994,
               "state": "Z",
-              "group": 5736,
-              "session": 5631,
-              "start_ticks": 109822
+              "group": 10994,
+              "session": 10882,
+              "start_ticks": 376526
             },
             {
-              "pid": 5737,
+              "pid": 10995,
               "state": "Z",
-              "group": 5736,
-              "session": 5631,
-              "start_ticks": 109824
+              "group": 10994,
+              "session": 10882,
+              "start_ticks": 376528
             },
             {
-              "pid": 5743,
+              "pid": 11010,
               "state": "Z",
-              "group": 5742,
-              "session": 5631,
-              "start_ticks": 110010
+              "group": 11009,
+              "session": 10882,
+              "start_ticks": 376718
             }
           ]
         },
-        "cleanup_remaining_end": 174.07313182899998,
+        "cleanup_remaining_end": 174.06937605300027,
         "label": "capture059"
       },
       {
         "planned_argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
           "--checkout",
-          "/tmp/qa065/latest/qa059-baseline058",
+          "/workspace/qa065-followup/valid/qa059-baseline058",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/baseline058"
+          "/workspace/qa065-followup/valid/native-evidence/task059/baseline058"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
           "--checkout",
-          "/tmp/qa065/latest/qa059-baseline058",
+          "/workspace/qa065-followup/valid/qa059-baseline058",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/baseline058"
+          "/workspace/qa065-followup/valid/native-evidence/task059/baseline058"
         ],
-        "cwd": "/workspace/RPG-maker",
-        "pid": 5760,
-        "started_utc": "2026-10-11T00:13:35.179931+00:00",
-        "started_monotonic": 1100.495803045,
-        "accepted_utc": "2026-10-11T00:13:35.179468+00:00",
-        "accepted_monotonic": 1100.495333668,
-        "ended_utc": "2026-10-11T00:13:35.895635+00:00",
-        "ended_monotonic": 1101.211499601,
+        "cwd": "/workspace/qa065-followup/isolated",
+        "pid": 11027,
+        "started_utc": "2026-10-11T00:58:02.173140+00:00",
+        "started_monotonic": 3767.489012778,
+        "accepted_utc": "2026-10-11T00:58:02.172651+00:00",
+        "accepted_monotonic": 3767.488516689,
+        "ended_utc": "2026-10-11T00:58:02.889352+00:00",
+        "ended_monotonic": 3768.205217056,
         "terminal": true,
-        "seconds": 0.7161659329999566,
+        "seconds": 0.7167003670001577,
         "budget_seconds": 30,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 29.99999452199995,
-        "deadline_remaining_end": 29.283828588999995,
+        "deadline_remaining_start": 29.999992868999925,
+        "deadline_remaining_end": 29.283292501999767,
         "kill": {
           "attempted": false,
           "ok": null
@@ -531,75 +535,75 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/baseline058.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/baseline058.log",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/baseline058.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/baseline058.log",
         "log_sha256": "f380758166a5f62c611a34cb3bb54d684f12b77dfad97d2d25d3f3373caae0ef",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/baseline058-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/baseline058-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 5760,
-            "group": 5760,
-            "root_pid": 5760,
-            "token": "62a3ebb4509b4e03ad4b0ebb18ffc17c"
+            "session": 11027,
+            "group": 11027,
+            "root_pid": 11027,
+            "token": "6545a8b5d0d4499784175d6051378d90"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
           "observed_members": [
             {
-              "pid": 5767,
+              "pid": 11034,
               "state": "Z",
-              "group": 5760,
-              "session": 5760,
-              "start_ticks": 110067
+              "group": 11027,
+              "session": 11027,
+              "start_ticks": 376766
             }
           ]
         },
-        "cleanup_remaining_end": 29.283828588999995,
+        "cleanup_remaining_end": 29.283292501999767,
         "label": "baseline058"
       },
       {
         "planned_argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
           "--godot",
-          "/tmp/qa065/latest/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "/workspace/qa065-followup/valid/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/measurements"
+          "/workspace/qa065-followup/valid/native-evidence/task059/measurements"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
           "--godot",
-          "/tmp/qa065/latest/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "/workspace/qa065-followup/valid/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/measurements"
+          "/workspace/qa065-followup/valid/native-evidence/task059/measurements"
         ],
-        "cwd": "/workspace/RPG-maker",
-        "pid": 5768,
-        "started_utc": "2026-10-11T00:13:35.896751+00:00",
-        "started_monotonic": 1101.212622363,
-        "accepted_utc": "2026-10-11T00:13:35.896320+00:00",
-        "accepted_monotonic": 1101.212186306,
-        "ended_utc": "2026-10-11T00:13:56.868913+00:00",
-        "ended_monotonic": 1122.184758473,
+        "cwd": "/workspace/qa065-followup/isolated",
+        "pid": 11035,
+        "started_utc": "2026-10-11T00:58:02.890659+00:00",
+        "started_monotonic": 3768.206531101,
+        "accepted_utc": "2026-10-11T00:58:02.890211+00:00",
+        "accepted_monotonic": 3768.206076434,
+        "ended_utc": "2026-10-11T00:58:23.561290+00:00",
+        "ended_monotonic": 3788.877154179,
         "terminal": true,
-        "seconds": 20.97257216700018,
+        "seconds": 20.671077745000275,
         "budget_seconds": 180,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 179.99999267900012,
-        "deadline_remaining_end": 159.02742051199994,
+        "deadline_remaining_start": 179.99999307999997,
+        "deadline_remaining_end": 159.3289153349997,
         "kill": {
           "attempted": false,
           "ok": null
@@ -609,67 +613,67 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/measurements.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/measurements.log",
-        "log_sha256": "9cee287081f27c3709d5f268cbb36a5838fd8209e8d9db0df620284aa4cb07cf",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/measurements.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/measurements.log",
+        "log_sha256": "a613d80e3605f0e226c700248e6d0ee32afe04f0ebef01fe708ea46e9d1e8d84",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/measurements-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/measurements-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 5768,
-            "group": 5768,
-            "root_pid": 5768,
-            "token": "12722e5e9846437aa536f46382654d02"
+            "session": 11035,
+            "group": 11035,
+            "root_pid": 11035,
+            "token": "0187a50f198346bb85dd8ee813a7ce2f"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
           "observed_members": []
         },
-        "cleanup_remaining_end": 159.02742051199994,
+        "cleanup_remaining_end": 159.3289153349997,
         "label": "measurements"
       },
       {
         "planned_argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
           "--source-sha",
-          "3fe9d836efcc818230bca321eca4293db44669ef",
+          "b04ffade8faf3a722dac35d072dba50818d50cec",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/generation.json"
+          "/workspace/qa065-followup/valid/native-evidence/task059/generation.json"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
           "--source-sha",
-          "3fe9d836efcc818230bca321eca4293db44669ef",
+          "b04ffade8faf3a722dac35d072dba50818d50cec",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/generation.json"
+          "/workspace/qa065-followup/valid/native-evidence/task059/generation.json"
         ],
-        "cwd": "/workspace/RPG-maker",
-        "pid": 5973,
-        "started_utc": "2026-10-11T00:13:56.873152+00:00",
-        "started_monotonic": 1122.189025089,
-        "accepted_utc": "2026-10-11T00:13:56.872435+00:00",
-        "accepted_monotonic": 1122.18830003,
-        "ended_utc": "2026-10-11T00:13:57.037837+00:00",
-        "ended_monotonic": 1122.353701992,
+        "cwd": "/workspace/qa065-followup/isolated",
+        "pid": 11222,
+        "started_utc": "2026-10-11T00:58:23.562753+00:00",
+        "started_monotonic": 3788.87862444,
+        "accepted_utc": "2026-10-11T00:58:23.562285+00:00",
+        "accepted_monotonic": 3788.878151696,
+        "ended_utc": "2026-10-11T00:58:23.677391+00:00",
+        "ended_monotonic": 3788.993254965,
         "terminal": true,
-        "seconds": 0.16540196200003265,
+        "seconds": 0.1151032689999738,
         "budget_seconds": 30,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 29.99997883800006,
-        "deadline_remaining_end": 29.83457687600003,
+        "deadline_remaining_start": 29.99999262900019,
+        "deadline_remaining_end": 29.884889360000216,
         "kill": {
           "attempted": false,
           "ok": null
@@ -679,63 +683,63 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/generation-contract.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/generation-contract.log",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/generation-contract.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/generation-contract.log",
         "log_sha256": "c24b753e960279ba0a6c8793ad26b60b3f3aa3456e195dc261ecfc62078ca44d",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/generation-contract-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/generation-contract-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 5973,
-            "group": 5973,
-            "root_pid": 5973,
-            "token": "91f9e140069f4aacaa5da1eb0a91778b"
+            "session": 11222,
+            "group": 11222,
+            "root_pid": 11222,
+            "token": "46ba1f39456e4b19b98c4ae6fb49410a"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
           "observed_members": []
         },
-        "cleanup_remaining_end": 29.83457687600003,
+        "cleanup_remaining_end": 29.884889360000216,
         "label": "generation-contract"
       },
       {
         "planned_argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/generation-tests"
+          "/workspace/qa065-followup/valid/native-evidence/task059/generation-tests"
         ],
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/generation-tests"
+          "/workspace/qa065-followup/valid/native-evidence/task059/generation-tests"
         ],
-        "cwd": "/workspace/RPG-maker",
-        "pid": 6016,
-        "started_utc": "2026-10-11T00:13:57.039007+00:00",
-        "started_monotonic": 1122.354877727,
-        "accepted_utc": "2026-10-11T00:13:57.038582+00:00",
-        "accepted_monotonic": 1122.354447361,
-        "ended_utc": "2026-10-11T00:13:58.969268+00:00",
-        "ended_monotonic": 1124.285132816,
+        "cwd": "/workspace/qa065-followup/isolated",
+        "pid": 11265,
+        "started_utc": "2026-10-11T00:58:23.678915+00:00",
+        "started_monotonic": 3788.994786259,
+        "accepted_utc": "2026-10-11T00:58:23.678489+00:00",
+        "accepted_monotonic": 3788.994355649,
+        "ended_utc": "2026-10-11T00:58:26.904002+00:00",
+        "ended_monotonic": 3792.21986621,
         "terminal": true,
-        "seconds": 1.9306854550000025,
+        "seconds": 3.225510560999737,
         "budget_seconds": 30,
         "exit_code": 0,
         "timed_out": false,
         "timeout_kind": null,
         "exception": null,
         "exit_unavailable_reason": null,
-        "deadline_remaining_start": 29.999992679000115,
-        "deadline_remaining_end": 28.069307224000113,
+        "deadline_remaining_start": 29.999993278999682,
+        "deadline_remaining_end": 26.774482717999945,
         "kill": {
           "attempted": false,
           "ok": null
@@ -745,28 +749,36 @@
           "ok": true
         },
         "streams": "stdout+stderr",
-        "planned_log": "/tmp/qa065/latest/native-evidence/task059/generation-tests.log",
-        "log": "/tmp/qa065/latest/native-evidence/task059/generation-tests.log",
-        "log_sha256": "c4774032454f617082be6383cf3300542d6eb68fd2ef4d7b1ed945505f111a27",
+        "planned_log": "/workspace/qa065-followup/valid/native-evidence/task059/generation-tests.log",
+        "log": "/workspace/qa065-followup/valid/native-evidence/task059/generation-tests.log",
+        "log_sha256": "aeae78bb23d1bda333661edf9aa2cb822c031a99069cec77125ade61caf025c2",
         "result": {},
         "kill_point": null,
-        "record_path": "/tmp/qa065/latest/native-evidence/task059/generation-tests-process.json",
+        "record_path": "/workspace/qa065-followup/valid/native-evidence/task059/generation-tests-process.json",
         "record_saved": true,
         "supervision": {
           "mechanism": "Linux dedicated session",
           "configured": true,
           "ownership": {
-            "session": 6016,
-            "group": 6016,
-            "root_pid": 6016,
-            "token": "3ca126f868df49748566d9ed40f9e0b7"
+            "session": 11265,
+            "group": 11265,
+            "root_pid": 11265,
+            "token": "232d663f8f9c40df9a49f38127c19d0f"
           },
           "stopped": true,
           "stop_attempted": false,
           "reason": null,
-          "observed_members": []
+          "observed_members": [
+            {
+              "pid": 11484,
+              "state": "Z",
+              "group": 11483,
+              "session": 11265,
+              "start_ticks": 379124
+            }
+          ]
         },
-        "cleanup_remaining_end": 28.069307224000113,
+        "cleanup_remaining_end": 26.774482717999945,
         "label": "generation-tests"
       }
     ],
@@ -784,7 +796,7 @@
     }
   },
   "compact_evidence": {
-    "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
+    "source_sha": "b04ffade8faf3a722dac35d072dba50818d50cec",
     "code_sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
     "status": "PASS",
     "errors": [],
@@ -793,60 +805,91 @@
         "label": "generation-pins",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
-          "--fetch-pins"
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--fetch-pins",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/pins.json"
         ],
-        "cwd": "/workspace/RPG-maker",
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--fetch-pins",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/pins.json"
+        ],
+        "cwd": "/workspace/qa065-followup/isolated",
         "exit_code": 0,
-        "seconds": 0.06488749800018923,
+        "seconds": 0.11584519500001988,
         "budget_seconds": 30,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       },
       {
         "label": "baseline-checkout",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "git",
           "worktree",
           "add",
           "--detach",
-          "/tmp/qa065/latest/qa059-baseline058",
+          "/workspace/qa065-followup/valid/qa059-baseline058",
           "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
         ],
-        "cwd": "/workspace/RPG-maker",
+        "planned_argv": [
+          "git",
+          "worktree",
+          "add",
+          "--detach",
+          "/workspace/qa065-followup/valid/qa059-baseline058",
+          "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
+        ],
+        "cwd": "/workspace/qa065-followup/isolated",
         "exit_code": 0,
-        "seconds": 2.7238751659999707,
+        "seconds": 3.124296476999916,
         "budget_seconds": 30,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       },
       {
         "label": "fixed059-checkout",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "git",
           "worktree",
           "add",
           "--detach",
-          "/tmp/qa065/latest/qa065-fixed059",
+          "/workspace/qa065-followup/valid/qa065-fixed059",
           "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
         ],
-        "cwd": "/workspace/RPG-maker",
+        "planned_argv": [
+          "git",
+          "worktree",
+          "add",
+          "--detach",
+          "/workspace/qa065-followup/valid/qa065-fixed059",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
+        ],
+        "cwd": "/workspace/qa065-followup/isolated",
         "exit_code": 0,
-        "seconds": 2.7709075370000846,
+        "seconds": 3.5416414540000005,
         "budget_seconds": 30,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       }
     ],
@@ -855,146 +898,215 @@
         "label": "capture-tests",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/capture-tests"
+          "/workspace/qa065-followup/valid/native-evidence/task059/capture-tests"
         ],
-        "cwd": "/workspace/RPG-maker",
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/capture-tests"
+        ],
+        "cwd": "/workspace/qa065-followup/isolated",
         "exit_code": 0,
-        "seconds": 31.088594576000105,
+        "seconds": 33.03973711599974,
         "budget_seconds": 180,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       },
       {
         "label": "scope059",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/tmp/qa065/latest/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+          "/workspace/qa065-followup/valid/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
           "--checkout",
-          "/tmp/qa065/latest/qa065-fixed059",
+          "/workspace/qa065-followup/valid/qa065-fixed059",
           "--code-sha",
           "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
           "--source-sha",
           "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
           "--self-test",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/scope.json"
+          "/workspace/qa065-followup/valid/native-evidence/task059/scope.json"
         ],
-        "cwd": "/tmp/qa065/latest/qa065-fixed059",
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/qa065-followup/valid/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+          "--checkout",
+          "/workspace/qa065-followup/valid/qa065-fixed059",
+          "--code-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--source-sha",
+          "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+          "--self-test",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/scope.json"
+        ],
+        "cwd": "/workspace/qa065-followup/valid/qa065-fixed059",
         "exit_code": 0,
-        "seconds": 1.0700872469999467,
+        "seconds": 1.0196486740001092,
         "budget_seconds": 30,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       },
       {
         "label": "capture059",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/capture059"
+          "/workspace/qa065-followup/valid/native-evidence/task059/capture059"
         ],
-        "cwd": "/workspace/RPG-maker",
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/capture059"
+        ],
+        "cwd": "/workspace/qa065-followup/isolated",
         "exit_code": 0,
-        "seconds": 5.926858485999901,
+        "seconds": 5.930617656999857,
         "budget_seconds": 180,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       },
       {
         "label": "baseline058",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
           "--checkout",
-          "/tmp/qa065/latest/qa059-baseline058",
+          "/workspace/qa065-followup/valid/qa059-baseline058",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/baseline058"
+          "/workspace/qa065-followup/valid/native-evidence/task059/baseline058"
         ],
-        "cwd": "/workspace/RPG-maker",
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+          "--checkout",
+          "/workspace/qa065-followup/valid/qa059-baseline058",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/baseline058"
+        ],
+        "cwd": "/workspace/qa065-followup/isolated",
         "exit_code": 0,
-        "seconds": 0.7161659329999566,
+        "seconds": 0.7167003670001577,
         "budget_seconds": 30,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       },
       {
         "label": "measurements",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
           "--godot",
-          "/tmp/qa065/latest/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "/workspace/qa065-followup/valid/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/measurements"
+          "/workspace/qa065-followup/valid/native-evidence/task059/measurements"
         ],
-        "cwd": "/workspace/RPG-maker",
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+          "--godot",
+          "/workspace/qa065-followup/valid/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/measurements"
+        ],
+        "cwd": "/workspace/qa065-followup/isolated",
         "exit_code": 0,
-        "seconds": 20.97257216700018,
+        "seconds": 20.671077745000275,
         "budget_seconds": 180,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       },
       {
         "label": "generation-contract",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
           "--source-sha",
-          "3fe9d836efcc818230bca321eca4293db44669ef",
+          "b04ffade8faf3a722dac35d072dba50818d50cec",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/generation.json"
+          "/workspace/qa065-followup/valid/native-evidence/task059/generation.json"
         ],
-        "cwd": "/workspace/RPG-maker",
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+          "--source-sha",
+          "b04ffade8faf3a722dac35d072dba50818d50cec",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/generation.json"
+        ],
+        "cwd": "/workspace/qa065-followup/isolated",
         "exit_code": 0,
-        "seconds": 0.16540196200003265,
+        "seconds": 0.1151032689999738,
         "budget_seconds": 30,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       },
       {
         "label": "generation-tests",
         "argv": [
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
           "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
-          "/workspace/RPG-maker/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
           "--output",
-          "/tmp/qa065/latest/native-evidence/task059/generation-tests"
+          "/workspace/qa065-followup/valid/native-evidence/task059/generation-tests"
         ],
-        "cwd": "/workspace/RPG-maker",
+        "planned_argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+          "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+          "--output",
+          "/workspace/qa065-followup/valid/native-evidence/task059/generation-tests"
+        ],
+        "cwd": "/workspace/qa065-followup/isolated",
         "exit_code": 0,
-        "seconds": 1.9306854550000025,
+        "seconds": 3.225510560999737,
         "budget_seconds": 30,
         "exception": null,
         "timed_out": false,
         "record_error": null,
+        "execution_status": null,
+        "blocked_by": null,
         "stopped": true
       }
     ],
@@ -1017,301 +1129,1186 @@
     },
     "scope": "059診断だけ。全取引受入・元取得不能jobの原因特定とは別。既存全artifactは保持。",
     "schema": 3,
-    "generation_code_sha": "03fbc3e0f19f32b303bf53d11a84f9302cdbc29c",
+    "generation_code_sha": "7aa7c6ff6eba620b93b741d58290fb698fb7cf5e",
     "targets": {
-      "generation-pins": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "baseline-checkout": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "fixed059-checkout": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "capture-tests": "3fe9d836efcc818230bca321eca4293db44669ef",
+      "generation-pins": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "baseline-checkout": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "fixed059-checkout": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "capture-tests": "b04ffade8faf3a722dac35d072dba50818d50cec",
       "scope059": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
-      "capture059": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "baseline058": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "measurements": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "generation-contract": "3fe9d836efcc818230bca321eca4293db44669ef",
-      "generation-tests": "3fe9d836efcc818230bca321eca4293db44669ef"
+      "capture059": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "baseline058": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "measurements": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "generation-contract": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "generation-tests": "b04ffade8faf3a722dac35d072dba50818d50cec"
     },
     "fixed_checkout": {
       "sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
       "scope_sha256": "d5d4a8c169436224ac742f054fed03fa89629b41c75ecd3e7df4b0ed54581d57",
       "clean": true
     },
+    "pins": {
+      "method": "verified-offline-git-objects",
+      "registration_sha": "520169e72fd5a86d485bbf29577a9a22f34e96c8",
+      "code_sha": "7aa7c6ff6eba620b93b741d58290fb698fb7cf5e",
+      "object_count": 1128,
+      "network_used": false,
+      "pack_sha256": "32b45937ec483311fe84a8fdc1589730e327e3c253073a0590f058a4efbf184e",
+      "all_object_bytes_verified": true
+    },
     "archive": {
       "file": "diagnostic-originals.zip",
-      "bytes": 5831118,
-      "sha256": "751788e428a311d484c62da4a60220bfb2d24a3d6ce98fb55ea5775fdda263f5",
-      "members": 1949,
-      "uncompressed_bytes": 25403869
+      "bytes": 9281179,
+      "sha256": "98eef4533870f5b7591e19c8eded9ee04962d49c5d81529a7db4660869f19af7",
+      "members": 3175,
+      "uncompressed_bytes": 28363989
     }
   },
-  "r8": {
-    "source_sha": "3fe9d836efcc818230bca321eca4293db44669ef",
-    "results": [
-      {
-        "id": "R-01",
-        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
-        "exit_code": 0,
-        "status": "PASS",
-        "tests_ran": true,
-        "parser_failed": false,
-        "timed_out": false,
-        "gut_summary": {
-          "assertions": 765,
-          "failed_assertions": 0,
-          "invalid": false,
-          "pending": 0,
-          "tests": 2
-        },
-        "failure_messages": []
+  "invalid_pins": {
+    "status": "FAIL_EXPECTED",
+    "execution": {
+      "schema": 3,
+      "source_sha": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "code_sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+      "generation_code_sha": "7aa7c6ff6eba620b93b741d58290fb698fb7cf5e",
+      "checkout": "/workspace/qa065-followup/isolated",
+      "targets": {
+        "generation-pins": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "baseline-checkout": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "fixed059-checkout": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "capture-tests": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "scope059": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+        "capture059": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "baseline058": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "measurements": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "generation-contract": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "generation-tests": "b04ffade8faf3a722dac35d072dba50818d50cec"
       },
-      {
-        "id": "R-02",
-        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
-        "exit_code": 0,
-        "status": "PASS",
-        "tests_ran": true,
-        "parser_failed": false,
-        "timed_out": false,
-        "gut_summary": {
-          "assertions": 946,
-          "failed_assertions": 0,
-          "invalid": false,
-          "pending": 0,
-          "tests": 5
+      "status": "FAIL",
+      "setup": [
+        {
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+            "--fetch-pins",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/pins.json"
+          ],
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+            "--fetch-pins",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/pins.json"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "pid": 11525,
+          "started_utc": "2026-10-11T00:58:46.579110+00:00",
+          "started_monotonic": 3811.894982434,
+          "accepted_utc": "2026-10-11T00:58:46.578583+00:00",
+          "accepted_monotonic": 3811.894445734,
+          "ended_utc": "2026-10-11T00:58:46.644095+00:00",
+          "ended_monotonic": 3811.959959205,
+          "terminal": true,
+          "seconds": 0.06551347100003113,
+          "budget_seconds": 30,
+          "exit_code": 1,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": null,
+          "exit_unavailable_reason": null,
+          "deadline_remaining_start": 24.999992437999936,
+          "deadline_remaining_end": 24.934478966999905,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": true,
+            "ok": true
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/generation-pins.log",
+          "log": "/workspace/qa065-followup/invalid/native-evidence/task059/generation-pins.log",
+          "log_sha256": "a6240e258046f2043881fa302ae1e8bc82a3de90dc15e62265938289566b1931",
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/generation-pins-process.json",
+          "record_saved": true,
+          "supervision": {
+            "mechanism": "Linux dedicated session",
+            "configured": true,
+            "ownership": {
+              "session": 11525,
+              "group": 11525,
+              "root_pid": 11525,
+              "token": "aede91b74d8a467cbd694c7118f9aa5c"
+            },
+            "stopped": true,
+            "stop_attempted": false,
+            "reason": null,
+            "observed_members": []
+          },
+          "cleanup_remaining_end": 29.934478966999905,
+          "label": "generation-pins"
         },
-        "failure_messages": []
-      },
-      {
-        "id": "R-03",
-        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
-        "exit_code": 0,
-        "status": "PASS",
-        "tests_ran": true,
-        "parser_failed": false,
-        "timed_out": false,
-        "gut_summary": {
-          "assertions": 73,
-          "failed_assertions": 0,
-          "invalid": false,
-          "pending": 0,
-          "tests": 2
+        {
+          "planned_argv": [
+            "git",
+            "worktree",
+            "add",
+            "--detach",
+            "/workspace/qa065-followup/invalid/qa059-baseline058",
+            "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
+          ],
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "git",
+            "worktree",
+            "add",
+            "--detach",
+            "/workspace/qa065-followup/invalid/qa059-baseline058",
+            "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "pid": 11526,
+          "started_utc": "2026-10-11T00:58:46.645543+00:00",
+          "started_monotonic": 3811.961415933,
+          "accepted_utc": "2026-10-11T00:58:46.644879+00:00",
+          "accepted_monotonic": 3811.96074449,
+          "ended_utc": "2026-10-11T00:58:51.927757+00:00",
+          "ended_monotonic": 3817.243622137,
+          "terminal": true,
+          "seconds": 5.282877647000078,
+          "budget_seconds": 30,
+          "exit_code": 0,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": null,
+          "exit_unavailable_reason": null,
+          "deadline_remaining_start": 29.99999144700041,
+          "deadline_remaining_end": 24.717113800000334,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": true,
+            "ok": true
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/baseline-checkout.log",
+          "log": "/workspace/qa065-followup/invalid/native-evidence/task059/baseline-checkout.log",
+          "log_sha256": "b51aa5051fca6342738fa8dfec2dfd0a418225b8af35049af0e0168c072eb0c0",
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/baseline-checkout-process.json",
+          "record_saved": true,
+          "supervision": {
+            "mechanism": "Linux dedicated session",
+            "configured": true,
+            "ownership": {
+              "session": 11526,
+              "group": 11526,
+              "root_pid": 11526,
+              "token": "1ba9b32045d848efaad2cbd1a829bf0e"
+            },
+            "stopped": true,
+            "stop_attempted": false,
+            "reason": null,
+            "observed_members": []
+          },
+          "cleanup_remaining_end": 24.717113800000334,
+          "label": "baseline-checkout"
         },
-        "failure_messages": []
-      },
-      {
-        "id": "R-04",
-        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
-        "exit_code": 0,
-        "status": "PASS",
-        "tests_ran": true,
-        "parser_failed": false,
-        "timed_out": false,
-        "gut_summary": {
-          "assertions": 293,
-          "failed_assertions": 0,
-          "invalid": false,
-          "pending": 0,
-          "tests": 1
+        {
+          "planned_argv": [
+            "git",
+            "worktree",
+            "add",
+            "--detach",
+            "/workspace/qa065-followup/invalid/qa065-fixed059",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
+          ],
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "git",
+            "worktree",
+            "add",
+            "--detach",
+            "/workspace/qa065-followup/invalid/qa065-fixed059",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "pid": 11528,
+          "started_utc": "2026-10-11T00:58:51.929259+00:00",
+          "started_monotonic": 3817.245132669,
+          "accepted_utc": "2026-10-11T00:58:51.928628+00:00",
+          "accepted_monotonic": 3817.244493648,
+          "ended_utc": "2026-10-11T00:58:58.965183+00:00",
+          "ended_monotonic": 3824.281048122,
+          "terminal": true,
+          "seconds": 7.036554473999786,
+          "budget_seconds": 30,
+          "exit_code": 0,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": null,
+          "exit_unavailable_reason": null,
+          "deadline_remaining_start": 29.99999224799967,
+          "deadline_remaining_end": 22.963437773999885,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": true,
+            "ok": true
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/fixed059-checkout.log",
+          "log": "/workspace/qa065-followup/invalid/native-evidence/task059/fixed059-checkout.log",
+          "log_sha256": "6a41bba5724ae9a27d498a67d73d5938964778a91f5b5be35cb2c7503384f4d4",
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/fixed059-checkout-process.json",
+          "record_saved": true,
+          "supervision": {
+            "mechanism": "Linux dedicated session",
+            "configured": true,
+            "ownership": {
+              "session": 11528,
+              "group": 11528,
+              "root_pid": 11528,
+              "token": "041bfb749c56483c8e3c88ba1f18bb78"
+            },
+            "stopped": true,
+            "stop_attempted": false,
+            "reason": null,
+            "observed_members": []
+          },
+          "cleanup_remaining_end": 22.963437773999885,
+          "label": "fixed059-checkout"
+        }
+      ],
+      "commands": [
+        {
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/capture-tests"
+          ],
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/capture-tests"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "pid": 11539,
+          "started_utc": "2026-10-11T00:58:58.966792+00:00",
+          "started_monotonic": 3824.282663439,
+          "accepted_utc": "2026-10-11T00:58:58.966267+00:00",
+          "accepted_monotonic": 3824.282132791,
+          "ended_utc": "2026-10-11T00:59:30.005987+00:00",
+          "ended_monotonic": 3855.321851781,
+          "terminal": true,
+          "seconds": 31.039718989999983,
+          "budget_seconds": 180,
+          "exit_code": 0,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": null,
+          "exit_unavailable_reason": null,
+          "deadline_remaining_start": 179.99999277000006,
+          "deadline_remaining_end": 148.96027378000008,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": true,
+            "ok": true
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/capture-tests.log",
+          "log": "/workspace/qa065-followup/invalid/native-evidence/task059/capture-tests.log",
+          "log_sha256": "41cebcffe72bbd5dd5ca45c70b24d446ada564ad49d03c5933d81bdc0371ef2a",
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/capture-tests-process.json",
+          "record_saved": true,
+          "supervision": {
+            "mechanism": "Linux dedicated session",
+            "configured": true,
+            "ownership": {
+              "session": 11539,
+              "group": 11539,
+              "root_pid": 11539,
+              "token": "6b6d0ee5154443df94337659a553b5c6"
+            },
+            "stopped": true,
+            "stop_attempted": false,
+            "reason": null,
+            "observed_members": []
+          },
+          "cleanup_remaining_end": 148.96027378000008,
+          "label": "capture-tests"
         },
-        "failure_messages": []
-      },
-      {
-        "id": "R-05",
-        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
-        "exit_code": 0,
-        "status": "PASS",
-        "tests_ran": true,
-        "parser_failed": false,
-        "timed_out": false,
-        "gut_summary": {
-          "assertions": 79,
-          "failed_assertions": 0,
-          "invalid": false,
-          "pending": 0,
-          "tests": 2
+        {
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/invalid/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+            "--checkout",
+            "/workspace/qa065-followup/invalid/qa065-fixed059",
+            "--code-sha",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+            "--source-sha",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+            "--self-test",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/scope.json"
+          ],
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/invalid/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+            "--checkout",
+            "/workspace/qa065-followup/invalid/qa065-fixed059",
+            "--code-sha",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+            "--source-sha",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+            "--self-test",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/scope.json"
+          ],
+          "cwd": "/workspace/qa065-followup/invalid/qa065-fixed059",
+          "pid": 11621,
+          "started_utc": "2026-10-11T00:59:30.857766+00:00",
+          "started_monotonic": 3856.173637814,
+          "accepted_utc": "2026-10-11T00:59:30.857162+00:00",
+          "accepted_monotonic": 3856.173025443,
+          "ended_utc": "2026-10-11T00:59:32.079288+00:00",
+          "ended_monotonic": 3857.395152601,
+          "terminal": true,
+          "seconds": 1.2221271580001485,
+          "budget_seconds": 30,
+          "exit_code": 0,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": null,
+          "exit_unavailable_reason": null,
+          "deadline_remaining_start": 29.99999086600019,
+          "deadline_remaining_end": 28.77786370800004,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": true,
+            "ok": true
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/scope059.log",
+          "log": "/workspace/qa065-followup/invalid/native-evidence/task059/scope059.log",
+          "log_sha256": "0c8f5e180a2922a3d6147083515e29ebba556e50cdb7a271fc240f1c3ed3c23c",
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/scope059-process.json",
+          "record_saved": true,
+          "supervision": {
+            "mechanism": "Linux dedicated session",
+            "configured": true,
+            "ownership": {
+              "session": 11621,
+              "group": 11621,
+              "root_pid": 11621,
+              "token": "e928db667e074ccc9b7bdbc2d5149ba4"
+            },
+            "stopped": true,
+            "stop_attempted": false,
+            "reason": null,
+            "observed_members": []
+          },
+          "cleanup_remaining_end": 28.77786370800004,
+          "label": "scope059"
         },
-        "failure_messages": []
-      },
-      {
-        "id": "R-06",
-        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
-        "exit_code": 0,
-        "status": "PASS",
-        "tests_ran": true,
-        "parser_failed": false,
-        "timed_out": false,
-        "gut_summary": {
-          "assertions": 87,
-          "failed_assertions": 0,
-          "invalid": false,
-          "pending": 0,
-          "tests": 2
+        {
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/capture059"
+          ],
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/capture059"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "pid": 12141,
+          "started_utc": "2026-10-11T00:59:32.097790+00:00",
+          "started_monotonic": 3857.413661638,
+          "accepted_utc": "2026-10-11T00:59:32.097405+00:00",
+          "accepted_monotonic": 3857.413270409,
+          "ended_utc": "2026-10-11T00:59:38.089717+00:00",
+          "ended_monotonic": 3863.405581536,
+          "terminal": true,
+          "seconds": 5.992311127000448,
+          "budget_seconds": 180,
+          "exit_code": 0,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": null,
+          "exit_unavailable_reason": null,
+          "deadline_remaining_start": 179.99999434200026,
+          "deadline_remaining_end": 174.00768321499982,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": true,
+            "ok": true
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/capture059.log",
+          "log": "/workspace/qa065-followup/invalid/native-evidence/task059/capture059.log",
+          "log_sha256": "06db86565509143d5d50c028939b2bad18c3774552c67f4b468d289658e4270e",
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/capture059-process.json",
+          "record_saved": true,
+          "supervision": {
+            "mechanism": "Linux dedicated session",
+            "configured": true,
+            "ownership": {
+              "session": 12141,
+              "group": 12141,
+              "root_pid": 12141,
+              "token": "845ff53330c04c548436de5a33678fd8"
+            },
+            "stopped": true,
+            "stop_attempted": false,
+            "reason": null,
+            "observed_members": [
+              {
+                "pid": 12240,
+                "state": "Z",
+                "group": 12239,
+                "session": 12141,
+                "start_ticks": 386048
+              },
+              {
+                "pid": 12243,
+                "state": "Z",
+                "group": 12242,
+                "session": 12141,
+                "start_ticks": 386106
+              },
+              {
+                "pid": 12246,
+                "state": "Z",
+                "group": 12246,
+                "session": 12141,
+                "start_ticks": 386118
+              },
+              {
+                "pid": 12247,
+                "state": "Z",
+                "group": 12246,
+                "session": 12141,
+                "start_ticks": 386120
+              },
+              {
+                "pid": 12253,
+                "state": "Z",
+                "group": 12252,
+                "session": 12141,
+                "start_ticks": 386305
+              }
+            ]
+          },
+          "cleanup_remaining_end": 174.00768321499982,
+          "label": "capture059"
         },
-        "failure_messages": []
-      },
-      {
-        "id": "R-07",
-        "verify": "godot --headless --path . --script res://tools/smoke_first_region.gd",
-        "exit_code": 0,
-        "status": "PASS",
-        "tests_ran": true,
-        "parser_failed": false,
-        "timed_out": false,
-        "gut_summary": null,
-        "failure_messages": []
-      },
-      {
-        "id": "R-08",
-        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
-        "exit_code": 0,
-        "status": "PASS",
-        "tests_ran": true,
-        "parser_failed": false,
-        "timed_out": false,
-        "gut_summary": {
-          "assertions": 2302,
-          "failed_assertions": 0,
-          "invalid": false,
-          "pending": 0,
-          "tests": 17
+        {
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+            "--checkout",
+            "/workspace/qa065-followup/invalid/qa059-baseline058",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/baseline058"
+          ],
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+            "--checkout",
+            "/workspace/qa065-followup/invalid/qa059-baseline058",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/baseline058"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "pid": 12270,
+          "started_utc": "2026-10-11T00:59:38.091237+00:00",
+          "started_monotonic": 3863.407109002,
+          "accepted_utc": "2026-10-11T00:59:38.090686+00:00",
+          "accepted_monotonic": 3863.406552275,
+          "ended_utc": "2026-10-11T00:59:38.807065+00:00",
+          "ended_monotonic": 3864.122929849,
+          "terminal": true,
+          "seconds": 0.7163775739995799,
+          "budget_seconds": 30,
+          "exit_code": 0,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": null,
+          "exit_unavailable_reason": null,
+          "deadline_remaining_start": 29.99999287999981,
+          "deadline_remaining_end": 29.28361530600023,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": true,
+            "ok": true
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/baseline058.log",
+          "log": "/workspace/qa065-followup/invalid/native-evidence/task059/baseline058.log",
+          "log_sha256": "f380758166a5f62c611a34cb3bb54d684f12b77dfad97d2d25d3f3373caae0ef",
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/baseline058-process.json",
+          "record_saved": true,
+          "supervision": {
+            "mechanism": "Linux dedicated session",
+            "configured": true,
+            "ownership": {
+              "session": 12270,
+              "group": 12270,
+              "root_pid": 12270,
+              "token": "ebdd0776a22e419ba8e206e29eb32842"
+            },
+            "stopped": true,
+            "stop_attempted": false,
+            "reason": null,
+            "observed_members": [
+              {
+                "pid": 12277,
+                "state": "Z",
+                "group": 12270,
+                "session": 12270,
+                "start_ticks": 386358
+              }
+            ]
+          },
+          "cleanup_remaining_end": 29.28361530600023,
+          "label": "baseline058"
         },
-        "failure_messages": []
+        {
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+            "--godot",
+            "/workspace/qa065-followup/invalid/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/measurements"
+          ],
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+            "--godot",
+            "/workspace/qa065-followup/invalid/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/measurements"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "pid": 12278,
+          "started_utc": "2026-10-11T00:59:38.808396+00:00",
+          "started_monotonic": 3864.12426772,
+          "accepted_utc": "2026-10-11T00:59:38.807875+00:00",
+          "accepted_monotonic": 3864.123741029,
+          "ended_utc": "2026-10-11T00:59:59.816716+00:00",
+          "ended_monotonic": 3885.13257942,
+          "terminal": true,
+          "seconds": 21.008838391000154,
+          "budget_seconds": 180,
+          "exit_code": 0,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": null,
+          "exit_unavailable_reason": null,
+          "deadline_remaining_start": 179.9999925279999,
+          "deadline_remaining_end": 158.99115413699974,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": true,
+            "ok": true
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/measurements.log",
+          "log": "/workspace/qa065-followup/invalid/native-evidence/task059/measurements.log",
+          "log_sha256": "a613d80e3605f0e226c700248e6d0ee32afe04f0ebef01fe708ea46e9d1e8d84",
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/measurements-process.json",
+          "record_saved": true,
+          "supervision": {
+            "mechanism": "Linux dedicated session",
+            "configured": true,
+            "ownership": {
+              "session": 12278,
+              "group": 12278,
+              "root_pid": 12278,
+              "token": "ad68c46093ab4cce83f07174da380d34"
+            },
+            "stopped": true,
+            "stop_attempted": false,
+            "reason": null,
+            "observed_members": []
+          },
+          "cleanup_remaining_end": 158.99115413699974,
+          "label": "measurements"
+        },
+        {
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+            "--source-sha",
+            "b04ffade8faf3a722dac35d072dba50818d50cec",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/generation.json"
+          ],
+          "argv": null,
+          "cwd": "/workspace/qa065-followup/isolated",
+          "pid": null,
+          "started_utc": null,
+          "started_monotonic": null,
+          "accepted_utc": "2026-10-11T00:59:59.817673+00:00",
+          "accepted_monotonic": 3885.133539807,
+          "ended_utc": "2026-10-11T00:59:59.817732+00:00",
+          "ended_monotonic": 3885.133599707,
+          "terminal": true,
+          "seconds": 5.989999999655993e-05,
+          "budget_seconds": 30,
+          "exit_code": null,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": "RuntimeError: 依存失敗により未起動: generation-pins",
+          "exit_unavailable_reason": "not_started: RuntimeError: 依存失敗により未起動: generation-pins",
+          "deadline_remaining_start": 29.999992657999883,
+          "deadline_remaining_end": 29.999932757999886,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": false,
+            "ok": null
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/generation-contract.log",
+          "log": null,
+          "log_sha256": null,
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/generation-contract-process.json",
+          "record_saved": true,
+          "supervision": {
+            "configured": false,
+            "stopped": null,
+            "reason": "not_started"
+          },
+          "blocked_by": [
+            "generation-pins"
+          ],
+          "execution_status": "NOT_RUN",
+          "cleanup_remaining_end": 29.999932757999886,
+          "label": "generation-contract"
+        },
+        {
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/generation-tests"
+          ],
+          "argv": null,
+          "cwd": "/workspace/qa065-followup/isolated",
+          "pid": null,
+          "started_utc": null,
+          "started_monotonic": null,
+          "accepted_utc": "2026-10-11T00:59:59.818359+00:00",
+          "accepted_monotonic": 3885.134225499,
+          "ended_utc": "2026-10-11T00:59:59.818409+00:00",
+          "ended_monotonic": 3885.134276997,
+          "terminal": true,
+          "seconds": 5.1498000175342895e-05,
+          "budget_seconds": 30,
+          "exit_code": null,
+          "timed_out": false,
+          "timeout_kind": null,
+          "exception": "RuntimeError: 依存失敗により未起動: generation-pins",
+          "exit_unavailable_reason": "not_started: RuntimeError: 依存失敗により未起動: generation-pins",
+          "deadline_remaining_start": 29.999996314999862,
+          "deadline_remaining_end": 29.999944816999687,
+          "kill": {
+            "attempted": false,
+            "ok": null
+          },
+          "wait": {
+            "attempted": false,
+            "ok": null
+          },
+          "streams": "stdout+stderr",
+          "planned_log": "/workspace/qa065-followup/invalid/native-evidence/task059/generation-tests.log",
+          "log": null,
+          "log_sha256": null,
+          "result": {},
+          "kill_point": null,
+          "record_path": "/workspace/qa065-followup/invalid/native-evidence/task059/generation-tests-process.json",
+          "record_saved": true,
+          "supervision": {
+            "configured": false,
+            "stopped": null,
+            "reason": "not_started"
+          },
+          "blocked_by": [
+            "generation-pins"
+          ],
+          "execution_status": "NOT_RUN",
+          "cleanup_remaining_end": 29.999944816999687,
+          "label": "generation-tests"
+        }
+      ],
+      "failures": [
+        "generation-pins: exit=1",
+        "generation-pins: 実exit非0/欠落",
+        "generation-contract: 依存失敗により未起動: generation-pins",
+        "generation-contract: 専用tree停止未確認",
+        "generation-contract: exit=None",
+        "generation-contract: 実exit非0/欠落",
+        "generation-tests: 依存失敗により未起動: generation-pins",
+        "generation-tests: 専用tree停止未確認",
+        "generation-tests: exit=None",
+        "generation-tests: 実exit非0/欠落",
+        "原証拠契約: ValueError: 失敗隠蔽/未終端"
+      ],
+      "acceptance": "059固定範囲と最新継続診断。既存job/全取引結果は独立維持",
+      "fixed_checkout_before": {
+        "sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+        "scope_sha256": "d5d4a8c169436224ac742f054fed03fa89629b41c75ecd3e7df4b0ed54581d57",
+        "clean": true
+      },
+      "fixed_checkout_after": {
+        "sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+        "scope_sha256": "d5d4a8c169436224ac742f054fed03fa89629b41c75ecd3e7df4b0ed54581d57",
+        "clean": true
       }
-    ]
-  },
-  "transaction": {
-    "status": "PASS",
-    "case_count": 172,
-    "checks": 2178,
-    "kill_cases": 97,
-    "seconds": 86.77993748400013,
-    "budget_seconds": 180,
-    "failures": []
-  },
-  "propagation": {
-    "status": "PASS",
-    "seconds": 8.907187022000016,
-    "rows": [
-      {
-        "case": "control",
-        "expected_exit": 0,
-        "exit_code": 0,
-        "seconds": 0.4071790289999626,
-        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compact_evidence": {
+      "source_sha": "b04ffade8faf3a722dac35d072dba50818d50cec",
+      "code_sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+      "status": "FAIL",
+      "errors": [
+        "execution status=FAIL",
+        "generation-pins: exit=1",
+        "generation-pins: 実exit非0/欠落",
+        "generation-contract: 依存失敗により未起動: generation-pins",
+        "generation-contract: 専用tree停止未確認",
+        "generation-contract: exit=None",
+        "generation-contract: 実exit非0/欠落",
+        "generation-tests: 依存失敗により未起動: generation-pins",
+        "generation-tests: 専用tree停止未確認",
+        "generation-tests: exit=None",
+        "generation-tests: 実exit非0/欠落",
+        "原証拠契約: ValueError: 失敗隠蔽/未終端",
+        "generation-pins: {\"label\": \"generation-pins\", \"argv\": [\"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python\", \"/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py\", \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python\", \"/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py\", \"--fetch-pins\", \"--output\", \"/workspace/qa065-followup/invalid/native-evidence/task059/pins.json\"], \"planned_argv\": [\"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python\", \"/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py\", \"--fetch-pins\", \"--output\", \"/workspace/qa065-followup/invalid/native-evidence/task059/pins.json\"], \"cwd\": \"/workspace/qa065-followup/isolated\", \"exit_code\": 1, \"seconds\": 0.06551347100003113, \"budget_seconds\": 30, \"exception\": null, \"timed_out\": false, \"record_error\": null, \"execution_status\": null, \"blocked_by\": null, \"stopped\": true}",
+        "generation-contract: {\"label\": \"generation-contract\", \"argv\": null, \"planned_argv\": [\"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python\", \"/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py\", \"--source-sha\", \"b04ffade8faf3a722dac35d072dba50818d50cec\", \"--output\", \"/workspace/qa065-followup/invalid/native-evidence/task059/generation.json\"], \"cwd\": \"/workspace/qa065-followup/isolated\", \"exit_code\": null, \"seconds\": 5.989999999655993e-05, \"budget_seconds\": 30, \"exception\": \"RuntimeError: 依存失敗により未起動: generation-pins\", \"timed_out\": false, \"record_error\": null, \"execution_status\": \"NOT_RUN\", \"blocked_by\": [\"generation-pins\"], \"stopped\": null}",
+        "generation-tests: {\"label\": \"generation-tests\", \"argv\": null, \"planned_argv\": [\"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python\", \"/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py\", \"--output\", \"/workspace/qa065-followup/invalid/native-evidence/task059/generation-tests\"], \"cwd\": \"/workspace/qa065-followup/isolated\", \"exit_code\": null, \"seconds\": 5.1498000175342895e-05, \"budget_seconds\": 30, \"exception\": \"RuntimeError: 依存失敗により未起動: generation-pins\", \"timed_out\": false, \"record_error\": null, \"execution_status\": \"NOT_RUN\", \"blocked_by\": [\"generation-pins\"], \"stopped\": null}",
+        "065世代証拠契約: ValueError: 失敗隠蔽/未終端",
+        "pins.json: FileNotFoundError: [Errno 2] No such file or directory: '/workspace/qa065-followup/invalid/native-evidence/task059/pins.json'"
+      ],
+      "setup": [
+        {
+          "label": "generation-pins",
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+            "--fetch-pins",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/pins.json"
+          ],
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+            "--fetch-pins",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/pins.json"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "exit_code": 1,
+          "seconds": 0.06551347100003113,
+          "budget_seconds": 30,
+          "exception": null,
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": null,
+          "blocked_by": null,
+          "stopped": true
+        },
+        {
+          "label": "baseline-checkout",
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "git",
+            "worktree",
+            "add",
+            "--detach",
+            "/workspace/qa065-followup/invalid/qa059-baseline058",
+            "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
+          ],
+          "planned_argv": [
+            "git",
+            "worktree",
+            "add",
+            "--detach",
+            "/workspace/qa065-followup/invalid/qa059-baseline058",
+            "579ca1f463aaf9e93275039a59cf9d1ffb86adb5"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "exit_code": 0,
+          "seconds": 5.282877647000078,
+          "budget_seconds": 30,
+          "exception": null,
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": null,
+          "blocked_by": null,
+          "stopped": true
+        },
+        {
+          "label": "fixed059-checkout",
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "git",
+            "worktree",
+            "add",
+            "--detach",
+            "/workspace/qa065-followup/invalid/qa065-fixed059",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
+          ],
+          "planned_argv": [
+            "git",
+            "worktree",
+            "add",
+            "--detach",
+            "/workspace/qa065-followup/invalid/qa065-fixed059",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "exit_code": 0,
+          "seconds": 7.036554473999786,
+          "budget_seconds": 30,
+          "exception": null,
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": null,
+          "blocked_by": null,
+          "stopped": true
+        }
+      ],
+      "commands": [
+        {
+          "label": "capture-tests",
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/capture-tests"
+          ],
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture057.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/capture-tests"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "exit_code": 0,
+          "seconds": 31.039718989999983,
+          "budget_seconds": 180,
+          "exception": null,
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": null,
+          "blocked_by": null,
+          "stopped": true
+        },
+        {
+          "label": "scope059",
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/invalid/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+            "--checkout",
+            "/workspace/qa065-followup/invalid/qa065-fixed059",
+            "--code-sha",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+            "--source-sha",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+            "--self-test",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/scope.json"
+          ],
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/invalid/qa065-fixed059/tools/fixtures/equipment-save-transaction-platform/scope059.py",
+            "--checkout",
+            "/workspace/qa065-followup/invalid/qa065-fixed059",
+            "--code-sha",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+            "--source-sha",
+            "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+            "--self-test",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/scope.json"
+          ],
+          "cwd": "/workspace/qa065-followup/invalid/qa065-fixed059",
+          "exit_code": 0,
+          "seconds": 1.2221271580001485,
+          "budget_seconds": 30,
+          "exception": null,
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": null,
+          "blocked_by": null,
+          "stopped": true
+        },
+        {
+          "label": "capture059",
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/capture059"
+          ],
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_capture059.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/capture059"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "exit_code": 0,
+          "seconds": 5.992311127000448,
+          "budget_seconds": 180,
+          "exception": null,
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": null,
+          "blocked_by": null,
+          "stopped": true
+        },
+        {
+          "label": "baseline058",
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+            "--checkout",
+            "/workspace/qa065-followup/invalid/qa059-baseline058",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/baseline058"
+          ],
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/reproduce058.py",
+            "--checkout",
+            "/workspace/qa065-followup/invalid/qa059-baseline058",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/baseline058"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "exit_code": 0,
+          "seconds": 0.7163775739995799,
+          "budget_seconds": 30,
+          "exception": null,
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": null,
+          "blocked_by": null,
+          "stopped": true
+        },
+        {
+          "label": "measurements",
+          "argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/process_exec059.py",
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+            "--godot",
+            "/workspace/qa065-followup/invalid/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/measurements"
+          ],
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/diagnostics057.py",
+            "--godot",
+            "/workspace/qa065-followup/invalid/native-evidence/bin/Godot_v4.7.2-stable_linux.x86_64",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/measurements"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "exit_code": 0,
+          "seconds": 21.008838391000154,
+          "budget_seconds": 180,
+          "exception": null,
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": null,
+          "blocked_by": null,
+          "stopped": true
+        },
+        {
+          "label": "generation-contract",
+          "argv": null,
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/generation_contract.py",
+            "--source-sha",
+            "b04ffade8faf3a722dac35d072dba50818d50cec",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/generation.json"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "exit_code": null,
+          "seconds": 5.989999999655993e-05,
+          "budget_seconds": 30,
+          "exception": "RuntimeError: 依存失敗により未起動: generation-pins",
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": "NOT_RUN",
+          "blocked_by": [
+            "generation-pins"
+          ],
+          "stopped": null
+        },
+        {
+          "label": "generation-tests",
+          "argv": null,
+          "planned_argv": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+            "/workspace/qa065-followup/isolated/tools/fixtures/equipment-save-transaction-platform/test_generation_contract.py",
+            "--output",
+            "/workspace/qa065-followup/invalid/native-evidence/task059/generation-tests"
+          ],
+          "cwd": "/workspace/qa065-followup/isolated",
+          "exit_code": null,
+          "seconds": 5.1498000175342895e-05,
+          "budget_seconds": 30,
+          "exception": "RuntimeError: 依存失敗により未起動: generation-pins",
+          "timed_out": false,
+          "record_error": null,
+          "execution_status": "NOT_RUN",
+          "blocked_by": [
+            "generation-pins"
+          ],
+          "stopped": null
+        }
+      ],
+      "tests": {
+        "capture-tests": {
+          "status": "PASS",
+          "count": 12,
+          "failures": []
+        },
+        "capture059": {
+          "status": "PASS",
+          "count": 27,
+          "failures": []
+        }
       },
-      {
-        "case": "missing-case",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.28410401899986937,
-        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      "measurements": {
+        "status": "PASS",
+        "samples": 12,
+        "failures": []
       },
-      {
-        "case": "zero-checks",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.03024035599992203,
-        "log_sha256": "bfdf64d6641fb8c84c82e8e0dbf60aa5e5754e4d71e5ff547653aab3285e31d4"
+      "scope": "059診断だけ。全取引受入・元取得不能jobの原因特定とは別。既存全artifactは保持。",
+      "schema": 3,
+      "generation_code_sha": "7aa7c6ff6eba620b93b741d58290fb698fb7cf5e",
+      "targets": {
+        "generation-pins": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "baseline-checkout": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "fixed059-checkout": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "capture-tests": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "scope059": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+        "capture059": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "baseline058": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "measurements": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "generation-contract": "b04ffade8faf3a722dac35d072dba50818d50cec",
+        "generation-tests": "b04ffade8faf3a722dac35d072dba50818d50cec"
       },
-      {
-        "case": "warning-log",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.29154774400012684,
-        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
+      "fixed_checkout": {
+        "sha": "41a34ea33fe184274e6722c88cdbca2a7ffd3708",
+        "scope_sha256": "d5d4a8c169436224ac742f054fed03fa89629b41c75ecd3e7df4b0ed54581d57",
+        "clean": true
       },
-      {
-        "case": "failed-exit",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.28796323999995366,
-        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
-      },
-      {
-        "case": "timeout",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.2824132670000381,
-        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
-      },
-      {
-        "case": "modified-bytes",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.28137348500013104,
-        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
-      },
-      {
-        "case": "missing-bytes",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.2813025899999957,
-        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
-      },
-      {
-        "case": "false-assert",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.27932486400004564,
-        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
-      },
-      {
-        "case": "wrong-phase",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.2899617349999062,
-        "log_sha256": "5e979a174d7a80df6bb140a0a6cf5c1c206ebf205bb2b3f4473b209d05c0ffd2"
-      },
-      {
-        "case": "missing-manifest",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.13910617800002,
-        "log_sha256": "defa92b33f4ed15e49ca1a45403ba692afbf249cc8507f60ca7c2eef4cf70828"
-      },
-      {
-        "case": "missing-summary",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.02869703499982279,
-        "log_sha256": "f643adff67047c3229bdefc7f694609ceba3cc42ab6240d8caba22ba011edb92"
-      },
-      {
-        "case": "rehash-output",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.2797836219999681,
-        "log_sha256": "82fdfa6b421374db63e36b6b1c90461b8bcfeeb8c138f72f0ab7e21e8d0451e5"
-      },
-      {
-        "case": "rehash-backup",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.2815723139999591,
-        "log_sha256": "26e61fc6efc2ae7c0df6d763f174091de03cf469b65bda8a17acc663de345ddb"
-      },
-      {
-        "case": "empty-log",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.3543218249999427,
-        "log_sha256": "d6ea0bbe6460e69bf8d0373e48209019bf0cee172aef71ccd24903ac401e97c1"
-      },
-      {
-        "case": "count-log-rehash",
-        "expected_exit": 1,
-        "exit_code": 1,
-        "seconds": 0.030821324000044115,
-        "log_sha256": "bfdf64d6641fb8c84c82e8e0dbf60aa5e5754e4d71e5ff547653aab3285e31d4"
+      "pins": {},
+      "archive": {
+        "file": "diagnostic-originals.zip",
+        "bytes": 3001992,
+        "sha256": "7dc9631c21cf8ba45ff23f4af824a25ab8d303f9f6e0d19350bf6b26ecc51676",
+        "members": 645,
+        "uncompressed_bytes": 14087948
       }
-    ]
+    }
   },
-  "codec": {
-    "case_count": 154,
-    "checks": 975,
-    "failures": []
+  "initial_submission": {
+    "sha": "37be1af2eea8f8612033607faed67e8a33eb94db",
+    "original_archive": "prior37/linux-artifacts.tar.gz",
+    "original_results": "local archive: prior37/linux-results.json",
+    "r8": "初回全8PASS。今回対象code/契約不変",
+    "protected": "初回26/26一致。今回対象不変",
+    "transaction": "初回172/2178/97kill PASS。親CIの本体未達を取り消さない。追加性能再試行なし",
+    "propagation": "初回control0/負例15各1",
+    "codec": "初回154/975"
   },
   "limitations": [
-    "Linux専用の今回1回の原全取引結果。過去失敗やWindows、F1/S3受入へ一般化しない",
-    "15分job全体/Windows/GitHub shallow通信は未検証"
+    "修正後Windows両phase/全CI/15分job未確認",
+    "GitHub API Forbidden迂回なし",
+    "原取引未達とWindows環境取得timeoutは担当外のまま"
   ]
 }
