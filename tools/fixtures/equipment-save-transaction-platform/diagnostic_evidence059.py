@@ -57,6 +57,14 @@ def collect(area, destination, source_sha, code_sha):
             errors.append('065世代証拠契約: ' + type(exc).__name__ + ': ' + str(exc))
     elif schema not in (None, 1, 2):
         errors.append('未知schema')
+    else:
+        # 過去schemaは過去の実行用。最新を5診断へ偽装して追加条件を落とさない。
+        import subprocess
+        has_new_contract = subprocess.run(
+            ['git', 'cat-file', '-e', source_sha + ':' + generation.FIXTURE + 'generation_contract.py'],
+            cwd=generation.ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+        if has_new_contract or 'generation_code_sha' in execution:
+            errors.append('065実行の旧schemaへのすり替え')
     tests = {}
     for label in ['capture-tests', 'capture059']:
         value = read(label + '/tests.json')

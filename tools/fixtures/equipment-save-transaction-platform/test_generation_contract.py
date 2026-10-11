@@ -14,7 +14,7 @@ CASES = ('scope-control', 'scope-outside', 'scope-production', 'scope-supervisor
          'scope-old-assertion', 'scope-workflow', 'scope-task-body', 'scope-old-evidence',
          'scope-submission-document', 'scope-submission-code',
          'map-control', 'map-missing', 'map-duplicate', 'map-replaced',
-         'evidence-control', 'wrapper-control', 'wrapper-altered', 'collector-control', 'collector-failure',
+         'evidence-control', 'wrapper-control', 'wrapper-altered', 'collector-control', 'collector-failure', 'collector-downgrade',
          'evidence-generation', 'evidence-fixed-sha',
          'evidence-code-sha', 'evidence-fixed-code', 'evidence-missing-command', 'evidence-duplicate-command',
          'evidence-missing-setup', 'evidence-failed-exit', 'evidence-timeout',
@@ -148,8 +148,11 @@ def main(args):
             if name == 'evidence-record-mismatch': edit('capture-tests-process.json', lambda v: v.update(pid=99))
             if name == 'evidence-missing-record': (area / 'capture-tests-process.json').rename(area / 'missing.saved')
             if name == 'evidence-rehashed-log': (area / 'capture-tests.log').write_bytes(b'altered\n')
-            if name.startswith('legacy-'):
+            if name.startswith('legacy-') or name == 'collector-downgrade':
                 value.update(schema=2); value['commands'] = value['commands'][:5]; value['setup'] = [value['setup'][1]]
+                for key in ('generation_code_sha', 'targets', 'checkout', 'fixed_checkout_before', 'fixed_checkout_after'):
+                    value.pop(key)
+                if name.startswith('legacy-'): value['source_sha'] = g.FIXED059
                 if name == 'legacy-missing-command': value['commands'].pop()
                 if name == 'legacy-missing-setup': value['setup'] = []
                 if name == 'legacy-failed-exit': value['commands'][0]['exit_code'] = 7
@@ -157,7 +160,7 @@ def main(args):
             write(area / 'generation-manifest.json', g.snapshot(area, ('generation-manifest.json',)))
             if name == 'evidence-modified-log': (area / 'capture-tests.log').write_bytes(b'altered\n')
             argv = [sys.executable, __file__, '--probe', 'collect' if name.startswith(('legacy-', 'collector-')) else 'evidence',
-                    '--area', str(area), '--code-sha', code, '--source-sha', source]
+                    '--area', str(area), '--code-sha', code, '--source-sha', g.FIXED059 if name.startswith('legacy-') else source]
         start = time.monotonic()
         child = subprocess.run(argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=30)
         (area / 'probe-stdout.log').write_bytes(child.stdout); (area / 'probe-stderr.log').write_bytes(child.stderr)
