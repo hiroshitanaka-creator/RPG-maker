@@ -67,20 +67,41 @@ jobs:
         shell: bash
         run: |
           python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/task059-save-qa-finalization/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin',sha,'579ca1f463aaf9e93275039a59cf9d1ffb86adb5','a6022f1e4a7689440928efe65db444336e9128e4'],check=True)"
+      - name: 066登録と065提出の完全SHAを取得
+        if: matrix.profile == 'latest'
+        shell: bash
+        run: |
+          python -c "import pathlib,re,subprocess; sha=pathlib.Path('docs/verification/save-native-build-contract-v1/code-fixed-sha.txt').read_text().strip(); assert re.fullmatch('[0-9a-f]{40}',sha); subprocess.run(['git','fetch','--no-tags','--depth=1','origin','962502020acc9446dfba13d8b177c8d3cd3aac84','e83bbce4018946da3e5f61f7b9f972474197f9e1',sha],check=True)"
       - name: 固定ビルド依存を導入
         run: python -m pip install scons==4.10.0
+      - name: 066退避前のGit原物を先行記録
+        if: always() && matrix.profile == 'latest'
+        shell: bash
+        run: python tools/fixtures/equipment-save-transaction-platform/native_build_contract_v1.py --output "$RUNNER_TEMP/native-evidence" --platform "${{ runner.os == 'Windows' && 'windows' || 'linux' }}" --phase "${{ matrix.phase }}" --stage before-shipped
       - name: 提出済みDLL・SOを実ロード照合用に保持
         run: python -c "import os,shutil; shutil.copytree('addons/equipment_save_io',os.environ['RUNNER_TEMP']+'/native-evidence/shipped/equipment_save_io')"
+      - name: 066退避品とGit原blobを独立照合
+        if: always() && matrix.profile == 'latest'
+        shell: bash
+        run: python tools/fixtures/equipment-save-transaction-platform/native_build_contract_v1.py --output "$RUNNER_TEMP/native-evidence" --platform "${{ runner.os == 'Windows' && 'windows' || 'linux' }}" --phase "${{ matrix.phase }}" --stage after-shipped
       - name: 固定依存からdebug/release DLL・SOを構築
         shell: bash
         run: |
-          python native/equipment_save_io/build.py --platform "${{ runner.os == 'Windows' && 'windows' || 'linux' }}" --output "$RUNNER_TEMP/native-evidence/build"
+          if [ "${{ matrix.profile }}" = "latest" ]; then
+            python tools/fixtures/equipment-save-transaction-platform/diagnostic_ci_build_v1.py --output "$RUNNER_TEMP/native-evidence" --platform "${{ runner.os == 'Windows' && 'windows' || 'linux' }}" --phase "${{ matrix.phase }}" --build
+          else
+            python native/equipment_save_io/build.py --platform "${{ runner.os == 'Windows' && 'windows' || 'linux' }}" --output "$RUNNER_TEMP/native-evidence/build"
+          fi
       - name: 公式4.7.2と専用検査
         shell: bash
         env:
           EQUIPMENT_SHIPPED_ADDON_ROOT: ${{ runner.temp }}/native-evidence/shipped/equipment_save_io
         run: |
           python tools/fixtures/equipment-save-transaction-platform/launch.py --output "$RUNNER_TEMP/native-evidence" --profile "${{ matrix.profile == 'fixed055' && 'fixed055' || 'latest' }}" --phase "${{ matrix.phase }}"
+      - name: 066検査後の実QA対象を照合（失敗時も採取）
+        if: always() && matrix.profile == 'latest'
+        shell: bash
+        run: python tools/fixtures/equipment-save-transaction-platform/native_build_contract_v1.py --output "$RUNNER_TEMP/native-evidence" --platform "${{ runner.os == 'Windows' && 'windows' || 'linux' }}" --phase "${{ matrix.phase }}" --stage after-tests
       - name: 保護照合（失敗時も実行）
         if: always()
         run: python tools/check_frozen_files.py
@@ -91,13 +112,13 @@ jobs:
           if [ "${{ matrix.profile }}" = "fixed057" ]; then
             python "$RUNNER_TEMP/diagnostic_fixed057.py" --checkout "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/native-evidence"
           else
-            python tools/fixtures/equipment-save-transaction-platform/diagnostic_ci057.py --output "$RUNNER_TEMP/native-evidence"
+            python tools/fixtures/equipment-save-transaction-platform/diagnostic_ci_build_v1.py --output "$RUNNER_TEMP/native-evidence" --platform "${{ runner.os == 'Windows' && 'windows' || 'linux' }}" --phase "${{ matrix.phase }}"
           fi
       - name: 059診断の原物と失敗内訳を独立保存（全原証拠も保持）
         if: always() && matrix.profile == 'latest'
         shell: bash
         run: |
-          python tools/fixtures/equipment-save-transaction-platform/diagnostic_evidence059.py --output "$RUNNER_TEMP/native-evidence" --destination "$RUNNER_TEMP/diagnostic059-small" --source-sha "$(git rev-parse HEAD)" --code-sha "$(cat docs/verification/task059-save-qa-finalization/code-fixed-sha.txt)"
+          python tools/fixtures/equipment-save-transaction-platform/diagnostic_evidence_build_v1.py --output "$RUNNER_TEMP/native-evidence" --platform "${{ runner.os == 'Windows' && 'windows' || 'linux' }}" --phase "${{ matrix.phase }}" --destination "$RUNNER_TEMP/diagnostic059-small"
       - name: 059診断だけの小さい原証拠を保存（失敗時も実行）
         if: always() && matrix.profile == 'latest'
         uses: actions/upload-artifact@v4
@@ -116,6 +137,7 @@ jobs:
           name: equipment-native-${{ matrix.os }}-${{ matrix.profile }}-${{ matrix.phase }}
           path: |
             ${{ runner.temp }}/native-evidence/
+            ${{ runner.temp }}/native-build-v1/
             addons/equipment_save_io/
             native/equipment_save_io/GODOT_CPP_LICENSE.txt
           if-no-files-found: error
