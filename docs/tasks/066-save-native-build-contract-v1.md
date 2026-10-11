@@ -43,6 +43,19 @@ AGENTS.md、docs/tasks/README.md、065/061依頼・報告、tools/fixtures/equip
 21. scope-diff.json
 未実行のOS/段階はNOT_RUNとし、架空archiveを作らない。ただし未実施を受入成功と扱わない。CI実行後の原証拠追加はこの集合内で行う。
 docs/tasks/README.mdとdocs/decision-log.mdは親が担当し、Codexは変更しない。その他の旧ファイル/旧証拠は不変。
+## 証拠の保存（2026-10-11 依頼者決定）
+この節は、上記の証拠ファイルの保存先と「依頼の状態のみ」の制限について、2026-10-11に依頼者が明示的に承認した改訂である。原記録を一つも捨てない・短縮しない・作り直さない条件、原検査・予算・失敗記録は変えない。検査コードの契約変更は別途承認を要する。
+- 小さい報告・結果・ログ・照合情報はGitHubの docs/verification/save-native-build-contract-v1/ に置く。1ファイル50,000,000 bytesを超えるものは置かない。
+- 大きい検証原記録は conferenceroomentrance@gmail.com のGoogleドライブ「RPG-maker-verification/066-save-native-build-contract-v1/」（親フォルダ17hxpsvlirTBu64v6TKsXMN6H9FbvXhFZ、タスクフォルダ1sljq4T1Hwl5IngAB4d3bgllk5gSkWhTQ）に置く。共有設定は変えない。
+- linux.tar.gz（2,341,335,484 bytes）と supplement-local-originals.tar.gz（52,275,524 bytes）は元の圧縮bytesで保管する。既存の .b64 原本と試験ファイルは削除しない。Libraryの識別情報を照合記録に残す。
+- 基準版cadde828の全追跡8,294ファイルのパス・種類・サイズ・SHA-256を記したcadde828-all-files.jsonlも指定Driveフォルダへ置き、一覧自体のサイズ・SHA-256・Drive IDを記録する。基準版のGit treeには追加しない。
+- 全129,196件の照合一覧 all-original-records.jsonl（88,655,491 bytes）はGoogleドライブに置く。GitHubには要約、一覧自体のサイズ・SHA-256・DriveファイルIDを置く。件数は容器と内容を含むrecord数であり、重複なしのファイル数とは区別する。
+- 新規 docs/verification/save-native-build-contract-v1/drive-evidence-index.json に、Driveの全ファイル名・サイズ・SHA-256・ファイルID・保存日時・元論理パス、置き場別の件数/合計サイズ、取得/照合手順とLibrary原本情報を記録する。docs/decision-log.mdの今回決定1行はルッカが追記する。
+- 今回のLinux原本は一括送信と400MiB分割が失敗したため、2026-10-11の追加承認により1部分100,000,000 bytes以下の24部分へ無損失分割する。順序・各サイズ/SHA-256/Drive ID・元全体のサイズ/SHA-256と連結手順を同じ記録に残す。400MiB部分に保存済みがあれば削除せず中止分として記録し、なければ0件と記録する。user cancelledの場合は再試行せず停止し、停止番号を報告する。別の保存先へ迂回しない。
+- 全ファイルをDriveから再取得してサイズ・SHA-256を照合する。分割の場合は全部分の再取得・順序どおり連結後の全体SHA-256一致も必須。分割後も送れない、または復元不一致の場合は止めてエラー原文を報告し、未照合は未照合と明示する。
+- 今後もタスク提出ごとに保存する。溜めて後でまとめて移さない。今回の保存決定をAGENTS.mdへ反映する案は別PRで依頼者のGitHub承認を待つ。
+- この変更と決定ログはPR経由。066は.github対象を含むため、依頼者によるGitHub上の承認が必要。workflow保存が拒否された場合は迂回せずエラー原文を報告する。保存の完了を検査成功・受入完了へ読み替えない。
+
 ## 契約の必須条件
 1. 旧065の登録/完成完全SHAで旧検査器・全期待値を固定し、完成範囲を検査する。最新の066承認集合は別に厳密検証。任意の将来変更を許さない。旧112 assertionと追加条件の継続/固定/新条件対応を一意に記録する。
 2. ビルド前：実HEAD完全SHA、tracked集合/mode/blobと実bytes、source/QA/workflow/addonsの許可Git差分を検査。dirtyを拒否。shipped退避品はGit原blobと独立に照合する。期待binary4pathは固定列挙し、manifestやbuild.jsonから期待集合を作らない。build.py/SConstruct/依存pin/profileと実依存treeを検査。
