@@ -470,5 +470,17 @@
     "raw_stdout_trailing_whitespace_lines": 163,
     "other_files_exit": 0,
     "reason": "原stdout bytesを修整しない"
+  },
+  "submission_scope_audit": {
+    "actual_source_sha": "3f5da30d0a00f610cf4ae08ec0327006ebd3c49d",
+    "status": "PASS",
+    "scope_only": true,
+    "source_bytes_verified": true,
+    "prior_manual_input": {
+      "input": "3f5da301cf2ad0e6b676f597508895a9212acbaf6",
+      "exit_code": 1,
+      "error": "GENERATION065_FAIL: ValueError: 完全SHA必須",
+      "reason": "手入力を拒否。実rev-parseのSHAで範囲とbytesを照合。完成コード変更なし"
+    }
   }
 }
