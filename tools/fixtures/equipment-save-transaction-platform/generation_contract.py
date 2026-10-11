@@ -2,12 +2,15 @@
 """065: 完成時の範囲、最新の継続条件、原証拠の世代を分けて照合する。"""
 import argparse
 import ast
+import base64
 import hashlib
 import json
 from pathlib import Path
 import re
 import subprocess
 import sys
+import struct
+import zlib
 
 ROOT = Path(__file__).resolve().parents[3]
 FIXTURE = 'tools/fixtures/equipment-save-transaction-platform/'
@@ -51,7 +54,7 @@ SCOPE_CASES = ('later-document', 'outside-code', 'outside-fixed', 'changed-fixed
                'changed-task-body', 'rewritten-decision-log', 'appended-decision-log')
 NEW_CONDITIONS = ('scope065', 'generation-identity', 'source-bytes', 'assertion-coverage',
                   'command-set', 'process-terminal', 'raw-evidence', 'failure-propagation',
-                  'fixed059-ten', 'latest-twelve-twentyseven-twelve', 'archive-members')
+                  'fixed059-ten', 'latest-twelve-twentyseven-twelve', 'archive-members', 'offline-fixed-objects', 'bounded-pins-cleanup', 'dependency-block-records')
 
 
 def require(ok, reason):
@@ -92,6 +95,115 @@ def changes(root, first, last):
 
 def strip_status(raw):
     return re.sub(rb'^- \xe7\x8a\xb6\xe6\x85\x8b.*$', b'', raw, flags=re.M)
+
+
+def tree_entries(raw):
+    """元treeのmode/name/object IDを読む。大きい過去証拠blobの取得は不要。"""
+    result = []; offset = 0
+    while offset < len(raw):
+        end = raw.index(b'\0', offset)
+        mode, name = raw[offset:end].split(b' ', 1)
+        require(end + 21 <= len(raw) and mode in (b'40000', b'100644', b'100755', b'120000'), 'Git tree形式')
+        text = name.decode('utf-8')
+        require(text not in ('', '.', '..') and '/' not in text and '\\' not in text, 'Git tree名')
+        result.append((mode.decode(), text, raw[end + 1:end + 21].hex()))
+        offset = end + 21
+    require(len({name for _, name, _ in result}) == len(result), 'Git tree名重複')
+    return result
+
+
+def read_objects(root, identifiers):
+    identifiers = sorted(set(identifiers))
+    raw = subprocess.check_output(['git', 'cat-file', '--batch'], cwd=root,
+                                  input=('\n'.join(identifiers) + '\n').encode())
+    result = {}; offset = 0
+    for oid in identifiers:
+        end = raw.index(b'\n', offset); header = raw[offset:end].decode().split()
+        require(len(header) == 3 and header[0] == oid, '固定Git object欠落:' + oid)
+        size = int(header[2]); body = raw[end + 1:end + 1 + size]
+        require(raw[end + 1 + size:end + 2 + size] == b'\n', 'Git object長')
+        result[oid] = (header[1], body); offset = end + 2 + size
+    require(offset == len(raw), 'Git batch余分なbytes')
+    return result
+
+
+def snapshot_objects(root, code):
+    """完成後に証拠へ固定する元commit/treeと専用code・依頼本文の元blob。"""
+    sha(code); identifiers = {BASE, code}
+    selected = set(CODE) | {TASK, EVIDENCE + 'assertion-map.json'}
+    for revision in (BASE, code):
+        identifiers.add(git(root, 'rev-parse', revision + '^{tree}').decode().strip())
+        for item in git(root, 'ls-tree', '-r', '-t', '-z', revision).split(b'\0'):
+            if not item: continue
+            metadata, path = item.split(b'\t', 1); _, kind, oid = metadata.decode().split()
+            if kind == 'tree' or path.decode() in selected: identifiers.add(oid)
+    objects = read_objects(root, identifiers)
+    value = dict(schema=1, registration_sha=BASE, code_sha=code,
+                 purpose='範囲照合用の元commit/treeと専用code/doc blob。過去の巨大証拠をcheckoutする資料ではない。',
+                 objects=[dict(oid=oid, type=kind, bytes=len(raw), data_base64=base64.b64encode(raw).decode())
+                          for oid, (kind, raw) in sorted(objects.items())])
+    validate_objects(value, code)
+    return value
+
+
+def validate_objects(value, code):
+    require(value.get('schema') == 1 and value.get('registration_sha') == BASE and
+            value.get('code_sha') == sha(code), '固定Git資料の世代/SHA')
+    objects = {}
+    for row in value['objects']:
+        oid = sha(row['oid']); kind = row['type']; raw = base64.b64decode(row['data_base64'], validate=True)
+        require(kind in ('commit', 'tree', 'blob') and type(row['bytes']) is int and len(raw) == row['bytes'], '固定Git資料の型/長')
+        require(hashlib.sha1((kind + ' ' + str(len(raw)) + '\0').encode() + raw).hexdigest() == oid, '固定Git object原bytes/SHA不一致')
+        require(oid not in objects, '固定Git object重複'); objects[oid] = (kind, raw)
+    required = {BASE, code}
+    for revision in (BASE, code):
+        require(objects[revision][0] == 'commit', '固定commit欠落')
+        line = objects[revision][1].split(b'\n', 1)[0]
+        require(line.startswith(b'tree '), '固定commit root tree')
+        todo = [('', sha(line[5:].decode()))]; paths = {}
+        while todo:
+            prefix, oid = todo.pop(); required.add(oid)
+            require(objects[oid][0] == 'tree', '固定tree欠落')
+            for mode, name, child in tree_entries(objects[oid][1]):
+                path = prefix + name
+                if mode == '40000': todo.append((path + '/', child))
+                else: paths[path] = child
+        selected = (set(CODE) | {TASK, EVIDENCE + 'assertion-map.json'}) & set(paths)
+        require(TASK in selected and (revision == BASE or set(CODE) <= selected), '固定code/doc欠落')
+        for path in selected:
+            oid = paths[path]; required.add(oid)
+            require(objects[oid][0] == 'blob', '固定code/doc blob欠落:' + path)
+    require(set(objects) == required, '固定Git資料の余分/欠落object')
+    return objects
+
+
+def import_objects(root, value, code):
+    """ネットワークなし。各元objectを完全SHA照合後、Git自身で保存・再読取りする。"""
+    objects = validate_objects(value, code)
+    pack = bytearray(b'PACK' + struct.pack('!II', 2, len(objects)))
+    for kind, raw in objects.values():
+        size = len(raw); first = ({'commit': 1, 'tree': 2, 'blob': 3}[kind] << 4) | (size & 15); size >>= 4
+        pack.append(first | (128 if size else 0))
+        while size:
+            part = size & 127; size >>= 7; pack.append(part | (128 if size else 0))
+        pack.extend(zlib.compress(raw))
+    pack.extend(hashlib.sha1(pack).digest())
+    subprocess.run(['git', 'unpack-objects', '-r'], cwd=root, input=bytes(pack), check=True)
+    require(read_objects(root, objects) == objects, '保存後の固定Git原bytes不一致')
+    return dict(method='verified-offline-git-objects', registration_sha=BASE, code_sha=code,
+                object_count=len(objects), network_used=False, pack_sha256=digest(pack),
+                all_object_bytes_verified=True)
+
+
+def ensure_pins(root, code):
+    value = load(root / EVIDENCE / 'hashes.json')['pin_objects']
+    result = import_objects(root, value, code)
+    # 059資料は現workflowが既に取得する。欠落時に新しいfetchや代替経路を開始しない。
+    for revision in (FIXED059, BASE059, REGISTER059):
+        require(subprocess.run(['git', 'cat-file', '-e', revision + '^{commit}'], cwd=root,
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0,
+                'workflow取得済みであるべき059資料が欠落:' + revision)
+    return result
 
 
 def scope(root, code, source=None):
@@ -224,6 +336,10 @@ def validate_execution(area, source, code):
     require(value.get('source_sha') == source and value.get('code_sha') == FIXED059 and
             value.get('generation_code_sha') == code, '世代/SHAすり替え')
     require(value.get('status') == 'PASS' and value.get('failures') == [], '失敗隠蔽/未終端')
+    pins = load(area / 'pins.json')
+    require(pins.get('method') == 'verified-offline-git-objects' and pins.get('code_sha') == code and
+            pins.get('registration_sha') == BASE and pins.get('network_used') is False and
+            pins.get('all_object_bytes_verified') is True, '固定Git資料の取得・原bytes照合未確認')
     require(value.get('fixed_checkout_before') == value.get('fixed_checkout_after') and
             value.get('fixed_checkout_before', {}).get('sha') == FIXED059 and
             value.get('fixed_checkout_before', {}).get('scope_sha256') == FIXED_SCOPE_SHA256 and
@@ -281,12 +397,10 @@ def validate_execution(area, source, code):
 def main(args):
     root = Path(args.checkout).resolve()
     code = sha(args.code_sha) if args.code_sha else pin(root)
-    if args.fetch_pins:
-        for value in (BASE, code, FIXED059, BASE059, REGISTER059):
-            if subprocess.run(['git', 'cat-file', '-e', value + '^{commit}'], cwd=root,
-                              stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
-                subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', value], cwd=root, check=True)
-        result = dict(required_shas=[BASE, code, FIXED059, BASE059, REGISTER059])
+    if args.export_pins:
+        result = snapshot_objects(root, code)
+    elif args.fetch_pins:
+        result = ensure_pins(root, code)
     elif args.validate_evidence:
         result = validate_execution(Path(args.validate_evidence), args.source_sha, code)
     elif args.scope_only:
@@ -303,7 +417,7 @@ if __name__ == '__main__':
     parser.add_argument('--checkout', default=str(ROOT)); parser.add_argument('--code-sha')
     parser.add_argument('--source-sha'); parser.add_argument('--output')
     parser.add_argument('--fetch-pins', action='store_true'); parser.add_argument('--scope-only', action='store_true')
-    parser.add_argument('--validate-evidence')
+    parser.add_argument('--validate-evidence'); parser.add_argument('--export-pins', action='store_true')
     try:
         main(parser.parse_args())
     except Exception as exc:

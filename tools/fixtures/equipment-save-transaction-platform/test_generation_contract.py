@@ -23,7 +23,10 @@ CASES = ('scope-control', 'scope-outside', 'scope-production', 'scope-supervisor
          'evidence-replaced-case', 'evidence-missing-sample', 'evidence-fixed-ten',
          'evidence-latest-cwd', 'evidence-budget', 'evidence-hidden-failure',
          'legacy-control', 'legacy-missing-command', 'legacy-missing-setup',
-         'legacy-failed-exit')
+         'legacy-failed-exit', 'pins-empty-repository-control', 'pins-wrong-sha',
+         'pins-missing-object', 'pins-duplicate-object', 'pins-corrupt-tree',
+         'pins-corrupt-code', 'pins-rehashed-code', 'pins-corrupt-commit',
+         'pins-timeout-control', 'pins-blocked-control', 'pins-unconfirmed-control')
 
 
 def expected_exit(name):
@@ -36,11 +39,17 @@ def write(path, value):
 
 
 def commit_variant(root, base, area, path, raw):
-    env = dict(os.environ, GIT_INDEX_FILE=str(area / 'variant.index'))
-    subprocess.run(['git', 'read-tree', base], cwd=root, env=env, check=True)
+    # 範囲検査の反例は、元treeの全項目を保持して対象pathだけを変えた実Git commit。
+    # 巨大な過去証拠blobを読む必要はない。既存tree/hashと新blobをGitに保存する。
     blob = subprocess.check_output(['git', 'hash-object', '-w', '--stdin'], cwd=root, input=raw).decode().strip()
-    subprocess.run(['git', 'update-index', '--add', '--cacheinfo', '100644', blob, path], cwd=root, env=env, check=True)
-    tree = subprocess.check_output(['git', 'write-tree'], cwd=root, env=env).decode().strip()
+    def replace(tree, parts):
+        entries = {name: (mode, oid) for mode, name, oid in g.tree_entries(g.git(root, 'cat-file', 'tree', tree))} if tree else {}
+        if len(parts) == 1: entries[parts[0]] = ('100644', blob)
+        else: entries[parts[0]] = ('40000', replace(entries.get(parts[0], ('40000', None))[1], parts[1:]))
+        data = b''.join((mode + ' ' + name).encode() + b'\0' + bytes.fromhex(oid)
+                        for name, (mode, oid) in sorted(entries.items(), key=lambda item: (item[0] + ('/' if item[1][0] == '40000' else '')).encode()))
+        return subprocess.check_output(['git', 'hash-object', '-t', 'tree', '-w', '--stdin'], cwd=root, input=data).decode().strip()
+    tree = replace(g.git(root, 'rev-parse', base + '^{tree}').decode().strip(), path.split('/'))
     return subprocess.check_output(['git', '-c', 'user.name=QA', '-c', 'user.email=qa@example.invalid',
                                     'commit-tree', tree, '-p', base], cwd=root, input=b'065 scope fixture\n').decode().strip()
 
@@ -84,7 +93,76 @@ def fixture(area, source, code):
     write(area / 'generation-tests/tests.json', dict(status='PASS', cases=[
         dict(case=c, expected_exit=expected_exit(c), exit_code=expected_exit(c)) for c in CASES]))
     write(area / 'execution.json', value)
+    write(area / 'pins.json', dict(method='verified-offline-git-objects',registration_sha=g.BASE,
+          code_sha=code,network_used=False,all_object_bytes_verified=True))
     return value
+
+
+def pins_probe(name, area, code):
+    value = g.load(area / 'pin-objects.json')
+    if name != 'pins-empty-repository-control':
+        g.validate_objects(value, code)
+        return
+    bare = area / 'empty.git'
+    subprocess.run(['git', 'init', '--bare', str(bare)], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    assert not (bare / 'objects/info/alternates').exists()
+    assert g.git(bare, 'remote') == b''
+    assert subprocess.run(['git','cat-file','-e',code],cwd=bare,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode != 0
+    # 既存workflowで提供済みの3commitをfixtureとして別途配置。065を代用しない。
+    for sha in (g.FIXED059,g.BASE059,g.REGISTER059):
+        raw=g.git(g.ROOT,'cat-file','commit',sha)
+        assert subprocess.check_output(['git','hash-object','-t','commit','-w','--stdin'],cwd=bare,input=raw).decode().strip()==sha
+    write(bare / g.EVIDENCE / 'hashes.json',dict(pin_objects=value))
+    result=g.ensure_pins(bare,code);assert result['network_used'] is False
+    g.scope(bare,code)
+    variant=commit_variant(bare,code,area,'outside-pins.txt','担当外fixture\n'.encode())
+    try:g.scope(bare,variant)
+    except ValueError:pass
+    else:raise AssertionError('独立object DBでも範囲違反を拒否する')
+    write(area/'offline-result.json',result)
+
+
+def timeout_probe(area, budget):
+    from diagnostic_ci057 import capture_diagnostic
+    fixture = g.ROOT / g.FIXTURE / 'tree_fixture059.py'
+    sentinel_area=area/'sentinel';sentinel_area.mkdir()
+    sentinel=subprocess.Popen([sys.executable,str(fixture),'--mode','sentinel','--area',str(sentinel_area)])
+    cap=None
+    try:
+        argv=[sys.executable,str(fixture),'--mode','parent','--area',str(area)]
+        cap,errors=capture_diagnostic(argv,area/'child.log',area/'process.json',g.ROOT,budget,pins=True)
+        row=cap.row
+        assert errors and row['timed_out'] and row['exit_code'] != 0
+        assert row['supervision']['stopped'] is True and row['wait']['ok'] is True
+        assert row['cleanup_remaining_end'] > 0 and row['seconds'] < budget
+        assert sentinel.poll() is None
+        before=(area/'grandchild.heartbeat').read_bytes();time.sleep(.02)
+        assert (area/'grandchild.heartbeat').read_bytes()==before
+        assert g.load(area/'process.json')==row
+        try:g.record_ok(row,budget)
+        except ValueError:pass
+        else:raise AssertionError('回収成功をコマンド成功へ書き換えない')
+        write(area/'timeout-result.json',dict(status='PASS',budget=budget,process=row,sentinel_survived=True,
+              scope='実30秒枠' if budget==30 else '縮尺。実30秒枠の証明とは別。'))
+    finally:
+        (area/'release').write_bytes(b'fixture cleanup');(sentinel_area/'release').write_bytes(b'fixture cleanup')
+        sentinel.wait(timeout=2)
+        if cap is not None and cap.child is not None:cap.child.wait(timeout=2)
+
+
+def blocked_probe(area, unconfirmed=False):
+    from diagnostic_ci057 import capture_diagnostic,blocked_dependencies
+    previous=[dict(label='generation-pins',pid=123,exit_code=1,supervision=dict(stopped=not unconfirmed))]
+    assert blocked_dependencies('generation-contract',previous)==['generation-pins']
+    assert bool(blocked_dependencies('capture-tests',previous)) is unconfirmed
+    argv=[sys.executable,'-c','raise SystemExit("起動されてはならない")']
+    cap,errors=capture_diagnostic(argv,area/'blocked.log',area/'process.json',g.ROOT,30,
+                                 blocked_by=blocked_dependencies('generation-contract',previous))
+    row=cap.row
+    assert errors and row['execution_status']=='NOT_RUN' and row['blocked_by']==['generation-pins']
+    assert all(row[key] is None for key in ('pid','argv','exit_code','log'))
+    assert row['terminal'] and row['record_saved'] and row['supervision']['stopped'] is None
+    assert g.load(area/'process.json')==row
 
 
 def main(args):
@@ -95,7 +173,20 @@ def main(args):
     for name in CASES:
         area = output / name; area.mkdir()
         expected = expected_exit(name)
-        if name.startswith('scope-'):
+        if name.startswith('pins-'):
+            value=g.load(root/g.EVIDENCE/'hashes.json')['pin_objects']
+            if name=='pins-wrong-sha':value['code_sha']=g.FIXED059
+            if name=='pins-missing-object':value['objects'].pop()
+            if name=='pins-duplicate-object':value['objects'].append(value['objects'][0])
+            if name in ('pins-corrupt-tree','pins-corrupt-code','pins-rehashed-code','pins-corrupt-commit'):
+                kind={'pins-corrupt-tree':'tree','pins-corrupt-code':'blob','pins-rehashed-code':'blob','pins-corrupt-commit':'commit'}[name]
+                row=next(r for r in value['objects'] if r['type']==kind)
+                raw=g.base64.b64decode(row['data_base64'])+'改変'.encode()
+                row['data_base64']=g.base64.b64encode(raw).decode();row['bytes']=len(raw)
+                if name=='pins-rehashed-code':row['oid']=g.hashlib.sha1((kind+' '+str(len(raw))+'\0').encode()+raw).hexdigest()
+            write(area/'pin-objects.json',value)
+            argv=[sys.executable,__file__,'--probe',name,'--area',str(area),'--code-sha',code]
+        elif name.startswith('scope-'):
             target = code
             paths = {'outside': 'outside065.txt', 'production': 'scripts/game/equipment_save_transaction.gd',
                      'supervisor': g.FIXTURE + 'process_capture.py', 'old-assertion': g.FIXTURE + 'scope059.py',
@@ -176,9 +267,13 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(); parser.add_argument('--output'); parser.add_argument('--code-sha')
     parser.add_argument('--source-sha'); parser.add_argument('--probe'); parser.add_argument('--area')
+    parser.add_argument('--budget',type=float,default=1)
     args = parser.parse_args()
     try:
-        if args.probe == 'map': g.check_map(g.ROOT, g.load(Path(args.area) / 'map.json'))
+        if args.probe == 'pins-timeout-control': timeout_probe(Path(args.area),args.budget)
+        elif args.probe in ('pins-blocked-control','pins-unconfirmed-control'):blocked_probe(Path(args.area),args.probe=='pins-unconfirmed-control')
+        elif args.probe and args.probe.startswith('pins-'):pins_probe(args.probe,Path(args.area),args.code_sha)
+        elif args.probe == 'map': g.check_map(g.ROOT, g.load(Path(args.area) / 'map.json'))
         elif args.probe == 'evidence': g.validate_execution(Path(args.area), args.source_sha, args.code_sha)
         elif args.probe == 'collect':
             from diagnostic_evidence059 import collect

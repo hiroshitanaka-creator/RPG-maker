@@ -38,7 +38,7 @@ def collect(area, destination, source_sha, code_sha):
     commands = []
     setup = []
     for row in execution.get('setup', []) + execution.get('commands', []):
-        value = {key: row.get(key) for key in ['label', 'argv', 'cwd', 'exit_code', 'seconds', 'budget_seconds', 'exception', 'timed_out', 'record_error']}
+        value = {key: row.get(key) for key in ['label', 'argv', 'planned_argv', 'cwd', 'exit_code', 'seconds', 'budget_seconds', 'exception', 'timed_out', 'record_error', 'execution_status', 'blocked_by']}
         value['stopped'] = row.get('supervision', {}).get('stopped')
         (setup if row in execution.get('setup', []) else commands).append(value)
         if value['exit_code'] != 0 or value['stopped'] is not True:
@@ -81,7 +81,8 @@ def collect(area, destination, source_sha, code_sha):
                    scope='059診断だけ。全取引受入・元取得不能jobの原因特定とは別。既存全artifactは保持。')
     if schema == 3:
         summary.update(schema=3, generation_code_sha=execution.get('generation_code_sha'),
-                       targets=execution.get('targets'), fixed_checkout=execution.get('fixed_checkout_after'))
+                       targets=execution.get('targets'), fixed_checkout=execution.get('fixed_checkout_after'),
+                       pins=read('pins.json'))
     members = []
     links = []
     directories = []
