@@ -15,7 +15,7 @@ CASES = ('scope-control', 'scope-outside', 'scope-production', 'scope-supervisor
          'scope-submission-document', 'scope-submission-code',
          'map-control', 'map-missing', 'map-duplicate', 'map-replaced',
          'evidence-control', 'evidence-generation', 'evidence-fixed-sha',
-         'evidence-code-sha', 'evidence-missing-command', 'evidence-duplicate-command',
+         'evidence-code-sha', 'evidence-fixed-code', 'evidence-missing-command', 'evidence-duplicate-command',
          'evidence-missing-setup', 'evidence-failed-exit', 'evidence-timeout',
          'evidence-unconfirmed', 'evidence-missing-record', 'evidence-modified-log',
          'evidence-rehashed-log', 'evidence-record-mismatch', 'evidence-missing-case',
@@ -47,8 +47,8 @@ def fixture(area, source, code):
     value = dict(schema=3, fixture_only=True, source_sha=source, code_sha=g.FIXED059,
                  generation_code_sha=code, checkout=root, status='PASS', failures=[], setup=[], commands=[],
                  targets={label: g.FIXED059 if label == 'scope059' else source for label in g.SETUP + g.COMMANDS},
-                 fixed_checkout_before=dict(sha=g.FIXED059, clean=True, scope_sha256='fixture'),
-                 fixed_checkout_after=dict(sha=g.FIXED059, clean=True, scope_sha256='fixture'))
+                 fixed_checkout_before=dict(sha=g.FIXED059, clean=True, scope_sha256=g.FIXED_SCOPE_SHA256),
+                 fixed_checkout_after=dict(sha=g.FIXED059, clean=True, scope_sha256=g.FIXED_SCOPE_SHA256))
     scripts = ('test_capture057.py', 'scope059.py', 'test_capture059.py', 'reproduce058.py',
                'diagnostics057.py', 'generation_contract.py', 'test_generation_contract.py')
     for label in g.SETUP + g.COMMANDS:
@@ -115,6 +115,9 @@ def main(args):
             if name == 'evidence-generation': value['source_sha'] = g.FIXED059
             if name == 'evidence-fixed-sha': value['code_sha'] = source
             if name == 'evidence-code-sha': value['generation_code_sha'] = g.FIXED059
+            if name == 'evidence-fixed-code':
+                value['fixed_checkout_before']['scope_sha256'] = '0' * 64
+                value['fixed_checkout_after']['scope_sha256'] = '0' * 64
             if name == 'evidence-missing-command': value['commands'].pop()
             if name == 'evidence-duplicate-command': value['commands'].append(row)
             if name == 'evidence-missing-setup': value['setup'].pop()

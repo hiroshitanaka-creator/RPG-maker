@@ -52,7 +52,7 @@ def collect(area, destination, source_sha, code_sha):
     if schema == 3:
         try:
             generation.require(code_sha == generation.FIXED059, '059固定SHA不一致')
-            generation.validate_execution(area, source_sha, execution.get('generation_code_sha'))
+            generation.validate_execution(area, source_sha, generation.pin(generation.ROOT))
         except Exception as exc:
             errors.append('065世代証拠契約: ' + type(exc).__name__ + ': ' + str(exc))
     elif schema not in (None, 1, 2):

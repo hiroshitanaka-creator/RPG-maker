@@ -12,6 +12,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[3]
 FIXTURE = 'tools/fixtures/equipment-save-transaction-platform/'
 FIXED059 = '41a34ea33fe184274e6722c88cdbca2a7ffd3708'
+FIXED_SCOPE_SHA256 = 'd5d4a8c169436224ac742f054fed03fa89629b41c75ecd3e7df4b0ed54581d57'
 BASE059 = '579ca1f463aaf9e93275039a59cf9d1ffb86adb5'
 REGISTER059 = 'a6022f1e4a7689440928efe65db444336e9128e4'
 BASE = '520169e72fd5a86d485bbf29577a9a22f34e96c8'
@@ -213,6 +214,7 @@ def validate_execution(area, source, code):
     require(value.get('status') == 'PASS' and value.get('failures') == [], '失敗隠蔽/未終端')
     require(value.get('fixed_checkout_before') == value.get('fixed_checkout_after') and
             value.get('fixed_checkout_before', {}).get('sha') == FIXED059 and
+            value.get('fixed_checkout_before', {}).get('scope_sha256') == FIXED_SCOPE_SHA256 and
             value.get('fixed_checkout_before', {}).get('clean') is True, '固定checkout原物未確認')
     require([r['label'] for r in value['commands']] == list(COMMANDS) and
             [r['label'] for r in value['setup']] == list(SETUP), '診断/準備の欠落/重複')
@@ -223,7 +225,7 @@ def validate_execution(area, source, code):
         persisted = load(area / (label + '-process.json'))
         require(persisted == {k: v for k, v in row.items() if k != 'label'}, '原process改変:' + label)
         raw = (area / (label + '.log')).read_bytes()
-        require(digest(raw) == row['log_sha256'], '原log改変:' + label)
+        require(raw and digest(raw) == row['log_sha256'], '原log欠落/改変:' + label)
         expected = FIXED059 if label == 'scope059' else source
         require(value['targets'].get(label) == expected, '実行世代:' + label)
         if label == 'scope059':
