@@ -26,6 +26,10 @@ CASES = ('scope-control', 'scope-outside', 'scope-production', 'scope-supervisor
          'legacy-failed-exit')
 
 
+def expected_exit(name):
+    return 0 if name.endswith('control') or name == 'scope-submission-document' else 1
+
+
 def write(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
@@ -77,7 +81,8 @@ def fixture(area, source, code):
     write(area / 'measurements/diagnostics.json', dict(source_sha=source, status='PASS', failures=[],
           samples=[dict(seed=s, mode=m) for s in ('typed', 'plain', 'granted', 'trial-missing', 'trial-corrupt', 'trial-unclean') for m in ('off', 'on')]))
     write(area / 'generation.json', dict(source_sha=source, code_sha=code, fixed059_sha=g.FIXED059))
-    write(area / 'generation-tests/tests.json', dict(status='PASS', cases=[dict(case=c, expected_exit=0, exit_code=0) for c in CASES]))
+    write(area / 'generation-tests/tests.json', dict(status='PASS', cases=[
+        dict(case=c, expected_exit=expected_exit(c), exit_code=expected_exit(c)) for c in CASES]))
     write(area / 'execution.json', value)
     return value
 
@@ -89,7 +94,7 @@ def main(args):
     rows = []
     for name in CASES:
         area = output / name; area.mkdir()
-        expected = 0 if name.endswith('control') or name == 'scope-submission-document' else 1
+        expected = expected_exit(name)
         if name.startswith('scope-'):
             target = code
             paths = {'outside': 'outside065.txt', 'production': 'scripts/game/equipment_save_transaction.gd',

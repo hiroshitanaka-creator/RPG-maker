@@ -271,10 +271,10 @@ def validate_execution(area, source, code):
     contract = load(area / 'generation.json')
     require(contract.get('source_sha') == source and contract.get('code_sha') == code and
             contract.get('fixed059_sha') == FIXED059, '世代契約検査失敗')
-    from test_generation_contract import CASES
+    from test_generation_contract import CASES, expected_exit
     tests = load(area / 'generation-tests/tests.json')
     require(tests.get('status') == 'PASS' and [r['case'] for r in tests['cases']] == list(CASES) and
-            all(r['exit_code'] == r['expected_exit'] for r in tests['cases']), '専用正負欠落/失敗')
+            all(r['exit_code'] == r['expected_exit'] == expected_exit(r['case']) for r in tests['cases']), '専用正負欠落/失敗')
     return value
 
 
