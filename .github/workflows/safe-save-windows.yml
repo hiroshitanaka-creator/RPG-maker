@@ -1,0 +1,73 @@
+name: Windows セーブ置換・往復検証
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  safe-save-windows:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    env:
+      PYTHONUTF8: '1'
+      PYTHONIOENCODING: utf-8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 公式固定版Godotを取得・照合
+        shell: pwsh
+        run: |
+          # docs/dependencies.mdと同じ公式版・SHA-256を既存手順で照合する。
+          & tools/get_godot.ps1
+          . tools/prepare_scope_env.ps1
+          Join-Path $PWD '.tools\bin' | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: インポート
+        shell: python
+        run: |
+          import re
+          import subprocess
+          import sys
+          process = subprocess.run(
+              'godot --headless --editor --import --quit', shell=True,
+              stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=600)
+          output = process.stdout.decode('utf-8', errors='replace')
+          print(output, end='', flush=True)
+          sys.exit(1 if process.returncode != 0 or re.search(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error', output) else 0)
+      - name: 068とR-06を既存判定・各300秒上限で検証
+        shell: python
+        run: |
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          sys.path.insert(0, str(Path('tools').resolve()))
+          from run_locked_checks import judge_output
+          cases = [
+              ('068', 'godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_safe_save_replace.gd -gexit'),
+              ('R-06', 'godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit'),
+          ]
+          failed = False
+          with Path(os.environ['GITHUB_STEP_SUMMARY']).open('a', encoding='utf-8') as summary:
+              summary.write('| 検査 | 結果 | テスト数 | アサーション数 |\n| --- | --- | ---: | ---: |\n')
+              for identifier, command in cases:
+                  print(f'実行: {command}', flush=True)
+                  timed_out = False
+                  try:
+                      process = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=300)
+                      code, raw = process.returncode, process.stdout
+                  except subprocess.TimeoutExpired as error:
+                      code, raw, timed_out = -1, error.stdout or b'', True
+                  output = raw.decode('utf-8', errors='replace')
+                  print(output, end='', flush=True)
+                  result = judge_output(identifier, command, code, output, timed_out)
+                  print(result, flush=True)
+                  gut = result['gut_summary'] or {}
+                  summary.write(f"| {identifier} | {result['status']} | {gut.get('tests', 0)} | {gut.get('assertions', 0)} |\n")
+                  failed = failed or result['status'] != 'PASS'
+          sys.exit(1 if failed else 0)
