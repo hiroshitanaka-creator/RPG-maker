@@ -1880,31 +1880,44 @@ func _relocate_saved_position(candidate: Dictionary) -> bool:
 func load_game(path: String) -> bool:
 	if _battle != null or not path.begins_with("user://") or ".." in path:
 		return false
-	for source in [path, path + ".bak", path + ".tmp"]:
+	var document := JSON.new()
+	if not FileAccess.file_exists(path) or document.parse(FileAccess.get_file_as_string(path)) != OK or not document.data is Dictionary:
+		return _load_recovery_candidates(path)
+	var decoded:=SavedDocument.decode(document.data)
+	var loaded := _validate_save_candidate(decoded)
+	if loaded.is_empty():return _load_recovery_candidates(path)
+	return _apply_loaded_save(path, path, loaded)
+
+
+func _load_recovery_candidates(path: String) -> bool:
+	for source in [path + ".bak", path + ".tmp"]:
 		var loaded := _read_save_candidate(source)
-		if loaded.is_empty():continue
-		var metrics: PlaySessionMetrics = loaded["metrics"]
-		var record_id: String = loaded["record_id"]
-		if source != path:
-			# 現在の試遊IDや計測を混ぜず、型復元した候補そのものを保存する。
-			# 保存失敗時には現在状態・計測・archiveへ一切触れない。
-			var recovered: Dictionary = loaded["state"].duplicate(true)
-			recovered["_play_session"] = metrics.snapshot()
-			if not record_id.is_empty():recovered["_trial_id"] = record_id
-			if not _write_save_document(path, recovered):return false
-		if _archive != null and _archive.identifier != record_id:
-			close_recording()
-		else:
-			flush_recording()
-		if not import_state(loaded["candidate"]):return false
-		_state = loaded["state"]
-		play_metrics = metrics
-		position_relocated = loaded["relocated"]
-		if _archive != null:
-			_archive.resume(record_id,play_metrics)
-			flush_recording()
-		return true
+		if not loaded.is_empty():return _apply_loaded_save(path, source, loaded)
 	return false
+
+
+func _apply_loaded_save(path: String, source: String, loaded: Dictionary) -> bool:
+	var metrics: PlaySessionMetrics = loaded["metrics"]
+	var record_id: String = loaded["record_id"]
+	if source != path:
+		# 現在の試遊IDや計測を混ぜず、型復元した候補そのものを保存する。
+		# 保存失敗時には現在状態・計測・archiveへ一切触れない。
+		var recovered: Dictionary = loaded["state"].duplicate(true)
+		recovered["_play_session"] = metrics.snapshot()
+		if not record_id.is_empty():recovered["_trial_id"] = record_id
+		if not _write_save_document(path, recovered):return false
+	if _archive != null and _archive.identifier != record_id:
+		close_recording()
+	else:
+		flush_recording()
+	if not import_state(loaded["candidate"]):return false
+	_state = loaded["state"]
+	play_metrics = metrics
+	position_relocated = loaded["relocated"]
+	if _archive != null:
+		_archive.resume(record_id,play_metrics)
+		flush_recording()
+	return true
 
 
 func _read_save_candidate(path: String) -> Dictionary:
@@ -1912,7 +1925,10 @@ func _read_save_candidate(path: String) -> Dictionary:
 	var document := JSON.new()
 	if document.parse(FileAccess.get_file_as_string(path)) != OK or not document.data is Dictionary:
 		return {}
-	var decoded:=SavedDocument.decode(document.data)
+	return _validate_save_candidate(SavedDocument.decode(document.data))
+
+
+func _validate_save_candidate(decoded: Dictionary) -> Dictionary:
 	if decoded.is_empty():return {}
 	var candidate: Dictionary = decoded.duplicate(true)
 	var saved_types: Variant = candidate.get("_saved_value_types",null)
