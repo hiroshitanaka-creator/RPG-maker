@@ -1823,31 +1823,45 @@ func save_game(path: String, record_id: String = "") -> bool:
 	if not record_id.is_empty() and not PlaythroughArchive.valid_id(record_id):
 		return false
 	flush_recording()
-	var temporary := path + ".tmp"
-	var file := FileAccess.open(temporary, FileAccess.WRITE)
-	if file == null:
-		return false
 	var document := _state.duplicate(true)
 	# 計測は進行状態と分離し、読むだけで進行状態の比較が変化しないようにする。
 	document["_play_session"] = play_metrics.snapshot()
 	var identifier := playthrough_id() if record_id.is_empty() else record_id
 	if not identifier.is_empty():
 		document["_trial_id"] = identifier
+	return _write_save_document(path, document)
+
+
+func _write_save_document(path: String, document: Dictionary) -> bool:
 	var saved_types := SavedValueTypes.describe(document)
 	if not saved_types["errors"].is_empty():
-		file.close()
-		DirAccess.remove_absolute(temporary)
 		return false
 	document["_saved_value_types"] = saved_types
+	var temporary := path + ".tmp"
+	var backup := path + ".bak"
+	# 前回の一時ファイルだけが有効なら、WRITEで切り詰める前に退避する。
+	if not _read_save_candidate(temporary).is_empty() and _read_save_candidate(path).is_empty() and _read_save_candidate(backup).is_empty():
+		if DirAccess.dir_exists_absolute(backup):return false
+		if FileAccess.file_exists(backup) and DirAccess.remove_absolute(backup) != OK:return false
+		if DirAccess.rename_absolute(temporary, backup) != OK:return false
+	var file := FileAccess.open(temporary, FileAccess.WRITE)
+	if file == null:
+		return false
 	# 長編の操作履歴も保持したまま、表示用の空白を省いて保存量を抑える。
 	file.store_string(SavedDocument.encode(document))
 	file.flush()
 	var written := file.get_error() == OK
 	file.close()
-	if not written:
-		DirAccess.remove_absolute(temporary)
+	if not written or _read_save_candidate(temporary).is_empty():
 		return false
-	return DirAccess.rename_absolute(temporary, path) == OK
+	# ここからはflush済みの新しい.tmpが残る。既存宛先へのrenameはしない。
+	if DirAccess.dir_exists_absolute(path) or DirAccess.dir_exists_absolute(backup):return false
+	if FileAccess.file_exists(path):
+		if FileAccess.file_exists(backup) and DirAccess.remove_absolute(backup) != OK:return false
+		if DirAccess.rename_absolute(path, backup) != OK:return false
+	if DirAccess.rename_absolute(temporary, path) != OK:return false
+	# 本物が確定してからだけ旧コピーを整理する。失敗しても両方を残す。
+	return not FileAccess.file_exists(backup) or DirAccess.remove_absolute(backup) == OK
 
 
 ## 直近の load_game で、歩けなくなった立ち位置を部屋の入口の扉の前へ置き直したか。
@@ -1864,30 +1878,58 @@ func _relocate_saved_position(candidate: Dictionary) -> bool:
 
 
 func load_game(path: String) -> bool:
-	position_relocated = false
-	if _battle != null or not path.begins_with("user://") or ".." in path or not FileAccess.file_exists(path):
+	if _battle != null or not path.begins_with("user://") or ".." in path:
 		return false
+	for source in [path, path + ".bak", path + ".tmp"]:
+		var loaded := _read_save_candidate(source)
+		if loaded.is_empty():continue
+		var metrics: PlaySessionMetrics = loaded["metrics"]
+		var record_id: String = loaded["record_id"]
+		if source != path:
+			# 現在の試遊IDや計測を混ぜず、型復元した候補そのものを保存する。
+			# 保存失敗時には現在状態・計測・archiveへ一切触れない。
+			var recovered: Dictionary = loaded["state"].duplicate(true)
+			recovered["_play_session"] = metrics.snapshot()
+			if not record_id.is_empty():recovered["_trial_id"] = record_id
+			if not _write_save_document(path, recovered):return false
+		if _archive != null and _archive.identifier != record_id:
+			close_recording()
+		else:
+			flush_recording()
+		if not import_state(loaded["candidate"]):return false
+		_state = loaded["state"]
+		play_metrics = metrics
+		position_relocated = loaded["relocated"]
+		if _archive != null:
+			_archive.resume(record_id,play_metrics)
+			flush_recording()
+		return true
+	return false
+
+
+func _read_save_candidate(path: String) -> Dictionary:
+	if not FileAccess.file_exists(path):return {}
 	var document := JSON.new()
 	if document.parse(FileAccess.get_file_as_string(path)) != OK or not document.data is Dictionary:
-		return false
+		return {}
 	var decoded:=SavedDocument.decode(document.data)
-	if decoded.is_empty():return false
+	if decoded.is_empty():return {}
 	var candidate: Dictionary = decoded.duplicate(true)
 	var saved_types: Variant = candidate.get("_saved_value_types",null)
 	var has_saved_types := candidate.has("_saved_value_types")
 	candidate.erase("_saved_value_types")
-	position_relocated = _relocate_saved_position(candidate)
+	var relocated := _relocate_saved_position(candidate)
 	var metrics := PlaySessionMetrics.new()
 	var raw_metrics: Variant = candidate.get("_play_session",{})
 	if not raw_metrics is Dictionary or not metrics.restore(raw_metrics):
-		return false
+		return {}
 	candidate.erase("_play_session")
 	var record_id: Variant = candidate.get("_trial_id","")
 	if not record_id is String or (not record_id.is_empty() and not PlaythroughArchive.valid_id(record_id)):
-		return false
+		return {}
 	candidate.erase("_trial_id")
 	if not _valid_state(_normalize_numbers(candidate)):
-		return false
+		return {}
 	var restored_state: Dictionary = _normalize_numbers(candidate)
 	var restored_metrics := metrics.snapshot()
 	if has_saved_types:
@@ -1895,28 +1937,17 @@ func load_game(path: String) -> bool:
 		typed_document["_play_session"] = restored_metrics
 		if not record_id.is_empty():typed_document["_trial_id"] = record_id
 		var restored := SavedValueTypes.restore(typed_document,saved_types)
-		if not restored["ok"]:return false
+		if not restored["ok"]:return {}
 		restored_state = restored["value"]
 		restored_metrics = restored_state["_play_session"]
 		restored_state.erase("_play_session")
 		restored_state.erase("_trial_id")
-		if not _valid_state(restored_state):return false
-	if not metrics.restore(restored_metrics):return false
+		if not _valid_state(restored_state):return {}
+	if not metrics.restore(restored_metrics):return {}
 	for field in restored_metrics:
 		if field != "version":metrics.set(field,restored_metrics[field])
-	if not SavedValueTypes.same_types(metrics.snapshot(),restored_metrics):return false
-	if _archive != null and _archive.identifier != record_id:
-		close_recording()
-	else:
-		flush_recording()
-	if not import_state(candidate):
-		return false
-	_state = restored_state
-	play_metrics = metrics
-	if _archive != null:
-		_archive.resume(record_id,play_metrics)
-		flush_recording()
-	return true
+	if not SavedValueTypes.same_types(metrics.snapshot(),restored_metrics):return {}
+	return {"candidate":candidate,"state":restored_state,"metrics":metrics,"record_id":record_id,"relocated":relocated}
 
 
 func integrated_preview(actor_id: String, ability_id: String, target_id: String="") -> Dictionary:

@@ -191,6 +191,12 @@ func export_report(path: String, context: Dictionary = {}) -> bool:
 
 static func write_json(path: String, value: Dictionary) -> bool:
 	var temporary := path+".tmp"
+	var backup := path+".bak"
+	# 前回の.tmpだけが読める場合も、切り詰める前にコピーを保全する。
+	if _readable_json(temporary) and not _readable_json(path) and not _readable_json(backup):
+		if DirAccess.dir_exists_absolute(backup):return false
+		if FileAccess.file_exists(backup) and DirAccess.remove_absolute(backup) != OK:return false
+		if DirAccess.rename_absolute(temporary,backup) != OK:return false
 	var file := FileAccess.open(temporary,FileAccess.WRITE)
 	if file == null:
 		return false
@@ -198,10 +204,21 @@ static func write_json(path: String, value: Dictionary) -> bool:
 	file.flush()
 	var written := file.get_error() == OK
 	file.close()
-	if not written:
-		DirAccess.remove_absolute(temporary)
+	if not written or not _readable_json(temporary):
 		return false
-	return DirAccess.rename_absolute(temporary,path) == OK
+	# 新しい.tmpがflush済みになるまでは、本物と古い.bakを残す。
+	if DirAccess.dir_exists_absolute(path) or DirAccess.dir_exists_absolute(backup):return false
+	if FileAccess.file_exists(path):
+		if FileAccess.file_exists(backup) and DirAccess.remove_absolute(backup) != OK:return false
+		if DirAccess.rename_absolute(path,backup) != OK:return false
+	if DirAccess.rename_absolute(temporary,path) != OK:return false
+	return not FileAccess.file_exists(backup) or DirAccess.remove_absolute(backup) == OK
+
+
+static func _readable_json(path: String) -> bool:
+	if not FileAccess.file_exists(path):return false
+	var parser := JSON.new()
+	return parser.parse(FileAccess.get_file_as_string(path)) == OK and parser.data is Dictionary
 
 
 static func _integers(value: Variant) -> Variant:
