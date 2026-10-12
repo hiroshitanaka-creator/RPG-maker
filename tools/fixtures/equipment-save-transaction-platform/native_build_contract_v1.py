@@ -734,6 +734,157 @@ def validate_build(area, evidence, identity, recorded_evidence=None):
     return row
 
 
+# 2026-10-12 承認済みv2。確認されたWindows import archiveだけを保全する。
+# *.a等のignore globを許可集合に転用しない。未知の生成物は原観測を残して拒否する。
+BYPRODUCTS_V2 = tuple(ADDON+'bin/libequipment_save_io.windows.'+target+'.x86_64.a'
+                      for target in ('template_debug','template_release'))
+BYPRODUCT_STAGES_V2 = ('after-build','after-tests','after-diagnostics')
+
+
+def byproduct_inventory(root):
+    result={}
+    for path in sorted((root/'addons').rglob('*')):
+        no_links(path,root)
+        if path.is_dir():continue
+        raw,mode=raw_file(path,root)
+        result[path.relative_to(root).as_posix()]=dict(bytes=len(raw),sha256=digest(raw),mode=mode)
+    return result
+
+
+def begin_byproducts(root,area,evidence,identity):
+    root=Path(root).resolve();evidence=Path(evidence).absolute()
+    no_links(evidence,evidence.anchor and Path(evidence.anchor))
+    require(root!=evidence and root not in evidence.parents,'byproduct-evidence-inside-checkout')
+    before=read_snapshot(area,'before-build',identity)
+    current_inventory(root,before['tracked'])  # ignoredを含め、既存addonの完全一致を再確認。
+    folder=evidence/'build-byproducts-v2'
+    require(not folder.exists(),'byproduct-evidence-exists')
+    folder.mkdir(parents=True,exist_ok=False)
+    inventory=byproduct_inventory(root)
+    expected={p:dict(bytes=r['bytes'],sha256=r['sha256'],mode=r['filesystem_mode'])
+              for p,r in before['files'].items() if p.startswith('addons/')}
+    require(inventory==expected,'byproduct-preexisting-or-changed')
+    value=dict(schema=2,identity=identity,before_snapshot_sha256=digest((area/'before-build/snapshot.json').read_bytes()),
+               observed_ns=time.monotonic_ns(),addon_files=inventory,
+               candidates=list(BYPRODUCTS_V2) if identity['os']=='windows' else [])
+    write_new(folder/'before.json',value)
+    receipt=digest((folder/'before.json').read_bytes())
+    print('NATIVE_BYPRODUCT_V2_BEFORE '+receipt,flush=True)
+    return receipt
+
+
+def preserve_byproducts(root,area,evidence,identity,before_receipt):
+    root=Path(root);folder=Path(evidence)/'build-byproducts-v2'
+    no_links(folder,folder.anchor and Path(folder.anchor))
+    before=load(folder/'before.json')
+    require(digest((folder/'before.json').read_bytes())==before_receipt and before['identity']==identity,'byproduct-before-replaced')
+    snap=read_snapshot(area,'before-build',identity)
+    require(before['before_snapshot_sha256']==digest((area/'before-build/snapshot.json').read_bytes()),'byproduct-before-snapshot')
+    process=load(area/'build-process.json');old.record_ok(process,600,root)
+    child=load(area/'build-child.json')
+    expected=[sys.executable,str(root/'native/equipment_save_io/build.py'),'--platform',identity['os'],'--output',str(Path(evidence)/'build')]
+    require(child['argv']==expected and type(child['exit_code']) is int and child['exit_code']==0 and
+            child['pid']>0 and child['waited'] is True and
+            snap['monotonic_ns']<before['observed_ns']<child['started_ns']<child['ended_ns'], 'byproduct-build-provenance')
+    require(git(root,'rev-parse','HEAD').decode().strip()==identity['source_sha'],'byproduct-head-changed')
+    inventory=byproduct_inventory(root);tracked={p for p in snap['tracked'] if p.startswith('addons/')}
+    require(tracked<=set(inventory),'byproduct-managed-file-missing')
+    extras=sorted(set(inventory)-tracked)
+    candidates=list(BYPRODUCTS_V2) if identity['os']=='windows' else []
+    require(before['candidates']==candidates and set(extras)<=set(candidates),'byproduct-unknown-file')
+    require(not set(extras)&set(before['addon_files']),'byproduct-preexisting')
+    for path in extras:
+        require(git(root,'check-ignore','--no-index','--',path).decode().strip()==path,'byproduct-not-ignored')
+        require(inventory[path]['bytes']>0,'byproduct-empty')
+    # 全件を移動前に記録。renameは同一filesystem限定、失敗時は原物を残す。
+    records=[dict(path=p,destination='files/'+p,**inventory[p]) for p in extras]
+    plan=dict(schema=2,identity=identity,before_sha256=before_receipt,observed_ns=time.monotonic_ns(),
+              build_process_sha256=digest((area/'build-process.json').read_bytes()),
+              build_child_sha256=digest((area/'build-child.json').read_bytes()),addon_files=inventory,files=records)
+    for row in records:
+        target=folder/row['destination'];no_links(target,folder)
+        require(not target.exists(),'byproduct-destination-exists')
+    write_new(folder/'before-move.json',plan)
+    plan_hash=digest((folder/'before-move.json').read_bytes())
+    print('NATIVE_BYPRODUCT_V2_MOVE_PLAN '+plan_hash,flush=True)
+    for index,row in enumerate(records):
+        source=root/row['path'];target=folder/row['destination'];target.parent.mkdir(parents=True,exist_ok=True)
+        no_links(target,folder);raw,mode=raw_file(source,root)
+        require(dict(bytes=len(raw),sha256=digest(raw),mode=mode)==inventory[row['path']],'byproduct-source-replaced')
+        require(not target.exists(),'byproduct-destination-exists')
+        source.rename(target)
+        saved,saved_mode=raw_file(target,folder)
+        require(saved==raw and saved_mode==mode and not source.exists(),'byproduct-move-bytes')
+        write_new(folder/'moves'/(str(index)+'.json'),dict(schema=2,plan_sha256=plan_hash,file=row,
+                  source_absent=True,destination_bytes=len(saved),destination_sha256=digest(saved),moved_ns=time.monotonic_ns()))
+    after=byproduct_inventory(root)
+    require(after=={p:r for p,r in inventory.items() if p not in extras},'byproduct-move-other-file-change')
+    require(set(after)==tracked,'byproduct-addon-exact-after')
+    write_new(folder/'complete.json',dict(schema=2,identity=identity,plan_sha256=plan_hash,
+              files=records,addon_after=after,total_bytes=sum(r['bytes'] for r in records),completed_ns=time.monotonic_ns()))
+    print('NATIVE_BYPRODUCT_V2_COMPLETE '+digest((folder/'complete.json').read_bytes()),flush=True)
+
+
+def validate_byproducts(area,evidence,identity):
+    folder=Path(evidence)/'build-byproducts-v2'
+    before=load(folder/'before.json');plan=load(folder/'before-move.json');done=load(folder/'complete.json')
+    for value in (before,plan,done):require(value['schema']==2 and value['identity']==identity,'byproduct-identity')
+    snapshot=read_snapshot(area,'before-build',identity);after=read_snapshot(area,'after-build',identity)
+    require(before['before_snapshot_sha256']==digest((area/'before-build/snapshot.json').read_bytes()),'byproduct-before-snapshot')
+    require(plan['before_sha256']==digest((folder/'before.json').read_bytes()) and
+            done['plan_sha256']==digest((folder/'before-move.json').read_bytes()),'byproduct-record-chain')
+    expected={p:dict(bytes=r['bytes'],sha256=r['sha256'],mode=r['filesystem_mode'])
+              for p,r in snapshot['files'].items() if p.startswith('addons/')}
+    require(before['addon_files']==expected,'byproduct-before-addon')
+    candidates=list(BYPRODUCTS_V2) if identity['os']=='windows' else []
+    require(before['candidates']==candidates,'byproduct-candidate-set')
+    extras=sorted(set(plan['addon_files'])-set(expected))
+    require(set(expected)<=set(plan['addon_files']) and set(extras)<=set(candidates),'byproduct-plan-set')
+    records=[dict(path=p,destination='files/'+p,**plan['addon_files'][p]) for p in extras]
+    require(plan['files']==done['files']==records,'byproduct-exact-file-list')
+    expected_after={p:r for p,r in plan['addon_files'].items() if p not in extras}
+    observed_after={p:dict(bytes=r['bytes'],sha256=r['sha256'],mode=r['filesystem_mode'])
+                    for p,r in after['files'].items() if p.startswith('addons/')}
+    require(done['addon_after']==expected_after==observed_after,'byproduct-after-addon')
+    for name,key in (('build-process.json','build_process_sha256'),('build-child.json','build_child_sha256')):
+        require(digest((area/name).read_bytes())==plan[key],'byproduct-build-record')
+    process=load(area/'build-process.json');old.record_ok(process,600,Path(process['cwd']))
+    child=load(area/'build-child.json')
+    require(type(child['exit_code']) is int and child['exit_code']==0 and child['waited'] is True and child['pid']>0 and
+            snapshot['monotonic_ns']<before['observed_ns']<child['started_ns']<child['ended_ns']<plan['observed_ns']<done['completed_ns']<after['monotonic_ns'], 'byproduct-order')
+    files={'before.json','before-move.json','complete.json'}
+    for index,row in enumerate(records):
+        require(row['bytes']>0,'byproduct-empty')
+        raw,mode=raw_file(folder/row['destination'],folder)
+        require(len(raw)==row['bytes'] and digest(raw)==row['sha256'] and mode==row['mode'],'byproduct-raw-bytes')
+        receipt='moves/'+str(index)+'.json';moved=load(folder/receipt)
+        require(moved==dict(schema=2,plan_sha256=done['plan_sha256'],file=row,source_absent=True,
+                destination_bytes=len(raw),destination_sha256=digest(raw),moved_ns=moved['moved_ns']) and
+                plan['observed_ns']<moved['moved_ns']<done['completed_ns'],'byproduct-move-receipt')
+        files.update((row['destination'],receipt))
+    actual={p.relative_to(folder).as_posix() for p in folder.rglob('*') if not p.is_dir() or p.is_symlink()}
+    require(actual==files,'byproduct-evidence-exact-files')
+    require(done['total_bytes']==sum(r['bytes'] for r in records),'byproduct-total-bytes')
+    return {p:dict(bytes=len(raw_file(folder/p,folder)[0]),sha256=digest(raw_file(folder/p,folder)[0])) for p in sorted(files)}
+
+
+def byproduct_stage(area,evidence,identity,stage,*,record=False):
+    require(stage in BYPRODUCT_STAGES_V2,'byproduct-stage')
+    hashes=validate_byproducts(area,evidence,identity)
+    previous=None
+    for current in BYPRODUCT_STAGES_V2[:BYPRODUCT_STAGES_V2.index(stage)+1]:
+        path=area/'byproduct-receipts-v2'/(current+'.json')
+        value=dict(schema=2,identity=identity,stage=current,files=hashes,
+                   snapshot_sha256=digest((area/current/'snapshot.json').read_bytes()),
+                   previous_sha256=digest(previous.read_bytes()) if previous else None)
+        if record and current==stage:
+            write_new(path,value)
+            print('NATIVE_BYPRODUCT_V2_STAGE '+current+' '+digest(path.read_bytes()),flush=True)
+        require(load(path)==value,'byproduct-stage-replaced')
+        previous=path
+    return hashes
+
+
 def identity(args):
     return dict(source_sha=git(ROOT,'rev-parse','HEAD').decode().strip(),os=args.platform,phase=args.phase,profile=args.profile,
                 job=os.environ.get('GITHUB_JOB','local')+':'+args.platform+':'+args.phase,
@@ -748,7 +899,9 @@ def main(args):
         write_new(area/'generation-context.json',context)
         print('GENERATION2_RECEIPT '+digest((area/'generation-context.json').read_bytes()),flush=True)
     capture(ROOT,area,args.stage,ident)
-    if STAGES.index(args.stage)>=3:validate_build(area,Path(args.output).resolve(),ident)
+    if STAGES.index(args.stage)>=3:
+        validate_build(area,Path(args.output).resolve(),ident)
+        byproduct_stage(area,Path(args.output).resolve(),ident,args.stage,record=True)
 
 
 if __name__=='__main__':

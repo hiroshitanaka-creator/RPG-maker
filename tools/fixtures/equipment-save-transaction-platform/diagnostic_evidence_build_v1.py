@@ -142,7 +142,7 @@ def archive_originals(roots,destination):
                 if path.is_symlink():links.append(dict(path=name,target_hex=os.fsencode(os.readlink(path)).hex()))
                 elif path.is_dir():directories.append(name)
                 elif path.is_file():
-                    raw=path.read_bytes();members.append(dict(path=name,bytes=len(raw),sha256=n.digest(raw)));z.writestr(name,raw)
+                    raw=path.read_bytes();members.append(dict(path=name,bytes=len(raw),sha256=n.digest(raw),mode=path.stat().st_mode & 0o777));z.writestr(name,raw)
                 else:raise ValueError('特殊原file:'+str(path))
         index=dict(files=members,links=links,directories=directories,omitted_regular_files=[])
         z.writestr('original-index.json',json.dumps(index,ensure_ascii=False,indent=2)+'\n')
@@ -155,13 +155,15 @@ def archive_originals(roots,destination):
             for row in members:
                 name=row['path'];n.require(not Path(name).is_absolute() and '..' not in Path(name).parts and '\\' not in name,'archive path')
                 raw=z.read(name);n.require(len(raw)==row['bytes'] and n.digest(raw)==row['sha256'],'archive原bytes')
-                path=root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(raw)
+                path=root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(raw);path.chmod(row['mode'])
+                n.require(path.stat().st_mode & 0o777 == row['mode'],'archive原mode')
         # 同じ生成時inventoryの確認だけで終えず、再展開から段階契約を再計算。
         replay_errors=[]
         try:
             identity=g.load(root/'snapshots/before-shipped/snapshot.json')['identity']
             n.validate_prefix(root/'snapshots',identity,'after-diagnostics')
             n.validate_build(root/'snapshots',root/'evidence',identity,recorded_evidence=roots['evidence'])
+            n.byproduct_stage(root/'snapshots',root/'evidence',identity,'after-diagnostics')
             validate_diagnostics(root/'evidence/task059',identity)
             validate_generation_context(root/'snapshots',root/'evidence/task059',identity)
         except Exception as exc:replay_errors.append(str(exc))
@@ -174,6 +176,7 @@ def collect(evidence,destination,identity):
     for label,call in (
         ('snapshots',lambda:n.validate_prefix(snapshots,identity,'after-diagnostics')),
         ('build',lambda:n.validate_build(snapshots,evidence,identity)),
+        ('byproducts-v2',lambda:n.byproduct_stage(snapshots,evidence,identity,'after-diagnostics')),
         ('diagnostic',lambda:validate_diagnostics(evidence/'task059',identity)),
         ('generation-context',lambda:validate_generation_context(snapshots,evidence/'task059',identity)),
         ('original-run-ci',lambda:n.require(g.load(evidence/'execution.json')['status']=='PASS','原run_ci非成功/未終端'))):

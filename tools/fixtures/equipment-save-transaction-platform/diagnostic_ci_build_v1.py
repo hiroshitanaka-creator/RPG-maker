@@ -69,14 +69,18 @@ def build(args):
             n.require(not errors,'依存準備失敗:'+str(errors))
     n.dependency(ROOT)
     n.capture(ROOT,area,'before-build',ident)
+    before_byproducts=n.begin_byproducts(ROOT,area,evidence,ident)
     argv=[sys.executable,str(Path(__file__).resolve()),'--exec-build','--output',str(evidence),'--platform',args.platform]
     cap,errors=capture_diagnostic(argv,area/'build-supervisor.log',area/'build-process.json',ROOT,600)
     # 失敗後も直後の実物を保存。元buildの非0/timeout/停止未確認を成功に補完しない。
     snapshot_errors=[]
+    try:n.preserve_byproducts(ROOT,area,evidence,ident,before_byproducts)
+    except Exception as exc:snapshot_errors.append('副産物保全: '+str(exc))
     try:n.capture(ROOT,area,'after-build',ident)
     except Exception as exc:snapshot_errors.append(str(exc))
     n.write_new(area/'build-observation.json',dict(errors=errors+snapshot_errors,process=cap.row))
     n.validate_build(area,evidence,ident)
+    n.byproduct_stage(area,evidence,ident,'after-build',record=True)
     n.require(not errors and not snapshot_errors,'build/直後照合失敗')
     return 0
 
@@ -152,7 +156,9 @@ def diagnostic(args):
                     n.require(report[label+'-before']==report[label+'-after'],'066固定検査器/対象差替え')
                 except Exception as exc:report['failures'].append(str(exc))
             save(out/'execution.json',report)
-    try:n.capture(ROOT,evidence.parent/'native-build-v1','after-diagnostics',report['identity'])
+    try:
+        n.capture(ROOT,evidence.parent/'native-build-v1','after-diagnostics',report['identity'])
+        n.byproduct_stage(evidence.parent/'native-build-v1',evidence,report['identity'],'after-diagnostics',record=True)
     except Exception as exc:report['failures'].append('診断後原bytes:'+str(exc))
     report['status']='FAIL' if report['failures'] else 'PASS';save(out/'execution.json',report)
     save(out/'generation-manifest.json',g.snapshot(out,('generation-manifest.json',)))
