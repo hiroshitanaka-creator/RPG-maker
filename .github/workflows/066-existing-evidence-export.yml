@@ -1,0 +1,350 @@
+name: 066 既存Fprime原証拠の抽出
+on:
+  push:
+    branches: [codex/task-066-existing-evidence-20261015]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  export:
+    name: 既存artifact抽出 (${{ matrix.artifact }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        artifact: [11930554787, 11931014816, 11930979769, 11931309413]
+    steps:
+      - name: 原ZIP照合と原bytesの抽出
+        id: export
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_ID: ${{ matrix.artifact }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/export_existing_evidence.py" <<'PY'
+          """既存artifactの原ZIPを照合し、選択した原ファイルを無変更で分割梱包する。
+          
+          検査の実行、Git書込み、資料の補完は行わない。APIアクセスは承認後のrunnerだけ。
+          """
+          import argparse
+          import gzip
+          import hashlib
+          import json
+          import os
+          from pathlib import Path, PurePosixPath
+          import shutil
+          import tarfile
+          import urllib.request
+          import zipfile
+          
+          REPO = 'hiroshitanaka-creator/RPG-maker'
+          RUN = 38643460924
+          HEAD = 'e2c16de53ed3db43442c1c44ac477d6c4827311b'
+          SOURCES = {
+              11930554787: (46674128, 'f9031022164580b8d845d60c5b48a3fd1157b37ce6bf758fd564260449fd8955'),
+              11931014816: (219397059, '35e752795a61cfd5c9f085ffe34aefbdb42fc019e7e93628b13d4b3f8f56eb16'),
+              11930979769: (1442146258, 'a8e0d4c5a93bf44702a37d1a4720bb7481538db62f2ef970e63cb70ccdcab27c'),
+              11931309413: (207086825, '216ab6bc0621f5184c32525e24a5b007fbfc4767cf162b5431d6f6e085ab55dd'),
+          }
+          CHUNK = 20_000_000
+          MAX_PARTS = 16
+          
+          
+          def write_json(path, value):
+              with path.open('x', encoding='utf-8', newline='\n') as f:
+                  json.dump(value, f, ensure_ascii=False, indent=2)
+                  f.write('\n')
+          
+          
+          def fingerprint(path):
+              h = hashlib.sha256(); size = 0
+              with path.open('rb') as f:
+                  for block in iter(lambda: f.read(1024 * 1024), b''):
+                      h.update(block); size += len(block)
+              return dict(bytes=size, sha256=h.hexdigest())
+          
+          
+          def select(name):
+              p = PurePosixPath(name)
+              # 実行用checkout・原bytes複製・依存sourceは元ZIPに保持する。
+              bulk = {'bytes', 'dependency-bytes', 'shipped', 'repo', '.git', '.godot', 'bin'}
+              if bulk.intersection(p.parts):
+                  return False
+              return p.suffix.lower() in ('.json', '.jsonl', '.log', '.txt', '.stdout', '.stderr') or p.name in ('stdout', 'stderr')
+          
+          
+          def package(source, out, provenance):
+              out.mkdir(parents=True, exist_ok=False)
+              source_hash = fingerprint(source)
+              rows = []; selected = []; seen = set()
+              with zipfile.ZipFile(source) as archive:
+                  for member in archive.infolist():
+                      if member.is_dir():
+                          continue
+                      name = member.filename; path = PurePosixPath(name)
+                      if name in seen or path.is_absolute() or '..' in path.parts or '\\' in name:
+                          raise ValueError('unsafe or duplicate member: ' + repr(name))
+                      seen.add(name)
+                      row = dict(path=name, bytes=member.file_size, crc32=member.CRC,
+                                 zip_external_attr=member.external_attr, selected=select(name))
+                      rows.append(row)
+                      if row['selected']:
+                          selected.append((member, row))
+                  if not selected:
+                      raise ValueError('selected original evidence is absent')
+                  bundle = out / 'selected-originals.tar.gz'
+                  with bundle.open('xb') as raw, gzip.GzipFile(fileobj=raw, mode='wb', mtime=0) as gz, tarfile.open(fileobj=gz, mode='w|') as tar:
+                      for member, row in selected:
+                          # CRCを含め、原ZIPから読んだ全bytesをそのまま梱包。テキスト再保存しない。
+                          data = archive.read(member)
+                          row['sha256'] = hashlib.sha256(data).hexdigest()
+                          info = tarfile.TarInfo('originals/' + member.filename)
+                          info.size = len(data); info.mode = (member.external_attr >> 16) & 0o777
+                          import io
+                          tar.addfile(info, io.BytesIO(data))
+              # 梱包後の全選択ファイルを読み戻す。元ZIPに含まれない資料は追加しない。
+              expected = {'originals/' + r['path']: r for _, r in selected}
+              with tarfile.open(bundle, 'r:gz') as tar:
+                  got = {}
+                  for member in tar:
+                      with tar.extractfile(member) as f:
+                          h = hashlib.sha256(); size = 0
+                          for block in iter(lambda: f.read(1024 * 1024), b''):
+                              h.update(block); size += len(block)
+                      got[member.name] = dict(bytes=size, sha256=h.hexdigest())
+                  if got != {name: {k: row[k] for k in ('bytes', 'sha256')} for name, row in expected.items()}:
+                      raise ValueError('packaged readback differs from original bytes')
+              bundle_hash = fingerprint(bundle)
+              if bundle_hash['bytes'] > CHUNK * MAX_PARTS:
+                  raise ValueError('selection exceeds 16 parts; no truncated substitute')
+              parts = []; combined = hashlib.sha256()
+              with bundle.open('rb') as f:
+                  for index in range(1, MAX_PARTS + 1):
+                      block = f.read(CHUNK)
+                      if not block:
+                          break
+                      path = out / ('part%02d.bin' % index)
+                      with path.open('xb') as part:
+                          part.write(block)
+                      check = path.read_bytes()
+                      if check != block:
+                          raise ValueError('part readback mismatch')
+                      combined.update(check)
+                      parts.append(dict(path=path.name, **fingerprint(path)))
+              if combined.hexdigest() != bundle_hash['sha256']:
+                  raise ValueError('reassembled selected bundle mismatch')
+              manifest = dict(schema=1, provenance=provenance, source_zip=source_hash,
+                              scope='selected existing original bytes; not a replacement for the full original ZIP',
+                              selection_rule='JSON/JSONL/log/txt/stdout/stderr outside original-byte/source payload directories',
+                              all_zip_members=rows, selected_count=len(selected), bundle=bundle_hash, parts=parts,
+                              selected_file_readback=True, parts_readback=True)
+              write_json(out / 'manifest.json', manifest)
+              return manifest
+          
+          
+          def download(artifact, folder):
+              """Authorizationを署名付き転送先へ転送しない。取得失敗は再試行しない。"""
+              class NoRedirect(urllib.request.HTTPRedirectHandler):
+                  def redirect_request(self, req, fp, code, msg, headers, newurl):
+                      return None
+              token = os.environ['GH_TOKEN']
+              headers = {'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json',
+                         'X-GitHub-Api-Version': '2022-11-28'}
+              base = 'https://api.github.com/repos/' + REPO + '/actions/artifacts/' + str(artifact)
+              req = urllib.request.Request(base, headers=headers)
+              with urllib.request.urlopen(req, timeout=60) as response:
+                  raw = response.read()
+              (folder / 'artifact-metadata.json').write_bytes(raw)
+              value = json.loads(raw)
+              expected_size, expected_hash = SOURCES[artifact]
+              if (value['id'] != artifact or value['expired'] or value['size_in_bytes'] != expected_size or
+                      value['digest'] != 'sha256:' + expected_hash or value['workflow_run']['id'] != RUN or
+                      value['workflow_run']['head_sha'] != HEAD):
+                  raise ValueError('artifact identity differs from the approved original')
+              opener = urllib.request.build_opener(NoRedirect())
+              try:
+                  opener.open(urllib.request.Request(base + '/zip', headers=headers), timeout=60)
+              except urllib.error.HTTPError as exc:
+                  if exc.code != 302:
+                      raise RuntimeError('artifact API HTTP status ' + str(exc.code)) from None
+                  url = exc.headers['Location']
+              else:
+                  raise ValueError('expected official artifact redirect is absent')
+              if not url.startswith('https://'):
+                  raise ValueError('non-HTTPS artifact destination')
+              destination = folder / 'original.zip'
+              # 署名URLやtokenは出力しない。例外にもURLを残さない。
+              try:
+                  with urllib.request.urlopen(url, timeout=60) as response, destination.open('xb') as f:
+                      shutil.copyfileobj(response, f, 1024 * 1024)
+              except Exception as exc:
+                  raise RuntimeError('artifact transfer failed: ' + type(exc).__name__) from None
+              if fingerprint(destination) != dict(bytes=expected_size, sha256=expected_hash):
+                  raise ValueError('downloaded ZIP size/hash mismatch')
+              return destination
+          
+          
+          if __name__ == '__main__':
+              parser = argparse.ArgumentParser()
+              parser.add_argument('--artifact', type=int, choices=SOURCES)
+              parser.add_argument('--local-zip', type=Path)
+              parser.add_argument('--work', type=Path, required=True)
+              args = parser.parse_args()
+              args.work.mkdir(parents=True, exist_ok=False)
+              try:
+                  source = args.local_zip or download(args.artifact, args.work)
+                  provenance = dict(repository=REPO, run_id=RUN, head_sha=HEAD, artifact_id=args.artifact) if args.artifact else dict(local_source=str(source), local_validation_only=True)
+                  result = package(source, args.work / 'export', provenance)
+                  print('EXISTING_EVIDENCE_EXPORTED ' + json.dumps({k: result[k] for k in ('selected_count', 'bundle', 'parts')}), flush=True)
+              except Exception as exc:
+                  write_json(args.work / 'export-failure.json', dict(error=type(exc).__name__, detail=str(exc)))
+                  raise
+          PY
+          python3 "$RUNNER_TEMP/export_existing_evidence.py" --artifact "$ARTIFACT_ID" --work "$RUNNER_TEMP/export-$ARTIFACT_ID"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          value=json.loads((Path(os.environ["RUNNER_TEMP"])/("export-"+os.environ["ARTIFACT_ID"])/"export/manifest.json").read_text())
+          with open(os.environ["GITHUB_OUTPUT"],"a") as f:
+              print("parts="+str(len(value["parts"])),file=f)
+          PY
+      - name: 索引と失敗記録を保存
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-manifest
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/export-${{ matrix.artifact }}/artifact-metadata.json
+            ${{ runner.temp }}/export-${{ matrix.artifact }}/export-failure.json
+            ${{ runner.temp }}/export-${{ matrix.artifact }}/export/manifest.json
+      - name: 原bytes部分01を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 1 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part01
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part01.bin
+      - name: 原bytes部分02を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 2 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part02
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part02.bin
+      - name: 原bytes部分03を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 3 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part03
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part03.bin
+      - name: 原bytes部分04を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 4 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part04
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part04.bin
+      - name: 原bytes部分05を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 5 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part05
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part05.bin
+      - name: 原bytes部分06を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 6 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part06
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part06.bin
+      - name: 原bytes部分07を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 7 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part07
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part07.bin
+      - name: 原bytes部分08を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 8 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part08
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part08.bin
+      - name: 原bytes部分09を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 9 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part09
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part09.bin
+      - name: 原bytes部分10を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 10 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part10
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part10.bin
+      - name: 原bytes部分11を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 11 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part11
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part11.bin
+      - name: 原bytes部分12を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 12 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part12
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part12.bin
+      - name: 原bytes部分13を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 13 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part13
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part13.bin
+      - name: 原bytes部分14を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 14 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part14
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part14.bin
+      - name: 原bytes部分15を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 15 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part15
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part15.bin
+      - name: 原bytes部分16を保存
+        if: ${{ always() && steps.export.outputs.parts != '' && fromJSON(steps.export.outputs.parts) >= 16 }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-original-${{ matrix.artifact }}-part16
+          if-no-files-found: error
+          compression-level: 0
+          path: ${{ runner.temp }}/export-${{ matrix.artifact }}/export/part16.bin
