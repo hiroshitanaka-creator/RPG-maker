@@ -1,0 +1,6 @@
+interface:
+  display_name: "Godot ヘッドレス検証"
+  short_description: "既存検査による決定論・ログ・回帰監査"
+  default_prompt: "Use $godot-game-verification to verify RPG-maker with existing frozen commands and CI gates, preserving all warning checks and time limits."
+policy:
+  allow_implicit_invocation: true
