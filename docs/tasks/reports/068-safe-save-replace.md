@@ -91,3 +91,32 @@ python tools/check_frozen_files.py
 - 既存test、scope-lock、CI、schema、AGENTS、保護検査、README、decision-log等45追跡ファイルを基点bytesと照合して一致。凍結26件も前後一致。新規testだけ今回の明示許可対象。
 - インポートが生成した対象外2UIDは成果差分に含めず、提出資料へ退避。新規テストのUIDだけを含める。
 - 原bytes・変更差分・実コマンド・原ログ・OS別結果をLibrary ZIPで親へ引き渡す。Drive保全・公式GitHub保存と読み戻し・通常PR・hiroshitanaka-creatorへのCODEOWNERSレビュー要求は親の担当で未実行。CIの新しい全ジョブ結果も未取得。mainへはマージしない。
+
+
+## 2026-10-15 JST：後続Windows検証・正式受入の追記
+
+上記は2026-10-12の初回ローカル報告として全文保持する。この追記は後続のGitHub実物を照合して時点を補うもので、初回の「未実施」欄を当時の成功に書き換えない。
+
+### 正式提出・レビュー・取込み
+- 正式head：26cbdcc1849625bd2f890762216a3bbdb7d5346b。
+- [PR #40](https://github.com/hiroshitanaka-creator/RPG-maker/pull/40) は、hiroshitanaka-creatorが2026-10-12 12:33:48 JSTにAPPROVED。その後、同日13:05:50 JSTにmainへ取込み済み。
+- 取込SHA：e61ab37f9542648f25b731cd33924e11e134920b。
+- PRに含まれた新規Windows workflowも依頼者の後続承認の範囲。既存workflow・既存検査を変更しない条件を維持した。
+
+### Windowsの実結果
+[Windows job 114658416918](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/38202397471/job/114658416918)の原ログで、Godot 4.7.2.stable.official.ed1daf0bf、068の8テスト／744アサーション、R-06の2テスト／87アサーションの成功を確認した。failed=0、pending=0、invalid=false、exit=0、tests_ran=true、parser_failed=false、timed_out=false。
+本物だけ、bakだけ、tmpだけ、本物破損と正常bak、全候補破損(false)、途中段階のファイル配置を対象にしたWindows上の実ファイル操作である。プロセス強制終了や電源断の耐久試験の成功へ拡張しない。Linuxの112試行は上の初回報告とPR本文の記録であり、この追記で新規実行・原資料全件再照合をしたものではない。
+
+### 取込後CI（当該取込SHAの結果）
+| workflow | run | 結果 |
+| --- | --- | --- |
+| Windows セーブ置換・往復検証 | [38202397471](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/38202397471) | 1/1 success |
+| Equipment Codec CI | [38202397480](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/38202397480) | 3/3 success |
+| Equipment and Save CI | [38202397499](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/38202397499) | 14/14 success |
+| 006 固定受入と最新回帰 | [38202397489](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/38202397489) | 17/17 success |
+| CI | [38202397496](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/38202397496) | 3/3 success |
+
+合計5 run・38 jobがcompleted/success。凍結受入job114658417424の原ログでR-01〜R-08全PASS、保護26件一致も確認した。過去の成功と今回の文書追記に起動するCIは別の結果として扱う。
+
+### 記録の自己点検
+今回の変更は068依頼書の状態行、当報告への追記、tasks/READMEとdecision-logへの記録だけ。初回本文・ゲームコード・テスト・期待値・締切・workflow・保護ファイル・066系列は変更しない。今回Godotや検査をローカル再実行していない。依頼書の「確認済み」は既に受入済みの068実装を指し、この文書PR自体のCI成功を先取りしない。
