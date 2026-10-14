@@ -1,0 +1,329 @@
+name: 066 Windows 原67の独立観測
+on:
+  push:
+    branches: [codex/task-066-measurements-20261015]
+permissions:
+  contents: read
+env:
+  PYTHONUTF8: 1
+  GIT_CONFIG_COUNT: 1
+  GIT_CONFIG_KEY_0: core.autocrlf
+  GIT_CONFIG_VALUE_0: false
+jobs:
+  observe:
+    name: 066-native67-observe (${{ matrix.sample }})
+    runs-on: windows-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {sample: control-1, mode: control}
+          - {sample: profile-1, mode: profile}
+          - {sample: control-2, mode: control}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 15cbe9b7f6769a2f3fd037b57bbf138d25726be5
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.10'
+      - name: checkout外に観測コードを配置
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/066-observer"
+          cat > "$RUNNER_TEMP/066-observer/observe_native67.py" <<'PY'
+          """066観測専用。原検査・監督・期待値を書き換えない。"""
+          import argparse
+          import cProfile
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import platform
+          import pstats
+          import re
+          import runpy
+          import subprocess
+          import sys
+          import threading
+          import time
+          
+          TARGET = '15cbe9b7f6769a2f3fd037b57bbf138d25726be5'
+          TREE = '33f86607a120cd6f2cebec301616cad2ba83a161'
+          TEST_HASH = 'fba1d492e1fbef4ea1296b82626707e7f3b216d9092e88c678c8f7000f83e8f7'
+          FIXTURE = 'tools/fixtures/equipment-save-transaction-platform'
+          
+          
+          def save(path, value):
+              path.parent.mkdir(parents=True, exist_ok=True)
+              with path.open('x', encoding='utf-8') as stream:
+                  json.dump(value, stream, ensure_ascii=False, indent=2)
+                  stream.write('\n')
+          
+          
+          def git(root, *args):
+              return subprocess.check_output(['git', *args], cwd=root)
+          
+          
+          def inventory(root):
+              rows = {}
+              for raw in git(root, 'ls-files', '-s', '-z').split(b'\0'):
+                  if not raw:
+                      continue
+                  meta, name = raw.split(b'\t', 1)
+                  mode, oid, stage = meta.decode().split()
+                  name = name.decode()
+                  path = root / name
+                  data = path.read_bytes()
+                  rows[name] = dict(mode=mode, filesystem_mode=oct(path.lstat().st_mode), blob=oid, bytes=len(data), sha256=hashlib.sha256(data).hexdigest())
+              return rows
+          
+          
+          def windows_rows():
+              import ctypes as C
+              from ctypes import wintypes as W
+              api = C.WinDLL('kernel32', use_last_error=True)
+              class Entry(C.Structure):
+                  _fields_ = [('size', W.DWORD), ('usage', W.DWORD), ('pid', W.DWORD),
+                              ('heap', C.c_size_t), ('module', W.DWORD), ('threads', W.DWORD),
+                              ('ppid', W.DWORD), ('priority', W.LONG), ('flags', W.DWORD),
+                              ('exe', W.WCHAR * 260)]
+              class IO(C.Structure):
+                  _fields_ = [(name, C.c_uint64) for name in ('read_ops','write_ops','other_ops','read_bytes','write_bytes','other_bytes')]
+              api.CreateToolhelp32Snapshot.argtypes = [W.DWORD, W.DWORD]
+              api.CreateToolhelp32Snapshot.restype = W.HANDLE
+              api.Process32FirstW.argtypes = api.Process32NextW.argtypes = [W.HANDLE, C.POINTER(Entry)]
+              api.Process32FirstW.restype = api.Process32NextW.restype = W.BOOL
+              api.OpenProcess.argtypes = [W.DWORD, W.BOOL, W.DWORD]
+              api.OpenProcess.restype = W.HANDLE
+              api.GetProcessTimes.argtypes = [W.HANDLE] + [C.POINTER(W.FILETIME)] * 4
+              api.GetProcessIoCounters.argtypes = [W.HANDLE, C.POINTER(IO)]
+              api.CloseHandle.argtypes = [W.HANDLE]
+              snap = api.CreateToolhelp32Snapshot(2, 0)
+              if snap == C.c_void_p(-1).value:
+                  raise C.WinError(C.get_last_error())
+              rows = []
+              try:
+                  entry = Entry(); entry.size = C.sizeof(entry)
+                  ok = api.Process32FirstW(snap, C.byref(entry))
+                  while ok:
+                      rows.append(dict(pid=entry.pid, ppid=entry.ppid, exe=entry.exe))
+                      ok = api.Process32NextW(snap, C.byref(entry))
+              finally:
+                  api.CloseHandle(snap)
+              return api, W, C, IO, rows
+          
+          
+          def sample_windows(root_pid, known):
+              api, W, C, IO, rows = windows_rows()
+              # 現在の親子関係のみ。終了済みPIDの再利用で無関係なprocessを追跡しない。
+              ids = {root_pid}
+              for _ in range(len(rows)):
+                  new = ids | {r['pid'] for r in rows if r['ppid'] in ids}
+                  if new == ids:
+                      break
+                  ids = new
+              result = []
+              for row in rows:
+                  if row['pid'] not in ids:
+                      continue
+                  handle = api.OpenProcess(0x0400, False, row['pid'])
+                  if not handle:
+                      row['query_error'] = C.get_last_error(); result.append(row); continue
+                  try:
+                      values = [W.FILETIME() for _ in range(4)]
+                      if api.GetProcessTimes(handle, *(C.byref(v) for v in values)):
+                          ticks = [(v.dwHighDateTime << 32) | v.dwLowDateTime for v in values]
+                          row.update(created_100ns=ticks[0], exit_100ns=ticks[1], kernel_seconds=ticks[2]/1e7, user_seconds=ticks[3]/1e7)
+                          if row['pid'] in known and known[row['pid']] != ticks[0]:
+                              row['pid_reused'] = True
+                          else:
+                              known[row['pid']] = ticks[0]
+                      else:
+                          row['times_error'] = C.get_last_error()
+                      io = IO()
+                      if api.GetProcessIoCounters(handle, C.byref(io)):
+                          row['io'] = {name: getattr(io, name) for name, _ in IO._fields_}
+                      else:
+                          row['io_error'] = C.get_last_error()
+                  finally:
+                      api.CloseHandle(handle)
+                  result.append(row)
+              return result
+          
+          
+          def monitor(record, output, stop, state):
+              known = {}; deadline = None
+              with output.open('x', encoding='utf-8', buffering=1) as stream:
+                  while not stop.is_set():
+                      start = time.monotonic()
+                      row = dict(monotonic=start, utc_ns=time.time_ns())
+                      try:
+                          current = json.loads(record.read_bytes())
+                          deadline = current['accepted_monotonic'] + current['deadline_remaining_start']
+                          if start >= deadline or current.get('terminal'):
+                              break
+                          if current.get('pid'):
+                              row['root_pid'] = current['pid']
+                              if os.name == 'nt':
+                                  row['processes'] = sample_windows(current['pid'], known)
+                              else:
+                                  row['note'] = 'Linux comparison; Windows process/I/O sampling NOT_RUN'
+                      except Exception as exc:
+                          row['error'] = type(exc).__name__ + ': ' + str(exc)
+                      row['sample_seconds'] = time.monotonic() - start
+                      stream.write(json.dumps(row, ensure_ascii=False) + '\n')
+                      remaining = .1 if deadline is None else min(.1, max(0, deadline-time.monotonic()))
+                      stop.wait(remaining)
+              state.update(ended_monotonic=time.monotonic(), ended=True)
+          
+          
+          def profile_child(args):
+              script = Path(args.script).resolve()
+              sys.path.insert(0, str(script.parent))
+              sys.argv = [str(script), '--output', args.test_output]
+              profiler = cProfile.Profile()
+              done = threading.Event()
+              checkpoint_dir = Path(args.profile_output).with_name('profile-checkpoints')
+              checkpoint_dir.mkdir(exist_ok=False)
+              def checkpoints():
+                  number = 0
+                  while not done.wait(2):
+                      number += 1
+                      values = []
+                      for entry in profiler.getstats():
+                          code = entry.code
+                          values.append(dict(file=getattr(code,'co_filename','~'),line=getattr(code,'co_firstlineno',0),
+                              name=getattr(code,'co_name',str(code)),calls=entry.callcount,recursive_calls=entry.reccallcount,
+                              cumulative_seconds=entry.totaltime,self_seconds=entry.inlinetime))
+                      temp = checkpoint_dir/('%06d.json.partial' % number)
+                      save(temp,dict(monotonic=time.monotonic(),utc_ns=time.time_ns(),complete_run=False,functions=values))
+                      temp.rename(checkpoint_dir/('%06d.json' % number))
+              writer = threading.Thread(target=checkpoints,daemon=True)
+              writer.start()
+              profiler.enable()
+              try:
+                  runpy.run_path(str(script), run_name='__main__')
+              finally:
+                  profiler.disable()
+                  done.set()
+                  profiler.dump_stats(args.profile_output)
+          
+          
+          def main(args):
+              checkout = Path(args.checkout).resolve()
+              output = Path(args.output).resolve()
+              output.mkdir(parents=True, exist_ok=False)
+              fixture = checkout / FIXTURE
+              original = fixture / 'test_native_build_contract_v1.py'
+              raw = original.read_bytes()
+              head = git(checkout, 'rev-parse', 'HEAD').decode().strip()
+              tree = git(checkout, 'rev-parse', 'HEAD^{tree}').decode().strip()
+              status = git(checkout, 'status', '--porcelain', '--untracked-files=all').decode()
+              assert head == TARGET and tree == TREE
+              candidate_path = FIXTURE + '/native_build_contract_v1.py'
+              if args.candidate_sha256:
+                  assert status == ' M ' + candidate_path + '\n'
+                  assert hashlib.sha256((checkout/candidate_path).read_bytes()).hexdigest() == args.candidate_sha256
+              else:
+                  assert not status
+              assert len(raw) == 13249 and hashlib.sha256(raw).hexdigest() == TEST_HASH
+              assert not (checkout / '.git/objects/info/alternates').exists()
+              before = inventory(checkout)
+              refs_before = git(checkout,'show-ref').decode()
+              object_root = checkout/'.git/objects'
+              objects_before = {p.relative_to(object_root).as_posix() for p in object_root.glob('[0-9a-f][0-9a-f]/*') if p.is_file()}
+              save(output/'before-files.json', before)
+              save(output/'environment.json', dict(platform=platform.platform(), python=sys.version,
+                   executable=sys.executable, git=git(checkout,'--version').decode().strip(), head=head, tree=tree,
+                   mode=args.mode, sequence=args.sequence, instrumentation_in_budget=True,candidate_sha256=args.candidate_sha256,
+                   original67_sha256=TEST_HASH, observer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                   env={k:os.environ.get(k) for k in ('PYTHONUTF8','GIT_CONFIG_COUNT','GIT_CONFIG_KEY_0','GIT_CONFIG_VALUE_0','RPG066_CODE_SHA','RPG066_COMPLETION_SHA','RUNNER_OS','ImageOS','ImageVersion')}))
+              sys.path.insert(0, str(fixture))
+              import diagnostic_ci_build_v1 as runner
+              assert runner.BUDGETS['native-tests'] == 30
+              out = output / 'task059'; out.mkdir()
+              argv = [sys.executable, str(original), '--output', str(out/'native-tests')]
+              stop = threading.Event(); state = {}; observer = None
+              trace_before = os.environ.get('GIT_TRACE2_EVENT')
+              if args.mode == 'profile':
+                  trace = output/'git-trace2'; trace.mkdir()
+                  os.environ['GIT_TRACE2_EVENT'] = str(trace)
+                  argv = [sys.executable, str(Path(__file__).resolve()), '--profile-child', '--script', str(original),
+                          '--test-output',str(out/'native-tests'),'--profile-output',str(output/'profile.pstats')]
+                  observer = threading.Thread(target=monitor,args=(out/'native-tests-process.json',output/'process-samples.jsonl',stop,state),daemon=True)
+                  observer.start()
+              started = time.monotonic()
+              try:
+                  row, errors = runner.execute('native-tests',argv,runner.BUDGETS['native-tests'],out,checkout,[])
+              finally:
+                  stop.set()
+                  if observer:
+                      deadline = row['accepted_monotonic'] + row['deadline_remaining_start'] if 'row' in locals() else time.monotonic()
+                      observer.join(timeout=max(0,deadline-time.monotonic()))
+                  if trace_before is None:
+                      os.environ.pop('GIT_TRACE2_EVENT', None)
+                  else:
+                      os.environ['GIT_TRACE2_EVENT'] = trace_before
+              ended = time.monotonic()
+              save(output/'execution.json',dict(process=row,errors=errors,observer_state=state,
+                   observation_thread_alive=observer.is_alive() if observer else False,
+                   call_seconds=ended-started, mode=args.mode, acceptance_scope='original67 only; profiling is diagnostic, not formal CI'))
+              after = inventory(checkout)
+              save(output/'after-files.json',after)
+              differences = [name for name in set(before)|set(after) if before.get(name)!=after.get(name)]
+              status_after = git(checkout,'status','--porcelain','--untracked-files=all').decode()
+              save(output/'immutability.json',dict(changed_tracked=differences,status_after=status_after,
+                   head_after=git(checkout,'rev-parse','HEAD').decode().strip(),tree_after=git(checkout,'rev-parse','HEAD^{tree}').decode().strip(),
+                   refs_before=refs_before,refs_after=git(checkout,'show-ref').decode()))
+              new_objects=[]
+              for path in object_root.glob('[0-9a-f][0-9a-f]/*'):
+                  relative=path.relative_to(object_root).as_posix()
+                  if path.is_file() and relative not in objects_before:
+                      raw_object=path.read_bytes();dest=output/'local-git-objects'/relative;dest.parent.mkdir(parents=True,exist_ok=True)
+                      with dest.open('xb') as stream:stream.write(raw_object)
+                      new_objects.append(dict(path=relative,bytes=len(raw_object),sha256=hashlib.sha256(raw_object).hexdigest()))
+              save(output/'local-git-objects.json',new_objects)
+              if (output/'profile.pstats').exists():
+                  stats = pstats.Stats(str(output/'profile.pstats'))
+                  values = []
+                  for (filename,line,name),(primitive,total,own,cumulative,callers) in stats.stats.items():
+                      values.append(dict(file=filename,line=line,name=name,primitive_calls=primitive,calls=total,self_seconds=own,cumulative_seconds=cumulative))
+                  save(output/'profile-summary.json',sorted(values,key=lambda x:x['cumulative_seconds'],reverse=True))
+              tests_path = out/'native-tests/tests.json'
+              tests = json.loads(tests_path.read_bytes()) if tests_path.exists() else None
+              log = (out/'native-tests.log').read_bytes() if (out/'native-tests.log').exists() else b''
+              audit = [line for line in log.decode('utf-8','replace').splitlines() if re.search(r'SCRIPT ERROR|Parse Error|Compile Error|WARNING|leak',line,re.I)]
+              save(output/'audit.json',dict(marker=b'NATIVE_BUILD_TESTS 67 failures=[]' in log,warning_error_lines=audit,
+                   raw_log_sha256=hashlib.sha256(log).hexdigest(),test_result=tests))
+              contract_pass = not errors and not differences and status_after==status and refs_before==git(checkout,'show-ref').decode() and b'NATIVE_BUILD_TESTS 67 failures=[]' in log and not audit
+              observation_complete = args.mode == 'control' or (not observer.is_alive() and (output/'profile.pstats').exists())
+              print(json.dumps(dict(mode=args.mode,seconds=row['seconds'],errors=errors,contract_pass=contract_pass,observation_complete=observation_complete,changed_tracked=differences),ensure_ascii=False),flush=True)
+              return 0 if contract_pass and observation_complete else 1
+          
+          
+          if __name__ == '__main__':
+              p=argparse.ArgumentParser()
+              p.add_argument('--checkout');p.add_argument('--output');p.add_argument('--mode',choices=['control','profile'])
+              p.add_argument('--sequence');p.add_argument('--profile-child',action='store_true')
+              p.add_argument('--candidate-sha256')
+              p.add_argument('--script');p.add_argument('--test-output');p.add_argument('--profile-output')
+              args=p.parse_args()
+              if args.profile_child:profile_child(args)
+              else:sys.exit(main(args))
+          PY
+      - name: 原67を既存30秒監督で1回実行
+        shell: bash
+        run: |
+          python "$RUNNER_TEMP/066-observer/observe_native67.py" --checkout "$GITHUB_WORKSPACE" --output "$RUNNER_TEMP/066-observer/result" --mode "${{ matrix.mode }}" --sequence "windows-three-independent-runners-${{ matrix.sample }}"
+      - name: 成否にかかわらず観測原記録を保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 066-native67-${{ matrix.sample }}
+          path: ${{ runner.temp }}/066-observer/
+          include-hidden-files: true
+          if-no-files-found: error
