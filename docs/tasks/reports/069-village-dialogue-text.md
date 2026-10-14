@@ -257,3 +257,18 @@ Debian公式で [xvfb](https://packages.debian.org/trixie/xvfb) と [mesa-vulkan
 今回の変更3ファイルの全文bytes、差分、親の採用原指示、最終ローカルSHA、原ログ、最終実装での画像157枚、全ファイルのbytes/SHA256 manifestを別ZIPにまとめ、正規Libraryで引き渡す。今回のLibrary結果IDは最終応答に記載する。依頼書は状態行以外不変で、原案を親の後続判断で上書きしていない。
 
 ローカル実装・検証の未達はなし。正式GitHub保存・対象SHAの全CI・PR・main反映は親担当として未実施。remote push・PR・merge・認証変更は行っていない。
+
+
+## ルッカの正式受入確認（2026-10-14 JST）
+
+PR #43を全条件成立後に通常mergeし、main a634669d9f9f71ad094bba89b23533c6c5105368へ反映した。提出a828b72082f680d6b89616c1a9285b3d1b9707bd、tree5ef792e48d7d8b147a2abf8d28fe1285ef831b77。PR/commit作者はhiroshitanaka-ai。main追従・保護不変・既存検査/期待値/締切不変・担当範囲内を確認した。
+
+- push5/PR5ワークフロー計76ジョブ全success。PR CIの原ログでR-01〜R-08全PASS、保護26件一致を開始/終了で確認。
+- 取込後mainの5ワークフロー計38ジョブ全success：CI 38546832242(3)、Equipment and Save CI 38546832346(14)、Equipment Codec CI 38546832300(3)、006 38546832224(17)、Windows 38546832343(1)。全jobsの取得件数とtotal一致。省略・skip・cancelなし。
+- 提出5ファイルの全量読戻し一致。取込後worldと本報告の原bytes一致。最終ZIPの305件manifest・原ログ・5人20ページと10終了画像を独立レビューした。全157PNGのhash一致、全157枚を目視したという意味ではない。
+- 原資料は指定GoogleアカウントのRPG-maker-verification/069-village-dialogue-text(folder 1tL0ogUAddGdfc6gEt-Xdm_yqdczw6OtQ)へ保全。共有変更なし。
+  - 最終ZIP：task069-final-revision-original-bytes-logs-images.zip、21,682,911bytes、SHA256 5660df4aab39e1581a91a3613bcbcd74ce076f2bc577628818defe6d9e274044、Drive ID16hH1KFj5Xs7wNiG9oPjO8ynoAIBx8_Ch。
+  - 修正前ZIP（過去2ZIPを原bytesで内包）：task069-verification-2-original-bytes-logs-images.zip、21,840,886bytes、SHA256 50c65f0b360ef0625c7cf222083a3f65baeddfdbf9bde3e48a11e0640b0002e7、Drive ID1eH4_lz-L9ADTlkP2MT7GjA7MzCKCBrAI。
+- 両Driveファイルを実際に再取得し、サイズ・SHA256・cmpによる全bytes一致を確認。今回の正式保存成功は066のcatalog障害復旧を証明しない。
+
+069実装の未達なし。この追記は受入記録だけで、ゲーム・検査・CI・原資料を変更しない。
