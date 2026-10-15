@@ -158,7 +158,7 @@ def main():
         ('weapon','城下町の武器屋',dict(id='castle_weapon_shop',kind='weapon_shop',sprite='npc_weapon_clerk',cell=[7,4],reach=2,label='武器屋',text=['手に合う武器を選んでいってくれ。'])),
         ('armor','城下町の防具屋',npc('castle_armor_clerk',[7,4],'防具屋',['服と防具は、動きやすさも大切ですよ。'],'npc_item_clerk',reach=2)),
         ('shrine','城下町の祠',npc('castle_shrine',[8,5],'祠の世話役',['旅の途中で身体の変化に気づいたら、一人で抱え込まずに相談してください。','清めたい人がいるときは、この祠の中で編成を開いて選んでください。'],'npc_elder_woman',shrine=True)),
-        ('home','城下町の民家',npc('castle_home_resident',[10,7],'町の人',['城の北の門は、王の許しを得た人にだけ開かれます。'],'npc_woman')),
+        ('home','城下町の民家',npc('castle_home_resident',[10,7],'町の人',['森の塔へ進むには、王の許しが必要です。'],'npc_woman')),
         ('library','城の書庫',npc('castle_librarian',[10,7],'書庫の係',['学んだ技の使いどころは、仲間の役目によって変わります。'],'npc_castle_advisor'))]:
         add(furnished('castle_'+kind,kind),title,[event])
     # 大広間（部屋番号11。既存の部屋番号を変えないため末尾に追加）。中庭→大広間→謁見の間・宝物庫・書庫。
