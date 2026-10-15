@@ -54,6 +54,10 @@ def main():
         else:assert path in registered and (ROOT/path).is_file(), slot
     source=read("world/first_region.json")
     runtime=read("world/interiors.json")
+    from check_task070_guidance_scope import legacy_copies,run_cases
+    generator=(ROOT/"tools/build_castle_town.py").read_text(encoding="utf8")
+    run_cases(source,runtime,generator,BASE_HASHES,canonical_hash,document["event"])
+    legacy=legacy_copies(source,runtime,generator)
     for data in [source,runtime]:
         ids=[site["id"] for site in data["sites"]]
         assert len(ids)==len(set(ids))
@@ -71,7 +75,7 @@ def main():
         assert any((npc[0]+dx,npc[1]+dy) in found for dx,dy in [(0,1),(0,-1),(1,0),(-1,0)])
         assert any((boss[0]+dx,boss[1]+dy) in found for dx,dy in [(0,1),(0,-1),(1,0),(-1,0)])
         assert tuple(source["first_region"]["stairs_up"]["from"]["cell"]) in found
-        stripped=copy.deepcopy(data)
+        stripped=copy.deepcopy(legacy[0 if data is source else 1])
         next(site for site in stripped["sites"] if site["id"]=="first_cave")["rooms"][1]["events"]=[event for event in floor["events"] if event["id"]!=document["event"]["id"]]
         assert canonical_hash(stripped)==BASE_HASHES["world/first_region.json" if data is source else "world/interiors.json"]
     from first_region_story_data import apply as apply_story
