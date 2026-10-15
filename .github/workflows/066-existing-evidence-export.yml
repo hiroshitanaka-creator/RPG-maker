@@ -78,34 +78,65 @@ jobs:
           def package(source, out, provenance):
               out.mkdir(parents=True, exist_ok=False)
               source_hash = fingerprint(source)
-              rows = []; selected = []; seen = set()
-              with zipfile.ZipFile(source) as archive:
-                  for member in archive.infolist():
-                      if member.is_dir():
-                          continue
-                      name = member.filename; path = PurePosixPath(name)
-                      if name in seen or path.is_absolute() or '..' in path.parts or '\\' in name:
-                          raise ValueError('unsafe or duplicate member: ' + repr(name))
-                      seen.add(name)
-                      row = dict(path=name, bytes=member.file_size, crc32=member.CRC,
-                                 zip_external_attr=member.external_attr, selected=select(name))
-                      rows.append(row)
-                      if row['selected']:
-                          selected.append((member, row))
+              from contextlib import ExitStack
+              rows = []; selected = []; nested = None
+              with ExitStack() as stack:
+                  archive = stack.enter_context(zipfile.ZipFile(source))
+                  archives = [('', archive, None)]
+                  if 'native-build-originals.zip' in archive.namelist():
+                      summary = json.loads(archive.read('summary.json'))
+                      index_bytes = archive.read('original-index.json')
+                      original_index = json.loads(index_bytes)
+                      recorded = summary['archive']
+                      if recorded['file'] != 'native-build-originals.zip':
+                          raise ValueError('unexpected original archive name')
+                      inner_path = out.parent / 'native-build-originals.zip'
+                      with archive.open('native-build-originals.zip') as src, inner_path.open('xb') as dst:
+                          shutil.copyfileobj(src, dst, 1024 * 1024)
+                      nested = fingerprint(inner_path)
+                      if nested != {k: recorded[k] for k in ('bytes', 'sha256')}:
+                          raise ValueError('inner original ZIP differs from its original receipt')
+                      inner = stack.enter_context(zipfile.ZipFile(inner_path))
+                      if inner.read('original-index.json') != index_bytes:
+                          raise ValueError('outer and inner original index bytes differ')
+                      original_rows = {r['path']: r for r in original_index['files']}
+                      if len(original_rows) != len(original_index['files']):
+                          raise ValueError('duplicate original index entry')
+                      if set(inner.namelist()) != set(original_rows) | {'original-index.json'}:
+                          raise ValueError('inner member set differs from its original index')
+                      archives.append(('native-build-originals.zip/', inner, original_rows))
+                  for prefix, current, indexed in archives:
+                      seen = set()
+                      for member in current.infolist():
+                          if member.is_dir():
+                              continue
+                          name = member.filename; path = PurePosixPath(name)
+                          if name in seen or path.is_absolute() or '..' in path.parts or '\\' in name:
+                              raise ValueError('unsafe or duplicate member: ' + repr(name))
+                          seen.add(name)
+                          row = dict(path=prefix+name, original_member=name, archive='inner' if prefix else 'outer',
+                                     bytes=member.file_size, crc32=member.CRC,
+                                     zip_external_attr=member.external_attr, selected=select(name))
+                          rows.append(row)
+                          if row['selected']:
+                              selected.append((current, member, row, indexed.get(name) if indexed else None))
                   if not selected:
                       raise ValueError('selected original evidence is absent')
                   bundle = out / 'selected-originals.tar.gz'
                   with bundle.open('xb') as raw, gzip.GzipFile(fileobj=raw, mode='wb', mtime=0) as gz, tarfile.open(fileobj=gz, mode='w|') as tar:
-                      for member, row in selected:
-                          # CRCを含め、原ZIPから読んだ全bytesをそのまま梱包。テキスト再保存しない。
-                          data = archive.read(member)
+                      for current, member, row, indexed in selected:
+                          # 原ZIPから読んだ全bytesを原索引と照合して梱包。テキスト再保存しない。
+                          data = current.read(member)
                           row['sha256'] = hashlib.sha256(data).hexdigest()
-                          info = tarfile.TarInfo('originals/' + member.filename)
-                          info.size = len(data); info.mode = (member.external_attr >> 16) & 0o777
+                          if indexed and (len(data) != indexed['bytes'] or row['sha256'] != indexed['sha256']):
+                              raise ValueError('selected bytes differ from the original index: ' + row['path'])
+                          info = tarfile.TarInfo('originals/' + row['path'])
+                          info.size = len(data)
+                          info.mode = indexed['mode'] if indexed else (member.external_attr >> 16) & 0o777
                           import io
                           tar.addfile(info, io.BytesIO(data))
               # 梱包後の全選択ファイルを読み戻す。元ZIPに含まれない資料は追加しない。
-              expected = {'originals/' + r['path']: r for _, r in selected}
+              expected = {'originals/' + r['path']: r for _, _, r, _ in selected}
               with tarfile.open(bundle, 'r:gz') as tar:
                   got = {}
                   for member in tar:
@@ -135,7 +166,7 @@ jobs:
                       parts.append(dict(path=path.name, **fingerprint(path)))
               if combined.hexdigest() != bundle_hash['sha256']:
                   raise ValueError('reassembled selected bundle mismatch')
-              manifest = dict(schema=1, provenance=provenance, source_zip=source_hash,
+              manifest = dict(schema=1, provenance=provenance, source_zip=source_hash, nested_original_zip=nested,
                               scope='selected existing original bytes; not a replacement for the full original ZIP',
                               selection_rule='JSON/JSONL/log/txt/stdout/stderr outside original-byte/source payload directories',
                               all_zip_members=rows, selected_count=len(selected), bundle=bundle_hash, parts=parts,
