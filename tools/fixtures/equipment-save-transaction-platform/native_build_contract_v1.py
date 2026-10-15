@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """066: 固定Git原物と、先行記録した実QA対象の段階間bytesを照合する。"""
 import argparse
+from functools import lru_cache
 import hashlib
 import json
 import os
@@ -55,15 +56,22 @@ def write_new(path, value):
         stream.write(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
 
 
-def tree(root, revision):
-    result = {}
+@lru_cache(maxsize=128)
+def _tree_records(root, revision):
+    # 完全SHAで指定した不変のGit treeだけを再利用する。index・HEAD・実bytesは毎回読む。
+    result = []
     for item in git(root, 'ls-tree', '-r', '-z', old.sha(revision)).split(b'\0'):
         if item:
             meta, name = item.split(b'\t', 1)
             mode, kind, blob = meta.decode().split()
             require(kind == 'blob' and mode in ('100644', '100755'), '特殊Git entry:' + name.decode())
-            result[name.decode()] = dict(mode=mode, blob=blob)
-    return result
+            result.append((name.decode(), mode, blob))
+    return tuple(result)
+
+
+def tree(root, revision):
+    return {name: dict(mode=mode, blob=blob)
+            for name, mode, blob in _tree_records(str(Path(root).resolve()), old.sha(revision))}
 
 
 def audited(name):
@@ -73,10 +81,12 @@ def audited(name):
 def no_links(path, root):
     path = Path(path); root = Path(root)
     require(path == root or root in path.parents, '領域外path')
-    for part in (path, *path.parents):
+    part = path
+    while True:
         require(not part.is_symlink(), 'symlink:' + str(part))
         if part == root:
             break
+        part = part.parent
 
 
 def raw_file(path, root):
@@ -492,7 +502,36 @@ def check_map(root):
     require(len(value['old_assertions']) == 112 and len(value['old_new_conditions']) == 14, '旧分母変更')
 
 
-def current_inventory(root, expected):
+def working_state(root):
+    # HEAD・変更path・未追跡pathを一度のGit照会で採取する。名前はNUL区切りで保持する。
+    head = None
+    dirty = set()
+    extras = []
+    raw = git(root, '--no-optional-locks', 'status', '--porcelain=v2', '--branch',
+              '--no-renames', '--untracked-files=all', '-z')
+    for item in raw.split(b'\0'):
+        if not item:
+            continue
+        if item.startswith(b'# branch.oid '):
+            require(head is None, 'HEAD記録重複')
+            head = old.sha(item[len(b'# branch.oid '):].decode())
+        elif item.startswith(b'# '):
+            continue
+        elif item.startswith(b'? '):
+            extras.append(item[2:])
+        elif item.startswith(b'1 '):
+            fields = item.split(b' ', 8)
+            require(len(fields) == 9 and fields[8], 'Git status形式')
+            dirty.add(fields[8].decode())
+        elif item.startswith(b'u '):
+            require(False, '未解決index')
+        else:
+            require(False, 'Git status未知record')
+    require(head is not None, 'HEAD記録欠落')
+    return dict(head=head, dirty=dirty, extras=extras)
+
+
+def current_inventory(root, expected, observation=None):
     # 全tracked集合/mode/blobを固定し、監査対象はGit indexのstat cacheを信頼せず原bytesを読む。
     index = {}
     for item in git(root, 'ls-files', '--stage', '-z').split(b'\0'):
@@ -501,11 +540,12 @@ def current_inventory(root, expected):
             require(stage == '0', '未解決index')
             index[name.decode()] = dict(mode=mode, blob=blob)
     require(index == expected, 'tracked集合/mode/blob不一致')
-    extras = git(root, 'ls-files', '--others', '--exclude-standard', '-z').split(b'\0')
+    observation = working_state(root) if observation is None else observation
+    extras = observation['extras']
     require(not any(p for p in extras), '未追跡追加file')
     actual_addons={p.relative_to(root).as_posix() for p in (root/'addons').rglob('*') if not p.is_dir() or p.is_symlink()}
     require(actual_addons=={p for p in expected if p.startswith('addons/')}, 'addon未列挙file/削除')
-    dirty={p.decode() for p in git(root,'diff','HEAD','--name-only','-z').split(b'\0') if p}
+    dirty = observation['dirty']
     require(not (dirty-{p for p in expected if audited(p)}), '監査外tracked bytes変更')
     files = {}
     for name, entry in expected.items():
@@ -555,7 +595,8 @@ def _capture(root, area, stage, identity):
     require(identity['os'] in ('linux','windows') and identity['phase'] in ('transaction','primitives'), 'OS/phase')
     require(bool(identity['job']) and bool(identity['run']) and bool(identity['attempt']), 'job identity欠落')
     expected_head = old.sha(identity['source_sha'])
-    require(git(root, 'rev-parse','HEAD').decode().strip()==expected_head, 'HEADすり替え')
+    observation = working_state(root)
+    require(observation['head']==expected_head, 'HEADすり替え')
     expected = tree(root, expected_head)
     index = STAGES.index(stage)
     previous = None
@@ -565,7 +606,7 @@ def _capture(root, area, stage, identity):
     if index==2:fresh_build_inputs(root)
     destination = area/stage
     destination.mkdir(parents=True,exist_ok=False)
-    files = current_inventory(root, expected)
+    files = current_inventory(root, expected, observation)
     for name, row in files.items():
         raw, mode = raw_file(root/name,root)
         require(digest(raw)==row['sha256'] and mode==row['filesystem_mode'], '採取中差替え')
@@ -581,7 +622,7 @@ def _capture(root, area, stage, identity):
             require(blob_id(raw)==entry['blob'], 'shipped Git原blob不一致')
             shipped[name]=dict(bytes=len(raw),sha256=digest(raw),filesystem_mode=mode)
             target=destination/'shipped'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
-    value=dict(schema=1,stage=stage,identity=identity,sequence=index,monotonic_ns=time.monotonic_ns(),
+    value=dict(schema=1,stage=stage,identity=identity,sequence=index,monotonic_ns=time.perf_counter_ns(),
                previous=digest((area/STAGES[index-1]/'snapshot.json').read_bytes()) if index else None,
                tracked=expected,files=files,shipped=shipped,
                dependency=dependency(root,destination/'dependency-bytes') if index>=2 else None)
@@ -613,7 +654,7 @@ def capture(root, area, stage, identity):
         return _capture(root,area,stage,identity)
     except Exception as exc:
         # 失敗時の実QA対象も採取する。先行snapshotの置換・採り直しはしない。
-        failure=area/('failed-'+stage+'-'+str(time.monotonic_ns()))
+        failure=area/('failed-'+stage+'-'+str(time.perf_counter_ns()))
         failure.mkdir(parents=True,exist_ok=False)
         observed={};errors=[]
         names={p.decode() for p in git(root,'ls-files','-z').split(b'\0') if p and audited(p.decode())}
@@ -765,7 +806,7 @@ def begin_byproducts(root,area,evidence,identity):
               for p,r in before['files'].items() if p.startswith('addons/')}
     require(inventory==expected,'byproduct-preexisting-or-changed')
     value=dict(schema=2,identity=identity,before_snapshot_sha256=digest((area/'before-build/snapshot.json').read_bytes()),
-               observed_ns=time.monotonic_ns(),addon_files=inventory,
+               observed_ns=time.perf_counter_ns(),addon_files=inventory,
                candidates=list(BYPRODUCTS_V2) if identity['os']=='windows' else [])
     write_new(folder/'before.json',value)
     receipt=digest((folder/'before.json').read_bytes())
@@ -798,7 +839,7 @@ def preserve_byproducts(root,area,evidence,identity,before_receipt):
         require(inventory[path]['bytes']>0,'byproduct-empty')
     # 全件を移動前に記録。renameは同一filesystem限定、失敗時は原物を残す。
     records=[dict(path=p,destination='files/'+p,**inventory[p]) for p in extras]
-    plan=dict(schema=2,identity=identity,before_sha256=before_receipt,observed_ns=time.monotonic_ns(),
+    plan=dict(schema=2,identity=identity,before_sha256=before_receipt,observed_ns=time.perf_counter_ns(),
               build_process_sha256=digest((area/'build-process.json').read_bytes()),
               build_child_sha256=digest((area/'build-child.json').read_bytes()),addon_files=inventory,files=records)
     for row in records:
@@ -816,12 +857,12 @@ def preserve_byproducts(root,area,evidence,identity,before_receipt):
         saved,saved_mode=raw_file(target,folder)
         require(saved==raw and saved_mode==mode and not source.exists(),'byproduct-move-bytes')
         write_new(folder/'moves'/(str(index)+'.json'),dict(schema=2,plan_sha256=plan_hash,file=row,
-                  source_absent=True,destination_bytes=len(saved),destination_sha256=digest(saved),moved_ns=time.monotonic_ns()))
+                  source_absent=True,destination_bytes=len(saved),destination_sha256=digest(saved),moved_ns=time.perf_counter_ns()))
     after=byproduct_inventory(root)
     require(after=={p:r for p,r in inventory.items() if p not in extras},'byproduct-move-other-file-change')
     require(set(after)==tracked,'byproduct-addon-exact-after')
     write_new(folder/'complete.json',dict(schema=2,identity=identity,plan_sha256=plan_hash,
-              files=records,addon_after=after,total_bytes=sum(r['bytes'] for r in records),completed_ns=time.monotonic_ns()))
+              files=records,addon_after=after,total_bytes=sum(r['bytes'] for r in records),completed_ns=time.perf_counter_ns()))
     print('NATIVE_BYPRODUCT_V2_COMPLETE '+digest((folder/'complete.json').read_bytes()),flush=True)
 
 

@@ -39,7 +39,8 @@ def execute(label,argv,budget,out,cwd,previous):
 def exec_build(args):
     evidence=Path(args.output).resolve();area=evidence.parent/'native-build-v1'
     argv=[sys.executable,str(ROOT/'native/equipment_save_io/build.py'),'--platform',args.platform,'--output',str(evidence/'build')]
-    record=dict(argv=argv,started_ns=time.monotonic_ns(),pid=None,exit_code=None,waited=False)
+    # snapshotと同じ高分解能の単調時計。WindowsのGetTickCount64では別処理も同時刻になる。
+    record=dict(argv=argv,started_ns=time.perf_counter_ns(),pid=None,exit_code=None,waited=False)
     # stdout/stderrは別々の原bytes。外側のOwnedTreeはwrapperとbuildの全子を監督する。
     try:
         with (area/'build-stdout.log').open('xb') as stdout,(area/'build-stderr.log').open('xb') as stderr:
@@ -47,7 +48,7 @@ def exec_build(args):
             record['pid']=child.pid;save(area/'build-child.json',record)
             record['exit_code']=child.wait();record['waited']=True
     finally:
-        record['ended_ns']=time.monotonic_ns()
+        record['ended_ns']=time.perf_counter_ns()
         for stream in ('stdout','stderr'):
             path=area/('build-'+stream+'.log')
             record[stream+'_sha256']=n.digest(path.read_bytes()) if path.exists() else None
