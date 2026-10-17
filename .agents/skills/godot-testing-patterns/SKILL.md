@@ -10,6 +10,7 @@ description: RPG-maker の既存 GUT による GDScript 単体テスト・結合
 
 ## RPG-maker での適用範囲
 
+- 同梱 `scripts/headless_test_runner.gd` の `_execute_all_tests` はテスト探索・実行を実装していないstubである。上流本文のMANDATORYやCI例からこのファイルを実行・採用しない。既存GUTと `python tools/run_locked_checks.py`、および依頼書・既存CIが指定する検査を用いる。終了コード0だけで成功とせず、実行件数・assertion・生ログを既存判定で確認する。
 - 上流の本文・同梱例は GdUnit4 用であり、そのまま動く GUT 例ではない。GdUnit4 を導入せず、既存の `addons/gut/` と `test/support/game_test.gd` の設計を優先する。
 - `GdUnitTestSuite` / `before_test` / GdUnit の assertion はそのまま使わない。既存 GUT の `GutTest`、`before_each` / `after_each`、`double` / `stub`、`watch_signals` / `assert_signal_emitted`、`add_child_autofree` / `add_child_autoqfree` の現物APIに合わせる。
 - 同梱の headless runner、スナップショット初回自動生成、期待画像の削除・上書きを受入手順へ導入しない。凍結 verify と CI の既存コマンドを維持する。`test/**` は保護対象であり、このスキルは書き込み許可を与えない。

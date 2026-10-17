@@ -9,6 +9,7 @@ description: RPG-maker の Godot 4.7.2-stable / GDScript の基本実装、.gd�
 
 ## RPG-maker での適用範囲
 
+- 本リポジトリの検査入口は依頼書・既存CIが指定するコマンドであり、R-01〜R-08には `python tools/run_locked_checks.py` を使う。同梱 `scripts/test/run_tests.py` の `--init-mini` はテストを実行せず別の例を作る処理のため実行しない。以下の上流本文にあるmini導入例を、この禁止の例外として扱わない。同梱runnerのPASSを既存受入の証拠にしない。
 - GDScript の構文・API・既存2Dコードの実装参考に限定する。下記の新規スキャフォールド、3D/C#、QFramework用構成、素材生成、物語作成、Web公開・配布の手順は本リポジトリでは適用しない。テンプレートの丸写しや既存システムの作り直しを標準手順にしない。
 - `scripts/debug/lint_project.py` と `references/godot3_to_4.md` は構文・API移行の補助診断として使う。診断を現物と固定エンジンで確かめ、既存コードへの一括自動修正や受入条件の追加・変更をしない。
 - `--init-mini` による別テスト基盤の導入は禁止する。既存 GUT と CI を使い、`--no-warnings`・`--no-lint`・`--allow-empty`・エラー許容・警告の info 降格などで必須検査を緩めない。同梱ランナーの診断分類だけで合格とせず、生ログと既存判定を優先する。

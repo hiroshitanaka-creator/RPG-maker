@@ -9,6 +9,7 @@ description: RPG-maker の Godot 4.7.2-stable / GDScript に対するヘッド�
 
 ## RPG-maker での適用範囲
 
+- 同梱 `scripts/run_checks.py` のPASSはRPG-makerの受入証拠にしない。この補助runner単体は通常WARNINGの全検出と固定Godot版の強制照合を満たさず、既定出力先 `artifacts/checks/` は本リポジトリの一時出力規約にも一致しない。検査の入口は `tools/run_locked_checks.py`、`tools/check_frozen_files.py`、依頼書および既存CIのコマンドとする。固定Godotの取得元・SHA-256・実測版を既存規定で確認し、元の警告判定・成功マーカー・件数・締切を維持する。既存コマンドの一時出力先 `.tools/` を尊重し、保存すべき原資料は依頼書指定先へ残す。出力先だけ変更して同梱runnerの実行許可や受入成功と解釈しない。
 - 受入判定は既存の `tools/run_locked_checks.py`、`tools/check_frozen_files.py` と CI のコマンドを使う。同梱 `scripts/run_checks.py` は補助検証用であり、凍結 verify の代替ランナーにしない。
 - 上流の `--filter`・`--skip-import` は必須検査や main 取り込み後のインポートを省く許可ではない。元のタイムアウト、成功マーカー、全警告の検出条件を維持し、生ログも確認する。同梱ランナーの成功だけで既存 CI の成功としない。
 - 同じ Godot 4.7.2-stable のビルド・固定シード・入力・初期状態で比較する。追加ログの保存先は依頼書に従い、ゲーム素材や既存の検証記録を上書きしない。
