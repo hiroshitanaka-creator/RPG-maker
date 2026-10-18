@@ -1,0 +1,292 @@
+{
+  "status": "registered_locally_pending_parent_review",
+  "adopted_at": "2026-10-17",
+  "registration_requested_at": "2026-10-18",
+  "review_record": {
+    "repository": "hiroshitanaka-creator/lucca-workspace",
+    "commit": "d921bfff1339554eb4fe06930a9dc170ecaac98d",
+    "path": "projects/rpg-maker/reports/art-parent-review-2026-10-17.md"
+  },
+  "adopted_archive": {
+    "library_file_id": "libfile_7d30c41f2a60819198bf567516bde485",
+    "filename": "adopted-room5-2026-10-17.zip",
+    "bytes": 851055,
+    "sha256": "25cab1603a081415699b87722d6211ce0b56da6932c02034c0f3dbb988b4aabf",
+    "materialized": true,
+    "adoption_json_read": true,
+    "drive_file_id": "1FT2or3SgzWWZrazAEmjlEQME2rt74we-",
+    "transfer": "同じ公式Drive接続のinclude_base64。既存callerがこの851055bytesの1件だけ明示選択。"
+  },
+  "originals": [
+    {
+      "role": "inn",
+      "path": "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-inn.png",
+      "bytes": 2240455,
+      "sha256": "abc509dd6cecd1eccf94fd7139032f30c97061384ff3353838537bf9f30e5b25",
+      "fixed_commit_bytes_match": true
+    },
+    {
+      "role": "item-shop",
+      "path": "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-item-shop.png",
+      "bytes": 2104108,
+      "sha256": "ef7d8b0f92ffef7cc08079a83307736231882e26e9e654fa2474e6e93f441abf",
+      "fixed_commit_bytes_match": true
+    },
+    {
+      "role": "weapon-shop",
+      "path": "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-weapon-shop.png",
+      "bytes": 1789835,
+      "sha256": "f0dacceef429dd73a3eef411da1aa409fb52d0a043c153324ca9f1e4971c6310",
+      "fixed_commit_bytes_match": true
+    },
+    {
+      "role": "shrine",
+      "path": "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-shrine.png",
+      "bytes": 1821858,
+      "sha256": "f826665f70b18404e118a2c4b654cd70797ad812297fe57f890409ec60e223e2",
+      "fixed_commit_bytes_match": true
+    },
+    {
+      "role": "armor-shop",
+      "path": "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-armor-shop.png",
+      "bytes": 2149182,
+      "sha256": "cf21d589f47cbdf128c9d6e79094334a5a8da67f3ee5f71d76f0a207b6161fe6",
+      "fixed_commit_bytes_match": true
+    }
+  ],
+  "originals_fixed_commit": "e61ab37f9542648f25b731cd33924e11e134920b",
+  "original_git_history": [
+    "0a2f7f63a8d1638efc7f28a99788c26d21684980",
+    "677e5a74937921250ec388c72fb1ceaba0341c8c"
+  ],
+  "generation": {
+    "tool": "Grok（依頼者からの説明）",
+    "generated_at": null,
+    "prompt_record": null,
+    "license": null,
+    "status": "原画の生成日時・個別生成指示は未確認のまま保持。生成素材として登録せず、2026-10-18承認の限定owner照合で登録。"
+  },
+  "prior_processing": {
+    "library_file_id": "libfile_6029854921d88191abe04bdd93384c7f",
+    "bytes": 46764619,
+    "sha256": "c504388df6a88a65aaa1ae2994aeedafe4ae5e2616684a75cdfe0d238bef7a65",
+    "description": "別工程で切出し・等方最近傍縮小・固定natural.gplへ減色済み。宿と防具屋は旧代表、道具屋・武器屋・祠はshadow_guard。今回その加工は実行しない。",
+    "source": "親検収の固定commitに記録された納品・選定。今回のadoption.jsonのsource_library_id/source_zip_sha256と一致し、配置5PNGと既存v2 outputsの原バイトも一致。旧加工の再実行はしない。"
+  },
+  "current_operation": {
+    "method": "固定ZIPと5PNGを照合し、PNGのバイト列をそのままコピーする。再保存・減色・描画なし。",
+    "performed": true,
+    "registry_updated": true
+  },
+  "expected_outputs": [
+    {
+      "role": "inn",
+      "path": "assets/interiors/region3_room_inn.png",
+      "bytes": 184495,
+      "sha256": "52723c0560ca54cf9aff695d383a17235b8f224058dda7a2367304e79cb5e007",
+      "dimensions": [
+        448,
+        384
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        255
+      ],
+      "status": "採用ZIPのadoption.json・実PNG・配置先のbytesとSHA-256が一致。"
+    },
+    {
+      "role": "item-shop",
+      "path": "assets/interiors/region3_room_item_shop.png",
+      "bytes": 168249,
+      "sha256": "76bf5d755bf8b98d7125c800abf02fb27b2b5dda080ac43ff1f966a9c65469cb",
+      "dimensions": [
+        448,
+        384
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        255
+      ],
+      "status": "採用ZIPのadoption.json・実PNG・配置先のbytesとSHA-256が一致。"
+    },
+    {
+      "role": "weapon-shop",
+      "path": "assets/interiors/region3_room_weapon_shop.png",
+      "bytes": 167018,
+      "sha256": "be55b08fc7da5421f84c8c88001586e523369b9dfff8e950d83bd96500e6d93c",
+      "dimensions": [
+        448,
+        384
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        255
+      ],
+      "status": "採用ZIPのadoption.json・実PNG・配置先のbytesとSHA-256が一致。"
+    },
+    {
+      "role": "shrine",
+      "path": "assets/interiors/region3_room_shrine.png",
+      "bytes": 166573,
+      "sha256": "46c00cbdc2ad0d02e1d05662793c15bb2117ea28cb9f0ceeab75f118ce8065c8",
+      "dimensions": [
+        448,
+        384
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        255
+      ],
+      "status": "採用ZIPのadoption.json・実PNG・配置先のbytesとSHA-256が一致。"
+    },
+    {
+      "role": "armor-shop",
+      "path": "assets/interiors/region3_room_armor_shop.png",
+      "bytes": 165817,
+      "sha256": "eefd5131abf790c2a8e7ff5393054898f8bf126b722cca2982e634a4b21f4b31",
+      "dimensions": [
+        448,
+        384
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        255
+      ],
+      "status": "採用ZIPのadoption.json・実PNG・配置先のbytesとSHA-256が一致。"
+    }
+  ],
+  "provided_at": "2026-10-18",
+  "provided_at_definition": "採用PNGを073のconsumer環境で受領した日。原画生成日・原画の初回提供日の主張ではない。",
+  "source": "owner",
+  "author": "依頼者",
+  "license": "LicenseRef-Owner-Provided",
+  "owner_provenance_approval": {
+    "approved_at_jst": "2026-10-18 10:19 JST（依頼文の分単位）",
+    "decision_quote": "Aで良いよ",
+    "scope": "今回の原画5枚だけをoriginal_file完全パスと実ファイルSHA-256の組合せで許可。既存author/license/provided_at/modified/存在・素材規格条件は維持。",
+    "validator": "tools/validate_assets.py",
+    "allowed_originals": {
+      "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-inn.png": "abc509dd6cecd1eccf94fd7139032f30c97061384ff3353838537bf9f30e5b25",
+      "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-item-shop.png": "ef7d8b0f92ffef7cc08079a83307736231882e26e9e654fa2474e6e93f441abf",
+      "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-weapon-shop.png": "f0dacceef429dd73a3eef411da1aa409fb52d0a043c153324ca9f1e4971c6310",
+      "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-shrine.png": "f826665f70b18404e118a2c4b654cd70797ad812297fe57f890409ec60e223e2",
+      "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-armor-shop.png": "cf21d589f47cbdf128c9d6e79094334a5a8da67f3ee5f71d76f0a207b6161fe6"
+    }
+  },
+  "adoption_manifest": {
+    "decision_message": "Sentinel_7aaa28a5a8e48191b5087f70d5f4cef9",
+    "decision_quote": "採用でOKです🙆‍♀️",
+    "clarification_message": "Sentinel_ad812be8bf8c819193bb3a39dd99bc34",
+    "adopted_at_jst": "2026-10-17T13:46:16+09:00",
+    "scope": "5画像のゲーム用見た目採用。人物・通行・物語設定・本番配線は未確定。",
+    "source_library_id": "libfile_6029854921d88191abe04bdd93384c7f",
+    "source_zip_sha256": "c504388df6a88a65aaa1ae2994aeedafe4ae5e2616684a75cdfe0d238bef7a65",
+    "held": [
+      "harbor-office"
+    ],
+    "files": [
+      {
+        "id": "inn",
+        "variant": "old",
+        "source_zip_path": "region3-room-previews-v2/outputs/inn/preview.png",
+        "file": "inn.png",
+        "bytes": 184495,
+        "sha256": "52723c0560ca54cf9aff695d383a17235b8f224058dda7a2367304e79cb5e007",
+        "dimensions": [
+          448,
+          384
+        ],
+        "mode": "RGBA",
+        "colors": 54,
+        "alpha_extrema": [
+          255,
+          255
+        ]
+      },
+      {
+        "id": "item-shop",
+        "variant": "shadow_guard",
+        "source_zip_path": "region3-room-previews-v2/outputs/item-shop/preview.png",
+        "file": "item-shop.png",
+        "bytes": 168249,
+        "sha256": "76bf5d755bf8b98d7125c800abf02fb27b2b5dda080ac43ff1f966a9c65469cb",
+        "dimensions": [
+          448,
+          384
+        ],
+        "mode": "RGBA",
+        "colors": 60,
+        "alpha_extrema": [
+          255,
+          255
+        ]
+      },
+      {
+        "id": "weapon-shop",
+        "variant": "shadow_guard",
+        "source_zip_path": "region3-room-previews-v2/outputs/weapon-shop/preview.png",
+        "file": "weapon-shop.png",
+        "bytes": 167018,
+        "sha256": "be55b08fc7da5421f84c8c88001586e523369b9dfff8e950d83bd96500e6d93c",
+        "dimensions": [
+          448,
+          384
+        ],
+        "mode": "RGBA",
+        "colors": 63,
+        "alpha_extrema": [
+          255,
+          255
+        ]
+      },
+      {
+        "id": "shrine",
+        "variant": "shadow_guard",
+        "source_zip_path": "region3-room-previews-v2/outputs/shrine/preview.png",
+        "file": "shrine.png",
+        "bytes": 166573,
+        "sha256": "46c00cbdc2ad0d02e1d05662793c15bb2117ea28cb9f0ceeab75f118ce8065c8",
+        "dimensions": [
+          448,
+          384
+        ],
+        "mode": "RGBA",
+        "colors": 55,
+        "alpha_extrema": [
+          255,
+          255
+        ]
+      },
+      {
+        "id": "armor-shop",
+        "variant": "old",
+        "source_zip_path": "region3-room-previews-v2/outputs/armor-shop/preview.png",
+        "file": "armor-shop.png",
+        "bytes": 165817,
+        "sha256": "eefd5131abf790c2a8e7ff5393054898f8bf126b722cca2982e634a4b21f4b31",
+        "dimensions": [
+          448,
+          384
+        ],
+        "mode": "RGBA",
+        "colors": 57,
+        "alpha_extrema": [
+          255,
+          255
+        ]
+      }
+    ]
+  },
+  "visual_inspection": {
+    "performed": true,
+    "method": "採用ZIPから原バイト展開した5PNGを各448x384で表示確認。",
+    "observations": {
+      "inn": "左にベッド3台、奥に暖炉、右に受付、手前中央に入口。",
+      "item-shop": "奥に瓶・薬草棚、中央床と手前カウンター、手前中央に入口。",
+      "weapon-shop": "左奥に炉・金床、奥に武器棚、中央台、手前中央に入口。",
+      "shrine": "奥中央の祭壇と炎、中央敷物、手前中央に入口。",
+      "armor-shop": "奥に盾・兜、左右に鎧展示、中央台、手前中央に入口。"
+    },
+    "scope": "採用画像の内容・入口・家具を確認。新規採否、通行判定、ゲーム接続の確認ではない。"
+  }
+}

@@ -38,6 +38,20 @@ REGISTRY_PATH = REPO_ROOT / "assets" / "registry.json"
 # 検査対象外のディレクトリ（外部素材の一時置き場など）
 IGNORED_DIRS = {"_incoming"}
 
+# 073：2026-10-18の依頼者承認。フォルダ全体ではなく原画5枚のパスと内容を固定する。
+OWNER_ADOPTED_ROOM_ORIGINALS = {
+    "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-inn.png":
+        "abc509dd6cecd1eccf94fd7139032f30c97061384ff3353838537bf9f30e5b25",
+    "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-item-shop.png":
+        "ef7d8b0f92ffef7cc08079a83307736231882e26e9e654fa2474e6e93f441abf",
+    "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-weapon-shop.png":
+        "f0dacceef429dd73a3eef411da1aa409fb52d0a043c153324ca9f1e4971c6310",
+    "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-shrine.png":
+        "f826665f70b18404e118a2c4b654cd70797ad812297fe57f890409ec60e223e2",
+    "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-armor-shop.png":
+        "cf21d589f47cbdf128c9d6e79094334a5a8da67f3ee5f71d76f0a207b6161fe6",
+}
+
 
 def load_palette(path: Path) -> set[tuple[int, int, int]] | None:
     """GIMP パレット (.gpl) を読み込む。無ければ None。"""
@@ -193,7 +207,12 @@ def check_provenance(entry: dict) -> list[str]:
         if entry.get('author') != '依頼者' or entry.get('license') != 'LicenseRef-Owner-Provided':
             errors.append(f'{rel}: 依頼者原本の作者またはライセンスが不一致')
         original=entry.get('original_file','')
-        if not original.startswith('assets/_incoming/owner-2026-09-26/') or '..' in Path(original).parts or not (REPO_ROOT/original).is_file():
+        valid_original = '..' not in Path(original).parts and (REPO_ROOT / original).is_file()
+        if valid_original and not original.startswith('assets/_incoming/owner-2026-09-26/'):
+            expected_sha256 = OWNER_ADOPTED_ROOM_ORIGINALS.get(original)
+            valid_original = expected_sha256 is not None and hashlib.sha256(
+                (REPO_ROOT / original).read_bytes()).hexdigest() == expected_sha256
+        if not valid_original:
             errors.append(f'{rel}: 依頼者の原本ファイルが存在しない、または配置が不正')
         return errors
     if entry.get("source") == "generated":
