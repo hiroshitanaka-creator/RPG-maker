@@ -1,6 +1,6 @@
 # 075 どうぐメニューの無効項目とキーボード操作
 
-- 状態：依頼中
+- 状態：報告済み
 - 担当：Codex GPT-6 Astra／High。正式保存・検収はルッカ。
 - 基点：8f2bc17b8c36b4304eb17de1a29e91e67a21cf57
 - ブランチ：codex/task-075-items-keyboard-focus
