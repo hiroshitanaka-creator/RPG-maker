@@ -1,6 +1,6 @@
 # 074 帰還メニューのキーボード選択を確認・修正
 
-- 状態：未着手
+- 状態：報告済み
 - 担当：Codex GPT-6 Astra／High。正式GitHub保存と検収はルッカ。
 - ブランチ：codex/task-074-return-menu-keyboard-focus
 - 基点：8f2bc17b8c36b4304eb17de1a29e91e67a21cf57
