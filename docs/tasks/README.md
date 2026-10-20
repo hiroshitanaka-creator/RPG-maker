@@ -77,3 +77,7 @@
 
 - 077取込後：main f34967aadf3f668017854d1c958f3ee075d4097f全38CI/R8/前後保護26確認済み。
 - 078：確認済み。依頼[078](078-party-action-focus.md)、[原報告](reports/078-party-action-focus.md)、[統合報告](reports/078-main-integration.md)。PR #54、head d2ca76169aeaec9bcb3ed340444830af3712b448全76CI/R8/保護26/入力39139判定を検収。074→075→076→077→078でmain f83e39e1e38174b4beaace908fc46a3823f8e60eへ通常merge。旧coastal/実機未確認等の限界は保持。取込後mainCIは別確認。記録者ルッカ。
+
+
+- 078取込後：main f83e39e1e38174b4beaace908fc46a3823f8e60e全38CI/R8/前後保護26を確認済み。
+- 079：確認済み。依頼[079](079-checkpoint-focus.md)、[原報告](reports/079-checkpoint-focus.md)、[統合報告](reports/079-main-integration.md)。PR #55、head7d2d2a696c0bf4817b05a4a46cea04ce6e212bd5の全76CI/R8/保護26/32実行42223判定を検収し、main c3fb791d7a1d5998a4174f6286d354c3a8eff106へ逐次merge。統合後全38CI/R8/前後保護26も2026-10-20 22:59 UTCに親が直接検収。074〜079全件の統合後確認完了。旧coastal/物理実機未確認/初回失敗等の限界は統合報告に保持。親記録はルッカ。066・073以前の統合は今回承認に含まれない。
