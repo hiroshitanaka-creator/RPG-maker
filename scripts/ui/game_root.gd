@@ -995,6 +995,7 @@ func _render_menu() -> void:
 	_button(_body, "手動セーブから再開", _load_save)
 	var checkpoint := _action_button(_body,"自動保存した戦闘前から再開",{"kind":"load_checkpoint"})
 	checkpoint.disabled = not FileAccess.file_exists(checkpoint_path)
+	checkpoint.focus_mode = Control.FOCUS_NONE if checkpoint.disabled else Control.FOCUS_ALL
 	checkpoint.tooltip_text = "直近の戦闘開始時の位置と編成へ戻ります。手動セーブとは別の記録です。"
 	_action_button(_body,"試遊の記録と評価",{"kind":"review"})
 	_button(_body, "終了", func() -> void: get_tree().quit())
