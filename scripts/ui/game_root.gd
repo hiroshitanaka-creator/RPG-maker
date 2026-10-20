@@ -1706,6 +1706,7 @@ func _render_party() -> void:
 			_notice = "装着しました。" if game.equip_ability(actor["id"], skills.get_item_metadata(skills.selected)) else "装着枠または習得状態を確認してください。"
 			_refresh())
 	equip.disabled = skills.item_count == 0 or (game.first_region_active() and not game.export_state()["progress_flags"].get("job_change_unlocked",false))
+	if equip.disabled:equip.focus_mode = Control.FOCUS_NONE
 	var skill_details := _label("習得した技をここで装着できます。" if skills.item_count == 0 else game.describe_ability(skills.get_item_metadata(skills.selected),actor["id"]), 10)
 	skill_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(skill_details)
