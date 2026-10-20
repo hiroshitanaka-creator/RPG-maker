@@ -1627,6 +1627,7 @@ func _render_party() -> void:
 		return
 	var outer := _body
 	var scroll := ScrollContainer.new()
+	scroll.follow_focus = true
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	outer.add_child(scroll)
@@ -1657,6 +1658,7 @@ func _render_party() -> void:
 		var identifier: String = jobs.get_item_metadata(jobs.selected)
 		submit_player_action({"kind":"choose_job","actor":actor["id"],"job":identifier}))
 	change.disabled = not game.job_unlocked(actor["id"],actor["job_id"])
+	change.focus_mode = Control.FOCUS_NONE if change.disabled else Control.FOCUS_ALL
 	if game.first_region_active() and not game.export_state()["progress_flags"].get("job_change_unlocked",false):
 		_body.add_child(_label("転職と技の装着は、まだ解放されていません。",10))
 	var comparison := _label(_job_preview_text(actor, actor["job_id"]), 10)
@@ -1665,7 +1667,8 @@ func _render_party() -> void:
 	jobs.item_selected.connect(func(index: int) -> void:
 		var identifier: String = jobs.get_item_metadata(index)
 		comparison.text = _job_preview_text(actor, identifier)
-		change.disabled = not game.preview_job(actor["id"], identifier)["allowed"] or not game.job_unlocked(actor["id"],identifier))
+		change.disabled = not game.preview_job(actor["id"], identifier)["allowed"] or not game.job_unlocked(actor["id"],identifier)
+		change.focus_mode = Control.FOCUS_NONE if change.disabled else Control.FOCUS_ALL)
 	_action_button(_body,"町の噂・魔物図鑑",{"kind":"job_lore"})
 	_body.add_child(_label("魔物職はマスターで魔物化。侵蝕90以降は人間職へ戻れません。", 10))
 	_body.add_child(_label("侵蝕 %.1f（%s） / 30:兆候・60:人間JP半減・90:復帰不可" % [game.current_erosion(actor["id"]), GameSession.erosion_stage(actor["erosion"])], 10))
@@ -1707,6 +1710,7 @@ func _render_party() -> void:
 			_notice = "装着しました。" if game.equip_ability(actor["id"], skills.get_item_metadata(skills.selected)) else "装着枠または習得状態を確認してください。"
 			_refresh())
 	equip.disabled = skills.item_count == 0 or (game.first_region_active() and not game.export_state()["progress_flags"].get("job_change_unlocked",false))
+	if equip.disabled:equip.focus_mode = Control.FOCUS_NONE
 	var skill_details := _label("習得した技をここで装着できます。" if skills.item_count == 0 else game.describe_ability(skills.get_item_metadata(skills.selected),actor["id"]), 10)
 	skill_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_body.add_child(skill_details)
@@ -1719,6 +1723,7 @@ func _render_party() -> void:
 			_body.add_child(_label("魔物化: " + game.jobs[actor["monster_form"]]["name"], 11))
 		var release := _action_button(_body, "町の祠で清める（魔物専用技を全消去）", {"kind":"request_purify", "actor":actor["id"]})
 		release.disabled = not game.at_purification_shrine() or actor["irreversible"]
+		release.focus_mode = Control.FOCUS_NONE if release.disabled else Control.FOCUS_ALL
 	_body = outer
 	_action_button(_body, "探索へ戻る", {"kind":"back"})
 
