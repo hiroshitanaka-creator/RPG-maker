@@ -65,3 +65,6 @@
 ## 2026-10-20 操作品質修正の逐次取込
 
 - 074：確認済み。依頼 [074](074-return-menu-keyboard-focus.md)、報告 [074報告](reports/074-return-menu-keyboard-focus.md)。PR #50、head8e985fc20dec91fd2eb08a118cafb7c84f6901b1、push/PR全76CI・R全8・前後保護26件不変を再検収。main891cba3433ed0ab72f8559051eee1e35a534e323へ通常merge。取込後main CIは提出時の成功とは分けてSTATUSで追跡。旧coastal基点共通失敗・描画警告は原報告に保持。記録作成者はルッカ、次の075との共有ファイル編集は逐次実施。
+
+- 074取込後：main891cba3433ed0ab72f8559051eee1e35a534e323の全38CI・R全8・前後保護26一致を確認済み。
+- 075：確認済み。依頼[075](075-items-keyboard-focus.md)、原報告[075報告](reports/075-items-keyboard-focus.md)、[最新main統合報告](reports/075-main-integration.md)。074→075の順でPR #51からmain cb7ca827f7368a2c636a9bf374a9598b3444069aへ通常merge。head382d9b8110ee22220a3d946fecbcdb358937827dのpush/PR全76CI・R全8・前後保護26、統合16ケースを検収。親記録と074の両修正を保持。初回基点ログ欠損・旧coastal共通失敗・実機未確認は報告に保持し、成功と混同しない。取込後main CIは別追跡。記録作成者ルッカ。
