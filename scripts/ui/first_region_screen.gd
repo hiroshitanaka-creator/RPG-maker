@@ -58,7 +58,7 @@ func _ready() -> void:
 			for button in find_children("*","Button",true,false):
 				if button.text==focus_label and not button.disabled:button.grab_focus.call_deferred();return
 			focus_command.call_deferred()
-	elif is_instance_valid(_first_button) and screen_mode in ["commands","items","shop"]:_first_button.grab_focus.call_deferred()
+	elif is_instance_valid(_first_button) and screen_mode in ["commands","items","travel","shop"]:_first_button.grab_focus.call_deferred()
 
 func focus_command() -> void:
 	if is_instance_valid(_first_button):_first_button.grab_focus()
@@ -98,6 +98,7 @@ func _button(parent: Node, title: String, action: Dictionary, enabled: bool = tr
 	var button := Button.new()
 	button.text=title
 	button.disabled=not enabled
+	if screen_mode=="travel" and not enabled:button.focus_mode=Control.FOCUS_NONE
 	if screen_mode=="battle":
 		button.alignment=HORIZONTAL_ALIGNMENT_LEFT
 		for state in ["font_color","font_hover_color","font_pressed_color","font_focus_color","font_disabled_color"]:button.add_theme_color_override(state,Color.WHITE)
