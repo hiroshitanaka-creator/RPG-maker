@@ -98,6 +98,7 @@ func _button(parent: Node, title: String, action: Dictionary, enabled: bool = tr
 	var button := Button.new()
 	button.text=title
 	button.disabled=not enabled
+	if screen_mode=="items" and not enabled:button.focus_mode=Control.FOCUS_NONE
 	if screen_mode=="travel" and not enabled:button.focus_mode=Control.FOCUS_NONE
 	if screen_mode=="battle":
 		button.alignment=HORIZONTAL_ALIGNMENT_LEFT
