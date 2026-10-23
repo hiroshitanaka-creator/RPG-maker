@@ -1,0 +1,10 @@
+{
+  "initial_collection_exit": 1,
+  "action": "収集補助のRログ診断",
+  "initial_pattern": "SCRIPT ERROR|ERROR:|WARNING:|Parse Error|leak|_FAIL:",
+  "matched_line": "* test_all_validation_failures_fall_through_without_relocation_leak",
+  "source": "results/project/tool-output/verification/current-20261022T092034Z/R-08.log:49",
+  "reason": "テスト名のleakを実行時リークと誤分類した収集補助のassertion。既存検査の失敗ではない。",
+  "correction": "実行時診断語leaked / still in use at exitを検出。ERROR/WARNING検出はそのまま保持。検査器・原ログ・合否・期待値・回数は変更せず、検査の再実行なし。",
+  "original_traceback": "Traceback (most recent call last):\n  File \"/tmp/coastal-fixture-collect.py\", line 37, in <module>\n    assert not any(locked_diagnostics.values())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+}

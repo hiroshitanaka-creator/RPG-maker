@@ -1,0 +1,25 @@
+{
+  "name": "before-coastal-boundary",
+  "command": [
+    "timeout",
+    "180",
+    "godot",
+    "--headless",
+    "--path",
+    ".",
+    "--script",
+    "res://tools/check_coastal_travel.gd"
+  ],
+  "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+  "environment_overrides": {
+    "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+    "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+    "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+    "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "started_at": "2026-10-22T09:15:45.036851+00:00",
+  "ended_at": "2026-10-22T09:18:45.047362+00:00",
+  "duration_seconds": 180.01053764800002,
+  "exit_code": 124
+}

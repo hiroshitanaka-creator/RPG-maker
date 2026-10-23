@@ -12,7 +12,7 @@ func fixture() -> Dictionary:
 	state["inventory"]["gate_pass"]=1
 	state["progress_flags"]["castle_north_permission"]=true;state["progress_flags"]["mountain_path_open"]=true
 	state["overworld"]["cleared"]=["first_boss","forest_tower_boss"]
-	FirstRegion.place(state["overworld"],{"layer":"interior","node":"first_port","room":5,"cell":[8,6]});state["overworld"]["facing"]=3
+	FirstRegion.place(state["overworld"],{"layer":"interior","node":"first_port","room":5,"cell":[8,7]});state["overworld"]["facing"]=3
 	FirstRegionTravel.ensure(state)
 	return state
 func session(state: Dictionary) -> GameSession:
@@ -54,7 +54,7 @@ func _initialize() -> void:
 	game=session(ready);check(game.start_first_region_battle({"kind":"battle","id":"coastal_encounter","enemies":["river_beast"],"seed":23})!=null,"海の戦闘の境界状態")
 	rejected(game,"first_port","pc_01","戦闘中を拒否")
 	game=session(ready);check(not game.board_first_region_ship(),"船を借りる前の乗船拒否")
-	state=ready.duplicate(true);FirstRegion.place(state["overworld"],{"layer":"interior","node":"first_port","room":7,"cell":[9,7]});state["overworld"]["facing"]=2
+	state=ready.duplicate(true);FirstRegion.place(state["overworld"],{"layer":"interior","node":"first_port","room":7,"cell":[8,5]});state["overworld"]["facing"]=3
 	game=session(state);check(game.interact_first_region().get("travel_lesson")=="ship","荷受け所で借用")
 	check(game.finish_first_region_travel("ship"),"会話終了で船を取得")
 	var owned:=game.export_state();check(not game.finish_first_region_travel("ship") and game.export_state()==owned,"船の二重取得なし")

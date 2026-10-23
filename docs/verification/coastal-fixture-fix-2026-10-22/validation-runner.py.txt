@@ -1,0 +1,40 @@
+from pathlib import Path
+import os,sys,json,subprocess,time,datetime,hashlib,shutil
+ROOT=Path('/workspace/RPG-maker')
+EV=ROOT/'docs/verification/coastal-fixture-fix-2026-10-22'
+WORK=Path('/tmp/coastal-fixture-fix-2026-10-22')
+PROJECT=WORK/'project'
+env=os.environ.copy()
+env.update(PATH=str(ROOT/'.tools/godot/4.7.2')+os.pathsep+env['PATH'],XDG_CACHE_HOME=str(WORK/'cache'),XDG_DATA_HOME=str(WORK/'data'),XDG_CONFIG_HOME=str(WORK/'config'),PYTHONDONTWRITEBYTECODE='1')
+def run(name,command,cwd=PROJECT):
+    start=datetime.datetime.now(datetime.timezone.utc).isoformat();tick=time.monotonic()
+    with (EV/(name+'.stdout.log')).open('wb') as out,(EV/(name+'.stderr.log')).open('wb') as err:
+        p=subprocess.run(command,cwd=cwd,env=env,stdout=out,stderr=err)
+    data={'name':name,'command':command,'cwd':str(cwd),'environment_overrides':{k:env[k] for k in ['PATH','XDG_CACHE_HOME','XDG_DATA_HOME','XDG_CONFIG_HOME','PYTHONDONTWRITEBYTECODE']},'started_at':start,'ended_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'duration_seconds':time.monotonic()-tick,'exit_code':p.returncode}
+    (EV/(name+'.json')).write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in data.items() if k not in ['environment_overrides','cwd']},ensure_ascii=False),flush=True)
+    return p.returncode
+def gd(name,script,limit=180):return run(name,['timeout',str(limit),'godot','--headless','--path','.','--script','res://tools/'+script+'.gd'])
+if sys.argv[1]=='before':
+    run('before-engine-version',['godot','--version'])
+    run('before-frozen',['python','tools/check_frozen_files.py'])
+    code=run('before-editor-import',['timeout','600','godot','--headless','--editor','--import','--quit'])
+    if code:sys.exit(code)
+    gd('before-coastal-boundary','check_coastal_travel')
+elif sys.argv[1]=='after':
+    shutil.copy2(ROOT/'tools/check_coastal_travel.gd',PROJECT/'tools/check_coastal_travel.gd')
+    run('after-engine-version',['godot','--version'])
+    run('after-editor-import',['timeout','600','godot','--headless','--editor','--import','--quit'])
+    gd('after-coastal-boundary','check_coastal_travel')
+    run('after-prescribed-import',['timeout','600','godot','--headless','--import'])
+    run('after-assets-strict',['python','tools/validate_assets.py','--strict'])
+    run('after-port-layout',['python','tools/check_port_town.py'])
+    run('after-coastal-assets',['python','tools/check_coastal_assets.py'])
+    gd('after-second-coast','check_second_region_coast')
+    gd('after-region-ui','check_first_region_screen')
+    gd('after-region2-port','check_region2_port')
+    gd('after-village-regression','check_region2_village_regression')
+    gd('after-saved-position','check_saved_position_relocation',120)
+    run('after-locked-checks',['python','tools/run_locked_checks.py'])
+    run('after-frozen',['python','tools/check_frozen_files.py'])
+    run('source-after-frozen',['python','tools/check_frozen_files.py'],ROOT)
