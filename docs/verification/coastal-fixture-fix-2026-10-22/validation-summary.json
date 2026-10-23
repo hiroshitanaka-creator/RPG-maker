@@ -1,0 +1,628 @@
+{
+  "runs": [
+    {
+      "name": "before-engine-version",
+      "command": [
+        "godot",
+        "--version"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:14:15.640761+00:00",
+      "ended_at": "2026-10-22T09:14:15.687714+00:00",
+      "duration_seconds": 0.04695854299998814,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": []
+    },
+    {
+      "name": "before-frozen",
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:14:15.688628+00:00",
+      "ended_at": "2026-10-22T09:14:15.738417+00:00",
+      "duration_seconds": 0.04979563899999562,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "保護対象26件、一致26件。"
+      ]
+    },
+    {
+      "name": "before-editor-import",
+      "command": [
+        "timeout",
+        "600",
+        "godot",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:14:15.738708+00:00",
+      "ended_at": "2026-10-22T09:15:45.034368+00:00",
+      "duration_seconds": 89.29606501700002,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": []
+    },
+    {
+      "name": "before-coastal-boundary",
+      "command": [
+        "timeout",
+        "180",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_coastal_travel.gd"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:15:45.036851+00:00",
+      "ended_at": "2026-10-22T09:18:45.047362+00:00",
+      "duration_seconds": 180.01053764800002,
+      "exit_code": 124,
+      "diagnostic_lines": [
+        "SCRIPT ERROR: Invalid access to property or key 'return_learned' on a base object of type 'Dictionary'."
+      ],
+      "pass_markers": []
+    },
+    {
+      "name": "after-engine-version",
+      "command": [
+        "godot",
+        "--version"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:11.542840+00:00",
+      "ended_at": "2026-10-22T09:19:11.579600+00:00",
+      "duration_seconds": 0.03676392099998793,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": []
+    },
+    {
+      "name": "after-editor-import",
+      "command": [
+        "timeout",
+        "600",
+        "godot",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:11.579958+00:00",
+      "ended_at": "2026-10-22T09:19:17.578363+00:00",
+      "duration_seconds": 5.99842079299998,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": []
+    },
+    {
+      "name": "after-coastal-boundary",
+      "command": [
+        "timeout",
+        "180",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_coastal_travel.gd"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:17.578903+00:00",
+      "ended_at": "2026-10-22T09:19:24.894432+00:00",
+      "duration_seconds": 7.3156008720000045,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "COASTAL_BOUNDARY_PASS: checks=93"
+      ]
+    },
+    {
+      "name": "after-prescribed-import",
+      "command": [
+        "timeout",
+        "600",
+        "godot",
+        "--headless",
+        "--import"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:24.894947+00:00",
+      "ended_at": "2026-10-22T09:19:31.394999+00:00",
+      "duration_seconds": 6.500090433000025,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": []
+    },
+    {
+      "name": "after-assets-strict",
+      "command": [
+        "python",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:31.395404+00:00",
+      "ended_at": "2026-10-22T09:19:41.529715+00:00",
+      "duration_seconds": 10.134325125999965,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "問題なし"
+      ]
+    },
+    {
+      "name": "after-port-layout",
+      "command": [
+        "python",
+        "tools/check_port_town.py"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:41.530570+00:00",
+      "ended_at": "2026-10-22T09:19:41.853749+00:00",
+      "duration_seconds": 0.32318739900000537,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "PORT_LAYOUT_PASS: rooms=9 exterior_residents=9 links=16"
+      ]
+    },
+    {
+      "name": "after-coastal-assets",
+      "command": [
+        "python",
+        "tools/check_coastal_assets.py"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:41.854040+00:00",
+      "ended_at": "2026-10-22T09:19:42.160296+00:00",
+      "duration_seconds": 0.3062705000000392,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "COASTAL_ASSETS_PASS: frames=4 piers=3 docks=2 sea_ratio=0.349"
+      ]
+    },
+    {
+      "name": "after-second-coast",
+      "command": [
+        "timeout",
+        "180",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_second_region_coast.gd"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:42.160895+00:00",
+      "ended_at": "2026-10-22T09:19:44.687602+00:00",
+      "duration_seconds": 2.5267205540000077,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "SECOND_COAST_PASS: checks=91"
+      ]
+    },
+    {
+      "name": "after-region-ui",
+      "command": [
+        "timeout",
+        "180",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_first_region_screen.gd"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:44.688465+00:00",
+      "ended_at": "2026-10-22T09:19:49.221759+00:00",
+      "duration_seconds": 4.5333162530000095,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "REGION_UI_PASS: checks=10"
+      ]
+    },
+    {
+      "name": "after-region2-port",
+      "command": [
+        "timeout",
+        "180",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_port.gd"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:49.222095+00:00",
+      "ended_at": "2026-10-22T09:19:53.444221+00:00",
+      "duration_seconds": 4.2221436889999495,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "REGION2_PORT_PASS: checks=935"
+      ]
+    },
+    {
+      "name": "after-village-regression",
+      "command": [
+        "timeout",
+        "180",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_village_regression.gd"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:19:53.445262+00:00",
+      "ended_at": "2026-10-22T09:20:30.427923+00:00",
+      "duration_seconds": 36.982672452999964,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "VILLAGE_REGRESSION_PASS: checks=7631"
+      ]
+    },
+    {
+      "name": "after-saved-position",
+      "command": [
+        "timeout",
+        "120",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_position_relocation.gd"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:20:30.428299+00:00",
+      "ended_at": "2026-10-22T09:20:34.092870+00:00",
+      "duration_seconds": 3.6645868930000915,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "SAVED_POSITION_RELOCATION_PASS: rooms=31 checks=199"
+      ]
+    },
+    {
+      "name": "after-locked-checks",
+      "command": [
+        "python",
+        "tools/run_locked_checks.py"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:20:34.093343+00:00",
+      "ended_at": "2026-10-22T09:22:55.595819+00:00",
+      "duration_seconds": 141.50252557699991,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "PASS R-01 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-02 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-03 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-04 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-05 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-06 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-07 (exit=0, tests_ran=True, parser_failed=False)",
+        "PASS R-08 (exit=0, tests_ran=True, parser_failed=False)"
+      ]
+    },
+    {
+      "name": "after-frozen",
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/tmp/coastal-fixture-fix-2026-10-22/project",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:22:55.597018+00:00",
+      "ended_at": "2026-10-22T09:22:55.665207+00:00",
+      "duration_seconds": 0.06819343400002253,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "保護対象26件、一致26件。"
+      ]
+    },
+    {
+      "name": "source-after-frozen",
+      "command": [
+        "python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/workspace/RPG-maker",
+      "environment_overrides": {
+        "PATH": "/workspace/RPG-maker/.tools/godot/4.7.2:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+        "XDG_CACHE_HOME": "/tmp/coastal-fixture-fix-2026-10-22/cache",
+        "XDG_DATA_HOME": "/tmp/coastal-fixture-fix-2026-10-22/data",
+        "XDG_CONFIG_HOME": "/tmp/coastal-fixture-fix-2026-10-22/config",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-10-22T09:22:55.665485+00:00",
+      "ended_at": "2026-10-22T09:22:55.708065+00:00",
+      "duration_seconds": 0.04259660899992923,
+      "exit_code": 0,
+      "diagnostic_lines": [],
+      "pass_markers": [
+        "保護対象26件、一致26件。"
+      ]
+    }
+  ],
+  "locked_results": [
+    {
+      "id": "R-01",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 765,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-02",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 946,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 5
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-03",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 73,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-04",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 293,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 1
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-05",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 79,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-06",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 87,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-07",
+      "verify": "godot --headless --path . --script res://tools/smoke_first_region.gd",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": null,
+      "failure_messages": []
+    },
+    {
+      "id": "R-08",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 3046,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 25
+      },
+      "failure_messages": []
+    }
+  ],
+  "collected_result_count": 162,
+  "collected_result_bytes": 1557867
+}
