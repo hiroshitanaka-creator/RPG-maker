@@ -1,0 +1,45 @@
+from pathlib import Path
+import json,shutil,hashlib,subprocess,re,datetime,shlex
+R=Path('/workspace/RPG-maker');E=R/'docs/verification/coastal-fixture-fix-2026-10-22'
+W=Path('/tmp/coastal-fixture-fix-2026-10-22');P=W/'project'
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+assert (E/'source-after-frozen.json').exists()
+start=datetime.datetime.fromisoformat(json.loads((E/'before-editor-import.json').read_text())['started_at']).timestamp()
+collected=[]
+def collect(p,rel):
+    dest=E/'results'/rel;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,dest)
+    collected.append({'source':str(p),'evidence':dest.relative_to(E).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p)})
+for p in sorted((P/'docs/verification').rglob('*')):
+    if p.is_file() and p.stat().st_mtime>=start and p.suffix!='.import':collect(p,Path('project')/p.relative_to(P))
+for origin,prefix in [(P/'.tools',Path('project/.tools')),(W/'data',Path('user-data'))]:
+    for p in sorted(origin.rglob('*')):
+        if p.is_file():collect(p,prefix/p.relative_to(origin))
+(E/'collected-results.json').write_text(json.dumps(collected,ensure_ascii=False,indent=2)+'\n')
+before=json.loads((E/'tracked-before.json').read_text())
+changed=[p for p,h in before.items() if not (R/p).is_file() or sha(R/p)!=h]
+assert changed==['tools/check_coastal_travel.gd'],changed
+run_records=[]
+for p in E.glob('*.json'):
+    x=json.loads(p.read_text())
+    if isinstance(x,dict) and 'command' in x and 'exit_code' in x:
+        name=x['name'];out=(E/(name+'.stdout.log')).read_text();err=(E/(name+'.stderr.log')).read_text()
+        x['diagnostic_lines']=[line for line in (out+'\n'+err).splitlines() if re.search(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error|leaked|still in use at exit|_FAIL:',line,re.I)]
+        x['pass_markers']=[line for line in out.splitlines() if '_PASS:' in line or line.startswith('PASS R-') or '問題なし' in line or '保護対象' in line]
+        run_records.append(x)
+run_records.sort(key=lambda x:x['started_at'])
+assert all(x['exit_code']==0 and not x['diagnostic_lines'] for x in run_records if x['name']!='before-coastal-boundary')
+baseline=next(x for x in run_records if x['name']=='before-coastal-boundary');assert baseline['exit_code']==124 and len(baseline['diagnostic_lines'])==1
+locked=json.loads((P/'docs/verification/scope-lock-current.json').read_text());assert len(locked['results'])==8 and all(x['status']=='PASS' for x in locked['results'])
+locked_diagnostics={}
+for p in (P/'.tools/verification').rglob('R-*.log'):
+    hits=[line for line in p.read_text().splitlines() if re.search(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error|leaked|still in use at exit|_FAIL:',line,re.I)]
+    locked_diagnostics[p.name]=hits
+assert not any(locked_diagnostics.values())
+scope={'status':'PASS','tracked_files':len(before),'changed_tracked_files':changed,'unchanged_tracked_files':len(before)-len(changed),'head':subprocess.check_output(['git','rev-parse','HEAD'],cwd=R,text=True).strip(),'protection_files_unchanged':26,'no_commit_push_merge_or_library_operations':True,'locked_log_diagnostics':locked_diagnostics,'note':'initial-status.txtは証拠ディレクトリ作成後に取得。最初のツール照会時の作業ツリーは差分なし。origin/mainは古いローカル参照のため未push一覧はリモート保存状況を証明しない。'}
+(E/'scope-audit.json').write_text(json.dumps(scope,ensure_ascii=False,indent=2)+'\n')
+(E/'validation-summary.json').write_text(json.dumps({'runs':run_records,'locked_results':locked['results'],'collected_result_count':len(collected),'collected_result_bytes':sum(x['bytes'] for x in collected)},ensure_ascii=False,indent=2)+'\n')
+table=['# 実行記録（UTC）','','全検査は固定Godot 4.7.2とクラウド内の隔離コピーを使用。各行に対応するJSONにはcwd・環境変数・開始終了時刻・所要秒・exitを、同名stdout/stderr.logには原出力を保持。R-01〜R-08の内部出力は既存run_locked_checks.pyの仕様どおりstdout/stderr結合原ログをresults/project/.tools/verification/に保持。verify各300秒、import各600秒、境界検査前後各180秒。','','| 記録名 | コマンド | 開始UTC | 終了UTC | 秒 | exit |','|---|---|---|---|---:|---:|']
+for x in run_records:
+    table.append('| '+x['name']+' | `'+shlex.join(x['command'])+'` | '+x['started_at']+' | '+x['ended_at']+' | %.3f | %d |'%(x['duration_seconds'],x['exit_code']))
+(E/'commands.md').write_text('\n'.join(table)+'\n')
+print(json.dumps({'scope':scope,'results_files':len(collected),'results_bytes':sum(x['bytes'] for x in collected),'runs':len(run_records),'locked':[(x['id'],x['status'],x['gut_summary']) for x in locked['results']]},ensure_ascii=False,indent=2))

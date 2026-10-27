@@ -1,0 +1,10 @@
+diff --git a/tools/check_coastal_travel.gd b/tools/check_coastal_travel.gd
+index 3a7ba75..48dc9dc 100644
+--- a/tools/check_coastal_travel.gd
++++ b/tools/check_coastal_travel.gd
+@@ -15 +15 @@ func fixture() -> Dictionary:
+-	FirstRegion.place(state["overworld"],{"layer":"interior","node":"first_port","room":5,"cell":[8,6]});state["overworld"]["facing"]=3
++	FirstRegion.place(state["overworld"],{"layer":"interior","node":"first_port","room":5,"cell":[8,7]});state["overworld"]["facing"]=3
+@@ -57 +57 @@ func _initialize() -> void:
+-	state=ready.duplicate(true);FirstRegion.place(state["overworld"],{"layer":"interior","node":"first_port","room":7,"cell":[9,7]});state["overworld"]["facing"]=2
++	state=ready.duplicate(true);FirstRegion.place(state["overworld"],{"layer":"interior","node":"first_port","room":7,"cell":[8,5]});state["overworld"]["facing"]=3

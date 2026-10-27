@@ -1,0 +1,39 @@
+{
+  "rooms": {
+    "5": [
+      {
+        "id": "port_shrine",
+        "kind": "npc",
+        "sprite": "npc_elder_woman",
+        "cell": [
+          8,
+          6
+        ],
+        "label": "祠の世話役",
+        "text": [
+          "旅で身体の変化に気づいたら、ここで落ち着いて確かめてください。",
+          "この祠の中で編成を開き、清めたい人を選べます。"
+        ],
+        "shrine": true
+      }
+    ],
+    "7": [
+      {
+        "id": "harbor_keeper",
+        "kind": "npc",
+        "sprite": "npc_castle_merchant",
+        "cell": [
+          8,
+          3
+        ],
+        "label": "荷受けの係",
+        "text": [
+          "荷札と荷物を一つずつ確かめているところだ。慌てると、届け先を間違えるからね。"
+        ],
+        "reach": 2
+      }
+    ]
+  },
+  "facing_up": 3,
+  "capture_reference": "tools/capture_coastal_travel.gd:88-95"
+}

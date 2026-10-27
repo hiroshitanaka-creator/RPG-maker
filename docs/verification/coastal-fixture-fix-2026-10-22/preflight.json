@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "base_head": "e677896d3e61b8fe8136ef60c5c76f41ad76701d",
+  "expected_lines_match": true,
+  "source_lines": 81,
+  "check_call_text_occurrences": 31,
+  "scope": [
+    "tools/check_coastal_travel.gd:15",
+    "tools/check_coastal_travel.gd:57"
+  ],
+  "copy": "/tmp/coastal-fixture-fix-2026-10-22/project",
+  "copy_reason": "既存検査の固定出力先を変更せず、元リポジトリの別証拠を上書きしないため。追跡7738ファイルを元bytesで複製。",
+  "unpublished_commits_note": "origin/main は 2ab6718f204af7196ce3dbb986ed9393d27cac92 で古い。initial-unpushed.txt はローカル参照との差でありGitHub未保存の断定ではない。remote更新・pushなし。",
+  "initial_environment_note": "PATH既定のGodot4.6.3は検証に未使用。既存4.7.2をPATH先頭へ固定。事前version照会のFontconfig cache警告は、検証のXDG_CACHE_HOMEを隔離した書込み可能領域に設定して解消。"
+}

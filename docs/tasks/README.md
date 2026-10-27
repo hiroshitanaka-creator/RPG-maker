@@ -81,3 +81,12 @@
 
 - 078取込後：main f83e39e1e38174b4beaace908fc46a3823f8e60e全38CI/R8/前後保護26を確認済み。
 - 079：確認済み。依頼[079](079-checkpoint-focus.md)、[原報告](reports/079-checkpoint-focus.md)、[統合報告](reports/079-main-integration.md)。PR #55、head7d2d2a696c0bf4817b05a4a46cea04ce6e212bd5の全76CI/R8/保護26/32実行42223判定を検収し、main c3fb791d7a1d5998a4174f6286d354c3a8eff106へ逐次merge。統合後全38CI/R8/前後保護26も2026-10-20 22:59 UTCに親が直接検収。074〜079全件の統合後確認完了。旧coastal/物理実機未確認/初回失敗等の限界は統合報告に保持。親記録はルッカ。066・073以前の統合は今回承認に含まれない。
+
+
+## 2026-10-22 coastal検査開始位置の限定修正
+- 依頼[coastal](coastal-fixture-fix-2026-10-22.md)、[担当報告](reports/coastal-fixture-fix-2026-10-22.md)。ユーザー承認済み2行を実装。親は原ZIP CRC/SHA、固定main元コードと2行diff、旧exit124→93項目PASS、R全8/保護26/strict/関連回帰を検収。正式head全CI/PR/統合は未実施で完了扱いにしない。通常プレイ撮影/利用者実機は未検証。他追跡7737ファイル/実行体hashは担当原記録による確認。親台帳記録者ルッカ。
+
+
+### coastalの取込後確認（2026-10-27 JST記録）
+coastalは2026-10-23に統合後検収まで完了。PR #57、提出d8f11e2a84e485a06498f3df4c21e61889217139のpush/PR全10 workflow・76ジョブ成功後、main ec48f7fe60e6ba6f10450a103ea5d1a65a8fd895へ通常merge。統合後の5 workflow・38ジョブ、R-01〜R-08、前後保護26件の一致は10月23日の親検収記録に基づく。今回、PRのmergedと同mainのworkflow成功を再取得したが、検査を再実行したものではない。上の未実施行は提出時の経緯として保持。通常プレイ撮影・利用者実機未検証を維持し、080新成果の受領・066/073等の保留は含めない。
+根拠：[PR57](https://github.com/hiroshitanaka-creator/RPG-maker/pull/57)、[統合後原CIログ](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/39899036755/job/120236068784)、[STATUS 2026-10-23 13:34 JST](https://github.com/hiroshitanaka-creator/lucca-workspace/blob/main/projects/rpg-maker/STATUS.md)。記録者ルッカ。本追記は資料整合であり、本体の新機能ではない。

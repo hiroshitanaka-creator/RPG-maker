@@ -1,0 +1,893 @@
+{
+  "acceptance_status": "UNREVIEWED",
+  "active_ms": 82216,
+  "answers": [],
+  "archive_version": 1,
+  "builds": [
+    "4dad1f44acb525fcd403a069ed7fd38b78efd77d6eaba79395988128ecb7fd5f"
+  ],
+  "chapters": {
+    "1": {
+      "active_ms": 82216,
+      "elapsed_ms": 82216
+    }
+  },
+  "completed": false,
+  "counters": {
+    "battle_rounds": 5,
+    "battles_won": 3,
+    "loads": 1,
+    "moved_cells": 147
+  },
+  "duration_finished": false,
+  "duration_target": {
+    "goal_status": "USER_APPROVED",
+    "id": "rpg-maker-60h-20260920",
+    "max_minutes": 3960.0,
+    "min_minutes": 3240.0,
+    "reason": "依頼者が60時間を正式目標へ戻した。54〜66時間は暫定値で先に進める指示に基づく±10%の判定幅。実測達成の記録ではない。",
+    "target_minutes": 3600.0,
+    "tolerance_status": "PROVISIONAL"
+  },
+  "elapsed_ms": 82216,
+  "events": [
+    {
+      "chapter": "1",
+      "details": {
+        "history_complete": true,
+        "parent": ""
+      },
+      "elapsed_ms": 0,
+      "kind": "trial_started"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "actor": "pc_01",
+        "change": {
+          "acquired": [],
+          "exp": 5,
+          "jp": 4,
+          "level_after": 1,
+          "level_before": 1
+        }
+      },
+      "elapsed_ms": 39182,
+      "kind": "growth_awarded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "actor": "pc_02",
+        "change": {
+          "acquired": [],
+          "exp": 5,
+          "jp": 4,
+          "level_after": 1,
+          "level_before": 1
+        }
+      },
+      "elapsed_ms": 39182,
+      "kind": "growth_awarded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "actor": "pc_03",
+        "change": {
+          "acquired": [],
+          "exp": 5,
+          "jp": 4,
+          "level_after": 1,
+          "level_before": 1
+        }
+      },
+      "elapsed_ms": 39182,
+      "kind": "growth_awarded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "enemies": [
+          "slime"
+        ],
+        "erosion": [
+          {
+            "actor": "pc_01",
+            "after": 0.0,
+            "after_tenths": 0,
+            "battle_cost": 0.0,
+            "before": 0.0,
+            "crosses_irreversible": false,
+            "forced_job": "",
+            "name": "カイナ",
+            "skill_uses": 0
+          },
+          {
+            "actor": "pc_02",
+            "after": 0.0,
+            "after_tenths": 0,
+            "battle_cost": 0.0,
+            "before": 0.0,
+            "crosses_irreversible": false,
+            "forced_job": "",
+            "name": "リオネ",
+            "skill_uses": 0
+          },
+          {
+            "actor": "pc_03",
+            "after": 0.0,
+            "after_tenths": 0,
+            "battle_cost": 0.0,
+            "before": 0.0,
+            "crosses_irreversible": false,
+            "forced_job": "",
+            "name": "ハルド",
+            "skill_uses": 0
+          }
+        ],
+        "jp": 10,
+        "remaining": [
+          {
+            "hp": 140,
+            "id": "pc_01",
+            "max_hp": 140,
+            "max_mp": 24,
+            "mp": 24,
+            "name": "カイナ"
+          },
+          {
+            "hp": 125,
+            "id": "pc_02",
+            "max_hp": 125,
+            "max_mp": 24,
+            "mp": 24,
+            "name": "リオネ"
+          },
+          {
+            "hp": 105,
+            "id": "pc_03",
+            "max_hp": 105,
+            "max_mp": 40,
+            "mp": 40,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 60,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "水路スライム"
+          }
+        ],
+        "rounds": 1,
+        "victory": true
+      },
+      "elapsed_ms": 39182,
+      "kind": "battle_finished"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "progress_elapsed_ms": 47213
+      },
+      "elapsed_ms": 48019,
+      "kind": "progress_loaded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "actor": "pc_01",
+        "change": {
+          "acquired": [
+            "power_strike"
+          ],
+          "exp": 40,
+          "jp": 12,
+          "level_after": 1,
+          "level_before": 1
+        }
+      },
+      "elapsed_ms": 59303,
+      "kind": "growth_awarded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "actor": "pc_02",
+        "change": {
+          "acquired": [
+            "double_strike"
+          ],
+          "exp": 40,
+          "jp": 12,
+          "level_after": 1,
+          "level_before": 1
+        }
+      },
+      "elapsed_ms": 59303,
+      "kind": "growth_awarded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "actor": "pc_03",
+        "change": {
+          "acquired": [
+            "heal"
+          ],
+          "exp": 40,
+          "jp": 12,
+          "level_after": 1,
+          "level_before": 1
+        }
+      },
+      "elapsed_ms": 59303,
+      "kind": "growth_awarded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "enemies": [
+          "gate_beast"
+        ],
+        "erosion": [
+          {
+            "actor": "pc_01",
+            "after": 0.0,
+            "after_tenths": 0,
+            "battle_cost": 0.0,
+            "before": 0.0,
+            "crosses_irreversible": false,
+            "forced_job": "",
+            "name": "カイナ",
+            "skill_uses": 0
+          },
+          {
+            "actor": "pc_02",
+            "after": 0.0,
+            "after_tenths": 0,
+            "battle_cost": 0.0,
+            "before": 0.0,
+            "crosses_irreversible": false,
+            "forced_job": "",
+            "name": "リオネ",
+            "skill_uses": 0
+          },
+          {
+            "actor": "pc_03",
+            "after": 0.0,
+            "after_tenths": 0,
+            "battle_cost": 0.0,
+            "before": 0.0,
+            "crosses_irreversible": false,
+            "forced_job": "",
+            "name": "ハルド",
+            "skill_uses": 0
+          }
+        ],
+        "jp": 24,
+        "remaining": [
+          {
+            "hp": 104,
+            "id": "pc_01",
+            "max_hp": 140,
+            "max_mp": 24,
+            "mp": 24,
+            "name": "カイナ"
+          },
+          {
+            "hp": 125,
+            "id": "pc_02",
+            "max_hp": 125,
+            "max_mp": 24,
+            "mp": 24,
+            "name": "リオネ"
+          },
+          {
+            "hp": 105,
+            "id": "pc_03",
+            "max_hp": 105,
+            "max_mp": 40,
+            "mp": 40,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 160,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "水門の荒獣"
+          }
+        ],
+        "rounds": 3,
+        "victory": true
+      },
+      "elapsed_ms": 59303,
+      "kind": "battle_finished"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "actor": "pc_01",
+        "change": {
+          "acquired": [],
+          "exp": 5,
+          "jp": 4,
+          "level_after": 1,
+          "level_before": 1
+        }
+      },
+      "elapsed_ms": 65866,
+      "kind": "growth_awarded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "actor": "pc_02",
+        "change": {
+          "acquired": [],
+          "exp": 5,
+          "jp": 4,
+          "level_after": 1,
+          "level_before": 1
+        }
+      },
+      "elapsed_ms": 65866,
+      "kind": "growth_awarded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "actor": "pc_03",
+        "change": {
+          "acquired": [],
+          "exp": 5,
+          "jp": 4,
+          "level_after": 1,
+          "level_before": 1
+        }
+      },
+      "elapsed_ms": 65866,
+      "kind": "growth_awarded"
+    },
+    {
+      "chapter": "1",
+      "details": {
+        "enemies": [
+          "bat"
+        ],
+        "erosion": [
+          {
+            "actor": "pc_01",
+            "after": 0.0,
+            "after_tenths": 0,
+            "battle_cost": 0.0,
+            "before": 0.0,
+            "crosses_irreversible": false,
+            "forced_job": "",
+            "name": "カイナ",
+            "skill_uses": 0
+          },
+          {
+            "actor": "pc_02",
+            "after": 0.0,
+            "after_tenths": 0,
+            "battle_cost": 0.0,
+            "before": 0.0,
+            "crosses_irreversible": false,
+            "forced_job": "",
+            "name": "リオネ",
+            "skill_uses": 0
+          },
+          {
+            "actor": "pc_03",
+            "after": 0.0,
+            "after_tenths": 0,
+            "battle_cost": 0.0,
+            "before": 0.0,
+            "crosses_irreversible": false,
+            "forced_job": "",
+            "name": "ハルド",
+            "skill_uses": 0
+          }
+        ],
+        "jp": 12,
+        "remaining": [
+          {
+            "hp": 104,
+            "id": "pc_01",
+            "max_hp": 140,
+            "max_mp": 24,
+            "mp": 24,
+            "name": "カイナ"
+          },
+          {
+            "hp": 125,
+            "id": "pc_02",
+            "max_hp": 125,
+            "max_mp": 24,
+            "mp": 24,
+            "name": "リオネ"
+          },
+          {
+            "hp": 88,
+            "id": "pc_03",
+            "max_hp": 105,
+            "max_mp": 40,
+            "mp": 40,
+            "name": "ハルド"
+          },
+          {
+            "hp": 0,
+            "id": "enemy_01",
+            "max_hp": 75,
+            "max_mp": 0,
+            "mp": 0,
+            "name": "洞窟コウモリ"
+          }
+        ],
+        "rounds": 1,
+        "victory": true
+      },
+      "elapsed_ms": 65866,
+      "kind": "battle_finished"
+    }
+  ],
+  "foreground_play_ms": 82216,
+  "game": {
+    "build_id": "4dad1f44acb525fcd403a069ed7fd38b78efd77d6eaba79395988128ecb7fd5f",
+    "build_identity_version": 1,
+    "circuits_completed": [],
+    "content_revision": 1,
+    "content_sha256": "2997092908319d62c89f777075bf6a8b0669b78db2ee55c71413d048c42fd5fa",
+    "duration_target_id": "rpg-maker-60h-20260920",
+    "engine": "4.7.2-stable (official) [ed1daf0bf]",
+    "history_complete": true,
+    "long_campaign_complete": false,
+    "long_campaign_required": true,
+    "long_missions_completed": [],
+    "mixed_builds": false,
+    "party_size": 3,
+    "world": {
+      "location": "town",
+      "player_cell": [
+        2,
+        4
+      ],
+      "quest_step": 0
+    }
+  },
+  "history_complete": true,
+  "human_identity_verified": false,
+  "human_review_received": false,
+  "idle_ms": 0,
+  "idle_review_required": false,
+  "measurement_scope": "whole_trial",
+  "pause_ms": 0,
+  "progress_snapshot": {
+    "active_ms": 81410,
+    "answers": [],
+    "chapters": {
+      "1": {
+        "active_ms": 81410,
+        "elapsed_ms": 81410
+      }
+    },
+    "completed": false,
+    "counters": {
+      "battle_rounds": 5,
+      "battles_won": 3,
+      "loads": 1,
+      "moved_cells": 145
+    },
+    "elapsed_ms": 81410,
+    "events": [
+      {
+        "chapter": "1",
+        "details": {
+          "actor": "pc_01",
+          "change": {
+            "acquired": [],
+            "exp": 5,
+            "jp": 4,
+            "level_after": 1,
+            "level_before": 1
+          }
+        },
+        "elapsed_ms": 39182,
+        "kind": "growth_awarded"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "actor": "pc_02",
+          "change": {
+            "acquired": [],
+            "exp": 5,
+            "jp": 4,
+            "level_after": 1,
+            "level_before": 1
+          }
+        },
+        "elapsed_ms": 39182,
+        "kind": "growth_awarded"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "actor": "pc_03",
+          "change": {
+            "acquired": [],
+            "exp": 5,
+            "jp": 4,
+            "level_after": 1,
+            "level_before": 1
+          }
+        },
+        "elapsed_ms": 39182,
+        "kind": "growth_awarded"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "enemies": [
+            "slime"
+          ],
+          "erosion": [
+            {
+              "actor": "pc_01",
+              "after": 0.0,
+              "after_tenths": 0,
+              "battle_cost": 0.0,
+              "before": 0.0,
+              "crosses_irreversible": false,
+              "forced_job": "",
+              "name": "カイナ",
+              "skill_uses": 0
+            },
+            {
+              "actor": "pc_02",
+              "after": 0.0,
+              "after_tenths": 0,
+              "battle_cost": 0.0,
+              "before": 0.0,
+              "crosses_irreversible": false,
+              "forced_job": "",
+              "name": "リオネ",
+              "skill_uses": 0
+            },
+            {
+              "actor": "pc_03",
+              "after": 0.0,
+              "after_tenths": 0,
+              "battle_cost": 0.0,
+              "before": 0.0,
+              "crosses_irreversible": false,
+              "forced_job": "",
+              "name": "ハルド",
+              "skill_uses": 0
+            }
+          ],
+          "jp": 10,
+          "remaining": [
+            {
+              "hp": 140,
+              "id": "pc_01",
+              "max_hp": 140,
+              "max_mp": 24,
+              "mp": 24,
+              "name": "カイナ"
+            },
+            {
+              "hp": 125,
+              "id": "pc_02",
+              "max_hp": 125,
+              "max_mp": 24,
+              "mp": 24,
+              "name": "リオネ"
+            },
+            {
+              "hp": 105,
+              "id": "pc_03",
+              "max_hp": 105,
+              "max_mp": 40,
+              "mp": 40,
+              "name": "ハルド"
+            },
+            {
+              "hp": 0,
+              "id": "enemy_01",
+              "max_hp": 60,
+              "max_mp": 0,
+              "mp": 0,
+              "name": "水路スライム"
+            }
+          ],
+          "rounds": 1,
+          "victory": true
+        },
+        "elapsed_ms": 39182,
+        "kind": "battle_finished"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "actor": "pc_01",
+          "change": {
+            "acquired": [
+              "power_strike"
+            ],
+            "exp": 40,
+            "jp": 12,
+            "level_after": 1,
+            "level_before": 1
+          }
+        },
+        "elapsed_ms": 58497,
+        "kind": "growth_awarded"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "actor": "pc_02",
+          "change": {
+            "acquired": [
+              "double_strike"
+            ],
+            "exp": 40,
+            "jp": 12,
+            "level_after": 1,
+            "level_before": 1
+          }
+        },
+        "elapsed_ms": 58497,
+        "kind": "growth_awarded"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "actor": "pc_03",
+          "change": {
+            "acquired": [
+              "heal"
+            ],
+            "exp": 40,
+            "jp": 12,
+            "level_after": 1,
+            "level_before": 1
+          }
+        },
+        "elapsed_ms": 58497,
+        "kind": "growth_awarded"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "enemies": [
+            "gate_beast"
+          ],
+          "erosion": [
+            {
+              "actor": "pc_01",
+              "after": 0.0,
+              "after_tenths": 0,
+              "battle_cost": 0.0,
+              "before": 0.0,
+              "crosses_irreversible": false,
+              "forced_job": "",
+              "name": "カイナ",
+              "skill_uses": 0
+            },
+            {
+              "actor": "pc_02",
+              "after": 0.0,
+              "after_tenths": 0,
+              "battle_cost": 0.0,
+              "before": 0.0,
+              "crosses_irreversible": false,
+              "forced_job": "",
+              "name": "リオネ",
+              "skill_uses": 0
+            },
+            {
+              "actor": "pc_03",
+              "after": 0.0,
+              "after_tenths": 0,
+              "battle_cost": 0.0,
+              "before": 0.0,
+              "crosses_irreversible": false,
+              "forced_job": "",
+              "name": "ハルド",
+              "skill_uses": 0
+            }
+          ],
+          "jp": 24,
+          "remaining": [
+            {
+              "hp": 104,
+              "id": "pc_01",
+              "max_hp": 140,
+              "max_mp": 24,
+              "mp": 24,
+              "name": "カイナ"
+            },
+            {
+              "hp": 125,
+              "id": "pc_02",
+              "max_hp": 125,
+              "max_mp": 24,
+              "mp": 24,
+              "name": "リオネ"
+            },
+            {
+              "hp": 105,
+              "id": "pc_03",
+              "max_hp": 105,
+              "max_mp": 40,
+              "mp": 40,
+              "name": "ハルド"
+            },
+            {
+              "hp": 0,
+              "id": "enemy_01",
+              "max_hp": 160,
+              "max_mp": 0,
+              "mp": 0,
+              "name": "水門の荒獣"
+            }
+          ],
+          "rounds": 3,
+          "victory": true
+        },
+        "elapsed_ms": 58497,
+        "kind": "battle_finished"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "actor": "pc_01",
+          "change": {
+            "acquired": [],
+            "exp": 5,
+            "jp": 4,
+            "level_after": 1,
+            "level_before": 1
+          }
+        },
+        "elapsed_ms": 65060,
+        "kind": "growth_awarded"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "actor": "pc_02",
+          "change": {
+            "acquired": [],
+            "exp": 5,
+            "jp": 4,
+            "level_after": 1,
+            "level_before": 1
+          }
+        },
+        "elapsed_ms": 65060,
+        "kind": "growth_awarded"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "actor": "pc_03",
+          "change": {
+            "acquired": [],
+            "exp": 5,
+            "jp": 4,
+            "level_after": 1,
+            "level_before": 1
+          }
+        },
+        "elapsed_ms": 65060,
+        "kind": "growth_awarded"
+      },
+      {
+        "chapter": "1",
+        "details": {
+          "enemies": [
+            "bat"
+          ],
+          "erosion": [
+            {
+              "actor": "pc_01",
+              "after": 0.0,
+              "after_tenths": 0,
+              "battle_cost": 0.0,
+              "before": 0.0,
+              "crosses_irreversible": false,
+              "forced_job": "",
+              "name": "カイナ",
+              "skill_uses": 0
+            },
+            {
+              "actor": "pc_02",
+              "after": 0.0,
+              "after_tenths": 0,
+              "battle_cost": 0.0,
+              "before": 0.0,
+              "crosses_irreversible": false,
+              "forced_job": "",
+              "name": "リオネ",
+              "skill_uses": 0
+            },
+            {
+              "actor": "pc_03",
+              "after": 0.0,
+              "after_tenths": 0,
+              "battle_cost": 0.0,
+              "before": 0.0,
+              "crosses_irreversible": false,
+              "forced_job": "",
+              "name": "ハルド",
+              "skill_uses": 0
+            }
+          ],
+          "jp": 12,
+          "remaining": [
+            {
+              "hp": 104,
+              "id": "pc_01",
+              "max_hp": 140,
+              "max_mp": 24,
+              "mp": 24,
+              "name": "カイナ"
+            },
+            {
+              "hp": 125,
+              "id": "pc_02",
+              "max_hp": 125,
+              "max_mp": 24,
+              "mp": 24,
+              "name": "リオネ"
+            },
+            {
+              "hp": 88,
+              "id": "pc_03",
+              "max_hp": 105,
+              "max_mp": 40,
+              "mp": 40,
+              "name": "ハルド"
+            },
+            {
+              "hp": 0,
+              "id": "enemy_01",
+              "max_hp": 75,
+              "max_mp": 0,
+              "mp": 0,
+              "name": "洞窟コウモリ"
+            }
+          ],
+          "rounds": 1,
+          "victory": true
+        },
+        "elapsed_ms": 65060,
+        "kind": "battle_finished"
+      }
+    ],
+    "idle_ms": 0,
+    "pause_ms": 0,
+    "source": "unclassified",
+    "source_changed": false,
+    "version": 1
+  },
+  "recorded_at": "2026-10-22T09:22:27",
+  "run_open": false,
+  "source": "unclassified",
+  "source_changed": false,
+  "target_duration_observed": false,
+  "target_play_minutes": [
+    3240,
+    3960
+  ],
+  "trial_id": "f950d9d4634e515334874107ae72dafb",
+  "version": 1
+}
