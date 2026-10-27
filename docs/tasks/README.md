@@ -98,3 +98,11 @@ coastalは2026-10-23に統合後検収まで完了。PR #57、提出d8f11e2a84e4
 - 旧5033a95の再生成失敗は非保護生成器の既存位置保持で修正。元/1回目/2回目38ファイルのGit blob一致、1159項目一意。検査弱体化・時間延長なし。[修正報告](reports/080-registry-order-fix-20261027.md)、[正式保存報告](reports/080-formal-save-20261027.md)、[原報告](reports/080-adopted-room-walking-foundation.md)。
 - 限界：親の原ZIP全419項目独立復元はbinary取得制約で未確認。本人承認済みGitHub直接引渡しのコード受入は原候補tree一致・全差分・固定原画・原CIログで判定し、ZIP独立復元済みとはしない。静止画は実操作の手触りや全位置の視認性を保証しない。取込後main CIは本記録時点で別途確認中。
 - 原ログ：[push](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/40514635301/job/122225243014)、[PR](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/40514643242/job/122225270883)。親記録者ルッカ。066/073の既存保留を一括解除しない。
+
+
+## 2026-10-28 081本編接続の親受入
+- 本人A承認 I-20261028-001に基づく既存外観・採用5室の出入り・歩行・保存復帰。PR #61、提出7d85b1100b7d8bea9cdffdad67c4ece72c739bbfをmain e6a29a936b44d7f161335dd649c284720e8418a8へ08:32 JSTに通常取込。新人物・台詞・販売・進行イベント・新規則なし。原画371件不変。
+- 親検収：全push/PR10workflow・76jobs success（skipped/cancelled jobs0）。原Godot push job122519832060は同head、PR job122519850686は合成79398822cec9c8794ed434e2588de64dc769985a。両原ログでR01〜08全PASS/exit0/tests_ran True/parser_failed False、import成功、保護26前後一致。既存条件分岐のstep60件skipと検査の省略変更を混同せず、CI/保護/契約/検査弱体化・時間延長なしを差分照合。
+- 既存帰還先APIの5件契約を保つ互換修正後、26コマンドはe754b1e上でPASS、最終提出は本番tree同一＋旧保存2判定追加と証拠。追加catalog40判定/失敗0、0097630判定、lifecycle13ケース、通常入力を原結果と照合。圧縮原ログ7本SHA一致。[本編報告](reports/081-region3-port-five-room-connection.md)、[互換修正](reports/081-ci-return-catalog-compatibility.md)。初回未実装・CI失敗は履歴保持。
+- 提出画面16枚と最終帰還PNGを実画素確認。入口の梁・祭壇で人物が部分的に隠れる留意点、全歩行セルの視認性・物理実機操作感・restart3画像3枚の親目視未確認を保持。接続の自動操作成功を見やすさの完全保証にしない。取込後CI/import・本記録のmain反映は別工程で確認中。全ゲーム完成ではない。066/073/Grok別保留維持。記録者ルッカ。
+- 080の旧『原ZIP未確認』は受入当時の履歴。10月28日00:36 JSTまでに419項目/CRC/418manifestと164546599bytes/SHA256 f7d97291e6458b820303434267d2c26bfe39e229b6e8d8d8e3f75975d0fb8019の独立照合・Library保存、最終main4388bf7全38CI/R8/前後保護26確認まで完了。再実行不要。
