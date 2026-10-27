@@ -90,3 +90,11 @@
 ### coastalの取込後確認（2026-10-27 JST記録）
 coastalは2026-10-23に統合後検収まで完了。PR #57、提出d8f11e2a84e485a06498f3df4c21e61889217139のpush/PR全10 workflow・76ジョブ成功後、main ec48f7fe60e6ba6f10450a103ea5d1a65a8fd895へ通常merge。統合後の5 workflow・38ジョブ、R-01〜R-08、前後保護26件の一致は10月23日の親検収記録に基づく。今回、PRのmergedと同mainのworkflow成功を再取得したが、検査を再実行したものではない。上の未実施行は提出時の経緯として保持。通常プレイ撮影・利用者実機未検証を維持し、080新成果の受領・066/073等の保留は含めない。
 根拠：[PR57](https://github.com/hiroshitanaka-creator/RPG-maker/pull/57)、[統合後原CIログ](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/39899036755/job/120236068784)、[STATUS 2026-10-23 13:34 JST](https://github.com/hiroshitanaka-creator/lucca-workspace/blob/main/projects/rpg-maker/STATUS.md)。記録者ルッカ。本追記は資料整合であり、本体の新機能ではない。
+
+
+## 2026-10-27 080の親受入・通常取込
+- 080：専用ブランチ引渡しを本人承認後、原候補d1d30b4/tree524b72d4を不変保管。提出8f1b5c4d19581318f6aa79bdbce14e7bf1d4ab12をPR #59からmain893c5b1159cb9c7d44f45e8eb2dbbfa1ee32ce14へ2026-10-27 23:16 JSTに通常merge。採用済み5室の開発用歩行基盤で、本番世界接続や全ゲーム完成ではない。
+- 親検収：原画5件blob・採用PNG5件SHA一致、証拠外20ファイルの範囲、既存変更3件（registry・限定validator・登録順保持generator）、親台帳/本番scripts/test/CI/保護不変。保存15画面を目視。新候補のpush/PR全76jobs・全76check-runs success、R01〜08全PASS/exit0/tests_ran True/parser_failed False、前後保護26一致を直接照合。run40514635416は集計in_progress表示だったが全14jobs/check-runs成功を個別確認し、再実行やキャンセルなし。
+- 旧5033a95の再生成失敗は非保護生成器の既存位置保持で修正。元/1回目/2回目38ファイルのGit blob一致、1159項目一意。検査弱体化・時間延長なし。[修正報告](reports/080-registry-order-fix-20261027.md)、[正式保存報告](reports/080-formal-save-20261027.md)、[原報告](reports/080-adopted-room-walking-foundation.md)。
+- 限界：親の原ZIP全419項目独立復元はbinary取得制約で未確認。本人承認済みGitHub直接引渡しのコード受入は原候補tree一致・全差分・固定原画・原CIログで判定し、ZIP独立復元済みとはしない。静止画は実操作の手触りや全位置の視認性を保証しない。取込後main CIは本記録時点で別途確認中。
+- 原ログ：[push](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/40514635301/job/122225243014)、[PR](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/40514643242/job/122225270883)。親記録者ルッカ。066/073の既存保留を一括解除しない。
