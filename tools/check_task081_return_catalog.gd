@@ -14,6 +14,11 @@ func _initialize() -> void:
 	check(FirstRegionTravel.destinations()==legacy,"無引数の既存5件・順序・全フィールドを維持")
 	var api := FirstRegionTravel.new()
 	if not check(api.has_method("destinations_for"),"本番文脈を受け取る拡張APIを公開"):finish();return
+	var old_game := GameSession.new();old_game.new_first_region()
+	var no_travel := old_game.export_state();no_travel["first_region"].erase("travel")
+	var no_travel_before := no_travel.duplicate(true)
+	check(api.call("destinations_for",no_travel)==legacy,"travel項目のない旧保存も既存5件のまま照会")
+	check(no_travel==no_travel_before and not no_travel["first_region"].has("travel"),"旧保存の照会でtravelや訪問履歴を補完しない")
 	var game := GameSession.new()
 	var source := "res://docs/verification/task-081-implementation/arrival-save.json"
 	var path := "user://task081-catalog.json"

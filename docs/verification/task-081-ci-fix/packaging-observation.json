@@ -1,0 +1,5 @@
+{
+  "observation": "最初のマニフェスト作成はgitの既定quoted pathをそのままファイル名として扱い、日本語パスでFileNotFoundErrorになった。NUL区切りで再取得する。",
+  "source_effect": "本番・検査に変更なし。未生成マニフェストはコミットしていない。",
+  "whitespace_observation": "git diff --cached --checkはvulkan-smoke.logの原末尾空行でexit2。原ログのbytesを改変せず保持し、ソース/報告の空白検査は対象を明示して実行する。"
+}

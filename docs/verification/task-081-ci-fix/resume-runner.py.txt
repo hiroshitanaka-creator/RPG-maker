@@ -1,0 +1,37 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import os,sys,subprocess,gzip,json,hashlib,shlex,shutil,re
+root=Path.cwd();out=root/'docs/verification/task-081-ci-fix/after';out.mkdir(exist_ok=True)
+head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();env=os.environ.copy()
+env.update(PATH=str(root/'.tools/task081-ci/xvfb/usr/bin')+':'+str(root/'.tools/godot/4.7.2')+':'+env['PATH'],XDG_DATA_HOME=str(root/'.tools/task081-ci/data'),XDG_CONFIG_HOME=str(root/'.tools/task081-ci/config'),XDG_CACHE_HOME=str(root/'.tools/task081-ci/cache'),VK_DRIVER_FILES=str(root/'.tools/task081-ci/mesa-vulkan/usr/share/vulkan/icd.d/lvp_icd.json'),LD_LIBRARY_PATH=str(root/'.tools/task081-ci/mesa-vulkan/usr/lib/x86_64-linux-gnu'),LIBGL_ALWAYS_SOFTWARE='1',GITHUB_SHA=head)
+sys.path.insert(0,str(root/'tools'));from run_locked_checks import judge_output
+records=json.loads((out/"execution.json").read_text())
+changed=subprocess.check_output(['git','diff','--name-only','a04172a134971610e6760f7ff602451901130642','HEAD'],text=True).splitlines()
+inputs={p:hashlib.sha256((root/p).read_bytes()).hexdigest()for p in changed if p.startswith(('scripts/','world/','tools/','assets/'))}
+(out/'source-sha256.json').write_text(json.dumps({'head':head,'files':inputs},ensure_ascii=False,indent=2)+'\n')
+def run(name,cmd,limit,extra=None,requirement=None):
+ local={**env,**(extra or {})};start=datetime.now(timezone.utc).isoformat();timed=False
+ try:
+  p=subprocess.run(cmd,cwd=root,env=local,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=limit);code=p.returncode;raw=p.stdout
+ except subprocess.TimeoutExpired as e:code=124;raw=e.stdout or b'';timed=True
+ text=raw.decode('utf8',errors='replace');log=out/(name+'.log.gz');log.write_bytes(gzip.compress(raw,mtime=0))
+ if requirement:judgment=judge_output(requirement['id'],requirement['verify'],code,text,timed);ok=judgment['status']=='PASS'
+ else:judgment=None;ok=code==0 and not re.search(r'SCRIPT ERROR|ERROR:|WARNING:|Parse Error',text)
+ record=dict(name=name,head=head,command=cmd,cwd=str(root),started=start,finished=datetime.now(timezone.utc).isoformat(),timeout_seconds=limit,exit_code=code,status='PASS'if ok else'FAIL',raw_log_sha256=hashlib.sha256(raw).hexdigest(),judgment=judgment)
+ records.append(record);(out/'execution.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n');print(name,code,record['status'],flush=True)
+ if name=='009-runtime':shutil.copytree(root/'docs/verification/task-009/latest',out/'009-runtime',dirs_exist_ok=True)
+ if name=='009-lifecycle':shutil.copytree(root/'docs/verification/task-009/negative-cases',out/'009-lifecycle',dirs_exist_ok=True)
+ if name.startswith('009-render-'):
+  mode=name.removeprefix('009-render-');shutil.copytree(root/'docs/verification/task-009/latest'/mode,out/name,dirs_exist_ok=True)
+ if name=='catalog':shutil.copyfile(root/'docs/verification/task-081-ci-fix/catalog-checks.json',out/'catalog-checks.json')
+ if name=='081-api':shutil.copyfile(root/'docs/verification/task-081-implementation/api-runtime.json',out/'081-api.json')
+ if name=='081-data':shutil.copyfile(root/'docs/verification/task-081-implementation/data-checks.json',out/'081-data.json')
+ if name=='081-newport-input':
+  target=out/'081-newport-input';target.mkdir(exist_ok=True)
+  for path in (root/'docs/verification/task-081-implementation').glob('arrival-*'):shutil.copyfile(path,target/path.name)
+run('009-render-restart-4',[sys.executable,'tools/check_region2_village_regression.py','--commit',head,'--godot','../godot','--capture','restart-4'],180,{'RPG_QA_SAVE_PREFIX':'ci-village009-render-latest-restart-4'})
+run('081-newport-input',['xvfb-run','-a','../godot','--path','.','--rendering-method','mobile','--rendering-driver','vulkan','--audio-driver','Dummy','--script','res://tools/check_task081_port_input.gd'],180,{'TASK081_PHASE':'arrival'})
+run('frozen-after',[sys.executable,'tools/check_frozen_files.py'],30)
+assert all(hashlib.sha256((root/p).read_bytes()).hexdigest()==sha for p,sha in inputs.items())
+print('ALL_LOCAL_CI_FIX_PASS'if all(r['status']=='PASS'for r in records)else'LOCAL_CI_FIX_HAS_FAILURES',flush=True)
+raise SystemExit(0 if all(r['status']=='PASS'for r in records)else 1)

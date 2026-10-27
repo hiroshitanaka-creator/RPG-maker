@@ -1,0 +1,4000 @@
+{
+  "reference_sha": "4388bf78cc2fe1763640c5f18dec43fa48eee32f",
+  "source_head_before_evidence_commit": "e754b1e3fb38afd38456dac84068f264c5fb4f99",
+  "files_count": 798,
+  "manifest_note": "全実変更パスを列挙。相互参照する本2マニフェストだけbytes/SHAを自己参照のため除外。その他は提出実bytes。",
+  "files": [
+    {
+      "path": "assets/registry.json",
+      "bytes": 1085197,
+      "sha256": "86c03d75cb2cf24ed5bd2d1ea3ee6fd38a017bd85b72103a4237b78a4f6e1769"
+    },
+    {
+      "path": "assets/source_records/region3-port-081.json",
+      "bytes": 863,
+      "sha256": "993e27e8a12ad2598f0769d887ec82b1e17e6576ba8a8bbb86bc65d96c076f39"
+    },
+    {
+      "path": "assets/town_backdrops/region3_port.png",
+      "bytes": 1021564,
+      "sha256": "99f9f7fc2c3a7ff5d962c5ac69cf3264b252b1c568d485334575f181a0f2beb8"
+    },
+    {
+      "path": "docs/tasks/reports/081-ci-return-catalog-compatibility.md",
+      "bytes": 11060,
+      "sha256": "58e0960f192f2a18bf327981a1f0e0d16f825316c46460bf03943ee013eb875d"
+    },
+    {
+      "path": "docs/tasks/reports/081-region3-port-five-room-connection.md",
+      "bytes": 23543,
+      "sha256": "7b2464d82860cdf6221f2647b4ff542546e2a091e7866a5cc2012e7b252b731e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/.gdignore",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after-assertion-map.log",
+      "bytes": 70,
+      "sha256": "6e6dc3aea20049031c3b7f34ae3231dc0394d236e09905b1fb6df1870d6b3314"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after-import.log",
+      "bytes": 8071,
+      "sha256": "17844b50d6b0b3a0511d92cace5fc97ba36553e94bcd034c95a4b59627ca9f84"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after-regression.log",
+      "bytes": 229,
+      "sha256": "67795098856fad911f1664b0131d84af5f50eee8c6ab80a88e1c81863b97d086"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/01-port-start.png",
+      "bytes": 243144,
+      "sha256": "1dce8593ee5c033e5376d721243d1be3489ea5ad754236935b95c9f410392c3f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/02-world-village-entrance.png",
+      "bytes": 48510,
+      "sha256": "5aaea84165b28a79a9dde087db6a0f6f6a2d6996ebdae8eabcc1e2bcd6b0d949"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/03-west-landing.png",
+      "bytes": 190495,
+      "sha256": "6f775d54b9d9fe7ac09c0eeafb4ccc08fb2b072fa6251fbf38afbd14d3b6c759"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/04-room-0-entrance.png",
+      "bytes": 190495,
+      "sha256": "6f775d54b9d9fe7ac09c0eeafb4ccc08fb2b072fa6251fbf38afbd14d3b6c759"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/04-room-1-entrance.png",
+      "bytes": 95685,
+      "sha256": "5a6493a90243d1d45da940d88886e6858442e204ec68a3432073e44b16a2b73c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/04-room-2-entrance.png",
+      "bytes": 88954,
+      "sha256": "de20a314d1186c5d4be10202018293e84e9bd4ef9527c9b043717580e9346760"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/04-room-3-entrance.png",
+      "bytes": 96914,
+      "sha256": "02ee01523858a381679eb873598bd60ad4ee9ac4fc1e65f9cf45b0a7ca240ca8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/04-room-4-entrance.png",
+      "bytes": 133363,
+      "sha256": "471fc662ecce6a61c6959d4eb7d542e3a1778c08cd1f5e3f41af57fbc3583cc6"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/05-room-0-front.png",
+      "bytes": 210058,
+      "sha256": "742e60828bf0a6bc0d076b2169a1b7bceba0fbc83db4a17db85b6d8714893083"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/05-room-1-front.png",
+      "bytes": 103103,
+      "sha256": "5d89987f3799ef8c7c34d306c65655f865e3d10d857afd10ebc4e2f578976f56"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/05-room-2-front.png",
+      "bytes": 94306,
+      "sha256": "e059f6dfbe1dcf8043e23857e7c1f60684ef0d3ade43d3bc4c2aa8afb0578e66"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/05-room-3-front.png",
+      "bytes": 103286,
+      "sha256": "b53e12c1f68707fe1c73e6080711e7df9add888b81a028b5bcad479f10b4cd0b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/05-room-4-front.png",
+      "bytes": 139519,
+      "sha256": "a5f38f2fb49363bab566b15641b1ab989670d13a988371956d6fcaa9c733e026"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/06-room-0-behind.png",
+      "bytes": 187982,
+      "sha256": "7b664f1b98a85824e40c46c7e5e44fcf03b80167d66f85d5761632bcd4bff821"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/06-room-1-behind.png",
+      "bytes": 105200,
+      "sha256": "98922881330d73cac7e498e07b165ae14366d40d2827592d885cf396a01b4484"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/06-room-2-behind.png",
+      "bytes": 104241,
+      "sha256": "8d6d0713474a7d8b97a713f153db43bf4eba6dfb55b3c04e15d52321857caf75"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/06-room-3-behind.png",
+      "bytes": 109837,
+      "sha256": "63664992d365d17e709fcc78399e555c9bf0ece2fd5d1e2c40f5cd18c453fc57"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/06-room-4-behind.png",
+      "bytes": 135177,
+      "sha256": "9ce727408a77c20f9ef2b2901e40ca0a768294fc8a92f00258e669a809cb881e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/07-room-1-return.png",
+      "bytes": 219748,
+      "sha256": "ed79f1c134123fba761f03ec42fc02ea85b6599721b74da32aa0e34040f1123b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/07-room-2-return.png",
+      "bytes": 224678,
+      "sha256": "444fbbb20c4b80322482100ad3fa56292a1f80b6cd8d9218a6976a0ea7706e09"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/07-room-3-return.png",
+      "bytes": 211155,
+      "sha256": "ea017a0cca620f2a75d834dc5f298715a7b89d3794b6aaf5b6a1965b1e125b60"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/07-room-4-return.png",
+      "bytes": 213632,
+      "sha256": "6dfbe5ce0b149a15861a83d7f7477fd5d81a7c6cea08ac48e8885d086014ab39"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/08-east-outside.png",
+      "bytes": 70489,
+      "sha256": "82b35dc4bc456bc6ea3e558af9d3d0a417e886a26b64dcabd8686807d8a43f62"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/09-east-landing-camera-edge.png",
+      "bytes": 205227,
+      "sha256": "9121397d4297df96ff9b718fffa5459dc3f802189872e19c2e6b5497c591c0f3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/10-menu-restored.png",
+      "bytes": 208696,
+      "sha256": "8cd08bfa59665b10126dff02b5465c2e066f5502ea935a055b8ae213faeff78b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/11-port-returned.png",
+      "bytes": 233497,
+      "sha256": "8d371eb44adb319f1c56f4dfe76b0fd01138e956fdf772d848870b37da34de90"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/12-return-destinations.png",
+      "bytes": 108766,
+      "sha256": "515ad2df6fcbd3634b6ed944b3ef46f49211cb03fbffd1432ceafad2e61272b4"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/13-returned-to-village.png",
+      "bytes": 71650,
+      "sha256": "9016d4e94dd07672935f20b68a27f1a44a80880edc10501eb38f7012cd60a95a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle-capture/checks.json",
+      "bytes": 107521,
+      "sha256": "b3a1f1a34902ec39b14cf21e389d1b5d4fe04493869c15afffac4c3e667f0a92"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle.log.gz",
+      "bytes": 1747,
+      "sha256": "d9a1d74d572567c81679832631f616feca8b194ba75650c890afe02863f10af2"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-back-capture.json",
+      "bytes": 107521,
+      "sha256": "b3a1f1a34902ec39b14cf21e389d1b5d4fe04493869c15afffac4c3e667f0a92"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-back-capture.log",
+      "bytes": 221,
+      "sha256": "ca72d3799b0f55cb5f09768a7e2e8c30470ad1577fcc6ed283c99ae116488de2"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-back-npc-positive.json",
+      "bytes": 12670,
+      "sha256": "4dd81a267b8d7e71e1189fedd4b5208c86515ea8bcbf822345c4885d5c12af2f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-back-npc-positive.log",
+      "bytes": 110,
+      "sha256": "b270969c5d07693ec98beab83d2ca6691e38f5557bedc5315bf0685eab380d71"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-back-occupancy-ignored.json",
+      "bytes": 13868,
+      "sha256": "de9cb4d6a88068b12b26bfdb01663102242022b9a1fe951b126127cda082960a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-back-occupancy-ignored.log",
+      "bytes": 843,
+      "sha256": "101a4a053e4737d7e6c567587bd71fbd900a63544732a786d8547c063c8d36ee"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-back-rejection-state-corrupted.json",
+      "bytes": 12795,
+      "sha256": "d8f4cc07426ecc83131dd84b5b83a8fb8c90b6fb5b3ad39e7a5105db3aaddfdd"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-back-rejection-state-corrupted.log",
+      "bytes": 171,
+      "sha256": "60f1d24de8d92b458b4838c449acc8658b301b7cc4d418dd7bf8c3c441aa1673"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-customer-route-blocked.json",
+      "bytes": 13002,
+      "sha256": "cac1275c702e195afe0e4ec921a8016e82f3d914da919e64e6f93f5bd159d109"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-customer-route-blocked.log",
+      "bytes": 180,
+      "sha256": "1918f31057b19b4cf77e46b7b198a2a9d789a8018d1d8521e7d3b47cfab714f1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-room-exit-blocked.json",
+      "bytes": 14542,
+      "sha256": "00db82a7c81b8d382147cabf0ed6132834e4c0eb17211c0facd830e83198f667"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/counter-room-exit-blocked.log",
+      "bytes": 1350,
+      "sha256": "7fbb84bccdb4cfab1db82f4e330ff30e4fcbf45febcff6871a9127843b7dc10d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/invalid-save-accepted.json",
+      "bytes": 13338,
+      "sha256": "0a07b4be2770dd51e507778fb346da0e87b11bb818ea00ca27f2c7a8c0848f1b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/invalid-save-accepted.log",
+      "bytes": 497,
+      "sha256": "fdbbee16a3b7524cd6f4fb714227fb2ce0118b8b2a297b7c7166f7f2cc4f7f08"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/misconnected-door.json",
+      "bytes": 14282,
+      "sha256": "c808b42806ac2d4dca5d0019c2cf70f49295122bb9e7bb2c86379a3899b20035"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/misconnected-door.log",
+      "bytes": 1121,
+      "sha256": "d3a9ea67aa48595c53182559808eed4249e8f6220c74ea13ca25e7b3facd115f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/npc-floor-after.json",
+      "bytes": 991,
+      "sha256": "b1bf8f527d72b38eda8549139534cb178a754701177bc52016e412f701cdf778"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/npc-floor-after.log",
+      "bytes": 108,
+      "sha256": "d879ed53687f6268ca10881f9574b80dc88bfd0022c854e359e16fc184bb450e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/npc-floor-before.json",
+      "bytes": 997,
+      "sha256": "412d5e76df99dec3ec530af60f848db4867e5d70fd2fb986d6e4a650ae587d53"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/npc-floor-before.log",
+      "bytes": 108,
+      "sha256": "d879ed53687f6268ca10881f9574b80dc88bfd0022c854e359e16fc184bb450e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/npc-occupancy-ignored.json",
+      "bytes": 1266,
+      "sha256": "355eb916072bec50f377c87ef8049916b031e9a81fee140c778c726554a40314"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/npc-occupancy-ignored.log",
+      "bytes": 260,
+      "sha256": "f4ea00b8b65573cb9dfadcf8c13933029d162bb25bb3b36af96c9105b311644b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/npc-probe-source.gd.txt",
+      "bytes": 1724,
+      "sha256": "0deb285e39e4e3f07b6219fe20e41dd37d5e0e35f892ea797cebb7c451c1c9fa"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/registered-request-and-npc-occupancy.json",
+      "bytes": 12670,
+      "sha256": "ab587550610a3b5f26f04a42de0939ed5f55dacb00b594f63ea20f28df01064b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/registered-request-and-npc-occupancy.log",
+      "bytes": 110,
+      "sha256": "5a9021952d23cc566dc3397e9516dbd837364398d411a2681af4afbd4dedb684"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/summary.json",
+      "bytes": 8725,
+      "sha256": "382c1cbbf303f8ca7416719f18cc3358013829ddfb889c24631487f5a40791eb"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-lifecycle/wrong-fixed-sha.log",
+      "bytes": 91,
+      "sha256": "fc8d44a6de1fe6b1e72ac1dc0bce1028a295f8ac800dbf79a7bb59143c3e14a3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-map.log.gz",
+      "bytes": 87,
+      "sha256": "b914fcd95fcb5168ab75a7861f9970ab6a0cf6104b3f8f37c304415866d90d78"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details.log.gz",
+      "bytes": 305,
+      "sha256": "19bc076a232a8035df48c2b579cbff7fd0e14ce784a0fdf770cfda9506ce6f50"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details/01-west-arch-under.png",
+      "bytes": 187856,
+      "sha256": "c458a41702c3600c0c4fb4117bd0d13cc790bcb67a1b44325a840d2cf2caf595"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details/02-east-arch-under.png",
+      "bytes": 192613,
+      "sha256": "cc7ec92e8152b507d74bafc2c7522a15428142b9792655e630489741ee5eef55"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details/03-room-1-high-front-wall.png",
+      "bytes": 95057,
+      "sha256": "865851bce8e467e193813ff641ba9c63bc048849038ae59e212917b9ccab3aa8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details/03-room-2-high-front-wall.png",
+      "bytes": 90208,
+      "sha256": "65d42ed54dcc45d70465ec1efee3d59da37dec4c217fcc6e9f12cdc626abcfa1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details/03-room-3-high-front-wall.png",
+      "bytes": 97251,
+      "sha256": "60aa5e6d81d576d641bbf4f2398788c53b20770460152f021231af7efa82ab30"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details/03-room-4-high-front-wall.png",
+      "bytes": 132578,
+      "sha256": "ecbee2ea1b0584147e31f20997bef8ada8bf1831b4cd2a959926e3f7eaabce04"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details/checks.json",
+      "bytes": 61278,
+      "sha256": "8f2bf3edf480fe2e5941641130ac0d2682b8a48518fe9967dd1923afa208acde"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details/execution.log",
+      "bytes": 219,
+      "sha256": "38a1ff9b2599f549d2f92bc2f2676012137798360320e12af61653a1463f31f9"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-details/regression-summary.json",
+      "bytes": 524,
+      "sha256": "8ed9a3e0ea87ed7c81009a35710e79e5e051b8bc111862f1b5b9c68ded79f6ce"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey.log.gz",
+      "bytes": 301,
+      "sha256": "c59302c2c1e803d130a05f959b0d026af5afa19a69858e2aed9a05dfdaba2081"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/01-port-start.png",
+      "bytes": 243144,
+      "sha256": "1dce8593ee5c033e5376d721243d1be3489ea5ad754236935b95c9f410392c3f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/02-world-village-entrance.png",
+      "bytes": 48510,
+      "sha256": "5aaea84165b28a79a9dde087db6a0f6f6a2d6996ebdae8eabcc1e2bcd6b0d949"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/03-west-landing.png",
+      "bytes": 190495,
+      "sha256": "6f775d54b9d9fe7ac09c0eeafb4ccc08fb2b072fa6251fbf38afbd14d3b6c759"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/04-room-0-entrance.png",
+      "bytes": 190495,
+      "sha256": "6f775d54b9d9fe7ac09c0eeafb4ccc08fb2b072fa6251fbf38afbd14d3b6c759"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/04-room-1-entrance.png",
+      "bytes": 95685,
+      "sha256": "5a6493a90243d1d45da940d88886e6858442e204ec68a3432073e44b16a2b73c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/04-room-2-entrance.png",
+      "bytes": 89647,
+      "sha256": "a1b95b64a4faa61d8403f85de0772124430c06e2557a2e12fbad7b7c9921c7af"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/04-room-3-entrance.png",
+      "bytes": 96914,
+      "sha256": "02ee01523858a381679eb873598bd60ad4ee9ac4fc1e65f9cf45b0a7ca240ca8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/04-room-4-entrance.png",
+      "bytes": 133363,
+      "sha256": "471fc662ecce6a61c6959d4eb7d542e3a1778c08cd1f5e3f41af57fbc3583cc6"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/05-room-0-front.png",
+      "bytes": 210058,
+      "sha256": "742e60828bf0a6bc0d076b2169a1b7bceba0fbc83db4a17db85b6d8714893083"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/05-room-1-front.png",
+      "bytes": 103103,
+      "sha256": "5d89987f3799ef8c7c34d306c65655f865e3d10d857afd10ebc4e2f578976f56"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/05-room-2-front.png",
+      "bytes": 95005,
+      "sha256": "f1269dd6ffa781bff0d6de0074d0c30f90457d16a362bee7e680347a235932b3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/05-room-3-front.png",
+      "bytes": 103286,
+      "sha256": "b53e12c1f68707fe1c73e6080711e7df9add888b81a028b5bcad479f10b4cd0b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/05-room-4-front.png",
+      "bytes": 139519,
+      "sha256": "a5f38f2fb49363bab566b15641b1ab989670d13a988371956d6fcaa9c733e026"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/06-room-0-behind.png",
+      "bytes": 187982,
+      "sha256": "7b664f1b98a85824e40c46c7e5e44fcf03b80167d66f85d5761632bcd4bff821"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/06-room-1-behind.png",
+      "bytes": 105200,
+      "sha256": "98922881330d73cac7e498e07b165ae14366d40d2827592d885cf396a01b4484"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/06-room-2-behind.png",
+      "bytes": 104954,
+      "sha256": "3da64f7cbca8b6c1fc95ecef73a6c071b4963a7eb3b0d11aaaca62de5d2bd368"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/06-room-3-behind.png",
+      "bytes": 109837,
+      "sha256": "63664992d365d17e709fcc78399e555c9bf0ece2fd5d1e2c40f5cd18c453fc57"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/06-room-4-behind.png",
+      "bytes": 135177,
+      "sha256": "9ce727408a77c20f9ef2b2901e40ca0a768294fc8a92f00258e669a809cb881e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/07-room-1-return.png",
+      "bytes": 219748,
+      "sha256": "ed79f1c134123fba761f03ec42fc02ea85b6599721b74da32aa0e34040f1123b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/07-room-2-return.png",
+      "bytes": 224678,
+      "sha256": "444fbbb20c4b80322482100ad3fa56292a1f80b6cd8d9218a6976a0ea7706e09"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/07-room-3-return.png",
+      "bytes": 211155,
+      "sha256": "ea017a0cca620f2a75d834dc5f298715a7b89d3794b6aaf5b6a1965b1e125b60"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/07-room-4-return.png",
+      "bytes": 213632,
+      "sha256": "6dfbe5ce0b149a15861a83d7f7477fd5d81a7c6cea08ac48e8885d086014ab39"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/08-east-outside.png",
+      "bytes": 70489,
+      "sha256": "82b35dc4bc456bc6ea3e558af9d3d0a417e886a26b64dcabd8686807d8a43f62"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/09-east-landing-camera-edge.png",
+      "bytes": 205227,
+      "sha256": "9121397d4297df96ff9b718fffa5459dc3f802189872e19c2e6b5497c591c0f3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/10-menu-restored.png",
+      "bytes": 208696,
+      "sha256": "8cd08bfa59665b10126dff02b5465c2e066f5502ea935a055b8ae213faeff78b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/11-port-returned.png",
+      "bytes": 234082,
+      "sha256": "e4e3e3f17b7c36d2dc8c8a39012a593e0aafdbac851a0e1f038ad20f8b72b1ef"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/12-return-destinations.png",
+      "bytes": 108926,
+      "sha256": "d9e1bb5ba6832bf6fba0675027a204a1dcca2d0c741fd473bb893898d0c971b1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/13-returned-to-village.png",
+      "bytes": 71650,
+      "sha256": "9016d4e94dd07672935f20b68a27f1a44a80880edc10501eb38f7012cd60a95a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/checks.json",
+      "bytes": 107520,
+      "sha256": "a1be0f3377c6e20e46ee4db19dd1a1af1130ae4b3e377f628183eb810b1d339e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/execution.log",
+      "bytes": 221,
+      "sha256": "ca72d3799b0f55cb5f09768a7e2e8c30470ad1577fcc6ed283c99ae116488de2"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-journey/regression-summary.json",
+      "bytes": 500,
+      "sha256": "3ac71975307ade5e31bd7baf72cc7dc33c522ec31353a2c1e198fb518730756a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-0.log.gz",
+      "bytes": 307,
+      "sha256": "d4c36b472acfb73a7d3edb97f91fa5f43f819a9a2dd9bf86f462aac17547c8c9"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-0/01-restart-room-0.png",
+      "bytes": 198793,
+      "sha256": "ba25cd20a6e49ec42003f5872e882a1d34fadcc04c568c69c1b0859fd0497bf1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-0/02-port-after-restart.png",
+      "bytes": 234082,
+      "sha256": "e4e3e3f17b7c36d2dc8c8a39012a593e0aafdbac851a0e1f038ad20f8b72b1ef"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-0/03-position-relocation-notice.png",
+      "bytes": 205494,
+      "sha256": "170cdb504e23eb4eab272fb5593051964ebff3b519c36c07fc63d0db5ff81440"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-0/checks.json",
+      "bytes": 6332,
+      "sha256": "e0182b68862d1d123b15ac6d85e790b161a63a7ba600395479eeddf47ddacca0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-0/execution.log",
+      "bytes": 219,
+      "sha256": "056052c913341ffe4a02a7913c5fd631a6e5650e36b38f598bf0d024b3d0a12e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-0/regression-summary.json",
+      "bytes": 532,
+      "sha256": "45ec2fe81442e85649a72afa31dfb9c6dbb2f3c5705c549926b074aad6bd6f3f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-1.log.gz",
+      "bytes": 307,
+      "sha256": "295556b7b798d5c81ac093cbf4300e67abe18ac0f527b84046be4558f878f564"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-1/01-restart-room-1.png",
+      "bytes": 105506,
+      "sha256": "76d54a2a5a12bbcc5bdd7120f76bf86885efee00e7106700f0962c020fd6a6e0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-1/02-port-after-restart.png",
+      "bytes": 233272,
+      "sha256": "7d4facee5eb0663f2603392584bb5900f8781dc5043aff5298f31ac924952d97"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-1/03-position-relocation-notice.png",
+      "bytes": 111874,
+      "sha256": "5fb6b221f6fb1d0dd207e7bdb46fe914d790f641a5a9d0eb839bfae6f807ad86"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-1/checks.json",
+      "bytes": 10661,
+      "sha256": "102cb3bc738b3afb46beba1209282d36fdb70bf2e085fb6e7e51d5fd0702851e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-1/execution.log",
+      "bytes": 219,
+      "sha256": "056052c913341ffe4a02a7913c5fd631a6e5650e36b38f598bf0d024b3d0a12e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-1/regression-summary.json",
+      "bytes": 533,
+      "sha256": "f3440b6eba85a486c21edbeebaf98d3d085ea9787902697fe6fc08c060c5cc5f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-2.log.gz",
+      "bytes": 307,
+      "sha256": "a721cb5062d19cf950e2250fa99df949058e3065456eeff055683192f1a4745c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-2/01-restart-room-2.png",
+      "bytes": 100074,
+      "sha256": "3b88216c36c877aae29b84a01110184b46026baaed01e67767b917727fe17fd0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-2/02-port-after-restart.png",
+      "bytes": 234082,
+      "sha256": "e4e3e3f17b7c36d2dc8c8a39012a593e0aafdbac851a0e1f038ad20f8b72b1ef"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-2/03-position-relocation-notice.png",
+      "bytes": 106290,
+      "sha256": "bca4eebf2a62319bb911a6352af2e076e395bf915ed1a94060d6c73985bc6a38"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-2/checks.json",
+      "bytes": 13839,
+      "sha256": "62366ee7c16cf2bc059bc5cf2e9019e8a6879a9de1b2d303dc1d7ee52eb24e2b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-2/execution.log",
+      "bytes": 219,
+      "sha256": "056052c913341ffe4a02a7913c5fd631a6e5650e36b38f598bf0d024b3d0a12e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-2/regression-summary.json",
+      "bytes": 533,
+      "sha256": "f3d5bfae9d57758faf5f1659c982422e42f506a7010ddb925f7e2b7a7b93f478"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-3.log.gz",
+      "bytes": 307,
+      "sha256": "8536edc4c0e9e90aa0c512307084c6c2e62f9917a21eeaa3b37e04e714f7c81d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-4.log.gz",
+      "bytes": 307,
+      "sha256": "0c5e48432978bdd46462d6289af5afbcf789a706893073a65eb6a3d595e79666"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-4/01-restart-room-4.png",
+      "bytes": 143286,
+      "sha256": "4906a08c60dbed817f96f79afe22df584ffbdd74052077a0391a78de0c354e7a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-4/02-port-after-restart.png",
+      "bytes": 234082,
+      "sha256": "e4e3e3f17b7c36d2dc8c8a39012a593e0aafdbac851a0e1f038ad20f8b72b1ef"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-4/03-position-relocation-notice.png",
+      "bytes": 149385,
+      "sha256": "8583755d1167666afd36c2bb92791d36f55c7f21e53bf5434bb95179cfbda038"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-4/checks.json",
+      "bytes": 15574,
+      "sha256": "54c5bc6c07d00ad8e4197547c66135b3cd47472086263386cf14e0874b4c1bdf"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-4/execution.log",
+      "bytes": 219,
+      "sha256": "056052c913341ffe4a02a7913c5fd631a6e5650e36b38f598bf0d024b3d0a12e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-render-restart-4/regression-summary.json",
+      "bytes": 533,
+      "sha256": "a36ece2a2c7ee57ca4c8111f94d34973e32151c0023f060d2dfa392c6f2728ae"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime.log.gz",
+      "bytes": 121,
+      "sha256": "7a9eb381269ff70a256149a456554c0bf0887a62a79a92180cbd1b9532e92a4f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/regression-summary.json",
+      "bytes": 2709,
+      "sha256": "dda4b5512d6fc809cd176e335bda328225092f08e33ae5e51d4cf153d6dba21f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-0.json",
+      "bytes": 788,
+      "sha256": "9ee45a17ebaeec6a1ff28c3f9577f5cec15c0f0da8e9610e44a55702390a8359"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-0.log",
+      "bytes": 108,
+      "sha256": "83ebaf85c8dc0313fd893a6e99358830ee9536ecf18333099badcac7c0ed28f8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-1.json",
+      "bytes": 789,
+      "sha256": "0f7e5db6cce584f27580e7243cb17aa31596583e3c256d69af12305f6b888501"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-1.log",
+      "bytes": 108,
+      "sha256": "2cebe0838d02b0afd25357f87d544df9725b33d3f9f8cd5ad93704dbf378c7e3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-2.json",
+      "bytes": 789,
+      "sha256": "1c02739fa7545c2cf29a941723f66202fd971565f74a7fa79c499ddbdffd3612"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-2.log",
+      "bytes": 108,
+      "sha256": "4c6bca7fc32aceae026f9ef3aa28e443a8867c998ba4c83a1a16e7fdc2fdba59"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-3.json",
+      "bytes": 789,
+      "sha256": "840f60ab943a74ae5edd94122b2d8c3b4a3de40ea9d1254e6609936bcc966127"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-3.log",
+      "bytes": 108,
+      "sha256": "ff5a227f05cc7d070dd182276aad21c92e4adb0c0d4bf8b2ceadaa508803cef7"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-4.json",
+      "bytes": 789,
+      "sha256": "f23144642bcf46a76a40318dee34dc33d5375c1247c143ef404a47b2708b18b1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/restart-4.log",
+      "bytes": 108,
+      "sha256": "7589d09759463eb2a57849cb606350324374998a756480d55e16e5722fe11ed3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/runtime-checks.json",
+      "bytes": 12669,
+      "sha256": "e88aaa07ede940206dc1faefa145154d70ae38f8d61df0b3b1dcffa4eedce051"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/runtime-checks.log",
+      "bytes": 110,
+      "sha256": "b270969c5d07693ec98beab83d2ca6691e38f5557bedc5315bf0685eab380d71"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_0_0.json",
+      "bytes": 3249,
+      "sha256": "d6cede1584980fb9884876027b75a869e27f466a993f36899c0067e92de86566"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_0_1.json",
+      "bytes": 3249,
+      "sha256": "b2f6cd2f15ba774d12506e8704df552e71c0f7d9c599922cf022741cca607149"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_0_2.json",
+      "bytes": 3249,
+      "sha256": "9f23de5e29e4ed83ed2e277e857f647c40d5eaaaa5ab424c3a1280956f7778f8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_0_3.json",
+      "bytes": 3249,
+      "sha256": "79f4197c65ebbacc28cdc16dee658c0148261cd6056b0a967a6118cd403e15d8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_1_0.json",
+      "bytes": 3249,
+      "sha256": "e076d0c478454f84fa08516b23b08207d437bec7a1d82739d81c16caee1d0ea6"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_1_1.json",
+      "bytes": 3249,
+      "sha256": "200bc77b3fef6a39a632445256349245d3228d0b3cbda0c4d8f3e5e46f2927a0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_1_2.json",
+      "bytes": 3249,
+      "sha256": "ca129d05976b05b604336b04f8cea47f9d096fc243f6f90719412d139d86be11"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_1_3.json",
+      "bytes": 3249,
+      "sha256": "9486b339fac35c707ca3a0fc041bae69718831629cbad99b7c7c5c8f983088c8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_2_0.json",
+      "bytes": 3249,
+      "sha256": "9105374df69d29b7cf20200b470634176322539c3e031bc9f381d05db6b9e47a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_2_1.json",
+      "bytes": 3249,
+      "sha256": "a7b6d2c539a7b3c5c01103d7070035ae821ef1cbea180d564181f3b97c57f66d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_2_2.json",
+      "bytes": 3249,
+      "sha256": "80f2deb60d96e14f823a7e9b7e4f20ff6a8cd0d7664312d313cfaa226b9be3d1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_2_3.json",
+      "bytes": 3249,
+      "sha256": "0e4a3a773b59e3abd240abd60d7ea72c3052e163c5bf959b6e2b51dab0a3bb13"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_3_0.json",
+      "bytes": 3249,
+      "sha256": "9227d53aac3412074889bf58161cf269ea93306735b02604f46f3a71f1ef35e6"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_3_1.json",
+      "bytes": 3249,
+      "sha256": "3f8fe266cf86cf4e809dc131bccdd8bfb534a9219662b20348a915f85fc3077b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_3_2.json",
+      "bytes": 3249,
+      "sha256": "169ec1b8018f1908ed693255805890e22e24a8f2a556a21fda9e4f000f509388"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_3_3.json",
+      "bytes": 3249,
+      "sha256": "9f9c72ac4060bfa6d05932d08c66cc962fa336010d5f81928790cbe8c00ece7f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_4_0.json",
+      "bytes": 3249,
+      "sha256": "d5c254f0ee4391eda688986b56a72ed925edc242f55152b5458782376359bc61"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_4_1.json",
+      "bytes": 3249,
+      "sha256": "a978746de680d0c552d7c6a00345cb40e073b88fe40e3668d6e70e39c5d27db1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_4_2.json",
+      "bytes": 3249,
+      "sha256": "fdf6bcbfe8436f7f538b6074b39edcd435d347db11de892080147442f4e3cb55"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_4_3.json",
+      "bytes": 3249,
+      "sha256": "7eb1f9c2ea044948672a3c2c2fc4421dbadd7f1edc818fa5f3cde976644115c7"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_growth_0.json",
+      "bytes": 3264,
+      "sha256": "a58cc6f988d5c003d94f6ef6f99279439a33fe481ac087acbcebad546c444021"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_growth_1.json",
+      "bytes": 3264,
+      "sha256": "775bf27177cd6d2acb308aba675b553b843d09b6e928a852f9f9fc5020ceb79c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_growth_2.json",
+      "bytes": 3264,
+      "sha256": "521e6257573bda67c7c3206940f35220be9e97e17d81a58f4e5aa119a72c631c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_growth_3.json",
+      "bytes": 3264,
+      "sha256": "60df1a20e12b02cc7618f93954e1382e4396e48ca04005ea7886239aea35a8e1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_growth_4.json",
+      "bytes": 3264,
+      "sha256": "a7342865aac82d20f64bd66ed9d84c71ef1b31c99548fb256d426c28aa75f0c7"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_port-start.json",
+      "bytes": 3205,
+      "sha256": "d7919032d2db31d32ce43be2eed72966a8c3fd975a23a8ebb952ade4922f590c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_relocation_0.json",
+      "bytes": 5219,
+      "sha256": "85bb13908521a696273a042b2614aa0fa723e0933373084398ded8f291d3f6d8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_relocation_1.json",
+      "bytes": 5219,
+      "sha256": "01956a6a12a5af14e0b44fa61c3470732e5be0bd8c379885641ec96ab0673505"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_relocation_2.json",
+      "bytes": 5219,
+      "sha256": "5085c5ebf5dfda82a025ee098fcec745ec81d89f64f333f271c0b45ee49d9d90"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_relocation_3.json",
+      "bytes": 5219,
+      "sha256": "29517f7d5ac13b4d3e4b0e4ea15749d862c765b873d5ff3214f0bb2e2245c619"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/009-runtime/saved-inputs/village009_relocation_4.json",
+      "bytes": 5219,
+      "sha256": "d64cf3c28db656556e28aa0ed31ac3c988d892fa3c9e5006a4e57aab393f174c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-api.json",
+      "bytes": 387307,
+      "sha256": "d1e69861be090212c26256f5d40d360df090dae0e9ed64ed75426f55d6b8fef9"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-api.log.gz",
+      "bytes": 133,
+      "sha256": "131de29cd48a15626013230bc98a3609abaa6da74da5042d49cf3e073a060408"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-data.json",
+      "bytes": 175690,
+      "sha256": "41bf40fcf112f8c1c6b98e3c7ace563af810b8e0072669cfc89ff572ac2a832e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-data.log.gz",
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input.log.gz",
+      "bytes": 220,
+      "sha256": "b6f2c2f2e591fd741f9a69cb313b91c9ef62c9131b7eef2b825e42de8228a56d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-before-landing.png",
+      "bytes": 35742,
+      "sha256": "a48f4345777050aa6bfbb56904b0d181671e2cc18ca12db308dd4c29e6ff0618"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-behind-diagnostic-without-player.png",
+      "bytes": 145944,
+      "sha256": "825edd1dd9a391ea0ab2acf8de902bdb2fa971bd5f95f9b58a390512d425be4a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 146790,
+      "sha256": "3740bb3c5fcc9d8e1113aec2f740cbe9ca1dac73081d0cc578427c6344920fd4"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-behind.png",
+      "bytes": 146471,
+      "sha256": "647b5d2af11ee55b0c8c1e904505633f4839ef055fa483669b2da835e5a13eb4"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-front-diagnostic-without-player.png",
+      "bytes": 155627,
+      "sha256": "60f9b5615e994d8b6fc6ce9c87a6eac98e9f4200dd46c6e98a3446128486cbfb"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 156411,
+      "sha256": "4f8e4a7283086ec7ad2e1a598a05be88dd899df00b66be086401f574a5219b27"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-front.png",
+      "bytes": 156411,
+      "sha256": "4f8e4a7283086ec7ad2e1a598a05be88dd899df00b66be086401f574a5219b27"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-gate-outside.png",
+      "bytes": 38721,
+      "sha256": "2c0555cdb23b145d9a5b223df4824ee2f3f907da2801ac575635254e326572b2"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-input.json",
+      "bytes": 12011,
+      "sha256": "c6019f69f1be7ffd83cd0440c3179b863587ab88a5c64123a450bac2deff7aaa"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-pier.png",
+      "bytes": 143069,
+      "sha256": "5b8522269cfcc17d3d83b2048d7fe4fc0e2691db7022011b891c112a11cc970d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-returned-pier.png",
+      "bytes": 147015,
+      "sha256": "2a56f91455bbba5affa4d48992e219da12cbfd27be80ce155f4aca0fe84d997f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "9be2d475a4c01ea2a1d7412a541e34a665c3cc41731a5f83dada6570b0dc7a49"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/081-newport-input/arrival-spell-outside.png",
+      "bytes": 44431,
+      "sha256": "fd19fc52f7c6a78ae79bc38a0dd1b749ce6339a9a97a81ac594a0b59e4315ce0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/R-01.log.gz",
+      "bytes": 490,
+      "sha256": "54d93f2c18dd416e8708960615e85b83059e7e082448b75f19ffefc5d1348571"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/R-02.log.gz",
+      "bytes": 615,
+      "sha256": "627db13b061f0bb5bc73375cab34f619ef39c32f304d691e9a5582661e082ab5"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/R-03.log.gz",
+      "bytes": 500,
+      "sha256": "06c307d127594ab50ae00f68d67e1ea71aa95fa9fff0258bc79a3c06dc004fb9"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/R-04.log.gz",
+      "bytes": 480,
+      "sha256": "80d28051a3af573b19e3686320bfb7a3d8e5308ef57fcfe23e89b1cf40b8dc5d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/R-05.log.gz",
+      "bytes": 496,
+      "sha256": "894792f92fdb83831bee97e8ebaec210aea3fe1a308258cd2ca480f90e8f6c4e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/R-06.log.gz",
+      "bytes": 509,
+      "sha256": "3dd15a053e012da765107dc13eb21aef4907383a9114d2eef18be368f17c49d3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/R-07.log.gz",
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/R-08.log.gz",
+      "bytes": 1192,
+      "sha256": "d5a9bb488e5d741564d9e7262a8d9a4143799a74065f667d93832b11ed4d9fe3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/assets.log.gz",
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/catalog-checks.json",
+      "bytes": 3827,
+      "sha256": "1171214702e9ca0620f6873278b9794b5792f6d9ed5395f7d47ed2c63ec76c20"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/catalog.log.gz",
+      "bytes": 131,
+      "sha256": "0b4a229a22864c2722eb3d8ceeab865ea7ce6c5a544bc56ede594d12fc3e7de1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/execution.json",
+      "bytes": 19591,
+      "sha256": "6c6f698569737a0c0d10be7dc89cfdbe38cb33b22be7a51554a5a69f9664aefe"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/frozen-after.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/frozen-before.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/import.log.gz",
+      "bytes": 400,
+      "sha256": "61cdaa29bb1a5db0804fe1370862a7404ea2e2c8126107583881028f2b21c657"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/after/source-sha256.json",
+      "bytes": 525,
+      "sha256": "4e68dfad9816a1c975fabd5ce67e80a222ace3120ba4b3c88f1d37cc2aad52fa"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before-assertion-map.log",
+      "bytes": 70,
+      "sha256": "6e6dc3aea20049031c3b7f34ae3231dc0394d236e09905b1fb6df1870d6b3314"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before-import.log",
+      "bytes": 1921,
+      "sha256": "dc3e00b04f0e14a24027d9cc824989970a160fa6db26afdfa35a0623c82eae79"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before-lifecycle.log",
+      "bytes": 6985,
+      "sha256": "a33b31448220e00c534ae869f5173338393108682bd0a9463a933baef763f62d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before-regression.log",
+      "bytes": 229,
+      "sha256": "ed1cee9015fcdfc7ed31a0ce92c40a2959a7bd38ce303ebaa232251cce51106a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/catalog-checks.json",
+      "bytes": 241,
+      "sha256": "1d0aebb8e64fe5ba4eb4223b3c9e10f36038d17b8191379e8c7357cf67804624"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/catalog-isolation-checks.json",
+      "bytes": 3828,
+      "sha256": "44bef08f4c11eb54470b40048eb61ec9c234cc1087143bbb5dbf5d9ceb480c25"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-back-capture.json",
+      "bytes": 107521,
+      "sha256": "2c2dfc75b5c42e0a6b8222a571bfd3551b3bec167e072f9daaa2c847a958ac9a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-back-capture.log",
+      "bytes": 897,
+      "sha256": "bcbf49d88cf692ae7e8eb02ac51b7190694341fd4fddeef3600719fabf22b66c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-back-npc-positive.json",
+      "bytes": 12776,
+      "sha256": "4148d57bd1b631048ae3f6967af5689bab654e8e4b0bedc421eaa32c9864a8c4"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-back-npc-positive.log",
+      "bytes": 162,
+      "sha256": "3644424517b69de2b3717ba71992ee3a3cc8337e63e19626a56cfaa219cc5302"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-back-occupancy-ignored.json",
+      "bytes": 13972,
+      "sha256": "a3e87b97871a8a576fcb52a8fd0ab4aac78ae75d24d4278660298bcbfab4558d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-back-occupancy-ignored.log",
+      "bytes": 908,
+      "sha256": "607693419e090532970e09178eb5621ec5ceb0d419a94c770c443941f1199c80"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-back-rejection-state-corrupted.json",
+      "bytes": 12899,
+      "sha256": "f20034def5cff74b91c5551fc3c2cec0a435a48893dbd919cedcd75a53222407"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-back-rejection-state-corrupted.log",
+      "bytes": 236,
+      "sha256": "72fbe4870d16b59aaf99a2d65d4612cda67cfc08b3cf1bb88851ab9000a4bbd5"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-customer-route-blocked.json",
+      "bytes": 13106,
+      "sha256": "3b8c1f500e2299e778e9640a828e790517326a276b7993e9209b9ec3103e4354"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-customer-route-blocked.log",
+      "bytes": 245,
+      "sha256": "a96effea332faf92fa641217bd2e0372257342e09dcaaec0c5831978344b8270"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-room-exit-blocked.json",
+      "bytes": 14646,
+      "sha256": "889fa9d9c333f0c822635837285c100d33a89c6292948da1cca009bbf4f355b1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/counter-room-exit-blocked.log",
+      "bytes": 1415,
+      "sha256": "3374ce3c75b45c8fedf96a3c3e1d4e14230a593f1aa1490d5011d0a8f2246db6"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/invalid-save-accepted.json",
+      "bytes": 13442,
+      "sha256": "34e46a615974aed28b83d6c3ebfda9dc5ce8f875630392b0d8cea1039f91ea09"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/invalid-save-accepted.log",
+      "bytes": 562,
+      "sha256": "0ef43aaf8c85940680443ed0134f94c11e99f369285c6ff84a289ff120bdc366"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/misconnected-door.json",
+      "bytes": 14380,
+      "sha256": "16484a253826437b36a77a20c7e58b33bc641f44a96e48fbf95bc887d3a0b5d3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/misconnected-door.log",
+      "bytes": 1186,
+      "sha256": "495cb497da6f735cf54af05e7bcb199d2a6db1910336adc85dad5d37d0b72d2e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/npc-floor-after.json",
+      "bytes": 991,
+      "sha256": "027e7a493b98be3b9b18523635927cb2a5e8d83d456b41466606db7992e41b54"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/npc-floor-after.log",
+      "bytes": 108,
+      "sha256": "d879ed53687f6268ca10881f9574b80dc88bfd0022c854e359e16fc184bb450e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/npc-floor-before.json",
+      "bytes": 997,
+      "sha256": "7fa0e14911da2799ec6c2f51b77430ccadac95e84f791d022e686e5ba72932e6"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/npc-floor-before.log",
+      "bytes": 108,
+      "sha256": "d879ed53687f6268ca10881f9574b80dc88bfd0022c854e359e16fc184bb450e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/npc-occupancy-ignored.json",
+      "bytes": 1266,
+      "sha256": "8c6f76ccb4cb86663f9c530bbd8883a4afe3889f949c5dfe300c7f882ecedf5a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/npc-occupancy-ignored.log",
+      "bytes": 260,
+      "sha256": "f4ea00b8b65573cb9dfadcf8c13933029d162bb25bb3b36af96c9105b311644b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/npc-probe-source.gd.txt",
+      "bytes": 1724,
+      "sha256": "0deb285e39e4e3f07b6219fe20e41dd37d5e0e35f892ea797cebb7c451c1c9fa"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/registered-request-and-npc-occupancy.json",
+      "bytes": 12776,
+      "sha256": "2cfcb66c0208d9ade41c913c3a4ce898190d480b5c1685ebba9f52cfedb98c58"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/registered-request-and-npc-occupancy.log",
+      "bytes": 162,
+      "sha256": "3644424517b69de2b3717ba71992ee3a3cc8337e63e19626a56cfaa219cc5302"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/summary.json",
+      "bytes": 9145,
+      "sha256": "5426f7fd504f15c3c41b4665cfff9367c8d70fa7020b8098317c8f2057d0a00d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/lifecycle/wrong-fixed-sha.log",
+      "bytes": 91,
+      "sha256": "fc8d44a6de1fe6b1e72ac1dc0bce1028a295f8ac800dbf79a7bb59143c3e14a3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/regression-summary.json",
+      "bytes": 2824,
+      "sha256": "86a9ff0818956782655ae0fdb3f24adb06ce21af1b4e52709cd95a1c4ff45a0a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-0.json",
+      "bytes": 788,
+      "sha256": "4c711e6dce4dc971176cd4ea94dd51f19aff2df409bd7eaafff25ced01e67efc"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-0.log",
+      "bytes": 108,
+      "sha256": "83ebaf85c8dc0313fd893a6e99358830ee9536ecf18333099badcac7c0ed28f8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-1.json",
+      "bytes": 789,
+      "sha256": "d8ab8cc1a822692971334731ea0a73372290af093f90fcff3195d158ef1ddeb0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-1.log",
+      "bytes": 108,
+      "sha256": "2cebe0838d02b0afd25357f87d544df9725b33d3f9f8cd5ad93704dbf378c7e3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-2.json",
+      "bytes": 789,
+      "sha256": "b1f698bad01e80160e44bb2a9986d3881ad6b52d738d9c3d7d6780e25d09ba3e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-2.log",
+      "bytes": 108,
+      "sha256": "4c6bca7fc32aceae026f9ef3aa28e443a8867c998ba4c83a1a16e7fdc2fdba59"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-3.json",
+      "bytes": 789,
+      "sha256": "c4adb710ea6be771de9a924f6ace973762ca7be8a4ae2ee885c1b7adff1783eb"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-3.log",
+      "bytes": 108,
+      "sha256": "ff5a227f05cc7d070dd182276aad21c92e4adb0c0d4bf8b2ceadaa508803cef7"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-4.json",
+      "bytes": 789,
+      "sha256": "13f9b7a34c18678085135628bd907acbb574fe1817f5cc6378f6c295a6ddc6e7"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/restart-4.log",
+      "bytes": 108,
+      "sha256": "7589d09759463eb2a57849cb606350324374998a756480d55e16e5722fe11ed3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/runtime-checks.json",
+      "bytes": 12775,
+      "sha256": "b18d6058fc04f910258f6b81e188521bf27259c16d820ee4edbe8e7216d19485"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/before/task009-latest/runtime-checks.log",
+      "bytes": 162,
+      "sha256": "3644424517b69de2b3717ba71992ee3a3cc8337e63e19626a56cfaa219cc5302"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/catalog-after.log",
+      "bytes": 116,
+      "sha256": "29bbf7b46cacc49b50e86fd65ee779133a79f79b78165cc2477536756588b972"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/catalog-before.log",
+      "bytes": 267,
+      "sha256": "fa872633dc16a05d1220cb519fc2931ec5776a7296451a5ab925cb2ffb248495"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/catalog-checks.json",
+      "bytes": 4043,
+      "sha256": "1eba113470ed9f748beeaeccf6070fe72fbc805f325b0f35e2253c3d9477392c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/catalog-isolation-after.log",
+      "bytes": 116,
+      "sha256": "7dccf03002387583f32ddcd418c1a00e9f682dd5c2106250b5e9949b54faf7f2"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/catalog-isolation-before.log",
+      "bytes": 202,
+      "sha256": "925ef7d46ac9594361f925816c31117983a4216d4c72b206223a0233ce35eb6b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/catalog-isolation-red.log",
+      "bytes": 288,
+      "sha256": "1af98718a5121e6a19c3fabc966cc7c67a29e53076a663cccb3e8bc3ddebe73b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/catalog-legacy-final-execution.json",
+      "bytes": 678,
+      "sha256": "2c54c0bd758a669d96e9be710c09420afeea007f2a8da6ac7b34cb38923fa776"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/catalog-legacy-final.log",
+      "bytes": 116,
+      "sha256": "3bc3dbfd1dec699016ffc40c1c7b10c9e0151a14c3dc8d66ce39695eb80ef4d3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/changed-files-ci-fix.json",
+      "bytes": null,
+      "sha256": null,
+      "manifest_self_reference": true
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/changed-files-from-main.json",
+      "bytes": null,
+      "sha256": null,
+      "manifest_self_reference": true
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/evidence-restoration.py.txt",
+      "bytes": 1985,
+      "sha256": "8f2fd8622111df58153380453ff97088eee9a66b9b6df133dfa714f7d43245e0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/final-preservation.json",
+      "bytes": 75224,
+      "sha256": "82bfc02d66ed76cea686019dc97e77c5434841d0498ad02e5b5d1236a445b3af"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/fixed-checkout.log",
+      "bytes": 2629,
+      "sha256": "cd0928e12d8e128cc4396aa0bb97f120dd41f341e724fce3999e61dd59d8db99"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/details/02-east-arch-under.png",
+      "bytes": 192613,
+      "sha256": "cc7ec92e8152b507d74bafc2c7522a15428142b9792655e630489741ee5eef55"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/details/03-room-1-high-front-wall.png",
+      "bytes": 95057,
+      "sha256": "865851bce8e467e193813ff641ba9c63bc048849038ae59e212917b9ccab3aa8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/details/03-room-2-high-front-wall.png",
+      "bytes": 90208,
+      "sha256": "65d42ed54dcc45d70465ec1efee3d59da37dec4c217fcc6e9f12cdc626abcfa1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/details/03-room-3-high-front-wall.png",
+      "bytes": 97251,
+      "sha256": "60aa5e6d81d576d641bbf4f2398788c53b20770460152f021231af7efa82ab30"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/details/03-room-4-high-front-wall.png",
+      "bytes": 132578,
+      "sha256": "ecbee2ea1b0584147e31f20997bef8ada8bf1831b4cd2a959926e3f7eaabce04"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/details/checks.json",
+      "bytes": 61278,
+      "sha256": "8f2bf3edf480fe2e5941641130ac0d2682b8a48518fe9967dd1923afa208acde"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/details/regression-summary.json",
+      "bytes": 524,
+      "sha256": "8ed9a3e0ea87ed7c81009a35710e79e5e051b8bc111862f1b5b9c68ded79f6ce"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/04-room-1-entrance.png",
+      "bytes": 95685,
+      "sha256": "5a6493a90243d1d45da940d88886e6858442e204ec68a3432073e44b16a2b73c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/04-room-2-entrance.png",
+      "bytes": 89647,
+      "sha256": "a1b95b64a4faa61d8403f85de0772124430c06e2557a2e12fbad7b7c9921c7af"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/04-room-3-entrance.png",
+      "bytes": 96914,
+      "sha256": "02ee01523858a381679eb873598bd60ad4ee9ac4fc1e65f9cf45b0a7ca240ca8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/04-room-4-entrance.png",
+      "bytes": 133363,
+      "sha256": "471fc662ecce6a61c6959d4eb7d542e3a1778c08cd1f5e3f41af57fbc3583cc6"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/05-room-1-front.png",
+      "bytes": 103103,
+      "sha256": "5d89987f3799ef8c7c34d306c65655f865e3d10d857afd10ebc4e2f578976f56"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/05-room-2-front.png",
+      "bytes": 95005,
+      "sha256": "f1269dd6ffa781bff0d6de0074d0c30f90457d16a362bee7e680347a235932b3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/05-room-3-front.png",
+      "bytes": 103286,
+      "sha256": "b53e12c1f68707fe1c73e6080711e7df9add888b81a028b5bcad479f10b4cd0b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/05-room-4-front.png",
+      "bytes": 139519,
+      "sha256": "a5f38f2fb49363bab566b15641b1ab989670d13a988371956d6fcaa9c733e026"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/06-room-1-behind.png",
+      "bytes": 105200,
+      "sha256": "98922881330d73cac7e498e07b165ae14366d40d2827592d885cf396a01b4484"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/06-room-2-behind.png",
+      "bytes": 104954,
+      "sha256": "3da64f7cbca8b6c1fc95ecef73a6c071b4963a7eb3b0d11aaaca62de5d2bd368"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/06-room-3-behind.png",
+      "bytes": 109837,
+      "sha256": "63664992d365d17e709fcc78399e555c9bf0ece2fd5d1e2c40f5cd18c453fc57"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/06-room-4-behind.png",
+      "bytes": 135177,
+      "sha256": "9ce727408a77c20f9ef2b2901e40ca0a768294fc8a92f00258e669a809cb881e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/07-room-2-return.png",
+      "bytes": 224678,
+      "sha256": "444fbbb20c4b80322482100ad3fa56292a1f80b6cd8d9218a6976a0ea7706e09"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/07-room-3-return.png",
+      "bytes": 211155,
+      "sha256": "ea017a0cca620f2a75d834dc5f298715a7b89d3794b6aaf5b6a1965b1e125b60"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/07-room-4-return.png",
+      "bytes": 213632,
+      "sha256": "6dfbe5ce0b149a15861a83d7f7477fd5d81a7c6cea08ac48e8885d086014ab39"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/09-east-landing-camera-edge.png",
+      "bytes": 205227,
+      "sha256": "9121397d4297df96ff9b718fffa5459dc3f802189872e19c2e6b5497c591c0f3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/10-menu-restored.png",
+      "bytes": 208696,
+      "sha256": "8cd08bfa59665b10126dff02b5465c2e066f5502ea935a055b8ae213faeff78b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/12-return-destinations.png",
+      "bytes": 108926,
+      "sha256": "d9e1bb5ba6832bf6fba0675027a204a1dcca2d0c741fd473bb893898d0c971b1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/checks.json",
+      "bytes": 107520,
+      "sha256": "a1be0f3377c6e20e46ee4db19dd1a1af1130ae4b3e377f628183eb810b1d339e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/journey/regression-summary.json",
+      "bytes": 500,
+      "sha256": "3ac71975307ade5e31bd7baf72cc7dc33c522ec31353a2c1e198fb518730756a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/regression-summary.json",
+      "bytes": 2709,
+      "sha256": "dda4b5512d6fc809cd176e335bda328225092f08e33ae5e51d4cf153d6dba21f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-0.json",
+      "bytes": 788,
+      "sha256": "9ee45a17ebaeec6a1ff28c3f9577f5cec15c0f0da8e9610e44a55702390a8359"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-0/checks.json",
+      "bytes": 6332,
+      "sha256": "e0182b68862d1d123b15ac6d85e790b161a63a7ba600395479eeddf47ddacca0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-0/regression-summary.json",
+      "bytes": 532,
+      "sha256": "45ec2fe81442e85649a72afa31dfb9c6dbb2f3c5705c549926b074aad6bd6f3f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-1.json",
+      "bytes": 789,
+      "sha256": "0f7e5db6cce584f27580e7243cb17aa31596583e3c256d69af12305f6b888501"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-1/01-restart-room-1.png",
+      "bytes": 105506,
+      "sha256": "76d54a2a5a12bbcc5bdd7120f76bf86885efee00e7106700f0962c020fd6a6e0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-1/02-port-after-restart.png",
+      "bytes": 233272,
+      "sha256": "7d4facee5eb0663f2603392584bb5900f8781dc5043aff5298f31ac924952d97"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-1/03-position-relocation-notice.png",
+      "bytes": 111874,
+      "sha256": "5fb6b221f6fb1d0dd207e7bdb46fe914d790f641a5a9d0eb839bfae6f807ad86"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-1/checks.json",
+      "bytes": 10661,
+      "sha256": "102cb3bc738b3afb46beba1209282d36fdb70bf2e085fb6e7e51d5fd0702851e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-1/regression-summary.json",
+      "bytes": 533,
+      "sha256": "f3440b6eba85a486c21edbeebaf98d3d085ea9787902697fe6fc08c060c5cc5f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-2.json",
+      "bytes": 789,
+      "sha256": "1c02739fa7545c2cf29a941723f66202fd971565f74a7fa79c499ddbdffd3612"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-2/01-restart-room-2.png",
+      "bytes": 100074,
+      "sha256": "3b88216c36c877aae29b84a01110184b46026baaed01e67767b917727fe17fd0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-2/03-position-relocation-notice.png",
+      "bytes": 106290,
+      "sha256": "bca4eebf2a62319bb911a6352af2e076e395bf915ed1a94060d6c73985bc6a38"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-2/checks.json",
+      "bytes": 13839,
+      "sha256": "62366ee7c16cf2bc059bc5cf2e9019e8a6879a9de1b2d303dc1d7ee52eb24e2b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-2/regression-summary.json",
+      "bytes": 533,
+      "sha256": "f3d5bfae9d57758faf5f1659c982422e42f506a7010ddb925f7e2b7a7b93f478"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-3.json",
+      "bytes": 789,
+      "sha256": "840f60ab943a74ae5edd94122b2d8c3b4a3de40ea9d1254e6609936bcc966127"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-3/01-restart-room-3.png",
+      "bytes": 106968,
+      "sha256": "2ef7bfd9c6a95346ec1dd1c1f9e41907df4b17ad7c5fd9956d3b0cb9beafce59"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-3/03-position-relocation-notice.png",
+      "bytes": 113166,
+      "sha256": "a90a084e85a38e5b34685a2ec6b64695f0fee2915b71f946dc5ed66eee5157e1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-3/checks.json",
+      "bytes": 17923,
+      "sha256": "bc7f341021c140e206b6a8a92d3a5895033bac36a2c0712a1612fdaef2b11b70"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-3/regression-summary.json",
+      "bytes": 533,
+      "sha256": "34d4c971026846ccd7c4483bd0d8b9249f4f0d64da3f9a08b01447c0215252a6"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-4.json",
+      "bytes": 789,
+      "sha256": "f23144642bcf46a76a40318dee34dc33d5375c1247c143ef404a47b2708b18b1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-4/01-restart-room-4.png",
+      "bytes": 143286,
+      "sha256": "4906a08c60dbed817f96f79afe22df584ffbdd74052077a0391a78de0c354e7a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-4/02-port-after-restart.png",
+      "bytes": 234082,
+      "sha256": "e4e3e3f17b7c36d2dc8c8a39012a593e0aafdbac851a0e1f038ad20f8b72b1ef"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-4/03-position-relocation-notice.png",
+      "bytes": 149385,
+      "sha256": "8583755d1167666afd36c2bb92791d36f55c7f21e53bf5434bb95179cfbda038"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-4/checks.json",
+      "bytes": 15574,
+      "sha256": "54c5bc6c07d00ad8e4197547c66135b3cd47472086263386cf14e0874b4c1bdf"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/restart-4/regression-summary.json",
+      "bytes": 533,
+      "sha256": "a36ece2a2c7ee57ca4c8111f94d34973e32151c0023f060d2dfa392c6f2728ae"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/runtime-checks.json",
+      "bytes": 12669,
+      "sha256": "e88aaa07ede940206dc1faefa145154d70ae38f8d61df0b3b1dcffa4eedce051"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/latest/runtime-checks.log",
+      "bytes": 110,
+      "sha256": "b270969c5d07693ec98beab83d2ca6691e38f5557bedc5315bf0685eab380d71"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/negative-cases/invalid-save-accepted.json",
+      "bytes": 13338,
+      "sha256": "0a07b4be2770dd51e507778fb346da0e87b11bb818ea00ca27f2c7a8c0848f1b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/negative-cases/misconnected-door.json",
+      "bytes": 14282,
+      "sha256": "c808b42806ac2d4dca5d0019c2cf70f49295122bb9e7bb2c86379a3899b20035"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/negative-cases/npc-floor-after.json",
+      "bytes": 991,
+      "sha256": "b1bf8f527d72b38eda8549139534cb178a754701177bc52016e412f701cdf778"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/negative-cases/npc-floor-before.json",
+      "bytes": 997,
+      "sha256": "412d5e76df99dec3ec530af60f848db4867e5d70fd2fb986d6e4a650ae587d53"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/negative-cases/npc-occupancy-ignored.json",
+      "bytes": 1266,
+      "sha256": "355eb916072bec50f377c87ef8049916b031e9a81fee140c778c726554a40314"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/negative-cases/registered-request-and-npc-occupancy.json",
+      "bytes": 12670,
+      "sha256": "ab587550610a3b5f26f04a42de0939ed5f55dacb00b594f63ea20f28df01064b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/negative-cases/registered-request-and-npc-occupancy.log",
+      "bytes": 110,
+      "sha256": "5a9021952d23cc566dc3397e9516dbd837364398d411a2681af4afbd4dedb684"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-009/negative-cases/summary.json",
+      "bytes": 8725,
+      "sha256": "382c1cbbf303f8ca7416719f18cc3358013829ddfb889c24631487f5a40791eb"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-before-landing.png",
+      "bytes": 35742,
+      "sha256": "a48f4345777050aa6bfbb56904b0d181671e2cc18ca12db308dd4c29e6ff0618"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-behind-diagnostic-without-player.png",
+      "bytes": 145944,
+      "sha256": "825edd1dd9a391ea0ab2acf8de902bdb2fa971bd5f95f9b58a390512d425be4a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 146790,
+      "sha256": "3740bb3c5fcc9d8e1113aec2f740cbe9ca1dac73081d0cc578427c6344920fd4"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-behind.png",
+      "bytes": 146471,
+      "sha256": "647b5d2af11ee55b0c8c1e904505633f4839ef055fa483669b2da835e5a13eb4"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-front-diagnostic-without-player.png",
+      "bytes": 155627,
+      "sha256": "60f9b5615e994d8b6fc6ce9c87a6eac98e9f4200dd46c6e98a3446128486cbfb"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 156411,
+      "sha256": "4f8e4a7283086ec7ad2e1a598a05be88dd899df00b66be086401f574a5219b27"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-front.png",
+      "bytes": 156411,
+      "sha256": "4f8e4a7283086ec7ad2e1a598a05be88dd899df00b66be086401f574a5219b27"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-gate-outside.png",
+      "bytes": 38721,
+      "sha256": "2c0555cdb23b145d9a5b223df4824ee2f3f907da2801ac575635254e326572b2"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-pier.png",
+      "bytes": 143069,
+      "sha256": "5b8522269cfcc17d3d83b2048d7fe4fc0e2691db7022011b891c112a11cc970d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-returned-pier.png",
+      "bytes": 147015,
+      "sha256": "2a56f91455bbba5affa4d48992e219da12cbfd27be80ce155f4aca0fe84d997f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "9be2d475a4c01ea2a1d7412a541e34a665c3cc41731a5f83dada6570b0dc7a49"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/arrival-spell-outside.png",
+      "bytes": 44431,
+      "sha256": "fd19fc52f7c6a78ae79bc38a0dd1b749ce6339a9a97a81ac594a0b59e4315ce0"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-existing-records/docs/verification/task-081-implementation/exterior-full-runtime.png",
+      "bytes": 982268,
+      "sha256": "afa0fc15915b63db958c94c80b2c32192e5efd6e2afb55503608bd67c8cc29cf"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-record-restoration.json",
+      "bytes": 25072,
+      "sha256": "a181ec998f494564433c63eaff55d7181c7770a5e32db54403b4ae3cb3573118"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-back-capture.json",
+      "bytes": 107521,
+      "sha256": "b3a1f1a34902ec39b14cf21e389d1b5d4fe04493869c15afffac4c3e667f0a92"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-back-capture.log",
+      "bytes": 221,
+      "sha256": "ca72d3799b0f55cb5f09768a7e2e8c30470ad1577fcc6ed283c99ae116488de2"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-back-npc-positive.json",
+      "bytes": 12670,
+      "sha256": "4dd81a267b8d7e71e1189fedd4b5208c86515ea8bcbf822345c4885d5c12af2f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-back-npc-positive.log",
+      "bytes": 110,
+      "sha256": "b270969c5d07693ec98beab83d2ca6691e38f5557bedc5315bf0685eab380d71"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-back-occupancy-ignored.json",
+      "bytes": 13868,
+      "sha256": "de9cb4d6a88068b12b26bfdb01663102242022b9a1fe951b126127cda082960a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-back-occupancy-ignored.log",
+      "bytes": 843,
+      "sha256": "101a4a053e4737d7e6c567587bd71fbd900a63544732a786d8547c063c8d36ee"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-back-rejection-state-corrupted.json",
+      "bytes": 12795,
+      "sha256": "d8f4cc07426ecc83131dd84b5b83a8fb8c90b6fb5b3ad39e7a5105db3aaddfdd"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-back-rejection-state-corrupted.log",
+      "bytes": 171,
+      "sha256": "60f1d24de8d92b458b4838c449acc8658b301b7cc4d418dd7bf8c3c441aa1673"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-customer-route-blocked.json",
+      "bytes": 13002,
+      "sha256": "cac1275c702e195afe0e4ec921a8016e82f3d914da919e64e6f93f5bd159d109"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-customer-route-blocked.log",
+      "bytes": 180,
+      "sha256": "1918f31057b19b4cf77e46b7b198a2a9d789a8018d1d8521e7d3b47cfab714f1"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-room-exit-blocked.json",
+      "bytes": 14542,
+      "sha256": "00db82a7c81b8d382147cabf0ed6132834e4c0eb17211c0facd830e83198f667"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-009/negative-cases/counter-room-exit-blocked.log",
+      "bytes": 1350,
+      "sha256": "7fbb84bccdb4cfab1db82f4e330ff30e4fcbf45febcff6871a9127843b7dc10d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/01-port-start.png",
+      "bytes": 243144,
+      "sha256": "1dce8593ee5c033e5376d721243d1be3489ea5ad754236935b95c9f410392c3f"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/02-world-village-entrance.png",
+      "bytes": 48510,
+      "sha256": "5aaea84165b28a79a9dde087db6a0f6f6a2d6996ebdae8eabcc1e2bcd6b0d949"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/03-west-landing.png",
+      "bytes": 190495,
+      "sha256": "6f775d54b9d9fe7ac09c0eeafb4ccc08fb2b072fa6251fbf38afbd14d3b6c759"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/04-room-0-entrance.png",
+      "bytes": 190495,
+      "sha256": "6f775d54b9d9fe7ac09c0eeafb4ccc08fb2b072fa6251fbf38afbd14d3b6c759"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/04-room-1-entrance.png",
+      "bytes": 95685,
+      "sha256": "5a6493a90243d1d45da940d88886e6858442e204ec68a3432073e44b16a2b73c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/04-room-2-entrance.png",
+      "bytes": 88954,
+      "sha256": "de20a314d1186c5d4be10202018293e84e9bd4ef9527c9b043717580e9346760"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/04-room-3-entrance.png",
+      "bytes": 96914,
+      "sha256": "02ee01523858a381679eb873598bd60ad4ee9ac4fc1e65f9cf45b0a7ca240ca8"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/04-room-4-entrance.png",
+      "bytes": 133363,
+      "sha256": "471fc662ecce6a61c6959d4eb7d542e3a1778c08cd1f5e3f41af57fbc3583cc6"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/05-room-0-front.png",
+      "bytes": 210058,
+      "sha256": "742e60828bf0a6bc0d076b2169a1b7bceba0fbc83db4a17db85b6d8714893083"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/05-room-1-front.png",
+      "bytes": 103103,
+      "sha256": "5d89987f3799ef8c7c34d306c65655f865e3d10d857afd10ebc4e2f578976f56"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/05-room-2-front.png",
+      "bytes": 94306,
+      "sha256": "e059f6dfbe1dcf8043e23857e7c1f60684ef0d3ade43d3bc4c2aa8afb0578e66"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/05-room-3-front.png",
+      "bytes": 103286,
+      "sha256": "b53e12c1f68707fe1c73e6080711e7df9add888b81a028b5bcad479f10b4cd0b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/05-room-4-front.png",
+      "bytes": 139519,
+      "sha256": "a5f38f2fb49363bab566b15641b1ab989670d13a988371956d6fcaa9c733e026"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/06-room-0-behind.png",
+      "bytes": 187982,
+      "sha256": "7b664f1b98a85824e40c46c7e5e44fcf03b80167d66f85d5761632bcd4bff821"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/06-room-1-behind.png",
+      "bytes": 105200,
+      "sha256": "98922881330d73cac7e498e07b165ae14366d40d2827592d885cf396a01b4484"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/06-room-2-behind.png",
+      "bytes": 104241,
+      "sha256": "8d6d0713474a7d8b97a713f153db43bf4eba6dfb55b3c04e15d52321857caf75"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/06-room-3-behind.png",
+      "bytes": 109837,
+      "sha256": "63664992d365d17e709fcc78399e555c9bf0ece2fd5d1e2c40f5cd18c453fc57"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/06-room-4-behind.png",
+      "bytes": 135177,
+      "sha256": "9ce727408a77c20f9ef2b2901e40ca0a768294fc8a92f00258e669a809cb881e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/07-room-1-return.png",
+      "bytes": 219748,
+      "sha256": "ed79f1c134123fba761f03ec42fc02ea85b6599721b74da32aa0e34040f1123b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/07-room-2-return.png",
+      "bytes": 224678,
+      "sha256": "444fbbb20c4b80322482100ad3fa56292a1f80b6cd8d9218a6976a0ea7706e09"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/07-room-3-return.png",
+      "bytes": 211155,
+      "sha256": "ea017a0cca620f2a75d834dc5f298715a7b89d3794b6aaf5b6a1965b1e125b60"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/07-room-4-return.png",
+      "bytes": 213632,
+      "sha256": "6dfbe5ce0b149a15861a83d7f7477fd5d81a7c6cea08ac48e8885d086014ab39"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/08-east-outside.png",
+      "bytes": 70489,
+      "sha256": "82b35dc4bc456bc6ea3e558af9d3d0a417e886a26b64dcabd8686807d8a43f62"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/09-east-landing-camera-edge.png",
+      "bytes": 205227,
+      "sha256": "9121397d4297df96ff9b718fffa5459dc3f802189872e19c2e6b5497c591c0f3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/10-menu-restored.png",
+      "bytes": 208696,
+      "sha256": "8cd08bfa59665b10126dff02b5465c2e066f5502ea935a055b8ae213faeff78b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/11-port-returned.png",
+      "bytes": 233497,
+      "sha256": "8d371eb44adb319f1c56f4dfe76b0fd01138e956fdf772d848870b37da34de90"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/12-return-destinations.png",
+      "bytes": 108766,
+      "sha256": "515ad2df6fcbd3634b6ed944b3ef46f49211cb03fbffd1432ceafad2e61272b4"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/13-returned-to-village.png",
+      "bytes": 71650,
+      "sha256": "9016d4e94dd07672935f20b68a27f1a44a80880edc10501eb38f7012cd60a95a"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/generated-untracked-records/docs/verification/task-016/counter-capture/checks.json",
+      "bytes": 107521,
+      "sha256": "b3a1f1a34902ec39b14cf21e389d1b5d4fe04493869c15afffac4c3e667f0a92"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/github-pr-jobs-e754-observed.json",
+      "bytes": 55065,
+      "sha256": "38416c716bc4849392cef870ff81225d62e135fe61903e7199e448c1fe6b1f6b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/github-pr-jobs-e754-progress.json",
+      "bytes": 4271,
+      "sha256": "e1e27670bc0cd64115443202d8ee4596494928f4e9efc245786ce17c771cbe1c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/github-pr-runs-e754-initial.json",
+      "bytes": 2327,
+      "sha256": "ae2fea69451c4a1ffe0df7354c8668e851dd6f425ff2a286ee52095faad75e47"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/github-pr-runs-e754-progress.json",
+      "bytes": 2335,
+      "sha256": "3d44006a413f5cb422eef2ce6fb4d2863a21a54f7c55fe3d8a5a1d91bdf7001b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/github-pr-runs-e754-second-progress.json",
+      "bytes": 2340,
+      "sha256": "65404a31b7e96685baa46e531bb489f93051faead56bb208cf09a09b4932ac5b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/interrupted/restart-4-partial/01-restart-room-4.png",
+      "bytes": 141525,
+      "sha256": "ead51d87124d0d52f28b8d708140fb4cf329501f2c168049068fdb075320f72c"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/interrupted/restart-4-partial/02-port-after-restart.png",
+      "bytes": 233821,
+      "sha256": "7668cfe60611d9f2fd2a23d2e00b888a3a8a6dcc597f8b01809444752cdd2c2b"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/interrupted/restart-4-partial/03-position-relocation-notice.png",
+      "bytes": 147778,
+      "sha256": "f240d18eec76989958a5fb3b9dcaa0bdfe0951962717c6dc2f1504a693714733"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/interrupted/restart-4-partial/checks.json",
+      "bytes": 15574,
+      "sha256": "fe826648cf12710374707862eeff7cd197bc89fb7c843ea95cc3bba1ee9db04d"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/interrupted/restart-4-partial/execution.log",
+      "bytes": 219,
+      "sha256": "056052c913341ffe4a02a7913c5fd631a6e5650e36b38f598bf0d024b3d0a12e"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/interrupted/restart-4-partial/regression-summary.json",
+      "bytes": 551,
+      "sha256": "30c62a14522ce6bde1ba62afe9e5227b92ae658ab8cbca8ec6f7c2eec67318df"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/interruption.json",
+      "bytes": 814,
+      "sha256": "5aa066bc4ab9e773de11c8ea4658dcc425b97706a91bbea0095033beba5a5533"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/local-render-dependency.json",
+      "bytes": 1246,
+      "sha256": "04ddb1d5460e2fe0a56b9f83a4fb372de339fd6a1bcd6fb3be75c6c78954f6fd"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/packaging-observation.json",
+      "bytes": 549,
+      "sha256": "1a91ee975306b795851c44829ce5c8f4f38db6b8b8acad8575bb5e8382e1aae3"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/reproduction.json",
+      "bytes": 734,
+      "sha256": "ba8c598369874225a5fbdf0828e81f35a4d27f77cdfaadbece61c966826fc182"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/resume-runner.py.txt",
+      "bytes": 4227,
+      "sha256": "b342c2ea31e378aba240a944f5b05b891db8b728095e0dec3b4602296c5fae60"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/runner.py.txt",
+      "bytes": 5391,
+      "sha256": "a97bb515ead2dfb73934b528bb399d6c5099494362427705118b05df554fabfd"
+    },
+    {
+      "path": "docs/verification/task-081-ci-fix/vulkan-smoke.log",
+      "bytes": 167,
+      "sha256": "20dd3ea5a839c30caacefabe4febfd72d5a543caf1cb91af9fc16bc24fbf3bfd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/.gdignore",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/api-runtime-final.log.gz",
+      "bytes": 133,
+      "sha256": "dc882c9156387c00b019198330f59451c778d3290cc3afac52880a7d835cfdae"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/api-runtime-first.log.gz",
+      "bytes": 186,
+      "sha256": "f4314f1793ef9a61eedd90ebe2121ef8e58504637412f9adbc8a2cf81ca08c95"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/api-runtime-second.log.gz",
+      "bytes": 133,
+      "sha256": "8211f8003faa60e966cb224baab777fa860a40cf87b54d40482072e50a960eb0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/api-runtime.json",
+      "bytes": 387307,
+      "sha256": "d1e69861be090212c26256f5d40d360df090dae0e9ed64ed75426f55d6b8fef9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-behind-diagnostic-without-player.png",
+      "bytes": 190822,
+      "sha256": "2ad61adad2fb109cf02901947a1ade776e0683becf0ddd21a8348ef243ffef4b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 192586,
+      "sha256": "e1d19329afad93092f8788b5788a5fdbfa3d5f5f6f16b9168b8e4077ded3a23c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-behind.png",
+      "bytes": 192955,
+      "sha256": "9fa3bcdb14057f7b329698c0f42bc537a6f143f7a717ab2601db528b8acca699"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-entered.png",
+      "bytes": 185853,
+      "sha256": "4f0df9bcdb130630813ae9d6c04a0c90ca050ffe54b07d586cc79e53a6b925d4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-entrance.png",
+      "bytes": 153330,
+      "sha256": "9643892cf9ff9764f7b86043277d5a9e47823e3cb3219e9f383687d6230f2dd1"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-front-diagnostic-without-player.png",
+      "bytes": 199764,
+      "sha256": "8aaed299c2a4db821d3f5151e08b3cbda7631c678bde0e08bb3b3da25b90398b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 201078,
+      "sha256": "b84b1311827a61968720073874b232144ca23937ec431de8dc55057e1d5208ce"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-front.png",
+      "bytes": 201078,
+      "sha256": "b84b1311827a61968720073874b232144ca23937ec431de8dc55057e1d5208ce"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-input.json",
+      "bytes": 107533,
+      "sha256": "9a270c0a862c577a5760f730061d1fa350641f7d0ed7163a3c3ad17b19552bfa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-reloaded.png",
+      "bytes": 202155,
+      "sha256": "eb6b053a7552e2b4c05b55db30d30532e00622ae7040a5c50c35118395ccd0b9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-returned.png",
+      "bytes": 158487,
+      "sha256": "5a90b5aa7b26597b3dd6c1454f9543897b2c0057e7c489b301dd8556a8f34559"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-before-landing.png",
+      "bytes": 38397,
+      "sha256": "355e776914b656213297bb696255a7d62078ed64db3bf23c8a07d639684c129d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-behind-diagnostic-without-player.png",
+      "bytes": 154251,
+      "sha256": "a05387fb61f67850a1a25d09719643e1864030201a6c6602283787fdba9584cb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 155148,
+      "sha256": "7f9b9456d6d227e31f8b77710509f2e94db173474fdb1be23c452ea1d5fe0e94"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-behind.png",
+      "bytes": 154808,
+      "sha256": "21ca8ed5c8cabb051e868dc0effa7020a5cf0ebbf3226c7be763089a25736fe6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-front-diagnostic-without-player.png",
+      "bytes": 162302,
+      "sha256": "03d79ac25c36e7548e0b1466adac33a8af85ed3b1c77f2850763af86dab3ac4b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 163755,
+      "sha256": "2413f3a80a705efaab008719e27e57d48f284043dd7d7aec7ccc56ea4a851643"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-front.png",
+      "bytes": 163755,
+      "sha256": "2413f3a80a705efaab008719e27e57d48f284043dd7d7aec7ccc56ea4a851643"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-gate-outside.png",
+      "bytes": 41841,
+      "sha256": "d6034418755bb4427bf034467712271da2b4d02da0e9f73b5aedb78dd7ca28d8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-input.json",
+      "bytes": 12011,
+      "sha256": "c6019f69f1be7ffd83cd0440c3179b863587ab88a5c64123a450bac2deff7aaa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-pier.png",
+      "bytes": 150192,
+      "sha256": "705b6d0b5119841be19475f505f3946fb8b132641c7240ce65b3e304191decd9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-returned-pier.png",
+      "bytes": 154692,
+      "sha256": "1ac4e59808f0d244e25cd03e739c0a0402e7a098c5234f9b4ce488e9d0fabfc5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "b51767781adfbf6505384ec9af70ee9837258c489a45ae2b98e6d428de8c53e7"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-spell-outside.png",
+      "bytes": 48231,
+      "sha256": "2a4460668b60def9e2be393c3b0b7300e9b97ec05e657ea5e59127b64d57b8c7"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-before-landing.png",
+      "bytes": 38327,
+      "sha256": "87718ff753f5895962fa3504dcd07e009fbc597b955518b5a379e772cd833464"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-behind-diagnostic-without-player.png",
+      "bytes": 138588,
+      "sha256": "99a44b4ba9e4191bb51b7676e471f1a432ba3e42e0804bb87ac3d6bbcdad2177"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 139153,
+      "sha256": "8c07ee5a8965e197ff16b960173439eb9bea831a92f2cbb971f0615fd748956e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-behind.png",
+      "bytes": 139077,
+      "sha256": "0f1090715657e9bf24132b5aa5966795fc3c931b67aa83c4799487eaf2d20910"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-front-diagnostic-without-player.png",
+      "bytes": 162302,
+      "sha256": "03d79ac25c36e7548e0b1466adac33a8af85ed3b1c77f2850763af86dab3ac4b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 162460,
+      "sha256": "429949d32343854d2fa830551020a95a95aa252fec6b1e502cd2fc9baa1cca22"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-front.png",
+      "bytes": 162460,
+      "sha256": "429949d32343854d2fa830551020a95a95aa252fec6b1e502cd2fc9baa1cca22"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-input.json",
+      "bytes": 8148,
+      "sha256": "1a5aa5599fd553f72edd233e88d7b099617bc6197d7aa09bdb948ec215fd16d4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-pier.png",
+      "bytes": 150192,
+      "sha256": "705b6d0b5119841be19475f505f3946fb8b132641c7240ce65b3e304191decd9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-returned-pier.png",
+      "bytes": 154692,
+      "sha256": "1ac4e59808f0d244e25cd03e739c0a0402e7a098c5234f9b4ce488e9d0fabfc5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "8755339b269040d5b7ad2260b75b587e4a2845a1cb8ca3d9f3a73c277fca9afd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/input-arrival.log.gz",
+      "bytes": 527,
+      "sha256": "5c6e88f9a5e6d2e806c483b43d154538d7fd73959ad3fa02a947671c96bf345e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/input-execution.json",
+      "bytes": 3655,
+      "sha256": "f8369701e9ebf1ee0f4c3eb85f41a59023ac85d1ae42e9efa29570f6482ac979"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/api-runtime.json",
+      "bytes": 384584,
+      "sha256": "5d5f06145ca3c3a59e4e7837090fe3200287154d6bece7518ef90256fd62a766"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/data-checks.json",
+      "bytes": 175690,
+      "sha256": "41bf40fcf112f8c1c6b98e3c7ace563af810b8e0072669cfc89ff572ac2a832e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/regression-execution.json",
+      "bytes": 15325,
+      "sha256": "98590bf4a3801b738599e70c5a893070509403343d7fe9ef6855139d8639d465"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-01.log.gz",
+      "bytes": 494,
+      "sha256": "5b9aa4196ec09e16165d40fa8ba919d62fcff5ab575fa86e185a7a578caed1dc"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-02.log.gz",
+      "bytes": 620,
+      "sha256": "c3855efeeb19ebbab27284dc176376ab763170c81656a5aea163ef57da5de112"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-03.log.gz",
+      "bytes": 506,
+      "sha256": "4fd5c6921139223ff8d64c24a405fb7dd96068b2ec466607be027fbae591ffb8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-04.log.gz",
+      "bytes": 484,
+      "sha256": "bcd6072c5d20b3ec64ce4671b208f3720ce6c26379d3d7fe55d21b9a1ce83ccd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-05.log.gz",
+      "bytes": 502,
+      "sha256": "370d6bdc6acfec051feff5ef9c7583bb1b660caa2b53acc8cf7aeddb891ddc44"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-06.log.gz",
+      "bytes": 515,
+      "sha256": "f95820306486bafaa5f966e46d0da31b831fd1805e735addee73003c24e1436b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-07.log.gz",
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-08.log.gz",
+      "bytes": 1197,
+      "sha256": "3295c37ad1a78f44edd0e4b78215817b94748f465070daee3bef338df70a7a7b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-assets.log.gz",
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-battle_recovery.log.gz",
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-coastal_travel.log.gz",
+      "bytes": 121,
+      "sha256": "2ab8cd554ba680117fa2b5499c880d0f50f44fc0dbdd589029ae0c3e078a7447"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-data.log.gz",
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-editor-import.log.gz",
+      "bytes": 396,
+      "sha256": "6fccb1f58663ba40b9f9ec37648f632ac134552af38e6016688b926851c36d9a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-enemy_encounters.log.gz",
+      "bytes": 197,
+      "sha256": "1018e3cae94c0c33d8f6a5c9701671e1958566481e85fba05197f9a16b607840"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-engine.log.gz",
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-first_region_screen.log.gz",
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-frozen-after.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-frozen-before.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-region2_port.log.gz",
+      "bytes": 118,
+      "sha256": "fcbe344d3c2b39c4901493f4c6d2d829234d9f10b2d41be19e99b5b8e3e06852"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-region2_port_backdrop.log.gz",
+      "bytes": 121,
+      "sha256": "40e1529028a94443a46b25c6b17e79784a10dec8681724103415d4032ce96ba9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-region2_village_backdrops.log.gz",
+      "bytes": 122,
+      "sha256": "aee34127488c63fba1b3845b2559136dc3ad9dc9de3d808731e2aab0c784a585"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-saved_position_relocation.log.gz",
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-saved_value_types.log.gz",
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-second_region_coast.log.gz",
+      "bytes": 117,
+      "sha256": "709148b0992400fc5a64f0cdb23ade464f479abe9d77500e1aed82e9c83aff18"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-task081_port_runtime.log.gz",
+      "bytes": 263,
+      "sha256": "070aa50de492f2697cc516d17b541d56b1ce8e81e6dcea2d3510a6ff33fcaa82"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/changed-files.json",
+      "bytes": 82234,
+      "sha256": "6d4044383bfdf21a6777b79380c85d7f2e938947fbb3ba2c6723162c300b8716"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/data-checks.json",
+      "bytes": 175690,
+      "sha256": "41bf40fcf112f8c1c6b98e3c7ace563af810b8e0072669cfc89ff572ac2a832e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/data-final.log.gz",
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/data-first.log.gz",
+      "bytes": 124,
+      "sha256": "8d0aa650557c74d608d771e3f9464be45d0c74d6fe56593446b49a91309694f6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/data-second.log.gz",
+      "bytes": 62,
+      "sha256": "9b8ae210c05c9e62c3125125001c1f31bab74929f1b6afc43f5c695d0ee3bf07"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/exterior-full-runtime.png",
+      "bytes": 1039789,
+      "sha256": "5801d6ce1cee0926dfc554ee93b505710be723bf2e95b93088acc374ecaf15c6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/exterior-grid-diagnostic.png",
+      "bytes": 1383466,
+      "sha256": "3577004ebb727443910180b8ca9121ade3459790d67101ad2862cd9b1d093cde"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/final-verification.json",
+      "bytes": 24241,
+      "sha256": "9ae27c627381d6f59e3f15a23e34806c5e6b29e08649b9f8999421ccb82696c9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-before-landing.png",
+      "bytes": 36840,
+      "sha256": "fceebd8df5a13380d7767ef3ccfcd5587ded2235aeb50a57334727925e1d50bf"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-behind-diagnostic-without-player.png",
+      "bytes": 154456,
+      "sha256": "d57aff90326c98c9a669c9682e530f260858cdd24e63bc82764186b2f85f8aad"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 156176,
+      "sha256": "f1dd86bf3675ffed863915dcaf929e14efe42f6f812859e785984c90567b077d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-behind.png",
+      "bytes": 155478,
+      "sha256": "5c1150a1f9d20c41dcd642dd2221d3dd3ba81ff884d1ee0a2d524342d95a13be"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-front-diagnostic-without-player.png",
+      "bytes": 151810,
+      "sha256": "06e2ce8d36f8801cde25cdab96641bc597356b2dfca1be2a8630a7bd4234856e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 153157,
+      "sha256": "e567cc6f8627209f8d76373dbd3a763b6e8ec96a45d799ce2ae6bde543543296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-front.png",
+      "bytes": 153157,
+      "sha256": "e567cc6f8627209f8d76373dbd3a763b6e8ec96a45d799ce2ae6bde543543296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-input.json",
+      "bytes": 10246,
+      "sha256": "e17513cb373b23e62b05cda97818d792a54eb645b59008a8c611d5d255b08cdc"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-pier.png",
+      "bytes": 150192,
+      "sha256": "705b6d0b5119841be19475f505f3946fb8b132641c7240ce65b3e304191decd9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-returned-pier.png",
+      "bytes": 154692,
+      "sha256": "1ac4e59808f0d244e25cd03e739c0a0402e7a098c5234f9b4ce488e9d0fabfc5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "8045c7bc216778c97542db40bada19fd27c3baa45e840a6ec6fdefa4a591304c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-before-landing.png",
+      "bytes": 36840,
+      "sha256": "fceebd8df5a13380d7767ef3ccfcd5587ded2235aeb50a57334727925e1d50bf"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-behind-diagnostic-without-player.png",
+      "bytes": 154456,
+      "sha256": "d57aff90326c98c9a669c9682e530f260858cdd24e63bc82764186b2f85f8aad"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 156176,
+      "sha256": "f1dd86bf3675ffed863915dcaf929e14efe42f6f812859e785984c90567b077d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-behind.png",
+      "bytes": 154456,
+      "sha256": "d57aff90326c98c9a669c9682e530f260858cdd24e63bc82764186b2f85f8aad"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-front-diagnostic-without-player.png",
+      "bytes": 151810,
+      "sha256": "06e2ce8d36f8801cde25cdab96641bc597356b2dfca1be2a8630a7bd4234856e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 153157,
+      "sha256": "e567cc6f8627209f8d76373dbd3a763b6e8ec96a45d799ce2ae6bde543543296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-front.png",
+      "bytes": 153157,
+      "sha256": "e567cc6f8627209f8d76373dbd3a763b6e8ec96a45d799ce2ae6bde543543296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-input.json",
+      "bytes": 10247,
+      "sha256": "3ea98c7892a2d46a0787e00bd3706d36a7f790d12cd32b7e63cd70289d6feb71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-pier.png",
+      "bytes": 150192,
+      "sha256": "705b6d0b5119841be19475f505f3946fb8b132641c7240ce65b3e304191decd9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-returned-pier.png",
+      "bytes": 154692,
+      "sha256": "1ac4e59808f0d244e25cd03e739c0a0402e7a098c5234f9b4ce488e9d0fabfc5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "4e3dc13cf945a79511d185cd65ac59781652820623c746680ad8779c12ea26cb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/data-checks.json",
+      "bytes": 175142,
+      "sha256": "05fb132364d731c2586e92a94d7e1b28845e379b8163939b0c5f9e51e49d3246"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-behind-diagnostic-without-player.png",
+      "bytes": 190822,
+      "sha256": "2ad61adad2fb109cf02901947a1ade776e0683becf0ddd21a8348ef243ffef4b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 192586,
+      "sha256": "e1d19329afad93092f8788b5788a5fdbfa3d5f5f6f16b9168b8e4077ded3a23c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-behind.png",
+      "bytes": 192955,
+      "sha256": "9fa3bcdb14057f7b329698c0f42bc537a6f143f7a717ab2601db528b8acca699"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-entered.png",
+      "bytes": 185853,
+      "sha256": "4f0df9bcdb130630813ae9d6c04a0c90ca050ffe54b07d586cc79e53a6b925d4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-entrance.png",
+      "bytes": 153330,
+      "sha256": "9643892cf9ff9764f7b86043277d5a9e47823e3cb3219e9f383687d6230f2dd1"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-front-diagnostic-without-player.png",
+      "bytes": 199764,
+      "sha256": "8aaed299c2a4db821d3f5151e08b3cbda7631c678bde0e08bb3b3da25b90398b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 201078,
+      "sha256": "b84b1311827a61968720073874b232144ca23937ec431de8dc55057e1d5208ce"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-front.png",
+      "bytes": 201078,
+      "sha256": "b84b1311827a61968720073874b232144ca23937ec431de8dc55057e1d5208ce"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-input.json",
+      "bytes": 107533,
+      "sha256": "97af094a0bcaf1fe66009f5fba454c1ebd64f0038e0de2664afc43196adfab8a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-reloaded.png",
+      "bytes": 202155,
+      "sha256": "eb6b053a7552e2b4c05b55db30d30532e00622ae7040a5c50c35118395ccd0b9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-returned.png",
+      "bytes": 158487,
+      "sha256": "5a90b5aa7b26597b3dd6c1454f9543897b2c0057e7c489b301dd8556a8f34559"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/arrival-input.json",
+      "bytes": 10664,
+      "sha256": "cf02db06ab3be6e43ca8206c6a9b11ef1548b17d5c229ac6e7ccabd0f9165972"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-behind-diagnostic-without-player.png",
+      "bytes": 208515,
+      "sha256": "a037c2c38367d37a9a60e48b56d6ac8fe8d107407dc58f6f09dc3da8866adb97"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-behind-diagnostic-without-target-overlay.png",
+      "bytes": 209704,
+      "sha256": "ac66402d19f6a3ff85636f2e1762988e4c2681aa6bdf30fd401e27a877a5917f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-behind.png",
+      "bytes": 209524,
+      "sha256": "c6296e1a3fb49158fbe3d0ca043980877997119f82037bc5711e9ee803a6463c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-entered.png",
+      "bytes": 207973,
+      "sha256": "252fe73028feceb038443db58820e8582b50368a59a0b15e1643e14028904d38"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-entrance.png",
+      "bytes": 156985,
+      "sha256": "2c843eadba60a9a3206e2dcb50f68799317b8d43698830edfc09a3ceba0b0f7d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-front-diagnostic-without-player.png",
+      "bytes": 215866,
+      "sha256": "2d9418163dc1fdb0b756823f72caa51a166e231551c202a458adc59c0ab92893"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-front-diagnostic-without-target-overlay.png",
+      "bytes": 217122,
+      "sha256": "2056492607756f6ea78579f639285e22bcb55a461e8a2c2304f8935bb88be2a8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-front.png",
+      "bytes": 217122,
+      "sha256": "2056492607756f6ea78579f639285e22bcb55a461e8a2c2304f8935bb88be2a8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-input.json",
+      "bytes": 97138,
+      "sha256": "685e52fdf627061eae1949c7b54194b6a0f94374541026902a3fe150fbbf0d69"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-reloaded.png",
+      "bytes": 211675,
+      "sha256": "f9483ea8185882370cb35eec05c3828e49e6341f678d89789e21eb5705556618"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-returned.png",
+      "bytes": 162867,
+      "sha256": "ebaff820422e4d677f6e14e96ac6fd1c2c208bba5086203d017c38a1e4e14cf7"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-armor_shop.log.gz",
+      "bytes": 350,
+      "sha256": "e762c9995734b637e3c11a1659d491b7676a70620407131052dc906a56d8e217"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-execution.json",
+      "bytes": 3047,
+      "sha256": "ef107410ef5deb59fec75a06b4dc1abfc72fa4ff2213b61b7cc4703637484d3e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-inn.log.gz",
+      "bytes": 346,
+      "sha256": "41d9bad0af8b0fb4fdb1e2c28fb7d3d142cc955dcf510f4e9804d45c762efa33"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-item_shop.log.gz",
+      "bytes": 349,
+      "sha256": "2181c3eef8dbed4fa5aaaa2a61e1be9740542be9d6e602c1f3e6307499842eb5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-shrine.log.gz",
+      "bytes": 347,
+      "sha256": "110ce14c9f2de39bd781b146eb821201b9c6c52d8aa75081aae80850ccf30a40"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-weapon_shop.log.gz",
+      "bytes": 351,
+      "sha256": "90c63a7732e3a00931092d9210826da8d81908cb1504bb1800600f406df1d36a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-behind-diagnostic-without-player.png",
+      "bytes": 185361,
+      "sha256": "4cecf1f03de9187abbf2d8de51118b24f3f0e2f0628a48db1dff5ba736f02307"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 187054,
+      "sha256": "d949561ecc6e2937077cb04e67d063caa7ab574492693e8c1db32d594b68101f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-behind.png",
+      "bytes": 186788,
+      "sha256": "10436f7403c7e8ea91887420de3861c86a8a5500c17c5c2ab850e618dd407ee9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-entered.png",
+      "bytes": 186267,
+      "sha256": "767f548d355e5ea600ed59e96fc1b138d514eae1358fce9f99a84fe554c98e86"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-entrance.png",
+      "bytes": 154928,
+      "sha256": "5556f3e85300d7be8c4e37c62a8fcea2a3b705988d5af097e3f6a9b14e98c1fa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-front-diagnostic-without-player.png",
+      "bytes": 185361,
+      "sha256": "4cecf1f03de9187abbf2d8de51118b24f3f0e2f0628a48db1dff5ba736f02307"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 185971,
+      "sha256": "c8ccecda116a8458917538785edd43f729909af6f92c123e10735141d2bc89df"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-front.png",
+      "bytes": 185971,
+      "sha256": "c8ccecda116a8458917538785edd43f729909af6f92c123e10735141d2bc89df"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-input.json",
+      "bytes": 112793,
+      "sha256": "3b0a95a7bf0bda3d714b9ba20566bae8f2b784c2a316a7656f8d8ad7696129da"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-reloaded.png",
+      "bytes": 182468,
+      "sha256": "e2d74df1cecf264c374dbb24b8c40ab7d9143217be8bdb6f92be5be4f6e70ed0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-returned.png",
+      "bytes": 159043,
+      "sha256": "78d645d6ea802d3ffa7df9d2cd57b9da7b331e7433164b2d4f884feb9abf1b59"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-behind-diagnostic-without-player.png",
+      "bytes": 193213,
+      "sha256": "97bbfda883df6f91e0bfb84f1d1fd6473f4b172815a3a44f6de9dc36b41db3ba"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-behind-diagnostic-without-target-overlay.png",
+      "bytes": 193492,
+      "sha256": "587c4533453ff254a768a237bb4393cf5a831f513a7156a9fe417d40343c45c5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-behind.png",
+      "bytes": 193187,
+      "sha256": "980bfe82b31f4f5bd060da45c42752fa6650dd85b66fb2ad82b527bce85f45b8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-entered.png",
+      "bytes": 194283,
+      "sha256": "f47e3a953080a5f37174c701e26632b3408e8080669e2cfc50a8c3bb87972324"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-entrance.png",
+      "bytes": 154497,
+      "sha256": "c505f21a3ddfff18fbc153fef0ab1424f94db99d1d3e808801de1d6dfc6b4599"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-front-diagnostic-without-player.png",
+      "bytes": 208768,
+      "sha256": "8b909c3f90fd62ebcc4d92e03537987d757c24a2cebde6948972b16c4c719538"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-front-diagnostic-without-target-overlay.png",
+      "bytes": 209694,
+      "sha256": "b7b5a6e2ce7443ecef45418c0baae630fe4da804d7df39a38a5c55e05458b860"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-front.png",
+      "bytes": 209694,
+      "sha256": "b7b5a6e2ce7443ecef45418c0baae630fe4da804d7df39a38a5c55e05458b860"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-input.json",
+      "bytes": 99258,
+      "sha256": "f08cb9d68d4f14272473225a1767f4dd668674f9a9186d97d07490962a7e7f54"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-reloaded.png",
+      "bytes": 213343,
+      "sha256": "24a7eaeee93f9698d67b3363d7a22e293d1ac59af73d54003bd86d9d4ac797e2"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-returned.png",
+      "bytes": 160364,
+      "sha256": "cff831bb3b6c111a012c40dc94c9865cea75cee0921db81507a68384f3155012"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-behind-diagnostic-without-player.png",
+      "bytes": 177318,
+      "sha256": "724733bef288b2cf19d05b292e4ed63afb286dade11085880c01f7790acc3045"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 178253,
+      "sha256": "e5dae95e25acca48293d072cd1bd2c43b5ef68712f41e8d57a9c41bcf2f9fcd1"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-behind.png",
+      "bytes": 177718,
+      "sha256": "57cbd2c4662ea1e6deae0ee2fc5247bfebec71751d139379abbcc742617aa55c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-entered.png",
+      "bytes": 184553,
+      "sha256": "0b5bf359c29140e91143fee36f815721071f30ff8ae277c2a863699a58c57084"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-entrance.png",
+      "bytes": 153019,
+      "sha256": "b9aa4044e6cf28a4979fe53ad9bfb588c8059db25398e0d6ac3c747ad57dfe90"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-front-diagnostic-without-player.png",
+      "bytes": 195881,
+      "sha256": "ca2822e32dfea9e94c31bed42452e6dcd8fd54ca83f0a5f455a60f34db53bd7d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 195438,
+      "sha256": "45fae1674b213b9795e7bf6b7e47deea92fa64c52f570fe76fd99bab7eddbaf8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-front.png",
+      "bytes": 195438,
+      "sha256": "45fae1674b213b9795e7bf6b7e47deea92fa64c52f570fe76fd99bab7eddbaf8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-input.json",
+      "bytes": 110242,
+      "sha256": "4374ec84129f6a16a5607ba021ef91da11526f3fa6ca10f44a2aa5552f808b55"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-reloaded.png",
+      "bytes": 194913,
+      "sha256": "a2580f14346a606f85400f2d7f1fb5af829103f6925bc7dc6c86857e1a012b76"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-returned.png",
+      "bytes": 156600,
+      "sha256": "de79f8792f174663d565f4912ce95573338623f372307985e8ca9748c6d89747"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-01.log.gz",
+      "bytes": 494,
+      "sha256": "5b9aa4196ec09e16165d40fa8ba919d62fcff5ab575fa86e185a7a578caed1dc"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-02.log.gz",
+      "bytes": 620,
+      "sha256": "c3855efeeb19ebbab27284dc176376ab763170c81656a5aea163ef57da5de112"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-03.log.gz",
+      "bytes": 506,
+      "sha256": "4fd5c6921139223ff8d64c24a405fb7dd96068b2ec466607be027fbae591ffb8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-04.log.gz",
+      "bytes": 484,
+      "sha256": "bcd6072c5d20b3ec64ce4671b208f3720ce6c26379d3d7fe55d21b9a1ce83ccd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-05.log.gz",
+      "bytes": 502,
+      "sha256": "370d6bdc6acfec051feff5ef9c7583bb1b660caa2b53acc8cf7aeddb891ddc44"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-06.log.gz",
+      "bytes": 515,
+      "sha256": "f95820306486bafaa5f966e46d0da31b831fd1805e735addee73003c24e1436b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-07.log.gz",
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-08.log.gz",
+      "bytes": 1197,
+      "sha256": "c5eb4b7b9e599c3cf6ccc392b93c28c2bbf1178bba0e215f02d0bf9ec8a95480"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-assets.log.gz",
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-battle_recovery.log.gz",
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-coastal_travel.log.gz",
+      "bytes": 121,
+      "sha256": "2ab8cd554ba680117fa2b5499c880d0f50f44fc0dbdd589029ae0c3e078a7447"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-data.log.gz",
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-editor-import.log.gz",
+      "bytes": 396,
+      "sha256": "6fccb1f58663ba40b9f9ec37648f632ac134552af38e6016688b926851c36d9a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-enemy_encounters.log.gz",
+      "bytes": 197,
+      "sha256": "1018e3cae94c0c33d8f6a5c9701671e1958566481e85fba05197f9a16b607840"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-engine.log.gz",
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-first_region_screen.log.gz",
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-frozen-after.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-frozen-before.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-region2_port.log.gz",
+      "bytes": 118,
+      "sha256": "fcbe344d3c2b39c4901493f4c6d2d829234d9f10b2d41be19e99b5b8e3e06852"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-region2_port_backdrop.log.gz",
+      "bytes": 121,
+      "sha256": "40e1529028a94443a46b25c6b17e79784a10dec8681724103415d4032ce96ba9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-region2_village_backdrops.log.gz",
+      "bytes": 122,
+      "sha256": "aee34127488c63fba1b3845b2559136dc3ad9dc9de3d808731e2aab0c784a585"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-saved_position_relocation.log.gz",
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-saved_value_types.log.gz",
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-second_region_coast.log.gz",
+      "bytes": 117,
+      "sha256": "709148b0992400fc5a64f0cdb23ade464f479abe9d77500e1aed82e9c83aff18"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-task081_port_runtime.log.gz",
+      "bytes": 133,
+      "sha256": "8211f8003faa60e966cb224baab777fa860a40cf87b54d40482072e50a960eb0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/five-rooms-contact-sheet-diagnostic.png",
+      "bytes": 1727717,
+      "sha256": "f391826601014b4b3f5996ebf7bd3c7ea918070df2de45e4dc0447dd9fbc2e39"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/first-region/screen-checks.json",
+      "bytes": 254,
+      "sha256": "4e992645617f916cf43a63061de42bd94dc9dfa869812aa80947cc6165b516f4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port-backdrop/checks.json",
+      "bytes": 202,
+      "sha256": "4b4942fa0dd5745ce07b47881859a42022bbed2942b0d721f8e3533f13446701"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port/checks.json",
+      "bytes": 220,
+      "sha256": "8e2bacbbb7cbea33d93e10ab533b7bf162ae96ff04cee8dcb61a9057084bc48f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port/preparation/01-departure.png",
+      "bytes": 104516,
+      "sha256": "d6c50cff82dc12124ed60f9d9a5364bd285881fad052881c93747865bbf5240e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port/preparation/checks.json",
+      "bytes": 4221,
+      "sha256": "fb9b1fea5504537a62db56582d464be219ec7d60201ec9b9d78e4a45c38e4346"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port/preparation/save-origin.json",
+      "bytes": 590,
+      "sha256": "44308ab486c4cc243fe5bc545b221ba303de2ab453235fe7ce00e4e6099fe300"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/sprint5-port-town/departure/checks.json",
+      "bytes": 516,
+      "sha256": "a89627728878ad617fa80035d869d7fc25a4e2609890b9ab388a4d67fb42a778"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/sprint5-port-town/departure/save-origin.json",
+      "bytes": 2272,
+      "sha256": "a630bb8921ae0a9632eb1153440616adc5117607d5b0ddea38d0cde0a1d1b3cd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/import-final.log.gz",
+      "bytes": 448,
+      "sha256": "9e1d03ea762d7c186a42cb272af9fadd657d7c6ab9dc0f30cc67df3d8360841c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/import-first.log.gz",
+      "bytes": 531,
+      "sha256": "4842c0a949fb898c04453957be1f9c1035c4d7eb5758e555b6e4cf877f6074ac"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/import-second.log.gz",
+      "bytes": 496,
+      "sha256": "a4c1a521b51774d67455af52ea75c139adde5eddbca2ea9d732aa9bb281bd2d4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-behind-diagnostic-without-player.png",
+      "bytes": 208515,
+      "sha256": "a037c2c38367d37a9a60e48b56d6ac8fe8d107407dc58f6f09dc3da8866adb97"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-behind-diagnostic-without-target-overlay.png",
+      "bytes": 209704,
+      "sha256": "ac66402d19f6a3ff85636f2e1762988e4c2681aa6bdf30fd401e27a877a5917f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-behind.png",
+      "bytes": 209524,
+      "sha256": "c6296e1a3fb49158fbe3d0ca043980877997119f82037bc5711e9ee803a6463c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-entered.png",
+      "bytes": 207973,
+      "sha256": "252fe73028feceb038443db58820e8582b50368a59a0b15e1643e14028904d38"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-entrance.png",
+      "bytes": 156985,
+      "sha256": "2c843eadba60a9a3206e2dcb50f68799317b8d43698830edfc09a3ceba0b0f7d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-front-diagnostic-without-player.png",
+      "bytes": 215866,
+      "sha256": "2d9418163dc1fdb0b756823f72caa51a166e231551c202a458adc59c0ab92893"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-front-diagnostic-without-target-overlay.png",
+      "bytes": 217122,
+      "sha256": "2056492607756f6ea78579f639285e22bcb55a461e8a2c2304f8935bb88be2a8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-front.png",
+      "bytes": 217122,
+      "sha256": "2056492607756f6ea78579f639285e22bcb55a461e8a2c2304f8935bb88be2a8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-input.json",
+      "bytes": 97252,
+      "sha256": "2172c22df3b40a287931a5edc948b93c9c2a0d6e6ed5eb7a038b1b1c3c6d2d17"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-reloaded.png",
+      "bytes": 211675,
+      "sha256": "f9483ea8185882370cb35eec05c3828e49e6341f678d89789e21eb5705556618"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-returned.png",
+      "bytes": 162867,
+      "sha256": "ebaff820422e4d677f6e14e96ac6fd1c2c208bba5086203d017c38a1e4e14cf7"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-armor_shop.log.gz",
+      "bytes": 350,
+      "sha256": "e762c9995734b637e3c11a1659d491b7676a70620407131052dc906a56d8e217"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-arrival-first.log.gz",
+      "bytes": 443,
+      "sha256": "7224ab4c70d8c96048b5cde4b54bee11062ae235d5042fbfa5556a0567016961"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-arrival-second.log.gz",
+      "bytes": 347,
+      "sha256": "7f16c09b1bcb8379b53f71f8c2fb09b506b805e40083ec5db5ac57acb7947d1e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-arrival-third.log.gz",
+      "bytes": 347,
+      "sha256": "bc388a42614c893604e296d96614e6cb411d2d598dbf56ec177e3a271342b165"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-arrival.log.gz",
+      "bytes": 347,
+      "sha256": "9de112ec57caa1f77a8c83c2bbd2586ea7f519ead1b62e3b2c846cd2fabf2a5b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-execution.json",
+      "bytes": 3655,
+      "sha256": "a725b15fabbc58d158daf6c9796f78e66cd4f8d0b2c6573cb00f99c541e9238b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-inn.log.gz",
+      "bytes": 345,
+      "sha256": "bb6cba8224218e9f26be00aa79ab063a4607a0768c7fa2fe9a0fab88818a4e8f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-item_shop.log.gz",
+      "bytes": 349,
+      "sha256": "2181c3eef8dbed4fa5aaaa2a61e1be9740542be9d6e602c1f3e6307499842eb5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-parse-second.log.gz",
+      "bytes": 88,
+      "sha256": "97675e961fd50d33d8dcca49a213125f9a9fa9cc50431851baca2d489e1a15d6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-parse.log.gz",
+      "bytes": 275,
+      "sha256": "abe8a58653a6b41d73a5d4b8dad37a20f2decb3ae55fb509913ccccb8e7fc078"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-shrine.log.gz",
+      "bytes": 347,
+      "sha256": "110ce14c9f2de39bd781b146eb821201b9c6c52d8aa75081aae80850ccf30a40"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-weapon_shop.log.gz",
+      "bytes": 351,
+      "sha256": "90c63a7732e3a00931092d9210826da8d81908cb1504bb1800600f406df1d36a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-behind-diagnostic-without-player.png",
+      "bytes": 185361,
+      "sha256": "4cecf1f03de9187abbf2d8de51118b24f3f0e2f0628a48db1dff5ba736f02307"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 187054,
+      "sha256": "d949561ecc6e2937077cb04e67d063caa7ab574492693e8c1db32d594b68101f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-behind.png",
+      "bytes": 186788,
+      "sha256": "10436f7403c7e8ea91887420de3861c86a8a5500c17c5c2ab850e618dd407ee9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-entered.png",
+      "bytes": 186267,
+      "sha256": "767f548d355e5ea600ed59e96fc1b138d514eae1358fce9f99a84fe554c98e86"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-entrance.png",
+      "bytes": 154928,
+      "sha256": "5556f3e85300d7be8c4e37c62a8fcea2a3b705988d5af097e3f6a9b14e98c1fa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-front-diagnostic-without-player.png",
+      "bytes": 185361,
+      "sha256": "4cecf1f03de9187abbf2d8de51118b24f3f0e2f0628a48db1dff5ba736f02307"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 185971,
+      "sha256": "c8ccecda116a8458917538785edd43f729909af6f92c123e10735141d2bc89df"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-front.png",
+      "bytes": 185971,
+      "sha256": "c8ccecda116a8458917538785edd43f729909af6f92c123e10735141d2bc89df"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-input.json",
+      "bytes": 112793,
+      "sha256": "454730baf9d75fae3d61d9dfd2a636d63be2ca09563789922601cda689c0fe06"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-reloaded.png",
+      "bytes": 182468,
+      "sha256": "e2d74df1cecf264c374dbb24b8c40ab7d9143217be8bdb6f92be5be4f6e70ed0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-returned.png",
+      "bytes": 159043,
+      "sha256": "78d645d6ea802d3ffa7df9d2cd57b9da7b331e7433164b2d4f884feb9abf1b59"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/normal-save-chain.json",
+      "bytes": 397,
+      "sha256": "9b9a700ec0a9896c94b14ddef2b6845c8ed9288660ae84741d55d39bc1d72819"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/original-hashes-final.json",
+      "bytes": 51262,
+      "sha256": "0238af893b0a940daf727a4da027389df1a7073fdb9a15971d2635eb67d5d5d6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/preparation/first-port-origin.json",
+      "bytes": 2272,
+      "sha256": "a630bb8921ae0a9632eb1153440616adc5117607d5b0ddea38d0cde0a1d1b3cd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/preparation/port-departure.json",
+      "bytes": 37195,
+      "sha256": "bb81f1fa528b0acc7688c712829e9f6af5af03049666a34394be47aebe84401b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/preparation/region2-port-departure.json",
+      "bytes": 37383,
+      "sha256": "c59093bdcffeb76a27236ba63a395a90b14cd1a6052702c5cbc19583ca5fe0c4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/preparation/ship-origin.json",
+      "bytes": 590,
+      "sha256": "44308ab486c4cc243fe5bc545b221ba303de2ab453235fe7ce00e4e6099fe300"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/prepare-first-port.log.gz",
+      "bytes": 732,
+      "sha256": "11b595d49c137e7d7619eff8d0a4b89ecd6511e23c008d89f1d0ad43669ba3aa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/prepare-ship-render.log.gz",
+      "bytes": 334,
+      "sha256": "449c98f834ad711c59709234c97af70a1dde75daeb2ff46d899ffdd4832c331c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/prepare-ship.log.gz",
+      "bytes": 88,
+      "sha256": "97675e961fd50d33d8dcca49a213125f9a9fa9cc50431851baca2d489e1a15d6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/regeneration.json",
+      "bytes": 857,
+      "sha256": "36e840e18bccd8fd7acd5aea4ee1a39a036e5adba46be3a88fbf2f3451910d83"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/regeneration.log.gz",
+      "bytes": 78,
+      "sha256": "27e739c88ba2206060a0bcc7709feef6a36490b9a11610c3ad9acbd15b7e7ab4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/regression-execution.json",
+      "bytes": 15325,
+      "sha256": "171b678f85df3a83e1e2c9f7a76fa478e70bdba224c3bb97f099aa276ce15194"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/restored-existing-records.json",
+      "bytes": 2092,
+      "sha256": "e616a8390d00cf33782168698acaf897040447e38f203b633846db79495b17c3"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-1.json",
+      "bytes": 3264,
+      "sha256": "dbeac89bca6ea0cc6ca07011b2ab6d1c24f67bcbc4ac0bd49fe297d2cfe12258"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-2.json",
+      "bytes": 3264,
+      "sha256": "a19d33a05f89136f7fc4e5115ccfad5c7c361e088a8d74ae5c711088367a3c80"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-3.json",
+      "bytes": 3280,
+      "sha256": "a660c9a62f7a74bef0a6d7dd49e544395b61f21daadecdfb952a5a830f30e4ad"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-4.json",
+      "bytes": 3266,
+      "sha256": "2055c6c36f035890f42519cbd7e2db2648caacbf8c2c7288fd6d570024588eb5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-5.json",
+      "bytes": 3268,
+      "sha256": "f7e4a07cf419f0f21fd1f8131865602b6aa1a7945d71cf033f78472d413ca8e4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-6.json",
+      "bytes": 3261,
+      "sha256": "816b2b7d2f6ecf0ccb40992a7d2c9371170ba5a5d3095b9170ce2d2e2214ff99"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/old-travel-missing.json",
+      "bytes": 2923,
+      "sha256": "a8dfdcbb1feb9653c36bd1ce1b3df42d247b21f099e2d9050d581d9acc0443b5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-0-facing-0.json",
+      "bytes": 3267,
+      "sha256": "59dd74f69c8431e1d55de625da0a25d207c2d853c16d936ac1acdec0c6fb6169"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-0-facing-1.json",
+      "bytes": 3267,
+      "sha256": "356c5a74cefc9a7e4ea1dd9af01b0251baf19c3926c299651708b7997aeed487"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-0-facing-2.json",
+      "bytes": 3267,
+      "sha256": "31c6ffd02917a890e0647a16cadbd13218448a09a730ab75552021061c6b0f5e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-0-facing-3.json",
+      "bytes": 3267,
+      "sha256": "93698b1a73d2be0826fcab8acf5cd1723045c187b0ce20c983ba13d09b4b62e4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-1-facing-0.json",
+      "bytes": 3265,
+      "sha256": "ec797f3c99fb529f8288e278c5973b92d7b867a525e935e4392930a43d6c92c6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-1-facing-1.json",
+      "bytes": 3265,
+      "sha256": "64aa414a30e50fd4f5dc4d0ed56e4142458e5239e5b3e6e5dd4b82398b24a296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-1-facing-2.json",
+      "bytes": 3265,
+      "sha256": "e73bc125a0c7d5ee3f4c5d1709de9c7679e476ce8b78ec594f7760e7a2d7d99f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-1-facing-3.json",
+      "bytes": 3265,
+      "sha256": "db49ab39d9e1390059a9148c6338002f4d22c8693efe9ce5c1a58bd012f41482"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-2-facing-0.json",
+      "bytes": 3265,
+      "sha256": "466db064e740bba5122e44e52260af32c5b21c4a522d1adc36da50e39814be35"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-2-facing-1.json",
+      "bytes": 3265,
+      "sha256": "d80d4d6ec63d8eadeeddba5b02019456f005327e7bc6a7956e0572e76e656566"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-2-facing-2.json",
+      "bytes": 3265,
+      "sha256": "44d752a1207e776cf55e89f46b244cab1dd1d2579af4417f18314a88ad278216"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-2-facing-3.json",
+      "bytes": 3265,
+      "sha256": "6504eb472d004029eafbf94db1daa0145b9b81e1318d5d5db9c22cc71efe19b5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-3-facing-0.json",
+      "bytes": 3265,
+      "sha256": "ca224c895cba0e494d2cd698ff626fdef6c23ece75478dcdfce354b7e83f7831"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-3-facing-1.json",
+      "bytes": 3265,
+      "sha256": "9dee9da073a605a8edc4bd3019c5e2a2421a686078e6004db0d30b50c830fbfc"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-3-facing-2.json",
+      "bytes": 3265,
+      "sha256": "3ef5a0158697f0db24a8bcab045fc227497f092f45c879f333d6ef39a143bcd4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-3-facing-3.json",
+      "bytes": 3265,
+      "sha256": "414c1534b5ec9a87b55529d7cd188ebf9a6438b6e928cc25cc9f9d3a08ac4af6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-4-facing-0.json",
+      "bytes": 3265,
+      "sha256": "7b121df9cc0a5b9a5f47623dbb1bb82be03997264ce5aae0f51531cad3c4e782"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-4-facing-1.json",
+      "bytes": 3265,
+      "sha256": "aafa32eb6b5e59c4d12a961cfe57ee89fff63237ee7aaa1db5a69f24b41c8113"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-4-facing-2.json",
+      "bytes": 3265,
+      "sha256": "a339df6bdb5664863bf4bec7d992dcef847b537f1dfceee8270adb784b0b5b00"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-4-facing-3.json",
+      "bytes": 3265,
+      "sha256": "0744f4c58a046ca0a2adf2e1ad208bca5e14fc92a88e768871f5a481a527d680"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-5-facing-0.json",
+      "bytes": 3265,
+      "sha256": "1c33ab476fbf3c033eb2d9f82315d6a4443fda8135f1d06c123f0e0c7a6e960b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-5-facing-1.json",
+      "bytes": 3265,
+      "sha256": "832f5ef5ae107ed1f565398eed8892f70fbcdd448e18b99484093e724c0894be"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-5-facing-2.json",
+      "bytes": 3265,
+      "sha256": "715006e2c006e132118a8b2135ce80edeade7850a4fa9a320c508d9a3245d61d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-5-facing-3.json",
+      "bytes": 3265,
+      "sha256": "46df5ccb7ddbd2232b6ba78d9fb7e53f6b8936f8601531b9970cb7831c81fdb2"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-behind-diagnostic-without-player.png",
+      "bytes": 193213,
+      "sha256": "97bbfda883df6f91e0bfb84f1d1fd6473f4b172815a3a44f6de9dc36b41db3ba"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-behind-diagnostic-without-target-overlay.png",
+      "bytes": 193492,
+      "sha256": "587c4533453ff254a768a237bb4393cf5a831f513a7156a9fe417d40343c45c5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-behind.png",
+      "bytes": 193187,
+      "sha256": "980bfe82b31f4f5bd060da45c42752fa6650dd85b66fb2ad82b527bce85f45b8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-entered.png",
+      "bytes": 194283,
+      "sha256": "f47e3a953080a5f37174c701e26632b3408e8080669e2cfc50a8c3bb87972324"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-entrance.png",
+      "bytes": 154497,
+      "sha256": "c505f21a3ddfff18fbc153fef0ab1424f94db99d1d3e808801de1d6dfc6b4599"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-front-diagnostic-without-player.png",
+      "bytes": 208768,
+      "sha256": "8b909c3f90fd62ebcc4d92e03537987d757c24a2cebde6948972b16c4c719538"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-front-diagnostic-without-target-overlay.png",
+      "bytes": 209694,
+      "sha256": "b7b5a6e2ce7443ecef45418c0baae630fe4da804d7df39a38a5c55e05458b860"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-front.png",
+      "bytes": 209694,
+      "sha256": "b7b5a6e2ce7443ecef45418c0baae630fe4da804d7df39a38a5c55e05458b860"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-input.json",
+      "bytes": 99258,
+      "sha256": "e786f69b47c7de39896b7ddf4dfc41a946440ff00ff8504d19461eedba4bcc64"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-reloaded.png",
+      "bytes": 213343,
+      "sha256": "24a7eaeee93f9698d67b3363d7a22e293d1ac59af73d54003bd86d9d4ac797e2"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-returned.png",
+      "bytes": 160364,
+      "sha256": "cff831bb3b6c111a012c40dc94c9865cea75cee0921db81507a68384f3155012"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/source-target-runtime-comparison-diagnostic.png",
+      "bytes": 1209653,
+      "sha256": "dfb838afd0e98b1d48dae0a89f9692d2c032ddce6c747a747581101fc3f7e9e3"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/strict-first.log.gz",
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verified-source-sha256.json",
+      "bytes": 1599,
+      "sha256": "ebf5ea619db8f1071fedfd66936fac0ce0017766f2d5c9c76b8eb325f6d06c50"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-01.log.gz",
+      "bytes": 494,
+      "sha256": "6eea5f63e905a9442908147875d1385a4c10211dc3e9ba98da3efa315fee2681"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-02.log.gz",
+      "bytes": 620,
+      "sha256": "0bab9653eff8855da6d32900ea29318abe77240a435dcbc150a681060eb5f45c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-03.log.gz",
+      "bytes": 507,
+      "sha256": "2e706093195b179a6d54867f69ba270c4784bc65fe68f547585e034254269a17"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-04.log.gz",
+      "bytes": 484,
+      "sha256": "b272e509e5a6db96ec860d70eb6752c9658a69f50d7594472bbf5db18392a99a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-05.log.gz",
+      "bytes": 501,
+      "sha256": "21eb2a1acb2be58b2035a4946aff3d9d9274127acac6d9ea01d61ead03ad55ab"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-06.log.gz",
+      "bytes": 514,
+      "sha256": "51626fce5e9dc3add51b49e012966618901e3d97e78132f6066aaa61b1cb17ef"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-07.log.gz",
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-08.log.gz",
+      "bytes": 1196,
+      "sha256": "10f2c19e2b5222fed951af9ea7dd398b534c3902cfa49b5f6333199ff5105b11"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-assets.log.gz",
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-battle_recovery.log.gz",
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-coastal_travel.log.gz",
+      "bytes": 121,
+      "sha256": "2ab8cd554ba680117fa2b5499c880d0f50f44fc0dbdd589029ae0c3e078a7447"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-data.log.gz",
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-editor-import.log.gz",
+      "bytes": 403,
+      "sha256": "fb0c8d35254123bf16f8143bd955f503159fa8d0aa0d8d5ac9f9186489e52ff9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-enemy_encounters.log.gz",
+      "bytes": 197,
+      "sha256": "1018e3cae94c0c33d8f6a5c9701671e1958566481e85fba05197f9a16b607840"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-engine.log.gz",
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-first_region_screen.log.gz",
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-frozen-after.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-frozen-before.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-region2_port.log.gz",
+      "bytes": 118,
+      "sha256": "fcbe344d3c2b39c4901493f4c6d2d829234d9f10b2d41be19e99b5b8e3e06852"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-region2_port_backdrop.log.gz",
+      "bytes": 121,
+      "sha256": "40e1529028a94443a46b25c6b17e79784a10dec8681724103415d4032ce96ba9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-region2_village_backdrops.log.gz",
+      "bytes": 122,
+      "sha256": "aee34127488c63fba1b3845b2559136dc3ad9dc9de3d808731e2aab0c784a585"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-saved_position_relocation.log.gz",
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-saved_value_types.log.gz",
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-second_region_coast.log.gz",
+      "bytes": 117,
+      "sha256": "709148b0992400fc5a64f0cdb23ade464f479abe9d77500e1aed82e9c83aff18"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-task081_port_runtime.log.gz",
+      "bytes": 133,
+      "sha256": "131de29cd48a15626013230bc98a3609abaa6da74da5042d49cf3e073a060408"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-behind-diagnostic-without-player.png",
+      "bytes": 177318,
+      "sha256": "724733bef288b2cf19d05b292e4ed63afb286dade11085880c01f7790acc3045"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 178253,
+      "sha256": "e5dae95e25acca48293d072cd1bd2c43b5ef68712f41e8d57a9c41bcf2f9fcd1"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-behind.png",
+      "bytes": 177718,
+      "sha256": "57cbd2c4662ea1e6deae0ee2fc5247bfebec71751d139379abbcc742617aa55c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-entered.png",
+      "bytes": 184553,
+      "sha256": "0b5bf359c29140e91143fee36f815721071f30ff8ae277c2a863699a58c57084"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-entrance.png",
+      "bytes": 153019,
+      "sha256": "b9aa4044e6cf28a4979fe53ad9bfb588c8059db25398e0d6ac3c747ad57dfe90"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-front-diagnostic-without-player.png",
+      "bytes": 195881,
+      "sha256": "ca2822e32dfea9e94c31bed42452e6dcd8fd54ca83f0a5f455a60f34db53bd7d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 195438,
+      "sha256": "45fae1674b213b9795e7bf6b7e47deea92fa64c52f570fe76fd99bab7eddbaf8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-front.png",
+      "bytes": 195438,
+      "sha256": "45fae1674b213b9795e7bf6b7e47deea92fa64c52f570fe76fd99bab7eddbaf8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-input.json",
+      "bytes": 110242,
+      "sha256": "3f3c5a1502f5525a7b6916320523607c5e5865dbc91e2174eb3073e4057522e8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-reloaded.png",
+      "bytes": 194913,
+      "sha256": "a2580f14346a606f85400f2d7f1fb5af829103f6925bc7dc6c86857e1a012b76"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-returned.png",
+      "bytes": 156600,
+      "sha256": "de79f8792f174663d565f4912ce95573338623f372307985e8ca9748c6d89747"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/xorg-lifecycle.json",
+      "bytes": 431,
+      "sha256": "0e087bdaf02aaff171bb5f277ddefe183c1d789304acb6534fb1e515735499bd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/xorg-stdout.log.gz",
+      "bytes": 905,
+      "sha256": "9ce48a01bacbc7216d1b459c48892005022577931a0708148678ed2fcf63b221"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/xorg.conf",
+      "bytes": 695,
+      "sha256": "76b290e6680ec6bf706f2940347c56dbe8ac893be448e4af6e120d0d9bd7196a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/xorg.log.gz",
+      "bytes": 8594,
+      "sha256": "e753acef5f3c87a464f6fca2a780ec7f6144bfc78e1ecbd6866d34b45b98ad3b"
+    },
+    {
+      "path": "docs/verification/task-081/.gdignore",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/verification/task-081/R-01.log.gz",
+      "bytes": 488,
+      "sha256": "95d52b2e4d4b7266632d65a6f3550987670f00c8aca74d4e80d99af90587c539"
+    },
+    {
+      "path": "docs/verification/task-081/R-02.log.gz",
+      "bytes": 612,
+      "sha256": "e633989ba8c9ca0faa79bc726472d29827e5433035d7c16a1e22d940b3a991bd"
+    },
+    {
+      "path": "docs/verification/task-081/R-03.log.gz",
+      "bytes": 499,
+      "sha256": "43be1c9dd7e8f51895e2b937b145ce74a194f3a7398af8907ea3589357f1de7c"
+    },
+    {
+      "path": "docs/verification/task-081/R-04.log.gz",
+      "bytes": 478,
+      "sha256": "e3417cddda3eb72d138989d1b2b4e140380b4a970c8c7d6d3f44c525d59cb9b7"
+    },
+    {
+      "path": "docs/verification/task-081/R-05.log.gz",
+      "bytes": 494,
+      "sha256": "b898dd9aff8cd74c3e79250993f80d06643c7913fc18aad2eae0f8964ea899b8"
+    },
+    {
+      "path": "docs/verification/task-081/R-06.log.gz",
+      "bytes": 508,
+      "sha256": "a9ddacefc7c5e88037b2ab53dd6ceb78fb54a0f32ef12ce70f2e706065463976"
+    },
+    {
+      "path": "docs/verification/task-081/R-07.log.gz",
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    {
+      "path": "docs/verification/task-081/R-08.log.gz",
+      "bytes": 1190,
+      "sha256": "f91e6089e1fd5cf82df1f0642ff520be233b33b63a9ed97045ddf5f05bf24eea"
+    },
+    {
+      "path": "docs/verification/task-081/assets-strict-initial.log.gz",
+      "bytes": 105,
+      "sha256": "626609180580c33632b95215741b0303a82f92099d634d0c4a591a3e501e599c"
+    },
+    {
+      "path": "docs/verification/task-081/assets-strict.log.gz",
+      "bytes": 105,
+      "sha256": "626609180580c33632b95215741b0303a82f92099d634d0c4a591a3e501e599c"
+    },
+    {
+      "path": "docs/verification/task-081/changed-files.json",
+      "bytes": 6656,
+      "sha256": "c10e5797ab465256426d3a43111875a582a868c03c1838dfd7264b4461a12aec"
+    },
+    {
+      "path": "docs/verification/task-081/connection-boundary.json",
+      "bytes": 4576,
+      "sha256": "1329ba763e64c3661d2d47a1cabd192b199745fe5b8dc32ddb80d4ac26becd02"
+    },
+    {
+      "path": "docs/verification/task-081/editor-import-initial.log.gz",
+      "bytes": 347,
+      "sha256": "e43c689a9d9dd83a2f2e309af70df886382da11cacf37db241c16b7b11aa3a53"
+    },
+    {
+      "path": "docs/verification/task-081/editor-import.log.gz",
+      "bytes": 347,
+      "sha256": "e43c689a9d9dd83a2f2e309af70df886382da11cacf37db241c16b7b11aa3a53"
+    },
+    {
+      "path": "docs/verification/task-081/engine-version.log.gz",
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    {
+      "path": "docs/verification/task-081/execution-results.json",
+      "bytes": 9977,
+      "sha256": "894feb3cddd6ffc845c1221f139c3bfa6c192c46e57531b615e418d06510670e"
+    },
+    {
+      "path": "docs/verification/task-081/first-observation/runtime-boundary.json",
+      "bytes": 28863,
+      "sha256": "9157371dca970cebe6e63acc755a6f320d6bd750226adc6457162797b6efdc78"
+    },
+    {
+      "path": "docs/verification/task-081/first-observation/runtime-boundary.log.gz",
+      "bytes": 146,
+      "sha256": "5cdcbffb8099c010cf3b9c244ec59dde46f9438ec7f693b8ae3e9ea154877259"
+    },
+    {
+      "path": "docs/verification/task-081/frozen-after-verify.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081/frozen-before-verify.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081/frozen-before.txt",
+      "bytes": 35,
+      "sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+    },
+    {
+      "path": "docs/verification/task-081/github-runs-before-push.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/verification/task-081/github-runs-before-push.stderr",
+      "bytes": 207,
+      "sha256": "0555d10068551a8965a31048608a26d67778e2ca089e10ad2406c9c12917c19e"
+    },
+    {
+      "path": "docs/verification/task-081/original-hashes-after.json",
+      "bytes": 51262,
+      "sha256": "0238af893b0a940daf727a4da027389df1a7073fdb9a15971d2635eb67d5d5d6"
+    },
+    {
+      "path": "docs/verification/task-081/original-hashes-before.json",
+      "bytes": 51262,
+      "sha256": "0238af893b0a940daf727a4da027389df1a7073fdb9a15971d2635eb67d5d5d6"
+    },
+    {
+      "path": "docs/verification/task-081/preservation.json",
+      "bytes": 205,
+      "sha256": "dd0c3f59aa331322957a11a87f0d07446c3aa374df669bf01c9d5672b4ea1f21"
+    },
+    {
+      "path": "docs/verification/task-081/python-boundary.log.gz",
+      "bytes": 93,
+      "sha256": "3d63481a159936e09e6c6b944504f9a986eda49ff388b3d3c162f25d37487ff2"
+    },
+    {
+      "path": "docs/verification/task-081/runtime-boundary-initial.log.gz",
+      "bytes": 146,
+      "sha256": "5cdcbffb8099c010cf3b9c244ec59dde46f9438ec7f693b8ae3e9ea154877259"
+    },
+    {
+      "path": "docs/verification/task-081/runtime-boundary.json",
+      "bytes": 28863,
+      "sha256": "9157371dca970cebe6e63acc755a6f320d6bd750226adc6457162797b6efdc78"
+    },
+    {
+      "path": "docs/verification/task-081/runtime-boundary.log.gz",
+      "bytes": 146,
+      "sha256": "b317f86d6d49f465395942cb0168306a4a0766c49396cf00373315828e9f27fa"
+    },
+    {
+      "path": "scripts/ui/first_region_screen.gd",
+      "bytes": 19225,
+      "sha256": "faacebc3372643e0fabea2922bf4b7cdfbb51eb201b57b1d894e2b7306580f1a"
+    },
+    {
+      "path": "scripts/world/first_region.gd",
+      "bytes": 17941,
+      "sha256": "1018f26a82a2cb4e5b28e8c31b9e0a5ac3db3e5f44c2612dd0996de72667e03b"
+    },
+    {
+      "path": "scripts/world/first_region_presentation.gd",
+      "bytes": 1962,
+      "sha256": "e5dd26cc436c8a15afee18adc6523fd2882e43e91796fbd736f870e66f54f2f7"
+    },
+    {
+      "path": "scripts/world/first_region_travel.gd",
+      "bytes": 6510,
+      "sha256": "45e423307086af80f26177dd759fc47f2abe7b408a6a5dc4ac05141f9202afda"
+    },
+    {
+      "path": "scripts/world/first_region_view.gd",
+      "bytes": 13718,
+      "sha256": "b83faa9969cb20904ff2ce01d8f5a1b9139a84cb0345d92ce3bde63e14246854"
+    },
+    {
+      "path": "scripts/world/region3_port.gd",
+      "bytes": 1513,
+      "sha256": "6d59021f8fe84bb052cd039e352043441683dc101c194e88b10d9f05634ddba7"
+    },
+    {
+      "path": "scripts/world/region3_port.gd.uid",
+      "bytes": 20,
+      "sha256": "681cccd13081dc09e442563fc4a968df5c7a48c7da182428bc2d14887bb4099a"
+    },
+    {
+      "path": "tools/build_task081_port.py",
+      "bytes": 3332,
+      "sha256": "3d231ed5c8b330ef97426cc772266a1a7a89483af2141109817d29f09d24740e"
+    },
+    {
+      "path": "tools/check_task081_connection_boundary.gd",
+      "bytes": 1934,
+      "sha256": "6fc5df9f4f1eb0c7b973ae4f8d3484798d4b31e983710682787a8f57aa770c93"
+    },
+    {
+      "path": "tools/check_task081_connection_boundary.gd.uid",
+      "bytes": 20,
+      "sha256": "ec9348eef32e050474b9b1b75a907c57e7b14c47419dc2feeb37920d6dc9029a"
+    },
+    {
+      "path": "tools/check_task081_connection_boundary.py",
+      "bytes": 3718,
+      "sha256": "b4ea6a6f3876eadd407a12eef0a89b9550e47d87095330fbcad8f851ef9831ea"
+    },
+    {
+      "path": "tools/check_task081_port_data.py",
+      "bytes": 7759,
+      "sha256": "040d6dfb2f6399b6a88eef1df697006f764c36b1212f11362540823392fe41a6"
+    },
+    {
+      "path": "tools/check_task081_port_input.gd",
+      "bytes": 12386,
+      "sha256": "af84437d9731a367e5cbd8df3cd0b6daa54c9c4f091e71b7c9087c78216d3ae4"
+    },
+    {
+      "path": "tools/check_task081_port_input.gd.uid",
+      "bytes": 20,
+      "sha256": "f2feeb6bf178d42a4b530b7180483dbb5d53cd4b5999d8a34315b8e8bb3007a3"
+    },
+    {
+      "path": "tools/check_task081_port_runtime.gd",
+      "bytes": 11327,
+      "sha256": "3fa8ca6ce1d49a5e5fd268ce91d6471709b11a98ff0611fbed06b464e8256b6b"
+    },
+    {
+      "path": "tools/check_task081_port_runtime.gd.uid",
+      "bytes": 20,
+      "sha256": "c076d39183cb3a44fd34ec62501d1045a0d62714bc462a80eef3292557f61806"
+    },
+    {
+      "path": "tools/check_task081_return_catalog.gd",
+      "bytes": 6904,
+      "sha256": "0de2dd1c6334f440c463e46abcd639feb41655fb740828ae80aab499efa1ee31"
+    },
+    {
+      "path": "tools/check_task081_return_catalog.gd.uid",
+      "bytes": 20,
+      "sha256": "0be004e073439a618151bca67e5a1cae5751589c4274ccd370a7c6876fd13b75"
+    },
+    {
+      "path": "tools/run_task081_evidence.py",
+      "bytes": 3166,
+      "sha256": "bbb00c80775d1c9e89ffbfbdcf7a83e72fa79d3709af26266c17f6c11c9dc0f0"
+    },
+    {
+      "path": "tools/run_task081_port_inputs.py",
+      "bytes": 3656,
+      "sha256": "ce57108473a6c2be83d6221bb43bf372f3058951408e50f6acd7b142ca09da51"
+    },
+    {
+      "path": "tools/run_task081_port_verification.py",
+      "bytes": 4516,
+      "sha256": "4db0483dc141abbb66a574acd658290620bcd75805a2af17a5fecfa429cefea2"
+    },
+    {
+      "path": "tools/validate_assets.py",
+      "bytes": 19064,
+      "sha256": "c11a4a8b823809803dafeb08d704779c10b05bc44934dc6d228d515ec752adff"
+    },
+    {
+      "path": "world/region3_port.json",
+      "bytes": 17722,
+      "sha256": "d21604e9d5d90186510757e880790190a60593973ef0d0c1a290c1f5b8f40d9a"
+    }
+  ]
+}

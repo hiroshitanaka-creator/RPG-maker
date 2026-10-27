@@ -1,6 +1,10 @@
-# 081 CI検収で未達：品質修正を継続
+# 081 品質修正のローカル検証成功：GitHub全CIの終了待ち
 
-head a04172aのGitHub CIで009最新回帰とlifecycleが失敗し、同headで7630判定中1件（既存帰還先一覧の完全一致）を再現した。正式未完了。原因と先行修正案は [081-ci-return-catalog-compatibility.md](081-ci-return-catalog-compatibility.md)。新港帰還を維持し、既存検査・保護・CIを変えず互換APIで両立する案を記録し、検証を続ける。
+元head `a04172a134971610e6760f7ff602451901130642` のCI失敗を同headで再現し、既存の無引数帰還先5件と、新港を扱う保存文脈APIを両立させた。本番修正の最終commitは `e754b1e3fb38afd38456dac84068f264c5fb4f99`。本番2ファイルのみの品質修正で、検査・保護・CI・契約・上限は変更していない。
+
+同じ本番ソースでローカル26コマンドが全PASS。009最新7630判定/5再起動、lifecycle13ケース、通常入力描画7系統、R-01〜R-08、新港の通常航行/帰還と2677 API境界、1235データ検査、保護26ファイル前後一致を確認した。追加の帰還候補/旧保存検証は40判定・失敗0。GitHub全CIには未終了ジョブがあるため正式未完了。PR/main操作は親担当のまま実行していない。
+
+原因・原失敗・最終結果・画像・戻し方は [081-ci-return-catalog-compatibility.md](081-ci-return-catalog-compatibility.md)、確定原コマンドは [execution.json](../../verification/task-081-ci-fix/after/execution.json)。全変更一覧は `docs/verification/task-081-ci-fix/changed-files-from-main.json` と `changed-files-ci-fix.json` に保存する。
 
 以下はCI結果が判明する前の履歴。
 

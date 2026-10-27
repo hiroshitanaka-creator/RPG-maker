@@ -1,0 +1,18 @@
+{
+  "purpose": "CIと同じxvfb-runコマンドを変更せず実行するためのローカル依存",
+  "package_url": "https://security.debian.org/debian-security/pool/updates/main/x/xorg-server/xvfb_21.1.16-1.3%2Bdeb13u4_amd64.deb",
+  "reference": "https://packages.debian.org/trixie/amd64/xvfb/download",
+  "bytes": 3198660,
+  "sha256": "893d87bf159b6de077a929fc796a73c39f837d45310b2076e3eeebebb80552b6",
+  "sha256_matches_official": true,
+  "installation": "dpkg-debでworkspace内の.tools/task081-ci/xvfbへ展開。システムファイルや権限は変更しない。",
+  "mesa_vulkan": {
+    "package_url": "https://deb.debian.org/debian/pool/main/m/mesa/mesa-vulkan-drivers_25.0.7-2%2Bdeb13u1_amd64.deb",
+    "reference": "https://packages.debian.org/trixie/amd64/mesa-vulkan-drivers/download",
+    "bytes": 14185752,
+    "sha256": "caf2f7d296b7522efe74e40a74bce762a3ce84c33b53b5e54e1248ac2e0a13a5",
+    "installation": "dpkg-debで作業領域.tools/task081-ci/mesa-vulkanへ展開。VK_DRIVER_FILESとLD_LIBRARY_PATHで実Mesa lavapipeを指定。システム設定・既存検査は変更しない。",
+    "smoke_log": "vulkan-smoke.log",
+    "observed_renderer": "Vulkan 1.4.305 Mobile / llvmpipe (LLVM 19.1.7, 256 bits)"
+  }
+}
