@@ -16,7 +16,7 @@ static func ensure(saved: Dictionary) -> Dictionary:
 
 static func visit(saved: Dictionary, id: String) -> void:
 	var travel := ensure(saved)
-	if id in ["start_village","first_castle","first_port","brine_port","region2_village"] and id not in travel["visited"]:travel["visited"].append(id)
+	if id in ["start_village","first_castle","first_port","brine_port","region2_village","region3_port"] and id not in travel["visited"]:travel["visited"].append(id)
 
 static func snapshot(saved: Dictionary) -> Dictionary:
 	return saved.get("first_region",{}).get("travel",{})
@@ -25,10 +25,10 @@ static func sea_bounds() -> Array:
 	return SecondRegionCoast.data()["bounds"]
 
 static func docks() -> Array:
-	return data()["docks"]+SecondRegionCoast.data()["docks"]+Region2Port.data()["docks"]
+	return data()["docks"]+SecondRegionCoast.data()["docks"]+Region2Port.data()["docks"]+Region3Port.data()["docks"]
 
 static func destinations() -> Array:
-	return data()["destinations"]+Region2Port.data()["destinations"]+Region2Village.data()["destinations"]
+	return data()["destinations"]+Region2Port.data()["destinations"]+Region2Village.data()["destinations"]+Region3Port.data()["destinations"]
 
 static func encounter(cell: Vector2i) -> Dictionary:
 	var b: Array=data()["sea_bounds"]
@@ -63,13 +63,14 @@ static func board_or_land(saved: Dictionary) -> bool:
 	if state.get("transport","walk")=="ship":
 		state["transport"]="walk";FirstRegion.place(state,dock["land"]);state["facing"]=0
 		if state["node"]=="brine_port":visit(saved,"brine_port")
+		if state["node"]=="region3_port":visit(saved,"region3_port")
 	else:
 		state["transport"]="ship";FirstRegion.place(state,{"layer":"world","node":"","room":0,"cell":dock["ship_cell"]});state["facing"]=2
 	state["entry_lock"]="ship_dock"
 	return true
 
 static func can_return(saved: Dictionary) -> bool:
-	return snapshot(saved).get("return_learned",false) and (saved["overworld"]["layer"]=="world" or saved["overworld"]["node"] in ["start_village","first_castle","first_port","brine_port","region2_village"])
+	return snapshot(saved).get("return_learned",false) and (saved["overworld"]["layer"]=="world" or saved["overworld"]["node"] in ["start_village","first_castle","first_port","brine_port","region2_village","region3_port"])
 
 static func return_to(saved: Dictionary, actor_id: String, destination: String) -> bool:
 	if not can_return(saved) or destination not in snapshot(saved).get("visited",[]):return false
@@ -96,7 +97,7 @@ static func valid(saved: Dictionary) -> bool:
 	if not travel.get("return_learned") is bool or not travel.get("ship_owned") is bool or not travel.get("ship_cell") is Array:return false
 	var seen: Array=[]
 	for id in travel["visited"]:
-		if id not in ["start_village","first_castle","first_port","brine_port","region2_village"] or id in seen:return false
+		if id not in ["start_village","first_castle","first_port","brine_port","region2_village","region3_port"] or id in seen:return false
 		seen.append(id)
 	if (travel["return_learned"] or travel["ship_owned"]) and ("first_port" not in seen or not saved["progress_flags"].get("mountain_path_open",false)):return false
 	if travel["ship_owned"]:

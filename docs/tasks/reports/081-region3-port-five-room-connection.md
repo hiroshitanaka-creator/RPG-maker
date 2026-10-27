@@ -1,3 +1,44 @@
+# 081 実装再開後の進捗（検証継続中）
+
+記録UTC：2026-10-27T21:51:42.546520+00:00
+
+本番の第3港と採用5室の出入り・保存対応を実装済み。最終検証中のため完了とは扱わない。追加の仕様・権限の阻害点なし。親側から作業メッセージを読めないとの連絡を受け、GitHub上でも実物と途中結果を確認できるよう通常commit/pushする。作業は継続する。
+
+- 現在海域の海セル `[180,45]` にdockを1件追加。新規開始→既存の村・洞窟・城・塔→山道→第1港での船取得を通常入力で行った無編集保存から、実際の本編タイトルで再開し、通常航行・新港下船・保存・乗船・再出航に到達した。
+- 内部ID `region3_port`。外観196床、室内は080の採用PNG・通行・遮蔽をそのまま再使用。5つの扉は固有の外観復帰セルへ戻る。人物・台詞・販売・サービス・進行イベント・新フラグは追加していない。
+- 石門の退出と訪問済み町の帰還には既存の入口キー方式を使用。世界側は入口 `[180,44]` と入口前 `[179,44]` の2セルだけを既存橋地形bで接続し、旧保存の船も引き続き通れる。海域boundsと沿岸全体・旧mist_marketは変更しない。帰還専用の別規則は追加しない。
+- 原画は1712×1152・指定bytes/SHA一致。全原画の整数座標による3/4最近傍縮小、固定naturalパレット64色への最近色変換だけで1312×864へ取り込む。左右の14pxは縮小画像左上色。原画・採用5PNG・既存パレットは不変。
+- validatorは承認された外観1件の完全パス/SHAだけを追加。既存5原画・他出所の判定不変、欠損・別原画・1byte改変・不正path・metadata欠落の拒否を追加検証。データ検査は1235判定が成功。
+- 通常入力・X11/Mesaの5室巡回は全室で一度成功。現構成の再実行は宿・道具屋・武器屋・祠まで成功、防具屋を実行中。石門と通常帰還メニューまで含む最終arrivalを追加検証する。全床巡回、家具衝突、扉別反復、メニュー保存・再読込、背景識別、前後遮蔽を記録する。
+- 最新回帰はimport/strict/保護・R-01〜R-07まで成功し、R-08以降を実行中。前回はR-01〜R-08と保存・航路・第2港・村・戦闘復帰が成功。最終構成でも原verify・原判定器・上限を変えず再確認する。GitHub全CI原結果は親担当。
+- 途中の不一致・失敗（Pillowの座標丸め、原画矩形の空地による不適切遮蔽、石柱裏の通行連結、観測器の構文・user://限定等）は原ログ・画像・JSONを保持し、既存検査を変更せず原因を修正して再実行している。
+
+実変更予定・実装ソースの全一覧：
+
+- assets/registry.json
+- assets/source_records/region3-port-081.json
+- assets/town_backdrops/region3_port.png
+- world/region3_port.json
+- scripts/world/region3_port.gd と .uid
+- scripts/world/first_region.gd
+- scripts/world/first_region_presentation.gd
+- scripts/world/first_region_travel.gd
+- scripts/world/first_region_view.gd
+- tools/validate_assets.py（1原画だけの限定追加）
+- tools/build_task081_port.py
+- tools/check_task081_port_data.py
+- tools/check_task081_port_runtime.gd と .uid
+- tools/check_task081_port_input.gd と .uid
+- tools/run_task081_port_inputs.py
+- tools/run_task081_port_verification.py
+- 本報告書、docs/verification/task-081-implementation/ 配下の原証拠・検証元SHA・全変更manifest
+
+親担当decision-log/tasks README・保護・test・CI・契約・時間上限は変更しない。調査commit `3f8a9ba40c0a3a7aa0906c116cb07dd399e2766c` は履歴に保持し、元の調査tools・証拠も変更しない。旧調査の『第3港保存を拒否』『外観原画を拒否』は当時限定で、今回の承認済み接続で置き換える条件。原画不変・旧/未知/開発IDの拒否・別地方不変は最新でも継続して検証する。
+
+以下は3f8a9ba時点の原報告。現在の実装状態ではない。
+
+---
+
 # 081 第3地方の港外観と採用5室：接続前の阻害点
 
 ## 結果
