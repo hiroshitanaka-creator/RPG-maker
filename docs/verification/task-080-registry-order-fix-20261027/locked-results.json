@@ -1,0 +1,132 @@
+[
+  {
+    "id": "R-01",
+    "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+    "exit_code": 0,
+    "status": "PASS",
+    "tests_ran": true,
+    "parser_failed": false,
+    "timed_out": false,
+    "gut_summary": {
+      "assertions": 765,
+      "failed_assertions": 0,
+      "invalid": false,
+      "pending": 0,
+      "tests": 2
+    },
+    "failure_messages": []
+  },
+  {
+    "id": "R-02",
+    "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
+    "exit_code": 0,
+    "status": "PASS",
+    "tests_ran": true,
+    "parser_failed": false,
+    "timed_out": false,
+    "gut_summary": {
+      "assertions": 946,
+      "failed_assertions": 0,
+      "invalid": false,
+      "pending": 0,
+      "tests": 5
+    },
+    "failure_messages": []
+  },
+  {
+    "id": "R-03",
+    "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+    "exit_code": 0,
+    "status": "PASS",
+    "tests_ran": true,
+    "parser_failed": false,
+    "timed_out": false,
+    "gut_summary": {
+      "assertions": 73,
+      "failed_assertions": 0,
+      "invalid": false,
+      "pending": 0,
+      "tests": 2
+    },
+    "failure_messages": []
+  },
+  {
+    "id": "R-04",
+    "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+    "exit_code": 0,
+    "status": "PASS",
+    "tests_ran": true,
+    "parser_failed": false,
+    "timed_out": false,
+    "gut_summary": {
+      "assertions": 293,
+      "failed_assertions": 0,
+      "invalid": false,
+      "pending": 0,
+      "tests": 1
+    },
+    "failure_messages": []
+  },
+  {
+    "id": "R-05",
+    "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+    "exit_code": 0,
+    "status": "PASS",
+    "tests_ran": true,
+    "parser_failed": false,
+    "timed_out": false,
+    "gut_summary": {
+      "assertions": 79,
+      "failed_assertions": 0,
+      "invalid": false,
+      "pending": 0,
+      "tests": 2
+    },
+    "failure_messages": []
+  },
+  {
+    "id": "R-06",
+    "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+    "exit_code": 0,
+    "status": "PASS",
+    "tests_ran": true,
+    "parser_failed": false,
+    "timed_out": false,
+    "gut_summary": {
+      "assertions": 87,
+      "failed_assertions": 0,
+      "invalid": false,
+      "pending": 0,
+      "tests": 2
+    },
+    "failure_messages": []
+  },
+  {
+    "id": "R-07",
+    "verify": "godot --headless --path . --script res://tools/smoke_first_region.gd",
+    "exit_code": 0,
+    "status": "PASS",
+    "tests_ran": true,
+    "parser_failed": false,
+    "timed_out": false,
+    "gut_summary": null,
+    "failure_messages": []
+  },
+  {
+    "id": "R-08",
+    "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+    "exit_code": 0,
+    "status": "PASS",
+    "tests_ran": true,
+    "parser_failed": false,
+    "timed_out": false,
+    "gut_summary": {
+      "assertions": 3046,
+      "failed_assertions": 0,
+      "invalid": false,
+      "pending": 0,
+      "tests": 25
+    },
+    "failure_messages": []
+  }
+]

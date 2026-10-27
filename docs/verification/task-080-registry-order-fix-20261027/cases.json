@@ -1,0 +1,132 @@
+{
+  "checks": [
+    {
+      "case": "既存位置・非対象値とキー順を維持し新規を生成順に追加",
+      "ok": true
+    },
+    {
+      "case": "入力を変更しない",
+      "ok": true
+    },
+    {
+      "case": "再適用で全bytes不変",
+      "ok": true
+    },
+    {
+      "case": "初回登録は生成順に決定的追加",
+      "ok": true
+    },
+    {
+      "case": "生成対象なしは既存を全保持",
+      "ok": true
+    },
+    {
+      "case": "両方空",
+      "ok": true
+    },
+    {
+      "case": "旧末尾移動アルゴリズムを負例として検出",
+      "ok": true
+    },
+    {
+      "case": "負例拒否:非対象削除",
+      "ok": true
+    },
+    {
+      "case": "負例拒否:非対象キー順変更",
+      "ok": true
+    },
+    {
+      "case": "負例拒否:非対象値変更",
+      "ok": true
+    },
+    {
+      "case": "負例拒否:新規重複追加",
+      "ok": true
+    },
+    {
+      "case": "負例拒否:新規追加順逆転",
+      "ok": true
+    },
+    {
+      "case": "負例拒否:新規項目欠落",
+      "ok": true
+    }
+  ],
+  "failed": 0,
+  "expected": [
+    {
+      "path": "foreign-before",
+      "source": "owner",
+      "nested": {
+        "z": 1,
+        "a": 2
+      }
+    },
+    {
+      "path": "owned-a",
+      "value": "new-a"
+    },
+    {
+      "path": "foreign-middle",
+      "custom": [
+        3,
+        1
+      ]
+    },
+    {
+      "path": "owned-b",
+      "value": "new-b"
+    },
+    {
+      "path": "foreign-after",
+      "license": "unchanged"
+    },
+    {
+      "path": "new-z",
+      "value": 7
+    },
+    {
+      "path": "new-a",
+      "value": 8
+    }
+  ],
+  "observed": [
+    {
+      "path": "foreign-before",
+      "source": "owner",
+      "nested": {
+        "z": 1,
+        "a": 2
+      }
+    },
+    {
+      "path": "owned-a",
+      "value": "new-a"
+    },
+    {
+      "path": "foreign-middle",
+      "custom": [
+        3,
+        1
+      ]
+    },
+    {
+      "path": "owned-b",
+      "value": "new-b"
+    },
+    {
+      "path": "foreign-after",
+      "license": "unchanged"
+    },
+    {
+      "path": "new-z",
+      "value": 7
+    },
+    {
+      "path": "new-a",
+      "value": 8
+    }
+  ],
+  "source": "独立した固定入力・期待値。旧アルゴリズムと破損出力の負例を含む"
+}
