@@ -1,0 +1,19 @@
+{
+  "source_sha": "a04172a134971610e6760f7ff602451901130642",
+  "command": "python tools/check_region2_village_regression.py --commit \"$GITHUB_SHA\" --godot ../godot",
+  "GITHUB_SHA": "a04172a134971610e6760f7ff602451901130642",
+  "exit_code": 1,
+  "runtime_checks": 7630,
+  "runtime_failures": [
+    "既存帰還先の全件と村の船先"
+  ],
+  "restarts": "0/1/2/3/4 全PASS",
+  "protected_or_test_changes": false,
+  "local_raw_sha256": "ed1cee9015fcdfc7ed31a0ce92c40a2959a7bd38ce303ebaa232251cce51106a",
+  "ci_reference": {
+    "run_id": 40591263092,
+    "job_id": 122495831621,
+    "artifact_id": 12774985867,
+    "artifact_zip_sha256_parent_reported": "139b189626e72c9a95a05804edfdc3268872ad464474cae38b43a54a8c16d433"
+  }
+}
