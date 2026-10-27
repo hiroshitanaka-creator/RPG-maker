@@ -1,0 +1,157 @@
+{
+  "checks": [
+    {
+      "label": "無引数の既存5件・順序・全フィールドを維持",
+      "ok": true
+    },
+    {
+      "label": "本番文脈を受け取る拡張APIを公開",
+      "ok": true
+    },
+    {
+      "label": "実在する新港の通常到達保存を読込",
+      "ok": true
+    },
+    {
+      "label": "新港未訪問の旧保存は既存候補のまま",
+      "ok": true
+    },
+    {
+      "label": "訪問後も既存5件の全データと順序を保持",
+      "ok": true
+    },
+    {
+      "label": "訪問済み新港の正しい入口・船先を追加",
+      "ok": true
+    },
+    {
+      "label": "候補の照会で保存状態を変更しない",
+      "ok": true
+    },
+    {
+      "label": "新港訪問後も無引数APIを完全互換に保つ",
+      "ok": true
+    },
+    {
+      "label": "訪問済み→未訪問→訪問済みを連続照会しても履歴が混ざらない",
+      "ok": true
+    },
+    {
+      "label": "未訪問の新港へ帰還できず状態も不変",
+      "ok": true
+    },
+    {
+      "label": "通常保存に帰還できる生存者がいる",
+      "ok": true
+    },
+    {
+      "label": "同じ文脈APIで訪問済み新港へ帰還",
+      "ok": true
+    },
+    {
+      "label": "新港入口前・外向きの既存着地規則",
+      "ok": true
+    },
+    {
+      "label": "選択生存者だけMP2・船は新港",
+      "ok": true
+    },
+    {
+      "label": "帰還後も既存APIの結果を変更しない",
+      "ok": true
+    },
+    {
+      "label": "未知の訪問値から新しい行先を作らない",
+      "ok": true
+    },
+    {
+      "label": "未知の行先への帰還を拒否",
+      "ok": true
+    },
+    {
+      "label": "現在地が離れた地方でもvisitedに基づく同じ新港候補",
+      "ok": true
+    },
+    {
+      "label": "離れた地方の有効な保存を受理",
+      "ok": true
+    },
+    {
+      "label": "離れた地方から新港へ通常の帰還実行",
+      "ok": true
+    },
+    {
+      "label": "帰還拒否の前提状態を受理: unvisited",
+      "ok": true
+    },
+    {
+      "label": "新港帰還の拒否で全状態保持: unvisited",
+      "ok": true
+    },
+    {
+      "label": "帰還拒否の前提状態を受理: unlearned",
+      "ok": true
+    },
+    {
+      "label": "新港帰還の拒否で全状態保持: unlearned",
+      "ok": true
+    },
+    {
+      "label": "帰還拒否の前提状態を受理: mp",
+      "ok": true
+    },
+    {
+      "label": "新港帰還の拒否で全状態保持: mp",
+      "ok": true
+    },
+    {
+      "label": "帰還拒否の前提状態を受理: dead",
+      "ok": true
+    },
+    {
+      "label": "新港帰還の拒否で全状態保持: dead",
+      "ok": true
+    },
+    {
+      "label": "帰還拒否の前提状態を受理: battle",
+      "ok": true
+    },
+    {
+      "label": "帰還拒否の本番戦闘を開始",
+      "ok": true
+    },
+    {
+      "label": "新港帰還の拒否で全状態保持: battle",
+      "ok": true
+    },
+    {
+      "label": "帰還拒否の前提状態を受理: unknown_actor",
+      "ok": true
+    },
+    {
+      "label": "新港帰還の拒否で全状態保持: unknown_actor",
+      "ok": true
+    },
+    {
+      "label": "帰還拒否の前提状態を受理: unknown_target",
+      "ok": true
+    },
+    {
+      "label": "新港帰還の拒否で全状態保持: unknown_target",
+      "ok": true
+    },
+    {
+      "label": "返却候補の変更で既存キャッシュを変更しない",
+      "ok": true
+    },
+    {
+      "label": "返却候補の変更で新港キャッシュを変更しない",
+      "ok": true
+    },
+    {
+      "label": "照会と別セッションの帰還で元保存を変更しない",
+      "ok": true
+    }
+  ],
+  "failed": 0
+}

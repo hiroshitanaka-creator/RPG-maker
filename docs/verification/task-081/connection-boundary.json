@@ -1,0 +1,102 @@
+{
+  "status": "BLOCKED_BEFORE_IMPLEMENTATION",
+  "base_sha": "4388bf78cc2fe1763640c5f18dec43fa48eee32f",
+  "observed_head": "4388bf78cc2fe1763640c5f18dec43fa48eee32f",
+  "original": {
+    "path": "assets/_incoming/owner-2026-10-04-grok-region3/region3-world-map-alt-b.png",
+    "bytes": 3807730,
+    "sha256": "30d812e28f8dad699359f489aec0f61e9924dc65dd3288a085f7d2046fa5b454",
+    "size": [
+      1712,
+      1152
+    ]
+  },
+  "prospective_entry_only_not_registered": {
+    "path": "assets/town_backdrops/region3_port.png",
+    "source": "owner",
+    "author": "依頼者",
+    "license": "LicenseRef-Owner-Provided",
+    "provided_at": "2026-10-04",
+    "original_file": "assets/_incoming/owner-2026-10-04-grok-region3/region3-world-map-alt-b.png",
+    "modified": "全原画の最近傍縮小・固定パレット減色を想定。未生成・未登録。"
+  },
+  "unchanged_validator_errors": [
+    "assets/town_backdrops/region3_port.png: 依頼者の原本ファイルが存在しない、または配置が不正"
+  ],
+  "validator_sha256": "1bc7106d57fc7471746e49945237bad8896c3ebcb089b6daf24fd6df21a3697b",
+  "legacy_graph_status": {
+    "status": "runtime_graph",
+    "runtime_connected": true,
+    "authority": {
+      "approved": "依頼者がPhase 0のA方針とPhase 1への進行を承認。256×256、地方3〜4、町村10〜12、ダンジョン14〜18、小拠点20〜25、徒歩・船・飛行が目標。",
+      "proposed": "具体的な4地方・49拠点、新規名称・物語上の役割・推奨レベル・進行順・移動秒数・解放イベントは設計者の提案。既存ID・名称は保持。",
+      "unverified": "60時間の内容量達成・人間による完走実測・主観評価は未検証。",
+      "phase_2_scope": "Phase 2の構造検証と帰還経路2本の補修。結果はdocs/verification/world-map-phase2.json。ゲーム本体の保存データ修復や地形上の通行を検証した意味ではない。",
+      "phase_3_4_scope": "world/terrain.jsonとworld/interiors.jsonをゲーム画面・移動・戦闘・保存へ接続。機械検証結果はdocs/verification/world-terrain.json、world-terrain-realtime.json、world-integration.jsonを参照。人間による試遊ではない。"
+    }
+  },
+  "legacy_candidate_not_reassigned": [
+    {
+      "id": "mist_market",
+      "name": "霧の市",
+      "type": "town",
+      "region": "mist_basin",
+      "recommended_level": 26,
+      "progression_index": 26,
+      "required_transport": "ship",
+      "unlock_flags": [
+        "world_ship_unlocked"
+      ],
+      "story_role": "水路でつながる別地方の入口。河岸へ帰る航路と地方内の仕事を案内する。",
+      "origin": "proposed",
+      "visit_policy": "recommended",
+      "legacy_location": null
+    }
+  ],
+  "adopted_rooms": [
+    {
+      "id": "inn",
+      "node": "dev_adopted_inn",
+      "path": "assets/interiors/region3_room_inn.png",
+      "sha256": "52723c0560ca54cf9aff695d383a17235b8f224058dda7a2367304e79cb5e007"
+    },
+    {
+      "id": "item_shop",
+      "node": "dev_adopted_item_shop",
+      "path": "assets/interiors/region3_room_item_shop.png",
+      "sha256": "76bf5d755bf8b98d7125c800abf02fb27b2b5dda080ac43ff1f966a9c65469cb"
+    },
+    {
+      "id": "weapon_shop",
+      "node": "dev_adopted_weapon_shop",
+      "path": "assets/interiors/region3_room_weapon_shop.png",
+      "sha256": "be55b08fc7da5421f84c8c88001586e523369b9dfff8e950d83bd96500e6d93c"
+    },
+    {
+      "id": "shrine",
+      "node": "dev_adopted_shrine",
+      "path": "assets/interiors/region3_room_shrine.png",
+      "sha256": "46c00cbdc2ad0d02e1d05662793c15bb2117ea28cb9f0ceeab75f118ce8065c8"
+    },
+    {
+      "id": "armor_shop",
+      "node": "dev_adopted_armor_shop",
+      "path": "assets/interiors/region3_room_armor_shop.png",
+      "sha256": "eefd5131abf790c2a8e7ff5393054898f8bf126b722cca2982e634a4b21f4b31"
+    }
+  ],
+  "pending": [
+    {
+      "action": "第3地方の港を新本編の航路へ接続",
+      "target": "既存本番航路・港入口・上陸点",
+      "reason": "第3地方の本番接続定義がなく、旧mist_marketは霧の湖盆の未承認案。別地方の流用をしない。",
+      "state": "判断待ち・未実行"
+    },
+    {
+      "action": "外観のゲーム用素材登録",
+      "target": "tools/validate_assets.py のowner原画固定許可",
+      "reason": "指定原画パスは既存のowner許可対象外。既存検査の変更は禁止されている。",
+      "state": "範囲確認待ち・未実行"
+    }
+  ]
+}

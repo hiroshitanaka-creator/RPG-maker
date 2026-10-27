@@ -1,0 +1,24 @@
+from pathlib import Path
+import json,subprocess,shutil,hashlib
+root=Path.cwd();out=root/'docs/verification/task-081-ci-fix'
+records=json.loads((out/'after/execution.json').read_text())
+assert records[-1]['name']=='frozen-after' and all(x['status']=='PASS' for x in records)
+shutil.copyfile(root/'.tools/task081-ci/verify.py',out/'runner.py.txt')
+for path in [root/'docs/verification/task-016/counter-capture']:
+ if path.exists():shutil.copytree(path,out/'after/009-lifecycle-capture',dirs_exist_ok=True)
+tracked=subprocess.check_output(['git','diff','--name-only','--','docs/verification'],text=True).splitlines()
+restored=[]
+for name in tracked:
+ if name.startswith('docs/verification/task-081-ci-fix/'):continue
+ source=root/name;raw=source.read_bytes();target=out/'generated-existing-records'/name
+ target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+ original=subprocess.check_output(['git','show','HEAD:'+name]);source.write_bytes(original)
+ restored.append({'path':name,'generated_sha256':hashlib.sha256(raw).hexdigest(),'restored_head_sha256':hashlib.sha256(original).hexdigest()})
+untracked=subprocess.check_output(['git','ls-files','--others','--exclude-standard','docs/verification/task-009','docs/verification/task-016'],text=True).splitlines()
+retained=root/'.tools/task081-ci/untracked-generated-originals'
+for name in untracked:
+ source=root/name;target=out/'generated-untracked-records'/name
+ target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(source,target)
+ moved=retained/name;moved.parent.mkdir(parents=True,exist_ok=True);source.rename(moved)
+(out/'generated-record-restoration.json').write_text(json.dumps({'restored_tracked':restored,'moved_generated_untracked':untracked,'method':'生成原bytesを専用証拠へ保存。既存追跡記録はHEADの原bytesへ復元。元の未追跡uid2件には触れない。'},ensure_ascii=False,indent=2)+'\n')
+print('記録復元',len(restored),'生成未追跡の保全',len(untracked))

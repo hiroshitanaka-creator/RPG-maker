@@ -40,6 +40,9 @@ IGNORED_DIRS = {"_incoming"}
 
 # 073：2026-10-18の依頼者承認。フォルダ全体ではなく原画5枚のパスと内容を固定する。
 OWNER_ADOPTED_ROOM_ORIGINALS = {
+    # 081：採用済み外観1件だけを固定パス・SHAで追加する。
+    "assets/_incoming/owner-2026-10-04-grok-region3/region3-world-map-alt-b.png":
+        "30d812e28f8dad699359f489aec0f61e9924dc65dd3288a085f7d2046fa5b454",
     "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-inn.png":
         "abc509dd6cecd1eccf94fd7139032f30c97061384ff3353838537bf9f30e5b25",
     "assets/_incoming/owner-2026-10-04-grok-region3-rooms/region3-room-item-shop.png":

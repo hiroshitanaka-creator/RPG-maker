@@ -10,6 +10,7 @@ static func data() -> Dictionary:
 		Region2Port.apply_to(_data)
 		Region2Village.apply_to(_data)
 		Region2Ruins.apply_to(_data)
+		Region3Port.apply_to(_data)
 	return _data["first_region"]
 
 static func room(state: Dictionary) -> Dictionary:
@@ -34,6 +35,7 @@ static func walkable(saved: Dictionary, cell: Vector2i) -> bool:
 	var state: Dictionary = saved["overworld"]
 	if state.get("transport","walk")=="ship":return state["layer"]=="world" and FirstRegionTravel.ship_water(cell)
 	if state["layer"] == "world":
+		if [cell.x,cell.y]==data()["region3_port_entrance"]["cell"] and not FirstRegionTravel.snapshot(saved).get("ship_owned",false):return false
 		if data().has("port_entrance") and [cell.x,cell.y]==data()["port_entrance"]["cell"] and not saved["progress_flags"].get("mountain_path_open",false):return false
 		if data().has("tower_entrance") and [cell.x,cell.y]==data()["tower_entrance"]["cell"] and not saved["progress_flags"].get("castle_north_permission",false):return false
 		if [cell.x,cell.y] in data().get("tower_mountain_path",[]) and not saved["progress_flags"].get("mountain_path_open",false):return false
@@ -55,11 +57,11 @@ static func walkable(saved: Dictionary, cell: Vector2i) -> bool:
 static func entrance_landing(node: String, room_index: int) -> Array:
 	if node == "region2_ruins":return Region2Ruins.landing(room_index)
 	var definition := data()
-	for key in ["village_spawn","cave_spawn","castle_spawn","tower_spawn","port_spawn","second_port_spawn","region2_village_spawn"]:
+	for key in ["village_spawn","cave_spawn","castle_spawn","tower_spawn","port_spawn","second_port_spawn","region2_village_spawn","region3_port_spawn"]:
 		var spawn: Variant = definition.get(key)
 		if spawn is Dictionary and spawn["layer"] == "interior" and spawn["node"] == node and spawn["room"] == room_index:return spawn["cell"].duplicate()
 	var links: Array = []
-	for key in ["doors","castle_doors","tower_doors","port_doors","second_port_doors","region2_village_doors"]:links.append_array(definition.get(key,[]))
+	for key in ["doors","castle_doors","tower_doors","port_doors","second_port_doors","region2_village_doors","region3_port_doors"]:links.append_array(definition.get(key,[]))
 	for key in ["stairs_down","stairs_up"]:
 		if definition.get(key) is Dictionary:links.append(definition[key])
 	for link in links:
@@ -115,6 +117,11 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		return {"kind":"moved"}
 	var definition := data()
 	if state["layer"] == "world":
+		if state["cell"]==definition["region3_port_entrance"]["cell"]:
+			place(state,definition["region3_port_gate_spawn"])
+			state["facing"]=0;state["entry_lock"]="region3_port_entrance"
+			FirstRegionTravel.visit(saved,"region3_port")
+			return {"kind":"moved"}
 		if state["cell"]==definition["region2_village_entrance"]["cell"]:
 			var spawn_key := "region2_village_spawn_east" if before.x>cell.x else "region2_village_spawn"
 			place(state,definition[spawn_key])
@@ -144,6 +151,9 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		if at(state,definition["gate"]["cell"]):
 			return {"kind":"dialogue","speaker":"門番","sound":"door","text":["通行証を確認しました。お通りください。"]}
 	else:
+		if at(state,definition["region3_port_exit"]):
+			place(state,outside("region3_port_entrance"));state["facing"]=1;state["entry_lock"]="region3_port_entrance"
+			return {"kind":"moved"}
 		for link in definition["region2_village_exits"]:
 			if at(state,link["from"]):
 				place(state,link["to"])
@@ -176,6 +186,7 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		links.append_array(definition.get("port_doors",[]))
 		links.append_array(definition.get("second_port_doors",[]))
 		links.append_array(definition.get("region2_village_doors",[]))
+		links.append_array(definition.get("region3_port_doors",[]))
 		links.append(definition["stairs_down"])
 		links.append(definition["stairs_up"])
 		for link in links:
@@ -193,7 +204,7 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		var coast: Dictionary=SecondRegionCoast.data()["ground_encounter"]
 		if randf()<float(coast["chance"]):return {"kind":"battle","id":"second_coast_ground_encounter","enemies":coast["groups"].pick_random(),"seed":randi()}
 		return {"kind":"moved"}
-	if state["node"] not in ["start_village","first_castle","first_port","brine_port","region2_village"]:
+	if state["node"] not in ["start_village","first_castle","first_port","brine_port","region2_village","region3_port"]:
 		var rule: Dictionary = definition["encounters"]["world" if state["layer"] == "world" else state["node"]]
 		if randf() < float(rule["chance"]):
 			return {"kind":"battle","id":"first_region_encounter","enemies":rule["enemies"],"seed":randi()}
@@ -262,8 +273,9 @@ static func valid(saved: Dictionary) -> bool:
 		var cell: Variant=record.get("cell")
 		if not cell is Array or cell.size()!=2 or not cell[0] is int or not cell[1] is int:return false
 		if not record.get("facing") is int or record["facing"] not in [0,1,2,3]:return false
-	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle","first_forest_tower","first_port","brine_port","region2_village","region2_ruins"] or room(state).is_empty()):return false
+	if state["layer"] == "interior" and (state["node"] not in ["start_village","first_cave","first_castle","first_forest_tower","first_port","brine_port","region2_village","region2_ruins","region3_port"] or room(state).is_empty()):return false
 	if state["node"]=="first_port" and not saved["progress_flags"].get("mountain_path_open",false):return false
+	if state["node"]=="region3_port" and not FirstRegionTravel.snapshot(saved).get("ship_owned",false):return false
 	if state["node"]=="first_forest_tower" and not saved["progress_flags"].get("castle_north_permission",false):return false
 	if saved["progress_flags"].get("mountain_path_open",false) and ("forest_tower_boss" not in state["cleared"] or not joined(saved,"pc_04")):return false
 	if state["node"]=="first_castle" and int(saved["inventory"].get("gate_pass",0))!=1:return false

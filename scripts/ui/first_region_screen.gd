@@ -170,7 +170,7 @@ func _travel() -> void:
 	for member in saved["party"]:
 		if member["id"]==return_actor:selected="使う人："+str(member["name"])
 	destinations.add_child(_label(selected,12))
-	for destination in FirstRegionTravel.destinations():
+	for destination in FirstRegionTravel.destinations_for(saved):
 		if destination["id"] in FirstRegionTravel.snapshot(saved).get("visited",[]):
 			_button(destinations,destination["name"],{"kind":"ui_cast_return","destination":destination["id"]},not return_actor.is_empty())
 	destinations.add_child(_label("船も港へ戻ります。",11))

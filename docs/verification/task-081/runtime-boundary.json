@@ -1,0 +1,2127 @@
+{
+	"destinations": [
+		{
+			"entrance": "village_entrance",
+			"id": "start_village",
+			"name": "ミルフェ村"
+		},
+		{
+			"entrance": "castle_entrance",
+			"id": "first_castle",
+			"name": "エルヴァ城下町・城"
+		},
+		{
+			"entrance": "port_entrance",
+			"id": "first_port",
+			"name": "港町"
+		},
+		{
+			"entrance": "second_port_entrance",
+			"id": "brine_port",
+			"name": "第2地方の港町（仮）",
+			"ship_cell": [
+				155,
+				110
+			]
+		},
+		{
+			"entrance": "region2_village_entrance",
+			"id": "region2_village",
+			"name": "オアシスの村（仮）",
+			"ship_cell": [
+				155,
+				110
+			],
+			"ship_destination": "brine_port"
+		}
+	],
+	"docks": [
+		{
+			"display_cell": [
+				30,
+				17
+			],
+			"id": "port",
+			"land": {
+				"cell": [
+					30,
+					18
+				],
+				"layer": "interior",
+				"node": "first_port",
+				"room": 0
+			},
+			"name": "港町の桟橋",
+			"ship_cell": [
+				59,
+				48
+			]
+		},
+		{
+			"id": "shallows",
+			"land": {
+				"cell": [
+					48,
+					56
+				],
+				"layer": "world",
+				"node": "",
+				"room": 0
+			},
+			"name": "第1地方の浅瀬",
+			"ship_cell": [
+				49,
+				56
+			]
+		},
+		{
+			"id": "second_coast",
+			"land": {
+				"cell": [
+					156,
+					109
+				],
+				"layer": "world",
+				"node": "",
+				"room": 0
+			},
+			"name": "第2地方の浅瀬（仮）",
+			"ship_cell": [
+				155,
+				109
+			]
+		},
+		{
+			"display_cell": [
+				30,
+				22
+			],
+			"id": "second_port",
+			"land": {
+				"cell": [
+					34,
+					21
+				],
+				"layer": "interior",
+				"node": "brine_port",
+				"room": 0
+			},
+			"name": "第2港の中央桟橋（仮）",
+			"ship_cell": [
+				155,
+				110
+			]
+		}
+	],
+	"engine": {
+		"build": "official",
+		"hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+		"hex": 263938,
+		"major": 4,
+		"minor": 7,
+		"patch": 2,
+		"status": "stable",
+		"string": "4.7.2-stable (official)",
+		"timestamp": 0
+	},
+	"links": {
+		"castle_doors": [
+			{
+				"from": {
+					"cell": [
+						18,
+						2
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 1
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						18,
+						3
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						6,
+						7
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 4
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 4
+				},
+				"to": {
+					"cell": [
+						6,
+						8
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						6,
+						15
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 5
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 5
+				},
+				"to": {
+					"cell": [
+						6,
+						16
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						30,
+						15
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 6
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 6
+				},
+				"to": {
+					"cell": [
+						30,
+						16
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						7,
+						22
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 7
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 7
+				},
+				"to": {
+					"cell": [
+						7,
+						23
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						29,
+						8
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 8
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 8
+				},
+				"to": {
+					"cell": [
+						29,
+						9
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						29,
+						22
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 9
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 9
+				},
+				"to": {
+					"cell": [
+						29,
+						23
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						1
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						8,
+						8
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						9
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				},
+				"to": {
+					"cell": [
+						8,
+						2
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 1
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						9,
+						9
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				},
+				"to": {
+					"cell": [
+						8,
+						2
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 1
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						2
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				},
+				"to": {
+					"cell": [
+						11,
+						13
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 2
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						9,
+						2
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				},
+				"to": {
+					"cell": [
+						12,
+						13
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 2
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						11,
+						14
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 2
+				},
+				"to": {
+					"cell": [
+						8,
+						3
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						12,
+						14
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 2
+				},
+				"to": {
+					"cell": [
+						9,
+						3
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						5,
+						2
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 3
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 3
+				},
+				"to": {
+					"cell": [
+						5,
+						3
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						12,
+						2
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 10
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 10
+				},
+				"to": {
+					"cell": [
+						12,
+						3
+					],
+					"layer": "interior",
+					"node": "first_castle",
+					"room": 11
+				}
+			}
+		],
+		"castle_entrance": {
+			"cell": [
+				43,
+				43
+			],
+			"outward": [
+				0,
+				1
+			]
+		},
+		"castle_exit": {
+			"cell": [
+				18,
+				25
+			],
+			"layer": "interior",
+			"node": "first_castle",
+			"room": 0
+		},
+		"castle_spawn": {
+			"cell": [
+				18,
+				24
+			],
+			"layer": "interior",
+			"node": "first_castle",
+			"room": 0
+		},
+		"cave_entrance": {
+			"cell": [
+				48,
+				50
+			],
+			"outward": [
+				0,
+				1
+			]
+		},
+		"cave_exit": {
+			"cell": [
+				17,
+				23
+			],
+			"layer": "interior",
+			"node": "first_cave",
+			"room": 0
+		},
+		"cave_spawn": {
+			"cell": [
+				17,
+				22
+			],
+			"layer": "interior",
+			"node": "first_cave",
+			"room": 0
+		},
+		"doors": [
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						8
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 1
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						7
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						28,
+						7
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 2
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 2
+				},
+				"to": {
+					"cell": [
+						28,
+						8
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 1
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						12,
+						19
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 3
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 3
+				},
+				"to": {
+					"cell": [
+						12,
+						20
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 1
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						28,
+						19
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 4
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 4
+				},
+				"to": {
+					"cell": [
+						28,
+						20
+					],
+					"layer": "interior",
+					"node": "start_village",
+					"room": 1
+				}
+			}
+		],
+		"port_doors": [
+			{
+				"from": {
+					"cell": [
+						4,
+						6
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 1
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						4,
+						7
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						15,
+						6
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 2
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 2
+				},
+				"to": {
+					"cell": [
+						15,
+						7
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						4,
+						14
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 3
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 3
+				},
+				"to": {
+					"cell": [
+						4,
+						15
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						13,
+						14
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 4
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 4
+				},
+				"to": {
+					"cell": [
+						13,
+						15
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						4,
+						24
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 5
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 5
+				},
+				"to": {
+					"cell": [
+						4,
+						25
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						12,
+						24
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 6
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 6
+				},
+				"to": {
+					"cell": [
+						12,
+						25
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						24,
+						6
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 7
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 7
+				},
+				"to": {
+					"cell": [
+						24,
+						7
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						31,
+						5
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						9,
+						8
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 8
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						9,
+						10
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 8
+				},
+				"to": {
+					"cell": [
+						31,
+						6
+					],
+					"layer": "interior",
+					"node": "first_port",
+					"room": 0
+				}
+			}
+		],
+		"port_entrance": {
+			"cell": [
+				51,
+				41
+			],
+			"outward": [
+				-1,
+				0
+			]
+		},
+		"port_exit": {
+			"cell": [
+				9,
+				0
+			],
+			"layer": "interior",
+			"node": "first_port",
+			"room": 0
+		},
+		"port_spawn": {
+			"cell": [
+				9,
+				2
+			],
+			"layer": "interior",
+			"node": "first_port",
+			"room": 0
+		},
+		"region2_village_doors": [
+			{
+				"entry_lock": "region2_village_door",
+				"facing": 3,
+				"from": {
+					"cell": [
+						16,
+						8
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 1
+				}
+			},
+			{
+				"entry_lock": "region2_village_door",
+				"facing": 0,
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						16,
+						9
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				}
+			},
+			{
+				"entry_lock": "region2_village_door",
+				"facing": 3,
+				"from": {
+					"cell": [
+						26,
+						7
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 2
+				}
+			},
+			{
+				"entry_lock": "region2_village_door",
+				"facing": 0,
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 2
+				},
+				"to": {
+					"cell": [
+						26,
+						8
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				}
+			},
+			{
+				"entry_lock": "region2_village_door",
+				"facing": 3,
+				"from": {
+					"cell": [
+						35,
+						14
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 3
+				}
+			},
+			{
+				"entry_lock": "region2_village_door",
+				"facing": 0,
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 3
+				},
+				"to": {
+					"cell": [
+						35,
+						15
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				}
+			},
+			{
+				"entry_lock": "region2_village_door",
+				"facing": 3,
+				"from": {
+					"cell": [
+						33,
+						8
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 4
+				}
+			},
+			{
+				"entry_lock": "region2_village_door",
+				"facing": 0,
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 4
+				},
+				"to": {
+					"cell": [
+						33,
+						9
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				}
+			}
+		],
+		"region2_village_entrance": {
+			"cell": [
+				169,
+				88
+			],
+			"outward": [
+				-1,
+				0
+			]
+		},
+		"region2_village_exits": [
+			{
+				"facing": 1,
+				"from": {
+					"cell": [
+						3,
+						13
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						168,
+						88
+					],
+					"layer": "world",
+					"node": "",
+					"room": 0
+				}
+			},
+			{
+				"facing": 2,
+				"from": {
+					"cell": [
+						42,
+						13
+					],
+					"layer": "interior",
+					"node": "region2_village",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						170,
+						88
+					],
+					"layer": "world",
+					"node": "",
+					"room": 0
+				}
+			}
+		],
+		"region2_village_spawn": {
+			"cell": [
+				4,
+				15
+			],
+			"layer": "interior",
+			"node": "region2_village",
+			"room": 0
+		},
+		"region2_village_spawn_east": {
+			"cell": [
+				41,
+				15
+			],
+			"layer": "interior",
+			"node": "region2_village",
+			"room": 0
+		},
+		"second_port_doors": [
+			{
+				"from": {
+					"cell": [
+						15,
+						6
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 1
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						15,
+						7
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						25,
+						6
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 2
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 2
+				},
+				"to": {
+					"cell": [
+						25,
+						7
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						5,
+						10
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 3
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 3
+				},
+				"to": {
+					"cell": [
+						5,
+						11
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						29,
+						11
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 4
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 4
+				},
+				"to": {
+					"cell": [
+						29,
+						12
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						32,
+						6
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 5
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 5
+				},
+				"to": {
+					"cell": [
+						32,
+						7
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						35,
+						16
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						8,
+						10
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 6
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						8,
+						11
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 6
+				},
+				"to": {
+					"cell": [
+						35,
+						17
+					],
+					"layer": "interior",
+					"node": "brine_port",
+					"room": 0
+				}
+			}
+		],
+		"second_port_entrance": {
+			"cell": [
+				169,
+				98
+			],
+			"outward": [
+				0,
+				1
+			]
+		},
+		"second_port_exit": {
+			"cell": [
+				4,
+				1
+			],
+			"layer": "interior",
+			"node": "brine_port",
+			"room": 0
+		},
+		"second_port_spawn": {
+			"cell": [
+				4,
+				4
+			],
+			"layer": "interior",
+			"node": "brine_port",
+			"room": 0
+		},
+		"tower_doors": [
+			{
+				"from": {
+					"cell": [
+						15,
+						4
+					],
+					"layer": "interior",
+					"node": "first_forest_tower",
+					"room": 0
+				},
+				"to": {
+					"cell": [
+						9,
+						11
+					],
+					"layer": "interior",
+					"node": "first_forest_tower",
+					"room": 1
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						9,
+						13
+					],
+					"layer": "interior",
+					"node": "first_forest_tower",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						15,
+						5
+					],
+					"layer": "interior",
+					"node": "first_forest_tower",
+					"room": 0
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						15,
+						4
+					],
+					"layer": "interior",
+					"node": "first_forest_tower",
+					"room": 1
+				},
+				"to": {
+					"cell": [
+						9,
+						11
+					],
+					"layer": "interior",
+					"node": "first_forest_tower",
+					"room": 2
+				}
+			},
+			{
+				"from": {
+					"cell": [
+						9,
+						13
+					],
+					"layer": "interior",
+					"node": "first_forest_tower",
+					"room": 2
+				},
+				"to": {
+					"cell": [
+						15,
+						5
+					],
+					"layer": "interior",
+					"node": "first_forest_tower",
+					"room": 1
+				}
+			}
+		],
+		"tower_entrance": {
+			"cell": [
+				41,
+				41
+			],
+			"outward": [
+				0,
+				1
+			]
+		},
+		"tower_exit": {
+			"cell": [
+				10,
+				15
+			],
+			"layer": "interior",
+			"node": "first_forest_tower",
+			"room": 0
+		},
+		"tower_spawn": {
+			"cell": [
+				10,
+				14
+			],
+			"layer": "interior",
+			"node": "first_forest_tower",
+			"room": 0
+		},
+		"village_entrance": {
+			"cell": [
+				32,
+				53
+			],
+			"outward": [
+				0,
+				1
+			]
+		},
+		"village_exit": {
+			"cell": [
+				17,
+				23
+			],
+			"layer": "interior",
+			"node": "start_village",
+			"room": 1
+		},
+		"village_spawn": {
+			"cell": [
+				17,
+				22
+			],
+			"layer": "interior",
+			"node": "start_village",
+			"room": 1
+		}
+	},
+	"new_game": true,
+	"sea_bounds": [
+		24,
+		40,
+		183,
+		119
+	],
+	"sites": [
+		{
+			"id": "town",
+			"rooms": 1
+		},
+		{
+			"id": "river_watch",
+			"rooms": 1
+		},
+		{
+			"id": "waterway",
+			"rooms": 1
+		},
+		{
+			"id": "reed_camp",
+			"rooms": 1
+		},
+		{
+			"id": "cave",
+			"rooms": 1
+		},
+		{
+			"id": "stone_shelter",
+			"rooms": 1
+		},
+		{
+			"id": "gate",
+			"rooms": 1
+		},
+		{
+			"id": "garden",
+			"rooms": 1
+		},
+		{
+			"id": "herb_station",
+			"rooms": 1
+		},
+		{
+			"id": "school",
+			"rooms": 1
+		},
+		{
+			"id": "springford",
+			"rooms": 1
+		},
+		{
+			"id": "causeway_cave",
+			"rooms": 3
+		},
+		{
+			"id": "records",
+			"rooms": 1
+		},
+		{
+			"id": "harbor",
+			"rooms": 1
+		},
+		{
+			"id": "toll_post",
+			"rooms": 1
+		},
+		{
+			"id": "levee_vault",
+			"rooms": 3
+		},
+		{
+			"id": "shipyard",
+			"rooms": 1
+		},
+		{
+			"id": "brine_port",
+			"rooms": 7
+		},
+		{
+			"id": "tide_beacon",
+			"rooms": 1
+		},
+		{
+			"id": "salt_mine",
+			"rooms": 3
+		},
+		{
+			"id": "nettle_hamlet",
+			"rooms": 1
+		},
+		{
+			"id": "reef_shrine",
+			"rooms": 1
+		},
+		{
+			"id": "drowned_store",
+			"rooms": 3
+		},
+		{
+			"id": "breakwater_ruins",
+			"rooms": 3
+		},
+		{
+			"id": "sailors_rest",
+			"rooms": 1
+		},
+		{
+			"id": "mist_market",
+			"rooms": 1
+		},
+		{
+			"id": "lock_station",
+			"rooms": 1
+		},
+		{
+			"id": "reed_library",
+			"rooms": 3
+		},
+		{
+			"id": "kiln_village",
+			"rooms": 1
+		},
+		{
+			"id": "marsh_camp",
+			"rooms": 1
+		},
+		{
+			"id": "bell_quarry",
+			"rooms": 3
+		},
+		{
+			"id": "windbreak_town",
+			"rooms": 1
+		},
+		{
+			"id": "wind_observatory",
+			"rooms": 1
+		},
+		{
+			"id": "ridgehearth",
+			"rooms": 1
+		},
+		{
+			"id": "cloud_landing",
+			"rooms": 1
+		},
+		{
+			"id": "cloud_forge",
+			"rooms": 3
+		},
+		{
+			"id": "signal_hut",
+			"rooms": 1
+		},
+		{
+			"id": "survey_post",
+			"rooms": 1
+		},
+		{
+			"id": "high_camp",
+			"rooms": 1
+		},
+		{
+			"id": "wind_tomb",
+			"rooms": 3
+		},
+		{
+			"id": "standing_stone",
+			"rooms": 1
+		},
+		{
+			"id": "highfield",
+			"rooms": 1
+		},
+		{
+			"id": "ridge_well",
+			"rooms": 1
+		},
+		{
+			"id": "wayfarer_refuge",
+			"rooms": 1
+		},
+		{
+			"id": "aerie_ruins",
+			"rooms": 3
+		},
+		{
+			"id": "summit_marker",
+			"rooms": 1
+		},
+		{
+			"id": "snow_shelter",
+			"rooms": 1
+		},
+		{
+			"id": "echo_platform",
+			"rooms": 1
+		},
+		{
+			"id": "summit_archive",
+			"rooms": 3
+		},
+		{
+			"id": "start_village",
+			"rooms": 5
+		},
+		{
+			"id": "first_cave",
+			"rooms": 2
+		},
+		{
+			"id": "first_castle",
+			"rooms": 12
+		},
+		{
+			"id": "first_forest_tower",
+			"rooms": 3
+		},
+		{
+			"id": "first_port",
+			"rooms": 9
+		},
+		{
+			"id": "region2_village",
+			"rooms": 5
+		},
+		{
+			"id": "region2_ruins",
+			"rooms": 4
+		}
+	],
+	"unconnected_save_probes": [
+		{
+			"node": "region3_port",
+			"room_defined": false,
+			"save_import_accepted": false
+		},
+		{
+			"node": "mist_market",
+			"room_defined": true,
+			"save_import_accepted": false
+		},
+		{
+			"node": "dev_adopted_inn",
+			"room_defined": false,
+			"save_import_accepted": false
+		},
+		{
+			"node": "dev_adopted_item_shop",
+			"room_defined": false,
+			"save_import_accepted": false
+		},
+		{
+			"node": "dev_adopted_weapon_shop",
+			"room_defined": false,
+			"save_import_accepted": false
+		},
+		{
+			"node": "dev_adopted_shrine",
+			"room_defined": false,
+			"save_import_accepted": false
+		},
+		{
+			"node": "dev_adopted_armor_shop",
+			"room_defined": false,
+			"save_import_accepted": false
+		}
+	]
+}

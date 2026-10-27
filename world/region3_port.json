@@ -1,0 +1,922 @@
+{
+  "version": 1,
+  "source_foundation": "world/adopted_room_foundation.json",
+  "site": {
+    "id": "region3_port",
+    "rooms": [
+      {
+        "title": "第3地方の港町（仮）",
+        "layout": [
+          "#########################################",
+          "#########################################",
+          "#########################################",
+          "#######.#################################",
+          "#######.#################################",
+          "#######.#################################",
+          "#######...###############################",
+          "#######.....#############################",
+          "#########....############################",
+          "############..###########################",
+          "############..####.######################",
+          "############.....#.......################",
+          "############.....#######.......##########",
+          "###########......#######......##.########",
+          "##########..#####.......####..#...#######",
+          "##########..######.....######.....#######",
+          "##########..######.....######..##########",
+          "##########..######......#####..##########",
+          "##########..#.####......#####...#########",
+          "######.###.....................##########",
+          "######..................##...############",
+          "######................#####..############",
+          "########...........#########..###########",
+          "##########......#############..##########",
+          "#########################################",
+          "#########################################",
+          "#########################################"
+        ],
+        "events": []
+      },
+      {
+        "title": "第3地方の港町（仮）・宿屋",
+        "layout": [
+          "##############",
+          "##############",
+          "##############",
+          "#####...#....#",
+          "#####...####.#",
+          "#####........#",
+          "#####.......##",
+          "#####.......##",
+          "#####.......##",
+          "##...........#",
+          "######.#######",
+          "######.#######"
+        ],
+        "events": []
+      },
+      {
+        "title": "第3地方の港町（仮）・道具屋",
+        "layout": [
+          "##############",
+          "##############",
+          "##############",
+          "##..........##",
+          "##..........##",
+          "##..........##",
+          "##..........##",
+          "##..........##",
+          "##.########.##",
+          "##..........##",
+          "######.#######",
+          "######.#######"
+        ],
+        "events": []
+      },
+      {
+        "title": "第3地方の港町（仮）・武器屋",
+        "layout": [
+          "##############",
+          "##############",
+          "##############",
+          "##.........###",
+          "###........###",
+          "##..######..##",
+          "##..........##",
+          "##..........##",
+          "##..........##",
+          "##..........##",
+          "######.#######",
+          "######.#######"
+        ],
+        "events": []
+      },
+      {
+        "title": "第3地方の港町（仮）・祠",
+        "layout": [
+          "##############",
+          "##############",
+          "########...###",
+          "##...####...##",
+          "##...####...##",
+          "##..........##",
+          "##..........##",
+          "##..........##",
+          "##..........##",
+          "######.#######",
+          "######.#######",
+          "######.#######"
+        ],
+        "events": []
+      },
+      {
+        "title": "第3地方の港町（仮）・防具屋",
+        "layout": [
+          "##############",
+          "##############",
+          "##############",
+          "##.........###",
+          "##.#.......###",
+          "##.######...##",
+          "###........###",
+          "###........###",
+          "##..........##",
+          "##..........##",
+          "######.#######",
+          "######.#######"
+        ],
+        "events": []
+      }
+    ]
+  },
+  "definition": {
+    "region3_port_spawn": {
+      "layer": "interior",
+      "node": "region3_port",
+      "room": 0,
+      "cell": [
+        29,
+        22
+      ]
+    },
+    "region3_port_doors": [
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 1,
+          "cell": [
+            6,
+            9
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region3_port:inn",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            18,
+            10
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            18,
+            11
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region3_port:inn",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 1,
+          "cell": [
+            6,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 2,
+          "cell": [
+            6,
+            9
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region3_port:item_shop",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            6,
+            19
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            6,
+            20
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region3_port:item_shop",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 2,
+          "cell": [
+            6,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 3,
+          "cell": [
+            6,
+            9
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region3_port:weapon_shop",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            13,
+            18
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            13,
+            19
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region3_port:weapon_shop",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 3,
+          "cell": [
+            6,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 4,
+          "cell": [
+            6,
+            9
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region3_port:shrine",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            32,
+            13
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            32,
+            14
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region3_port:shrine",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 4,
+          "cell": [
+            6,
+            11
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 5,
+          "cell": [
+            6,
+            9
+          ]
+        },
+        "facing": 3,
+        "entry_lock": "region3_port:armor_shop",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            23,
+            17
+          ]
+        }
+      },
+      {
+        "to": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 0,
+          "cell": [
+            23,
+            18
+          ]
+        },
+        "facing": 0,
+        "entry_lock": "region3_port:armor_shop",
+        "from": {
+          "layer": "interior",
+          "node": "region3_port",
+          "room": 5,
+          "cell": [
+            6,
+            11
+          ]
+        }
+      }
+    ],
+    "region3_port_entrance": {
+      "cell": [
+        180,
+        44
+      ],
+      "outward": [
+        -1,
+        0
+      ]
+    },
+    "region3_port_gate_spawn": {
+      "layer": "interior",
+      "node": "region3_port",
+      "room": 0,
+      "cell": [
+        7,
+        5
+      ]
+    },
+    "region3_port_exit": {
+      "layer": "interior",
+      "node": "region3_port",
+      "room": 0,
+      "cell": [
+        7,
+        3
+      ]
+    }
+  },
+  "docks": [
+    {
+      "id": "region3_port",
+      "name": "第3地方の港町（仮）の桟橋",
+      "land": {
+        "layer": "interior",
+        "node": "region3_port",
+        "room": 0,
+        "cell": [
+          29,
+          22
+        ]
+      },
+      "ship_cell": [
+        180,
+        45
+      ],
+      "display_cell": [
+        31,
+        24
+      ]
+    }
+  ],
+  "destinations": [
+    {
+      "id": "region3_port",
+      "name": "第3地方の港町（仮）",
+      "entrance": "region3_port_entrance",
+      "ship_cell": [
+        180,
+        45
+      ]
+    }
+  ],
+  "maps": {
+    "region3_port:0": {
+      "width": 41,
+      "height": 27,
+      "origin": [
+        0,
+        0
+      ],
+      "layers": [],
+      "tiles": {},
+      "surround": "assets/tiles/natural_stone_wall.png",
+      "backdrop": {
+        "path": "assets/town_backdrops/region3_port.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/town_backdrops/region3_port.png",
+        "pieces": [
+          [
+            200,
+            65,
+            96,
+            38,
+            200,
+            65,
+            4.5
+          ],
+          [
+            398,
+            396,
+            42,
+            91,
+            398,
+            396,
+            15.7
+          ]
+        ]
+      }
+    },
+    "region3_port:1": {
+      "width": 14,
+      "height": 12,
+      "origin": [
+        0,
+        0
+      ],
+      "layers": [],
+      "tiles": {},
+      "surround": "assets/tiles/natural_stone_wall.png",
+      "backdrop": {
+        "path": "assets/interiors/region3_room_inn.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/interiors/region3_room_inn.png",
+        "pieces": [
+          [
+            248,
+            58,
+            32,
+            118,
+            248,
+            58,
+            6.0
+          ],
+          [
+            272,
+            139,
+            108,
+            38,
+            272,
+            139,
+            6.0
+          ],
+          [
+            8,
+            300,
+            168,
+            76,
+            8,
+            300,
+            12.0
+          ],
+          [
+            270,
+            300,
+            170,
+            76,
+            270,
+            300,
+            12.0
+          ],
+          [
+            176,
+            300,
+            94,
+            20,
+            176,
+            300,
+            12.0
+          ]
+        ]
+      }
+    },
+    "region3_port:2": {
+      "width": 14,
+      "height": 12,
+      "origin": [
+        0,
+        0
+      ],
+      "layers": [],
+      "tiles": {},
+      "surround": "assets/tiles/natural_stone_wall.png",
+      "backdrop": {
+        "path": "assets/interiors/region3_room_item_shop.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/interiors/region3_room_item_shop.png",
+        "pieces": [
+          [
+            104,
+            248,
+            230,
+            42,
+            104,
+            248,
+            9.1
+          ],
+          [
+            8,
+            302,
+            168,
+            74,
+            8,
+            302,
+            12.0
+          ],
+          [
+            270,
+            302,
+            170,
+            74,
+            270,
+            302,
+            12.0
+          ],
+          [
+            176,
+            302,
+            90,
+            20,
+            176,
+            302,
+            12.0
+          ]
+        ]
+      }
+    },
+    "region3_port:3": {
+      "width": 14,
+      "height": 12,
+      "origin": [
+        0,
+        0
+      ],
+      "layers": [],
+      "tiles": {},
+      "surround": "assets/tiles/natural_stone_wall.png",
+      "backdrop": {
+        "path": "assets/interiors/region3_room_weapon_shop.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/interiors/region3_room_weapon_shop.png",
+        "pieces": [
+          [
+            142,
+            135,
+            168,
+            50,
+            142,
+            135,
+            6.0
+          ],
+          [
+            8,
+            290,
+            168,
+            86,
+            8,
+            290,
+            12.0
+          ],
+          [
+            270,
+            290,
+            170,
+            86,
+            270,
+            290,
+            12.0
+          ],
+          [
+            176,
+            290,
+            96,
+            19,
+            176,
+            290,
+            12.0
+          ]
+        ]
+      }
+    },
+    "region3_port:4": {
+      "width": 14,
+      "height": 12,
+      "origin": [
+        0,
+        0
+      ],
+      "layers": [],
+      "tiles": {},
+      "surround": "assets/tiles/natural_stone_wall.png",
+      "backdrop": {
+        "path": "assets/interiors/region3_room_shrine.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/interiors/region3_room_shrine.png",
+        "pieces": [
+          [
+            162,
+            25,
+            114,
+            148,
+            162,
+            25,
+            5.5
+          ],
+          [
+            8,
+            280,
+            168,
+            96,
+            8,
+            280,
+            12.0
+          ],
+          [
+            270,
+            280,
+            170,
+            96,
+            270,
+            280,
+            12.0
+          ],
+          [
+            166,
+            280,
+            107,
+            20,
+            166,
+            280,
+            12.0
+          ]
+        ]
+      }
+    },
+    "region3_port:5": {
+      "width": 14,
+      "height": 12,
+      "origin": [
+        0,
+        0
+      ],
+      "layers": [],
+      "tiles": {},
+      "surround": "assets/tiles/natural_stone_wall.png",
+      "backdrop": {
+        "path": "assets/interiors/region3_room_armor_shop.png",
+        "offset": [
+          0,
+          0
+        ]
+      },
+      "overlays": {
+        "path": "assets/interiors/region3_room_armor_shop.png",
+        "pieces": [
+          [
+            81,
+            112,
+            48,
+            92,
+            81,
+            112,
+            6.4
+          ],
+          [
+            46,
+            176,
+            51,
+            96,
+            46,
+            176,
+            8.5
+          ],
+          [
+            347,
+            79,
+            51,
+            97,
+            347,
+            79,
+            6.0
+          ],
+          [
+            346,
+            176,
+            51,
+            96,
+            346,
+            176,
+            8.5
+          ],
+          [
+            146,
+            141,
+            149,
+            47,
+            146,
+            141,
+            6.0
+          ],
+          [
+            8,
+            289,
+            168,
+            87,
+            8,
+            289,
+            12.0
+          ],
+          [
+            270,
+            289,
+            170,
+            87,
+            270,
+            289,
+            12.0
+          ],
+          [
+            176,
+            289,
+            96,
+            21,
+            176,
+            289,
+            12.0
+          ]
+        ]
+      }
+    }
+  },
+  "bindings": [
+    {
+      "id": "inn",
+      "room": 1,
+      "door": [
+        18,
+        10
+      ],
+      "return_cell": [
+        18,
+        11
+      ],
+      "spawn": [
+        6,
+        9
+      ],
+      "exit": [
+        6,
+        11
+      ]
+    },
+    {
+      "id": "item_shop",
+      "room": 2,
+      "door": [
+        6,
+        19
+      ],
+      "return_cell": [
+        6,
+        20
+      ],
+      "spawn": [
+        6,
+        9
+      ],
+      "exit": [
+        6,
+        11
+      ]
+    },
+    {
+      "id": "weapon_shop",
+      "room": 3,
+      "door": [
+        13,
+        18
+      ],
+      "return_cell": [
+        13,
+        19
+      ],
+      "spawn": [
+        6,
+        9
+      ],
+      "exit": [
+        6,
+        11
+      ]
+    },
+    {
+      "id": "shrine",
+      "room": 4,
+      "door": [
+        32,
+        13
+      ],
+      "return_cell": [
+        32,
+        14
+      ],
+      "spawn": [
+        6,
+        9
+      ],
+      "exit": [
+        6,
+        11
+      ]
+    },
+    {
+      "id": "armor_shop",
+      "room": 5,
+      "door": [
+        23,
+        17
+      ],
+      "return_cell": [
+        23,
+        18
+      ],
+      "spawn": [
+        6,
+        9
+      ],
+      "exit": [
+        6,
+        11
+      ]
+    }
+  ],
+  "world_entry_cells": [
+    [
+      179,
+      44
+    ],
+    [
+      180,
+      44
+    ]
+  ]
+}

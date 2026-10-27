@@ -1,0 +1,14 @@
+{
+  "observed_utc": "2026-10-27T22:47:09.102277+00:00",
+  "head": "e754b1e3fb38afd38456dac84068f264c5fb4f99",
+  "event": "実行環境が一時unavailable。再接続後はsession95531不在・verifyプロセス不在。execution.jsonの最終確定結果は009-render-restart-3/PASS。",
+  "uncertain_command": "009-render-restart-4",
+  "partial_artifacts": "interrupted/restart-4-partial",
+  "remaining": [
+    "009-render-restart-4",
+    "081-newport-input",
+    "frozen-after"
+  ],
+  "action": "途中生成物を保全し、未確定以降3コマンドだけを既存上限で実行する。先行成功は再実行しない。",
+  "partial_artifacts_note": "中断時に存在したディレクトリの原bytes。新規実行成果か旧残存かは未確定で、成功の根拠には使用しない。"
+}
