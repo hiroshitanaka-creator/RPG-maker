@@ -28,7 +28,15 @@ static func docks() -> Array:
 	return data()["docks"]+SecondRegionCoast.data()["docks"]+Region2Port.data()["docks"]+Region3Port.data()["docks"]
 
 static func destinations() -> Array:
-	return data()["destinations"]+Region2Port.data()["destinations"]+Region2Village.data()["destinations"]+Region3Port.data()["destinations"]
+	# 公開済みの固定カタログは既存利用側との完全互換を保つ。
+	return data()["destinations"]+Region2Port.data()["destinations"]+Region2Village.data()["destinations"]
+
+static func destinations_for(saved: Dictionary) -> Array:
+	# 本番UIと帰還実行は同じ保存文脈を使い、訪問済みの追加拠点も扱う。
+	var result := destinations()
+	for destination in Region3Port.data()["destinations"]:
+		if destination["id"] in snapshot(saved).get("visited",[]):result.append(destination)
+	return result
 
 static func encounter(cell: Vector2i) -> Dictionary:
 	var b: Array=data()["sea_bounds"]
@@ -77,7 +85,7 @@ static func return_to(saved: Dictionary, actor_id: String, destination: String) 
 	var actor: Dictionary={};var target: Dictionary={}
 	for member in saved["party"]:
 		if member["id"]==actor_id:actor=member
-	for place in destinations():
+	for place in destinations_for(saved):
 		if place["id"]==destination:target=place
 	if actor.is_empty() or target.is_empty() or actor["hp"]<=0 or actor["mp"]<data()["return_mp"]:return false
 	var point := FirstRegion.outside(target["entrance"])
