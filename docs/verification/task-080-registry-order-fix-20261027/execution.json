@@ -1,0 +1,436 @@
+[
+  {
+    "name": "00-editor-import",
+    "started_at_utc": "2026-10-27T13:32:35.801877+00:00",
+    "command": [
+      "godot",
+      "--headless",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 600,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:32:41.563768+00:00",
+    "elapsed_seconds": 5.761934396000015,
+    "exit_code": 0,
+    "log_sha256": "f15ffd4c558b01611d562c8c257508942bdc2dc542124f423ae2a592a46edfa6"
+  },
+  {
+    "name": "01-regeneration-check",
+    "started_at_utc": "2026-10-27T13:32:41.564780+00:00",
+    "command": [
+      "python3",
+      "-B",
+      "tools/check_region2_village_backdrops.py"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 120,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:33:17.676653+00:00",
+    "elapsed_seconds": 36.11201167799982,
+    "exit_code": 0,
+    "log_sha256": "911a32201bdb39c6e64f37f0b9eb0d89a233a52b5c4ce95db179882ed9fa6e02"
+  },
+  {
+    "name": "02-strict",
+    "started_at_utc": "2026-10-27T13:33:17.680661+00:00",
+    "command": [
+      "python3",
+      "tools/validate_assets.py",
+      "--strict"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 120,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:33:25.327082+00:00",
+    "elapsed_seconds": 7.646446479999668,
+    "exit_code": 0,
+    "log_sha256": "063b1e09d4a350503f5958354282bf9b860f4e5953cdf6e0f0937a663b9cfdc7"
+  },
+  {
+    "name": "03-R-01",
+    "started_at_utc": "2026-10-27T13:33:25.582658+00:00",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 300,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:33:28.707058+00:00",
+    "elapsed_seconds": 3.1244283630003338,
+    "exit_code": 0,
+    "log_sha256": "3e0e20e5ec8287b83014674440d16903b2982bc63efa01fb5a32493a2fae609b"
+  },
+  {
+    "name": "03-R-02",
+    "started_at_utc": "2026-10-27T13:33:28.708512+00:00",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 300,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:33:38.407538+00:00",
+    "elapsed_seconds": 9.699054889000308,
+    "exit_code": 0,
+    "log_sha256": "bffc1bd722447d2d01decb8394b4ee73b0b59dc2b1f65248ece347e859c956a2"
+  },
+  {
+    "name": "03-R-03",
+    "started_at_utc": "2026-10-27T13:33:38.408410+00:00",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 300,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:33:40.687034+00:00",
+    "elapsed_seconds": 2.27865248299986,
+    "exit_code": 0,
+    "log_sha256": "3cf79c886594f4e054b2db9448e130a4612bdf3cf9d43725ddbc75e15b4acfe0"
+  },
+  {
+    "name": "03-R-04",
+    "started_at_utc": "2026-10-27T13:33:40.687848+00:00",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 300,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:33:43.612443+00:00",
+    "elapsed_seconds": 2.9246232870000313,
+    "exit_code": 0,
+    "log_sha256": "00a11e830a99dd3be90bd66171a3c0715bfd0528784a9a8aee3d4cef30b59db4"
+  },
+  {
+    "name": "03-R-05",
+    "started_at_utc": "2026-10-27T13:33:43.614389+00:00",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 300,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:33:45.989008+00:00",
+    "elapsed_seconds": 2.3746491060001063,
+    "exit_code": 0,
+    "log_sha256": "e971cfae32ddafd10640eea8d8124eeaf306eac622b8ec5b7648ba4581ca4f38"
+  },
+  {
+    "name": "03-R-06",
+    "started_at_utc": "2026-10-27T13:33:45.990586+00:00",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 300,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:33:48.713170+00:00",
+    "elapsed_seconds": 2.722611182000037,
+    "exit_code": 0,
+    "log_sha256": "402152f2933eec5aee3fd9c886825d1f7279c1cd302fe030a9465964c090bc1c"
+  },
+  {
+    "name": "03-R-07",
+    "started_at_utc": "2026-10-27T13:33:48.714115+00:00",
+    "command": "godot --headless --path . --script res://tools/smoke_first_region.gd",
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 300,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:34:58.764693+00:00",
+    "elapsed_seconds": 70.05060705799997,
+    "exit_code": 0,
+    "log_sha256": "f7d06576c25fe1e5a1cbbdc361b917e26674267fd8793d29dbc841b1c0e94754"
+  },
+  {
+    "name": "03-R-08",
+    "started_at_utc": "2026-10-27T13:34:58.766104+00:00",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 300,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:35:18.505055+00:00",
+    "elapsed_seconds": 19.73897923200002,
+    "exit_code": 0,
+    "log_sha256": "1de6f79e5092a19d7aa5eb2a6a6c20ec57da9b2d077a14fe0b4875e0bc7f4b0b"
+  },
+  {
+    "name": "04-frozen",
+    "started_at_utc": "2026-10-27T13:35:18.506081+00:00",
+    "command": [
+      "python3",
+      "tools/check_frozen_files.py"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 60,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:35:18.570668+00:00",
+    "elapsed_seconds": 0.0646097879998706,
+    "exit_code": 0,
+    "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+  },
+  {
+    "name": "05-coastal-boundary",
+    "started_at_utc": "2026-10-27T13:35:18.571361+00:00",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_coastal_travel.gd"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 180,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:35:21.595692+00:00",
+    "elapsed_seconds": 3.024359115000152,
+    "exit_code": 0,
+    "log_sha256": "e5dd97ec3a0d47ae3edf7bcbaeedb9380f8b980425e4e43417c732d4376001cd"
+  },
+  {
+    "name": "05-saved-position",
+    "started_at_utc": "2026-10-27T13:35:21.596535+00:00",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_saved_position_relocation.gd"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 120,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:35:24.522434+00:00",
+    "elapsed_seconds": 2.9259487079998507,
+    "exit_code": 0,
+    "log_sha256": "9d1a16c51cb348720847355910627bdd1c7c60590d32ab6f948b8a8b40675f60"
+  },
+  {
+    "name": "05-second-coast",
+    "started_at_utc": "2026-10-27T13:35:24.524382+00:00",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_second_region_coast.gd"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 180,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:35:27.103231+00:00",
+    "elapsed_seconds": 2.5789275639999687,
+    "exit_code": 0,
+    "log_sha256": "d89d8374684351b4806912dcce4804f8b44eb1947587a54202ff92798bc5bcee"
+  },
+  {
+    "name": "05-region2-port",
+    "started_at_utc": "2026-10-27T13:35:27.107886+00:00",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_port.gd"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 180,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:35:30.954362+00:00",
+    "elapsed_seconds": 3.846553352000228,
+    "exit_code": 0,
+    "log_sha256": "23ab4f5554969ebb2f221c88eaa07f51244d3b9cce6d3e94e8041c18f2dc4b70"
+  },
+  {
+    "name": "06-cases",
+    "started_at_utc": "2026-10-27T13:35:30.955540+00:00",
+    "command": [
+      "python3",
+      "-B",
+      "/workspace/task080/github-save-20261027/order-fix/order_cases.py",
+      "/workspace/task080/github-save-20261027/order-fix/run/cases.json"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 120,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:35:31.492621+00:00",
+    "elapsed_seconds": 0.5371061949999785,
+    "exit_code": 0,
+    "log_sha256": "263154fd433a9775874e0f1503b8c1533ab01bbf6af75696ae51712f07a4b55c"
+  },
+  {
+    "name": "07-first-build",
+    "started_at_utc": "2026-10-27T13:35:31.493627+00:00",
+    "command": [
+      "python3",
+      "-B",
+      "tools/build_region2_village_backdrops.py",
+      "--output-root",
+      "/workspace/task080/github-save-20261027/order-fix/run/regenerated/first"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 120,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:35:45.265793+00:00",
+    "elapsed_seconds": 13.772192675000042,
+    "exit_code": 0,
+    "log_sha256": "c79cbe5a533a4caa397aa6bdbfe2a3c000c965e902cfa016ed96eeba40e9f959"
+  },
+  {
+    "name": "07-second-build",
+    "started_at_utc": "2026-10-27T13:35:45.266853+00:00",
+    "command": [
+      "python3",
+      "-B",
+      "tools/build_region2_village_backdrops.py",
+      "--output-root",
+      "/workspace/task080/github-save-20261027/order-fix/run/regenerated/second"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 120,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:35:58.994456+00:00",
+    "elapsed_seconds": 13.727725229000043,
+    "exit_code": 0,
+    "log_sha256": "c79cbe5a533a4caa397aa6bdbfe2a3c000c965e902cfa016ed96eeba40e9f959"
+  },
+  {
+    "name": "08-render-inn",
+    "started_at_utc": "2026-10-27T13:35:59.097164+00:00",
+    "command": [
+      "godot",
+      "--display-driver",
+      "x11",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_adopted_room_foundation.gd"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 180,
+    "case_environment": {
+      "ADOPTED_ROOM_INDEX": "0"
+    },
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:36:50.523255+00:00",
+    "elapsed_seconds": 51.42617227299979,
+    "exit_code": 0,
+    "log_sha256": "d009879e3195d0c3cc07a5d2b256b979f942759caa158bf4004b17f7f35a8633"
+  },
+  {
+    "name": "08-render-item_shop",
+    "started_at_utc": "2026-10-27T13:36:50.524563+00:00",
+    "command": [
+      "godot",
+      "--display-driver",
+      "x11",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_adopted_room_foundation.gd"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 180,
+    "case_environment": {
+      "ADOPTED_ROOM_INDEX": "1"
+    },
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:37:53.116785+00:00",
+    "elapsed_seconds": 62.59232540799985,
+    "exit_code": 0,
+    "log_sha256": "36c8295b1e002cb34262e1e9a2e66a827d5eddacc2025c043c6ca741f41af5d7"
+  },
+  {
+    "name": "08-render-weapon_shop",
+    "started_at_utc": "2026-10-27T13:37:53.118087+00:00",
+    "command": [
+      "godot",
+      "--display-driver",
+      "x11",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_adopted_room_foundation.gd"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 180,
+    "case_environment": {
+      "ADOPTED_ROOM_INDEX": "2"
+    },
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:38:51.442063+00:00",
+    "elapsed_seconds": 58.324034475999724,
+    "exit_code": 0,
+    "log_sha256": "747401ed902bf3cf7abb4135ca00803f1591c4813a7785a2a75e09312159cbcf"
+  },
+  {
+    "name": "08-render-shrine",
+    "started_at_utc": "2026-10-27T13:38:51.443446+00:00",
+    "command": [
+      "godot",
+      "--display-driver",
+      "x11",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_adopted_room_foundation.gd"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 180,
+    "case_environment": {
+      "ADOPTED_ROOM_INDEX": "3"
+    },
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:39:48.980411+00:00",
+    "elapsed_seconds": 57.53702169600001,
+    "exit_code": 0,
+    "log_sha256": "6862610d3b4cbfd3a96570e7ff25a786474592c77a8ebb077dba57e450e912d9"
+  },
+  {
+    "name": "08-render-armor_shop",
+    "started_at_utc": "2026-10-27T13:39:48.981888+00:00",
+    "command": [
+      "godot",
+      "--display-driver",
+      "x11",
+      "--audio-driver",
+      "Dummy",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_adopted_room_foundation.gd"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 180,
+    "case_environment": {
+      "ADOPTED_ROOM_INDEX": "4"
+    },
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:40:44.994128+00:00",
+    "elapsed_seconds": 56.01248355000007,
+    "exit_code": 0,
+    "log_sha256": "c3af1c6fe58597b5c36874adedd6394e43300ddbbae39216aa86cc6a49cfa089"
+  }
+]

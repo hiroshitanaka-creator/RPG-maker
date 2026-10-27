@@ -1,0 +1,95 @@
+{
+  "base": "e677896d3e61b8fe8136ef60c5c76f41ad76701d",
+  "source": "84f446e48cbaef2a199da1d464311992daf13938",
+  "errors": [
+    "既存差分範囲:['assets/registry.json', 'docs/verification/first-region/screen-checks.json', 'docs/verification/region2-port/checks.json']"
+  ],
+  "negative": [
+    {
+      "case": "不足室",
+      "rejected": true,
+      "errors": [
+        "5室の識別",
+        "画像重複"
+      ]
+    },
+    {
+      "case": "画像取り違え",
+      "rejected": true,
+      "errors": [
+        "画像重複"
+      ]
+    },
+    {
+      "case": "家具通過",
+      "rejected": true,
+      "errors": [
+        "item_shop:目視固定[6, 8]",
+        "item_shop:目視固定[4, 8]"
+      ]
+    },
+    {
+      "case": "入口閉鎖",
+      "rejected": true,
+      "errors": [
+        "inn:閉じ込め"
+      ]
+    },
+    {
+      "case": "未承認接続",
+      "rejected": true,
+      "errors": [
+        "未承認接続"
+      ]
+    }
+  ],
+  "hashes": [
+    {
+      "path": "assets/interiors/region3_room_inn.png",
+      "bytes": 184495,
+      "sha256": "52723c0560ca54cf9aff695d383a17235b8f224058dda7a2367304e79cb5e007"
+    },
+    {
+      "path": "assets/interiors/region3_room_item_shop.png",
+      "bytes": 168249,
+      "sha256": "76bf5d755bf8b98d7125c800abf02fb27b2b5dda080ac43ff1f966a9c65469cb"
+    },
+    {
+      "path": "assets/interiors/region3_room_weapon_shop.png",
+      "bytes": 167018,
+      "sha256": "be55b08fc7da5421f84c8c88001586e523369b9dfff8e950d83bd96500e6d93c"
+    },
+    {
+      "path": "assets/interiors/region3_room_shrine.png",
+      "bytes": 166573,
+      "sha256": "46c00cbdc2ad0d02e1d05662793c15bb2117ea28cb9f0ceeab75f118ce8065c8"
+    },
+    {
+      "path": "assets/interiors/region3_room_armor_shop.png",
+      "bytes": 165817,
+      "sha256": "eefd5131abf790c2a8e7ff5393054898f8bf126b722cca2982e634a4b21f4b31"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "inn",
+      "floors": 53
+    },
+    {
+      "id": "item_shop",
+      "floors": 64
+    },
+    {
+      "id": "weapon_shop",
+      "floors": 63
+    },
+    {
+      "id": "shrine",
+      "floors": 58
+    },
+    {
+      "id": "armor_shop",
+      "floors": 59
+    }
+  ]
+}

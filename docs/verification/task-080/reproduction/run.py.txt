@@ -1,0 +1,11 @@
+import subprocess,os,json,time,sys
+from pathlib import Path
+base=Path('/workspace/task080');name=sys.argv[1];cwd=sys.argv[2];timeout=int(sys.argv[3]);cmd=sys.argv[4:]
+env=os.environ.copy();env.update(PATH=str(base/'bin')+':'+env['PATH'],XDG_DATA_HOME=str(base/'xdg/data'),XDG_CONFIG_HOME=str(base/'xdg/config'),XDG_CACHE_HOME=str(base/'xdg/cache'),RPG_QA_SAVE_PREFIX='task080',ADOPTED_ROOM_OUTPUT=str(base/'evidence'))
+t=time.time();out=base/'evidence';log=out/(name+'.log')
+with log.open('wb') as f:
+ try:result=subprocess.run(cmd,cwd=cwd,env=env,stdout=f,stderr=subprocess.STDOUT,timeout=timeout);code=result.returncode;status='executed'
+ except subprocess.TimeoutExpired:code=124;status='timeout'
+record=dict(name=name,command=cmd,cwd=cwd,timeout_seconds=timeout,exit_code=code,status=status,seconds=round(time.time()-t,3))
+(out/(name+'.execution.json')).write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record),flush=True)
+sys.exit(code)

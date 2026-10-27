@@ -1,0 +1,13 @@
+import importlib.util,subprocess,json,time,os
+from pathlib import Path
+r=Path('/workspace/RPG-maker');o=Path('/workspace/task080/evidence/locked');o.mkdir(exist_ok=True)
+s=importlib.util.spec_from_file_location('locked',r/'tools/run_locked_checks.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+results=[]
+for req in json.loads((r/'.scope-lock/spec.lock.json').read_text())['requirements']:
+ t=time.time();timeout=False
+ try:
+  p=subprocess.run(req['verify'],shell=True,cwd=r,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=300);code=p.returncode;raw=p.stdout
+ except subprocess.TimeoutExpired as e:code=124;raw=e.stdout or b'';timeout=True
+ (o/(req['id']+'.log')).write_bytes(raw);result=m.judge_output(req['id'],req['verify'],code,raw.decode(errors='replace'),timeout);result['seconds']=time.time()-t;results.append(result);print(req['id'],result['status'],flush=True)
+ (o/'results.json').write_text(json.dumps(results,ensure_ascii=False,indent=2)+'\n')
+raise SystemExit(any(x['status']!='PASS' for x in results))

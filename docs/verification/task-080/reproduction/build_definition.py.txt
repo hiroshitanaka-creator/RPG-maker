@@ -1,0 +1,27 @@
+import json
+from pathlib import Path
+# 足元で立てる床。家具の高い部分は既存overlaysで手前へ再描画する。
+rooms=[]
+configs=[
+('inn','宿屋',[(y,5,12) for y in range(3,9)]+[(9,2,12)],[(8,2,8,4),(9,4,11,4),(12,6,12,8)],[(248,58,32,118,5.5),(272,139,108,38,5.5)],300),
+('item_shop','道具屋',[(y,2,11) for y in range(3,10)],[(3,8,10,8)],[(104,248,230,42,9.1)],302),
+('weapon_shop','武器屋',[(y,2,11) for y in range(3,10)],[(2,4,2,4),(4,5,9,5),(11,3,11,4)],[(142,135,168,50,6.0)],290),
+('shrine','祠',[(y,2,11) for y in range(3,9)],[(5,3,8,4)],[(162,25,114,148,5.5)],280),
+('armor_shop','防具屋',[(y,2,11) for y in range(3,10)],[(2,6,2,7),(3,4,3,5),(4,5,8,5),(11,3,11,4),(11,6,11,7)],[(81,112,48,92,6.4),(46,176,51,96,8.5),(347,79,51,97,5.5),(346,176,51,96,8.5),(146,141,149,47,6.0)],289)
+]
+for role,label,rows,blocked,overlays,front in configs:
+ grid=[list('#'*14) for _ in range(12)]
+ for y,x0,x1 in rows:
+  for x in range(x0,x1+1):grid[y][x]='.'
+ for x0,y0,x1,y1 in blocked:
+  for y in range(y0,y1+1):
+   for x in range(x0,x1+1):grid[y][x]='#'
+ for y in (9,10,11):grid[y][6]='.'
+ # 前壁は原画像の同じ矩形を重ねる。入口の開口部分には重ねない。
+ pieces=[[x,y,w,h,x,y,b] for x,y,w,h,b in overlays]
+ pieces.extend([[8,front,168,384-front-8,8,front,12.0],[270,front,170,384-front-8,270,front,12.0]])
+ # 入口の上梁（各画像で実際に見える部分のみ）。
+ lintel={'inn':(176,300,94,20),'item_shop':(176,302,90,20),'weapon_shop':(176,290,96,19),'shrine':(166,280,107,20),'armor_shop':(176,289,96,21)}[role]
+ x,y,w,h=lintel;pieces.append([x,y,w,h,x,y,12.0])
+ rooms.append({'id':role,'label':label,'node':'dev_adopted_'+role,'path':'assets/interiors/region3_room_'+role+'.png','width':14,'height':12,'spawn':[6,9],'exit':[6,11],'return_trigger':[6,10],'layout':[''.join(x) for x in grid],'overlays':pieces})
+Path('world/adopted_room_foundation.json').write_text(json.dumps({'version':1,'development_only':True,'source_commit':'84f446e48cbaef2a199da1d464311992daf13938','rooms':rooms},ensure_ascii=False,indent=2)+'\n')

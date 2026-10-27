@@ -1,0 +1,17 @@
+# 080 台帳登録順の限定修正
+
+対象は非保護のtools/build_region2_village_backdrops.pyだけ。元候補d1d30b4db174952e125697a0754ea99bd3d559f3、元ZIP164546599 bytes/SHA256 f7d97291e6458b820303434267d2c26bfe39e229b6e8d8d8e3f75975d0fb8019、既存378payloadは全件保持。親台帳・main・PR操作は変更しない。
+
+原因：村の生成器が自分の10項目を削って末尾に再追加し、後から登録された5室と並び替わるため、既存CIの台帳全bytes再生成比較が失敗した。
+
+修正：生成された項目を同じpathの既存位置で置換する。非対象項目の順序・値・キー順はそのまま保持。まだ存在しない生成項目だけを生成順で末尾へ追加する。入力を変更せず、再適用でも重複追加しない。原画・PNG・台帳自体・既存検査・CI・test・scope-lock・時間上限は変更していない。
+
+実測：import先行後、既存再生成244判定PASS、strict1159件PASS、R01〜08全PASS、frozen26一致、coastal境界・保存位置復旧・第2地方海岸・港の既存回帰全exit0。固定入力の正例6件と旧アルゴリズム/破損出力の負例7件も全成功。38生成ファイルすべてについて、元bytes・1回目・2回目が完全一致（台帳1159項目の順序・値・キー順を含む）。5室の1191判定1862入力も再確認し失敗0。24実行のUTC・コマンド・cwd・上限・exit・原ログSHAは専用証拠execution.json。
+
+検証中に既存検査が生成した追跡JSONは、生成bytesをtracked-output-restoration.jsonへ保持し、検証前のHEAD原bytesへ復元した。原本の削除・失敗ログの上書きはしていない。
+
+生成器SHA256: 5a7be745e622c836dcdb60fe40896d6e9d26f8f73be36fd3b914ffa103cec730。最終コミットは検証済みの同じ生成器bytesとこの結果資料だけを含む。最終SHAの全GitHub CIは別途終了結果を確認し、ローカル成功と混同しない。PR59は親担当、子から作成・ready・mergeしない。
+
+戻し方：生成器1ファイルだけを5033a95時点の内容へ復元する追加の通常コミットを作る。新しい証拠・報告・元候補の不変ブランチ・原ZIPは保持する。元の並び替え不具合が戻るため統合判断は親が行う。
+
+証拠：docs/verification/task-080-registry-order-fix-20261027/。reproduction.jsonは全38件の3者SHA、cases.jsonは正負例、generator.diff.gzは原bytes可逆gzipの限定差分、protection.jsonは変更前の非保護照合。

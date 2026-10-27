@@ -1,0 +1,159 @@
+{
+  "rooms": [
+    {
+      "room": "inn",
+      "checks": 218,
+      "inputs": 332,
+      "failed": 0,
+      "seconds": 53.956,
+      "behind_pixels": 31,
+      "front_pixels": 0,
+      "visited": 52
+    },
+    {
+      "room": "item_shop",
+      "checks": 255,
+      "inputs": 406,
+      "failed": 0,
+      "seconds": 60.817,
+      "behind_pixels": 95,
+      "front_pixels": 0,
+      "visited": 63
+    },
+    {
+      "room": "weapon_shop",
+      "checks": 250,
+      "inputs": 396,
+      "failed": 0,
+      "seconds": 61.526,
+      "behind_pixels": 364,
+      "front_pixels": 0,
+      "visited": 62
+    },
+    {
+      "room": "shrine",
+      "checks": 231,
+      "inputs": 358,
+      "failed": 0,
+      "seconds": 53.848,
+      "behind_pixels": 437,
+      "front_pixels": 0,
+      "visited": 57
+    },
+    {
+      "room": "armor_shop",
+      "checks": 237,
+      "inputs": 370,
+      "failed": 0,
+      "seconds": 58.283,
+      "behind_pixels": 9,
+      "front_pixels": 0,
+      "visited": 58
+    }
+  ],
+  "total_checks": 1191,
+  "total_input_events": 1862,
+  "locked": [
+    {
+      "id": "R-01",
+      "status": "PASS",
+      "seconds": 1.9485352039337158,
+      "gut_summary": {
+        "assertions": 765,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      }
+    },
+    {
+      "id": "R-02",
+      "status": "PASS",
+      "seconds": 8.766219139099121,
+      "gut_summary": {
+        "assertions": 946,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 5
+      }
+    },
+    {
+      "id": "R-03",
+      "status": "PASS",
+      "seconds": 2.131830930709839,
+      "gut_summary": {
+        "assertions": 73,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      }
+    },
+    {
+      "id": "R-04",
+      "status": "PASS",
+      "seconds": 2.873718500137329,
+      "gut_summary": {
+        "assertions": 293,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 1
+      }
+    },
+    {
+      "id": "R-05",
+      "status": "PASS",
+      "seconds": 2.136779546737671,
+      "gut_summary": {
+        "assertions": 79,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      }
+    },
+    {
+      "id": "R-06",
+      "status": "PASS",
+      "seconds": 2.7114152908325195,
+      "gut_summary": {
+        "assertions": 87,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      }
+    },
+    {
+      "id": "R-07",
+      "status": "PASS",
+      "seconds": 69.52815103530884,
+      "gut_summary": null
+    },
+    {
+      "id": "R-08",
+      "status": "PASS",
+      "seconds": 18.359898567199707,
+      "gut_summary": {
+        "assertions": 3046,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 25
+      }
+    }
+  ],
+  "strict": {
+    "baseline_exit": 0,
+    "candidate_exit": 1,
+    "errors": 5
+  },
+  "legacy_coastal": {
+    "same_raw_log_bytes": true,
+    "candidate_exit": 124,
+    "base_exit": 124,
+    "unmodified_checker": true
+  }
+}

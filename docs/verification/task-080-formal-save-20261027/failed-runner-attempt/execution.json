@@ -1,0 +1,38 @@
+[
+  {
+    "name": "00-editor-import",
+    "started_at_utc": "2026-10-27T13:00:29.078966+00:00",
+    "command": [
+      "godot",
+      "--headless",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 600,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:01:43.201026+00:00",
+    "elapsed_seconds": 74.12220512699997,
+    "exit_code": 0,
+    "log_sha256": "bce510a1de2be1ced988afe65fc8aac46b2bab92831cdf131310ac575765c2eb"
+  },
+  {
+    "name": "01-strict",
+    "started_at_utc": "2026-10-27T13:01:43.206726+00:00",
+    "command": [
+      "python3",
+      "tools/validate_assets.py",
+      "--strict"
+    ],
+    "cwd": "/workspace/task080/github-save-20261027/repo",
+    "timeout_seconds": 120,
+    "case_environment": {},
+    "status": "executed",
+    "ended_at_utc": "2026-10-27T13:01:50.438880+00:00",
+    "elapsed_seconds": 7.23249432099999,
+    "exit_code": 0,
+    "log_sha256": "063b1e09d4a350503f5958354282bf9b860f4e5953cdf6e0f0937a663b9cfdc7"
+  }
+]

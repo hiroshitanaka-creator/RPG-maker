@@ -1,0 +1,52 @@
+{
+  "tested_commit": "c1ee2614c040aaa21f2c40af42e4797ea9684386",
+  "snapshot_commit": "d1d30b4db174952e125697a0754ea99bd3d559f3",
+  "latest_main": "bc5d827457e2b67164a217ce41bf7ca1a9b1e67b",
+  "records": 20,
+  "all_exit_zero": true,
+  "import_first": true,
+  "strict_images": 1159,
+  "rooms": [
+    {
+      "room": "inn",
+      "checks": 218,
+      "inputs": 332,
+      "failed": 0
+    },
+    {
+      "room": "item_shop",
+      "checks": 255,
+      "inputs": 406,
+      "failed": 0
+    },
+    {
+      "room": "weapon_shop",
+      "checks": 250,
+      "inputs": 396,
+      "failed": 0
+    },
+    {
+      "room": "shrine",
+      "checks": 231,
+      "inputs": 358,
+      "failed": 0
+    },
+    {
+      "room": "armor_shop",
+      "checks": 237,
+      "inputs": 370,
+      "failed": 0
+    }
+  ],
+  "checks": 1191,
+  "inputs": 1862,
+  "locked_all_pass": true,
+  "protected_files": 26,
+  "original_payload_preserved": 378,
+  "parent_ledgers_exact_latest_main": true,
+  "restored_generated_tracked_outputs": [
+    "docs/verification/region2-port/checks.json"
+  ],
+  "ci": "server workflow runs must be checked on final pushed SHA; not inferred from local success",
+  "draft_pr": "rejected by auto-review; not created"
+}

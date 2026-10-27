@@ -1,0 +1,53 @@
+from pathlib import Path
+import hashlib,json,subprocess,os,shutil,zipfile
+r=Path('/workspace/RPG-maker');w=Path('/workspace/task080');e=w/'evidence';dest=r/'docs/verification/task-080';dest.mkdir(parents=True,exist_ok=True)
+# 保存中のログを持つ実行がないことを確認してから原証拠を複製。
+for p in e.rglob('*'):
+ if p.is_file():
+  to=dest/p.relative_to(e);to.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,to)
+(dest/'.gdignore').write_text('')
+base='e677896d3e61b8fe8136ef60c5c76f41ad76701d'
+def git(*args,env=None):return subprocess.check_output(['git',*args],cwd=r,env=env)
+assert git('rev-parse','HEAD').decode().strip()==base
+tracked=git('diff','--name-only',base).decode().splitlines()
+new=git('ls-files','--others','--exclude-standard').decode().splitlines()
+assert tracked==['assets/registry.json'],tracked
+core=['assets/registry.json','assets/source_records/region3-room-adoption-2026-10-17.json','world/adopted_room_foundation.json','tools/adopted_room_foundation.gd','tools/adopted_room_foundation.gd.uid','tools/adopted_room_foundation.tscn','tools/check_adopted_room_foundation.gd','tools/check_adopted_room_foundation.gd.uid','tools/check_adopted_room_foundation.py','docs/tasks/reports/080-adopted-room-walking-foundation.md']+['assets/interiors/region3_room_'+n+'.png' for n in ['inn','item_shop','weapon_shop','shrine','armor_shop']]
+changed=sorted(tracked+new)
+assert all(p in core or p.startswith('docs/verification/task-080/') for p in changed)
+assert all(p in changed for p in core)
+assert not any(p.startswith(('test/','.scope-lock/','.github/','assets/_incoming/')) for p in changed)
+# 正規index・refを変えず、未commit候補のtreeとbinary diffを作る。
+env=os.environ.copy();env['GIT_INDEX_FILE']=str(w/'candidate.index')
+git('read-tree',base,env=env);git('add','--',*changed,env=env);tree=git('write-tree',env=env).decode().strip()
+patch=git('diff','--cached','--binary',base,env=env);git('diff','--cached','--check',base,env=env)
+verify=env.copy();verify['GIT_INDEX_FILE']=str(w/'verification.index');git('read-tree',base,env=verify)
+pack=w/'delivery';pack.mkdir(exist_ok=True);(pack/'changes.patch').write_bytes(patch)
+subprocess.run(['git','apply','--cached','--check',str(pack/'changes.patch')],cwd=r,env=verify,check=True)
+subprocess.run(['git','apply','--cached',str(pack/'changes.patch')],cwd=r,env=verify,check=True)
+assert git('write-tree',env=verify).decode().strip()==tree
+rows=[]
+for name in changed:
+ b=(r/name).read_bytes();assert git('show',tree+':'+name)==b
+ target=pack/'payload'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(b)
+ rows.append({'path':name,'status':'M' if name in tracked else 'A','bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()})
+# 元registryはpatch復元と独立比較用。
+(pack/'base').mkdir(exist_ok=True);(pack/'base/assets-registry.json').write_bytes(git('show',base+':assets/registry.json'))
+(pack/'changed-files.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+(pack/'changed-files.txt').write_text('\n'.join(x['status']+' '+x['path'] for x in rows)+'\n')
+metadata={'base_sha':base,'source_sha':'84f446e48cbaef2a199da1d464311992daf13938','candidate_tree':tree,'commit_created':False,'github_mutations':False,'files':len(rows),'core_files':len(core),'evidence_files':len(rows)-len(core),'patch_applies_to_base':True,'applied_tree_equals_candidate':True,'strict_blocker':'5 owner provenance paths rejected by unchanged validator','legacy_coastal':'base/candidate exit124; identical raw Dictionary error logs','formal_ci':'not run; parent responsibility'}
+(pack/'candidate.json').write_text(json.dumps(metadata,indent=2)+'\n');shutil.copyfile(e/'REPRODUCE.md',pack/'REPRODUCE.md')
+manifest=[]
+for p in sorted(pack.rglob('*')):
+ if p.is_file():manifest.append({'path':p.relative_to(pack).as_posix(),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+(pack/'SHA256SUMS.json').write_text(json.dumps({'excludes':['SHA256SUMS.json'],'files':manifest},indent=2)+'\n')
+zip_path=w/'task-080-adopted-room-walking-foundation.zip'
+with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+ for p in sorted(pack.rglob('*')):
+  if p.is_file():z.write(p,p.relative_to(pack).as_posix())
+with zipfile.ZipFile(zip_path) as z:
+ assert z.testzip() is None
+ for p in manifest:assert hashlib.sha256(z.read(p['path'])).hexdigest()==p['sha256']
+ assert len(z.namelist())==len(manifest)+1
+result={**metadata,'zip':str(zip_path),'bytes':zip_path.stat().st_size,'sha256':hashlib.sha256(zip_path.read_bytes()).hexdigest(),'zip_entries':len(manifest)+1,'all_zip_entries_crc_and_sha_verified':True}
+(w/'delivery-result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

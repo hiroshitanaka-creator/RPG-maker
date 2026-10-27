@@ -175,6 +175,13 @@ def derive(role,spec):
     record=dict(original=spec['original'],sha256=spec['sha256'],source='依頼者提供の採用原画。原本は無加工で保管。生成手段を独立に確認した記録ではない。',**info,canvas=list(image.size),colors=len(np.unique(rgb.reshape(-1,3),axis=0)),palette_indices=[int(v) for v in selected],palette_used=[list(map(int,c)) for c in colors[selected]],objects=spec['objects'],additional_blocks=spec['blocks'],floor_polygon=spec['floor'],foot_coverage_min=.35,floor_coverage_min=.70,start=spec['start'],doors=spec['doors'],targets=spec['targets'],layout=layout,isolated_cells=isolated,walkable_cells=int(walk.sum()),overlays=dict(path=upper,size=list(padded.size),pieces=table),background=background)
     return image,padded,map_data,record,walk
 
+def merge_asset_entries(existing, generated):
+    """既存項目の位置を保ち、未登録の派生だけを生成順に末尾へ追加する。"""
+    replacements={entry['path']:entry for entry in generated}
+    existing_paths={entry['path'] for entry in existing}
+    return ([replacements.get(entry['path'],entry) for entry in existing]
+            + [entry for entry in generated if entry['path'] not in existing_paths])
+
 def build(destination):
     document=dict(version=1,status='独立した地形・施設土台。本番イベント・保存先・施設機能は未接続',maps={})
     records=dict(version=1,baseline_commit='dad3fca1d2d6216c3418999d27a4cf581ca00860',method='原画の最近傍縮小、natural.gplの選択64色への最近傍減色、同じ背景画素から二値透過の上層を切出し。平均化・描足し・色調補正なし。',palette='assets/palette/natural.gpl',palette_sha256='1b1c00dd929b96b64703972a0ae9368c36636b96c8f717dded78524e57913088',maps={})
@@ -203,11 +210,13 @@ def build(destination):
         print('VILLAGE_BUILD: '+role+' colors='+str(record['colors'])+' walk='+str(record['walkable_cells'])+' pieces='+str(len(record['overlays']['pieces'])),flush=True)
     write(destination/WORLD,document);write(destination/RECORD,records)
     registry=json.loads((ROOT/'assets/registry.json').read_text(encoding='utf-8'))
-    registry['assets']=[entry for entry in registry['assets'] if entry['path'] not in outputs]
+    existing_entries=registry['assets']
+    registry['assets']=[]
     for role,record in records['maps'].items():
         common=dict(status='required',palette='assets/palette/natural.gpl',source='generated',tool='依頼者提供原画 + Python/Pillow（派生変換）',author='RPG-maker / Codex（原画：依頼者）',license='LicenseRef-Generated-Project',generated_at='2026-10-04',original_file=record['original'],prompt_record=RECORD+'#maps/'+role,conversion_record=RECORD+'#maps/'+role,max_colors=64)
         registry['assets'].append(dict(path=record['background'],kind='town_backdrop' if role=='exterior' else 'interior_backdrop',size=record['canvas'],modified='採用原画を記録した最近傍縮小・配置・64色以内の最近傍減色だけで派生。原画は変更しない。本番イベントは未接続。',**common))
         registry['assets'].append(dict(path=record['overlays']['path'],kind='town_overlay',size=record['overlays']['size'],modified='背景と同一画素を足元の順で重ねる上層へ切出し。アルファは0/255、原画への描足しなし。',**common))
+    registry['assets']=merge_asset_entries(existing_entries,registry['assets'])
     write(destination/'assets/registry.json',registry)
     print('VILLAGE_BACKDROPS_BUILD_PASS: maps=5 assets=10')
 
