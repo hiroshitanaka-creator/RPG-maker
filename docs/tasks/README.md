@@ -85,3 +85,8 @@
 
 ## 2026-10-22 coastal検査開始位置の限定修正
 - 依頼[coastal](coastal-fixture-fix-2026-10-22.md)、[担当報告](reports/coastal-fixture-fix-2026-10-22.md)。ユーザー承認済み2行を実装。親は原ZIP CRC/SHA、固定main元コードと2行diff、旧exit124→93項目PASS、R全8/保護26/strict/関連回帰を検収。正式head全CI/PR/統合は未実施で完了扱いにしない。通常プレイ撮影/利用者実機は未検証。他追跡7737ファイル/実行体hashは担当原記録による確認。親台帳記録者ルッカ。
+
+
+### coastalの取込後確認（2026-10-27 JST記録）
+coastalは2026-10-23に統合後検収まで完了。PR #57、提出d8f11e2a84e485a06498f3df4c21e61889217139のpush/PR全10 workflow・76ジョブ成功後、main ec48f7fe60e6ba6f10450a103ea5d1a65a8fd895へ通常merge。統合後の5 workflow・38ジョブ、R-01〜R-08、前後保護26件の一致は10月23日の親検収記録に基づく。今回、PRのmergedと同mainのworkflow成功を再取得したが、検査を再実行したものではない。上の未実施行は提出時の経緯として保持。通常プレイ撮影・利用者実機未検証を維持し、080新成果の受領・066/073等の保留は含めない。
+根拠：[PR57](https://github.com/hiroshitanaka-creator/RPG-maker/pull/57)、[統合後原CIログ](https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/39899036755/job/120236068784)、[STATUS 2026-10-23 13:34 JST](https://github.com/hiroshitanaka-creator/lucca-workspace/blob/main/projects/rpg-maker/STATUS.md)。記録者ルッカ。本追記は資料整合であり、本体の新機能ではない。
