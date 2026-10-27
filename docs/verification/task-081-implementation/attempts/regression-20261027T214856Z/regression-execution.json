@@ -1,0 +1,458 @@
+[
+  {
+    "name": "engine",
+    "command": "godot --version",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:45:45.240606+00:00",
+    "finished": "2026-10-27T21:45:45.259041+00:00",
+    "timeout_seconds": 30,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "edff16c1721dd4ae989cadf29a01f574ae8d51b118221f664725bd6980bbba5d"
+  },
+  {
+    "name": "editor-import",
+    "command": "godot --headless --editor --import --quit",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:45:45.259259+00:00",
+    "finished": "2026-10-27T21:45:48.585720+00:00",
+    "timeout_seconds": 600,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "69668dad9991ad173318be48fff5225b6b66d889842a232b32be6428b768f6ac"
+  },
+  {
+    "name": "frozen-before",
+    "command": "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python tools/check_frozen_files.py",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:45:48.585939+00:00",
+    "finished": "2026-10-27T21:45:48.608388+00:00",
+    "timeout_seconds": 30,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+  },
+  {
+    "name": "data",
+    "command": "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python tools/check_task081_port_data.py",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:45:48.608531+00:00",
+    "finished": "2026-10-27T21:45:51.894246+00:00",
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "8bdc0f0666e426d0bf1e3cbbfc88564e194a62724165cd9fdc477a16199bcedc"
+  },
+  {
+    "name": "assets",
+    "command": "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python tools/validate_assets.py --strict",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:45:51.894444+00:00",
+    "finished": "2026-10-27T21:45:59.339482+00:00",
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "473b4f4f83b7dfbba75782265ff82cbeabef3b8af0a162ad0f54a6d6383da3d3"
+  },
+  {
+    "name": "R-01",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:45:59.339870+00:00",
+    "finished": "2026-10-27T21:46:00.981949+00:00",
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "id": "R-01",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 765,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    "raw_log_sha256": "a8b2b8ce9f2be0acf59543e7f6115d18b8a5207f01051b334cb85b58907d927f"
+  },
+  {
+    "name": "R-02",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:46:00.982217+00:00",
+    "finished": "2026-10-27T21:46:08.233176+00:00",
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "id": "R-02",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 946,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 5
+      },
+      "failure_messages": []
+    },
+    "raw_log_sha256": "6af033e0a554433efed1f898b3b1d0c09e6df6ae92c981a77bcf7cc3a4834c91"
+  },
+  {
+    "name": "R-03",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:46:08.235672+00:00",
+    "finished": "2026-10-27T21:46:09.881378+00:00",
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "id": "R-03",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 73,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    "raw_log_sha256": "3d4107da0f3208da2c2b8ba846bd78e895ff9359094079be9a8c7967b18bb856"
+  },
+  {
+    "name": "R-04",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:46:09.881895+00:00",
+    "finished": "2026-10-27T21:46:12.181483+00:00",
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "id": "R-04",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 293,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 1
+      },
+      "failure_messages": []
+    },
+    "raw_log_sha256": "38ebcd4042da1f7c94b10d9fe2ed4d5f67377c71be066d182fd24b74441382e2"
+  },
+  {
+    "name": "R-05",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:46:12.181992+00:00",
+    "finished": "2026-10-27T21:46:14.037416+00:00",
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "id": "R-05",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 79,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    "raw_log_sha256": "94b09f0a4e6309dfdd452ddaab9a507dfacd69321c7346d7ab653c149136f107"
+  },
+  {
+    "name": "R-06",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:46:14.037892+00:00",
+    "finished": "2026-10-27T21:46:16.150619+00:00",
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "id": "R-06",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 87,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    "raw_log_sha256": "0dff7653d3b41ca092db74eb57f1661031bcaacec59afeac51df4fc759a6a54e"
+  },
+  {
+    "name": "R-07",
+    "command": "godot --headless --path . --script res://tools/smoke_first_region.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:46:16.151141+00:00",
+    "finished": "2026-10-27T21:47:13.631305+00:00",
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "id": "R-07",
+      "verify": "godot --headless --path . --script res://tools/smoke_first_region.gd",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": null,
+      "failure_messages": []
+    },
+    "raw_log_sha256": "f7d06576c25fe1e5a1cbbdc361b917e26674267fd8793d29dbc841b1c0e94754"
+  },
+  {
+    "name": "R-08",
+    "command": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:13.631669+00:00",
+    "finished": "2026-10-27T21:47:28.608486+00:00",
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "id": "R-08",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 3046,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 25
+      },
+      "failure_messages": []
+    },
+    "raw_log_sha256": "e4a60be7492c8bfc244d7453910b4a81cf8d6c475e3121b3bdb7ba928784610d"
+  },
+  {
+    "name": "saved_value_types",
+    "command": "godot --headless --path . --script res://tools/check_saved_value_types.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:28.609807+00:00",
+    "finished": "2026-10-27T21:47:29.427197+00:00",
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "078df870765ca0268bfcf19ee62942f1df11de2ffd2b1f30729d822d0b84a1a6"
+  },
+  {
+    "name": "saved_position_relocation",
+    "command": "godot --headless --path . --script res://tools/check_saved_position_relocation.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:29.427690+00:00",
+    "finished": "2026-10-27T21:47:31.534045+00:00",
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "9d1a16c51cb348720847355910627bdd1c7c60590d32ab6f948b8a8b40675f60"
+  },
+  {
+    "name": "coastal_travel",
+    "command": "godot --headless --path . --script res://tools/check_coastal_travel.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:31.534428+00:00",
+    "finished": "2026-10-27T21:47:33.647311+00:00",
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "e5dd97ec3a0d47ae3edf7bcbaeedb9380f8b980425e4e43417c732d4376001cd"
+  },
+  {
+    "name": "second_region_coast",
+    "command": "godot --headless --path . --script res://tools/check_second_region_coast.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:33.647713+00:00",
+    "finished": "2026-10-27T21:47:35.104167+00:00",
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "d89d8374684351b4806912dcce4804f8b44eb1947587a54202ff92798bc5bcee"
+  },
+  {
+    "name": "region2_port",
+    "command": "godot --headless --path . --script res://tools/check_region2_port.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:35.104649+00:00",
+    "finished": "2026-10-27T21:47:37.503224+00:00",
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "23ab4f5554969ebb2f221c88eaa07f51244d3b9cce6d3e94e8041c18f2dc4b70"
+  },
+  {
+    "name": "region2_port_backdrop",
+    "command": "godot --headless --path . --script res://tools/check_region2_port_backdrop.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:37.503643+00:00",
+    "finished": "2026-10-27T21:47:38.500170+00:00",
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "df43719fa30ae3b736e3331cca3feba3b4c119fb2ca09f5410c150f165f5ab15"
+  },
+  {
+    "name": "region2_village_backdrops",
+    "command": "godot --headless --path . --script res://tools/check_region2_village_backdrops.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:38.500651+00:00",
+    "finished": "2026-10-27T21:47:40.612429+00:00",
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "8c64550f293d73da31f7330192c7ca00cc12a0950ceb32591577dce560b9e0df"
+  },
+  {
+    "name": "first_region_screen",
+    "command": "godot --headless --path . --script res://tools/check_first_region_screen.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:40.612951+00:00",
+    "finished": "2026-10-27T21:47:43.285953+00:00",
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "bffc2a2642a57d5d33c47411659f404698ee31c1773de727cbfaf98e90811d50"
+  },
+  {
+    "name": "battle_recovery",
+    "command": "godot --headless --path . --script res://tools/check_battle_recovery.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:47:43.286516+00:00",
+    "finished": "2026-10-27T21:48:13.138410+00:00",
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "9fdcd9c668afedb23b899e8744fcc812f2783fed0d1f9bd8a5ff024415bca91c"
+  },
+  {
+    "name": "enemy_encounters",
+    "command": "godot --headless --path . --script res://tools/check_enemy_encounters.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:48:13.138969+00:00",
+    "finished": "2026-10-27T21:48:15.459627+00:00",
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "d9de1243eb083b7151ed2d239e90e9ed979e0e509b6021e5817b64b807a9797d"
+  },
+  {
+    "name": "task081_port_runtime",
+    "command": "godot --headless --path . --script res://tools/check_task081_port_runtime.gd",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:48:15.460100+00:00",
+    "finished": "2026-10-27T21:48:15.711492+00:00",
+    "timeout_seconds": 120,
+    "exit_code": 1,
+    "timed_out": false,
+    "result": {
+      "status": "FAIL"
+    },
+    "raw_log_sha256": "787994c0da4428411378908b34bf7d9eba0f2d2c0301e7c2de053c764e645a88"
+  },
+  {
+    "name": "frozen-after",
+    "command": "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python tools/check_frozen_files.py",
+    "cwd": "/workspace/RPG-maker",
+    "started": "2026-10-27T21:48:15.711947+00:00",
+    "finished": "2026-10-27T21:48:15.747157+00:00",
+    "timeout_seconds": 30,
+    "exit_code": 0,
+    "timed_out": false,
+    "result": {
+      "status": "PASS"
+    },
+    "raw_log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+  }
+]

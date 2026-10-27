@@ -1,0 +1,17 @@
+{
+  "command": [
+    "Xorg",
+    ":81",
+    "-config",
+    "/etc/X11/xorg.conf",
+    "-noreset",
+    "-nolisten",
+    "tcp",
+    "-logfile",
+    "/workspace/RPG-maker/.tools/task081/xorg.log"
+  ],
+  "owned_server_pid": 2700,
+  "termination": "全入力・描画検証と画像確認の後にSIGTERMで終了",
+  "renderer": "X11 / OpenGL 4.5 Mesa llvmpipe",
+  "scope": "専用ローカル描画サーバー。外部公開なし"
+}

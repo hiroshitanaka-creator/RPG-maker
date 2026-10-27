@@ -1,0 +1,1943 @@
+{
+  "base": "4388bf78cc2fe1763640c5f18dec43fa48eee32f",
+  "investigation_commit": "3f8a9ba40c0a3a7aa0906c116cb07dd399e2766c",
+  "implementation_commit": "44f475f649666880a8e63c5447679c9c6988630c",
+  "files": [
+    {
+      "path": "assets/registry.json",
+      "bytes": 1085197,
+      "sha256": "86c03d75cb2cf24ed5bd2d1ea3ee6fd38a017bd85b72103a4237b78a4f6e1769"
+    },
+    {
+      "path": "assets/source_records/region3-port-081.json",
+      "bytes": 863,
+      "sha256": "993e27e8a12ad2598f0769d887ec82b1e17e6576ba8a8bbb86bc65d96c076f39"
+    },
+    {
+      "path": "assets/town_backdrops/region3_port.png",
+      "bytes": 1021564,
+      "sha256": "99f9f7fc2c3a7ff5d962c5ac69cf3264b252b1c568d485334575f181a0f2beb8"
+    },
+    {
+      "path": "docs/tasks/reports/081-region3-port-five-room-connection.md",
+      "bytes": 22201,
+      "sha256": "8556c474f5de26f8063106b2f469191b284981c023eccec4bbcba34d533359a4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/.gdignore",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/api-runtime-final.log.gz",
+      "bytes": 133,
+      "sha256": "dc882c9156387c00b019198330f59451c778d3290cc3afac52880a7d835cfdae"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/api-runtime-first.log.gz",
+      "bytes": 186,
+      "sha256": "f4314f1793ef9a61eedd90ebe2121ef8e58504637412f9adbc8a2cf81ca08c95"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/api-runtime-second.log.gz",
+      "bytes": 133,
+      "sha256": "8211f8003faa60e966cb224baab777fa860a40cf87b54d40482072e50a960eb0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/api-runtime.json",
+      "bytes": 387307,
+      "sha256": "d1e69861be090212c26256f5d40d360df090dae0e9ed64ed75426f55d6b8fef9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-behind-diagnostic-without-player.png",
+      "bytes": 190822,
+      "sha256": "2ad61adad2fb109cf02901947a1ade776e0683becf0ddd21a8348ef243ffef4b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 192586,
+      "sha256": "e1d19329afad93092f8788b5788a5fdbfa3d5f5f6f16b9168b8e4077ded3a23c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-behind.png",
+      "bytes": 192955,
+      "sha256": "9fa3bcdb14057f7b329698c0f42bc537a6f143f7a717ab2601db528b8acca699"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-entered.png",
+      "bytes": 185853,
+      "sha256": "4f0df9bcdb130630813ae9d6c04a0c90ca050ffe54b07d586cc79e53a6b925d4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-entrance.png",
+      "bytes": 153330,
+      "sha256": "9643892cf9ff9764f7b86043277d5a9e47823e3cb3219e9f383687d6230f2dd1"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-front-diagnostic-without-player.png",
+      "bytes": 199764,
+      "sha256": "8aaed299c2a4db821d3f5151e08b3cbda7631c678bde0e08bb3b3da25b90398b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 201078,
+      "sha256": "b84b1311827a61968720073874b232144ca23937ec431de8dc55057e1d5208ce"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-front.png",
+      "bytes": 201078,
+      "sha256": "b84b1311827a61968720073874b232144ca23937ec431de8dc55057e1d5208ce"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-input.json",
+      "bytes": 107533,
+      "sha256": "9a270c0a862c577a5760f730061d1fa350641f7d0ed7163a3c3ad17b19552bfa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-reloaded.png",
+      "bytes": 202155,
+      "sha256": "eb6b053a7552e2b4c05b55db30d30532e00622ae7040a5c50c35118395ccd0b9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/armor_shop-returned.png",
+      "bytes": 158487,
+      "sha256": "5a90b5aa7b26597b3dd6c1454f9543897b2c0057e7c489b301dd8556a8f34559"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-before-landing.png",
+      "bytes": 38397,
+      "sha256": "355e776914b656213297bb696255a7d62078ed64db3bf23c8a07d639684c129d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-behind-diagnostic-without-player.png",
+      "bytes": 154251,
+      "sha256": "a05387fb61f67850a1a25d09719643e1864030201a6c6602283787fdba9584cb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 155148,
+      "sha256": "7f9b9456d6d227e31f8b77710509f2e94db173474fdb1be23c452ea1d5fe0e94"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-behind.png",
+      "bytes": 154808,
+      "sha256": "21ca8ed5c8cabb051e868dc0effa7020a5cf0ebbf3226c7be763089a25736fe6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-front-diagnostic-without-player.png",
+      "bytes": 162302,
+      "sha256": "03d79ac25c36e7548e0b1466adac33a8af85ed3b1c77f2850763af86dab3ac4b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 163755,
+      "sha256": "2413f3a80a705efaab008719e27e57d48f284043dd7d7aec7ccc56ea4a851643"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-front.png",
+      "bytes": 163755,
+      "sha256": "2413f3a80a705efaab008719e27e57d48f284043dd7d7aec7ccc56ea4a851643"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-gate-outside.png",
+      "bytes": 41841,
+      "sha256": "d6034418755bb4427bf034467712271da2b4d02da0e9f73b5aedb78dd7ca28d8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-input.json",
+      "bytes": 12011,
+      "sha256": "c6019f69f1be7ffd83cd0440c3179b863587ab88a5c64123a450bac2deff7aaa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-pier.png",
+      "bytes": 150192,
+      "sha256": "705b6d0b5119841be19475f505f3946fb8b132641c7240ce65b3e304191decd9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-returned-pier.png",
+      "bytes": 154692,
+      "sha256": "1ac4e59808f0d244e25cd03e739c0a0402e7a098c5234f9b4ce488e9d0fabfc5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "b51767781adfbf6505384ec9af70ee9837258c489a45ae2b98e6d428de8c53e7"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/arrival-spell-outside.png",
+      "bytes": 48231,
+      "sha256": "2a4460668b60def9e2be393c3b0b7300e9b97ec05e657ea5e59127b64d57b8c7"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-before-landing.png",
+      "bytes": 38327,
+      "sha256": "87718ff753f5895962fa3504dcd07e009fbc597b955518b5a379e772cd833464"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-behind-diagnostic-without-player.png",
+      "bytes": 138588,
+      "sha256": "99a44b4ba9e4191bb51b7676e471f1a432ba3e42e0804bb87ac3d6bbcdad2177"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 139153,
+      "sha256": "8c07ee5a8965e197ff16b960173439eb9bea831a92f2cbb971f0615fd748956e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-behind.png",
+      "bytes": 139077,
+      "sha256": "0f1090715657e9bf24132b5aa5966795fc3c931b67aa83c4799487eaf2d20910"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-front-diagnostic-without-player.png",
+      "bytes": 162302,
+      "sha256": "03d79ac25c36e7548e0b1466adac33a8af85ed3b1c77f2850763af86dab3ac4b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 162460,
+      "sha256": "429949d32343854d2fa830551020a95a95aa252fec6b1e502cd2fc9baa1cca22"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-front.png",
+      "bytes": 162460,
+      "sha256": "429949d32343854d2fa830551020a95a95aa252fec6b1e502cd2fc9baa1cca22"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-input.json",
+      "bytes": 8148,
+      "sha256": "1a5aa5599fd553f72edd233e88d7b099617bc6197d7aa09bdb948ec215fd16d4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-pier.png",
+      "bytes": 150192,
+      "sha256": "705b6d0b5119841be19475f505f3946fb8b132641c7240ce65b3e304191decd9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-returned-pier.png",
+      "bytes": 154692,
+      "sha256": "1ac4e59808f0d244e25cd03e739c0a0402e7a098c5234f9b4ce488e9d0fabfc5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "8755339b269040d5b7ad2260b75b587e4a2845a1cb8ca3d9f3a73c277fca9afd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/input-arrival.log.gz",
+      "bytes": 527,
+      "sha256": "5c6e88f9a5e6d2e806c483b43d154538d7fd73959ad3fa02a947671c96bf345e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/arrival-20261027T215202Z/input-execution.json",
+      "bytes": 3655,
+      "sha256": "f8369701e9ebf1ee0f4c3eb85f41a59023ac85d1ae42e9efa29570f6482ac979"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/api-runtime.json",
+      "bytes": 384584,
+      "sha256": "5d5f06145ca3c3a59e4e7837090fe3200287154d6bece7518ef90256fd62a766"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/data-checks.json",
+      "bytes": 175690,
+      "sha256": "41bf40fcf112f8c1c6b98e3c7ace563af810b8e0072669cfc89ff572ac2a832e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/regression-execution.json",
+      "bytes": 15325,
+      "sha256": "98590bf4a3801b738599e70c5a893070509403343d7fe9ef6855139d8639d465"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-01.log.gz",
+      "bytes": 494,
+      "sha256": "5b9aa4196ec09e16165d40fa8ba919d62fcff5ab575fa86e185a7a578caed1dc"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-02.log.gz",
+      "bytes": 620,
+      "sha256": "c3855efeeb19ebbab27284dc176376ab763170c81656a5aea163ef57da5de112"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-03.log.gz",
+      "bytes": 506,
+      "sha256": "4fd5c6921139223ff8d64c24a405fb7dd96068b2ec466607be027fbae591ffb8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-04.log.gz",
+      "bytes": 484,
+      "sha256": "bcd6072c5d20b3ec64ce4671b208f3720ce6c26379d3d7fe55d21b9a1ce83ccd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-05.log.gz",
+      "bytes": 502,
+      "sha256": "370d6bdc6acfec051feff5ef9c7583bb1b660caa2b53acc8cf7aeddb891ddc44"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-06.log.gz",
+      "bytes": 515,
+      "sha256": "f95820306486bafaa5f966e46d0da31b831fd1805e735addee73003c24e1436b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-07.log.gz",
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-R-08.log.gz",
+      "bytes": 1197,
+      "sha256": "3295c37ad1a78f44edd0e4b78215817b94748f465070daee3bef338df70a7a7b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-assets.log.gz",
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-battle_recovery.log.gz",
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-coastal_travel.log.gz",
+      "bytes": 121,
+      "sha256": "2ab8cd554ba680117fa2b5499c880d0f50f44fc0dbdd589029ae0c3e078a7447"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-data.log.gz",
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-editor-import.log.gz",
+      "bytes": 396,
+      "sha256": "6fccb1f58663ba40b9f9ec37648f632ac134552af38e6016688b926851c36d9a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-enemy_encounters.log.gz",
+      "bytes": 197,
+      "sha256": "1018e3cae94c0c33d8f6a5c9701671e1958566481e85fba05197f9a16b607840"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-engine.log.gz",
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-first_region_screen.log.gz",
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-frozen-after.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-frozen-before.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-region2_port.log.gz",
+      "bytes": 118,
+      "sha256": "fcbe344d3c2b39c4901493f4c6d2d829234d9f10b2d41be19e99b5b8e3e06852"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-region2_port_backdrop.log.gz",
+      "bytes": 121,
+      "sha256": "40e1529028a94443a46b25c6b17e79784a10dec8681724103415d4032ce96ba9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-region2_village_backdrops.log.gz",
+      "bytes": 122,
+      "sha256": "aee34127488c63fba1b3845b2559136dc3ad9dc9de3d808731e2aab0c784a585"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-saved_position_relocation.log.gz",
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-saved_value_types.log.gz",
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-second_region_coast.log.gz",
+      "bytes": 117,
+      "sha256": "709148b0992400fc5a64f0cdb23ade464f479abe9d77500e1aed82e9c83aff18"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/attempts/regression-20261027T214856Z/verify-task081_port_runtime.log.gz",
+      "bytes": 263,
+      "sha256": "070aa50de492f2697cc516d17b541d56b1ce8e81e6dcea2d3510a6ff33fcaa82"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/data-checks.json",
+      "bytes": 175690,
+      "sha256": "41bf40fcf112f8c1c6b98e3c7ace563af810b8e0072669cfc89ff572ac2a832e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/data-final.log.gz",
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/data-first.log.gz",
+      "bytes": 124,
+      "sha256": "8d0aa650557c74d608d771e3f9464be45d0c74d6fe56593446b49a91309694f6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/data-second.log.gz",
+      "bytes": 62,
+      "sha256": "9b8ae210c05c9e62c3125125001c1f31bab74929f1b6afc43f5c695d0ee3bf07"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/exterior-full-runtime.png",
+      "bytes": 1039789,
+      "sha256": "5801d6ce1cee0926dfc554ee93b505710be723bf2e95b93088acc374ecaf15c6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/exterior-grid-diagnostic.png",
+      "bytes": 1383466,
+      "sha256": "3577004ebb727443910180b8ca9121ade3459790d67101ad2862cd9b1d093cde"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/final-verification.json",
+      "bytes": 24241,
+      "sha256": "9ae27c627381d6f59e3f15a23e34806c5e6b29e08649b9f8999421ccb82696c9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-before-landing.png",
+      "bytes": 36840,
+      "sha256": "fceebd8df5a13380d7767ef3ccfcd5587ded2235aeb50a57334727925e1d50bf"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-behind-diagnostic-without-player.png",
+      "bytes": 154456,
+      "sha256": "d57aff90326c98c9a669c9682e530f260858cdd24e63bc82764186b2f85f8aad"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 156176,
+      "sha256": "f1dd86bf3675ffed863915dcaf929e14efe42f6f812859e785984c90567b077d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-behind.png",
+      "bytes": 155478,
+      "sha256": "5c1150a1f9d20c41dcd642dd2221d3dd3ba81ff884d1ee0a2d524342d95a13be"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-front-diagnostic-without-player.png",
+      "bytes": 151810,
+      "sha256": "06e2ce8d36f8801cde25cdab96641bc597356b2dfca1be2a8630a7bd4234856e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 153157,
+      "sha256": "e567cc6f8627209f8d76373dbd3a763b6e8ec96a45d799ce2ae6bde543543296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-front.png",
+      "bytes": 153157,
+      "sha256": "e567cc6f8627209f8d76373dbd3a763b6e8ec96a45d799ce2ae6bde543543296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-input.json",
+      "bytes": 10246,
+      "sha256": "e17513cb373b23e62b05cda97818d792a54eb645b59008a8c611d5d255b08cdc"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-pier.png",
+      "bytes": 150192,
+      "sha256": "705b6d0b5119841be19475f505f3946fb8b132641c7240ce65b3e304191decd9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-returned-pier.png",
+      "bytes": 154692,
+      "sha256": "1ac4e59808f0d244e25cd03e739c0a0402e7a098c5234f9b4ce488e9d0fabfc5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival-second/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "8045c7bc216778c97542db40bada19fd27c3baa45e840a6ec6fdefa4a591304c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-before-landing.png",
+      "bytes": 36840,
+      "sha256": "fceebd8df5a13380d7767ef3ccfcd5587ded2235aeb50a57334727925e1d50bf"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-behind-diagnostic-without-player.png",
+      "bytes": 154456,
+      "sha256": "d57aff90326c98c9a669c9682e530f260858cdd24e63bc82764186b2f85f8aad"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-behind-diagnostic-without-target-overlay.png",
+      "bytes": 156176,
+      "sha256": "f1dd86bf3675ffed863915dcaf929e14efe42f6f812859e785984c90567b077d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-behind.png",
+      "bytes": 154456,
+      "sha256": "d57aff90326c98c9a669c9682e530f260858cdd24e63bc82764186b2f85f8aad"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-front-diagnostic-without-player.png",
+      "bytes": 151810,
+      "sha256": "06e2ce8d36f8801cde25cdab96641bc597356b2dfca1be2a8630a7bd4234856e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-front-diagnostic-without-target-overlay.png",
+      "bytes": 153157,
+      "sha256": "e567cc6f8627209f8d76373dbd3a763b6e8ec96a45d799ce2ae6bde543543296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-front.png",
+      "bytes": 153157,
+      "sha256": "e567cc6f8627209f8d76373dbd3a763b6e8ec96a45d799ce2ae6bde543543296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-input.json",
+      "bytes": 10247,
+      "sha256": "3ea98c7892a2d46a0787e00bd3706d36a7f790d12cd32b7e63cd70289d6feb71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-pier.png",
+      "bytes": 150192,
+      "sha256": "705b6d0b5119841be19475f505f3946fb8b132641c7240ce65b3e304191decd9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-returned-pier.png",
+      "bytes": 154692,
+      "sha256": "1ac4e59808f0d244e25cd03e739c0a0402e7a098c5234f9b4ce488e9d0fabfc5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/arrival/arrival-save.json",
+      "bytes": 46839,
+      "sha256": "4e3dc13cf945a79511d185cd65ac59781652820623c746680ad8779c12ea26cb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/data-checks.json",
+      "bytes": 175142,
+      "sha256": "05fb132364d731c2586e92a94d7e1b28845e379b8163939b0c5f9e51e49d3246"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-behind-diagnostic-without-player.png",
+      "bytes": 190822,
+      "sha256": "2ad61adad2fb109cf02901947a1ade776e0683becf0ddd21a8348ef243ffef4b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 192586,
+      "sha256": "e1d19329afad93092f8788b5788a5fdbfa3d5f5f6f16b9168b8e4077ded3a23c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-behind.png",
+      "bytes": 192955,
+      "sha256": "9fa3bcdb14057f7b329698c0f42bc537a6f143f7a717ab2601db528b8acca699"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-entered.png",
+      "bytes": 185853,
+      "sha256": "4f0df9bcdb130630813ae9d6c04a0c90ca050ffe54b07d586cc79e53a6b925d4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-entrance.png",
+      "bytes": 153330,
+      "sha256": "9643892cf9ff9764f7b86043277d5a9e47823e3cb3219e9f383687d6230f2dd1"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-front-diagnostic-without-player.png",
+      "bytes": 199764,
+      "sha256": "8aaed299c2a4db821d3f5151e08b3cbda7631c678bde0e08bb3b3da25b90398b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 201078,
+      "sha256": "b84b1311827a61968720073874b232144ca23937ec431de8dc55057e1d5208ce"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-front.png",
+      "bytes": 201078,
+      "sha256": "b84b1311827a61968720073874b232144ca23937ec431de8dc55057e1d5208ce"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-input.json",
+      "bytes": 107533,
+      "sha256": "97af094a0bcaf1fe66009f5fba454c1ebd64f0038e0de2664afc43196adfab8a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-reloaded.png",
+      "bytes": 202155,
+      "sha256": "eb6b053a7552e2b4c05b55db30d30532e00622ae7040a5c50c35118395ccd0b9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/armor_shop-returned.png",
+      "bytes": 158487,
+      "sha256": "5a90b5aa7b26597b3dd6c1454f9543897b2c0057e7c489b301dd8556a8f34559"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/arrival-input.json",
+      "bytes": 10664,
+      "sha256": "cf02db06ab3be6e43ca8206c6a9b11ef1548b17d5c229ac6e7ccabd0f9165972"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-behind-diagnostic-without-player.png",
+      "bytes": 208515,
+      "sha256": "a037c2c38367d37a9a60e48b56d6ac8fe8d107407dc58f6f09dc3da8866adb97"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-behind-diagnostic-without-target-overlay.png",
+      "bytes": 209704,
+      "sha256": "ac66402d19f6a3ff85636f2e1762988e4c2681aa6bdf30fd401e27a877a5917f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-behind.png",
+      "bytes": 209524,
+      "sha256": "c6296e1a3fb49158fbe3d0ca043980877997119f82037bc5711e9ee803a6463c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-entered.png",
+      "bytes": 207973,
+      "sha256": "252fe73028feceb038443db58820e8582b50368a59a0b15e1643e14028904d38"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-entrance.png",
+      "bytes": 156985,
+      "sha256": "2c843eadba60a9a3206e2dcb50f68799317b8d43698830edfc09a3ceba0b0f7d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-front-diagnostic-without-player.png",
+      "bytes": 215866,
+      "sha256": "2d9418163dc1fdb0b756823f72caa51a166e231551c202a458adc59c0ab92893"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-front-diagnostic-without-target-overlay.png",
+      "bytes": 217122,
+      "sha256": "2056492607756f6ea78579f639285e22bcb55a461e8a2c2304f8935bb88be2a8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-front.png",
+      "bytes": 217122,
+      "sha256": "2056492607756f6ea78579f639285e22bcb55a461e8a2c2304f8935bb88be2a8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-input.json",
+      "bytes": 97138,
+      "sha256": "685e52fdf627061eae1949c7b54194b6a0f94374541026902a3fe150fbbf0d69"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-reloaded.png",
+      "bytes": 211675,
+      "sha256": "f9483ea8185882370cb35eec05c3828e49e6341f678d89789e21eb5705556618"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/inn-returned.png",
+      "bytes": 162867,
+      "sha256": "ebaff820422e4d677f6e14e96ac6fd1c2c208bba5086203d017c38a1e4e14cf7"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-armor_shop.log.gz",
+      "bytes": 350,
+      "sha256": "e762c9995734b637e3c11a1659d491b7676a70620407131052dc906a56d8e217"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-execution.json",
+      "bytes": 3047,
+      "sha256": "ef107410ef5deb59fec75a06b4dc1abfc72fa4ff2213b61b7cc4703637484d3e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-inn.log.gz",
+      "bytes": 346,
+      "sha256": "41d9bad0af8b0fb4fdb1e2c28fb7d3d142cc955dcf510f4e9804d45c762efa33"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-item_shop.log.gz",
+      "bytes": 349,
+      "sha256": "2181c3eef8dbed4fa5aaaa2a61e1be9740542be9d6e602c1f3e6307499842eb5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-shrine.log.gz",
+      "bytes": 347,
+      "sha256": "110ce14c9f2de39bd781b146eb821201b9c6c52d8aa75081aae80850ccf30a40"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/input-weapon_shop.log.gz",
+      "bytes": 351,
+      "sha256": "90c63a7732e3a00931092d9210826da8d81908cb1504bb1800600f406df1d36a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-behind-diagnostic-without-player.png",
+      "bytes": 185361,
+      "sha256": "4cecf1f03de9187abbf2d8de51118b24f3f0e2f0628a48db1dff5ba736f02307"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 187054,
+      "sha256": "d949561ecc6e2937077cb04e67d063caa7ab574492693e8c1db32d594b68101f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-behind.png",
+      "bytes": 186788,
+      "sha256": "10436f7403c7e8ea91887420de3861c86a8a5500c17c5c2ab850e618dd407ee9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-entered.png",
+      "bytes": 186267,
+      "sha256": "767f548d355e5ea600ed59e96fc1b138d514eae1358fce9f99a84fe554c98e86"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-entrance.png",
+      "bytes": 154928,
+      "sha256": "5556f3e85300d7be8c4e37c62a8fcea2a3b705988d5af097e3f6a9b14e98c1fa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-front-diagnostic-without-player.png",
+      "bytes": 185361,
+      "sha256": "4cecf1f03de9187abbf2d8de51118b24f3f0e2f0628a48db1dff5ba736f02307"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 185971,
+      "sha256": "c8ccecda116a8458917538785edd43f729909af6f92c123e10735141d2bc89df"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-front.png",
+      "bytes": 185971,
+      "sha256": "c8ccecda116a8458917538785edd43f729909af6f92c123e10735141d2bc89df"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-input.json",
+      "bytes": 112793,
+      "sha256": "3b0a95a7bf0bda3d714b9ba20566bae8f2b784c2a316a7656f8d8ad7696129da"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-reloaded.png",
+      "bytes": 182468,
+      "sha256": "e2d74df1cecf264c374dbb24b8c40ab7d9143217be8bdb6f92be5be4f6e70ed0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/item_shop-returned.png",
+      "bytes": 159043,
+      "sha256": "78d645d6ea802d3ffa7df9d2cd57b9da7b331e7433164b2d4f884feb9abf1b59"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-behind-diagnostic-without-player.png",
+      "bytes": 193213,
+      "sha256": "97bbfda883df6f91e0bfb84f1d1fd6473f4b172815a3a44f6de9dc36b41db3ba"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-behind-diagnostic-without-target-overlay.png",
+      "bytes": 193492,
+      "sha256": "587c4533453ff254a768a237bb4393cf5a831f513a7156a9fe417d40343c45c5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-behind.png",
+      "bytes": 193187,
+      "sha256": "980bfe82b31f4f5bd060da45c42752fa6650dd85b66fb2ad82b527bce85f45b8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-entered.png",
+      "bytes": 194283,
+      "sha256": "f47e3a953080a5f37174c701e26632b3408e8080669e2cfc50a8c3bb87972324"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-entrance.png",
+      "bytes": 154497,
+      "sha256": "c505f21a3ddfff18fbc153fef0ab1424f94db99d1d3e808801de1d6dfc6b4599"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-front-diagnostic-without-player.png",
+      "bytes": 208768,
+      "sha256": "8b909c3f90fd62ebcc4d92e03537987d757c24a2cebde6948972b16c4c719538"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-front-diagnostic-without-target-overlay.png",
+      "bytes": 209694,
+      "sha256": "b7b5a6e2ce7443ecef45418c0baae630fe4da804d7df39a38a5c55e05458b860"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-front.png",
+      "bytes": 209694,
+      "sha256": "b7b5a6e2ce7443ecef45418c0baae630fe4da804d7df39a38a5c55e05458b860"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-input.json",
+      "bytes": 99258,
+      "sha256": "f08cb9d68d4f14272473225a1767f4dd668674f9a9186d97d07490962a7e7f54"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-reloaded.png",
+      "bytes": 213343,
+      "sha256": "24a7eaeee93f9698d67b3363d7a22e293d1ac59af73d54003bd86d9d4ac797e2"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/shrine-returned.png",
+      "bytes": 160364,
+      "sha256": "cff831bb3b6c111a012c40dc94c9865cea75cee0921db81507a68384f3155012"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-behind-diagnostic-without-player.png",
+      "bytes": 177318,
+      "sha256": "724733bef288b2cf19d05b292e4ed63afb286dade11085880c01f7790acc3045"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 178253,
+      "sha256": "e5dae95e25acca48293d072cd1bd2c43b5ef68712f41e8d57a9c41bcf2f9fcd1"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-behind.png",
+      "bytes": 177718,
+      "sha256": "57cbd2c4662ea1e6deae0ee2fc5247bfebec71751d139379abbcc742617aa55c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-entered.png",
+      "bytes": 184553,
+      "sha256": "0b5bf359c29140e91143fee36f815721071f30ff8ae277c2a863699a58c57084"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-entrance.png",
+      "bytes": 153019,
+      "sha256": "b9aa4044e6cf28a4979fe53ad9bfb588c8059db25398e0d6ac3c747ad57dfe90"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-front-diagnostic-without-player.png",
+      "bytes": 195881,
+      "sha256": "ca2822e32dfea9e94c31bed42452e6dcd8fd54ca83f0a5f455a60f34db53bd7d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 195438,
+      "sha256": "45fae1674b213b9795e7bf6b7e47deea92fa64c52f570fe76fd99bab7eddbaf8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-front.png",
+      "bytes": 195438,
+      "sha256": "45fae1674b213b9795e7bf6b7e47deea92fa64c52f570fe76fd99bab7eddbaf8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-input.json",
+      "bytes": 110242,
+      "sha256": "4374ec84129f6a16a5607ba021ef91da11526f3fa6ca10f44a2aa5552f808b55"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-reloaded.png",
+      "bytes": 194913,
+      "sha256": "a2580f14346a606f85400f2d7f1fb5af829103f6925bc7dc6c86857e1a012b76"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/pre-gate/weapon_shop-returned.png",
+      "bytes": 156600,
+      "sha256": "de79f8792f174663d565f4912ce95573338623f372307985e8ca9748c6d89747"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-01.log.gz",
+      "bytes": 494,
+      "sha256": "5b9aa4196ec09e16165d40fa8ba919d62fcff5ab575fa86e185a7a578caed1dc"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-02.log.gz",
+      "bytes": 620,
+      "sha256": "c3855efeeb19ebbab27284dc176376ab763170c81656a5aea163ef57da5de112"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-03.log.gz",
+      "bytes": 506,
+      "sha256": "4fd5c6921139223ff8d64c24a405fb7dd96068b2ec466607be027fbae591ffb8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-04.log.gz",
+      "bytes": 484,
+      "sha256": "bcd6072c5d20b3ec64ce4671b208f3720ce6c26379d3d7fe55d21b9a1ce83ccd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-05.log.gz",
+      "bytes": 502,
+      "sha256": "370d6bdc6acfec051feff5ef9c7583bb1b660caa2b53acc8cf7aeddb891ddc44"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-06.log.gz",
+      "bytes": 515,
+      "sha256": "f95820306486bafaa5f966e46d0da31b831fd1805e735addee73003c24e1436b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-07.log.gz",
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-R-08.log.gz",
+      "bytes": 1197,
+      "sha256": "c5eb4b7b9e599c3cf6ccc392b93c28c2bbf1178bba0e215f02d0bf9ec8a95480"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-assets.log.gz",
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-battle_recovery.log.gz",
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-coastal_travel.log.gz",
+      "bytes": 121,
+      "sha256": "2ab8cd554ba680117fa2b5499c880d0f50f44fc0dbdd589029ae0c3e078a7447"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-data.log.gz",
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-editor-import.log.gz",
+      "bytes": 396,
+      "sha256": "6fccb1f58663ba40b9f9ec37648f632ac134552af38e6016688b926851c36d9a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-enemy_encounters.log.gz",
+      "bytes": 197,
+      "sha256": "1018e3cae94c0c33d8f6a5c9701671e1958566481e85fba05197f9a16b607840"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-engine.log.gz",
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-first_region_screen.log.gz",
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-frozen-after.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-frozen-before.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-region2_port.log.gz",
+      "bytes": 118,
+      "sha256": "fcbe344d3c2b39c4901493f4c6d2d829234d9f10b2d41be19e99b5b8e3e06852"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-region2_port_backdrop.log.gz",
+      "bytes": 121,
+      "sha256": "40e1529028a94443a46b25c6b17e79784a10dec8681724103415d4032ce96ba9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-region2_village_backdrops.log.gz",
+      "bytes": 122,
+      "sha256": "aee34127488c63fba1b3845b2559136dc3ad9dc9de3d808731e2aab0c784a585"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-saved_position_relocation.log.gz",
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-saved_value_types.log.gz",
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-second_region_coast.log.gz",
+      "bytes": 117,
+      "sha256": "709148b0992400fc5a64f0cdb23ade464f479abe9d77500e1aed82e9c83aff18"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/first-pass/regression-prior/verify-task081_port_runtime.log.gz",
+      "bytes": 133,
+      "sha256": "8211f8003faa60e966cb224baab777fa860a40cf87b54d40482072e50a960eb0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/five-rooms-contact-sheet-diagnostic.png",
+      "bytes": 1727717,
+      "sha256": "f391826601014b4b3f5996ebf7bd3c7ea918070df2de45e4dc0447dd9fbc2e39"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/first-region/screen-checks.json",
+      "bytes": 254,
+      "sha256": "4e992645617f916cf43a63061de42bd94dc9dfa869812aa80947cc6165b516f4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port-backdrop/checks.json",
+      "bytes": 202,
+      "sha256": "4b4942fa0dd5745ce07b47881859a42022bbed2942b0d721f8e3533f13446701"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port/checks.json",
+      "bytes": 220,
+      "sha256": "8e2bacbbb7cbea33d93e10ab533b7bf162ae96ff04cee8dcb61a9057084bc48f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port/preparation/01-departure.png",
+      "bytes": 104516,
+      "sha256": "d6c50cff82dc12124ed60f9d9a5364bd285881fad052881c93747865bbf5240e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port/preparation/checks.json",
+      "bytes": 4221,
+      "sha256": "fb9b1fea5504537a62db56582d464be219ec7d60201ec9b9d78e4a45c38e4346"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/region2-port/preparation/save-origin.json",
+      "bytes": 590,
+      "sha256": "44308ab486c4cc243fe5bc545b221ba303de2ab453235fe7ce00e4e6099fe300"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/sprint5-port-town/departure/checks.json",
+      "bytes": 516,
+      "sha256": "a89627728878ad617fa80035d869d7fc25a4e2609890b9ab388a4d67fb42a778"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/generated-existing-records/docs/verification/sprint5-port-town/departure/save-origin.json",
+      "bytes": 2272,
+      "sha256": "a630bb8921ae0a9632eb1153440616adc5117607d5b0ddea38d0cde0a1d1b3cd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/import-final.log.gz",
+      "bytes": 448,
+      "sha256": "9e1d03ea762d7c186a42cb272af9fadd657d7c6ab9dc0f30cc67df3d8360841c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/import-first.log.gz",
+      "bytes": 531,
+      "sha256": "4842c0a949fb898c04453957be1f9c1035c4d7eb5758e555b6e4cf877f6074ac"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/import-second.log.gz",
+      "bytes": 496,
+      "sha256": "a4c1a521b51774d67455af52ea75c139adde5eddbca2ea9d732aa9bb281bd2d4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-behind-diagnostic-without-player.png",
+      "bytes": 208515,
+      "sha256": "a037c2c38367d37a9a60e48b56d6ac8fe8d107407dc58f6f09dc3da8866adb97"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-behind-diagnostic-without-target-overlay.png",
+      "bytes": 209704,
+      "sha256": "ac66402d19f6a3ff85636f2e1762988e4c2681aa6bdf30fd401e27a877a5917f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-behind.png",
+      "bytes": 209524,
+      "sha256": "c6296e1a3fb49158fbe3d0ca043980877997119f82037bc5711e9ee803a6463c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-entered.png",
+      "bytes": 207973,
+      "sha256": "252fe73028feceb038443db58820e8582b50368a59a0b15e1643e14028904d38"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-entrance.png",
+      "bytes": 156985,
+      "sha256": "2c843eadba60a9a3206e2dcb50f68799317b8d43698830edfc09a3ceba0b0f7d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-front-diagnostic-without-player.png",
+      "bytes": 215866,
+      "sha256": "2d9418163dc1fdb0b756823f72caa51a166e231551c202a458adc59c0ab92893"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-front-diagnostic-without-target-overlay.png",
+      "bytes": 217122,
+      "sha256": "2056492607756f6ea78579f639285e22bcb55a461e8a2c2304f8935bb88be2a8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-front.png",
+      "bytes": 217122,
+      "sha256": "2056492607756f6ea78579f639285e22bcb55a461e8a2c2304f8935bb88be2a8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-input.json",
+      "bytes": 97252,
+      "sha256": "2172c22df3b40a287931a5edc948b93c9c2a0d6e6ed5eb7a038b1b1c3c6d2d17"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-reloaded.png",
+      "bytes": 211675,
+      "sha256": "f9483ea8185882370cb35eec05c3828e49e6341f678d89789e21eb5705556618"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/inn-returned.png",
+      "bytes": 162867,
+      "sha256": "ebaff820422e4d677f6e14e96ac6fd1c2c208bba5086203d017c38a1e4e14cf7"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-armor_shop.log.gz",
+      "bytes": 350,
+      "sha256": "e762c9995734b637e3c11a1659d491b7676a70620407131052dc906a56d8e217"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-arrival-first.log.gz",
+      "bytes": 443,
+      "sha256": "7224ab4c70d8c96048b5cde4b54bee11062ae235d5042fbfa5556a0567016961"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-arrival-second.log.gz",
+      "bytes": 347,
+      "sha256": "7f16c09b1bcb8379b53f71f8c2fb09b506b805e40083ec5db5ac57acb7947d1e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-arrival-third.log.gz",
+      "bytes": 347,
+      "sha256": "bc388a42614c893604e296d96614e6cb411d2d598dbf56ec177e3a271342b165"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-arrival.log.gz",
+      "bytes": 347,
+      "sha256": "9de112ec57caa1f77a8c83c2bbd2586ea7f519ead1b62e3b2c846cd2fabf2a5b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-execution.json",
+      "bytes": 3655,
+      "sha256": "a725b15fabbc58d158daf6c9796f78e66cd4f8d0b2c6573cb00f99c541e9238b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-inn.log.gz",
+      "bytes": 345,
+      "sha256": "bb6cba8224218e9f26be00aa79ab063a4607a0768c7fa2fe9a0fab88818a4e8f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-item_shop.log.gz",
+      "bytes": 349,
+      "sha256": "2181c3eef8dbed4fa5aaaa2a61e1be9740542be9d6e602c1f3e6307499842eb5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-parse-second.log.gz",
+      "bytes": 88,
+      "sha256": "97675e961fd50d33d8dcca49a213125f9a9fa9cc50431851baca2d489e1a15d6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-parse.log.gz",
+      "bytes": 275,
+      "sha256": "abe8a58653a6b41d73a5d4b8dad37a20f2decb3ae55fb509913ccccb8e7fc078"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-shrine.log.gz",
+      "bytes": 347,
+      "sha256": "110ce14c9f2de39bd781b146eb821201b9c6c52d8aa75081aae80850ccf30a40"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/input-weapon_shop.log.gz",
+      "bytes": 351,
+      "sha256": "90c63a7732e3a00931092d9210826da8d81908cb1504bb1800600f406df1d36a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-behind-diagnostic-without-player.png",
+      "bytes": 185361,
+      "sha256": "4cecf1f03de9187abbf2d8de51118b24f3f0e2f0628a48db1dff5ba736f02307"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 187054,
+      "sha256": "d949561ecc6e2937077cb04e67d063caa7ab574492693e8c1db32d594b68101f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-behind.png",
+      "bytes": 186788,
+      "sha256": "10436f7403c7e8ea91887420de3861c86a8a5500c17c5c2ab850e618dd407ee9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-entered.png",
+      "bytes": 186267,
+      "sha256": "767f548d355e5ea600ed59e96fc1b138d514eae1358fce9f99a84fe554c98e86"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-entrance.png",
+      "bytes": 154928,
+      "sha256": "5556f3e85300d7be8c4e37c62a8fcea2a3b705988d5af097e3f6a9b14e98c1fa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-front-diagnostic-without-player.png",
+      "bytes": 185361,
+      "sha256": "4cecf1f03de9187abbf2d8de51118b24f3f0e2f0628a48db1dff5ba736f02307"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 185971,
+      "sha256": "c8ccecda116a8458917538785edd43f729909af6f92c123e10735141d2bc89df"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-front.png",
+      "bytes": 185971,
+      "sha256": "c8ccecda116a8458917538785edd43f729909af6f92c123e10735141d2bc89df"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-input.json",
+      "bytes": 112793,
+      "sha256": "454730baf9d75fae3d61d9dfd2a636d63be2ca09563789922601cda689c0fe06"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-reloaded.png",
+      "bytes": 182468,
+      "sha256": "e2d74df1cecf264c374dbb24b8c40ab7d9143217be8bdb6f92be5be4f6e70ed0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/item_shop-returned.png",
+      "bytes": 159043,
+      "sha256": "78d645d6ea802d3ffa7df9d2cd57b9da7b331e7433164b2d4f884feb9abf1b59"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/normal-save-chain.json",
+      "bytes": 397,
+      "sha256": "9b9a700ec0a9896c94b14ddef2b6845c8ed9288660ae84741d55d39bc1d72819"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/original-hashes-final.json",
+      "bytes": 51262,
+      "sha256": "0238af893b0a940daf727a4da027389df1a7073fdb9a15971d2635eb67d5d5d6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/preparation/first-port-origin.json",
+      "bytes": 2272,
+      "sha256": "a630bb8921ae0a9632eb1153440616adc5117607d5b0ddea38d0cde0a1d1b3cd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/preparation/port-departure.json",
+      "bytes": 37195,
+      "sha256": "bb81f1fa528b0acc7688c712829e9f6af5af03049666a34394be47aebe84401b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/preparation/region2-port-departure.json",
+      "bytes": 37383,
+      "sha256": "c59093bdcffeb76a27236ba63a395a90b14cd1a6052702c5cbc19583ca5fe0c4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/preparation/ship-origin.json",
+      "bytes": 590,
+      "sha256": "44308ab486c4cc243fe5bc545b221ba303de2ab453235fe7ce00e4e6099fe300"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/prepare-first-port.log.gz",
+      "bytes": 732,
+      "sha256": "11b595d49c137e7d7619eff8d0a4b89ecd6511e23c008d89f1d0ad43669ba3aa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/prepare-ship-render.log.gz",
+      "bytes": 334,
+      "sha256": "449c98f834ad711c59709234c97af70a1dde75daeb2ff46d899ffdd4832c331c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/prepare-ship.log.gz",
+      "bytes": 88,
+      "sha256": "97675e961fd50d33d8dcca49a213125f9a9fa9cc50431851baca2d489e1a15d6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/regeneration.json",
+      "bytes": 857,
+      "sha256": "36e840e18bccd8fd7acd5aea4ee1a39a036e5adba46be3a88fbf2f3451910d83"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/regeneration.log.gz",
+      "bytes": 78,
+      "sha256": "27e739c88ba2206060a0bcc7709feef6a36490b9a11610c3ad9acbd15b7e7ab4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/regression-execution.json",
+      "bytes": 15325,
+      "sha256": "171b678f85df3a83e1e2c9f7a76fa478e70bdba224c3bb97f099aa276ce15194"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/restored-existing-records.json",
+      "bytes": 2092,
+      "sha256": "e616a8390d00cf33782168698acaf897040447e38f203b633846db79495b17c3"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-1.json",
+      "bytes": 3264,
+      "sha256": "dbeac89bca6ea0cc6ca07011b2ab6d1c24f67bcbc4ac0bd49fe297d2cfe12258"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-2.json",
+      "bytes": 3264,
+      "sha256": "a19d33a05f89136f7fc4e5115ccfad5c7c361e088a8d74ae5c711088367a3c80"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-3.json",
+      "bytes": 3280,
+      "sha256": "a660c9a62f7a74bef0a6d7dd49e544395b61f21daadecdfb952a5a830f30e4ad"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-4.json",
+      "bytes": 3266,
+      "sha256": "2055c6c36f035890f42519cbd7e2db2648caacbf8c2c7288fd6d570024588eb5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-5.json",
+      "bytes": 3268,
+      "sha256": "f7e4a07cf419f0f21fd1f8131865602b6aa1a7945d71cf033f78472d413ca8e4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/legacy-6.json",
+      "bytes": 3261,
+      "sha256": "816b2b7d2f6ecf0ccb40992a7d2c9371170ba5a5d3095b9170ce2d2e2214ff99"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/old-travel-missing.json",
+      "bytes": 2923,
+      "sha256": "a8dfdcbb1feb9653c36bd1ce1b3df42d247b21f099e2d9050d581d9acc0443b5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-0-facing-0.json",
+      "bytes": 3267,
+      "sha256": "59dd74f69c8431e1d55de625da0a25d207c2d853c16d936ac1acdec0c6fb6169"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-0-facing-1.json",
+      "bytes": 3267,
+      "sha256": "356c5a74cefc9a7e4ea1dd9af01b0251baf19c3926c299651708b7997aeed487"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-0-facing-2.json",
+      "bytes": 3267,
+      "sha256": "31c6ffd02917a890e0647a16cadbd13218448a09a730ab75552021061c6b0f5e"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-0-facing-3.json",
+      "bytes": 3267,
+      "sha256": "93698b1a73d2be0826fcab8acf5cd1723045c187b0ce20c983ba13d09b4b62e4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-1-facing-0.json",
+      "bytes": 3265,
+      "sha256": "ec797f3c99fb529f8288e278c5973b92d7b867a525e935e4392930a43d6c92c6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-1-facing-1.json",
+      "bytes": 3265,
+      "sha256": "64aa414a30e50fd4f5dc4d0ed56e4142458e5239e5b3e6e5dd4b82398b24a296"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-1-facing-2.json",
+      "bytes": 3265,
+      "sha256": "e73bc125a0c7d5ee3f4c5d1709de9c7679e476ce8b78ec594f7760e7a2d7d99f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-1-facing-3.json",
+      "bytes": 3265,
+      "sha256": "db49ab39d9e1390059a9148c6338002f4d22c8693efe9ce5c1a58bd012f41482"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-2-facing-0.json",
+      "bytes": 3265,
+      "sha256": "466db064e740bba5122e44e52260af32c5b21c4a522d1adc36da50e39814be35"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-2-facing-1.json",
+      "bytes": 3265,
+      "sha256": "d80d4d6ec63d8eadeeddba5b02019456f005327e7bc6a7956e0572e76e656566"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-2-facing-2.json",
+      "bytes": 3265,
+      "sha256": "44d752a1207e776cf55e89f46b244cab1dd1d2579af4417f18314a88ad278216"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-2-facing-3.json",
+      "bytes": 3265,
+      "sha256": "6504eb472d004029eafbf94db1daa0145b9b81e1318d5d5db9c22cc71efe19b5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-3-facing-0.json",
+      "bytes": 3265,
+      "sha256": "ca224c895cba0e494d2cd698ff626fdef6c23ece75478dcdfce354b7e83f7831"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-3-facing-1.json",
+      "bytes": 3265,
+      "sha256": "9dee9da073a605a8edc4bd3019c5e2a2421a686078e6004db0d30b50c830fbfc"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-3-facing-2.json",
+      "bytes": 3265,
+      "sha256": "3ef5a0158697f0db24a8bcab045fc227497f092f45c879f333d6ef39a143bcd4"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-3-facing-3.json",
+      "bytes": 3265,
+      "sha256": "414c1534b5ec9a87b55529d7cd188ebf9a6438b6e928cc25cc9f9d3a08ac4af6"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-4-facing-0.json",
+      "bytes": 3265,
+      "sha256": "7b121df9cc0a5b9a5f47623dbb1bb82be03997264ce5aae0f51531cad3c4e782"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-4-facing-1.json",
+      "bytes": 3265,
+      "sha256": "aafa32eb6b5e59c4d12a961cfe57ee89fff63237ee7aaa1db5a69f24b41c8113"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-4-facing-2.json",
+      "bytes": 3265,
+      "sha256": "a339df6bdb5664863bf4bec7d992dcef847b537f1dfceee8270adb784b0b5b00"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-4-facing-3.json",
+      "bytes": 3265,
+      "sha256": "0744f4c58a046ca0a2adf2e1ad208bca5e14fc92a88e768871f5a481a527d680"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-5-facing-0.json",
+      "bytes": 3265,
+      "sha256": "1c33ab476fbf3c033eb2d9f82315d6a4443fda8135f1d06c123f0e0c7a6e960b"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-5-facing-1.json",
+      "bytes": 3265,
+      "sha256": "832f5ef5ae107ed1f565398eed8892f70fbcdd448e18b99484093e724c0894be"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-5-facing-2.json",
+      "bytes": 3265,
+      "sha256": "715006e2c006e132118a8b2135ce80edeade7850a4fa9a320c508d9a3245d61d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/saves/room-5-facing-3.json",
+      "bytes": 3265,
+      "sha256": "46df5ccb7ddbd2232b6ba78d9fb7e53f6b8936f8601531b9970cb7831c81fdb2"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-behind-diagnostic-without-player.png",
+      "bytes": 193213,
+      "sha256": "97bbfda883df6f91e0bfb84f1d1fd6473f4b172815a3a44f6de9dc36b41db3ba"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-behind-diagnostic-without-target-overlay.png",
+      "bytes": 193492,
+      "sha256": "587c4533453ff254a768a237bb4393cf5a831f513a7156a9fe417d40343c45c5"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-behind.png",
+      "bytes": 193187,
+      "sha256": "980bfe82b31f4f5bd060da45c42752fa6650dd85b66fb2ad82b527bce85f45b8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-entered.png",
+      "bytes": 194283,
+      "sha256": "f47e3a953080a5f37174c701e26632b3408e8080669e2cfc50a8c3bb87972324"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-entrance.png",
+      "bytes": 154497,
+      "sha256": "c505f21a3ddfff18fbc153fef0ab1424f94db99d1d3e808801de1d6dfc6b4599"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-front-diagnostic-without-player.png",
+      "bytes": 208768,
+      "sha256": "8b909c3f90fd62ebcc4d92e03537987d757c24a2cebde6948972b16c4c719538"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-front-diagnostic-without-target-overlay.png",
+      "bytes": 209694,
+      "sha256": "b7b5a6e2ce7443ecef45418c0baae630fe4da804d7df39a38a5c55e05458b860"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-front.png",
+      "bytes": 209694,
+      "sha256": "b7b5a6e2ce7443ecef45418c0baae630fe4da804d7df39a38a5c55e05458b860"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-input.json",
+      "bytes": 99258,
+      "sha256": "e786f69b47c7de39896b7ddf4dfc41a946440ff00ff8504d19461eedba4bcc64"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-reloaded.png",
+      "bytes": 213343,
+      "sha256": "24a7eaeee93f9698d67b3363d7a22e293d1ac59af73d54003bd86d9d4ac797e2"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/shrine-returned.png",
+      "bytes": 160364,
+      "sha256": "cff831bb3b6c111a012c40dc94c9865cea75cee0921db81507a68384f3155012"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/source-target-runtime-comparison-diagnostic.png",
+      "bytes": 1209653,
+      "sha256": "dfb838afd0e98b1d48dae0a89f9692d2c032ddce6c747a747581101fc3f7e9e3"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/strict-first.log.gz",
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verified-source-sha256.json",
+      "bytes": 1599,
+      "sha256": "ebf5ea619db8f1071fedfd66936fac0ce0017766f2d5c9c76b8eb325f6d06c50"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-01.log.gz",
+      "bytes": 494,
+      "sha256": "6eea5f63e905a9442908147875d1385a4c10211dc3e9ba98da3efa315fee2681"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-02.log.gz",
+      "bytes": 620,
+      "sha256": "0bab9653eff8855da6d32900ea29318abe77240a435dcbc150a681060eb5f45c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-03.log.gz",
+      "bytes": 507,
+      "sha256": "2e706093195b179a6d54867f69ba270c4784bc65fe68f547585e034254269a17"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-04.log.gz",
+      "bytes": 484,
+      "sha256": "b272e509e5a6db96ec860d70eb6752c9658a69f50d7594472bbf5db18392a99a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-05.log.gz",
+      "bytes": 501,
+      "sha256": "21eb2a1acb2be58b2035a4946aff3d9d9274127acac6d9ea01d61ead03ad55ab"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-06.log.gz",
+      "bytes": 514,
+      "sha256": "51626fce5e9dc3add51b49e012966618901e3d97e78132f6066aaa61b1cb17ef"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-07.log.gz",
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-R-08.log.gz",
+      "bytes": 1196,
+      "sha256": "10f2c19e2b5222fed951af9ea7dd398b534c3902cfa49b5f6333199ff5105b11"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-assets.log.gz",
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-battle_recovery.log.gz",
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-coastal_travel.log.gz",
+      "bytes": 121,
+      "sha256": "2ab8cd554ba680117fa2b5499c880d0f50f44fc0dbdd589029ae0c3e078a7447"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-data.log.gz",
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-editor-import.log.gz",
+      "bytes": 403,
+      "sha256": "fb0c8d35254123bf16f8143bd955f503159fa8d0aa0d8d5ac9f9186489e52ff9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-enemy_encounters.log.gz",
+      "bytes": 197,
+      "sha256": "1018e3cae94c0c33d8f6a5c9701671e1958566481e85fba05197f9a16b607840"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-engine.log.gz",
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-first_region_screen.log.gz",
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-frozen-after.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-frozen-before.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-region2_port.log.gz",
+      "bytes": 118,
+      "sha256": "fcbe344d3c2b39c4901493f4c6d2d829234d9f10b2d41be19e99b5b8e3e06852"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-region2_port_backdrop.log.gz",
+      "bytes": 121,
+      "sha256": "40e1529028a94443a46b25c6b17e79784a10dec8681724103415d4032ce96ba9"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-region2_village_backdrops.log.gz",
+      "bytes": 122,
+      "sha256": "aee34127488c63fba1b3845b2559136dc3ad9dc9de3d808731e2aab0c784a585"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-saved_position_relocation.log.gz",
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-saved_value_types.log.gz",
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-second_region_coast.log.gz",
+      "bytes": 117,
+      "sha256": "709148b0992400fc5a64f0cdb23ade464f479abe9d77500e1aed82e9c83aff18"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/verify-task081_port_runtime.log.gz",
+      "bytes": 133,
+      "sha256": "131de29cd48a15626013230bc98a3609abaa6da74da5042d49cf3e073a060408"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-behind-diagnostic-without-player.png",
+      "bytes": 177318,
+      "sha256": "724733bef288b2cf19d05b292e4ed63afb286dade11085880c01f7790acc3045"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-behind-diagnostic-without-target-overlay.png",
+      "bytes": 178253,
+      "sha256": "e5dae95e25acca48293d072cd1bd2c43b5ef68712f41e8d57a9c41bcf2f9fcd1"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-behind.png",
+      "bytes": 177718,
+      "sha256": "57cbd2c4662ea1e6deae0ee2fc5247bfebec71751d139379abbcc742617aa55c"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-entered.png",
+      "bytes": 184553,
+      "sha256": "0b5bf359c29140e91143fee36f815721071f30ff8ae277c2a863699a58c57084"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-entrance.png",
+      "bytes": 153019,
+      "sha256": "b9aa4044e6cf28a4979fe53ad9bfb588c8059db25398e0d6ac3c747ad57dfe90"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-front-diagnostic-without-player.png",
+      "bytes": 195881,
+      "sha256": "ca2822e32dfea9e94c31bed42452e6dcd8fd54ca83f0a5f455a60f34db53bd7d"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-front-diagnostic-without-target-overlay.png",
+      "bytes": 195438,
+      "sha256": "45fae1674b213b9795e7bf6b7e47deea92fa64c52f570fe76fd99bab7eddbaf8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-front.png",
+      "bytes": 195438,
+      "sha256": "45fae1674b213b9795e7bf6b7e47deea92fa64c52f570fe76fd99bab7eddbaf8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-input.json",
+      "bytes": 110242,
+      "sha256": "3f3c5a1502f5525a7b6916320523607c5e5865dbc91e2174eb3073e4057522e8"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-reloaded.png",
+      "bytes": 194913,
+      "sha256": "a2580f14346a606f85400f2d7f1fb5af829103f6925bc7dc6c86857e1a012b76"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/weapon_shop-returned.png",
+      "bytes": 156600,
+      "sha256": "de79f8792f174663d565f4912ce95573338623f372307985e8ca9748c6d89747"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/xorg-lifecycle.json",
+      "bytes": 431,
+      "sha256": "0e087bdaf02aaff171bb5f277ddefe183c1d789304acb6534fb1e515735499bd"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/xorg-stdout.log.gz",
+      "bytes": 905,
+      "sha256": "9ce48a01bacbc7216d1b459c48892005022577931a0708148678ed2fcf63b221"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/xorg.conf",
+      "bytes": 695,
+      "sha256": "76b290e6680ec6bf706f2940347c56dbe8ac893be448e4af6e120d0d9bd7196a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/xorg.log.gz",
+      "bytes": 8594,
+      "sha256": "e753acef5f3c87a464f6fca2a780ec7f6144bfc78e1ecbd6866d34b45b98ad3b"
+    },
+    {
+      "path": "docs/verification/task-081/.gdignore",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/verification/task-081/R-01.log.gz",
+      "bytes": 488,
+      "sha256": "95d52b2e4d4b7266632d65a6f3550987670f00c8aca74d4e80d99af90587c539"
+    },
+    {
+      "path": "docs/verification/task-081/R-02.log.gz",
+      "bytes": 612,
+      "sha256": "e633989ba8c9ca0faa79bc726472d29827e5433035d7c16a1e22d940b3a991bd"
+    },
+    {
+      "path": "docs/verification/task-081/R-03.log.gz",
+      "bytes": 499,
+      "sha256": "43be1c9dd7e8f51895e2b937b145ce74a194f3a7398af8907ea3589357f1de7c"
+    },
+    {
+      "path": "docs/verification/task-081/R-04.log.gz",
+      "bytes": 478,
+      "sha256": "e3417cddda3eb72d138989d1b2b4e140380b4a970c8c7d6d3f44c525d59cb9b7"
+    },
+    {
+      "path": "docs/verification/task-081/R-05.log.gz",
+      "bytes": 494,
+      "sha256": "b898dd9aff8cd74c3e79250993f80d06643c7913fc18aad2eae0f8964ea899b8"
+    },
+    {
+      "path": "docs/verification/task-081/R-06.log.gz",
+      "bytes": 508,
+      "sha256": "a9ddacefc7c5e88037b2ab53dd6ceb78fb54a0f32ef12ce70f2e706065463976"
+    },
+    {
+      "path": "docs/verification/task-081/R-07.log.gz",
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    {
+      "path": "docs/verification/task-081/R-08.log.gz",
+      "bytes": 1190,
+      "sha256": "f91e6089e1fd5cf82df1f0642ff520be233b33b63a9ed97045ddf5f05bf24eea"
+    },
+    {
+      "path": "docs/verification/task-081/assets-strict-initial.log.gz",
+      "bytes": 105,
+      "sha256": "626609180580c33632b95215741b0303a82f92099d634d0c4a591a3e501e599c"
+    },
+    {
+      "path": "docs/verification/task-081/assets-strict.log.gz",
+      "bytes": 105,
+      "sha256": "626609180580c33632b95215741b0303a82f92099d634d0c4a591a3e501e599c"
+    },
+    {
+      "path": "docs/verification/task-081/changed-files.json",
+      "bytes": 6656,
+      "sha256": "c10e5797ab465256426d3a43111875a582a868c03c1838dfd7264b4461a12aec"
+    },
+    {
+      "path": "docs/verification/task-081/connection-boundary.json",
+      "bytes": 4576,
+      "sha256": "1329ba763e64c3661d2d47a1cabd192b199745fe5b8dc32ddb80d4ac26becd02"
+    },
+    {
+      "path": "docs/verification/task-081/editor-import-initial.log.gz",
+      "bytes": 347,
+      "sha256": "e43c689a9d9dd83a2f2e309af70df886382da11cacf37db241c16b7b11aa3a53"
+    },
+    {
+      "path": "docs/verification/task-081/editor-import.log.gz",
+      "bytes": 347,
+      "sha256": "e43c689a9d9dd83a2f2e309af70df886382da11cacf37db241c16b7b11aa3a53"
+    },
+    {
+      "path": "docs/verification/task-081/engine-version.log.gz",
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    {
+      "path": "docs/verification/task-081/execution-results.json",
+      "bytes": 9977,
+      "sha256": "894feb3cddd6ffc845c1221f139c3bfa6c192c46e57531b615e418d06510670e"
+    },
+    {
+      "path": "docs/verification/task-081/first-observation/runtime-boundary.json",
+      "bytes": 28863,
+      "sha256": "9157371dca970cebe6e63acc755a6f320d6bd750226adc6457162797b6efdc78"
+    },
+    {
+      "path": "docs/verification/task-081/first-observation/runtime-boundary.log.gz",
+      "bytes": 146,
+      "sha256": "5cdcbffb8099c010cf3b9c244ec59dde46f9438ec7f693b8ae3e9ea154877259"
+    },
+    {
+      "path": "docs/verification/task-081/frozen-after-verify.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081/frozen-before-verify.log.gz",
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    {
+      "path": "docs/verification/task-081/frozen-before.txt",
+      "bytes": 35,
+      "sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676"
+    },
+    {
+      "path": "docs/verification/task-081/github-runs-before-push.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/verification/task-081/github-runs-before-push.stderr",
+      "bytes": 207,
+      "sha256": "0555d10068551a8965a31048608a26d67778e2ca089e10ad2406c9c12917c19e"
+    },
+    {
+      "path": "docs/verification/task-081/original-hashes-after.json",
+      "bytes": 51262,
+      "sha256": "0238af893b0a940daf727a4da027389df1a7073fdb9a15971d2635eb67d5d5d6"
+    },
+    {
+      "path": "docs/verification/task-081/original-hashes-before.json",
+      "bytes": 51262,
+      "sha256": "0238af893b0a940daf727a4da027389df1a7073fdb9a15971d2635eb67d5d5d6"
+    },
+    {
+      "path": "docs/verification/task-081/preservation.json",
+      "bytes": 205,
+      "sha256": "dd0c3f59aa331322957a11a87f0d07446c3aa374df669bf01c9d5672b4ea1f21"
+    },
+    {
+      "path": "docs/verification/task-081/python-boundary.log.gz",
+      "bytes": 93,
+      "sha256": "3d63481a159936e09e6c6b944504f9a986eda49ff388b3d3c162f25d37487ff2"
+    },
+    {
+      "path": "docs/verification/task-081/runtime-boundary-initial.log.gz",
+      "bytes": 146,
+      "sha256": "5cdcbffb8099c010cf3b9c244ec59dde46f9438ec7f693b8ae3e9ea154877259"
+    },
+    {
+      "path": "docs/verification/task-081/runtime-boundary.json",
+      "bytes": 28863,
+      "sha256": "9157371dca970cebe6e63acc755a6f320d6bd750226adc6457162797b6efdc78"
+    },
+    {
+      "path": "docs/verification/task-081/runtime-boundary.log.gz",
+      "bytes": 146,
+      "sha256": "b317f86d6d49f465395942cb0168306a4a0766c49396cf00373315828e9f27fa"
+    },
+    {
+      "path": "scripts/world/first_region.gd",
+      "bytes": 17941,
+      "sha256": "1018f26a82a2cb4e5b28e8c31b9e0a5ac3db3e5f44c2612dd0996de72667e03b"
+    },
+    {
+      "path": "scripts/world/first_region_presentation.gd",
+      "bytes": 1962,
+      "sha256": "e5dd26cc436c8a15afee18adc6523fd2882e43e91796fbd736f870e66f54f2f7"
+    },
+    {
+      "path": "scripts/world/first_region_travel.gd",
+      "bytes": 6073,
+      "sha256": "0d39cb682984bd3d0fa39d8943e789572fe909bd8ef08c21e34b671b68a2ada8"
+    },
+    {
+      "path": "scripts/world/first_region_view.gd",
+      "bytes": 13718,
+      "sha256": "b83faa9969cb20904ff2ce01d8f5a1b9139a84cb0345d92ce3bde63e14246854"
+    },
+    {
+      "path": "scripts/world/region3_port.gd",
+      "bytes": 1513,
+      "sha256": "6d59021f8fe84bb052cd039e352043441683dc101c194e88b10d9f05634ddba7"
+    },
+    {
+      "path": "scripts/world/region3_port.gd.uid",
+      "bytes": 20,
+      "sha256": "681cccd13081dc09e442563fc4a968df5c7a48c7da182428bc2d14887bb4099a"
+    },
+    {
+      "path": "tools/build_task081_port.py",
+      "bytes": 3332,
+      "sha256": "3d231ed5c8b330ef97426cc772266a1a7a89483af2141109817d29f09d24740e"
+    },
+    {
+      "path": "tools/check_task081_connection_boundary.gd",
+      "bytes": 1934,
+      "sha256": "6fc5df9f4f1eb0c7b973ae4f8d3484798d4b31e983710682787a8f57aa770c93"
+    },
+    {
+      "path": "tools/check_task081_connection_boundary.gd.uid",
+      "bytes": 20,
+      "sha256": "ec9348eef32e050474b9b1b75a907c57e7b14c47419dc2feeb37920d6dc9029a"
+    },
+    {
+      "path": "tools/check_task081_connection_boundary.py",
+      "bytes": 3718,
+      "sha256": "b4ea6a6f3876eadd407a12eef0a89b9550e47d87095330fbcad8f851ef9831ea"
+    },
+    {
+      "path": "tools/check_task081_port_data.py",
+      "bytes": 7759,
+      "sha256": "040d6dfb2f6399b6a88eef1df697006f764c36b1212f11362540823392fe41a6"
+    },
+    {
+      "path": "tools/check_task081_port_input.gd",
+      "bytes": 12386,
+      "sha256": "af84437d9731a367e5cbd8df3cd0b6daa54c9c4f091e71b7c9087c78216d3ae4"
+    },
+    {
+      "path": "tools/check_task081_port_input.gd.uid",
+      "bytes": 20,
+      "sha256": "f2feeb6bf178d42a4b530b7180483dbb5d53cd4b5999d8a34315b8e8bb3007a3"
+    },
+    {
+      "path": "tools/check_task081_port_runtime.gd",
+      "bytes": 11327,
+      "sha256": "3fa8ca6ce1d49a5e5fd268ce91d6471709b11a98ff0611fbed06b464e8256b6b"
+    },
+    {
+      "path": "tools/check_task081_port_runtime.gd.uid",
+      "bytes": 20,
+      "sha256": "c076d39183cb3a44fd34ec62501d1045a0d62714bc462a80eef3292557f61806"
+    },
+    {
+      "path": "tools/run_task081_evidence.py",
+      "bytes": 3166,
+      "sha256": "bbb00c80775d1c9e89ffbfbdcf7a83e72fa79d3709af26266c17f6c11c9dc0f0"
+    },
+    {
+      "path": "tools/run_task081_port_inputs.py",
+      "bytes": 3656,
+      "sha256": "ce57108473a6c2be83d6221bb43bf372f3058951408e50f6acd7b142ca09da51"
+    },
+    {
+      "path": "tools/run_task081_port_verification.py",
+      "bytes": 4516,
+      "sha256": "4db0483dc141abbb66a574acd658290620bcd75805a2af17a5fecfa429cefea2"
+    },
+    {
+      "path": "tools/validate_assets.py",
+      "bytes": 19064,
+      "sha256": "c11a4a8b823809803dafeb08d704779c10b05bc44934dc6d228d515ec752adff"
+    },
+    {
+      "path": "world/region3_port.json",
+      "bytes": 17722,
+      "sha256": "d21604e9d5d90186510757e880790190a60593973ef0d0c1a290c1f5b8f40d9a"
+    },
+    {
+      "path": "docs/verification/task-081-implementation/changed-files.json",
+      "bytes": null,
+      "sha256": null,
+      "note": "自己参照を避け、このmanifest自身のSHAは最終commitのgit blobで確認"
+    }
+  ]
+}
