@@ -33,9 +33,9 @@ static func destinations() -> Array:
 
 static func destinations_for(saved: Dictionary) -> Array:
 	# 本番UIと帰還実行は同じ保存文脈を使い、訪問済みの追加拠点も扱う。
-	var result := destinations()
+	var result := destinations().duplicate(true)
 	for destination in Region3Port.data()["destinations"]:
-		if destination["id"] in snapshot(saved).get("visited",[]):result.append(destination)
+		if destination["id"] in snapshot(saved).get("visited",[]):result.append(destination.duplicate(true))
 	return result
 
 static func encounter(cell: Vector2i) -> Dictionary:
