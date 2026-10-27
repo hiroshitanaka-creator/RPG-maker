@@ -1,0 +1,10 @@
+from pathlib import Path
+import json,hashlib,subprocess
+r=Path('/workspace/RPG-maker');out=Path('/workspace/task080/evidence');record=json.loads((r/'assets/source_records/region3-room-adoption-2026-10-17.json').read_text());rows=[]
+for e in record['originals']:
+ p=r/e['path'];raw=p.read_bytes();rows.append({'path':e['path'],'exists':p.exists(),'sha256':hashlib.sha256(raw).hexdigest(),'matches_source_record':hashlib.sha256(raw).hexdigest()==e['sha256']})
+assert all(x['matches_source_record'] for x in rows)
+(out/'originals-audit.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
+# 元の005の誤命名と073の正しい用途名の関連は、名前ではなく内容で照合する。
+(out/'005-purpose-table.txt').write_bytes(subprocess.check_output(['git','show','e677896d3e61b8fe8136ef60c5c76f41ad76701d:docs/tasks/005-record-grok-region3-images.md'],cwd=r))
+print('ORIGINALS: 5/5 hash match')

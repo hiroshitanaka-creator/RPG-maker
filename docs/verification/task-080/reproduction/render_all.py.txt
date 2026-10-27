@@ -1,0 +1,4 @@
+import subprocess,sys,os
+for index,name in enumerate(['inn','item_shop','weapon_shop','shrine','armor_shop']):
+ env=os.environ.copy();env.update(DISPLAY=':80',ADOPTED_ROOM_INDEX=str(index))
+ subprocess.run([sys.executable,'/workspace/task080/run.py','render-'+name,'/workspace/RPG-maker','180','godot','--display-driver','x11','--audio-driver','Dummy','--path','.','--script','res://tools/check_adopted_room_foundation.gd'],env=env)

@@ -1,0 +1,31 @@
+{
+  "sequence": 17,
+  "name": "06-historical-import",
+  "started_at_utc": "2026-10-21T04:05:39.702697+00:00",
+  "command": [
+    "godot",
+    "--headless",
+    "--editor",
+    "--import",
+    "--quit"
+  ],
+  "shell": false,
+  "cwd": "/workspace/task080/recheck-20261021T033604Z/reconstructed",
+  "timeout_seconds": 600,
+  "status": "executed",
+  "environment_overrides": {
+    "PATH": "/workspace/task080/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+    "XDG_DATA_HOME": "/workspace/task080/approved-20261021T035317Z/xdg/data",
+    "XDG_CONFIG_HOME": "/workspace/task080/approved-20261021T035317Z/xdg/config",
+    "XDG_CACHE_HOME": "/workspace/task080/approved-20261021T035317Z/xdg/cache",
+    "RPG_QA_SAVE_PREFIX": "task080_approved",
+    "ADOPTED_ROOM_OUTPUT": "/workspace/task080/approved-20261021T035317Z/evidence",
+    "DISPLAY": ":83"
+  },
+  "case_environment": {},
+  "ended_at_utc": "2026-10-21T04:05:46.332895+00:00",
+  "elapsed_seconds": 6.630223355999988,
+  "exit_code": 0,
+  "timed_out": false,
+  "log_sha256": "f15ffd4c558b01611d562c8c257508942bdc2dc542124f423ae2a592a46edfa6"
+}

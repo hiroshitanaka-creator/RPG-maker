@@ -1,0 +1,19 @@
+{
+  "command": [
+    "Xorg",
+    ":83",
+    "-config",
+    "/etc/X11/xorg.conf",
+    "-noreset",
+    "-nolisten",
+    "tcp",
+    "-logfile",
+    "/workspace/task080/approved-20261021T035317Z/evidence/xorg.log"
+  ],
+  "cwd": "/workspace/task080/approved-20261021T035317Z/reconstructed",
+  "timeout_seconds": null,
+  "started_at_utc": "2026-10-21T03:59:02.525642+00:00",
+  "ended_at_utc": "2026-10-21T04:03:47.659952+00:00",
+  "exit_code": 0,
+  "status": "terminated by runner after renders; startup readiness 5s; shutdown wait 30s"
+}

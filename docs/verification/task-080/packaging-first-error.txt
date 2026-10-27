@@ -1,0 +1,4 @@
+ツール返却記録から転記。package.py の git diff --cached --check が exit2で停止。
+subprocess.CalledProcessError: Command '['git', 'diff', '--cached', '--check', 'e677896d3e61b8fe8136ef60c5c76f41ad76701d']' returned non-zero exit status 2.
+正規index/refは不変。candidate.indexとtreeだけ作成済み、ZIP/Library作成は未実行。
+具体的stdoutはfull-diff-whitespace.logに実測保存。

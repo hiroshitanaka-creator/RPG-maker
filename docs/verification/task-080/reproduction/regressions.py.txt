@@ -1,0 +1,4 @@
+import subprocess,sys
+checks=[('saved-value-types',60),('saved-position-relocation',120),('second-region-coast',180),('region2-port',180),('first-region-screen',180),('battle-recovery',180),('coastal-travel',180)]
+for name,limit in checks:
+ subprocess.run([sys.executable,'/workspace/task080/run.py',name,'/workspace/RPG-maker',str(limit),'godot','--headless','--path','.','--script','res://tools/check_'+name.replace('-','_')+'.gd'])
