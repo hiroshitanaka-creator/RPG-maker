@@ -1,0 +1,25 @@
+{
+  "name": "02-render-inn",
+  "started_at_utc": "2026-10-27T13:02:53.347120+00:00",
+  "command": [
+    "godot",
+    "--display-driver",
+    "x11",
+    "--audio-driver",
+    "Dummy",
+    "--path",
+    ".",
+    "--script",
+    "res://tools/check_adopted_room_foundation.gd"
+  ],
+  "cwd": "/workspace/task080/github-save-20261027/repo",
+  "timeout_seconds": 180,
+  "case_environment": {
+    "ADOPTED_ROOM_INDEX": "0"
+  },
+  "status": "executed",
+  "ended_at_utc": "2026-10-27T13:03:48.974259+00:00",
+  "elapsed_seconds": 55.62721544100003,
+  "exit_code": 0,
+  "log_sha256": "d009879e3195d0c3cc07a5d2b256b979f942759caa158bf4004b17f7f35a8633"
+}

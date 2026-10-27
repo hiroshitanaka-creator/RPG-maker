@@ -1,0 +1,21 @@
+{
+  "name": "02-render-inn",
+  "started_at_utc": "2026-10-27T13:02:53.347120+00:00",
+  "command": [
+    "godot",
+    "--display-driver",
+    "x11",
+    "--audio-driver",
+    "Dummy",
+    "--path",
+    ".",
+    "--script",
+    "res://tools/check_adopted_room_foundation.gd"
+  ],
+  "cwd": "/workspace/task080/github-save-20261027/repo",
+  "timeout_seconds": 180,
+  "case_environment": {
+    "ADOPTED_ROOM_INDEX": "0"
+  },
+  "status": "running"
+}
