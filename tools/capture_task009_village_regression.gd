@@ -138,7 +138,9 @@ func journey() -> void:
 		var samples: Array=[]
 		for entry in native["captures"]:
 			if str(entry["path"]).contains("/"+["exterior","inn","item","weapon","shrine"][index]+"/") and str(entry["path"]).ends_with("native-behind.png"):samples.append(entry["cell"])
-		var front: Array=[[16,9],[12,5],[8,6],[8,6],[8,5]][index]
+		# 083：祠[8,6]の採用人物から離し、全画素可視の既存assertionを保持する。
+		# 元の[8,5]での人物遮蔽はcapture_s10_static_displayで全画素照合する。
+		var front: Array=[[16,9],[12,5],[8,6],[8,6],[7,5]][index]
 		if not castle_check(await _walk(point(index,front)),"受付・祭壇・扉前へ通常歩行"):return
 		await picture("05-room-%d-front" % index)
 		if index==1:

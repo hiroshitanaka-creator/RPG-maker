@@ -1,0 +1,140 @@
+{
+  "source_sha256": "7fb285a7c31839ff33350c328f39dfd97e94ea57a0fe6567ef862f8fb19a9aa5",
+  "source_size": [
+    1152,
+    1728
+  ],
+  "crop": [
+    189,
+    168,
+    1044,
+    1612
+  ],
+  "mask_rule": "border-connected RGB min>=140 and max-min<=25; 4-neighbor",
+  "resampling": "nearest",
+  "sprite_size": [
+    32,
+    48
+  ],
+  "ground_last_opaque_row": 47,
+  "palette_colors": [
+    [
+      233,
+      231,
+      203
+    ],
+    [
+      16,
+      15,
+      13
+    ],
+    [
+      139,
+      127,
+      85
+    ],
+    [
+      215,
+      183,
+      120
+    ],
+    [
+      83,
+      51,
+      95
+    ],
+    [
+      164,
+      154,
+      136
+    ],
+    [
+      60,
+      59,
+      53
+    ],
+    [
+      196,
+      186,
+      164
+    ],
+    [
+      114,
+      133,
+      147
+    ],
+    [
+      116,
+      90,
+      50
+    ],
+    [
+      66,
+      96,
+      84
+    ],
+    [
+      98,
+      125,
+      108
+    ],
+    [
+      217,
+      204,
+      180
+    ],
+    [
+      178,
+      150,
+      98
+    ],
+    [
+      34,
+      34,
+      30
+    ],
+    [
+      138,
+      131,
+      116
+    ]
+  ],
+  "original_unchanged": true,
+  "base_main": "a4dc7c9d0d705f3181391fdccee4e4c825ddcaaf",
+  "positions": {
+    "A": [
+      7,
+      6
+    ],
+    "B": [
+      8,
+      6
+    ]
+  },
+  "elder": [
+    12,
+    6
+  ],
+  "entry": [
+    8,
+    10
+  ],
+  "exit": [
+    8,
+    11
+  ],
+  "not_implemented": true,
+  "not_adopted": true,
+  "limitations": [
+    "全室の静的合成。実ゲーム512x288カメラ・主人公・入力・会話窓は未再現",
+    "初見採否前の素材案。歩行ポーズを生成・反転・複製していない",
+    "閾値の境界品質と32x48識別性は画像確認が必要"
+  ],
+  "files": {
+    "comparison.png": "4e890d40b832809ee25a1e699e901be5fe2e4d5a575d3e48d62ae0004700dd5c",
+    "ner-static-proposal.png": "121010a316a31b88dca753ed48bc9404f176a4fe5f0d6dd5508ebf0615559f5d",
+    "placement-A.png": "65281ada75768dec0b334d136f9cf0b531d1249786fe91e6396e88937387f070",
+    "placement-B.png": "ecb1ae576a407f2b4163138f5c586d571dbe149d073378ce375a553b335797b4",
+    "source-comparison.png": "471bc4c3c8eac91ff0589224a9ca5da51fcf6e060c0181235ab9c1ffa7a57e68"
+  }
+}

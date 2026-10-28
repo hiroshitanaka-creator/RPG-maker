@@ -40,6 +40,9 @@ IGNORED_DIRS = {"_incoming"}
 
 # 073：2026-10-18の依頼者承認。フォルダ全体ではなく原画5枚のパスと内容を固定する。
 OWNER_ADOPTED_ROOM_ORIGINALS = {
+    # 083：本人採用Bの静止表示原画1件のみ。既存拒否条件は維持。
+    "assets/_incoming/owner-2026-10-05-grok-batch3/oasis-shrine-keeper-chibi.png":
+        "7fb285a7c31839ff33350c328f39dfd97e94ea57a0fe6567ef862f8fb19a9aa5",
     # 081：採用済み外観1件だけを固定パス・SHAで追加する。
     "assets/_incoming/owner-2026-10-04-grok-region3/region3-world-map-alt-b.png":
         "30d812e28f8dad699359f489aec0f61e9924dc65dd3288a085f7d2046fa5b454",

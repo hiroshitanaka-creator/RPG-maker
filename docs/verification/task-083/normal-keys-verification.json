@@ -1,0 +1,84 @@
+{
+  "started": "2026-10-28T06:28:42.242533+00:00",
+  "finished": "2026-10-28T06:29:09.961694+00:00",
+  "elapsed_seconds": 27.71797466199996,
+  "base_code_sha": "611c5986f3d960d3c306c48d971833de7f5a9523",
+  "script": "tools/capture_s10_static_display.gd",
+  "script_sha256": "4928bc02114cd47387acae7cbc23fcd2f61c3638a51667e6263835f63e239fdd",
+  "cwd": "/workspace/RPG-maker",
+  "command": [
+    "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+    "--path",
+    ".",
+    "--rendering-method",
+    "mobile",
+    "--rendering-driver",
+    "vulkan",
+    "--audio-driver",
+    "Dummy",
+    "--script",
+    "res://tools/capture_s10_static_display.gd"
+  ],
+  "environment": {
+    "DISPLAY": ":83",
+    "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task083/lvp_icd.json",
+    "XDG_CACHE_HOME": "/workspace/RPG-maker/.tools/cloud-onboarding/cache",
+    "XDG_CONFIG_HOME": "/workspace/RPG-maker/.tools/cloud-onboarding/config",
+    "XDG_DATA_HOME": "/workspace/RPG-maker/.tools/cloud-onboarding/data"
+  },
+  "timeout_seconds": 180,
+  "exit_code": 0,
+  "log": "capture-normal-keys.log",
+  "raw_sha256": "f0d26da197a4539998223101b3712e0d67a6ec15a014b794664243fb7887f9e7",
+  "checks": 141,
+  "images": 10,
+  "original_api_118_assertions_preserved_as_ordered_exact_subsequence": true,
+  "ordinary_key_target": [
+    8,
+    5
+  ],
+  "ordinary_key_capture": {
+    "actors": [
+      {
+        "actor_hidden": 140,
+        "id": "player",
+        "matched": 452,
+        "outside": 0,
+        "overlay_hidden": 0,
+        "ui_covered": 0,
+        "visible": 452
+      },
+      {
+        "actor_hidden": 0,
+        "id": "oasis_elder",
+        "matched": 831,
+        "outside": 0,
+        "overlay_hidden": 0,
+        "ui_covered": 0,
+        "visible": 831
+      },
+      {
+        "actor_hidden": 0,
+        "id": "ner_static",
+        "matched": 679,
+        "outside": 0,
+        "overlay_hidden": 0,
+        "ui_covered": 0,
+        "visible": 679
+      }
+    ],
+    "camera": [
+      0.0,
+      1.0
+    ],
+    "cell": [
+      8,
+      5
+    ],
+    "image": "normal-keys-behind.png",
+    "input_path": "normal_direction_keys",
+    "mode": "world"
+  },
+  "ci_connected": false,
+  "warnings_errors": []
+}

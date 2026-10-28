@@ -1,0 +1,148 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "label": "採用原画のSHA固定"
+    },
+    {
+      "ok": true,
+      "label": "原画の寸法固定"
+    },
+    {
+      "ok": true,
+      "label": "参照PNGのSHA固定"
+    },
+    {
+      "ok": true,
+      "label": "採用PNGの改変SHAを拒否"
+    },
+    {
+      "ok": true,
+      "label": "再現scriptは改変原画を出力前に拒否"
+    },
+    {
+      "ok": true,
+      "label": "参照commitのbytes保持: tools/preview_s10_placement.py"
+    },
+    {
+      "ok": true,
+      "label": "参照commitのbytes保持: docs/verification/s10-placement-preview/README.md"
+    },
+    {
+      "ok": true,
+      "label": "参照commitのbytes保持: docs/verification/s10-placement-preview/manifest.json"
+    },
+    {
+      "ok": true,
+      "label": "参照commitのbytes保持: docs/verification/s10-placement-preview/comparison.png"
+    },
+    {
+      "ok": true,
+      "label": "参照commitのbytes保持: docs/verification/s10-placement-preview/source-comparison.png"
+    },
+    {
+      "ok": true,
+      "label": "参照commitのbytes保持: docs/verification/s10-placement-preview/placement-A.png"
+    },
+    {
+      "ok": true,
+      "label": "参照commitのbytes保持: docs/verification/s10-placement-preview/placement-B.png"
+    },
+    {
+      "ok": true,
+      "label": "参照commitのbytes保持: docs/verification/s10-placement-preview/ner-static-proposal.png"
+    },
+    {
+      "ok": true,
+      "label": "採用PNGの全画像制約"
+    },
+    {
+      "ok": true,
+      "label": "負例の拒否: size"
+    },
+    {
+      "ok": true,
+      "label": "負例の拒否: alpha"
+    },
+    {
+      "ok": true,
+      "label": "負例の拒否: palette"
+    },
+    {
+      "ok": true,
+      "label": "負例の拒否: colors"
+    },
+    {
+      "ok": true,
+      "label": "負例の拒否: ground"
+    },
+    {
+      "ok": true,
+      "label": "台帳の登録は1件"
+    },
+    {
+      "ok": true,
+      "label": "静止1枚として台帳登録"
+    },
+    {
+      "ok": true,
+      "label": "固定原画のowner出所を許可"
+    },
+    {
+      "ok": true,
+      "label": "未採用concept原画は拒否"
+    },
+    {
+      "ok": true,
+      "label": "誤path拒否: assets/_incoming/owner-2026-10-05-grok-batch3/../owner-2026-10-05-grok-batch3/oasis-shrine-keeper-chibi.png"
+    },
+    {
+      "ok": true,
+      "label": "誤path拒否: assets/_incoming/unapproved.png"
+    },
+    {
+      "ok": true,
+      "label": "固定pathでも改変原画SHAを拒否"
+    },
+    {
+      "ok": true,
+      "label": "本番静止PNGが存在"
+    },
+    {
+      "ok": true,
+      "label": "本番PNGは採用bytesそのもの"
+    },
+    {
+      "ok": true,
+      "label": "本番PNGの全画像制約"
+    },
+    {
+      "ok": true,
+      "label": "既存台帳の全項目・順序不変"
+    },
+    {
+      "ok": true,
+      "label": "表示専用イベントは1件"
+    },
+    {
+      "ok": true,
+      "label": "既存人物・台詞・全扉・入口・出口不変"
+    },
+    {
+      "ok": true,
+      "label": "保持対象原画2点"
+    },
+    {
+      "ok": true,
+      "label": "原画/082本文bytes不変: assets/_incoming/owner-2026-10-05-grok-batch3/oasis-shrine-keeper-chibi.png"
+    },
+    {
+      "ok": true,
+      "label": "原画/082本文bytes不変: assets/_incoming/owner-2026-10-05-grok-batch3/ner-oasis-shrine-keeper-concept.png"
+    },
+    {
+      "ok": true,
+      "label": "原画/082本文bytes不変: data/region2_shrine_scenes.json"
+    }
+  ]
+}

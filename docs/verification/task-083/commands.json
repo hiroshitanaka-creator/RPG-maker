@@ -1,0 +1,94 @@
+{
+  "fixed_validation": "final-corrected/commands.json",
+  "earlier_working_tree_runs": [
+    {
+      "command": "godot --headless --editor --import --quit",
+      "log": "import-before.log",
+      "result": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "python tools/check_frozen_files.py",
+      "log": "frozen-before.log",
+      "result": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_s10_static_display.gd",
+      "log": "runtime-red.log",
+      "result": "FAIL: placement absent",
+      "exit_code": 1
+    },
+    {
+      "command": "python tools/check_s10_static_display.py",
+      "log": "asset-red.log",
+      "result": "FAIL: test input corrected afterward",
+      "exit_code": 1
+    },
+    {
+      "command": "python tools/check_s10_static_display.py",
+      "log": "asset-red-corrected-fixture.log",
+      "result": "FAIL: implementation absent",
+      "exit_code": 1
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_s10_static_display.gd",
+      "log": "display-only-red.log",
+      "result": "FAIL: missing display_only exclusion",
+      "exit_code": 1
+    },
+    {
+      "command": "python tools/check_s10_static_display.py",
+      "log": "asset-green.log",
+      "result": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "godot --headless --path . --script res://tools/check_s10_static_display.gd",
+      "log": "runtime-green.log",
+      "result": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "python tools/validate_assets.py --strict",
+      "log": "assets-strict.log",
+      "result": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "DISPLAY=:83 VK_DRIVER_FILES=/workspace/RPG-maker/.tools/task083/lvp_icd.json timeout 180 godot --path . --audio-driver Dummy --script res://tools/capture_s10_static_display.gd",
+      "log": "capture-first.log",
+      "result": "FAIL: V-Sync warning and capture expectations corrected",
+      "exit_code": 1
+    },
+    {
+      "command": "DISPLAY=:83 VK_DRIVER_FILES=/workspace/RPG-maker/.tools/task083/lvp_icd.json timeout 180 godot --path . --rendering-method mobile --rendering-driver vulkan --audio-driver Dummy --script res://tools/capture_s10_static_display.gd",
+      "log": "capture-vulkan.log",
+      "result": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "python docs/verification/task-083/audit_continuity.py",
+      "log": "continuity.log",
+      "result": "PASS",
+      "exit_code": 0
+    }
+  ],
+  "note": "先行ログのexit_codeは各scriptの終了契約と記録した出力による。開始/終了時刻を採取していないため補完しない。最終固定SHA実行は全時刻・実終了値を記録。",
+  "historical_081": "historical-stage-081.json",
+  "prior_code_validation": "final-validation/commands.json",
+  "journey": "journey-corrected/commands.json",
+  "s10_normal_keys": "normal-keys-verification.json",
+  "counter_back_positive_negative": {
+    "command": "python tools/test_task009_lifecycle.py --fixed-path ../fixed --godot ../godot",
+    "source_sha": "611c5986f3d960d3c306c48d971833de7f5a9523",
+    "job_id": 122659754648,
+    "log": "ci-lifecycle-green-611c598.log",
+    "results": "counter-back-negative-proof-611c598.json"
+  },
+  "assertion_migration": {
+    "command": "python docs/verification/task-083/build_assertion_map.py",
+    "exit_code": 0,
+    "log": "assertion-migration.log"
+  }
+}

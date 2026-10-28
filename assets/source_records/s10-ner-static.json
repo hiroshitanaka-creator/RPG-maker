@@ -1,0 +1,138 @@
+{
+  "source_sha256": "7fb285a7c31839ff33350c328f39dfd97e94ea57a0fe6567ef862f8fb19a9aa5",
+  "source_size": [
+    1152,
+    1728
+  ],
+  "crop": [
+    189,
+    168,
+    1044,
+    1612
+  ],
+  "mask_rule": "border-connected RGB min>=140 and max-min<=25; 4-neighbor",
+  "resampling": "nearest",
+  "sprite_size": [
+    32,
+    48
+  ],
+  "ground_last_opaque_row": 47,
+  "palette_colors": [
+    [
+      233,
+      231,
+      203
+    ],
+    [
+      16,
+      15,
+      13
+    ],
+    [
+      139,
+      127,
+      85
+    ],
+    [
+      215,
+      183,
+      120
+    ],
+    [
+      83,
+      51,
+      95
+    ],
+    [
+      164,
+      154,
+      136
+    ],
+    [
+      60,
+      59,
+      53
+    ],
+    [
+      196,
+      186,
+      164
+    ],
+    [
+      114,
+      133,
+      147
+    ],
+    [
+      116,
+      90,
+      50
+    ],
+    [
+      66,
+      96,
+      84
+    ],
+    [
+      98,
+      125,
+      108
+    ],
+    [
+      217,
+      204,
+      180
+    ],
+    [
+      178,
+      150,
+      98
+    ],
+    [
+      34,
+      34,
+      30
+    ],
+    [
+      138,
+      131,
+      116
+    ]
+  ],
+  "original_unchanged": true,
+  "base_main": "a4dc7c9d0d705f3181391fdccee4e4c825ddcaaf",
+  "elder": [
+    12,
+    6
+  ],
+  "entry": [
+    8,
+    10
+  ],
+  "exit": [
+    8,
+    11
+  ],
+  "original_file": "assets/_incoming/owner-2026-10-05-grok-batch3/oasis-shrine-keeper-chibi.png",
+  "adopted_preview_commit": "d46151a633a2b5701bf0c583bf01344f39095929",
+  "adopted_sha256": "121010a316a31b88dca753ed48bc9404f176a4fe5f0d6dd5508ebf0615559f5d",
+  "path": "assets/characters/ner/event_standing.png",
+  "approval": {
+    "instruction": "I-20261028-008",
+    "message": "Sentinel_449ed1f483d48191b0bcfcfd48dd4dd8",
+    "received_at": "2026-10-28T05:35:56.315527+00:00",
+    "verbatim": "B"
+  },
+  "placement": {
+    "node": "region2_village",
+    "room": 4,
+    "cell": [
+      8,
+      6
+    ]
+  },
+  "method_script": "tools/import_s10_ner_static.py",
+  "new_colors": [],
+  "poses": 1,
+  "flipped": false
+}
