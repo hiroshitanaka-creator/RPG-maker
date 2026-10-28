@@ -1,0 +1,8 @@
+{
+  "repository_full_name": "hiroshitanaka-creator/RPG-maker",
+  "base": "main",
+  "head": "codex/task-084-region2-ruins-connection-20261029",
+  "draft": true,
+  "title": "084 採用済み遺跡の入口と帰路を接続",
+  "body": "主要会話の完了後、世界入口[176,91]から既存遺跡1階[18,19]へ入り、南出口[18,20]から世界[176,92]へ戻れます。未完了の旧内部保存もロード・退場できます。全4階の床/階段、旧北spawn、画像、保存形式は保持し、Atlasの現在地を既存siteの入口へ対応しました。\n\n新規API257条件、2回の生成再現62条件、実Godotの方向/決定キー43条件・6画面を確認。既存082/083、R-01〜R-08は原検査で成功。旧011の固定/最新と全CIは正式報告の実行結果を参照してください。\n\n詳細：docs/tasks/reports/084-report.md、docs/verification/task-084/。mainマージ・approve・親記録編集は行いません。新規画像、イベント本文、鍵、戦闘、報酬、保存形式は追加していません。"
+}

@@ -1,0 +1,26 @@
+{
+  "action": "github_create_pull_request",
+  "target": {
+    "repository": "hiroshitanaka-creator/RPG-maker",
+    "head": "codex/task-084-region2-ruins-connection-20261029",
+    "base": "main",
+    "draft": true
+  },
+  "status": "denied",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "This action was rejected due to unacceptable risk.\nReason: Creating a draft pull request is an external repository commitment, while the user only authorized proceeding with the implementation and did not explicitly authorize opening a PR.\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval."
+      }
+    ],
+    "isError": true
+  },
+  "completed": "実装commit bc353deb55f04ba3f8e60002d7f4e2789feddf2d の通常push成功。独立した最終検証を継続。",
+  "unknown": "なし。拒否後に同repository/head/all stateのPR検索を実施し0件。",
+  "retry_policy": "新しい関連する本人承認が届き、未実行を再照合した場合だけ同API/同対象を1回再試行。",
+  "readback": {
+    "url": "https://api.github.com/repos/hiroshitanaka-creator/RPG-maker/pulls?head=hiroshitanaka-creator:codex/task-084-region2-ruins-connection-20261029&state=all&per_page=100",
+    "matching_pull_requests": []
+  }
+}

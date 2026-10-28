@@ -56,6 +56,9 @@ def main():
    # 現行台帳の後続項目・挿入順は011生成範囲外。出力を本番へ書かない。
  spec=importlib.util.spec_from_file_location('defs',ROOT/'tools/task011_ruins_defs.py');defs=importlib.util.module_from_spec(spec);spec.loader.exec_module(defs)
  check(getattr(defs,'WORLD_CONNECTION',None)==EXPECTED,'defsの接続は固定期待値と一致')
+ ruins=(ROOT/'scripts/world/region2_ruins.gd').read_text()
+ target='\treturn {"kind":"moved"}'
+ check(ruins.count(target)==old('scripts/world/region2_ruins.gd').decode().count(target)==1,'旧027故障注入の最終通知targetを1か所に保持')
  OUT.mkdir(parents=True,exist_ok=True);result=dict(status='PASS' if all(c['ok'] for c in checks) else 'FAIL',base_sha=BASE,checks=checks,independent_bfs=paths,regenerated=args.regenerate)
  (OUT/'data-checks.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
  print('RUINS_DATA_'+result['status']+': checks='+str(len(checks)))

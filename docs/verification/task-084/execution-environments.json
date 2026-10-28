@@ -1,0 +1,22 @@
+{
+  "base": {
+    "PATH_prefix": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2",
+      "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin"
+    ],
+    "XDG_DATA_HOME": "/workspace/qa084/data",
+    "XDG_CONFIG_HOME": "/workspace/qa084/config",
+    "XDG_CACHE_HOME": "/workspace/qa084/cache",
+    "RPG_QA_SAVE_PREFIX": "task084"
+  },
+  "fixed_sha_batch": {
+    "DISPLAY": ":84",
+    "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+  },
+  "task027-render-threads2": {
+    "DISPLAY": ":84",
+    "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json",
+    "LP_NUM_THREADS": "2"
+  },
+  "note": "試行ごとのコマンドと併せて読む。検査条件/判定/上限を変更せず、Mesaソフトウェア描画の並列数だけを指定。"
+}

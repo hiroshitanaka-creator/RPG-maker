@@ -34,7 +34,9 @@ static func move(state: Dictionary) -> Dictionary:
 		FirstRegion.place(state,{"layer":"world","node":"","room":0,"cell":connection["return_cell"]})
 		state["facing"] = connection["return_facing"]
 		state["entry_lock"] = "region2_ruins_entrance"
-		return {"kind":"moved"}
+		# 既存027の故障注入は関数末尾の移動通知を対象にする。退出通知と混線させない。
+		var exited := {"kind":"moved"}
+		return exited
 	for link in data()["stairs"]:
 		if state["room"] == link["from_room"] and state["cell"] == link["from_cell"]:
 			state["room"] = link["to_room"]
