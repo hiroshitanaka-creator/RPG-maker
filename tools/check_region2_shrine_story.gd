@@ -286,6 +286,12 @@ func ui_cases() -> void:
 	main.mode=main.Mode.WORLD
 	for frame in range(4):main._refresh();await process_frame
 	check(main.mode==main.Mode.WORLD and main._shrine_story_id.is_empty(),"描画フレームだけで会話を発火しない")
+	check(main.game.import_state(fixture(4,[8,10])),"重複再開の境界準備")
+	main.mode=main.Mode.WORLD;main._resume_region2_shrine();main._refresh()
+	var resumed_id: String=main._shrine_story_id
+	var resumed_run: int=main._shrine_story_run
+	main._resume_current()
+	check(main.mode==main.Mode.DIALOGUE and main._shrine_story_id==resumed_id and main._shrine_story_run==resumed_run and main._message_index==0,"続けるの重複呼出しで進行中の会話を失わない")
 	stale_confirmations()
 	main.queue_free()
 	await process_frame

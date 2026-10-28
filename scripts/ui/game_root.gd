@@ -1023,6 +1023,7 @@ func _render_menu() -> void:
 
 
 func _resume_current() -> void:
+	if mode==Mode.DIALOGUE and not _shrine_story_id.is_empty():return
 	mode = Mode.COMPLETE if game.chapter_one_pause() or game.story_complete() else Mode.FIELD
 	if game.world_exploration_active():
 		mode = Mode.WORLD
