@@ -1,0 +1,20 @@
+{
+  "status": "denied",
+  "action": "mcp__codex_apps__github_create_pull_request",
+  "repository": "hiroshitanaka-creator/RPG-maker",
+  "head": "codex/task-082-shrine-conversation-20261028",
+  "base": "main",
+  "draft": true,
+  "reason": "Creating a draft pull request is an external commitment to a GitHub repository, and the transcript does not contain explicit user authorization for opening that PR.",
+  "outcome": "自動承認レビューが拒否。作成を成功扱いせず、別経路への切替えも再試行もしていない。",
+  "completed_independent_work": "実装コミット・ブランチpush・集中検証・R-01〜R-08。全体検証と原証拠の保存を続行。",
+  "retry_condition": "親から materially new relevant な本人承認の証拠を受領した場合だけ、未実行の本操作を最大1回再試行する。",
+  "current_implementation_sha": "e675aca03d7a726379f88ad1529a2597f38de405",
+  "current_independent_work": "最終e675acaで集中293条件・全R-01〜R-08を含む関連19コマンド成功。実装4コミットpush済み。全5ワークフロー・38CIジョブ成功。報告と証拠目録を保存。",
+  "read_only_pr_verification": {
+    "matching_pull_requests": 0,
+    "head": "codex/task-082-shrine-conversation-20261028",
+    "state": "all",
+    "observed_at": "2026-10-28 03:26 UTC"
+  }
+}

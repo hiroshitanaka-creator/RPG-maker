@@ -1,0 +1,1746 @@
+{
+  "baseline_main": "6c996d5c37fd384e679bb23dd59113c99494790c",
+  "verified_implementation_sha": "e675aca03d7a726379f88ad1529a2597f38de405",
+  "local_commands": 19,
+  "focused_checks": 293,
+  "ci_workflows": 5,
+  "ci_jobs": 38,
+  "ci_result": "success",
+  "changed_paths": [
+    "data/region2_shrine_scenes.json",
+    "docs/tasks/reports/082-report.md",
+    "docs/verification/task-082/R-01.log.gz",
+    "docs/verification/task-082/R-02.log.gz",
+    "docs/verification/task-082/R-03.log.gz",
+    "docs/verification/task-082/R-04.log.gz",
+    "docs/verification/task-082/R-05.log.gz",
+    "docs/verification/task-082/R-06.log.gz",
+    "docs/verification/task-082/R-07.log.gz",
+    "docs/verification/task-082/R-08.log.gz",
+    "docs/verification/task-082/README.md",
+    "docs/verification/task-082/build_world_interiors.log.gz",
+    "docs/verification/task-082/build_world_terrain.log.gz",
+    "docs/verification/task-082/capture_job_costumes.log.gz",
+    "docs/verification/task-082/changed-paths.txt",
+    "docs/verification/task-082/check_acceptance_registration.log.gz",
+    "docs/verification/task-082/check_battle_acceptance.log.gz",
+    "docs/verification/task-082/check_battle_counterplay.log.gz",
+    "docs/verification/task-082/check_battle_recovery.log.gz",
+    "docs/verification/task-082/check_duration_summary.log.gz",
+    "docs/verification/task-082/check_duration_target.log.gz",
+    "docs/verification/task-082/check_enemy_encounters.log.gz",
+    "docs/verification/task-082/check_first_region_gado.log.gz",
+    "docs/verification/task-082/check_first_region_gado_data.log.gz",
+    "docs/verification/task-082/check_first_region_screen.log.gz",
+    "docs/verification/task-082/check_frozen_files.log.gz",
+    "docs/verification/task-082/check_integrated_builds.log.gz",
+    "docs/verification/task-082/check_integrated_combat.log.gz",
+    "docs/verification/task-082/check_integrated_completion.log.gz",
+    "docs/verification/task-082/check_integrated_entry.log.gz",
+    "docs/verification/task-082/check_integrated_mastery.log.gz",
+    "docs/verification/task-082/check_integrated_progression.log.gz",
+    "docs/verification/task-082/check_integrated_storage.log.gz",
+    "docs/verification/task-082/check_integrated_ui.log.gz",
+    "docs/verification/task-082/check_map_graph_definition.log.gz",
+    "docs/verification/task-082/check_map_graph_structure.log.gz",
+    "docs/verification/task-082/check_map_graph_structure_regressions.log.gz",
+    "docs/verification/task-082/check_mastery_charger_probe.log.gz",
+    "docs/verification/task-082/check_mastery_role_transition.log.gz",
+    "docs/verification/task-082/check_original_acceptance_inputs.log.gz",
+    "docs/verification/task-082/check_progress_docs.log.gz",
+    "docs/verification/task-082/check_reaction_rules.log.gz",
+    "docs/verification/task-082/check_region2_port.log.gz",
+    "docs/verification/task-082/check_region2_port_backdrop-python.log.gz",
+    "docs/verification/task-082/check_region2_port_backdrop.log.gz",
+    "docs/verification/task-082/check_region2_shrine_story.log.gz",
+    "docs/verification/task-082/check_region2_shrine_story_data.log.gz",
+    "docs/verification/task-082/check_region2_village_backdrops-python.log.gz",
+    "docs/verification/task-082/check_region2_village_backdrops.log.gz",
+    "docs/verification/task-082/check_region2_village_native.log.gz",
+    "docs/verification/task-082/check_region2_village_scope.log.gz",
+    "docs/verification/task-082/check_registry_sprint_scope.log.gz",
+    "docs/verification/task-082/check_saved_position_relocation.log.gz",
+    "docs/verification/task-082/check_saved_value_types.log.gz",
+    "docs/verification/task-082/check_second_region_coast.log.gz",
+    "docs/verification/task-082/check_task007.log.gz",
+    "docs/verification/task-082/check_task011.log.gz",
+    "docs/verification/task-082/check_task011_ci_boundary.log.gz",
+    "docs/verification/task-082/check_task081_port_data.log.gz",
+    "docs/verification/task-082/check_task081_port_runtime.log.gz",
+    "docs/verification/task-082/check_world_realtime_record.log.gz",
+    "docs/verification/task-082/check_world_terrain.log.gz",
+    "docs/verification/task-082/check_world_terrain_boundaries.log.gz",
+    "docs/verification/task-082/collect_evidence.py",
+    "docs/verification/task-082/collection-count-error.log",
+    "docs/verification/task-082/collection.log",
+    "docs/verification/task-082/data-checks.json",
+    "docs/verification/task-082/development-attempts.json",
+    "docs/verification/task-082/draft-pr.md",
+    "docs/verification/task-082/duplicate-resume-green.log",
+    "docs/verification/task-082/duplicate-resume-red.log",
+    "docs/verification/task-082/engine.log.gz",
+    "docs/verification/task-082/environment.json",
+    "docs/verification/task-082/evidence-manifest.json",
+    "docs/verification/task-082/execution.json",
+    "docs/verification/task-082/final-progress.log",
+    "docs/verification/task-082/final-validation-progress.log",
+    "docs/verification/task-082/final-validation/01-import.log.gz",
+    "docs/verification/task-082/final-validation/02-frozen-before.log.gz",
+    "docs/verification/task-082/final-validation/03-approved-data.log.gz",
+    "docs/verification/task-082/final-validation/04-shrine.log.gz",
+    "docs/verification/task-082/final-validation/05-R-01.log.gz",
+    "docs/verification/task-082/final-validation/06-R-02.log.gz",
+    "docs/verification/task-082/final-validation/07-R-03.log.gz",
+    "docs/verification/task-082/final-validation/08-R-04.log.gz",
+    "docs/verification/task-082/final-validation/09-R-05.log.gz",
+    "docs/verification/task-082/final-validation/10-R-06.log.gz",
+    "docs/verification/task-082/final-validation/11-R-07.log.gz",
+    "docs/verification/task-082/final-validation/12-R-08.log.gz",
+    "docs/verification/task-082/final-validation/13-first_region_gado.log.gz",
+    "docs/verification/task-082/final-validation/14-first_region_screen.log.gz",
+    "docs/verification/task-082/final-validation/15-battle_recovery.log.gz",
+    "docs/verification/task-082/final-validation/16-saved_value_types.log.gz",
+    "docs/verification/task-082/final-validation/17-saved_position_relocation.log.gz",
+    "docs/verification/task-082/final-validation/18-task081_port_runtime.log.gz",
+    "docs/verification/task-082/final-validation/19-frozen-after.log.gz",
+    "docs/verification/task-082/final-validation/data-checks.json",
+    "docs/verification/task-082/final-validation/execution.json",
+    "docs/verification/task-082/final-validation/github-checks.json",
+    "docs/verification/task-082/final-validation/github-workflows.json",
+    "docs/verification/task-082/final-validation/runtime-checks.json",
+    "docs/verification/task-082/final-validation/saves/task082-actual-old-complete.json",
+    "docs/verification/task-082/final-validation/saves/task082-actual-old.json",
+    "docs/verification/task-082/final-validation/saves/task082-complete.json",
+    "docs/verification/task-082/final-validation/saves/task082-interrupted.json",
+    "docs/verification/task-082/final-validation/saves/task082-legacy.json",
+    "docs/verification/task-082/final-validation/saves/task082-ui-checkpoint.json",
+    "docs/verification/task-082/final-validation/saves/task082-ui-manual.json",
+    "docs/verification/task-082/final-validation/saves/task082-used.json",
+    "docs/verification/task-082/final-validation/saves/task082-version.json",
+    "docs/verification/task-082/final-validation/summary.json",
+    "docs/verification/task-082/final/01-engine.log.gz",
+    "docs/verification/task-082/final/02-import.log.gz",
+    "docs/verification/task-082/final/03-check_frozen_files.log.gz",
+    "docs/verification/task-082/final/04-check_region2_shrine_story_data.log.gz",
+    "docs/verification/task-082/final/05-check_region2_shrine_story.log.gz",
+    "docs/verification/task-082/final/06-validate_assets.log.gz",
+    "docs/verification/task-082/final/07-R-01.log.gz",
+    "docs/verification/task-082/final/08-R-02.log.gz",
+    "docs/verification/task-082/final/09-R-03.log.gz",
+    "docs/verification/task-082/final/10-R-04.log.gz",
+    "docs/verification/task-082/final/11-R-05.log.gz",
+    "docs/verification/task-082/final/12-R-06.log.gz",
+    "docs/verification/task-082/final/13-R-07.log.gz",
+    "docs/verification/task-082/final/14-R-08.log.gz",
+    "docs/verification/task-082/final/15-check_original_acceptance_inputs.log.gz",
+    "docs/verification/task-082/final/16-check_integrated_entry.log.gz",
+    "docs/verification/task-082/final/17-check_integrated_combat.log.gz",
+    "docs/verification/task-082/final/18-check_integrated_progression.log.gz",
+    "docs/verification/task-082/final/19-check_integrated_storage.log.gz",
+    "docs/verification/task-082/final/20-check_integrated_ui.log.gz",
+    "docs/verification/task-082/final/21-check_integrated_builds.log.gz",
+    "docs/verification/task-082/final/22-check_integrated_completion.log.gz",
+    "docs/verification/task-082/final/23-check_integrated_mastery.log.gz",
+    "docs/verification/task-082/final/24-check_mastery_charger_probe.log.gz",
+    "docs/verification/task-082/final/25-check_mastery_role_transition.log.gz",
+    "docs/verification/task-082/final/26-check_map_graph_definition.log.gz",
+    "docs/verification/task-082/final/27-check_map_graph_structure.log.gz",
+    "docs/verification/task-082/final/28-check_map_graph_structure_regressions.log.gz",
+    "docs/verification/task-082/final/29-build_world_terrain.log.gz",
+    "docs/verification/task-082/final/30-build_world_interiors.log.gz",
+    "docs/verification/task-082/final/31-check_world_terrain.log.gz",
+    "docs/verification/task-082/final/32-check_world_terrain_boundaries.log.gz",
+    "docs/verification/task-082/final/33-check_world_realtime_record.log.gz",
+    "docs/verification/task-082/final/34-check_duration_target.log.gz",
+    "docs/verification/task-082/final/35-check_duration_summary.log.gz",
+    "docs/verification/task-082/final/36-check_battle_acceptance.log.gz",
+    "docs/verification/task-082/final/37-check_reaction_rules.log.gz",
+    "docs/verification/task-082/final/38-check_battle_counterplay.log.gz",
+    "docs/verification/task-082/final/39-check_region2_port_backdrop.log.gz",
+    "docs/verification/task-082/final/40-check_region2_village_scope.log.gz",
+    "docs/verification/task-082/final/41-check_region2_village_backdrops.log.gz",
+    "docs/verification/task-082/final/42-check_region2_village_native.log.gz",
+    "docs/verification/task-082/final/43-check_progress_docs.log.gz",
+    "docs/verification/task-082/final/44-test_locked_check_reporting.log.gz",
+    "docs/verification/task-082/final/45-check_acceptance_registration.log.gz",
+    "docs/verification/task-082/final/46-check_registry_sprint_scope.log.gz",
+    "docs/verification/task-082/final/47-check_first_region_gado_data.log.gz",
+    "docs/verification/task-082/final/48-check_first_region_gado.log.gz",
+    "docs/verification/task-082/final/49-check_region2_village_backdrops.log.gz",
+    "docs/verification/task-082/final/50-check_task007.log.gz",
+    "docs/verification/task-082/final/51-check_task011.log.gz",
+    "docs/verification/task-082/final/52-check_task011_ci_boundary.log.gz",
+    "docs/verification/task-082/final/53-check_enemy_encounters.log.gz",
+    "docs/verification/task-082/final/54-check_battle_recovery.log.gz",
+    "docs/verification/task-082/final/55-check_saved_value_types.log.gz",
+    "docs/verification/task-082/final/56-check_saved_position_relocation.log.gz",
+    "docs/verification/task-082/final/57-check_second_region_coast.log.gz",
+    "docs/verification/task-082/final/58-check_first_region_screen.log.gz",
+    "docs/verification/task-082/final/59-check_region2_port_backdrop.log.gz",
+    "docs/verification/task-082/final/60-check_region2_port.log.gz",
+    "docs/verification/task-082/final/61-capture_job_costumes.log.gz",
+    "docs/verification/task-082/final/62-check_task081_port_runtime.log.gz",
+    "docs/verification/task-082/final/63-check_task081_port_data.log.gz",
+    "docs/verification/task-082/final/64-frozen-after.log.gz",
+    "docs/verification/task-082/final/command-results.tsv",
+    "docs/verification/task-082/final/data-checks.json",
+    "docs/verification/task-082/final/execution.json",
+    "docs/verification/task-082/final/github-checks.json",
+    "docs/verification/task-082/final/regression-records.json",
+    "docs/verification/task-082/final/regression-records.tar.gz",
+    "docs/verification/task-082/final/runtime-checks.json",
+    "docs/verification/task-082/final/saves/task082-actual-old-complete.json",
+    "docs/verification/task-082/final/saves/task082-actual-old.json",
+    "docs/verification/task-082/final/saves/task082-complete.json",
+    "docs/verification/task-082/final/saves/task082-interrupted.json",
+    "docs/verification/task-082/final/saves/task082-legacy.json",
+    "docs/verification/task-082/final/saves/task082-ui-checkpoint.json",
+    "docs/verification/task-082/final/saves/task082-ui-manual.json",
+    "docs/verification/task-082/final/saves/task082-used.json",
+    "docs/verification/task-082/final/saves/task082-version.json",
+    "docs/verification/task-082/final/summary.json",
+    "docs/verification/task-082/first-pass/R-01.log.gz",
+    "docs/verification/task-082/first-pass/R-02.log.gz",
+    "docs/verification/task-082/first-pass/R-03.log.gz",
+    "docs/verification/task-082/first-pass/R-04.log.gz",
+    "docs/verification/task-082/first-pass/R-05.log.gz",
+    "docs/verification/task-082/first-pass/R-06.log.gz",
+    "docs/verification/task-082/first-pass/R-07.log.gz",
+    "docs/verification/task-082/first-pass/R-08.log.gz",
+    "docs/verification/task-082/first-pass/build_world_interiors.log.gz",
+    "docs/verification/task-082/first-pass/build_world_terrain.log.gz",
+    "docs/verification/task-082/first-pass/capture_job_costumes.log.gz",
+    "docs/verification/task-082/first-pass/check_acceptance_registration.log.gz",
+    "docs/verification/task-082/first-pass/check_battle_acceptance.log.gz",
+    "docs/verification/task-082/first-pass/check_battle_counterplay.log.gz",
+    "docs/verification/task-082/first-pass/check_battle_recovery.log.gz",
+    "docs/verification/task-082/first-pass/check_duration_summary.log.gz",
+    "docs/verification/task-082/first-pass/check_duration_target.log.gz",
+    "docs/verification/task-082/first-pass/check_enemy_encounters.log.gz",
+    "docs/verification/task-082/first-pass/check_first_region_gado.log.gz",
+    "docs/verification/task-082/first-pass/check_first_region_gado_data.log.gz",
+    "docs/verification/task-082/first-pass/check_first_region_screen.log.gz",
+    "docs/verification/task-082/first-pass/check_frozen_files.log.gz",
+    "docs/verification/task-082/first-pass/check_integrated_builds.log.gz",
+    "docs/verification/task-082/first-pass/check_integrated_combat.log.gz",
+    "docs/verification/task-082/first-pass/check_integrated_completion.log.gz",
+    "docs/verification/task-082/first-pass/check_integrated_entry.log.gz",
+    "docs/verification/task-082/first-pass/check_integrated_mastery.log.gz",
+    "docs/verification/task-082/first-pass/check_integrated_progression.log.gz",
+    "docs/verification/task-082/first-pass/check_integrated_storage.log.gz",
+    "docs/verification/task-082/first-pass/check_integrated_ui.log.gz",
+    "docs/verification/task-082/first-pass/check_map_graph_definition.log.gz",
+    "docs/verification/task-082/first-pass/check_map_graph_structure.log.gz",
+    "docs/verification/task-082/first-pass/check_map_graph_structure_regressions.log.gz",
+    "docs/verification/task-082/first-pass/check_mastery_charger_probe.log.gz",
+    "docs/verification/task-082/first-pass/check_mastery_role_transition.log.gz",
+    "docs/verification/task-082/first-pass/check_original_acceptance_inputs.log.gz",
+    "docs/verification/task-082/first-pass/check_progress_docs.log.gz",
+    "docs/verification/task-082/first-pass/check_reaction_rules.log.gz",
+    "docs/verification/task-082/first-pass/check_region2_port.log.gz",
+    "docs/verification/task-082/first-pass/check_region2_port_backdrop-python.log.gz",
+    "docs/verification/task-082/first-pass/check_region2_port_backdrop.log.gz",
+    "docs/verification/task-082/first-pass/check_region2_shrine_story.log.gz",
+    "docs/verification/task-082/first-pass/check_region2_shrine_story_data.log.gz",
+    "docs/verification/task-082/first-pass/check_region2_village_backdrops-python.log.gz",
+    "docs/verification/task-082/first-pass/check_region2_village_backdrops.log.gz",
+    "docs/verification/task-082/first-pass/check_region2_village_native.log.gz",
+    "docs/verification/task-082/first-pass/check_region2_village_scope.log.gz",
+    "docs/verification/task-082/first-pass/check_registry_sprint_scope.log.gz",
+    "docs/verification/task-082/first-pass/check_saved_position_relocation.log.gz",
+    "docs/verification/task-082/first-pass/check_saved_value_types.log.gz",
+    "docs/verification/task-082/first-pass/check_second_region_coast.log.gz",
+    "docs/verification/task-082/first-pass/check_task007.log.gz",
+    "docs/verification/task-082/first-pass/check_task011.log.gz",
+    "docs/verification/task-082/first-pass/check_task011_ci_boundary.log.gz",
+    "docs/verification/task-082/first-pass/check_task081_port_data.log.gz",
+    "docs/verification/task-082/first-pass/check_task081_port_runtime.log.gz",
+    "docs/verification/task-082/first-pass/check_world_realtime_record.log.gz",
+    "docs/verification/task-082/first-pass/check_world_terrain.log.gz",
+    "docs/verification/task-082/first-pass/check_world_terrain_boundaries.log.gz",
+    "docs/verification/task-082/first-pass/engine.log.gz",
+    "docs/verification/task-082/first-pass/execution.json",
+    "docs/verification/task-082/first-pass/frozen-after.log.gz",
+    "docs/verification/task-082/first-pass/github-checks.json",
+    "docs/verification/task-082/first-pass/import.log.gz",
+    "docs/verification/task-082/first-pass/run_checks.py",
+    "docs/verification/task-082/first-pass/stage-081-baseline.log.gz",
+    "docs/verification/task-082/first-pass/stage-081-fixed.log.gz",
+    "docs/verification/task-082/first-pass/test_locked_check_reporting.log.gz",
+    "docs/verification/task-082/first-pass/validate_assets.log.gz",
+    "docs/verification/task-082/focused-fifth.log",
+    "docs/verification/task-082/focused-final.log",
+    "docs/verification/task-082/focused-first.log",
+    "docs/verification/task-082/focused-fourth.log",
+    "docs/verification/task-082/focused-second.log",
+    "docs/verification/task-082/focused-third.log",
+    "docs/verification/task-082/frozen-after.log.gz",
+    "docs/verification/task-082/historical-stage-081.json",
+    "docs/verification/task-082/import.log",
+    "docs/verification/task-082/import.log.gz",
+    "docs/verification/task-082/initial-import.log",
+    "docs/verification/task-082/latest-progress.log",
+    "docs/verification/task-082/latest/01-import.log.gz",
+    "docs/verification/task-082/latest/02-frozen-before.log.gz",
+    "docs/verification/task-082/latest/03-approved-data.log.gz",
+    "docs/verification/task-082/latest/04-shrine.log.gz",
+    "docs/verification/task-082/latest/05-R-01.log.gz",
+    "docs/verification/task-082/latest/06-R-02.log.gz",
+    "docs/verification/task-082/latest/07-R-03.log.gz",
+    "docs/verification/task-082/latest/08-R-04.log.gz",
+    "docs/verification/task-082/latest/09-R-05.log.gz",
+    "docs/verification/task-082/latest/10-R-06.log.gz",
+    "docs/verification/task-082/latest/11-R-07.log.gz",
+    "docs/verification/task-082/latest/12-R-08.log.gz",
+    "docs/verification/task-082/latest/13-first_region_gado.log.gz",
+    "docs/verification/task-082/latest/14-first_region_screen.log.gz",
+    "docs/verification/task-082/latest/15-battle_recovery.log.gz",
+    "docs/verification/task-082/latest/16-saved_value_types.log.gz",
+    "docs/verification/task-082/latest/17-saved_position_relocation.log.gz",
+    "docs/verification/task-082/latest/18-task081_port_runtime.log.gz",
+    "docs/verification/task-082/latest/19-frozen-after.log.gz",
+    "docs/verification/task-082/latest/data-checks.json",
+    "docs/verification/task-082/latest/execution.json",
+    "docs/verification/task-082/latest/run_checks-executed.py",
+    "docs/verification/task-082/latest/runtime-checks.json",
+    "docs/verification/task-082/latest/saves/task082-actual-old-complete.json",
+    "docs/verification/task-082/latest/saves/task082-actual-old.json",
+    "docs/verification/task-082/latest/saves/task082-complete.json",
+    "docs/verification/task-082/latest/saves/task082-interrupted.json",
+    "docs/verification/task-082/latest/saves/task082-legacy.json",
+    "docs/verification/task-082/latest/saves/task082-ui-checkpoint.json",
+    "docs/verification/task-082/latest/saves/task082-ui-manual.json",
+    "docs/verification/task-082/latest/saves/task082-used.json",
+    "docs/verification/task-082/latest/saves/task082-version.json",
+    "docs/verification/task-082/latest/summary.json",
+    "docs/verification/task-082/log-normalization.json",
+    "docs/verification/task-082/pr-blocker.json",
+    "docs/verification/task-082/run_checks.py",
+    "docs/verification/task-082/run_latest_checks.py",
+    "docs/verification/task-082/runtime-checks.json",
+    "docs/verification/task-082/saves/task082-actual-old-complete.json",
+    "docs/verification/task-082/saves/task082-actual-old.json",
+    "docs/verification/task-082/saves/task082-complete.json",
+    "docs/verification/task-082/saves/task082-interrupted.json",
+    "docs/verification/task-082/saves/task082-legacy.json",
+    "docs/verification/task-082/saves/task082-ui-checkpoint.json",
+    "docs/verification/task-082/saves/task082-ui-manual.json",
+    "docs/verification/task-082/saves/task082-used.json",
+    "docs/verification/task-082/saves/task082-version.json",
+    "docs/verification/task-082/scope-audit-final.json",
+    "docs/verification/task-082/scope-audit.json",
+    "docs/verification/task-082/stage-081-baseline-checks.json",
+    "docs/verification/task-082/stage-081-baseline.log.gz",
+    "docs/verification/task-082/stage-081-fixed-checks.json",
+    "docs/verification/task-082/stage-081-fixed.log.gz",
+    "docs/verification/task-082/stale-confirm-green.log",
+    "docs/verification/task-082/stale-confirm-probe-error.log",
+    "docs/verification/task-082/stale-confirm-red.log",
+    "docs/verification/task-082/stale-ui-green.log",
+    "docs/verification/task-082/stale-ui-red.log",
+    "docs/verification/task-082/suite-progress.log",
+    "docs/verification/task-082/test_locked_check_reporting.log.gz",
+    "docs/verification/task-082/validate_assets.log.gz",
+    "docs/verification/task-082/vulkan-probe-fixed.log",
+    "docs/verification/task-082/vulkan-probe.log",
+    "docs/verification/task-082/write_manifest.py",
+    "scripts/game/game_session.gd",
+    "scripts/ui/game_root.gd",
+    "scripts/world/region2_shrine_story.gd",
+    "scripts/world/region2_shrine_story.gd.uid",
+    "tools/check_region2_shrine_story.gd",
+    "tools/check_region2_shrine_story.gd.uid",
+    "tools/check_region2_shrine_story_data.py"
+  ],
+  "source_sha256": {
+    "data/region2_shrine_scenes.json": "ef480031dfb4fed746888b9827de07ed2185baecb2fad43662f59acc334e0557",
+    "scripts/game/game_session.gd": "5e82f34bbfb465e696f59b32b3973b35d1a0bff76a9aa1d1299618e2df4e75d7",
+    "scripts/ui/game_root.gd": "ab2784f0cc16a618dd9f75ac00ad9233ec2613501b92c4e661833c4236a427d7",
+    "scripts/world/region2_shrine_story.gd": "7ecccfae955144f5fefa03e40c8e0a294b8735e0bdce4e35eb7270fc2b780218",
+    "scripts/world/region2_shrine_story.gd.uid": "c78872c268494b916f5696b0569b7b72746cc827764e8380c47fd2a4ba426252",
+    "tools/check_region2_shrine_story.gd": "997d343f8486fd022c75eb31faa30542112f593b5ff03d7da35e9f565f5077d6",
+    "tools/check_region2_shrine_story.gd.uid": "afc3f5194557a70120fd7826395588dcf71b4653c7c4df4d46ef2197652a8ec9",
+    "tools/check_region2_shrine_story_data.py": "01d63a562d4f5a45adb8a8c09c658c24ce47eb8d948eb6a8a54390a2ed53ee33"
+  },
+  "artifacts": {
+    "data/region2_shrine_scenes.json": {
+      "bytes": 1521,
+      "sha256": "ef480031dfb4fed746888b9827de07ed2185baecb2fad43662f59acc334e0557"
+    },
+    "docs/tasks/reports/082-report.md": {
+      "bytes": 9804,
+      "sha256": "4f26bdd7185d050b6f57cdd4d588a0ec852624cbdf29f843c5011ee6451324bc"
+    },
+    "docs/verification/task-082/R-01.log.gz": {
+      "bytes": 494,
+      "sha256": "1371b59ffd29894985544ac5fbea6bde5ab9ffb43acadf710516055f5db09250"
+    },
+    "docs/verification/task-082/R-02.log.gz": {
+      "bytes": 619,
+      "sha256": "e34aa19637cbc006c2a23e942ad283d75e4d562d1df3eb736e27b4998bcc1cd9"
+    },
+    "docs/verification/task-082/R-03.log.gz": {
+      "bytes": 505,
+      "sha256": "635edd89be368ea4679981767ed98f652323e5c2b8357e123491b429df890fa5"
+    },
+    "docs/verification/task-082/R-04.log.gz": {
+      "bytes": 485,
+      "sha256": "d6923de3aa0348cb4d7804a47636d3ac7698571fdfbce3ab4493bd738a80feb6"
+    },
+    "docs/verification/task-082/R-05.log.gz": {
+      "bytes": 501,
+      "sha256": "1e9640e47d4372a75377b2635e2ea65fe18161d18f655080b42e078168f3b71c"
+    },
+    "docs/verification/task-082/R-06.log.gz": {
+      "bytes": 514,
+      "sha256": "1cd440f31342cfd157735c97cf4c0f1fa4ee4e897974627718ded072167a939d"
+    },
+    "docs/verification/task-082/R-07.log.gz": {
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    "docs/verification/task-082/R-08.log.gz": {
+      "bytes": 1195,
+      "sha256": "0c774d4b32cae3194c3a01a56e1c5862220af243f363ce08b694abc12ae4b35c"
+    },
+    "docs/verification/task-082/README.md": {
+      "bytes": 2223,
+      "sha256": "c5a08569698dbf426c3b5594446b6a6cab34f7a0246297179389aa45daa72c1d"
+    },
+    "docs/verification/task-082/build_world_interiors.log.gz": {
+      "bytes": 68,
+      "sha256": "d8edf55c52b971278412d39961f23d44d4656fb25bf7735a2234b031dd33f11c"
+    },
+    "docs/verification/task-082/build_world_terrain.log.gz": {
+      "bytes": 99,
+      "sha256": "0ca54d3998f721eb5405f7b8fdd77d571c3292835c17576046e0e0ccfb02e932"
+    },
+    "docs/verification/task-082/capture_job_costumes.log.gz": {
+      "bytes": 138,
+      "sha256": "19a657da6ebabb035bfd03f8143c025fb0a81129290a6a055cc3e4d200da2794"
+    },
+    "docs/verification/task-082/changed-paths.txt": {
+      "bytes": 20450,
+      "sha256": "ad6bab3d74a989e39e4eef29dad51ade63ce77c8f4a048c23f31fad278a547d7"
+    },
+    "docs/verification/task-082/check_acceptance_registration.log.gz": {
+      "bytes": 71,
+      "sha256": "e635101b100c627a5b62c6e02e9fc6acdc1019a69f627e54f83ebeb4887ffee7"
+    },
+    "docs/verification/task-082/check_battle_acceptance.log.gz": {
+      "bytes": 304,
+      "sha256": "b4197c542e168ee2a84137705b638f294ff24149058a5c9049ef6d0647637e03"
+    },
+    "docs/verification/task-082/check_battle_counterplay.log.gz": {
+      "bytes": 297,
+      "sha256": "135492245296ad2f19a5ca7a2b3bd5f51bf806ce881a468f2fe57f586d6f917d"
+    },
+    "docs/verification/task-082/check_battle_recovery.log.gz": {
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    "docs/verification/task-082/check_duration_summary.log.gz": {
+      "bytes": 143,
+      "sha256": "e57ceeaf26d567a2a03b0994b8848246a005a02c308a299847b457aa83a15049"
+    },
+    "docs/verification/task-082/check_duration_target.log.gz": {
+      "bytes": 189,
+      "sha256": "9ee0fce6d9dac5bd475f468f2fc46a7803201c86f6b0f244d06dee593994c975"
+    },
+    "docs/verification/task-082/check_enemy_encounters.log.gz": {
+      "bytes": 197,
+      "sha256": "1018e3cae94c0c33d8f6a5c9701671e1958566481e85fba05197f9a16b607840"
+    },
+    "docs/verification/task-082/check_first_region_gado.log.gz": {
+      "bytes": 134,
+      "sha256": "111cfe3d2e1755afa2cd6a8b02696d74b8b2abad2cfd0be188cc7585a7a12a1a"
+    },
+    "docs/verification/task-082/check_first_region_gado_data.log.gz": {
+      "bytes": 233,
+      "sha256": "3c01e989e56a53c91a40b15e58f127e696f135e24b8f4c023465a52c4a8abfa8"
+    },
+    "docs/verification/task-082/check_first_region_screen.log.gz": {
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    "docs/verification/task-082/check_frozen_files.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/check_integrated_builds.log.gz": {
+      "bytes": 257,
+      "sha256": "43305a18f0563ca01b4e39f324d4dd4474ed20fc9af1017cb4861f2fdee1cb3e"
+    },
+    "docs/verification/task-082/check_integrated_combat.log.gz": {
+      "bytes": 121,
+      "sha256": "d7f2c0b1670358796f5e59592ce957b5bccc2fefd47be5024f8b1288f6438fdf"
+    },
+    "docs/verification/task-082/check_integrated_completion.log.gz": {
+      "bytes": 136,
+      "sha256": "3f1b9f1ffcb1d998b481cff96274cebe1b71fcc956101634e00e18fad4c98d97"
+    },
+    "docs/verification/task-082/check_integrated_entry.log.gz": {
+      "bytes": 155,
+      "sha256": "d57b6f096b1b4637c072e6899476ecc97c40ca0e400f1c1a93806299ea38a443"
+    },
+    "docs/verification/task-082/check_integrated_mastery.log.gz": {
+      "bytes": 136,
+      "sha256": "9c70f006dd0a7ff315f1e9a5771b5c832c20a6cc1f92404b36dde04cd64c2b44"
+    },
+    "docs/verification/task-082/check_integrated_progression.log.gz": {
+      "bytes": 126,
+      "sha256": "5f622a217a9776148841982eb40fb86d4f5eed318f779e8f621b8140e13ecf16"
+    },
+    "docs/verification/task-082/check_integrated_storage.log.gz": {
+      "bytes": 144,
+      "sha256": "f1c1214cbbef90c5f2468186f957e11ed46bdb52ea0fab3a1e83f2521ccbec2f"
+    },
+    "docs/verification/task-082/check_integrated_ui.log.gz": {
+      "bytes": 141,
+      "sha256": "ef9b3fd83a8bba4048485bfa13592eaff3bf32f33e1f823b8dffd4f3079a0535"
+    },
+    "docs/verification/task-082/check_map_graph_definition.log.gz": {
+      "bytes": 222,
+      "sha256": "6469ccf10bc463c1558e47a6719939663030960d062d39c6993e52a1f7b8b69e"
+    },
+    "docs/verification/task-082/check_map_graph_structure.log.gz": {
+      "bytes": 195,
+      "sha256": "af6d178aad7afef927d5dd744e0268bec284c98d83228bc185f48250b58556f4"
+    },
+    "docs/verification/task-082/check_map_graph_structure_regressions.log.gz": {
+      "bytes": 132,
+      "sha256": "ad859e87dbac2c97f196323d01b0890054e63b17755fc7c87264188df2d00260"
+    },
+    "docs/verification/task-082/check_mastery_charger_probe.log.gz": {
+      "bytes": 231,
+      "sha256": "3f8dbf72d1216b0bcb79169683d858a22dec5a61b969de86e5e6a6429693bc20"
+    },
+    "docs/verification/task-082/check_mastery_role_transition.log.gz": {
+      "bytes": 88,
+      "sha256": "97675e961fd50d33d8dcca49a213125f9a9fa9cc50431851baca2d489e1a15d6"
+    },
+    "docs/verification/task-082/check_original_acceptance_inputs.log.gz": {
+      "bytes": 98,
+      "sha256": "322b50b51bf4ac830a0e0e9e6838707012955bfea8847c48dc1e76b7db0f4144"
+    },
+    "docs/verification/task-082/check_progress_docs.log.gz": {
+      "bytes": 55,
+      "sha256": "9bbdd6d6d798fb545e17d5befc2c3b63fcf8c84bddc72a4fa0b1d3f0c3b368de"
+    },
+    "docs/verification/task-082/check_reaction_rules.log.gz": {
+      "bytes": 163,
+      "sha256": "5764709451fd13a91206024787f247636819f60fcf4ddc4907841b02abdbb081"
+    },
+    "docs/verification/task-082/check_region2_port.log.gz": {
+      "bytes": 118,
+      "sha256": "fcbe344d3c2b39c4901493f4c6d2d829234d9f10b2d41be19e99b5b8e3e06852"
+    },
+    "docs/verification/task-082/check_region2_port_backdrop-python.log.gz": {
+      "bytes": 218,
+      "sha256": "15a732c8d62f91266311e336a8711bb32bcb5b250d2b76bba131155c4ee6e4da"
+    },
+    "docs/verification/task-082/check_region2_port_backdrop.log.gz": {
+      "bytes": 121,
+      "sha256": "40e1529028a94443a46b25c6b17e79784a10dec8681724103415d4032ce96ba9"
+    },
+    "docs/verification/task-082/check_region2_shrine_story.log.gz": {
+      "bytes": 131,
+      "sha256": "2ebed59ebbed1dba824fed2f44ab97c27f0c0db8957e103ab5d93634edd6ce07"
+    },
+    "docs/verification/task-082/check_region2_shrine_story_data.log.gz": {
+      "bytes": 63,
+      "sha256": "76f1de03474f610a8f262e977e44df660a1e4d1b95fe27316d3d68da8a25670c"
+    },
+    "docs/verification/task-082/check_region2_village_backdrops-python.log.gz": {
+      "bytes": 50,
+      "sha256": "875ead0f2fc3c8727fd7c3f57360388023e5cfd511b5c064c701278c8f9005c6"
+    },
+    "docs/verification/task-082/check_region2_village_backdrops.log.gz": {
+      "bytes": 122,
+      "sha256": "aee34127488c63fba1b3845b2559136dc3ad9dc9de3d808731e2aab0c784a585"
+    },
+    "docs/verification/task-082/check_region2_village_native.log.gz": {
+      "bytes": 53,
+      "sha256": "a048bb8bc0599e1d82730f8e0c271708c40f4e96eccf15fe2dbbdd3639fbd344"
+    },
+    "docs/verification/task-082/check_region2_village_scope.log.gz": {
+      "bytes": 89,
+      "sha256": "fd30630b7aafb2b590ede0e816622875c0f85f7622792e8d5b380911c03e6132"
+    },
+    "docs/verification/task-082/check_registry_sprint_scope.log.gz": {
+      "bytes": 84,
+      "sha256": "c2427a31e01c7a39c40d880dc3a864993ab2bc179bf2a0aae8c26fc1bc34db12"
+    },
+    "docs/verification/task-082/check_saved_position_relocation.log.gz": {
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    "docs/verification/task-082/check_saved_value_types.log.gz": {
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    "docs/verification/task-082/check_second_region_coast.log.gz": {
+      "bytes": 117,
+      "sha256": "709148b0992400fc5a64f0cdb23ade464f479abe9d77500e1aed82e9c83aff18"
+    },
+    "docs/verification/task-082/check_task007.log.gz": {
+      "bytes": 1423,
+      "sha256": "9ce1e6084ae63635d540b8db9f294d0ee39ab6b5107bd419d746e67064b6c293"
+    },
+    "docs/verification/task-082/check_task011.log.gz": {
+      "bytes": 1487,
+      "sha256": "acb7481288e3440b3dfd6d719a8ec24ff49d97937827f09ca50709e694d43fe9"
+    },
+    "docs/verification/task-082/check_task011_ci_boundary.log.gz": {
+      "bytes": 116,
+      "sha256": "de24ca3df2b97ead0a2139a372bd9559bd6faeb890037c1deaac00a45944d816"
+    },
+    "docs/verification/task-082/check_task081_port_data.log.gz": {
+      "bytes": 161,
+      "sha256": "37d8dff11a5f8944ab9e686322dddbd98f1f2a16bbcc4058d2b2bfbde6295990"
+    },
+    "docs/verification/task-082/check_task081_port_runtime.log.gz": {
+      "bytes": 133,
+      "sha256": "131de29cd48a15626013230bc98a3609abaa6da74da5042d49cf3e073a060408"
+    },
+    "docs/verification/task-082/check_world_realtime_record.log.gz": {
+      "bytes": 72,
+      "sha256": "9ecfff39d4a2dbdbc96402682c9247675fb498174ed8e6d17a9181d0a34d8189"
+    },
+    "docs/verification/task-082/check_world_terrain.log.gz": {
+      "bytes": 159,
+      "sha256": "804734be2e514629736fb086650d97107bfdd1fbb7771a19cd3b3edf8a8e5028"
+    },
+    "docs/verification/task-082/check_world_terrain_boundaries.log.gz": {
+      "bytes": 141,
+      "sha256": "0fa255028ec1563d760f65f0a1b5cf09a8bf48a9becd99cc1b512c33d6f1f87f"
+    },
+    "docs/verification/task-082/collect_evidence.py": {
+      "bytes": 7111,
+      "sha256": "906201112157c4d552fad9dbeeb074757486a291cf9df94d43cde4166b8f4af2"
+    },
+    "docs/verification/task-082/collection-count-error.log": {
+      "bytes": 405,
+      "sha256": "0a2f324b1f5d08180b20e1ae24153fa5d729456723403496ffb01c9419d90738"
+    },
+    "docs/verification/task-082/collection.log": {
+      "bytes": 133,
+      "sha256": "b00f7f511064fba611dd95e652123e883d5b443c686ac7ad5116e72b34b80eb5"
+    },
+    "docs/verification/task-082/data-checks.json": {
+      "bytes": 270,
+      "sha256": "afe287658f9d62dbf09bc7ba2b6fcf84c0b5a50a7db180bde15ec87e720bb734"
+    },
+    "docs/verification/task-082/development-attempts.json": {
+      "bytes": 5503,
+      "sha256": "4bb106ac577ccdc47d9b26e8394206712ca9435b1037060ce36944e1ed329180"
+    },
+    "docs/verification/task-082/draft-pr.md": {
+      "bytes": 2128,
+      "sha256": "c01f8cb44a2d56ce54adc2f8cb272f9c3625d55a08de629d6ef9b3362336d0ca"
+    },
+    "docs/verification/task-082/duplicate-resume-green.log": {
+      "bytes": 116,
+      "sha256": "a2cb96686dcef368f4803600feaa5eb7b490f724bb3be05d1757dca4919a7c64"
+    },
+    "docs/verification/task-082/duplicate-resume-red.log": {
+      "bytes": 165,
+      "sha256": "9782641902b17bd5c9ee24b800ddc31146d8711fba1c71c336f1731b40cf9933"
+    },
+    "docs/verification/task-082/engine.log.gz": {
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    "docs/verification/task-082/environment.json": {
+      "bytes": 1301,
+      "sha256": "c45339cfac23844711ebe8269b6197a3da3f6661578bc07e7fbac92dc17d0aad"
+    },
+    "docs/verification/task-082/execution.json": {
+      "bytes": 45178,
+      "sha256": "ccf4857e3f6bbf844a366db6c4769adadd8ca0470ddcc234cd2a128677eafc0f"
+    },
+    "docs/verification/task-082/final-progress.log": {
+      "bytes": 1859,
+      "sha256": "0fd73faf2a6a87306cac6aa8649d99a82f64bee63b0723a5074b4a5be44558c8"
+    },
+    "docs/verification/task-082/final-validation-progress.log": {
+      "bytes": 347,
+      "sha256": "7aeb1c179a3a567852928440ba64eba219c60ebe0b5764fc0d4414b673d163ab"
+    },
+    "docs/verification/task-082/final-validation/01-import.log.gz": {
+      "bytes": 389,
+      "sha256": "af40325375fed6866ed2abba70963a53d22955f28e26e6bb1a8f5a8b35db14a1"
+    },
+    "docs/verification/task-082/final-validation/02-frozen-before.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/final-validation/03-approved-data.log.gz": {
+      "bytes": 63,
+      "sha256": "76f1de03474f610a8f262e977e44df660a1e4d1b95fe27316d3d68da8a25670c"
+    },
+    "docs/verification/task-082/final-validation/04-shrine.log.gz": {
+      "bytes": 131,
+      "sha256": "bd5c4e3dad741eb721081f221626966d0cca726043b2e368786c8088fd630da7"
+    },
+    "docs/verification/task-082/final-validation/05-R-01.log.gz": {
+      "bytes": 498,
+      "sha256": "3ed82893b2174b273fc9c5118ed5650dc88f21d64d161417a04f2ac206e752eb"
+    },
+    "docs/verification/task-082/final-validation/06-R-02.log.gz": {
+      "bytes": 622,
+      "sha256": "211c292e3af8f00b698b215935e606663e954473c04d049802e693333cf76992"
+    },
+    "docs/verification/task-082/final-validation/07-R-03.log.gz": {
+      "bytes": 509,
+      "sha256": "6efe04349391987ad80797f647dce770583b93a6408f656c99d26d88e975d9e0"
+    },
+    "docs/verification/task-082/final-validation/08-R-04.log.gz": {
+      "bytes": 489,
+      "sha256": "ea2d7181aa83b0dcaa9cfce53079ca20507d5dd530cc92f3360156d88dd777b0"
+    },
+    "docs/verification/task-082/final-validation/09-R-05.log.gz": {
+      "bytes": 504,
+      "sha256": "641477bcda4a1501ce77435aa83435c49bec0b412b5996ce4e7b3a06ef4d8741"
+    },
+    "docs/verification/task-082/final-validation/10-R-06.log.gz": {
+      "bytes": 519,
+      "sha256": "6286e20170d69a62c7151db45c60745056b920cb7dce29b1c3fb2412a4b9bbac"
+    },
+    "docs/verification/task-082/final-validation/11-R-07.log.gz": {
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    "docs/verification/task-082/final-validation/12-R-08.log.gz": {
+      "bytes": 1200,
+      "sha256": "259de592f73581af8a8eb6b06f698290015e48a3db6b70347ba7201a23cb96db"
+    },
+    "docs/verification/task-082/final-validation/13-first_region_gado.log.gz": {
+      "bytes": 134,
+      "sha256": "111cfe3d2e1755afa2cd6a8b02696d74b8b2abad2cfd0be188cc7585a7a12a1a"
+    },
+    "docs/verification/task-082/final-validation/14-first_region_screen.log.gz": {
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    "docs/verification/task-082/final-validation/15-battle_recovery.log.gz": {
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    "docs/verification/task-082/final-validation/16-saved_value_types.log.gz": {
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    "docs/verification/task-082/final-validation/17-saved_position_relocation.log.gz": {
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    "docs/verification/task-082/final-validation/18-task081_port_runtime.log.gz": {
+      "bytes": 133,
+      "sha256": "131de29cd48a15626013230bc98a3609abaa6da74da5042d49cf3e073a060408"
+    },
+    "docs/verification/task-082/final-validation/19-frozen-after.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/final-validation/data-checks.json": {
+      "bytes": 270,
+      "sha256": "afe287658f9d62dbf09bc7ba2b6fcf84c0b5a50a7db180bde15ec87e720bb734"
+    },
+    "docs/verification/task-082/final-validation/execution.json": {
+      "bytes": 17313,
+      "sha256": "328be10d43e72d57eb84a7c0000cfb5f114b57daa98b002cd7f260c31216971d"
+    },
+    "docs/verification/task-082/final-validation/github-checks.json": {
+      "bytes": 13662,
+      "sha256": "2b6836651c0dc5f5937d4dcf90c30a34869c85d026d97eb991156d382675cc44"
+    },
+    "docs/verification/task-082/final-validation/github-workflows.json": {
+      "bytes": 2415,
+      "sha256": "efe4851425d79c3f6e8c07d00b76ab93facd3ff3cb07d065e5b8eece666ac2bc"
+    },
+    "docs/verification/task-082/final-validation/runtime-checks.json": {
+      "bytes": 28520,
+      "sha256": "0cf8dd25f449083eda0391fbea6da94596cb01b76dedcb9176ea02a931056b46"
+    },
+    "docs/verification/task-082/final-validation/saves/task082-actual-old-complete.json": {
+      "bytes": 3390,
+      "sha256": "f7882b95bd2a590b0c5e5bae4983fd459d8e7dcf1e2d95ce215064c164a20378"
+    },
+    "docs/verification/task-082/final-validation/saves/task082-actual-old.json": {
+      "bytes": 3249,
+      "sha256": "d5c254f0ee4391eda688986b56a72ed925edc242f55152b5458782376359bc61"
+    },
+    "docs/verification/task-082/final-validation/saves/task082-complete.json": {
+      "bytes": 4166,
+      "sha256": "ef261ee666ccdf1704c0f82b2b4b579fe2a8236df2b1eec2a4aa73e5b906261c"
+    },
+    "docs/verification/task-082/final-validation/saves/task082-interrupted.json": {
+      "bytes": 4050,
+      "sha256": "ee81f586209d0c491e46fc6d9f44d3774a50446cd01b806c556bda8aff1e2ba8"
+    },
+    "docs/verification/task-082/final-validation/saves/task082-legacy.json": {
+      "bytes": 3452,
+      "sha256": "b71136b12b47d31cd7daa633b647bdd06a590f26de1831ae8204a9dae8ed66c4"
+    },
+    "docs/verification/task-082/final-validation/saves/task082-ui-checkpoint.json": {
+      "bytes": 3670,
+      "sha256": "9c547aa9d30d60fefddacda47b1bda95606cb3d7b4e7510a0f072ea5db67d05e"
+    },
+    "docs/verification/task-082/final-validation/saves/task082-ui-manual.json": {
+      "bytes": 3645,
+      "sha256": "1ee26d5372ee4e225022aebcc310ea317a2bc8917a83a82555ab5c7626594e8d"
+    },
+    "docs/verification/task-082/final-validation/saves/task082-used.json": {
+      "bytes": 3202,
+      "sha256": "7a12f2173d570217727fd94c1d1ea28ece8cd68c7ecd50631756061e860c0198"
+    },
+    "docs/verification/task-082/final-validation/saves/task082-version.json": {
+      "bytes": 3342,
+      "sha256": "9e8c3967288f3179fc114825d0fd98498bc44049a23d8a90327f21944592c599"
+    },
+    "docs/verification/task-082/final-validation/summary.json": {
+      "bytes": 326,
+      "sha256": "2b22321f7f75b732f3e811e823a661fc5022f5c9be5c6ee75da63a125ea46282"
+    },
+    "docs/verification/task-082/final/01-engine.log.gz": {
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    "docs/verification/task-082/final/02-import.log.gz": {
+      "bytes": 26623,
+      "sha256": "61c527ea1d44b835a020c8a262a6da892ff7b0aa604cad4cad093c63c2e3c520"
+    },
+    "docs/verification/task-082/final/03-check_frozen_files.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/final/04-check_region2_shrine_story_data.log.gz": {
+      "bytes": 63,
+      "sha256": "76f1de03474f610a8f262e977e44df660a1e4d1b95fe27316d3d68da8a25670c"
+    },
+    "docs/verification/task-082/final/05-check_region2_shrine_story.log.gz": {
+      "bytes": 131,
+      "sha256": "ad78a3a2115218d14b56f285b0421f78daf8be6cddb3b96a5208c7c325ab0e19"
+    },
+    "docs/verification/task-082/final/06-validate_assets.log.gz": {
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    "docs/verification/task-082/final/07-R-01.log.gz": {
+      "bytes": 498,
+      "sha256": "c91936633b9888caf88f668a441c1ba3389a6170852a9320cbdcd6136a0dc46d"
+    },
+    "docs/verification/task-082/final/08-R-02.log.gz": {
+      "bytes": 622,
+      "sha256": "bed11fe47053ba95db02479318c32ac6d9bde011245685b8e99864b695ad6824"
+    },
+    "docs/verification/task-082/final/09-R-03.log.gz": {
+      "bytes": 509,
+      "sha256": "072078547b3af38c3e5bdd9e5565d5efc50fb3890223e9626058827553f5b40e"
+    },
+    "docs/verification/task-082/final/10-R-04.log.gz": {
+      "bytes": 489,
+      "sha256": "25e66729ce8f2f6158d3cb9a4408fa895e8ddab54038e662d91129000d62c261"
+    },
+    "docs/verification/task-082/final/11-R-05.log.gz": {
+      "bytes": 505,
+      "sha256": "6ee3c1e31d7aae34ba69e048f0909faabe2003f7dedfc77fd52c54ba29e83fbb"
+    },
+    "docs/verification/task-082/final/12-R-06.log.gz": {
+      "bytes": 519,
+      "sha256": "b1511755e4b0fa29710079a0b77f908e4048f351db044da837f63e8caa28262d"
+    },
+    "docs/verification/task-082/final/13-R-07.log.gz": {
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    "docs/verification/task-082/final/14-R-08.log.gz": {
+      "bytes": 1199,
+      "sha256": "8321af0ec538e4c5add21d321efe12d6b05e9d2ceaed1f1002598a3a72d8bad9"
+    },
+    "docs/verification/task-082/final/15-check_original_acceptance_inputs.log.gz": {
+      "bytes": 98,
+      "sha256": "322b50b51bf4ac830a0e0e9e6838707012955bfea8847c48dc1e76b7db0f4144"
+    },
+    "docs/verification/task-082/final/16-check_integrated_entry.log.gz": {
+      "bytes": 155,
+      "sha256": "d57b6f096b1b4637c072e6899476ecc97c40ca0e400f1c1a93806299ea38a443"
+    },
+    "docs/verification/task-082/final/17-check_integrated_combat.log.gz": {
+      "bytes": 121,
+      "sha256": "d7f2c0b1670358796f5e59592ce957b5bccc2fefd47be5024f8b1288f6438fdf"
+    },
+    "docs/verification/task-082/final/18-check_integrated_progression.log.gz": {
+      "bytes": 126,
+      "sha256": "5f622a217a9776148841982eb40fb86d4f5eed318f779e8f621b8140e13ecf16"
+    },
+    "docs/verification/task-082/final/19-check_integrated_storage.log.gz": {
+      "bytes": 144,
+      "sha256": "f1c1214cbbef90c5f2468186f957e11ed46bdb52ea0fab3a1e83f2521ccbec2f"
+    },
+    "docs/verification/task-082/final/20-check_integrated_ui.log.gz": {
+      "bytes": 141,
+      "sha256": "ef9b3fd83a8bba4048485bfa13592eaff3bf32f33e1f823b8dffd4f3079a0535"
+    },
+    "docs/verification/task-082/final/21-check_integrated_builds.log.gz": {
+      "bytes": 257,
+      "sha256": "43305a18f0563ca01b4e39f324d4dd4474ed20fc9af1017cb4861f2fdee1cb3e"
+    },
+    "docs/verification/task-082/final/22-check_integrated_completion.log.gz": {
+      "bytes": 136,
+      "sha256": "3f1b9f1ffcb1d998b481cff96274cebe1b71fcc956101634e00e18fad4c98d97"
+    },
+    "docs/verification/task-082/final/23-check_integrated_mastery.log.gz": {
+      "bytes": 136,
+      "sha256": "9c70f006dd0a7ff315f1e9a5771b5c832c20a6cc1f92404b36dde04cd64c2b44"
+    },
+    "docs/verification/task-082/final/24-check_mastery_charger_probe.log.gz": {
+      "bytes": 231,
+      "sha256": "3f8dbf72d1216b0bcb79169683d858a22dec5a61b969de86e5e6a6429693bc20"
+    },
+    "docs/verification/task-082/final/25-check_mastery_role_transition.log.gz": {
+      "bytes": 88,
+      "sha256": "97675e961fd50d33d8dcca49a213125f9a9fa9cc50431851baca2d489e1a15d6"
+    },
+    "docs/verification/task-082/final/26-check_map_graph_definition.log.gz": {
+      "bytes": 222,
+      "sha256": "6469ccf10bc463c1558e47a6719939663030960d062d39c6993e52a1f7b8b69e"
+    },
+    "docs/verification/task-082/final/27-check_map_graph_structure.log.gz": {
+      "bytes": 195,
+      "sha256": "af6d178aad7afef927d5dd744e0268bec284c98d83228bc185f48250b58556f4"
+    },
+    "docs/verification/task-082/final/28-check_map_graph_structure_regressions.log.gz": {
+      "bytes": 132,
+      "sha256": "ad859e87dbac2c97f196323d01b0890054e63b17755fc7c87264188df2d00260"
+    },
+    "docs/verification/task-082/final/29-build_world_terrain.log.gz": {
+      "bytes": 99,
+      "sha256": "0ca54d3998f721eb5405f7b8fdd77d571c3292835c17576046e0e0ccfb02e932"
+    },
+    "docs/verification/task-082/final/30-build_world_interiors.log.gz": {
+      "bytes": 68,
+      "sha256": "d8edf55c52b971278412d39961f23d44d4656fb25bf7735a2234b031dd33f11c"
+    },
+    "docs/verification/task-082/final/31-check_world_terrain.log.gz": {
+      "bytes": 159,
+      "sha256": "804734be2e514629736fb086650d97107bfdd1fbb7771a19cd3b3edf8a8e5028"
+    },
+    "docs/verification/task-082/final/32-check_world_terrain_boundaries.log.gz": {
+      "bytes": 141,
+      "sha256": "0fa255028ec1563d760f65f0a1b5cf09a8bf48a9becd99cc1b512c33d6f1f87f"
+    },
+    "docs/verification/task-082/final/33-check_world_realtime_record.log.gz": {
+      "bytes": 72,
+      "sha256": "9ecfff39d4a2dbdbc96402682c9247675fb498174ed8e6d17a9181d0a34d8189"
+    },
+    "docs/verification/task-082/final/34-check_duration_target.log.gz": {
+      "bytes": 189,
+      "sha256": "9ee0fce6d9dac5bd475f468f2fc46a7803201c86f6b0f244d06dee593994c975"
+    },
+    "docs/verification/task-082/final/35-check_duration_summary.log.gz": {
+      "bytes": 143,
+      "sha256": "e57ceeaf26d567a2a03b0994b8848246a005a02c308a299847b457aa83a15049"
+    },
+    "docs/verification/task-082/final/36-check_battle_acceptance.log.gz": {
+      "bytes": 304,
+      "sha256": "b4197c542e168ee2a84137705b638f294ff24149058a5c9049ef6d0647637e03"
+    },
+    "docs/verification/task-082/final/37-check_reaction_rules.log.gz": {
+      "bytes": 163,
+      "sha256": "5764709451fd13a91206024787f247636819f60fcf4ddc4907841b02abdbb081"
+    },
+    "docs/verification/task-082/final/38-check_battle_counterplay.log.gz": {
+      "bytes": 297,
+      "sha256": "135492245296ad2f19a5ca7a2b3bd5f51bf806ce881a468f2fe57f586d6f917d"
+    },
+    "docs/verification/task-082/final/39-check_region2_port_backdrop.log.gz": {
+      "bytes": 218,
+      "sha256": "15a732c8d62f91266311e336a8711bb32bcb5b250d2b76bba131155c4ee6e4da"
+    },
+    "docs/verification/task-082/final/40-check_region2_village_scope.log.gz": {
+      "bytes": 89,
+      "sha256": "fd30630b7aafb2b590ede0e816622875c0f85f7622792e8d5b380911c03e6132"
+    },
+    "docs/verification/task-082/final/41-check_region2_village_backdrops.log.gz": {
+      "bytes": 50,
+      "sha256": "875ead0f2fc3c8727fd7c3f57360388023e5cfd511b5c064c701278c8f9005c6"
+    },
+    "docs/verification/task-082/final/42-check_region2_village_native.log.gz": {
+      "bytes": 53,
+      "sha256": "a048bb8bc0599e1d82730f8e0c271708c40f4e96eccf15fe2dbbdd3639fbd344"
+    },
+    "docs/verification/task-082/final/43-check_progress_docs.log.gz": {
+      "bytes": 55,
+      "sha256": "9bbdd6d6d798fb545e17d5befc2c3b63fcf8c84bddc72a4fa0b1d3f0c3b368de"
+    },
+    "docs/verification/task-082/final/44-test_locked_check_reporting.log.gz": {
+      "bytes": 55,
+      "sha256": "663c7f770a0d9947c9a32e24af777c069c2a70368463917c8bf95efa1b4baaa3"
+    },
+    "docs/verification/task-082/final/45-check_acceptance_registration.log.gz": {
+      "bytes": 71,
+      "sha256": "e635101b100c627a5b62c6e02e9fc6acdc1019a69f627e54f83ebeb4887ffee7"
+    },
+    "docs/verification/task-082/final/46-check_registry_sprint_scope.log.gz": {
+      "bytes": 84,
+      "sha256": "c2427a31e01c7a39c40d880dc3a864993ab2bc179bf2a0aae8c26fc1bc34db12"
+    },
+    "docs/verification/task-082/final/47-check_first_region_gado_data.log.gz": {
+      "bytes": 233,
+      "sha256": "3c01e989e56a53c91a40b15e58f127e696f135e24b8f4c023465a52c4a8abfa8"
+    },
+    "docs/verification/task-082/final/48-check_first_region_gado.log.gz": {
+      "bytes": 134,
+      "sha256": "111cfe3d2e1755afa2cd6a8b02696d74b8b2abad2cfd0be188cc7585a7a12a1a"
+    },
+    "docs/verification/task-082/final/49-check_region2_village_backdrops.log.gz": {
+      "bytes": 122,
+      "sha256": "aee34127488c63fba1b3845b2559136dc3ad9dc9de3d808731e2aab0c784a585"
+    },
+    "docs/verification/task-082/final/50-check_task007.log.gz": {
+      "bytes": 673,
+      "sha256": "9f044a504d0288ccabcdc0355b6fb53065c772d471cb118fa9717c11df43e26b"
+    },
+    "docs/verification/task-082/final/51-check_task011.log.gz": {
+      "bytes": 980,
+      "sha256": "c987456d08d10ae79fb0c917d4d423d74094b7243666ff6dc9b99b66e9bddc5f"
+    },
+    "docs/verification/task-082/final/52-check_task011_ci_boundary.log.gz": {
+      "bytes": 116,
+      "sha256": "de24ca3df2b97ead0a2139a372bd9559bd6faeb890037c1deaac00a45944d816"
+    },
+    "docs/verification/task-082/final/53-check_enemy_encounters.log.gz": {
+      "bytes": 197,
+      "sha256": "1018e3cae94c0c33d8f6a5c9701671e1958566481e85fba05197f9a16b607840"
+    },
+    "docs/verification/task-082/final/54-check_battle_recovery.log.gz": {
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    "docs/verification/task-082/final/55-check_saved_value_types.log.gz": {
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    "docs/verification/task-082/final/56-check_saved_position_relocation.log.gz": {
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    "docs/verification/task-082/final/57-check_second_region_coast.log.gz": {
+      "bytes": 117,
+      "sha256": "709148b0992400fc5a64f0cdb23ade464f479abe9d77500e1aed82e9c83aff18"
+    },
+    "docs/verification/task-082/final/58-check_first_region_screen.log.gz": {
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    "docs/verification/task-082/final/59-check_region2_port_backdrop.log.gz": {
+      "bytes": 121,
+      "sha256": "40e1529028a94443a46b25c6b17e79784a10dec8681724103415d4032ce96ba9"
+    },
+    "docs/verification/task-082/final/60-check_region2_port.log.gz": {
+      "bytes": 118,
+      "sha256": "fcbe344d3c2b39c4901493f4c6d2d829234d9f10b2d41be19e99b5b8e3e06852"
+    },
+    "docs/verification/task-082/final/61-capture_job_costumes.log.gz": {
+      "bytes": 138,
+      "sha256": "19a657da6ebabb035bfd03f8143c025fb0a81129290a6a055cc3e4d200da2794"
+    },
+    "docs/verification/task-082/final/62-check_task081_port_runtime.log.gz": {
+      "bytes": 133,
+      "sha256": "131de29cd48a15626013230bc98a3609abaa6da74da5042d49cf3e073a060408"
+    },
+    "docs/verification/task-082/final/63-check_task081_port_data.log.gz": {
+      "bytes": 161,
+      "sha256": "37d8dff11a5f8944ab9e686322dddbd98f1f2a16bbcc4058d2b2bfbde6295990"
+    },
+    "docs/verification/task-082/final/64-frozen-after.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/final/command-results.tsv": {
+      "bytes": 13847,
+      "sha256": "32bcbc8ddac44db922b1c25d05c31ffc0fe367a3bea6c0e58664558b964a7806"
+    },
+    "docs/verification/task-082/final/data-checks.json": {
+      "bytes": 270,
+      "sha256": "afe287658f9d62dbf09bc7ba2b6fcf84c0b5a50a7db180bde15ec87e720bb734"
+    },
+    "docs/verification/task-082/final/execution.json": {
+      "bytes": 45330,
+      "sha256": "980682c8dd9dbf494e3482768efb0550a32ef6ead7172aef42fc92dcbb96dbe6"
+    },
+    "docs/verification/task-082/final/github-checks.json": {
+      "bytes": 13662,
+      "sha256": "f7f1272c5f8cddfcba1faa7923f8c1a4385ee84d82f788edf7800ec56c7332b6"
+    },
+    "docs/verification/task-082/final/regression-records.json": {
+      "bytes": 4765,
+      "sha256": "f8adc4f31fbf70f95b1c16d8d3a211120d03cc1f93824c7a808d5b57d61f824f"
+    },
+    "docs/verification/task-082/final/regression-records.tar.gz": {
+      "bytes": 126530,
+      "sha256": "9cf2c7d5bd10a89ed21b23c059ff5b362d075136e499db051e930d07139f31a9"
+    },
+    "docs/verification/task-082/final/runtime-checks.json": {
+      "bytes": 27421,
+      "sha256": "f1e61ae2eaad08328ad06bf7fdbebc8e21edda04ecd3df47e2812854371d3e18"
+    },
+    "docs/verification/task-082/final/saves/task082-actual-old-complete.json": {
+      "bytes": 3390,
+      "sha256": "f7882b95bd2a590b0c5e5bae4983fd459d8e7dcf1e2d95ce215064c164a20378"
+    },
+    "docs/verification/task-082/final/saves/task082-actual-old.json": {
+      "bytes": 3249,
+      "sha256": "d5c254f0ee4391eda688986b56a72ed925edc242f55152b5458782376359bc61"
+    },
+    "docs/verification/task-082/final/saves/task082-complete.json": {
+      "bytes": 4166,
+      "sha256": "ef261ee666ccdf1704c0f82b2b4b579fe2a8236df2b1eec2a4aa73e5b906261c"
+    },
+    "docs/verification/task-082/final/saves/task082-interrupted.json": {
+      "bytes": 4050,
+      "sha256": "ee81f586209d0c491e46fc6d9f44d3774a50446cd01b806c556bda8aff1e2ba8"
+    },
+    "docs/verification/task-082/final/saves/task082-legacy.json": {
+      "bytes": 3452,
+      "sha256": "b71136b12b47d31cd7daa633b647bdd06a590f26de1831ae8204a9dae8ed66c4"
+    },
+    "docs/verification/task-082/final/saves/task082-ui-checkpoint.json": {
+      "bytes": 3670,
+      "sha256": "c334c88173b343dc1efb730bd2edfd678149523d376996dea63e7b09e2f242b8"
+    },
+    "docs/verification/task-082/final/saves/task082-ui-manual.json": {
+      "bytes": 3290,
+      "sha256": "add5912f3bd8a5bbda965a29d2e96109a58f1fd693a5767c0359d5ccd577ada2"
+    },
+    "docs/verification/task-082/final/saves/task082-used.json": {
+      "bytes": 3202,
+      "sha256": "7a12f2173d570217727fd94c1d1ea28ece8cd68c7ecd50631756061e860c0198"
+    },
+    "docs/verification/task-082/final/saves/task082-version.json": {
+      "bytes": 3342,
+      "sha256": "9e8c3967288f3179fc114825d0fd98498bc44049a23d8a90327f21944592c599"
+    },
+    "docs/verification/task-082/final/summary.json": {
+      "bytes": 578,
+      "sha256": "554466b21947430ae4d63b45508b43b003c81b464d42f985a13a5d67f7b989ea"
+    },
+    "docs/verification/task-082/first-pass/R-01.log.gz": {
+      "bytes": 494,
+      "sha256": "1371b59ffd29894985544ac5fbea6bde5ab9ffb43acadf710516055f5db09250"
+    },
+    "docs/verification/task-082/first-pass/R-02.log.gz": {
+      "bytes": 619,
+      "sha256": "e34aa19637cbc006c2a23e942ad283d75e4d562d1df3eb736e27b4998bcc1cd9"
+    },
+    "docs/verification/task-082/first-pass/R-03.log.gz": {
+      "bytes": 505,
+      "sha256": "635edd89be368ea4679981767ed98f652323e5c2b8357e123491b429df890fa5"
+    },
+    "docs/verification/task-082/first-pass/R-04.log.gz": {
+      "bytes": 485,
+      "sha256": "d6923de3aa0348cb4d7804a47636d3ac7698571fdfbce3ab4493bd738a80feb6"
+    },
+    "docs/verification/task-082/first-pass/R-05.log.gz": {
+      "bytes": 501,
+      "sha256": "1e9640e47d4372a75377b2635e2ea65fe18161d18f655080b42e078168f3b71c"
+    },
+    "docs/verification/task-082/first-pass/R-06.log.gz": {
+      "bytes": 514,
+      "sha256": "1cd440f31342cfd157735c97cf4c0f1fa4ee4e897974627718ded072167a939d"
+    },
+    "docs/verification/task-082/first-pass/R-07.log.gz": {
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    "docs/verification/task-082/first-pass/R-08.log.gz": {
+      "bytes": 1195,
+      "sha256": "0c774d4b32cae3194c3a01a56e1c5862220af243f363ce08b694abc12ae4b35c"
+    },
+    "docs/verification/task-082/first-pass/build_world_interiors.log.gz": {
+      "bytes": 68,
+      "sha256": "d8edf55c52b971278412d39961f23d44d4656fb25bf7735a2234b031dd33f11c"
+    },
+    "docs/verification/task-082/first-pass/build_world_terrain.log.gz": {
+      "bytes": 99,
+      "sha256": "0ca54d3998f721eb5405f7b8fdd77d571c3292835c17576046e0e0ccfb02e932"
+    },
+    "docs/verification/task-082/first-pass/capture_job_costumes.log.gz": {
+      "bytes": 138,
+      "sha256": "19a657da6ebabb035bfd03f8143c025fb0a81129290a6a055cc3e4d200da2794"
+    },
+    "docs/verification/task-082/first-pass/check_acceptance_registration.log.gz": {
+      "bytes": 71,
+      "sha256": "e635101b100c627a5b62c6e02e9fc6acdc1019a69f627e54f83ebeb4887ffee7"
+    },
+    "docs/verification/task-082/first-pass/check_battle_acceptance.log.gz": {
+      "bytes": 304,
+      "sha256": "b4197c542e168ee2a84137705b638f294ff24149058a5c9049ef6d0647637e03"
+    },
+    "docs/verification/task-082/first-pass/check_battle_counterplay.log.gz": {
+      "bytes": 297,
+      "sha256": "135492245296ad2f19a5ca7a2b3bd5f51bf806ce881a468f2fe57f586d6f917d"
+    },
+    "docs/verification/task-082/first-pass/check_battle_recovery.log.gz": {
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    "docs/verification/task-082/first-pass/check_duration_summary.log.gz": {
+      "bytes": 143,
+      "sha256": "e57ceeaf26d567a2a03b0994b8848246a005a02c308a299847b457aa83a15049"
+    },
+    "docs/verification/task-082/first-pass/check_duration_target.log.gz": {
+      "bytes": 189,
+      "sha256": "9ee0fce6d9dac5bd475f468f2fc46a7803201c86f6b0f244d06dee593994c975"
+    },
+    "docs/verification/task-082/first-pass/check_enemy_encounters.log.gz": {
+      "bytes": 197,
+      "sha256": "1018e3cae94c0c33d8f6a5c9701671e1958566481e85fba05197f9a16b607840"
+    },
+    "docs/verification/task-082/first-pass/check_first_region_gado.log.gz": {
+      "bytes": 134,
+      "sha256": "111cfe3d2e1755afa2cd6a8b02696d74b8b2abad2cfd0be188cc7585a7a12a1a"
+    },
+    "docs/verification/task-082/first-pass/check_first_region_gado_data.log.gz": {
+      "bytes": 233,
+      "sha256": "3c01e989e56a53c91a40b15e58f127e696f135e24b8f4c023465a52c4a8abfa8"
+    },
+    "docs/verification/task-082/first-pass/check_first_region_screen.log.gz": {
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    "docs/verification/task-082/first-pass/check_frozen_files.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/first-pass/check_integrated_builds.log.gz": {
+      "bytes": 257,
+      "sha256": "43305a18f0563ca01b4e39f324d4dd4474ed20fc9af1017cb4861f2fdee1cb3e"
+    },
+    "docs/verification/task-082/first-pass/check_integrated_combat.log.gz": {
+      "bytes": 121,
+      "sha256": "d7f2c0b1670358796f5e59592ce957b5bccc2fefd47be5024f8b1288f6438fdf"
+    },
+    "docs/verification/task-082/first-pass/check_integrated_completion.log.gz": {
+      "bytes": 136,
+      "sha256": "3f1b9f1ffcb1d998b481cff96274cebe1b71fcc956101634e00e18fad4c98d97"
+    },
+    "docs/verification/task-082/first-pass/check_integrated_entry.log.gz": {
+      "bytes": 155,
+      "sha256": "d57b6f096b1b4637c072e6899476ecc97c40ca0e400f1c1a93806299ea38a443"
+    },
+    "docs/verification/task-082/first-pass/check_integrated_mastery.log.gz": {
+      "bytes": 136,
+      "sha256": "9c70f006dd0a7ff315f1e9a5771b5c832c20a6cc1f92404b36dde04cd64c2b44"
+    },
+    "docs/verification/task-082/first-pass/check_integrated_progression.log.gz": {
+      "bytes": 126,
+      "sha256": "5f622a217a9776148841982eb40fb86d4f5eed318f779e8f621b8140e13ecf16"
+    },
+    "docs/verification/task-082/first-pass/check_integrated_storage.log.gz": {
+      "bytes": 144,
+      "sha256": "f1c1214cbbef90c5f2468186f957e11ed46bdb52ea0fab3a1e83f2521ccbec2f"
+    },
+    "docs/verification/task-082/first-pass/check_integrated_ui.log.gz": {
+      "bytes": 141,
+      "sha256": "ef9b3fd83a8bba4048485bfa13592eaff3bf32f33e1f823b8dffd4f3079a0535"
+    },
+    "docs/verification/task-082/first-pass/check_map_graph_definition.log.gz": {
+      "bytes": 222,
+      "sha256": "6469ccf10bc463c1558e47a6719939663030960d062d39c6993e52a1f7b8b69e"
+    },
+    "docs/verification/task-082/first-pass/check_map_graph_structure.log.gz": {
+      "bytes": 195,
+      "sha256": "af6d178aad7afef927d5dd744e0268bec284c98d83228bc185f48250b58556f4"
+    },
+    "docs/verification/task-082/first-pass/check_map_graph_structure_regressions.log.gz": {
+      "bytes": 132,
+      "sha256": "ad859e87dbac2c97f196323d01b0890054e63b17755fc7c87264188df2d00260"
+    },
+    "docs/verification/task-082/first-pass/check_mastery_charger_probe.log.gz": {
+      "bytes": 231,
+      "sha256": "3f8dbf72d1216b0bcb79169683d858a22dec5a61b969de86e5e6a6429693bc20"
+    },
+    "docs/verification/task-082/first-pass/check_mastery_role_transition.log.gz": {
+      "bytes": 88,
+      "sha256": "97675e961fd50d33d8dcca49a213125f9a9fa9cc50431851baca2d489e1a15d6"
+    },
+    "docs/verification/task-082/first-pass/check_original_acceptance_inputs.log.gz": {
+      "bytes": 98,
+      "sha256": "322b50b51bf4ac830a0e0e9e6838707012955bfea8847c48dc1e76b7db0f4144"
+    },
+    "docs/verification/task-082/first-pass/check_progress_docs.log.gz": {
+      "bytes": 55,
+      "sha256": "9bbdd6d6d798fb545e17d5befc2c3b63fcf8c84bddc72a4fa0b1d3f0c3b368de"
+    },
+    "docs/verification/task-082/first-pass/check_reaction_rules.log.gz": {
+      "bytes": 163,
+      "sha256": "5764709451fd13a91206024787f247636819f60fcf4ddc4907841b02abdbb081"
+    },
+    "docs/verification/task-082/first-pass/check_region2_port.log.gz": {
+      "bytes": 118,
+      "sha256": "fcbe344d3c2b39c4901493f4c6d2d829234d9f10b2d41be19e99b5b8e3e06852"
+    },
+    "docs/verification/task-082/first-pass/check_region2_port_backdrop-python.log.gz": {
+      "bytes": 218,
+      "sha256": "15a732c8d62f91266311e336a8711bb32bcb5b250d2b76bba131155c4ee6e4da"
+    },
+    "docs/verification/task-082/first-pass/check_region2_port_backdrop.log.gz": {
+      "bytes": 121,
+      "sha256": "40e1529028a94443a46b25c6b17e79784a10dec8681724103415d4032ce96ba9"
+    },
+    "docs/verification/task-082/first-pass/check_region2_shrine_story.log.gz": {
+      "bytes": 131,
+      "sha256": "2ebed59ebbed1dba824fed2f44ab97c27f0c0db8957e103ab5d93634edd6ce07"
+    },
+    "docs/verification/task-082/first-pass/check_region2_shrine_story_data.log.gz": {
+      "bytes": 63,
+      "sha256": "76f1de03474f610a8f262e977e44df660a1e4d1b95fe27316d3d68da8a25670c"
+    },
+    "docs/verification/task-082/first-pass/check_region2_village_backdrops-python.log.gz": {
+      "bytes": 50,
+      "sha256": "875ead0f2fc3c8727fd7c3f57360388023e5cfd511b5c064c701278c8f9005c6"
+    },
+    "docs/verification/task-082/first-pass/check_region2_village_backdrops.log.gz": {
+      "bytes": 122,
+      "sha256": "aee34127488c63fba1b3845b2559136dc3ad9dc9de3d808731e2aab0c784a585"
+    },
+    "docs/verification/task-082/first-pass/check_region2_village_native.log.gz": {
+      "bytes": 53,
+      "sha256": "a048bb8bc0599e1d82730f8e0c271708c40f4e96eccf15fe2dbbdd3639fbd344"
+    },
+    "docs/verification/task-082/first-pass/check_region2_village_scope.log.gz": {
+      "bytes": 89,
+      "sha256": "fd30630b7aafb2b590ede0e816622875c0f85f7622792e8d5b380911c03e6132"
+    },
+    "docs/verification/task-082/first-pass/check_registry_sprint_scope.log.gz": {
+      "bytes": 84,
+      "sha256": "c2427a31e01c7a39c40d880dc3a864993ab2bc179bf2a0aae8c26fc1bc34db12"
+    },
+    "docs/verification/task-082/first-pass/check_saved_position_relocation.log.gz": {
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    "docs/verification/task-082/first-pass/check_saved_value_types.log.gz": {
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    "docs/verification/task-082/first-pass/check_second_region_coast.log.gz": {
+      "bytes": 117,
+      "sha256": "709148b0992400fc5a64f0cdb23ade464f479abe9d77500e1aed82e9c83aff18"
+    },
+    "docs/verification/task-082/first-pass/check_task007.log.gz": {
+      "bytes": 1423,
+      "sha256": "9ce1e6084ae63635d540b8db9f294d0ee39ab6b5107bd419d746e67064b6c293"
+    },
+    "docs/verification/task-082/first-pass/check_task011.log.gz": {
+      "bytes": 1487,
+      "sha256": "acb7481288e3440b3dfd6d719a8ec24ff49d97937827f09ca50709e694d43fe9"
+    },
+    "docs/verification/task-082/first-pass/check_task011_ci_boundary.log.gz": {
+      "bytes": 116,
+      "sha256": "de24ca3df2b97ead0a2139a372bd9559bd6faeb890037c1deaac00a45944d816"
+    },
+    "docs/verification/task-082/first-pass/check_task081_port_data.log.gz": {
+      "bytes": 161,
+      "sha256": "37d8dff11a5f8944ab9e686322dddbd98f1f2a16bbcc4058d2b2bfbde6295990"
+    },
+    "docs/verification/task-082/first-pass/check_task081_port_runtime.log.gz": {
+      "bytes": 133,
+      "sha256": "131de29cd48a15626013230bc98a3609abaa6da74da5042d49cf3e073a060408"
+    },
+    "docs/verification/task-082/first-pass/check_world_realtime_record.log.gz": {
+      "bytes": 72,
+      "sha256": "9ecfff39d4a2dbdbc96402682c9247675fb498174ed8e6d17a9181d0a34d8189"
+    },
+    "docs/verification/task-082/first-pass/check_world_terrain.log.gz": {
+      "bytes": 159,
+      "sha256": "804734be2e514629736fb086650d97107bfdd1fbb7771a19cd3b3edf8a8e5028"
+    },
+    "docs/verification/task-082/first-pass/check_world_terrain_boundaries.log.gz": {
+      "bytes": 141,
+      "sha256": "0fa255028ec1563d760f65f0a1b5cf09a8bf48a9becd99cc1b512c33d6f1f87f"
+    },
+    "docs/verification/task-082/first-pass/engine.log.gz": {
+      "bytes": 52,
+      "sha256": "8fb3740c09c0e283ffc9b3d203a47fac69c620d265b106f858cf2836fbe9264f"
+    },
+    "docs/verification/task-082/first-pass/execution.json": {
+      "bytes": 45178,
+      "sha256": "ccf4857e3f6bbf844a366db6c4769adadd8ca0470ddcc234cd2a128677eafc0f"
+    },
+    "docs/verification/task-082/first-pass/frozen-after.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/first-pass/github-checks.json": {
+      "bytes": 13662,
+      "sha256": "559a090d55a7203be13cfefec2729a8729bb2cd1d166a1ccd89ad8885adfb664"
+    },
+    "docs/verification/task-082/first-pass/import.log.gz": {
+      "bytes": 26623,
+      "sha256": "61c527ea1d44b835a020c8a262a6da892ff7b0aa604cad4cad093c63c2e3c520"
+    },
+    "docs/verification/task-082/first-pass/run_checks.py": {
+      "bytes": 5903,
+      "sha256": "e5d40ef0e1aaf3f8005b84599c9179b654d7b309dc352f84faf37ed460e9a0ce"
+    },
+    "docs/verification/task-082/first-pass/stage-081-baseline.log.gz": {
+      "bytes": 161,
+      "sha256": "37d8dff11a5f8944ab9e686322dddbd98f1f2a16bbcc4058d2b2bfbde6295990"
+    },
+    "docs/verification/task-082/first-pass/stage-081-fixed.log.gz": {
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    "docs/verification/task-082/first-pass/test_locked_check_reporting.log.gz": {
+      "bytes": 55,
+      "sha256": "663c7f770a0d9947c9a32e24af777c069c2a70368463917c8bf95efa1b4baaa3"
+    },
+    "docs/verification/task-082/first-pass/validate_assets.log.gz": {
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    "docs/verification/task-082/focused-fifth.log": {
+      "bytes": 116,
+      "sha256": "52a661b866074396f7783f0323ec0cb77501f321a0ad250cff5bfbb1e44854d8"
+    },
+    "docs/verification/task-082/focused-final.log": {
+      "bytes": 116,
+      "sha256": "57c107e159093c56d71ae79264d6e2a24581471d091db68c3eb9c3288e774608"
+    },
+    "docs/verification/task-082/focused-first.log": {
+      "bytes": 426,
+      "sha256": "9336bacfdbe9b9c484fc4241c94905c568465e921a9343c6756c51237f582ea0"
+    },
+    "docs/verification/task-082/focused-fourth.log": {
+      "bytes": 116,
+      "sha256": "34e7781406ba8ece288929cd4bc8c1fd37f91f25d052936fa89acaa6a409b456"
+    },
+    "docs/verification/task-082/focused-second.log": {
+      "bytes": 1072,
+      "sha256": "a07197d9be39a19f9c413ba4b21426305adab57096e2d1451a54702b8de8957b"
+    },
+    "docs/verification/task-082/focused-third.log": {
+      "bytes": 773,
+      "sha256": "8c7236fc023e72528065fad1851db36255c8782a3653fae4f1eac8d1eb29e17b"
+    },
+    "docs/verification/task-082/frozen-after.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/historical-stage-081.json": {
+      "bytes": 2036,
+      "sha256": "01796ceaf0696d348fc9ccd2902e2cce19f1fddb6d43739a1c654f2e6c3a13f1"
+    },
+    "docs/verification/task-082/import.log": {
+      "bytes": 1017,
+      "sha256": "f15ffd4c558b01611d562c8c257508942bdc2dc542124f423ae2a592a46edfa6"
+    },
+    "docs/verification/task-082/import.log.gz": {
+      "bytes": 26623,
+      "sha256": "61c527ea1d44b835a020c8a262a6da892ff7b0aa604cad4cad093c63c2e3c520"
+    },
+    "docs/verification/task-082/initial-import.log": {
+      "bytes": 3365,
+      "sha256": "f3d9fc158f48715fa9fb8fe7b06cd439891554a8d5449a760355b4ee9a7c82ae"
+    },
+    "docs/verification/task-082/latest-progress.log": {
+      "bytes": 347,
+      "sha256": "7aeb1c179a3a567852928440ba64eba219c60ebe0b5764fc0d4414b673d163ab"
+    },
+    "docs/verification/task-082/latest/01-import.log.gz": {
+      "bytes": 26623,
+      "sha256": "61c527ea1d44b835a020c8a262a6da892ff7b0aa604cad4cad093c63c2e3c520"
+    },
+    "docs/verification/task-082/latest/02-frozen-before.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/latest/03-approved-data.log.gz": {
+      "bytes": 63,
+      "sha256": "76f1de03474f610a8f262e977e44df660a1e4d1b95fe27316d3d68da8a25670c"
+    },
+    "docs/verification/task-082/latest/04-shrine.log.gz": {
+      "bytes": 131,
+      "sha256": "3d8e99c40df2c3feddcd6f48f578d48036aeb1326e3037882bc85a1e40fdad52"
+    },
+    "docs/verification/task-082/latest/05-R-01.log.gz": {
+      "bytes": 499,
+      "sha256": "c7a42387eaec9bcb63d8655bb6d8da164e1473751a9054cd806010a735d8b97c"
+    },
+    "docs/verification/task-082/latest/06-R-02.log.gz": {
+      "bytes": 623,
+      "sha256": "d22a37a08cfd35a542b80d4d92a836b23e12e56f9348828a98c8563e2879c947"
+    },
+    "docs/verification/task-082/latest/07-R-03.log.gz": {
+      "bytes": 509,
+      "sha256": "6aa115ac776ee36dfe81293c2abb25dee336cd6779fe21fecb073b1d9bab487e"
+    },
+    "docs/verification/task-082/latest/08-R-04.log.gz": {
+      "bytes": 489,
+      "sha256": "e6afc6aa8962b149b0f06101c09929e1785ffee7c691b17075b88603383fe1b0"
+    },
+    "docs/verification/task-082/latest/09-R-05.log.gz": {
+      "bytes": 505,
+      "sha256": "e68389169d2ccd65b4ebbf5fb05fbdc3236268ad64418fce78b074f119a26bfe"
+    },
+    "docs/verification/task-082/latest/10-R-06.log.gz": {
+      "bytes": 517,
+      "sha256": "9c08272e660e70034678b46e3c185092f8e3a2cb59be496789965fc1a4821eb6"
+    },
+    "docs/verification/task-082/latest/11-R-07.log.gz": {
+      "bytes": 705,
+      "sha256": "b86a8b24b54d14dadc5d188283ba515c4436b01d6e79003fb243ef0db3f86bfa"
+    },
+    "docs/verification/task-082/latest/12-R-08.log.gz": {
+      "bytes": 1200,
+      "sha256": "41c45199a57a3af7170daf5cc1ce1e6c42bff7541821f6c69efba620d6834812"
+    },
+    "docs/verification/task-082/latest/13-first_region_gado.log.gz": {
+      "bytes": 134,
+      "sha256": "111cfe3d2e1755afa2cd6a8b02696d74b8b2abad2cfd0be188cc7585a7a12a1a"
+    },
+    "docs/verification/task-082/latest/14-first_region_screen.log.gz": {
+      "bytes": 585,
+      "sha256": "1ec262d0881c593a6c2ff1ad6c562712b8372300b68acf10e7d0e34acab4d06f"
+    },
+    "docs/verification/task-082/latest/15-battle_recovery.log.gz": {
+      "bytes": 205,
+      "sha256": "bf270a692cd93f4ae8c7909c7d29f2188f66505421428b979e0945e96296e341"
+    },
+    "docs/verification/task-082/latest/16-saved_value_types.log.gz": {
+      "bytes": 181,
+      "sha256": "98d53339d4f41c91657348dfa6a02255f2154355b840f1c322da155f15e48bbb"
+    },
+    "docs/verification/task-082/latest/17-saved_position_relocation.log.gz": {
+      "bytes": 136,
+      "sha256": "0625df0611553c2c11675e854af307e6fad4b61fd944e6c4a048a43651ada4f0"
+    },
+    "docs/verification/task-082/latest/18-task081_port_runtime.log.gz": {
+      "bytes": 133,
+      "sha256": "131de29cd48a15626013230bc98a3609abaa6da74da5042d49cf3e073a060408"
+    },
+    "docs/verification/task-082/latest/19-frozen-after.log.gz": {
+      "bytes": 52,
+      "sha256": "3326da4a1a534a744e682d3c68ec9610ae628f3081c6bed5ec086a883b752a71"
+    },
+    "docs/verification/task-082/latest/data-checks.json": {
+      "bytes": 270,
+      "sha256": "afe287658f9d62dbf09bc7ba2b6fcf84c0b5a50a7db180bde15ec87e720bb734"
+    },
+    "docs/verification/task-082/latest/execution.json": {
+      "bytes": 17313,
+      "sha256": "2b01878e02642e3a46cddba2af12267d754dd9b1b7e82860f76ffcd969e22e2a"
+    },
+    "docs/verification/task-082/latest/run_checks-executed.py": {
+      "bytes": 3708,
+      "sha256": "6dc4d38d81d2da095f8ae3e27be62dd4af9f40eecf6283b538fd83ef6691264f"
+    },
+    "docs/verification/task-082/latest/runtime-checks.json": {
+      "bytes": 28208,
+      "sha256": "71cdfc991e6b45b607a097144ec54ed716b0f55522c7171e571010cacc05e9fe"
+    },
+    "docs/verification/task-082/latest/saves/task082-actual-old-complete.json": {
+      "bytes": 3390,
+      "sha256": "f7882b95bd2a590b0c5e5bae4983fd459d8e7dcf1e2d95ce215064c164a20378"
+    },
+    "docs/verification/task-082/latest/saves/task082-actual-old.json": {
+      "bytes": 3249,
+      "sha256": "d5c254f0ee4391eda688986b56a72ed925edc242f55152b5458782376359bc61"
+    },
+    "docs/verification/task-082/latest/saves/task082-complete.json": {
+      "bytes": 4166,
+      "sha256": "ef261ee666ccdf1704c0f82b2b4b579fe2a8236df2b1eec2a4aa73e5b906261c"
+    },
+    "docs/verification/task-082/latest/saves/task082-interrupted.json": {
+      "bytes": 4050,
+      "sha256": "ee81f586209d0c491e46fc6d9f44d3774a50446cd01b806c556bda8aff1e2ba8"
+    },
+    "docs/verification/task-082/latest/saves/task082-legacy.json": {
+      "bytes": 3452,
+      "sha256": "b71136b12b47d31cd7daa633b647bdd06a590f26de1831ae8204a9dae8ed66c4"
+    },
+    "docs/verification/task-082/latest/saves/task082-ui-checkpoint.json": {
+      "bytes": 3670,
+      "sha256": "cdb1f4e6b8e23b2aeefa42e925b0f991ab0d3eec5dadbcde9132ee21cb364ef5"
+    },
+    "docs/verification/task-082/latest/saves/task082-ui-manual.json": {
+      "bytes": 3645,
+      "sha256": "2dbd00706350d3df0cf20e104ea1977d55a46beab488dd9812b0c38d40ed752e"
+    },
+    "docs/verification/task-082/latest/saves/task082-used.json": {
+      "bytes": 3202,
+      "sha256": "7a12f2173d570217727fd94c1d1ea28ece8cd68c7ecd50631756061e860c0198"
+    },
+    "docs/verification/task-082/latest/saves/task082-version.json": {
+      "bytes": 3342,
+      "sha256": "9e8c3967288f3179fc114825d0fd98498bc44049a23d8a90327f21944592c599"
+    },
+    "docs/verification/task-082/latest/summary.json": {
+      "bytes": 338,
+      "sha256": "c1952838f55af2f23b7325877e208388b5c48d7b25b671305343d3b48f1a5710"
+    },
+    "docs/verification/task-082/log-normalization.json": {
+      "bytes": 1277,
+      "sha256": "ffb93b9e7983380d2a4833de6b7f25f1140141574d5fbf43d5657b8c7a11945d"
+    },
+    "docs/verification/task-082/pr-blocker.json": {
+      "bytes": 1362,
+      "sha256": "0c5a854e7690af20a5f0f15e5b1a4630cdc9aa7a3103cb43352ea81836101b35"
+    },
+    "docs/verification/task-082/run_checks.py": {
+      "bytes": 6181,
+      "sha256": "e2a93c4a8dc8ddd798dbd40f3e3c2bc9cd4bf8fc055b66e1096eccc25e19e501"
+    },
+    "docs/verification/task-082/run_latest_checks.py": {
+      "bytes": 3718,
+      "sha256": "ccf2f81a837f5812338e536c39973a9526308d106854f43a11f90e389a8b3371"
+    },
+    "docs/verification/task-082/runtime-checks.json": {
+      "bytes": 28520,
+      "sha256": "0cf8dd25f449083eda0391fbea6da94596cb01b76dedcb9176ea02a931056b46"
+    },
+    "docs/verification/task-082/saves/task082-actual-old-complete.json": {
+      "bytes": 3390,
+      "sha256": "f7882b95bd2a590b0c5e5bae4983fd459d8e7dcf1e2d95ce215064c164a20378"
+    },
+    "docs/verification/task-082/saves/task082-actual-old.json": {
+      "bytes": 3249,
+      "sha256": "d5c254f0ee4391eda688986b56a72ed925edc242f55152b5458782376359bc61"
+    },
+    "docs/verification/task-082/saves/task082-complete.json": {
+      "bytes": 4166,
+      "sha256": "ef261ee666ccdf1704c0f82b2b4b579fe2a8236df2b1eec2a4aa73e5b906261c"
+    },
+    "docs/verification/task-082/saves/task082-interrupted.json": {
+      "bytes": 4050,
+      "sha256": "ee81f586209d0c491e46fc6d9f44d3774a50446cd01b806c556bda8aff1e2ba8"
+    },
+    "docs/verification/task-082/saves/task082-legacy.json": {
+      "bytes": 3452,
+      "sha256": "b71136b12b47d31cd7daa633b647bdd06a590f26de1831ae8204a9dae8ed66c4"
+    },
+    "docs/verification/task-082/saves/task082-ui-checkpoint.json": {
+      "bytes": 3670,
+      "sha256": "c8dd7af25108dd10e5b196da1576de595e0094759307db5da31bab3e6611c1e7"
+    },
+    "docs/verification/task-082/saves/task082-ui-manual.json": {
+      "bytes": 3332,
+      "sha256": "1982d856df2287b81e4481774e2e90f7bc59863e3b1bd8b10dae2224932fc767"
+    },
+    "docs/verification/task-082/saves/task082-used.json": {
+      "bytes": 3202,
+      "sha256": "7a12f2173d570217727fd94c1d1ea28ece8cd68c7ecd50631756061e860c0198"
+    },
+    "docs/verification/task-082/saves/task082-version.json": {
+      "bytes": 3342,
+      "sha256": "9e8c3967288f3179fc114825d0fd98498bc44049a23d8a90327f21944592c599"
+    },
+    "docs/verification/task-082/scope-audit-final.json": {
+      "bytes": 2288,
+      "sha256": "e7e96d983a4316f864797485e9fd4ce31954b497e4d87cc08200f83102db9eb5"
+    },
+    "docs/verification/task-082/scope-audit.json": {
+      "bytes": 2225,
+      "sha256": "9381ae1d57c6cdd95d6a861ae49fa984ba8b5dede6f3d6aa144cb79aba0b4bc1"
+    },
+    "docs/verification/task-082/stage-081-baseline-checks.json": {
+      "bytes": 175692,
+      "sha256": "f08221530f41b32e814d6d1fd50629026293aebee199deb7b1c196c6aa1acd72"
+    },
+    "docs/verification/task-082/stage-081-baseline.log.gz": {
+      "bytes": 161,
+      "sha256": "37d8dff11a5f8944ab9e686322dddbd98f1f2a16bbcc4058d2b2bfbde6295990"
+    },
+    "docs/verification/task-082/stage-081-fixed-checks.json": {
+      "bytes": 175690,
+      "sha256": "41bf40fcf112f8c1c6b98e3c7ace563af810b8e0072669cfc89ff572ac2a832e"
+    },
+    "docs/verification/task-082/stage-081-fixed.log.gz": {
+      "bytes": 62,
+      "sha256": "9f24d63b8e427b4ab7f4eb4699b4d4422791403d4b8ddff6a6b840918bc3f611"
+    },
+    "docs/verification/task-082/stale-confirm-green.log": {
+      "bytes": 116,
+      "sha256": "bed1f692e2e56113d32f3e34201b0297148cdb88fbbd75903fc2ac0b1da57949"
+    },
+    "docs/verification/task-082/stale-confirm-probe-error.log": {
+      "bytes": 527,
+      "sha256": "b130355817c53b309a10fddd1e85f5ab2d39cd657df5bf9dce3f5027313cde82"
+    },
+    "docs/verification/task-082/stale-confirm-red.log": {
+      "bytes": 441,
+      "sha256": "c742fce14d1b0f3a46b5cc8e30e38c3873b1d1595c4617ccca1073d5cc74f538"
+    },
+    "docs/verification/task-082/stale-ui-green.log": {
+      "bytes": 116,
+      "sha256": "57c107e159093c56d71ae79264d6e2a24581471d091db68c3eb9c3288e774608"
+    },
+    "docs/verification/task-082/stale-ui-red.log": {
+      "bytes": 652,
+      "sha256": "54117c0865f87247277e798ba7d185085c8d4bc95eb1f2683af52712a22021ca"
+    },
+    "docs/verification/task-082/suite-progress.log": {
+      "bytes": 1859,
+      "sha256": "54cba3d1c0608f0183307b23c4368291f5a50219af536e7509625f524ecda0e7"
+    },
+    "docs/verification/task-082/test_locked_check_reporting.log.gz": {
+      "bytes": 55,
+      "sha256": "663c7f770a0d9947c9a32e24af777c069c2a70368463917c8bf95efa1b4baaa3"
+    },
+    "docs/verification/task-082/validate_assets.log.gz": {
+      "bytes": 105,
+      "sha256": "c27c65747834a54a3ccbf33c4b323d30111c483cceed8d1bc823bd065f665974"
+    },
+    "docs/verification/task-082/vulkan-probe-fixed.log": {
+      "bytes": 167,
+      "sha256": "20dd3ea5a839c30caacefabe4febfd72d5a543caf1cb91af9fc16bc24fbf3bfd"
+    },
+    "docs/verification/task-082/vulkan-probe.log": {
+      "bytes": 843,
+      "sha256": "defff3d2a9ac12d4a93fc457152b944a9ce959dfae9b0e8ae94c101178653643"
+    },
+    "docs/verification/task-082/write_manifest.py": {
+      "bytes": 3606,
+      "sha256": "6f7a5699fedc3d70918834965a6ed1cacf28c456c3868c58dfbcdfcdf45d0c00"
+    },
+    "scripts/game/game_session.gd": {
+      "bytes": 99878,
+      "sha256": "5e82f34bbfb465e696f59b32b3973b35d1a0bff76a9aa1d1299618e2df4e75d7"
+    },
+    "scripts/ui/game_root.gd": {
+      "bytes": 120969,
+      "sha256": "ab2784f0cc16a618dd9f75ac00ad9233ec2613501b92c4e661833c4236a427d7"
+    },
+    "scripts/world/region2_shrine_story.gd": {
+      "bytes": 1874,
+      "sha256": "7ecccfae955144f5fefa03e40c8e0a294b8735e0bdce4e35eb7270fc2b780218"
+    },
+    "scripts/world/region2_shrine_story.gd.uid": {
+      "bytes": 20,
+      "sha256": "c78872c268494b916f5696b0569b7b72746cc827764e8380c47fd2a4ba426252"
+    },
+    "tools/check_region2_shrine_story.gd": {
+      "bytes": 22173,
+      "sha256": "997d343f8486fd022c75eb31faa30542112f593b5ff03d7da35e9f565f5077d6"
+    },
+    "tools/check_region2_shrine_story.gd.uid": {
+      "bytes": 20,
+      "sha256": "afc3f5194557a70120fd7826395588dcf71b4653c7c4df4d46ef2197652a8ec9"
+    },
+    "tools/check_region2_shrine_story_data.py": {
+      "bytes": 3042,
+      "sha256": "01d63a562d4f5a45adb8a8c09c658c24ce47eb8d948eb6a8a54390a2ed53ee33"
+    }
+  },
+  "self_hash_note": "この目録自身のhashだけは循環を避けて除外。changed-paths.txtには目録自身も含む。",
+  "remaining": {
+    "draft_pr": "自動承認レビューにより拒否・未作成",
+    "visual_integration": "初配置の採否待ち・今回変更なし",
+    "optional_jobs": "旧共通ゲートを維持。受取/移行規則は未決",
+    "local_extra_regression": "eb423adの64検査中62成功。011通知fixture180秒timeoutと081旧段階比較はFAILを保持。最終版の正式CIは全件成功。"
+  }
+}

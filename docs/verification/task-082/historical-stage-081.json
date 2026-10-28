@@ -1,0 +1,53 @@
+{
+  "records": [
+    {
+      "label": "baseline",
+      "sha": "6c996d5c37fd384e679bb23dd59113c99494790c",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/check_task081_port_data.py"
+      ],
+      "cwd": "/workspace/task082-baseline-check",
+      "started": "2026-10-28T02:27:29.230510+00:00",
+      "finished": "2026-10-28T02:27:32.781411+00:00",
+      "timeout_seconds": 120,
+      "exit_code": 1,
+      "checks": 1235,
+      "failed": 2,
+      "failed_details": [
+        "docs/decision-log.md",
+        "docs/tasks/README.md"
+      ],
+      "raw_sha256": "5b37ccb82872a3139229a15c6a43e21a8200587ecced13aa25d2d85dcf8436ea",
+      "log": "stage-081-baseline.log.gz",
+      "checker_sha256": "040d6dfb2f6399b6a88eef1df697006f764c36b1212f11362540823392fe41a6"
+    },
+    {
+      "label": "fixed",
+      "sha": "7d85b1100b7d8bea9cdffdad67c4ece72c739bbf",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/check_task081_port_data.py"
+      ],
+      "cwd": "/workspace/task081-fixed-check",
+      "started": "2026-10-28T02:27:32.781571+00:00",
+      "finished": "2026-10-28T02:27:36.039416+00:00",
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "checks": 1235,
+      "failed": 0,
+      "failed_details": [],
+      "raw_sha256": "8bdc0f0666e426d0bf1e3cbbfc88564e194a62724165cd9fdc477a16199bcedc",
+      "log": "stage-081-fixed.log.gz",
+      "checker_sha256": "040d6dfb2f6399b6a88eef1df697006f764c36b1212f11362540823392fe41a6"
+    }
+  ],
+  "classification": {
+    "fixed_only": [
+      "docs/decision-log.md と081着手時BASEの一致",
+      "docs/tasks/README.md と081着手時BASEの一致"
+    ],
+    "current_replacement": "この2文書は082の基点main 6c996d5から不変（scope-audit-final.jsonで照合）。親の081受入記録を保持。",
+    "other_assertions": "同じ原検査器の残る1233条件は現行でも全件成功。元検査器・期待値・判定を変更しない。"
+  }
+}
