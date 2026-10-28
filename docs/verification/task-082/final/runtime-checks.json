@@ -1,0 +1,1475 @@
+{
+	"checks": [
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "対象入口の人工境界保存を受理",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "外観では発火しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "失敗移動で発火・変更なし",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "開始前は全8職を通常選択で拒否",
+			"ok": true
+		},
+		{
+			"detail": "slime",
+			"label": "未解放のchoose_job拒否",
+			"ok": true
+		},
+		{
+			"detail": "beast",
+			"label": "未解放のchoose_job拒否",
+			"ok": true
+		},
+		{
+			"detail": "plant",
+			"label": "未解放のchoose_job拒否",
+			"ok": true
+		},
+		{
+			"detail": "shell",
+			"label": "未解放のchoose_job拒否",
+			"ok": true
+		},
+		{
+			"detail": "undead",
+			"label": "未解放のchoose_job拒否",
+			"ok": true
+		},
+		{
+			"detail": "bird",
+			"label": "未解放のchoose_job拒否",
+			"ok": true
+		},
+		{
+			"detail": "spirit",
+			"label": "未解放のchoose_job拒否",
+			"ok": true
+		},
+		{
+			"detail": "dragon",
+			"label": "未解放のchoose_job拒否",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "既存の着地・向き・entry_lockを保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "開始の重複通知を拒否",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "会話中の移動・NPC・住人更新を拒否",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "会話中の向き変更・戦闘開始を拒否",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "既存導入の重複開始を拒否",
+			"ok": true
+		},
+		{
+			"detail": [
+				"wrong",
+				1,
+				0
+			],
+			"label": "誤場面・誤実行・先送り・負ページ拒否",
+			"ok": true
+		},
+		{
+			"detail": [
+				"region2_shrine_s10",
+				-1,
+				0
+			],
+			"label": "誤場面・誤実行・先送り・負ページ拒否",
+			"ok": true
+		},
+		{
+			"detail": [
+				"region2_shrine_s10",
+				1,
+				8
+			],
+			"label": "誤場面・誤実行・先送り・負ページ拒否",
+			"ok": true
+		},
+		{
+			"detail": [
+				"region2_shrine_s10",
+				1,
+				-1
+			],
+			"label": "誤場面・誤実行・先送り・負ページ拒否",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "中間確認",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "古いページ再確認を拒否",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "開始・途中では保存状態も職業解放も不変",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "中間確認",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "古いページ再確認を拒否",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "開始・途中では保存状態も職業解放も不変",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "中間確認",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "古いページ再確認を拒否",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "開始・途中では保存状態も職業解放も不変",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "中間確認",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "古いページ再確認を拒否",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "開始・途中では保存状態も職業解放も不変",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "中間確認",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "古いページ再確認を拒否",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "開始・途中では保存状態も職業解放も不変",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "中間確認",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "古いページ再確認を拒否",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "開始・途中では保存状態も職業解放も不変",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "中間確認",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "古いページ再確認を拒否",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "開始・途中では保存状態も職業解放も不変",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "中間確認",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "古いページ再確認を拒否",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "開始・途中では保存状態も職業解放も不変",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "最終の通常確認で完了",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "完了の副作用はboolフラグ2件だけ・アイテム/侵蝕/職/成長不変",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "初期4職だけが利用可能・任意4職は閉鎖",
+			"ok": true
+		},
+		{
+			"detail": "slime",
+			"label": "初期4職を通常選択で利用",
+			"ok": true
+		},
+		{
+			"detail": "slime",
+			"label": "人間職へ戻る既存条件",
+			"ok": true
+		},
+		{
+			"detail": "beast",
+			"label": "初期4職を通常選択で利用",
+			"ok": true
+		},
+		{
+			"detail": "beast",
+			"label": "人間職へ戻る既存条件",
+			"ok": true
+		},
+		{
+			"detail": "plant",
+			"label": "初期4職を通常選択で利用",
+			"ok": true
+		},
+		{
+			"detail": "plant",
+			"label": "人間職へ戻る既存条件",
+			"ok": true
+		},
+		{
+			"detail": "shell",
+			"label": "初期4職を通常選択で利用",
+			"ok": true
+		},
+		{
+			"detail": "shell",
+			"label": "人間職へ戻る既存条件",
+			"ok": true
+		},
+		{
+			"detail": "undead",
+			"label": "最終確認後も任意4職の通常選択を拒否",
+			"ok": true
+		},
+		{
+			"detail": "bird",
+			"label": "最終確認後も任意4職の通常選択を拒否",
+			"ok": true
+		},
+		{
+			"detail": "spirit",
+			"label": "最終確認後も任意4職の通常選択を拒否",
+			"ok": true
+		},
+		{
+			"detail": "dragon",
+			"label": "最終確認後も任意4職の通常選択を拒否",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "初期4職をadvanced専用配列へ入れない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "最終確認の重複通知・完了後の開始で副作用なし",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "完了後の既存退出",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "再入室で再演なし",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "完了状態の通常保存",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "完了保存を全値往復・再演なし",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "中断試験の再準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "各ページの中断保存",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "各中断保存の全値往復",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "室内ロードは必ず冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "同一sessionで中断保存を読込",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "旧実行の冒頭通知も拒否",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "中断試験の再準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "各ページの中断保存",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "各中断保存の全値往復",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "室内ロードは必ず冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "同一sessionで中断保存を読込",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "旧実行の冒頭通知も拒否",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "中断試験の再準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "各ページの中断保存",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "各中断保存の全値往復",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "室内ロードは必ず冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "同一sessionで中断保存を読込",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "旧実行の冒頭通知も拒否",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "中断試験の再準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "各ページの中断保存",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "各中断保存の全値往復",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "室内ロードは必ず冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "同一sessionで中断保存を読込",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "旧実行の冒頭通知も拒否",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "中断試験の再準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "各ページの中断保存",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "各中断保存の全値往復",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "室内ロードは必ず冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "同一sessionで中断保存を読込",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "旧実行の冒頭通知も拒否",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "中断試験の再準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "各ページの中断保存",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "各中断保存の全値往復",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "室内ロードは必ず冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "同一sessionで中断保存を読込",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "旧実行の冒頭通知も拒否",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "中断試験の再準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "各ページの中断保存",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "各中断保存の全値往復",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "室内ロードは必ず冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "同一sessionで中断保存を読込",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "旧実行の冒頭通知も拒否",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "中断試験の再準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "各ページの中断保存",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "各中断保存の全値往復",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "室内ロードは必ず冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "同一sessionで中断保存を読込",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "旧実行の冒頭通知も拒否",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "中断試験の再準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "各ページの中断保存",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "各中断保存の全値往復",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "室内ロードは必ず冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "同一sessionで中断保存を読込",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "旧実行の冒頭通知も拒否",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "中断後に通常退出",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した祠入室で自動開始",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "安全な再入室も冒頭から",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "導入未見なら未完了のまま開始しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "既存の導入補完導線を保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "導入補完の通常終了後に同室で開始",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "外観・別室ロードでは開始しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "外観・別室ロードでは開始しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "外観・別室ロードでは開始しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "外観・別室ロードでは開始しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "戦闘中負例の準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "戦闘中は開始しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "全滅中は開始しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": "travel",
+			"label": "他会話保留の人工状態",
+			"ok": true
+		},
+		{
+			"detail": "travel",
+			"label": "他会話の確定待ちに重ねない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": "recruit",
+			"label": "他会話保留の人工状態",
+			"ok": true
+		},
+		{
+			"detail": "recruit",
+			"label": "他会話の確定待ちに重ねない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": "audience",
+			"label": "他会話保留の人工状態",
+			"ok": true
+		},
+		{
+			"detail": "audience",
+			"label": "他会話の確定待ちに重ねない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "実在する追加前の祠保存をバイト不変で受理",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "旧訪問履歴を新会話の既読にしない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "実在旧保存も導入補完後に未読会話の対象",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "実在旧保存からの完了後も通常保存",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "実在旧保存の完了後は再演しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": "current",
+			"label": "旧保存の既使用維持を往復して保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": "jp",
+			"label": "旧保存の既使用維持を往復して保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": "mastered",
+			"label": "旧保存の既使用維持を往復して保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": "advanced",
+			"label": "旧保存の既使用維持を往復して保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "修練による精霊取得の既存条件を準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "修練達成と任意受取を区別する観測",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "精霊の修練達成だけで任意受取済みとしない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": [
+				59,
+				[]
+			],
+			"label": "既存の精霊前提を変更しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": [
+				59,
+				[
+					"undead"
+				]
+			],
+			"label": "既存の精霊前提を変更しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": [
+				59,
+				[
+					"priest"
+				]
+			],
+			"label": "既存の精霊前提を変更しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": [
+				59,
+				[
+					"undead",
+					"priest"
+				]
+			],
+			"label": "既存の精霊前提を変更しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": [
+				60,
+				[]
+			],
+			"label": "既存の精霊前提を変更しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": [
+				60,
+				[
+					"undead"
+				]
+			],
+			"label": "既存の精霊前提を変更しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": [
+				60,
+				[
+					"priest"
+				]
+			],
+			"label": "既存の精霊前提を変更しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": [
+				60,
+				[
+					"undead",
+					"priest"
+				]
+			],
+			"label": "既存の精霊前提を変更しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "転職未解放の人工状態",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "全ページの通常確認",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "会話完了は転職共通条件を置換しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "追加前の保存形式を変更せず受理",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "旧版未読保存も対象",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "追加前の保存形式を変更せず受理",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "旧版未読保存も対象",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "旧本編を通常開始",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "first_regionのない旧本編は対象外",
+			"ok": true
+		},
+		{
+			"detail": "slime",
+			"label": "旧本編の職業判定を保持",
+			"ok": true
+		},
+		{
+			"detail": "beast",
+			"label": "旧本編の職業判定を保持",
+			"ok": true
+		},
+		{
+			"detail": "plant",
+			"label": "旧本編の職業判定を保持",
+			"ok": true
+		},
+		{
+			"detail": "shell",
+			"label": "旧本編の職業判定を保持",
+			"ok": true
+		},
+		{
+			"detail": "undead",
+			"label": "旧本編の職業判定を保持",
+			"ok": true
+		},
+		{
+			"detail": "bird",
+			"label": "旧本編の職業判定を保持",
+			"ok": true
+		},
+		{
+			"detail": "dragon",
+			"label": "旧本編の職業判定を保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "旧本編の保存も全値往復",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "progress_flagsのbool契約を維持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "unlocked_jobsのadvanced専用検証を維持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "UI試験は入口の人工境界から",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "通常の方向入力で扉へ移動開始",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "成功した遷移の後に自動会話・移動終了",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "UIで専用場面IDと話者を保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "会話中の通常移動/NPC入力を拒否",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "キーのリピートでページを飛ばさない",
+			"ok": true
+		},
+		{
+			"detail": "ui_menu",
+			"label": "古いメニュー操作で会話のUI・実行番号を失わない",
+			"ok": true
+		},
+		{
+			"detail": "ui_items",
+			"label": "古いメニュー操作で会話のUI・実行番号を失わない",
+			"ok": true
+		},
+		{
+			"detail": "party",
+			"label": "古いメニュー操作で会話のUI・実行番号を失わない",
+			"ok": true
+		},
+		{
+			"detail": "ui_resume",
+			"label": "古いメニュー操作で会話のUI・実行番号を失わない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "通常確認で1ページだけ進む",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "途中状態を通常codecで保存",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "一時ページ・実行番号・未完了フラグを保存しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "通常ロードが安全なWORLD復帰後に冒頭から自動再開",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "再開後に通常確認",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "タイトルからの同室復帰も冒頭から",
+			"ok": true
+		},
+		{
+			"detail": 0,
+			"label": "通常UIで全文を確認",
+			"ok": true
+		},
+		{
+			"detail": 1,
+			"label": "通常UIで全文を確認",
+			"ok": true
+		},
+		{
+			"detail": 2,
+			"label": "通常UIで全文を確認",
+			"ok": true
+		},
+		{
+			"detail": 3,
+			"label": "通常UIで全文を確認",
+			"ok": true
+		},
+		{
+			"detail": 4,
+			"label": "通常UIで全文を確認",
+			"ok": true
+		},
+		{
+			"detail": 5,
+			"label": "通常UIで全文を確認",
+			"ok": true
+		},
+		{
+			"detail": 6,
+			"label": "通常UIで全文を確認",
+			"ok": true
+		},
+		{
+			"detail": 7,
+			"label": "通常UIで全文を確認",
+			"ok": true
+		},
+		{
+			"detail": 8,
+			"label": "通常UIで全文を確認",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "通常UIの最終確認で一度だけ完了",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "完了後の通常UI保存",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "完了後ロードは再演しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "長老の手前の人工境界",
+			"ok": true
+		},
+		{
+			"detail": "村の長老",
+			"label": "既存長老をネルに置換せず会話を保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "室内の未読チェックポイントを通常codecで準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "チェックポイント読込も冒頭から自動開始",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "起動中の戦闘前復帰も冒頭から自動開始",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "完了済みチェックポイントは再演しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "人工境界の初期状態を通常APIで作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "発火源負例の人工状態",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "描画フレームだけで会話を発火しない",
+			"ok": true
+		}
+	],
+	"coverage": "人工境界API・通常UI入力。新規人物の配置・視覚統合の完成は未検証。",
+	"status": "PASS"
+}

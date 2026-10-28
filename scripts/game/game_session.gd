@@ -26,6 +26,7 @@ var _pending_region_recruit := ""
 var _pending_region_audience := false
 var _pending_region_travel := ""
 var _region_story: Dictionary = {}
+var _shrine_story := Region2ShrineStory.new()
 
 
 func _init() -> void:
@@ -77,6 +78,7 @@ func new_game(party_size: int = 4) -> bool:
 	if not errors.is_empty() or party_size < 3 or party_size > 4:
 		return false
 	_region_story.clear()
+	_shrine_story.interrupt()
 	if _archive != null and not _state.is_empty():
 		_archive.lifetime.record_event("trial_closed",{"reason":"new_game"})
 		close_recording()
@@ -132,7 +134,7 @@ func new_first_region() -> bool:
 
 
 func first_region_intro_available() -> bool:
-	return first_region_active() and _battle == null and _region_story.is_empty() and not party_defeated() and FirstRegionStory.needs_return(_state) and _state["overworld"]["node"] != "first_cave"
+	return first_region_active() and _battle == null and _region_story.is_empty() and not _shrine_story.active() and not party_defeated() and FirstRegionStory.needs_return(_state) and _state["overworld"]["node"] != "first_cave"
 
 ## 後続の会話はこの結果を先に確認する。未見の本文を既知の内容として返さない。
 func require_first_region_intro() -> Dictionary:
@@ -144,7 +146,7 @@ func begin_first_region_intro() -> Dictionary:
 	return _begin_first_region_story("catchup",{})
 
 func _begin_first_region_story(context: String, resume: Dictionary) -> Dictionary:
-	if not _region_story.is_empty():return {}
+	if not _region_story.is_empty() or _shrine_story.active():return {}
 	var queue := FirstRegionStory.queue_for(_state,context)
 	if queue.is_empty():return FirstRegionStory.data()["repeat"].duplicate(true).merged({"kind":"dialogue"})
 	_region_story={"queue":queue,"page":0,"context":context,"resume":resume.duplicate(true)}
@@ -174,7 +176,22 @@ func confirm_first_region_story(identifier: String, page: int) -> Dictionary:
 	elif resume.get("kind")=="interact":
 		var result := interact_first_region()
 		return {"kind":"moved"} if result.is_empty() else result
+	var shrine := resume_region2_shrine_story()
+	if not shrine.is_empty():return shrine
 	return {"kind":"moved"}
+
+## 入室成功後、室内ロード、復帰処理から明示的に呼ぶ。描画からは呼ばない。
+func resume_region2_shrine_story() -> Dictionary:
+	if not first_region_active() or _battle != null or party_defeated() or not _region_story.is_empty():return {}
+	if not _pending_region_recruit.is_empty() or _pending_region_audience or not _pending_region_travel.is_empty():return {}
+	return _shrine_story.begin(_state)
+
+func confirm_region2_shrine_story(identifier: String, run: int, page: int) -> Dictionary:
+	if _battle != null or party_defeated() or not _region_story.is_empty():return {}
+	return _shrine_story.confirm(_state,identifier,run,page)
+
+func interrupt_region2_shrine_story() -> void:
+	_shrine_story.interrupt()
 
 func first_region_active() -> bool:
 	return _state.has("first_region")
@@ -185,18 +202,22 @@ func first_region_walkable(cell: Vector2i) -> bool:
 
 
 func first_region_face(direction: Vector2i) -> void:
-	if first_region_active():_state["overworld"]["facing"] = [Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP].find(direction)
+	if first_region_active() and not _shrine_story.active():_state["overworld"]["facing"] = [Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP].find(direction)
 
 
 func move_first_region(cell: Vector2i) -> Dictionary:
-	if not first_region_active() or _battle != null or party_defeated() or not _region_story.is_empty():return {}
+	if not first_region_active() or _battle != null or party_defeated() or not _region_story.is_empty() or _shrine_story.active():return {}
+	var was_shrine := Region2ShrineStory.in_room(_state)
 	var result := FirstRegion.move(_state,cell)
 	if not result.is_empty():play_metrics.mark("moved_cells")
 	if result.get("kind")=="story_request":return _begin_first_region_story("return",{"kind":"stairs","to":FirstRegion.data()["stairs_up"]["to"]})
+	if result.get("kind")=="moved" and not was_shrine and Region2ShrineStory.in_room(_state):
+		var shrine := resume_region2_shrine_story()
+		if not shrine.is_empty():return shrine
 	return result
 
 func advance_first_region_residents() -> bool:
-	return first_region_active() and _battle == null and _region_story.is_empty() and FirstRegion.advance_residents(_state)
+	return first_region_active() and _battle == null and _region_story.is_empty() and not _shrine_story.active() and FirstRegion.advance_residents(_state)
 
 func use_first_region_potion(actor_id: String) -> bool:
 	if not first_region_active() or _battle != null or int(_state["inventory"].get("potion",0))<=0:return false
@@ -208,7 +229,7 @@ func use_first_region_potion(actor_id: String) -> bool:
 
 
 func interact_first_region() -> Dictionary:
-	if not first_region_active() or _battle != null or not _region_story.is_empty():return {}
+	if not first_region_active() or _battle != null or not _region_story.is_empty() or _shrine_story.active():return {}
 	if _state["overworld"]["node"]=="start_village" and not _state["progress_flags"].get("gado_workshop_seen",false):
 		return _begin_first_region_story("village",{"kind":"interact"})
 	if FirstRegion.at(_state["overworld"],FirstRegion.data()["stairs_up"]["from"]) and FirstRegionStory.needs_return(_state):
@@ -307,10 +328,10 @@ func first_region_boarding_label() -> String:
 	return FirstRegionTravel.boarding_label(_state) if first_region_active() and _battle==null else ""
 
 func board_first_region_ship() -> bool:
-	return first_region_active() and _battle==null and FirstRegionTravel.board_or_land(_state)
+	return first_region_active() and _battle==null and not _shrine_story.active() and FirstRegionTravel.board_or_land(_state)
 
 func cast_first_region_return(actor_id: String, destination: String) -> bool:
-	return first_region_active() and _battle==null and FirstRegionTravel.return_to(_state,actor_id,destination)
+	return first_region_active() and _battle==null and not _shrine_story.active() and FirstRegionTravel.return_to(_state,actor_id,destination)
 
 func finish_first_region_recruit(actor_id: String) -> bool:
 	if not first_region_active() or actor_id.is_empty() or actor_id!=_pending_region_recruit:return false
@@ -385,6 +406,7 @@ func import_state(value: Dictionary) -> bool:
 		return false
 	_state = normalized.duplicate(true)
 	_region_story.clear()
+	_shrine_story.interrupt()
 	_pending_region_travel=""
 	_pending_region_recruit=""
 	_pending_region_audience=false
@@ -617,7 +639,9 @@ func job_unlocked(actor_id: String, job_id: String) -> bool:
 		return false
 	# 世界マップ型の解放時期だけを制限する。旧本編の職業条件は維持する。
 	if first_region_active():
-		if jobs[job_id]["type"]=="monster" and not _state["progress_flags"].get("monster_jobs_unlocked",false):return false
+		if jobs[job_id]["type"]=="monster" and not _state["progress_flags"].get("monster_jobs_unlocked",false):
+			# S10は初期4職だけ。旧共通ゲートの保存・既使用維持順は変更しない。
+			if job_id not in Region2ShrineStory.INITIAL_JOBS or not _state["progress_flags"].get(Region2ShrineStory.JOBS_FLAG,false):return false
 		if job_progression["advanced"].has(job_id) and not _state["progress_flags"].get("advanced_jobs_unlocked",false):return false
 	# 過去の保存で既に使った職は取り上げない。
 	if actor["job_id"] == job_id or int(actor["jp"].get(job_id,0)) > 0 or job_id in actor["mastered_jobs"] or job_id in actor.get("unlocked_jobs",[]):
@@ -988,7 +1012,7 @@ func release_monster_form(actor_id: String, event: String) -> bool:
 
 
 func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
-	if _state.is_empty() or party_defeated() or _battle != null or enemy_ids.is_empty() or enemy_ids.size() > 4:
+	if _state.is_empty() or party_defeated() or _battle != null or _shrine_story.active() or enemy_ids.is_empty() or enemy_ids.size() > 4:
 		return null
 	for identifier in enemy_ids:
 		if not enemy_definitions.has(identifier):

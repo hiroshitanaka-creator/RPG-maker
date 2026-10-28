@@ -1,0 +1,120 @@
+[
+  {
+    "log": "initial-import.log",
+    "command": ".tools/godot/4.7.2/godot --headless --editor --import --quit",
+    "exit_code": 0,
+    "status": "FAIL",
+    "reason": "XDG既定値が読取専用ユーザーディレクトリでエラー。成功扱いしない。"
+  },
+  {
+    "log": "import.log",
+    "command": "XDG_CACHE_HOME=/workspace/RPG-maker/.tools/task082/cache XDG_CONFIG_HOME=/workspace/RPG-maker/.tools/task082/config XDG_DATA_HOME=/workspace/RPG-maker/.tools/task082/data .tools/godot/4.7.2/godot --headless --editor --import --quit",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  {
+    "log": "focused-first.log",
+    "command": "XDG_CACHE_HOME=/workspace/RPG-maker/.tools/task082/cache XDG_CONFIG_HOME=/workspace/RPG-maker/.tools/task082/config XDG_DATA_HOME=/workspace/RPG-maker/.tools/task082/data .tools/godot/4.7.2/godot --headless --path . --script res://tools/check_region2_shrine_story.gd",
+    "exit_code": 1,
+    "status": "FAIL",
+    "reason": "検査器の型推論エラー",
+    "source": "最終commit以前の作業ツリー。最終の固定SHA検証とは区別。"
+  },
+  {
+    "log": "focused-second.log",
+    "command": "XDG_CACHE_HOME=/workspace/RPG-maker/.tools/task082/cache XDG_CONFIG_HOME=/workspace/RPG-maker/.tools/task082/config XDG_DATA_HOME=/workspace/RPG-maker/.tools/task082/data .tools/godot/4.7.2/godot --headless --path . --script res://tools/check_region2_shrine_story.gd",
+    "exit_code": 1,
+    "status": "FAIL",
+    "reason": "人工保存の上限/JP/修練条件と入力API名の誤り",
+    "source": "最終commit以前の作業ツリー。最終の固定SHA検証とは区別。"
+  },
+  {
+    "log": "focused-third.log",
+    "command": "XDG_CACHE_HOME=/workspace/RPG-maker/.tools/task082/cache XDG_CONFIG_HOME=/workspace/RPG-maker/.tools/task082/config XDG_DATA_HOME=/workspace/RPG-maker/.tools/task082/data .tools/godot/4.7.2/godot --headless --path . --script res://tools/check_region2_shrine_story.gd",
+    "exit_code": 1,
+    "status": "FAIL",
+    "reason": "人工保存の修練条件と既存長老表示名の誤り",
+    "source": "最終commit以前の作業ツリー。最終の固定SHA検証とは区別。"
+  },
+  {
+    "log": "focused-fourth.log",
+    "command": "XDG_CACHE_HOME=/workspace/RPG-maker/.tools/task082/cache XDG_CONFIG_HOME=/workspace/RPG-maker/.tools/task082/config XDG_DATA_HOME=/workspace/RPG-maker/.tools/task082/data .tools/godot/4.7.2/godot --headless --path . --script res://tools/check_region2_shrine_story.gd",
+    "exit_code": 0,
+    "status": "PASS",
+    "reason": "256条件成功",
+    "source": "最終commit以前の作業ツリー。最終の固定SHA検証とは区別。"
+  },
+  {
+    "log": "focused-fifth.log",
+    "command": "XDG_CACHE_HOME=/workspace/RPG-maker/.tools/task082/cache XDG_CONFIG_HOME=/workspace/RPG-maker/.tools/task082/config XDG_DATA_HOME=/workspace/RPG-maker/.tools/task082/data .tools/godot/4.7.2/godot --headless --path . --script res://tools/check_region2_shrine_story.gd",
+    "exit_code": 0,
+    "status": "PASS",
+    "reason": "実在旧保存等を追加した279条件成功",
+    "source": "最終commit以前の作業ツリー。最終の固定SHA検証とは区別。"
+  },
+  {
+    "log": "stale-ui-red.log",
+    "exit_code": 1,
+    "status": "FAIL",
+    "reason": "会話中の古いメニュー操作4件で実際のUI状態破損を再現",
+    "source": "最終の固定SHA全体検証とは区別。環境と本番の変更は報告書参照。"
+  },
+  {
+    "log": "stale-ui-green.log",
+    "exit_code": 0,
+    "status": "PASS",
+    "reason": "UI排他修正後の283条件",
+    "source": "最終の固定SHA全体検証とは区別。環境と本番の変更は報告書参照。"
+  },
+  {
+    "log": "focused-final.log",
+    "exit_code": 0,
+    "status": "PASS",
+    "reason": "許可された確認・タイトル中断・ロードもUI経路で通す283条件",
+    "source": "最終の固定SHA全体検証とは区別。環境と本番の変更は報告書参照。"
+  },
+  {
+    "log": "vulkan-probe.log",
+    "exit_code": 0,
+    "status": "FAIL",
+    "reason": "Vulkan ICDのライブラリ探索が不成立。終了0でも警告/エラーにより失敗",
+    "source": "最終の固定SHA全体検証とは区別。環境と本番の変更は報告書参照。"
+  },
+  {
+    "log": "vulkan-probe-fixed.log",
+    "exit_code": 0,
+    "status": "PASS",
+    "reason": "絶対ライブラリパスのICDでVulkan 1.4.305 / llvmpipe、警告/エラーなし",
+    "source": "最終の固定SHA全体検証とは区別。環境と本番の変更は報告書参照。"
+  },
+  {
+    "log": "stale-confirm-probe-error.log",
+    "exit_code": 0,
+    "status": "FAIL",
+    "reason": "検査のsignal名誤り。SCRIPT ERRORを含むためPASS行/終了0を成功扱いしない。"
+  },
+  {
+    "log": "stale-confirm-red.log",
+    "exit_code": 1,
+    "status": "FAIL",
+    "reason": "古い決定ボタン通知の4経路を再現。"
+  },
+  {
+    "log": "stale-confirm-green.log",
+    "exit_code": 0,
+    "status": "PASS",
+    "reason": "生成時の場面・実行・ページ固定後、集中290条件成功。"
+  },
+  {
+    "log": "duplicate-resume-red.log",
+    "exit_code": 1,
+    "status": "FAIL",
+    "reason": "続ける直接重複で会話のUIを失う境界を再現。"
+  },
+  {
+    "log": "duplicate-resume-green.log",
+    "exit_code": 0,
+    "status": "PASS",
+    "reason": "再開の冪等化後に集中293条件成功。"
+  }
+]

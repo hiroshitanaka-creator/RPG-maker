@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-10-28T02:03:08.382178+00:00",
+  "engine_sha256": "8d106cbe6144c2dc7e881d61d2429c1a8a76e6b22ef48bd5e48dcf934953f71e",
+  "engine_version": "4.7.2.stable.official.ed1daf0bf",
+  "xvfb_source": "https://deb.debian.org/debian/pool/main/x/xorg-server/xvfb_21.1.16-1.3+deb13u4_amd64.deb",
+  "xvfb_deb_sha256": "893d87bf159b6de077a929fc796a73c39f837d45310b2076e3eeebebb80552b6",
+  "xvfb_install": "workspace内だけに展開。Xserver共通データ・依存ライブラリは既存。",
+  "preexisting_untracked": [
+    "scripts/game/equipment_rules.gd.uid",
+    "tools/check_equipment_rules.gd.uid"
+  ],
+  "cloud_cwd": "/workspace/RPG-maker",
+  "verification_checkout": "/workspace/task082-verification",
+  "baseline_main": "6c996d5c37fd384e679bb23dd59113c99494790c",
+  "mesa_vulkan_source": "https://deb.debian.org/debian/pool/main/m/mesa/mesa-vulkan-drivers_25.0.7-2+deb13u1_amd64.deb",
+  "mesa_vulkan_deb_sha256": "caf2f7d296b7522efe74e40a74bce762a3ce84c33b53b5e54e1248ac2e0a13a5",
+  "vulkan_icd": {
+    "ICD": {
+      "api_version": "1.4.305",
+      "library_path": "/workspace/RPG-maker/.tools/task082/mesa/root/usr/lib/x86_64-linux-gnu/libvulkan_lvp.so"
+    },
+    "file_format_version": "1.0.0"
+  },
+  "final_verification_checkout": "/workspace/task082-final-verification"
+}

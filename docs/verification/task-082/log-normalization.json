@@ -1,0 +1,28 @@
+[
+  {
+    "name": "check_region2_port_backdrop",
+    "source_sha": "2ea3c32ada2713bbfcd0582f5bd1c9eaf401d36a",
+    "command": "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python tools/check_region2_port_backdrop.py",
+    "exit_code": 0,
+    "log": "check_region2_port_backdrop-python.log.gz",
+    "kind": "開始時に保存した原出力",
+    "original_raw_sha256": "c203aa41b822af07b59ab68003ec97d409e35da66a22bafb1003d1bdfe6742e6",
+    "preserved_raw_sha256": "c203aa41b822af07b59ab68003ec97d409e35da66a22bafb1003d1bdfe6742e6",
+    "result_unchanged": {
+      "status": "PASS"
+    }
+  },
+  {
+    "name": "check_region2_village_backdrops",
+    "source_sha": "2ea3c32ada2713bbfcd0582f5bd1c9eaf401d36a",
+    "command": "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python tools/check_region2_village_backdrops.py",
+    "exit_code": 0,
+    "log": "check_region2_village_backdrops-python.log.gz",
+    "kind": "同じ固定SHA/コマンドで再取得し原raw hashとの完全一致を確認した出力",
+    "original_raw_sha256": "911a32201bdb39c6e64f37f0b9eb0d89a233a52b5c4ce95db179882ed9fa6e02",
+    "preserved_raw_sha256": "911a32201bdb39c6e64f37f0b9eb0d89a233a52b5c4ce95db179882ed9fa6e02",
+    "result_unchanged": {
+      "status": "PASS"
+    }
+  }
+]

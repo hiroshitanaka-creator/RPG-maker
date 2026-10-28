@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "baseline": "6c996d5c37fd384e679bb23dd59113c99494790c",
+  "source_sha": "e675aca03d7a726379f88ad1529a2597f38de405",
+  "supplemental_regression_source_sha": "eb423ad0bc269ac737da80174ff812d63861d26e",
+  "changed_source_paths": [
+    "data/region2_shrine_scenes.json",
+    "scripts/game/game_session.gd",
+    "scripts/ui/game_root.gd",
+    "scripts/world/region2_shrine_story.gd",
+    "scripts/world/region2_shrine_story.gd.uid",
+    "tools/check_region2_shrine_story.gd",
+    "tools/check_region2_shrine_story.gd.uid",
+    "tools/check_region2_shrine_story_data.py"
+  ],
+  "observed_tracked_diff": [
+    "data/region2_shrine_scenes.json",
+    "scripts/game/game_session.gd",
+    "scripts/ui/game_root.gd",
+    "scripts/world/region2_shrine_story.gd",
+    "scripts/world/region2_shrine_story.gd.uid",
+    "tools/check_region2_shrine_story.gd",
+    "tools/check_region2_shrine_story.gd.uid",
+    "tools/check_region2_shrine_story_data.py"
+  ],
+  "command": [
+    "git",
+    "diff",
+    "--exit-code",
+    "6c996d5c37fd384e679bb23dd59113c99494790c",
+    "HEAD",
+    "--",
+    ".scope-lock/",
+    "test/",
+    "project.godot",
+    ".github/",
+    "assets/",
+    "world/",
+    "docs/tasks/README.md",
+    "docs/decision-log.md",
+    "tools/smoke_chapter1.gd",
+    "tools/smoke_first_region.gd",
+    "docs/first-region-acceptance.md"
+  ],
+  "exit_code": 0,
+  "source_files_sha256": {
+    "data/region2_shrine_scenes.json": "ef480031dfb4fed746888b9827de07ed2185baecb2fad43662f59acc334e0557",
+    "scripts/game/game_session.gd": "5e82f34bbfb465e696f59b32b3973b35d1a0bff76a9aa1d1299618e2df4e75d7",
+    "scripts/ui/game_root.gd": "ab2784f0cc16a618dd9f75ac00ad9233ec2613501b92c4e661833c4236a427d7",
+    "scripts/world/region2_shrine_story.gd": "7ecccfae955144f5fefa03e40c8e0a294b8735e0bdce4e35eb7270fc2b780218",
+    "scripts/world/region2_shrine_story.gd.uid": "c78872c268494b916f5696b0569b7b72746cc827764e8380c47fd2a4ba426252",
+    "tools/check_region2_shrine_story.gd": "997d343f8486fd022c75eb31faa30542112f593b5ff03d7da35e9f565f5077d6",
+    "tools/check_region2_shrine_story.gd.uid": "afc3f5194557a70120fd7826395588dcf71b4653c7c4df4d46ef2197652a8ec9",
+    "tools/check_region2_shrine_story_data.py": "01d63a562d4f5a45adb8a8c09c658c24ce47eb8d948eb6a8a54390a2ed53ee33"
+  }
+}

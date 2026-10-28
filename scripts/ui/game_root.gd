@@ -27,6 +27,8 @@ var _risk_bypass: bool = false
 var _dialogue_return: Mode = Mode.FIELD
 var _dialogue_past: bool = false
 var _region_story_id := ""
+var _shrine_story_id := ""
+var _shrine_story_run := 0
 var _dialogue_summary: Array = []
 var _party_return: Mode = Mode.FIELD
 var _gate_team: Array = []
@@ -212,7 +214,7 @@ func _input(event: InputEvent) -> void:
 			submit_player_action({"kind":"world_move","dx":movement.x,"dy":movement.y})
 			get_viewport().set_input_as_handled()
 		return
-	if mode == Mode.DIALOGUE and not _region_story_id.is_empty() and event.echo and event.keycode in [KEY_ENTER, KEY_SPACE, KEY_E]:
+	if mode == Mode.DIALOGUE and (not _region_story_id.is_empty() or not _shrine_story_id.is_empty()) and event.echo and event.keycode in [KEY_ENTER, KEY_SPACE, KEY_E]:
 		get_viewport().set_input_as_handled()
 		return
 	if mode == Mode.DIALOGUE and event.keycode in [KEY_ENTER, KEY_SPACE, KEY_E]:
@@ -462,6 +464,18 @@ func submit_player_action(action: Dictionary) -> bool:
 				_dialogue_summary = []
 				_message_index = 0
 				accepted = true
+			elif kind == "confirm" and action.has("shrine_scene") and (not _shrine_story_id.is_empty() or not str(action["shrine_scene"]).is_empty()) and (str(action["shrine_scene"])!=_shrine_story_id or int(action.get("shrine_run",-1))!=_shrine_story_run or int(action.get("shrine_page",-1))!=_message_index):
+				return false
+			elif kind == "confirm" and not _shrine_story_id.is_empty():
+				var shrine_result := game.confirm_region2_shrine_story(_shrine_story_id,_shrine_story_run,_message_index)
+				if shrine_result.is_empty():return false
+				if shrine_result.get("kind")=="story_page":_message_index+=1
+				else:
+					_shrine_story_id=""
+					_shrine_story_run=0
+					mode=Mode.WORLD
+					_first_region_result(shrine_result)
+				accepted=true
 			elif kind == "confirm" and not _region_story_id.is_empty():
 				var story_result := game.confirm_first_region_story(_region_story_id,_message_index)
 				if story_result.is_empty():return false
@@ -771,6 +785,8 @@ func _advance_step() -> void:
 
 func _show_dialogue(lines: Array, advance: bool, return_mode: Mode = Mode.FIELD, past: bool = false) -> void:
 	_region_story_id=""
+	_shrine_story_id=""
+	_shrine_story_run=0
 	_region_line_speakers=[]
 	_region_join_actor=""
 	_region_audience=false
@@ -1007,6 +1023,7 @@ func _render_menu() -> void:
 
 
 func _resume_current() -> void:
+	if mode==Mode.DIALOGUE and not _shrine_story_id.is_empty():return
 	mode = Mode.COMPLETE if game.chapter_one_pause() or game.story_complete() else Mode.FIELD
 	if game.world_exploration_active():
 		mode = Mode.WORLD
@@ -1015,6 +1032,7 @@ func _resume_current() -> void:
 	if not ChapterOne.missing_art().is_empty():
 		mode = Mode.ASSETS_MISSING
 	_notice = ""
+	_resume_region2_shrine()
 	_refresh()
 
 
@@ -1220,6 +1238,9 @@ func _first_region_result(result: Dictionary) -> void:
 			_target_action.clear()
 		"dialogue":
 			_show_dialogue(result["text"],false,Mode.WORLD)
+			_world_mover.stop()
+			_shrine_story_id=str(result.get("shrine_scene",""))
+			_shrine_story_run=int(result.get("shrine_run",0))
 			_region_story_id=str(result.get("story_scene",""))
 			if not _region_story_id.is_empty():
 				var sound: Variant=game.first_region_story_presentation().get("repair_sound")
@@ -1933,6 +1954,7 @@ func _load_save() -> void:
 	_notice = "冒険の記録を読み込みました。"
 	if game.position_relocated:
 		_notice += "安全な入口へ移動しました。"
+	_resume_region2_shrine()
 	_refresh()
 
 
@@ -2020,11 +2042,22 @@ func _reset_after_recovery() -> void:
 	_party_return = Mode.FIELD
 	mode = Mode.WORLD if game.world_exploration_active() else Mode.FIELD
 	_notice = "戦闘前へ戻りました。編成や帰還で立て直してから挑戦できます。"
+	_resume_region2_shrine()
 	_refresh()
+
+func _resume_region2_shrine() -> void:
+	_shrine_story_id=""
+	_shrine_story_run=0
+	if mode!=Mode.WORLD:return
+	var result := game.resume_region2_shrine_story()
+	if not result.is_empty():_first_region_result(result)
 
 
 func _to_menu() -> void:
 	_world_mover.stop()
+	game.interrupt_region2_shrine_story()
+	_shrine_story_id=""
+	_shrine_story_run=0
 	_replay.clear()
 	mode = Mode.MENU
 	_notice = ""
@@ -2386,7 +2419,10 @@ func _render_region_screen() -> void:
 		var code: String=_replay[_replay_index].get("code","")
 		if code in ["damage","fallen"]:_rpg_audio.effect("damage")
 		elif code in ["heal","revive"]:_rpg_audio.effect("heal")
-	_region_screen.action_requested.connect(_region_ui_action)
+	# 決定ボタンは生成時の場面・実行・ページを保持する。古い画面の通知を現在値で補完しない。
+	var confirmation := {"shrine_scene":_shrine_story_id,"shrine_run":_shrine_story_run,"shrine_page":_message_index}
+	_region_screen.action_requested.connect(func(action: Dictionary) -> void:
+		_region_ui_action(action.merged(confirmation,true) if action.get("kind")=="confirm" else action))
 	add_child(_region_screen)
 
 func _render_region_panel() -> void:
@@ -2422,6 +2458,8 @@ func _render_region_panel() -> void:
 
 func _region_ui_action(action: Dictionary) -> void:
 	var kind: String=action.get("kind","")
+	# 前画面から遅れて届いたメニュー操作で、一時会話とUIの対応を失わない。
+	if not _shrine_story_id.is_empty() and kind not in ["confirm","ui_title","ui_load"]:return
 	_rpg_audio.effect("cancel" if kind in ["ui_back","ui_resume","ui_cancel_target","back","cancel_erosion"] else "confirm")
 	match kind:
 		"ui_menu":
