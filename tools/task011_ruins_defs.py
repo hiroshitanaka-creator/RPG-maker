@@ -22,3 +22,6 @@ for spec,walls in zip(MAPS,WALLS):
  for n,box in enumerate(walls):
   x0,y0,x1,y1=box
   spec['objects'].append(obj('手前壁%d'%n,rect(*box),rect(x0,y1-16,x1,y1)))
+
+# 084採用の接続メタデータ。011の床・階段・画像生成定義は保持する。
+WORLD_CONNECTION=dict(enabled=True,world_cell=[176,91],return_cell=[176,92],return_facing=0,room=0,landing=[18,19],entry_facing=3,exit_cell=[18,20])

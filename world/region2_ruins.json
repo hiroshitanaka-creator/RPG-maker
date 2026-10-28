@@ -743,22 +743,26 @@
     }
   ],
   "world_connection": {
-    "enabled": false,
-    "cells": [
-      [
-        17,
-        21
-      ],
-      [
-        18,
-        21
-      ],
-      [
-        19,
-        21
-      ]
+    "enabled": true,
+    "world_cell": [
+      176,
+      91
     ],
-    "note": "1階下の入口。世界マップ接続は後続依頼"
+    "return_cell": [
+      176,
+      92
+    ],
+    "return_facing": 0,
+    "room": 0,
+    "landing": [
+      18,
+      19
+    ],
+    "entry_facing": 3,
+    "exit_cell": [
+      18,
+      20
+    ]
   },
   "encounters_enabled": false,
   "boss_enabled": false

@@ -69,7 +69,7 @@ def build(dest):
   panel=Image.new('RGB',(size[0],size[1]+32),(18,28,42));panel.paste(review,(0,32));font=ImageFont.truetype(str(ROOT/'assets/fonts/notosansjp/NotoSansJP.ttf'),18);ImageDraw.Draw(panel).text((8,3),'確認用状態 / '+mapdata['name']+' / 緑:通行 赤:不通 青:上層 黄:階段',font=font,fill='white');panel.save(out/f'floor{n+1}-overview.png')
   print('floor',n,'size',size,'walk',int(walk.sum()),'isolated',isolated,'landings',[(c,layout[c[1]][c[0]]) for c in spec['landings']], 'triggers',[(c,layout[c[1]][c[0]]) for f,c,_,_,_ in D.LINKS if f==n])
  links=[dict(from_room=f,from_cell=c,to_room=t,to_cell=landing,facing=face) for f,c,t,landing,face in D.LINKS]
- document=dict(version=1,node='region2_ruins',site=dict(id='region2_ruins',rooms=rooms),maps=maps,stairs=links,world_connection=dict(enabled=False,cells=[[17,21],[18,21],[19,21]],note='1階下の入口。世界マップ接続は後続依頼'),encounters_enabled=False,boss_enabled=False)
+ document=dict(version=1,node='region2_ruins',site=dict(id='region2_ruins',rooms=rooms),maps=maps,stairs=links,world_connection=D.WORLD_CONNECTION.copy(),encounters_enabled=False,boss_enabled=False)
  write(dest/'world/region2_ruins.json',document)
  record=dict(version=1,base_sha='0f781630fa75b620f06e5d71430979a1c5162ef4',palette_sha256=sha(ROOT/'assets/palette/natural.gpl'),maps=records,method='全原画の最近傍縮小＋最多使用64色以内のnatural.gpl最近傍減色。上層は同一RGBを切出し。原本不変。')
  write(dest/RECORD,record)

@@ -1,0 +1,256 @@
+[
+  {
+    "name": "runtime-red",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_connection.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T20:56:54.933166+00:00",
+    "finished": "2026-10-28T20:56:55.089282+00:00",
+    "elapsed_seconds": 0.156,
+    "timeout_seconds": 120,
+    "exit_code": 1,
+    "timed_out": false,
+    "log": "logs/runtime-red.log",
+    "sha256": "e0b5c076527a8706f66d81f1ddb1278f6b3034b54f225aa64cb9d92770f1a047",
+    "errors": [
+      "SCRIPT ERROR: Parse Error: Cannot infer the type of \"path\" variable because the value doesn't have a set type.",
+      "ERROR: Failed to load script \"res://tools/check_region2_ruins_connection.gd\" with error \"Parse error\"."
+    ]
+  },
+  {
+    "name": "runtime-red-corrected",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_connection.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T20:57:01.720039+00:00",
+    "finished": "2026-10-28T20:57:04.765027+00:00",
+    "elapsed_seconds": 3.045,
+    "timeout_seconds": 120,
+    "exit_code": 1,
+    "timed_out": false,
+    "log": "logs/runtime-red-corrected.log",
+    "sha256": "febf05b6953693c456957569cf87596b5ab783b9ece7a25f98f3faebdc41f344",
+    "errors": [
+      "RUINS_CONNECTION_FAIL: 完了後の通常歩行で指定着地・北向き・entry_lock <null>",
+      "RUINS_CONNECTION_FAIL: 旧内部保存から完了不要で退場 <null>",
+      "RUINS_CONNECTION_FAIL: 旧内部保存から完了不要で退場 <null>",
+      "RUINS_CONNECTION_FAIL: 旧内部保存から完了不要で退場 <null>",
+      "RUINS_CONNECTION_FAIL: 旧内部保存から完了不要で退場 <null>",
+      "RUINS_CONNECTION_FAIL: 旧内部保存から完了不要で退場 <null>",
+      "RUINS_CONNECTION_FAIL: 旧内部保存から完了不要で退場 <null>",
+      "RUINS_CONNECTION_FAIL: checks=220 failures=7"
+    ]
+  },
+  {
+    "name": "data-red",
+    "command": [
+      "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+      "tools/check_region2_ruins_connection.py"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T20:57:44.435346+00:00",
+    "finished": "2026-10-28T20:57:44.532298+00:00",
+    "elapsed_seconds": 0.097,
+    "timeout_seconds": 120,
+    "exit_code": 1,
+    "timed_out": false,
+    "log": "logs/data-red.log",
+    "sha256": "1373fc117779e5c6429dbab031e3f66b7f86993563f621a751f94c81f4704570",
+    "errors": [
+      "RUINS_DATA_FAIL: 接続メタデータの固定期待値 None",
+      "RUINS_DATA_FAIL: defsの接続は固定期待値と一致 None",
+      "RUINS_DATA_FAIL: checks=22"
+    ]
+  },
+  {
+    "name": "runtime-green",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_connection.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T20:58:04.382065+00:00",
+    "finished": "2026-10-28T20:58:07.610201+00:00",
+    "elapsed_seconds": 3.228,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/runtime-green.log",
+    "sha256": "08819e0842f49dbf1b2e7d508fcee87e8b276b5a34aacebfa6569d8d2a907400",
+    "errors": []
+  },
+  {
+    "name": "data-green",
+    "command": [
+      "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+      "tools/check_region2_ruins_connection.py",
+      "--regenerate"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T20:58:07.638914+00:00",
+    "finished": "2026-10-28T20:58:35.741255+00:00",
+    "elapsed_seconds": 28.102,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/data-green.log",
+    "sha256": "e418fc0ebc1daf893b228bce2d0a40c308f7a5d6ef66e4e57598fca80bead40a",
+    "errors": []
+  },
+  {
+    "name": "capture-first",
+    "command": [
+      "env",
+      "DISPLAY=:84",
+      "VK_DRIVER_FILES=/workspace/RPG-maker/.tools/task084/lvp_icd.json",
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--path",
+      ".",
+      "--rendering-method",
+      "mobile",
+      "--rendering-driver",
+      "vulkan",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://tools/capture_region2_ruins_connection.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T20:59:12.009068+00:00",
+    "finished": "2026-10-28T20:59:29.865801+00:00",
+    "elapsed_seconds": 17.857,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/capture-first.log",
+    "sha256": "1424934d3e2e255af5353d39f47066172af26eafccc1cf5453fe9386003b6871",
+    "errors": []
+  },
+  {
+    "name": "capture-atlas",
+    "command": [
+      "env",
+      "DISPLAY=:84",
+      "VK_DRIVER_FILES=/workspace/RPG-maker/.tools/task084/lvp_icd.json",
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--path",
+      ".",
+      "--rendering-method",
+      "mobile",
+      "--rendering-driver",
+      "vulkan",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://tools/capture_region2_ruins_connection.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T21:00:14.948263+00:00",
+    "finished": "2026-10-28T21:00:31.789940+00:00",
+    "elapsed_seconds": 16.842,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/capture-atlas.log",
+    "sha256": "76da1c71e37484467cad6af0e5ca42994eaee2c74b9ace42af889c25dd33307b",
+    "errors": [
+      "ERROR: Condition \"!is_inside_tree()\" is true."
+    ]
+  },
+  {
+    "name": "runtime-atlas",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_connection.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T21:00:31.819519+00:00",
+    "finished": "2026-10-28T21:00:35.611078+00:00",
+    "elapsed_seconds": 3.792,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/runtime-atlas.log",
+    "sha256": "03697ac9d662036296e2c92a6c2884d217f003cd6bc7826232687771b9b1eee0",
+    "errors": []
+  },
+  {
+    "name": "import-tools",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T21:00:35.640805+00:00",
+    "finished": "2026-10-28T21:00:39.164555+00:00",
+    "elapsed_seconds": 3.524,
+    "timeout_seconds": 600,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/import-tools.log",
+    "sha256": "0de2f5b0f7353ac9f5c9eb9efbe730f3ef8599f5207660f5bfc88b6207eb29c6",
+    "errors": []
+  },
+  {
+    "name": "capture-focus-corrected",
+    "command": [
+      "env",
+      "DISPLAY=:84",
+      "VK_DRIVER_FILES=/workspace/RPG-maker/.tools/task084/lvp_icd.json",
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--path",
+      ".",
+      "--rendering-method",
+      "mobile",
+      "--rendering-driver",
+      "vulkan",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://tools/capture_region2_ruins_connection.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+    "started": "2026-10-28T21:01:10.644747+00:00",
+    "finished": "2026-10-28T21:01:27.523689+00:00",
+    "elapsed_seconds": 16.879,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/capture-focus-corrected.log",
+    "sha256": "1cf42ea29b5cc1e2a61c40863bca06823cb19daed5f678100119f9a8b8d0e75d",
+    "errors": []
+  }
+]

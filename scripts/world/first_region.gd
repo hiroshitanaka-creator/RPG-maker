@@ -117,6 +117,7 @@ static func move(saved: Dictionary, cell: Vector2i) -> Dictionary:
 		return {"kind":"moved"}
 	var definition := data()
 	if state["layer"] == "world":
+		if Region2Ruins.enter(saved):return {"kind":"moved"}
 		if state["cell"]==definition["region3_port_entrance"]["cell"]:
 			place(state,definition["region3_port_gate_spawn"])
 			state["facing"]=0;state["entry_lock"]="region3_port_entrance"
