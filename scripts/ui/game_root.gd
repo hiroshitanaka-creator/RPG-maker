@@ -2452,6 +2452,8 @@ func _render_region_panel() -> void:
 
 func _region_ui_action(action: Dictionary) -> void:
 	var kind: String=action.get("kind","")
+	# 前画面から遅れて届いたメニュー操作で、一時会話とUIの対応を失わない。
+	if not _shrine_story_id.is_empty() and kind not in ["confirm","ui_title","ui_load"]:return
 	_rpg_audio.effect("cancel" if kind in ["ui_back","ui_resume","ui_cancel_target","back","cancel_erosion"] else "confirm")
 	match kind:
 		"ui_menu":

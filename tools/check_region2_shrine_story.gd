@@ -240,14 +240,22 @@ func ui_cases() -> void:
 	var echo := InputEventKey.new();echo.keycode=KEY_ENTER;echo.pressed=true;echo.echo=true
 	main._input(echo)
 	check(main._message_index==0,"キーのリピートでページを飛ばさない")
-	check(main.submit_player_action({"kind":"confirm"}) and main._message_index==1,"通常確認で1ページだけ進む")
+	var active_id: String=main._shrine_story_id
+	var active_run: int=main._shrine_story_run
+	for stale in ["ui_menu","ui_items","party","ui_resume"]:
+		main._region_ui_action({"kind":stale})
+		check(main.mode==main.Mode.DIALOGUE and main._shrine_story_id==active_id and main._shrine_story_run==active_run and main._message_index==0,"古いメニュー操作で会話のUI・実行番号を失わない",stale)
+		# 負例失敗時にも後続の独立した検査を実行できるようUIだけ戻す。
+		main.mode=main.Mode.DIALOGUE;main._shrine_story_id=active_id;main._shrine_story_run=active_run;main._refresh()
+	main._region_ui_action({"kind":"confirm"})
+	check(main.mode==main.Mode.DIALOGUE and main._message_index==1,"通常確認で1ページだけ進む")
 	check(main.game.save_game(main.save_path),"途中状態を通常codecで保存")
 	var raw := FileAccess.get_file_as_string(main.save_path)
 	check(not raw.contains("shrine_run") and not raw.contains("shrine_scene") and not raw.contains("region2_shrine_seen"),"一時ページ・実行番号・未完了フラグを保存しない")
-	main._load_save()
+	main._region_ui_action({"kind":"ui_load"})
 	check(main.mode==main.Mode.DIALOGUE and main._message_index==0,"通常ロードが安全なWORLD復帰後に冒頭から自動再開")
 	check(main.submit_player_action({"kind":"confirm"}),"再開後に通常確認")
-	main._to_menu();main._resume_current()
+	main._region_ui_action({"kind":"ui_title"});main._resume_current()
 	check(main.mode==main.Mode.DIALOGUE and main._message_index==0,"タイトルからの同室復帰も冒頭から")
 	for page in range(9):check(main.submit_player_action({"kind":"confirm"}),"通常UIで全文を確認",page)
 	check(main.mode==main.Mode.WORLD and main.game.export_state()["progress_flags"].get("region2_shrine_seen",false),"通常UIの最終確認で一度だけ完了")
