@@ -41,7 +41,7 @@ def main():
         path=ROOT/p
         assert path.is_file(),p
         items[p]={"bytes":path.stat().st_size,"sha256":sha(path)}
-    document={"baseline_main":BASE,"verified_implementation_sha":SOURCE,"local_commands":19,"focused_checks":293,"ci_workflows":5,"ci_jobs":38,"ci_result":"success","changed_paths":files,"source_sha256":local["source_sha256"],"artifacts":items,"self_hash_note":"この目録自身のhashだけは循環を避けて除外。changed-paths.txtには目録自身も含む。","remaining":{"draft_pr":"自動承認レビューにより拒否・未作成","visual_integration":"初配置の採否待ち・今回変更なし","optional_jobs":"旧共通ゲートを維持。受取/移行規則は未決","local_extra_regression":"eb423adの64検査中62成功。011通知fixture180秒timeoutと081旧段階比較はFAILを保持。最終版の正式CIは全件成功。"}}
+    document={"baseline_main":BASE,"verified_implementation_sha":SOURCE,"local_commands":19,"focused_checks":293,"ci_workflows":5,"ci_jobs":38,"ci_result":"success","draft_pr":{"url":"https://github.com/hiroshitanaka-creator/RPG-maker/pull/63","draft":True,"merged":False,"initial_denial_preserved":True,"same_action_retry_count":1},"changed_paths":files,"source_sha256":local["source_sha256"],"artifacts":items,"self_hash_note":"この目録自身のhashだけは循環を避けて除外。changed-paths.txtには目録自身も含む。","remaining":{"visual_integration":"初配置の採否待ち・今回変更なし","optional_jobs":"旧共通ゲートを維持。受取/移行規則は未決","local_extra_regression":"eb423adの64検査中62成功。011通知fixture180秒timeoutと081旧段階比較はFAILを保持。最終版の正式CIは全件成功。"}}
     (OUT/"evidence-manifest.json").write_text(json.dumps(document,ensure_ascii=False,indent=2)+"\n")
     print("MANIFEST_PASS: changed_paths=%d artifacts=%d source=%s"%(len(files),len(items),SOURCE))
 

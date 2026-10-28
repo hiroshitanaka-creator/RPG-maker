@@ -3,6 +3,8 @@
 対象：`hiroshitanaka-creator/RPG-maker`、head `codex/task-082-shrine-conversation-20261028`、base `main`、**draft=true**。
 自動承認レビューで作成を拒否されたため、これは未送信の具体的なPR原稿。
 
+追記：本人原文の追加証拠を受領後、未作成を再照合して同じ操作を1回だけ再試行し、2026-10-28 03:35:42 UTCに [draft PR #63](https://github.com/hiroshitanaka-creator/RPG-maker/pull/63) を作成した。上の未送信表記は最初の拒否時点の履歴。拒否と解消は `pr-blocker.json` / `pr-create-result.json` に保存。
+
 祠の対象室への正常な入室後に承認済み会話を自動開始し、最終の通常確認で初期4職の利用状態を一度だけ確定します。場面ID・実行番号・ページ順を照合し、途中保存・通常ロード・チェックポイント復帰では未読なら冒頭から再開します。
 
 全8職共通のフラグを変更せず、初期4職だけに専用フラグを接続します。既存の転職共通条件・上級条件・既使用保持・旧本編の挙動を維持します。

@@ -6,6 +6,13 @@
   "ci_workflows": 5,
   "ci_jobs": 38,
   "ci_result": "success",
+  "draft_pr": {
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/pull/63",
+    "draft": true,
+    "merged": false,
+    "initial_denial_preserved": true,
+    "same_action_retry_count": 1
+  },
   "changed_paths": [
     "data/region2_shrine_scenes.json",
     "docs/tasks/reports/082-report.md",
@@ -315,6 +322,7 @@
     "docs/verification/task-082/latest/summary.json",
     "docs/verification/task-082/log-normalization.json",
     "docs/verification/task-082/pr-blocker.json",
+    "docs/verification/task-082/pr-create-result.json",
     "docs/verification/task-082/run_checks.py",
     "docs/verification/task-082/run_latest_checks.py",
     "docs/verification/task-082/runtime-checks.json",
@@ -368,8 +376,8 @@
       "sha256": "ef480031dfb4fed746888b9827de07ed2185baecb2fad43662f59acc334e0557"
     },
     "docs/tasks/reports/082-report.md": {
-      "bytes": 9804,
-      "sha256": "4f26bdd7185d050b6f57cdd4d588a0ec852624cbdf29f843c5011ee6451324bc"
+      "bytes": 10384,
+      "sha256": "b45846b5d2f0641d7010ccf0c54cf7e926757cfc00b1326515ebde1b45f77e40"
     },
     "docs/verification/task-082/R-01.log.gz": {
       "bytes": 494,
@@ -404,8 +412,8 @@
       "sha256": "0c774d4b32cae3194c3a01a56e1c5862220af243f363ce08b694abc12ae4b35c"
     },
     "docs/verification/task-082/README.md": {
-      "bytes": 2223,
-      "sha256": "c5a08569698dbf426c3b5594446b6a6cab34f7a0246297179389aa45daa72c1d"
+      "bytes": 2327,
+      "sha256": "ec2cb51a53efedde5ea88b779ada7e32fd58bbd470a0b1c2d20d0e8ace170684"
     },
     "docs/verification/task-082/build_world_interiors.log.gz": {
       "bytes": 68,
@@ -420,8 +428,8 @@
       "sha256": "19a657da6ebabb035bfd03f8143c025fb0a81129290a6a055cc3e4d200da2794"
     },
     "docs/verification/task-082/changed-paths.txt": {
-      "bytes": 20450,
-      "sha256": "ad6bab3d74a989e39e4eef29dad51ade63ce77c8f4a048c23f31fad278a547d7"
+      "bytes": 20499,
+      "sha256": "41d5ecc1f942bc95d1f55ca288f7f5f9a6a0e101e3758e5dccd01e253a8d4cf5"
     },
     "docs/verification/task-082/check_acceptance_registration.log.gz": {
       "bytes": 71,
@@ -636,8 +644,8 @@
       "sha256": "4bb106ac577ccdc47d9b26e8394206712ca9435b1037060ce36944e1ed329180"
     },
     "docs/verification/task-082/draft-pr.md": {
-      "bytes": 2128,
-      "sha256": "c01f8cb44a2d56ce54adc2f8cb272f9c3625d55a08de629d6ef9b3362336d0ca"
+      "bytes": 2500,
+      "sha256": "58da41aff8ffb101f75e761f2efbf119faaf7dc3fe36b0ba8a837a78b3f0d7b0"
     },
     "docs/verification/task-082/duplicate-resume-green.log": {
       "bytes": 116,
@@ -1588,8 +1596,12 @@
       "sha256": "ffb93b9e7983380d2a4833de6b7f25f1140141574d5fbf43d5657b8c7a11945d"
     },
     "docs/verification/task-082/pr-blocker.json": {
-      "bytes": 1362,
-      "sha256": "0c5a854e7690af20a5f0f15e5b1a4630cdc9aa7a3103cb43352ea81836101b35"
+      "bytes": 2182,
+      "sha256": "9bd6c2eb77fa14a7f77204376b5748f7405be98ebe93fb28789677a55faf9a83"
+    },
+    "docs/verification/task-082/pr-create-result.json": {
+      "bytes": 722,
+      "sha256": "b8c086ef34c69620f4f614824ca4590914124092d844b30d5fece913a66eedb9"
     },
     "docs/verification/task-082/run_checks.py": {
       "bytes": 6181,
@@ -1704,8 +1716,8 @@
       "sha256": "defff3d2a9ac12d4a93fc457152b944a9ce959dfae9b0e8ae94c101178653643"
     },
     "docs/verification/task-082/write_manifest.py": {
-      "bytes": 3606,
-      "sha256": "6f7a5699fedc3d70918834965a6ed1cacf28c456c3868c58dfbcdfcdf45d0c00"
+      "bytes": 3709,
+      "sha256": "230a47f047c8598e4dbf483974934f14193094375fc0c626be87c0c6f452836f"
     },
     "scripts/game/game_session.gd": {
       "bytes": 99878,
@@ -1738,7 +1750,6 @@
   },
   "self_hash_note": "この目録自身のhashだけは循環を避けて除外。changed-paths.txtには目録自身も含む。",
   "remaining": {
-    "draft_pr": "自動承認レビューにより拒否・未作成",
     "visual_integration": "初配置の採否待ち・今回変更なし",
     "optional_jobs": "旧共通ゲートを維持。受取/移行規則は未決",
     "local_extra_regression": "eb423adの64検査中62成功。011通知fixture180秒timeoutと081旧段階比較はFAILを保持。最終版の正式CIは全件成功。"

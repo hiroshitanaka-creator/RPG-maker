@@ -11,7 +11,7 @@
 - `development-attempts.json`：作業中の失敗・修正・再実行。終了0でもSCRIPT ERRORや警告のある実行を成功扱いしない。
 - `environment.json`：クラウド内だけのGodot/Xvfb/Mesaの出所・hash・ICD設定。ユーザーのコンピューターは使用していない。
 - `scope-audit-final.json`：本番変更8パスと、親担当文書・原画・world・CI・保護対象の不変照合。
-- `pr-blocker.json` / `draft-pr.md`：自動承認レビューの拒否記録と未送信の具体的なドラフトPR原稿。
+- `pr-blocker.json` / `pr-create-result.json` / `draft-pr.md`：初回拒否を保持し、本人原文の追加証拠による1回の同一操作再試行でdraft PR #63を作成した結果と原稿。mainへのマージなし。
 - `evidence-manifest.json` / `changed-paths.txt`：証拠ファイルのhashと、基点からの全変更パス。
 
 原検査・期待値・判定・上限を変更せず、失敗をPASSへ変換していない。初の人物配置と視覚統合の採否、任意4職の取得/移行規則は別の未達事項。通常UI検査は人工の入口状態から開始し、新規ゲームからS10までの通し到達や最終的な人物配置の完成証拠とは区別する。
