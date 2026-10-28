@@ -69,3 +69,9 @@ capture-atlas.logのdeferred focus ERRORも保存した。検査側で画面切�
 拒否後、親が本人の継続許可原文Sentinel_88686aa1bca08191b42f3c9365adb23e（項目5/6）とSentinel_f4892d63b37881918711fe97b2e1b32eを直接取得して追加提供した。今回の同repository/head/base/draftと照合し、未作成を再確認して同じcreate_pull_request APIを1回だけ再判定。2026-10-28T21:26:58Z、draft PR #67の作成に成功した。pr-create-result.jsonとretry_outcomeへ保存した。証拠をAPI引数へ混入せず、別経路・反復再試行・mainマージ・approveは行っていない。
 
 親記録用の判断：入場だけをCOMPLETE_FLAGに限定し、保存受理/出口は旧互換を守る。接触と着地を1マス離し、既存の1歩処理と入力排他を使う。旧候補cellsは旧拒否検査のデータ契約として保持する。戻す場合は084の実装コミットを新しい訂正コミットで差し戻せる。履歴改変は不要。初期計画と逐次記録はreport-history.mdへ保存した。
+
+## 証拠HEADの再確認
+
+`a4c545a954e4773a4f0e7255cab0f3e5d2bbe616` で、照合を強めた新規API257条件、R-08（25テスト/3,046 assertion）、保護26件一致を再確認した。evidence-head-runtime.log、evidence-head-R08.log、evidence-head-R08.json、evidence-head-frozen.logへ保存した。本番・旧検査器は実装固定SHAと同bytesである。
+
+この補助起動の最初は手動コマンドのXDG指定漏れで標準保存先の作成が拒否され、254条件中73件失敗となった。environment-probe-failure.jsonへ対象・理由・観測結果を保存した。ツール返却上限でその起動ログは一部省略されており、欠落部分を補作していない。拒否された保存先へ再試行せず、既存の隔離XDGで同じ検査器を実行し、上記257条件が成功した。

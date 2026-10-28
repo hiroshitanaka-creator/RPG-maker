@@ -2389,5 +2389,88 @@
       "DISPLAY": ":84",
       "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
     }
+  },
+  {
+    "name": "evidence-head-runtime",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_connection.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "a4c545a954e4773a4f0e7255cab0f3e5d2bbe616",
+    "started": "2026-10-28T21:53:07.355026+00:00",
+    "finished": "2026-10-28T21:53:10.867317+00:00",
+    "elapsed_seconds": 3.512,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/evidence-head-runtime.log",
+    "sha256": "03697ac9d662036296e2c92a6c2884d217f003cd6bc7826232687771b9b1eee0",
+    "errors": [],
+    "environment": {
+      "XDG_DATA_HOME": "/workspace/qa084/data",
+      "XDG_CONFIG_HOME": "/workspace/qa084/config",
+      "XDG_CACHE_HOME": "/workspace/qa084/cache",
+      "RPG_QA_SAVE_PREFIX": "task084"
+    }
+  },
+  {
+    "name": "evidence-head-R08",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      ".",
+      "-s",
+      "addons/gut/gut_cmdln.gd",
+      "-gdir=res://test/unit",
+      "-gprefix=test_",
+      "-gexit"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "a4c545a954e4773a4f0e7255cab0f3e5d2bbe616",
+    "started": "2026-10-28T21:53:10.871231+00:00",
+    "finished": "2026-10-28T21:53:25.828129+00:00",
+    "elapsed_seconds": 14.957,
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/evidence-head-R08.log",
+    "sha256": "edf3affa7181a42dfd1eb66324e1551714faeef32fe5e8bad1dba75cbf383053",
+    "errors": [],
+    "environment": {
+      "XDG_DATA_HOME": "/workspace/qa084/data",
+      "XDG_CONFIG_HOME": "/workspace/qa084/config",
+      "XDG_CACHE_HOME": "/workspace/qa084/cache",
+      "RPG_QA_SAVE_PREFIX": "task084"
+    }
+  },
+  {
+    "name": "evidence-head-frozen",
+    "command": [
+      "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+      "tools/check_frozen_files.py"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "a4c545a954e4773a4f0e7255cab0f3e5d2bbe616",
+    "started": "2026-10-28T21:53:25.830958+00:00",
+    "finished": "2026-10-28T21:53:25.856412+00:00",
+    "elapsed_seconds": 0.025,
+    "timeout_seconds": 30,
+    "exit_code": 0,
+    "timed_out": false,
+    "log": "logs/evidence-head-frozen.log",
+    "sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+    "errors": [],
+    "environment": {
+      "XDG_DATA_HOME": "/workspace/qa084/data",
+      "XDG_CONFIG_HOME": "/workspace/qa084/config",
+      "XDG_CACHE_HOME": "/workspace/qa084/cache",
+      "RPG_QA_SAVE_PREFIX": "task084"
+    }
   }
 ]

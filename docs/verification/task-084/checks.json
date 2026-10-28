@@ -868,5 +868,28 @@
     "record": "logs/accepted-task011.log",
     "captured_log": "accepted-regression-records.tar.gz:docs/verification/task-027/fixtures/battle-capture.log"
   },
-  "github_ci": "最終証拠HEADのpush/PR全workflowが終了するまで確認を継続し、最終応答とPRの検査一覧で完全SHA・結果を報告する。ローカル未達を隠さない。"
+  "github_ci": "最終証拠HEADのpush/PR全workflowが終了するまで確認を継続し、最終応答とPRの検査一覧で完全SHA・結果を報告する。ローカル未達を隠さない。",
+  "evidence_head_recheck": {
+    "source_sha": "a4c545a954e4773a4f0e7255cab0f3e5d2bbe616",
+    "runtime_checks": 257,
+    "runtime_log": "logs/evidence-head-runtime.log",
+    "R08": {
+      "id": "R-08",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 3046,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 25
+      },
+      "failure_messages": []
+    },
+    "frozen_log": "logs/evidence-head-frozen.log"
+  }
 }
