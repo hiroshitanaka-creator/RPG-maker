@@ -1,0 +1,10 @@
+/workspace/RPG-maker/tools/check_s10_static_display.py:29: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  colors = {p[:3] for p in im.getdata() if p[3]}
+/workspace/RPG-maker/tools/check_s10_static_display.py:32: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  (set(im.getchannel('A').getdata()) <= {0,255},'alpha'),
+S10_ASSET_FAIL: 原画の寸法固定
+S10_ASSET_FAIL: 台帳の登録は1件
+S10_ASSET_FAIL: 本番静止PNGが存在
+S10_ASSET_FAIL: 表示専用イベントは1件
+S10_ASSET_FAIL: 保持対象原画2点
+S10_ASSET_FAIL: checks=25 failures=5

@@ -1,0 +1,16 @@
+{
+  "recorded_at": "2026-10-28T05:53:28.238619+00:00",
+  "action": "mcp__codex_apps__github_create_pull_request",
+  "target": {
+    "repository": "hiroshitanaka-creator/RPG-maker",
+    "base": "main",
+    "head": "codex/task-083-s10-static-placement-20261028",
+    "draft": true
+  },
+  "outcome": "denied",
+  "reason": "Creating a draft PR is an external repository commitment and shares the implementation and verification artifacts, but the transcript contains no trusted user authorization for this specific 083 PR or destination.",
+  "lookup_after_denial": "github_search_prsで同head/all stateを照合しissues=[]、PRなし。",
+  "retry_count": 0,
+  "independent_work": "通常commit/push成功。固定SHA検証・原ログと報告保存を継続。",
+  "required_next_step": "この083の同repository・同headからmainへのdraft PR作成について、拒否後の新しい関連本人根拠を親から受領。未作成を再照合して同APIを1回だけ再判定。mainマージは範囲外。"
+}

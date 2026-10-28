@@ -1,0 +1,27 @@
+{
+  "source_sha": "6e2567638416a86c0b0b94c5300f95f8ac4c4a9f",
+  "reviewer": "独立Codex review_083（read-only）",
+  "result": "重大・重要な指摘なし",
+  "verified": [
+    "display_onlyはface_event/本文分岐前",
+    "静止_object(32,48)と足元順・既存長老維持",
+    "既存NPC占有と保存補正を流用",
+    "採用PNG固定SHA・16色・二値alpha・足元47",
+    "追加1件を除き既存台帳/村データ不変、禁止path/082本文/親記録差分なし",
+    "実撮影9枚と前後関係、118条件PASS"
+  ],
+  "minor_note": "新規Python検査を浅いcheckoutで再実行する前にBASEと参照preview commitをfetchする。再現手順に明記。",
+  "changes_by_reviewer": [],
+  "followup": {
+    "source_sha": "611c5986f3d960d3c306c48d971833de7f5a9523",
+    "result": "検査弱化・保護対象変更・契約逸脱の具体的懸念なし",
+    "change": "room4の全画素可視用入力点だけ[8,5]→[7,5]。全assertion・閾値・終了判定・時間上限不変。",
+    "original_coordinate_coverage": "capture_s10_static_display.gd のplayer-behindで元[8,5]の正常遮蔽・全非遮蔽画素を照合。",
+    "historical": "固定世代の当時コード・期待値は変更しない。"
+  },
+  "parent_followup": {
+    "result": "追加実キーケース・証拠に検査弱化なし。元118が141の順序付き完全一致部分列。script/log SHA一致、counter-back結果は実CIログ内JSONと完全一致。",
+    "documentation_correction": "固定7モードの実描画SHAは006完成5f1c2ba、当時capture_region2_village_connections.gd。009完成ce07のscope監査と混同した対応表/生成script/報告を訂正。",
+    "new_tests_ci_connected": false
+  }
+}

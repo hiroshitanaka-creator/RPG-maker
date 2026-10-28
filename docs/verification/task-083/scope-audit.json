@@ -1,0 +1,41 @@
+{
+  "base": "a4dc7c9d0d705f3181391fdccee4e4c825ddcaaf",
+  "production_sha": "6e2567638416a86c0b0b94c5300f95f8ac4c4a9f",
+  "latest_code_sha": "611c5986f3d960d3c306c48d971833de7f5a9523",
+  "production_unchanged_after_initial_commit": true,
+  "production_hashes": {
+    "world/region2_village.json": "35c86b3aaeb440bf8a0a641074cc7085a35e09cbf3a47c71f7b162a638f7ff9d",
+    "scripts/world/first_region_view.gd": "9003872e3fa35da3d7cdb150ee51fed3474c0692e9575d29d5c019a2080725a7",
+    "scripts/game/game_session.gd": "3c00c4375963903a707f594db5c66102dcfd80527050dbe4f88ac917cc2eda8f",
+    "assets/characters/ner/event_standing.png": "121010a316a31b88dca753ed48bc9404f176a4fe5f0d6dd5508ebf0615559f5d",
+    "assets/registry.json": "4948c1e2388e397920bcc1aec1f277afb67e5bf618cc85f397b9797b9d39d716",
+    "assets/source_records/s10-ner-static.json": "a03032e26b18fd3e7c82147bf7ed520d2a53fca5956e8cd7930c87494ac301cb",
+    "tools/validate_assets.py": "15aa19f0c7fd5f6d835a5f4bbb51bf7c2b0444b56ff72e11df85039dbd19611c",
+    "tools/import_s10_ner_static.py": "f262235d5a30c5d8e23c4c15b5698e0634a975deda292693e513fa9b1942695f"
+  },
+  "extra_test_support_path": "tools/capture_task009_village_regression.gd",
+  "extra_test_support_reason": "全画素可視の前提を保つための撮影入力座標対応。本番path追加なし。",
+  "historical_expected_coordinate": [
+    8,
+    5
+  ],
+  "latest_full_visibility_coordinate": [
+    7,
+    5
+  ],
+  "latest_occlusion_coordinate": [
+    8,
+    5
+  ],
+  "assertions_removed": 0,
+  "limits_changed": false,
+  "s10_capture_extension": {
+    "path": "tools/capture_s10_static_display.gd",
+    "sha256": "4928bc02114cd47387acae7cbc23fcd2f61c3638a51667e6263835f63e239fdd",
+    "reason": "親の追加指示：通常キー経路とAPI入力を区別し、元のAPI全118条件を残して実方向キー往復を追加。",
+    "proof": "normal-keys-verification.json",
+    "checks": 141,
+    "images": 10
+  },
+  "old_capture_helper_sha256": "54e2aef83c184964023890d740e94e2a53370c3125894705a5500b8be30c8dd6"
+}

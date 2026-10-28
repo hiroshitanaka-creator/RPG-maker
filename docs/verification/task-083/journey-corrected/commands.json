@@ -1,0 +1,42 @@
+[
+  {
+    "name": "prepare",
+    "source_sha": "611c5986f3d960d3c306c48d971833de7f5a9523",
+    "command": [
+      "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+      "tools/check_region2_village_regression.py",
+      "--commit",
+      "611c5986f3d960d3c306c48d971833de7f5a9523",
+      "--godot",
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot"
+    ],
+    "cwd": "/workspace/task083-final-verification",
+    "started": "2026-10-28T06:02:27.108460+00:00",
+    "finished": "2026-10-28T06:02:52.791617+00:00",
+    "exit_code": 0,
+    "raw_sha256": "2720be1d43ca4ab0fe7592be057447890f494761b73b68bbf3376211709ac180",
+    "limits": "原checkerの各180秒上限を維持",
+    "log": "prepare.log.gz"
+  },
+  {
+    "name": "journey",
+    "source_sha": "611c5986f3d960d3c306c48d971833de7f5a9523",
+    "command": [
+      "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+      "tools/check_region2_village_regression.py",
+      "--commit",
+      "611c5986f3d960d3c306c48d971833de7f5a9523",
+      "--godot",
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--capture",
+      "journey"
+    ],
+    "cwd": "/workspace/task083-final-verification",
+    "started": "2026-10-28T06:02:52.791803+00:00",
+    "finished": "2026-10-28T06:04:57.876301+00:00",
+    "exit_code": 0,
+    "raw_sha256": "273d425f949667cfa4283311c621174216e4d1ed17424f12df59c12e56c4cc5e",
+    "limits": "原checkerの各180秒上限を維持",
+    "log": "journey.log.gz"
+  }
+]

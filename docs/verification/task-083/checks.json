@@ -1,0 +1,382 @@
+{
+  "source_sha": "611c5986f3d960d3c306c48d971833de7f5a9523",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "import",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "01-import.log.gz"
+    },
+    {
+      "name": "frozen-before",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "02-frozen-before.log.gz"
+    },
+    {
+      "name": "assets-strict",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "03-assets-strict.log.gz"
+    },
+    {
+      "name": "s10-assets",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "04-s10-assets.log.gz"
+    },
+    {
+      "name": "s10-reproduce",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "05-s10-reproduce.log.gz"
+    },
+    {
+      "name": "s10-runtime",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "06-s10-runtime.log.gz"
+    },
+    {
+      "name": "s10-capture",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "07-s10-capture.log.gz"
+    },
+    {
+      "name": "approved-data",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "08-approved-data.log.gz"
+    },
+    {
+      "name": "shrine",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "09-shrine.log.gz"
+    },
+    {
+      "name": "R-01",
+      "exit_code": 0,
+      "result": {
+        "id": "R-01",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 765,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 2
+        },
+        "failure_messages": []
+      },
+      "log": "10-R-01.log.gz"
+    },
+    {
+      "name": "R-02",
+      "exit_code": 0,
+      "result": {
+        "id": "R-02",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 946,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 5
+        },
+        "failure_messages": []
+      },
+      "log": "11-R-02.log.gz"
+    },
+    {
+      "name": "R-03",
+      "exit_code": 0,
+      "result": {
+        "id": "R-03",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 73,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 2
+        },
+        "failure_messages": []
+      },
+      "log": "12-R-03.log.gz"
+    },
+    {
+      "name": "R-04",
+      "exit_code": 0,
+      "result": {
+        "id": "R-04",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 293,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 1
+        },
+        "failure_messages": []
+      },
+      "log": "13-R-04.log.gz"
+    },
+    {
+      "name": "R-05",
+      "exit_code": 0,
+      "result": {
+        "id": "R-05",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 79,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 2
+        },
+        "failure_messages": []
+      },
+      "log": "14-R-05.log.gz"
+    },
+    {
+      "name": "R-06",
+      "exit_code": 0,
+      "result": {
+        "id": "R-06",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 87,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 2
+        },
+        "failure_messages": []
+      },
+      "log": "15-R-06.log.gz"
+    },
+    {
+      "name": "R-07",
+      "exit_code": 0,
+      "result": {
+        "id": "R-07",
+        "verify": "godot --headless --path . --script res://tools/smoke_first_region.gd",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": null,
+        "failure_messages": []
+      },
+      "log": "16-R-07.log.gz"
+    },
+    {
+      "name": "R-08",
+      "exit_code": 0,
+      "result": {
+        "id": "R-08",
+        "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+        "exit_code": 0,
+        "status": "PASS",
+        "tests_ran": true,
+        "parser_failed": false,
+        "timed_out": false,
+        "gut_summary": {
+          "assertions": 3046,
+          "failed_assertions": 0,
+          "invalid": false,
+          "pending": 0,
+          "tests": 25
+        },
+        "failure_messages": []
+      },
+      "log": "17-R-08.log.gz"
+    },
+    {
+      "name": "first_region_gado",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "18-first_region_gado.log.gz"
+    },
+    {
+      "name": "first_region_screen",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "19-first_region_screen.log.gz"
+    },
+    {
+      "name": "battle_recovery",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "20-battle_recovery.log.gz"
+    },
+    {
+      "name": "saved_value_types",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "21-saved_value_types.log.gz"
+    },
+    {
+      "name": "saved_position_relocation",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "22-saved_position_relocation.log.gz"
+    },
+    {
+      "name": "task081_port_runtime",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "23-task081_port_runtime.log.gz"
+    },
+    {
+      "name": "frozen-after",
+      "exit_code": 0,
+      "result": {
+        "status": "PASS",
+        "warnings_errors": []
+      },
+      "log": "24-frozen-after.log.gz"
+    }
+  ],
+  "changed_code_paths": [],
+  "source_hashes": {
+    "world/region2_village.json": "35c86b3aaeb440bf8a0a641074cc7085a35e09cbf3a47c71f7b162a638f7ff9d",
+    "assets/registry.json": "4948c1e2388e397920bcc1aec1f277afb67e5bf618cc85f397b9797b9d39d716",
+    "scripts/world/first_region_view.gd": "9003872e3fa35da3d7cdb150ee51fed3474c0692e9575d29d5c019a2080725a7",
+    "scripts/game/game_session.gd": "3c00c4375963903a707f594db5c66102dcfd80527050dbe4f88ac917cc2eda8f",
+    "tools/validate_assets.py": "15aa19f0c7fd5f6d835a5f4bbb51bf7c2b0444b56ff72e11df85039dbd19611c",
+    "tools/check_s10_static_display.gd": "f54ee7fd7e480647dba2b088348ac26e26326d083a5652c349ce3b10509c3ceb",
+    "tools/capture_s10_static_display.gd": "b25e703385192bb8682544dc9c04a5b8e6c4a327e961cc219d09d1511c0e7707",
+    "tools/check_s10_static_display.py": "ebf8428826556c8322a9729a44ea1b4d5359be178d6d333e2c18cec4a0b33251",
+    "tools/import_s10_ner_static.py": "f262235d5a30c5d8e23c4c15b5698e0634a975deda292693e513fa9b1942695f"
+  },
+  "prior_code_validation": "final-validation/commands.json",
+  "historical_081": {
+    "source_sha": "7d85b1100b7d8bea9cdffdad67c4ece72c739bbf",
+    "cwd": "/workspace/task083-historical081",
+    "command": [
+      "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+      "tools/check_task081_port_data.py"
+    ],
+    "timeout_seconds": 120,
+    "started": "2026-10-28T05:58:08.078898+00:00",
+    "finished": "2026-10-28T05:58:11.564665+00:00",
+    "exit_code": 0,
+    "raw_sha256": "8bdc0f0666e426d0bf1e3cbbfc88564e194a62724165cd9fdc477a16199bcedc",
+    "log": "historical-081.log.gz"
+  },
+  "continuity": {
+    "status": "PASS",
+    "checks": 1190,
+    "record": "continuity-checks.json"
+  },
+  "journey": {
+    "status": "PASS",
+    "checks": 132,
+    "images": 28,
+    "commands": "journey-corrected/commands.json"
+  },
+  "pr_creation": {
+    "status": "DENIED",
+    "record": "pr-blocker.json",
+    "pr_exists": false
+  },
+  "s10_capture_final": {
+    "status": "PASS",
+    "checks": 141,
+    "images": 10,
+    "record": "normal-keys-verification.json",
+    "ci_connected": false
+  },
+  "ci": {
+    "source_sha": "611c5986f3d960d3c306c48d971833de7f5a9523",
+    "workflows": 5,
+    "jobs": 38,
+    "success": 38,
+    "record": "github-corrected-final.json"
+  },
+  "assertion_migration": {
+    "calls": 48,
+    "all_expressions_and_order_unchanged": true,
+    "record": "assertion-migration.json"
+  }
+}

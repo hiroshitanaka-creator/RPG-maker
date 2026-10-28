@@ -1,0 +1,8 @@
+{
+  "repository_full_name": "hiroshitanaka-creator/RPG-maker",
+  "base": "main",
+  "head": "codex/task-083-s10-static-placement-20261028",
+  "draft": true,
+  "title": "083：採用済み静止人物をS10の占有・保存復帰・実描画へ統合",
+  "body": "採用済みBの32×48静止PNGを祠room4 [8,6]へ配置し、既存NPC占有と旧保存の入口補正へ接続します。表示専用NPCはface_eventより前で除外し、静止画は既存_object経路で描画します。\n\n本番コード/既存本文/原画/パレット/保存形式/保護/CI設定を保持。素材36条件・占有保存77条件、S10実Godot141条件/10枚、082の293条件、旧通常キーjourney132条件/28枚、R-01〜R-08、保護26件前後一致を確認。旧撮影補助の全48 assertion式を保持し、正例/故障注入の証拠と対応表を報告に保存。新規S10集中検査はCI未接続のローカル検証です。\n\n旧撮影座標修正までの固定SHA 611c5986f3d960d3c306c48d971833de7f5a9523 はGitHub全5ワークフロー/38ジョブ成功。正式報告 docs/tasks/reports/083-report.md。mainマージは親の受入後で本作業の範囲外です。"
+}

@@ -24,6 +24,21 @@ func walk(target: Vector2i) -> void:
 			if not main._world_mover.active():break
 		check(main.game.overworld_state()["cell"]==([33,9] if p==Vector2i(8,11) else [p.x,p.y]),"通常移動・既存扉遷移完了",p)
 
+func walk_keys(target: Vector2i) -> void:
+	# 旧[8,5]への経路は実キーを押して確認する。submit_player_action経路と同一とは仮定しない。
+	var saved: Dictionary=main.game.export_state()
+	for p in route(saved,WorldExpedition.point(saved["overworld"]["cell"]),target):
+		var delta: Vector2i=p-WorldExpedition.point(main.game.overworld_state()["cell"])
+		var directions := [Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP]
+		var codes := [KEY_DOWN,KEY_LEFT,KEY_RIGHT,KEY_UP]
+		await create_timer(0.16).timeout
+		check(main.mode==main.Mode.WORLD and not main._world_mover.active() and main.game.first_region_walkable(p),"実方向キーの歩行前提・通常WORLD画面",p)
+		await key(codes[directions.find(delta)])
+		for frame in range(120):
+			await process_frame
+			if not main._world_mover.active():break
+		check(main.game.overworld_state()["cell"]==[p.x,p.y],"実方向キーで旧撮影点[8,5]へ通常歩行",p)
+
 func picture(name: String) -> void:
 	await frames()
 	await RenderingServer.frame_post_draw
@@ -51,7 +66,7 @@ func picture(name: String) -> void:
 	var windows: Array=[]
 	for panel in screen.find_children("*","PanelContainer",true,false):
 		if panel.is_visible_in_tree():windows.append(panel.get_global_rect())
-	var record := {"image":name+".png","cell":state["cell"],"camera":[view._camera.x,view._camera.y],"mode":screen.screen_mode,"actors":[]}
+	var record := {"image":name+".png","cell":state["cell"],"camera":[view._camera.x,view._camera.y],"mode":screen.screen_mode,"input_path":"normal_direction_keys" if name=="normal-keys-behind" else "see capture sequence (keys and submit_player_action are distinct)","actors":[]}
 	for index in range(actors.size()):
 		var actor: Dictionary=actors[index]
 		var cell: Vector2i=actor["cell"]
@@ -83,7 +98,7 @@ func picture(name: String) -> void:
 		if actor["id"]=="ner_static":
 			check(stats["outside"]==0 and stats["ui_covered"]==0,"静止人物の欠落・画面境界・会話窓遮蔽なし",name)
 			if name=="player-front":check(stats["actor_hidden"]>0,"主人公が手前の人物下部を遮蔽")
-		if actor["id"]=="player" and name=="player-behind":check(stats["actor_hidden"]>0,"主人公が奥なら静止人物が前に重なる")
+		if actor["id"]=="player" and name in ["player-behind","normal-keys-behind"]:check(stats["actor_hidden"]>0,"主人公が奥なら静止人物が前に重なる")
 		if actor["id"]=="player" and name=="overlay-behind":check(stats["overlay_hidden"]>0,"既存上層による主人公の部分遮蔽")
 		record["actors"].append(stats)
 	captures.append(record)
@@ -117,6 +132,8 @@ func run() -> void:
 	check(main.mode==main.Mode.WORLD and main.game.export_state()["overworld"]["cell"]==[8,7],"通常キーで人物占有を通過せず新会話なし")
 	# 通常に到達可能な北隣。前後の重なりを同じ描画経路で確認。
 	await walk(Vector2i(8,5));await picture("player-behind")
+	# API入力の既存118条件を残し、実方向キーで同じ旧撮影点を別に往復する。
+	await walk_keys(Vector2i(8,7));await walk_keys(Vector2i(8,5));await picture("normal-keys-behind")
 	await walk(Vector2i(8,11));await frames()
 	check(main.game.overworld_state()["room"]==0,"通常経路で退出")
 	await create_timer(.2).timeout
