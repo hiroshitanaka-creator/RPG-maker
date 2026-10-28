@@ -64,3 +64,15 @@ static-data.logは検査の固定参照d46151a633a2b5701bf0c583bf01344f39095929�
 最初のローカル全体回帰は28コマンド中26件成功し、素材固定参照未取得と027の通知あり撮影180秒タイムアウトを保持する。素材参照は上記の通り解消。通知あり撮影はLP_NUM_THREADS=2（Mesa描画並列数のみ変更）でも180秒タイムアウトし、元の上限/検査器/判定は変更しない。
 
 追加点検で、旧027の最終returnリテラルを探す故障注入が新しい退出通知にも一致することを発見した。mutation-target-red.logは元1か所から2か所になった条件をFAILとして保存。Region2Ruinsの退出通知を局所変数exited経由で返し、旧最終通知リテラル1か所と旧階段の注入対象を維持する。検査器は変更せず、新規dataへ元target数の継続検査1件を追加した。新規dataは再生成込み63条件となる。最初の62条件は削除していない。この補正は動作の変更ではなく既存故障注入の対象維持である。
+
+### PR拒否の解消
+
+拒否後、親が本人の継続許可原文（Sentinel_88686aa1bca08191b42f3c9365adb23e、2026-10-03T22:23:32.035731+00:00の項目5/6、およびSentinel_f4892d63b37881918711fe97b2e1b32e）を直接取得し、認証された本人発言として追加提供した。今回の同repository/head/base/draftに関連する新しい根拠であり、未決の物語・保護変更・検査弱化へ広げていない。
+
+同head/all stateのPRが0件と再確認し、拒否された同じcreate_pull_request APIを同対象へ1回だけ再判定した。根拠はAPI引数へ混入していない。2026-10-28T21:26:58Zに[draft PR #67](https://github.com/hiroshitanaka-creator/RPG-maker/pull/67)を作成成功。pr-create-result.jsonとpr-blocker.json.retry_outcomeへ結果を保存し、初回拒否の記録は保持した。mainマージ・approve・別経路への切替えはしていない。
+
+### 旧stage負例が読むメタデータの保持
+
+初回bc353deのCIは37ジョブ成功・Godotジョブ取消終了であり、全件成功ではない。原ログci-initial-godot.logでは通知あり撮影の後、旧027のstage拒否のassertionで停止した。現物照合で、旧stage検査が読むworld_connection.cellsを接続メタデータ置換時に落としていたと確認した。固定版の旧候補3セルは床ではなく壁の候補として現在も必要である。
+
+legacy-metadata-red.logに旧候補メタデータ欠落の失敗を保存し、defs/生成器出力/JSONに旧cells3件を同じ値で保持した。新しいworld_cell/exit_cellと混同せず、旧stage負例は失敗判定まで実行できるようにする。旧assertion/検査器/判定を変更しない。新規dataの元62条件と注入target継続1件を保持し、旧cells継続1件を加えて再生成込み64条件となる。

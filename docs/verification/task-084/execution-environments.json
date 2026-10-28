@@ -18,5 +18,12 @@
     "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json",
     "LP_NUM_THREADS": "2"
   },
-  "note": "試行ごとのコマンドと併せて読む。検査条件/判定/上限を変更せず、Mesaソフトウェア描画の並列数だけを指定。"
+  "note": "試行ごとのコマンドと併せて読む。検査条件/判定/上限を変更せず、Mesaソフトウェア描画の並列数だけを指定。",
+  "corrected-task011": {
+    "LP_NUM_THREADS": "2",
+    "launcher_path": "/workspace/RPG-maker/.tools/task084/godot-fps60",
+    "launcher_text": "#!/bin/sh\nexec /workspace/RPG-maker/.tools/godot/4.7.2/godot --max-fps 60 \"$@\"\n",
+    "launcher_sha256": "d08bbe79a85e44060b746059e7014eabd1650e289da01587baf8d00e121c3193",
+    "note": "Mesa並列数2・描画上限60fpsの実行設定。元検査/正負例/時間上限は不変。"
+  }
 }

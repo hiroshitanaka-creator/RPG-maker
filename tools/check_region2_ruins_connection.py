@@ -4,7 +4,7 @@ import argparse,ast,hashlib,importlib.util,json,subprocess,tempfile
 ROOT=Path(__file__).resolve().parents[1]
 BASE='f9169ac4048e98229d34692bc1e9efb6a0a3efaf'
 OUT=ROOT/'docs/verification/task-084'
-EXPECTED=dict(enabled=True,world_cell=[176,91],return_cell=[176,92],return_facing=0,room=0,landing=[18,19],entry_facing=3,exit_cell=[18,20])
+EXPECTED=dict(enabled=True,world_cell=[176,91],return_cell=[176,92],return_facing=0,room=0,landing=[18,19],entry_facing=3,exit_cell=[18,20],cells=[[17,21],[18,21],[19,21]])
 checks=[]
 def check(ok,label,detail=None):
  checks.append(dict(ok=bool(ok),label=label,detail=detail))
@@ -31,6 +31,7 @@ def main():
  for cell in [[18,19],[18,20]]:check(document['site']['rooms'][0]['layout'][cell[1]][cell[0]]=='.','南着地/接触は既存床',cell)
  for cell in [[17,21],[18,21],[19,21]]:check(document['site']['rooms'][0]['layout'][cell[1]][cell[0]]=='#','旧入口候補は壁を維持',cell)
  check(document['site']['rooms'][0]['spawn']==[18,5],'旧補正spawn不変')
+ check(document['world_connection'].get('cells')==previous['world_connection']['cells'],'旧011 stage負例が読む壁候補メタデータを保持')
  # defsを実行せずASTで元の全statementを保持したことを検証する。
  before=ast.parse(old('tools/task011_ruins_defs.py'));after=ast.parse((ROOT/'tools/task011_ruins_defs.py').read_text())
  filtered=ast.Module(body=[n for n in after.body if not isinstance(n,ast.Assign) or not any(isinstance(t,ast.Name) and t.id=='WORLD_CONNECTION' for t in n.targets)],type_ignores=[])
