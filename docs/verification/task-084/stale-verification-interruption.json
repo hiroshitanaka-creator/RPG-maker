@@ -1,0 +1,10 @@
+{
+  "source_sha": "cd04d231cb1a97f0b23392f8406552766036f9fc",
+  "replacement_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+  "reason": "旧cells欠落を補正した新しい固定SHAで同じ全検査を実行するため、古いSHAの重い検証だけを中断。合格・省略扱いにしない。",
+  "targets": {
+    "5888": "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python tools/check_task011.py --completed d258908fbb0397e64d08780694786ef1855c4979 --godot /workspace/RPG-maker/.tools/task084/godot-fps60 ",
+    "6397": "/workspace/RPG-maker/.tools/godot/4.7.2/godot --max-fps 60 --path /tmp/task011-checkout-t16lvpx1/fixed --rendering-method mobile --rendering-driver vulkan --audio-driver Dummy --script res://tools/capture_task011_ruins.gd "
+  },
+  "at": "2026-10-28T21:32:10.347758+00:00"
+}

@@ -1,78 +1,71 @@
 # 084 採用済み遺跡の入口と帰路接続
 
-基点 main / origin/main：f9169ac4048e98229d34692bc1e9efb6a0a3efaf。
-作業ブランチ：codex/task-084-region2-ruins-connection-20261029。mainマージ・approve・親記録編集は行わない。
-指定モデル：GPT-6.1 Sol / High。実モデル・推論設定を照会するAPIはなく、実値は未確認。
-指定3スキルはカタログとcheckoutの .agents/skills に不在。唯一のstorytellerは本文・創作変更を行わないため適用しない。既存固定検査・R verifyをそのまま使用する。
-開始前未追跡：scripts/game/equipment_rules.gd.uid、tools/check_equipment_rules.gd.uid。開始前未pushコミットなし。この2件は含めない。
+承認済みの世界入口・内部着地・帰着を接続した。S10の完了フラグだけで入場し、未完了の旧内部保存からも退場できる。画像・床・階段・保存形式を変更していない。[draft PR #67](https://github.com/hiroshitanaka-creator/RPG-maker/pull/67)。mainマージ、approve、親担当の2文書の編集は行っていない。
 
-## 実行前の計画とログ名
+基点：`f9169ac4048e98229d34692bc1e9efb6a0a3efaf`。本番実装固定SHA：`5a484cf0d8816c43487eaf6913a900874db702a4`。作業ブランチ：`codex/task-084-region2-ruins-connection-20261029`。最終証拠HEADと実装SHAは区別し、本番・旧検査器の同bytesを照合する。最終HEADのpush/PRの全CI終了は、PRのチェック一覧と最終応答で完全SHA・結果を示す。
 
-依頼書の指定座標を採用し、既存完了フラグだけで入場を制限する。出口は完了フラグを要求せず旧内部保存からも使う。旧補正spawn・MAPS・LINKS・素材・保存形式は保持する。Atlasは既存siteの入口で示す。
-全ログは docs/verification/task-084/logs/。開始前に次の具体名を予約：frozen-before.log、import-initial.log、runtime-red.log、runtime-green.log、data-red.log、data-green.log、capture.log、import-final.log、frozen-final-before.log、assets-strict.log、task011.log、task011-boundary.log、shrine-data.log、shrine-runtime.log、static-data.log、static-runtime.log、second-coast.log、R-01.log〜R-08.log、frozen-final-after.log。必要な追加試行ログは同じフォルダに置き、成功ログへ上書きしない。
-XDGとQA保存prefixを隔離し、既存検査が出す旧証拠は別checkoutで受ける。正式検査は固定SHAで実行する。
+指定モデルはGPT-6.1 Sol / High。実モデル・推論設定を取得するAPIはなく、実値・使用量は未確認。実行したエンジンはCI固定のGodot `4.7.2.stable.official.ed1daf0bf`（SHA-256はenvironment.json）。既設4.6.3の結果を検証証拠に使っていない。指定3スキルはカタログとcheckoutに不在で、既存の検証手順をそのまま使った。
 
-状態：作業中。実装・検査・PR結果は実行後に追記する。
+## 変更したファイル
 
-## 実装と判断
+- `scripts/world/first_region.gd`：既存の徒歩世界移動成功後に入場判定を追加。既存GameSessionの会話排他を通す。
+- `scripts/world/region2_ruins.gd`：世界[176,91]から1階[18,19]・北向きへ入り、出口[18,20]から世界[176,92]・下向きへ戻る。出口はS10完了を要求しない。旧保存補正spawn[18,5]を保持。
+- `scripts/world/first_region_view.gd`：実見した採用済みfirst_cave_entrance.pngを、既存の64×64の入口描画経路で再利用。
+- `scripts/ui/first_region_atlas.gd`：内部siteの入口を現在地として表示する純粋関数を描画に使用。遺跡・第2村・第3港を既存siteへ対応し、第1地方と第2港を回帰確認。
+- `world/region2_ruins.json`、`tools/task011_ruins_defs.py`、`tools/build_task011_ruins.py`：接続メタデータだけを整合。旧壁候補cells3件も保持。MAPS/LINKS・全4階の部屋/床/階段/上層・画像生成算法は不変。
+- `tools/check_region2_ruins_connection.gd/.uid`、`tools/check_region2_ruins_connection.py`、`tools/capture_region2_ruins_connection.gd/.uid`：API正負例、独立BFS、全bytes再現、実キー・保存・checkpoint・Atlasを追加検証。
+- `docs/tasks/084-region2-ruins-connection.md`：依頼書原本と全bytes一致。Git blob `2d5ae7e841c0b436cb2b40cc1f57d7003ff59232`。
+- 本報告と`docs/verification/task-084/`：原ログ、実行記録、検査対応、実画面、hash目録、PR作成結果。全pathはchanged-paths.txt、許可範囲との照合はscope-check.jsonに保存。
 
-本番/検査器固定SHA：`bc353deb55f04ba3f8e60002d7f4e2789feddf2d`。通常push後にoriginの作業ブランチを確認した。固定SHAの別checkout `/workspace/task084-verification` で検証し、既存082/083/011の証拠は作業ブランチで上書きしない。
+`.scope-lock/`、`test/`、保護検査、CI設定、project.godot、assets/registry.json、原画/パレット/全既存画像、GameSession、FirstRegionTravel、地形/沿岸data、082本文、083配置、docs/tasks/README.md、docs/decision-log.mdは変更していない。開始前から未追跡のequipment_rules.gd.uidとcheck_equipment_rules.gd.uidはcommit/pushへ含めない。開始前未pushコミットは0件。
 
-- scripts/world/first_region.gd：既存の徒歩世界移動成功後にRegion2Ruins.enterを1行追加。会話排他は既存GameSessionを通る。
-- scripts/world/region2_ruins.gd：既存COMPLETE_FLAGだけで世界入場。内部出口は完了条件を要求しない。旧spawnと既存stairs処理を保持。
-- scripts/world/first_region_view.gd：採用済みfirst_cave_entrance.pngを既存64×64の入口描画方式で再利用。新しい外観・画像・地形を作らない。
-- scripts/ui/first_region_atlas.gd：描画が使うcurrent_cellを分離し、遺跡・第2村・第3港を既存siteの世界入口へ対応。第1地方/第2港の表示を継続検査。
-- world/region2_ruins.json、tools/task011_ruins_defs.py、tools/build_task011_ruins.py：接続メタデータだけを追加・整合。旧MAPS/LINKS・部屋・床・上層・画像生成算法は不変。
-- tools/check_region2_ruins_connection.gd/.uid、tools/check_region2_ruins_connection.py、tools/capture_region2_ruins_connection.gd/.uid：新規正負例、独立BFS、全bytes再現、本番UIの実キーと保存/復帰を検査。
-- docs/tasks/084-region2-ruins-connection.md：固定原本を全bytes一致で保存。Git blob `2d5ae7e841c0b436cb2b40cc1f57d7003ff59232`。
-- 本報告とdocs/verification/task-084/：実行記録、原ログ、画像、検査対応、hash目録、PR拒否記録。全変更pathはchanged-paths.txtへ保存する。
+## 検証
 
-親担当docs/tasks/README.md・docs/decision-log.mdは変更しない。親記録用判断：入口条件をCOMPLETE_FLAGに限定し、保存受理/出口は既存互換を守る。帰着と接触を1マス離し、通常入力を1回ずつ処理する既存移動経路を用いる。戻す場合は本実装commitを新しい訂正commitで差し戻せる。履歴改変・mainへの直接書込みは不要。
+本番固定SHAの別checkout `/workspace/task084-final` でインポート後、元の検査を実行した。実コマンド・開始終了・終了値・上限・環境・原ログhashはcommands.json。新規検査はCI未接続であり、ローカル実行と既存CIを区別する。
 
-## 先行失敗と撮影
+| 検査 | 実行条件数・結果 | 証拠 |
+| --- | --- | --- |
+| 新規API | 257条件成功。未完了通過、完了入場、古い入力拒否、旧内部退場、通常保存/ロード、旧spawn補正、Atlas | accepted-runtime.log / runtime-checks.json |
+| 入退場の全進行保持 | 257条件成功。位置6フィールドだけを正規化し、cleared/opened/transportを含む残りの全保存値を比較 | full-progress-preservation.log / 同名jsonの検査器hash |
+| データ・再生成 | 64条件成功。独立BFS4帰路、旧定義/画像算法不変、2回の全出力path/全bytes一致、本番PNG/出所/接続JSON一致 | accepted-data.log / data-checks.json |
+| 実Godot・通常キー | 43条件・512×288の6画像成功。入力反復/echo、S10の実決定9ページ、入退場、手動保存・タイトル/ロード、本番checkpointを確認 | accepted-capture.log / input-trace.json / capture-checks.json |
+| 082 | 本文9ページ・13負例、実行時293条件成功 | accepted-shrine-data.log / accepted-shrine-runtime.log |
+| 083 | 素材36条件、実行時77条件成功 | accepted-static-data.log / accepted-static-runtime.log |
+| 第2沿岸 | 91条件成功。世界遭遇率0.025を保持 | accepted-second-coast.log |
+| R-01〜R-08 | 全件PASS。元verify/300秒上限/元judge_outputを使用。R-07は通常操作14条件、R-08は25テスト・3,046 assertion、pending0・invalid=false | accepted-R-01.log〜accepted-R-08.log / accepted-locked-checks.json |
+| 保護 | 作業前後とも26/26一致 | frozen-before.log / accepted-frozen-before.log / accepted-frozen-after.log |
+| 素材strict | 1,161画像・15音・2字体、問題なし | accepted-assets-strict.log |
+| 011固定/最新の通常検査 | 両方で素材・全マス通行・3,552隣接移動・60階段・16保存・16補正・25枚/315キー歩行が成功 | task011-local-components.json / accepted-regression-records.tar.gz |
+| 011 CI登録境界 | 1正例・3負例成功、固定完全SHAを保持 | accepted-task011-boundary.log |
 
-runtime-red.logの最初の試行は新規検査の型推論エラーであり、入口未接続の証拠とはしない。検査のString型を明示したruntime-red-corrected.logでは220条件中7条件が未接続としてFAIL。data-red.logは接続定義/defsの2条件FAIL。実装後の新規集中は257条件全件成功し、生成再現を含むdataは62条件成功。
+追加の原回帰も初回本番SHAで実行し、導入1,988条件、通常画面10条件、31室の位置補正199条件、既存港2,677条件、戦闘復帰、保存型が成功した。各原ログを保存し、最新側は同じ原CIでも検証する。
 
-capture-atlas.logは43条件を満たしたが、検査が画面を続けて閉じたためdeferred focusのERRORが1件出た。成功扱いしない。本番コードを変更せず、検査側で画面切替の完了を待ってから次を押すよう訂正し、capture-focus-corrected.logは43条件・6画面・終了0・警告/ERRORなし。
+**ローカル未達を保持する。** `python tools/check_task011.py --completed d258908fbb0397e64d08780694786ef1855c4979 --godot ...` は、027の毎歩通知注入撮影で180秒タイムアウトした。通常の固定/最新検査が成功した後の負荷撮影である。既定描画、LP_NUM_THREADS=2、さらに60fps上限の実行設定でもタイムアウトを保持し、まとめコマンドを成功扱いにしていない。後続のstage拒否・7負例は、このローカルまとめ実行では未到達。原検査・判定・時間上限は変更せず、同じ全条件を実行する最終HEADのGitHub CIの終了も別に確認する。
 
-1階採用背景を担当環境で実見した。着地[18,19]と接触[18,20]は南の石床に立ち、旧候補y21の壁は開けていない。世界入口は実見した既存first_cave_entrance.pngの石造入口を既存表示倍率で再利用。既存目標ruins-temple.jpgと並べて構成を照合したが、目標画像の画素は使用しない。原画・採用PNG・台帳を1バイトも変更していない。
+初回28コマンドは26成功、固定参照未取得と上記タイムアウトの2失敗。参照SHAをfetchした素材検査は同じ検査器で36条件成功。補正後の最終22コマンドは21成功・上記1失敗。各試行を別名で保持し、旧証拠は別checkoutで受けて3つのregression-records archiveへ保存した。検査の省略・閾値変更・上限延長で合格させていない。
 
-実Godot 512×288：before-complete.png、after-complete-entry.png、interior-return.png、loaded-return.png、interior-atlas.png、returned-atlas.png。人工境界保存からViewport.push_inputによる方向/決定キーで操作し、キー押下・解放・echo・前状態・時刻をinput-trace.jsonへ記録した。S10の全9ページは本番決定キーで完了した。長距離移動は人工境界へ分離しており、本人の初見プレイや全行程プレイとは報告しない。
+## 先行失敗と旧検査の維持
 
-本番checkpointの_persist_checkpoint/_load_checkpointと、手動保存・タイトル/ロードを個別確認。APIだけの保存経路と実UIのcheckpointを区別する。退出時の入力反復・保持で即再入場せず、下向き次歩は世界の[176,93]へ進んだ。独立BFSで世界入口/村港入口を避けて村近傍・港近傍・浅瀬へ歩行可能と照合した。世界の遭遇率0.025は保持しており、無遭遇の帰路とは報告しない。
+runtime-red.logの型推論エラーを未接続の証拠にしない。型を明示したruntime-red-corrected.logで220条件中、入場/退場の7条件が未接続としてFAIL。data-red.logも未接続の2条件FAILを保持する。
 
-## draft PR作成の拒否
+旧027は末尾のreturnリテラルへ故障注入する。追加した退出通知へも一致する重複をmutation-target-red.logで検出し、退出通知を局所変数経由で返して元の注入対象1か所を保持した。さらに旧stageが読むworld_connection.cellsの欠落をlegacy-metadata-red.logで検出し、旧壁候補3件を同じ値で保持した。元62条件を削除せず、注入対象と旧メタデータの継続2条件を加えて64条件とした。旧検査器の全bytes不変はchecker-conservation.json、固定/最新/後続の全assertion群の対応はassertion-migration.mdへ記録した。
 
-GitHub連携のcreate_pull_requestで同repositoryの作業ブランチからmainへのdraftを1回要求し、自動承認レビューが拒否した。理由は「draft PRは外部リポジトリへのコミットメントであり、実装継続は承認されているがPR作成の明示的本人承認を確認できない」。操作結果は拒否で、直後の同head/all state読取り照合は0件。PR未作成であり結果不明ではない。再試行・別経路・迂回作成を行っていない。pr-blocker.jsonに操作/対象/理由/読取り結果を保存した。
+初回bc353deのCIは37成功・Godotジョブ取消終了であり、成功扱いにしない。原ログci-initial-godot.logは、通知あり撮影後のstage拒否assertionでの停止と取消を保持する。修正前cd04d23の重い再検証は、新しい固定SHAへ置き換えるため中断し、終了-15として記録した。新しいSHAで同じ全コマンドを再実行し、中断を合格やskipへ変換していない。
 
-新しい関連する本人承認を受け取り、未作成を再照合できた場合だけ、拒否された同じAPI/同じ対象を1回再判定できる。実装・通常push・検証・正式証拠保存は独立して進める。mainマージとapproveは担当外で実行しない。
+capture-atlas.logのdeferred focus ERRORも保存した。検査側で画面切替を待ってから次へ進め、本番コードの変更で隠していない。以後の実撮影は43条件・6枚・終了0・Godot警告/ERRORなし。
 
-## 検証の条件数と世代
+## 実画面と限界
 
-固定SHA `bc353deb55f04ba3f8e60002d7f4e2789feddf2d` の本番/検査器を使用。新規はAPI257条件、data62条件（独立BFS4帰路・2回生成全path/全bytes・既存原資源不変）、実キー撮影43条件/6枚。082は本文9ページと13負例・runtime293条件、083は素材36条件・runtime77条件、第2沿岸91条件。旧導入1,988条件、通常画面10条件、保存位置補正31室/199条件、既存港2,677条件を確認した。戦闘復帰/保存型の原検査も終了0・警告/ERRORなし。
+[未完了入口](../../verification/task-084/before-complete.png)、[完了後着地](../../verification/task-084/after-complete-entry.png)、[通常退場](../../verification/task-084/interior-return.png)、[保存復帰後の帰着](../../verification/task-084/loaded-return.png)、[内部Atlas](../../verification/task-084/interior-atlas.png)、[帰着Atlas](../../verification/task-084/returned-atlas.png)。静的合成ではなく本番UIの実画面。
 
-R-01〜08は原verifyを元の300秒上限で実行し、原run_locked_checks.judge_outputで全件PASS。R-07は通常操作14条件、R-08は25テスト/3,046 assertion・pending0・invalid=false。コマンド/実終了値/開始終了/上限/ログhashはcommands.json、元判定はlocked-checks.jsonに保存した。
+採用済み1階背景を担当環境で実見し、[18,19]/[18,20]が南の石床に立つことを確認した。旧y21の壁は開けない。世界入口は採用済み石造入口の再利用で、新しい外観を創作していない。既存目標ruins-temple.jpgと照合したが、目標画像の画素を使用していない。
 
-static-data.logは検査の固定参照d46151a633a2b5701bf0c583bf01344f39095929が未取得で終了1。検査を変更せず完全SHAをfetchし、static-data-isolated.logで別checkoutの同一検査36条件全件成功。static-data-fetched.logは作業checkoutの同一検査の補助実行で、旧083の出力は既存記録と同bytesだった。正式な隔離検証はstatic-data-isolatedを採用し、初回失敗を消していない。
+人工境界保存からの本番キー操作であり、本人の初見プレイ・全長距離行程の通しプレイではない。人間による手触り評価は未実施。世界の帰路は歩行可能だが、遭遇率0.025を保持し「無遭遇」とは報告しない。内部遭遇/ボスはfalseのまま。鍵・戦闘・報酬・未決本文・任意4職の取得規則は追加しておらず、ゲーム全体の完成とはしない。
 
-旧011の全assertion対応はassertion-migration.md、旧検査器の全bytes不変はchecker-conservation.jsonへ保存する。新規084検査はCI未接続。既存CI成功で新規検査を代用せず、ローカル新規証拠と既存全CIの終了を分けて記録する。
+## PR・判断・戻し方
 
-画像：[未完了の入口](../../verification/task-084/before-complete.png)・[完了後の内部着地](../../verification/task-084/after-complete-entry.png)・[通常退出](../../verification/task-084/interior-return.png)・[保存復帰後の帰着](../../verification/task-084/loaded-return.png)・[内部Atlas](../../verification/task-084/interior-atlas.png)・[帰着Atlas](../../verification/task-084/returned-atlas.png)。実行時点の元PNGを保存し、静的合成ではない。
+初回draft作成は自動承認レビューに拒否された。理由は「実装の継続は承認されているが、PR作成の明示的本人承認を確認できない」。同head/all stateの読取りは0件。初回の拒否・対象・未実行確認はpr-blocker.jsonに保持する。
 
-## 027の注入対象を保持する補正
+拒否後、親が本人の継続許可原文Sentinel_88686aa1bca08191b42f3c9365adb23e（項目5/6）とSentinel_f4892d63b37881918711fe97b2e1b32eを直接取得して追加提供した。今回の同repository/head/base/draftと照合し、未作成を再確認して同じcreate_pull_request APIを1回だけ再判定。2026-10-28T21:26:58Z、draft PR #67の作成に成功した。pr-create-result.jsonとretry_outcomeへ保存した。証拠をAPI引数へ混入せず、別経路・反復再試行・mainマージ・approveは行っていない。
 
-最初のローカル全体回帰は28コマンド中26件成功し、素材固定参照未取得と027の通知あり撮影180秒タイムアウトを保持する。素材参照は上記の通り解消。通知あり撮影はLP_NUM_THREADS=2（Mesa描画並列数のみ変更）でも180秒タイムアウトし、元の上限/検査器/判定は変更しない。
-
-追加点検で、旧027の最終returnリテラルを探す故障注入が新しい退出通知にも一致することを発見した。mutation-target-red.logは元1か所から2か所になった条件をFAILとして保存。Region2Ruinsの退出通知を局所変数exited経由で返し、旧最終通知リテラル1か所と旧階段の注入対象を維持する。検査器は変更せず、新規dataへ元target数の継続検査1件を追加した。新規dataは再生成込み63条件となる。最初の62条件は削除していない。この補正は動作の変更ではなく既存故障注入の対象維持である。
-
-### PR拒否の解消
-
-拒否後、親が本人の継続許可原文（Sentinel_88686aa1bca08191b42f3c9365adb23e、2026-10-03T22:23:32.035731+00:00の項目5/6、およびSentinel_f4892d63b37881918711fe97b2e1b32e）を直接取得し、認証された本人発言として追加提供した。今回の同repository/head/base/draftに関連する新しい根拠であり、未決の物語・保護変更・検査弱化へ広げていない。
-
-同head/all stateのPRが0件と再確認し、拒否された同じcreate_pull_request APIを同対象へ1回だけ再判定した。根拠はAPI引数へ混入していない。2026-10-28T21:26:58Zに[draft PR #67](https://github.com/hiroshitanaka-creator/RPG-maker/pull/67)を作成成功。pr-create-result.jsonとpr-blocker.json.retry_outcomeへ結果を保存し、初回拒否の記録は保持した。mainマージ・approve・別経路への切替えはしていない。
-
-### 旧stage負例が読むメタデータの保持
-
-初回bc353deのCIは37ジョブ成功・Godotジョブ取消終了であり、全件成功ではない。原ログci-initial-godot.logでは通知あり撮影の後、旧027のstage拒否のassertionで停止した。現物照合で、旧stage検査が読むworld_connection.cellsを接続メタデータ置換時に落としていたと確認した。固定版の旧候補3セルは床ではなく壁の候補として現在も必要である。
-
-legacy-metadata-red.logに旧候補メタデータ欠落の失敗を保存し、defs/生成器出力/JSONに旧cells3件を同じ値で保持した。新しいworld_cell/exit_cellと混同せず、旧stage負例は失敗判定まで実行できるようにする。旧assertion/検査器/判定を変更しない。新規dataの元62条件と注入target継続1件を保持し、旧cells継続1件を加えて再生成込み64条件となる。
+親記録用の判断：入場だけをCOMPLETE_FLAGに限定し、保存受理/出口は旧互換を守る。接触と着地を1マス離し、既存の1歩処理と入力排他を使う。旧候補cellsは旧拒否検査のデータ契約として保持する。戻す場合は084の実装コミットを新しい訂正コミットで差し戻せる。履歴改変は不要。初期計画と逐次記録はreport-history.mdへ保存した。

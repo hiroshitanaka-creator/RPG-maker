@@ -19,7 +19,8 @@ func fixture(complete: bool = false, layer: String = "world", cell: Array = [176
 
 func unchanged(before: Dictionary, after: Dictionary, label: String) -> void:
 	var expected := before.duplicate(true)
-	expected["overworld"]=after["overworld"].duplicate(true)
+	for key in ["layer","node","room","cell","facing","entry_lock"]:
+		expected["overworld"][key]=after["overworld"][key]
 	check(expected==after,label+"：位置以外の全保存値不変")
 
 func position(game: GameSession, layer: String, cell: Array, facing: int, lock: String) -> bool:
