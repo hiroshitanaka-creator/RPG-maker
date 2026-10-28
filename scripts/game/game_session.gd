@@ -238,6 +238,8 @@ func interact_first_region() -> Dictionary:
 	var state: Dictionary = _state["overworld"]
 	var target: Vector2i = WorldExpedition.point(state["cell"])+[Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP][state["facing"]]
 	for event in FirstRegion.residents_for(_state):
+		# 表示専用NPCは占有だけを使い、向きの保存や会話分岐へ入れない。
+		if event.get("display_only",false):continue
 		if event["kind"] == "recruit" and FirstRegion.joined(_state,event["actor"]):continue
 		var event_position := FirstRegion.event_cell(_state,event)
 		var direction: Vector2i = [Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP][state["facing"]]

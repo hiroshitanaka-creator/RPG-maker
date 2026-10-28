@@ -139,7 +139,9 @@ func _draw() -> void:
 			continue
 		if event["kind"]=="recruit" and FirstRegion.joined(saved,event["actor"]) and event["actor"]!=speaking_actor:continue
 		var cell := Vector2(FirstRegion.event_cell(saved,event))-origin
-		if event["kind"]=="treasure":
+		if event.has("static_sprite"):
+			ordered.append({"bottom":cell.y+1.0,"object":"res://"+str(event["static_sprite"]),"cell":cell,"dimensions":Vector2(32,48)})
+		elif event["kind"]=="treasure":
 			ordered.append({"bottom":cell.y+1.0,"object":"res://assets/objects/chest.png","cell":cell,"dimensions":Vector2(32,32),"region":Rect2(32 if event["id"] in state["opened"] else 0,0,32,32)})
 		else:
 			var key := FirstRegion.event_key(state,event)
