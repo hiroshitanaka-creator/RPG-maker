@@ -464,6 +464,8 @@ func submit_player_action(action: Dictionary) -> bool:
 				_dialogue_summary = []
 				_message_index = 0
 				accepted = true
+			elif kind == "confirm" and action.has("shrine_scene") and (not _shrine_story_id.is_empty() or not str(action["shrine_scene"]).is_empty()) and (str(action["shrine_scene"])!=_shrine_story_id or int(action.get("shrine_run",-1))!=_shrine_story_run or int(action.get("shrine_page",-1))!=_message_index):
+				return false
 			elif kind == "confirm" and not _shrine_story_id.is_empty():
 				var shrine_result := game.confirm_region2_shrine_story(_shrine_story_id,_shrine_story_run,_message_index)
 				if shrine_result.is_empty():return false
@@ -2416,7 +2418,10 @@ func _render_region_screen() -> void:
 		var code: String=_replay[_replay_index].get("code","")
 		if code in ["damage","fallen"]:_rpg_audio.effect("damage")
 		elif code in ["heal","revive"]:_rpg_audio.effect("heal")
-	_region_screen.action_requested.connect(_region_ui_action)
+	# 決定ボタンは生成時の場面・実行・ページを保持する。古い画面の通知を現在値で補完しない。
+	var confirmation := {"shrine_scene":_shrine_story_id,"shrine_run":_shrine_story_run,"shrine_page":_message_index}
+	_region_screen.action_requested.connect(func(action: Dictionary) -> void:
+		_region_ui_action(action.merged(confirmation,true) if action.get("kind")=="confirm" else action))
 	add_child(_region_screen)
 
 func _render_region_panel() -> void:

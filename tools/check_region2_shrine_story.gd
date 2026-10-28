@@ -286,5 +286,26 @@ func ui_cases() -> void:
 	main.mode=main.Mode.WORLD
 	for frame in range(4):main._refresh();await process_frame
 	check(main.mode==main.Mode.WORLD and main._shrine_story_id.is_empty(),"描画フレームだけで会話を発火しない")
+	stale_confirmations()
 	main.queue_free()
 	await process_frame
+
+func stale_confirmations() -> void:
+	check(main.game.import_state(fixture(4,[8,10])) and main.game.save_game(main.save_path),"古い決定通知の境界準備")
+	main.mode=main.Mode.WORLD;main._resume_region2_shrine();main._refresh()
+	var old_screen: Node=main._region_screen
+	main.submit_player_action({"kind":"confirm"})
+	old_screen.action_requested.emit({"kind":"confirm"})
+	check(main._message_index==1,"前ページの決定ボタン通知を二重に受け付けない")
+	main._load_save()
+	old_screen.action_requested.emit({"kind":"confirm"})
+	check(main._message_index==0,"読込前の画面の決定通知を新しい実行へ流用しない")
+	var elder := fixture(4,[12,7]);elder["overworld"]["facing"]=3
+	main.game.import_state(elder)
+	main._first_region_result(main.game.interact_first_region());main._refresh()
+	var elder_screen: Node=main._region_screen
+	old_screen.action_requested.emit({"kind":"confirm"})
+	check(main._message_index==0,"古いS10の決定通知を別人物の会話へ流用しない")
+	main._load_save()
+	elder_screen.action_requested.emit({"kind":"confirm"})
+	check(main._message_index==0,"別人物の古い決定通知をS10へ流用しない")
