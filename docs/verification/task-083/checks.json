@@ -356,9 +356,12 @@
     "commands": "journey-corrected/commands.json"
   },
   "pr_creation": {
-    "status": "DENIED",
-    "record": "pr-blocker.json",
-    "pr_exists": false
+    "status": "SUCCESS_AFTER_ONE_RETRY",
+    "record": "pr-create-result.json",
+    "initial_denial_preserved": "pr-blocker.json",
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/pull/65",
+    "draft": true,
+    "merged": false
   },
   "s10_capture_final": {
     "status": "PASS",

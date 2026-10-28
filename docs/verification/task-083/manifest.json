@@ -6,7 +6,7 @@
   "branch": "codex/task-083-s10-static-placement-20261028",
   "adopted_sha256": "121010a316a31b88dca753ed48bc9404f176a4fe5f0d6dd5508ebf0615559f5d",
   "new_s10_tests_ci_connected": false,
-  "pr_creation": "denied, not retried",
+  "pr_creation": "draft PR65 created after one same-API retry; original denial preserved",
   "files": {
     "assets/characters/ner/event_standing.png": {
       "bytes": 2032,
@@ -25,8 +25,8 @@
       "sha256": "c21fcada9dd1590bd4054cfb5ac7d3f9149a4fe5be5dd1feac5ededa9e40488f"
     },
     "docs/tasks/reports/083-report.md": {
-      "bytes": 15002,
-      "sha256": "e347544829aee988896d50fa21f49d1adb384d13624a82fd0bbe0c79581c6d9c"
+      "bytes": 15855,
+      "sha256": "18d1444c29bae5af365c3020821f92662e381b6e2cb5ecb04ce1838bf2f707e3"
     },
     "docs/verification/s10-placement-preview/README.md": {
       "bytes": 2886,
@@ -117,12 +117,12 @@
       "sha256": "b1c61ffda8b30dbb25867fb052176947410c299166651e84d49f161b7c9d0758"
     },
     "docs/verification/task-083/changed-paths.txt": {
-      "bytes": 9729,
-      "sha256": "84e5338c43a05a8c7bcd73c4012f644b469ace370db29abe73427b2adef3f374"
+      "bytes": 9778,
+      "sha256": "4f0d55ef18cfd946a7c6b4c9cddaed5cae3111b2eeb88eea8475ed353337891c"
     },
     "docs/verification/task-083/checks.json": {
-      "bytes": 10172,
-      "sha256": "2af47db89d472cbea30cd0f4f2df936d8b95431f1d595220a79dedd93ac10a01"
+      "bytes": 10335,
+      "sha256": "e37c33acfe3ae34cd85499dabad5d72dd4d500ec144ac712a58679a4cbb11ff0"
     },
     "docs/verification/task-083/ci-journey-red.log": {
       "bytes": 1060221,
@@ -625,8 +625,12 @@
       "sha256": "1b0bdee35088c21b7ac43a4dcc67e484698334c3722379d6ff41c6f34ddc3608"
     },
     "docs/verification/task-083/pr-blocker.json": {
-      "bytes": 1018,
-      "sha256": "f63151314bee7a178794e4019fcce815545a998b5f8f12f27d35c871fe32d627"
+      "bytes": 1814,
+      "sha256": "15fe09fa375152fb66f1d6b1a5772b4f0c12466f503958ceb7746a2a2dd71c4b"
+    },
+    "docs/verification/task-083/pr-create-result.json": {
+      "bytes": 377,
+      "sha256": "b67ee84d017a9c77a9a646bef98f48bea48b775fa7ac3df87f3d82de191a46d5"
     },
     "docs/verification/task-083/reentry.png": {
       "bytes": 113992,
@@ -724,5 +728,6 @@
   "untracked_excluded": [
     "scripts/game/equipment_rules.gd.uid",
     "tools/check_equipment_rules.gd.uid"
-  ]
+  ],
+  "pr_url": "https://github.com/hiroshitanaka-creator/RPG-maker/pull/65"
 }
