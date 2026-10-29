@@ -4,6 +4,22 @@
   "checks": [
     {
       "ok": true,
+      "label": "旧36検査は固定mainの全bytesコピーを保持"
+    },
+    {
+      "ok": true,
+      "label": "敵検査の変更は厳密41・完全11ID集合・対応文言の5置換だけ"
+    },
+    {
+      "ok": true,
+      "label": "旧assertionの全呼出し数を保持"
+    },
+    {
+      "ok": true,
+      "label": "厳密数/完全集合の緩和と旧AI/連戦/UI検査の欠落6負例を拒否"
+    },
+    {
+      "ok": true,
       "label": "原36全定義不変＋採用5だけ＋厳密41種・全数値/技能/AI"
     },
     {
@@ -152,10 +168,6 @@
     },
     {
       "ok": true,
-      "label": "旧検査・関連データ不変 tools/check_enemy_encounters.gd"
-    },
-    {
-      "ok": true,
       "label": "旧検査・関連データ不変 tools/check_task011.py"
     },
     {
@@ -197,169 +209,9 @@
     {
       "ok": true,
       "label": "原画/派生/台帳/保護/CI不変"
-    },
-    {
-      "ok": true,
-      "label": "生成path集合一致"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/backgrounds/region2_ruins.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/backgrounds/region2_ruins.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/interiors/region2_ruins_floor1.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/interiors/region2_ruins_floor1.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/interiors/region2_ruins_floor1_upper.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/interiors/region2_ruins_floor1_upper.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/interiors/region2_ruins_floor2.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/interiors/region2_ruins_floor2.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/interiors/region2_ruins_floor2_upper.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/interiors/region2_ruins_floor2_upper.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/interiors/region2_ruins_floor3.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/interiors/region2_ruins_floor3.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/interiors/region2_ruins_floor3_upper.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/interiors/region2_ruins_floor3_upper.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/interiors/region2_ruins_floor4.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/interiors/region2_ruins_floor4.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/interiors/region2_ruins_floor4_upper.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/interiors/region2_ruins_floor4_upper.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/monsters/ruins_cursed_beetle/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/monsters/ruins_cursed_beetle/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/monsters/ruins_sand_spirit/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/monsters/ruins_sand_spirit/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/monsters/ruins_sandstone_colossus/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/monsters/ruins_sandstone_colossus/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/monsters/ruins_sandstone_doll/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/monsters/ruins_sandstone_doll/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/monsters/ruins_tomb_hound/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/monsters/ruins_tomb_hound/idle.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/registry.json"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/source_records/task011-enemies.json"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/source_records/task011-enemies.json"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 assets/source_records/task011-ruins.json"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 assets/source_records/task011-ruins.json"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 docs/verification/task-011/floor1-overview.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 docs/verification/task-011/floor2-overview.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 docs/verification/task-011/floor3-overview.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 docs/verification/task-011/floor4-overview.png"
-    },
-    {
-      "ok": true,
-      "label": "2回生成全bytes一致 world/region2_ruins.json"
-    },
-    {
-      "ok": true,
-      "label": "本番・生成全bytes一致 world/region2_ruins.json"
     }
   ],
   "negative_catalog_cases": 17,
-  "regenerated": true,
+  "regenerated": false,
   "baseline_sha256": "4204c65e2676f13cad1a1a5a5ecb75ea6af51991f06e7243fb70ea99af576161"
 }

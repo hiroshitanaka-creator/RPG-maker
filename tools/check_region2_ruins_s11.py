@@ -55,8 +55,47 @@ def raw_enemy_records(raw):
         start=cursor;_,cursor=decoder.raw_decode(text,cursor)
         records.append(text[start:cursor].encode('utf-8'))
 
+def enemy_checker_migration_valid(current, old):
+    replacements = [
+        ('game.enemy_definitions.size() == 36', 'game.enemy_definitions.size() == 41'),
+        ('既存30種類と第2地方の海3種・地上3種、計36種類を定義する', '既存36種類と承認済み遺跡5種類、計41種類を定義する'),
+        ('["coast_red_crab","coast_redfin","coast_scorpion","coast_thorn_cactus","coast_water_blob","coast_worm"]',
+         '["coast_red_crab","coast_redfin","coast_scorpion","coast_thorn_cactus","coast_water_blob","coast_worm","ruins_cursed_beetle","ruins_sand_spirit","ruins_sandstone_colossus","ruins_sandstone_doll","ruins_tomb_hound"]'),
+        ('第2地方へ追加した海3種と地上3種を全件照合', '沿岸6種と承認済み遺跡5種だけを全件照合'),
+        ('ENCOUNTER_PASS: 旧30種と追加6種・', 'ENCOUNTER_PASS: 旧30種と沿岸6種と遺跡5種・'),
+    ]
+    expected=old
+    for before, after in replacements:
+        if expected.count(before)!=1: return False
+        expected=expected.replace(before,after)
+    return current==expected
+
+
+def check_enemy_checker_migration():
+    old_copy=OUT/'corrective/check_enemy_encounters-main-2a4fae6.gd.txt'
+    raw=old_copy.read_bytes();old=raw.decode('utf-8')
+    current=(ROOT/'tools/check_enemy_encounters.gd').read_bytes().decode('utf-8')
+    check(hashlib.sha256(raw).hexdigest()=='ee84eb1cddad5fa652b0006acb98ed67e5a9906df23e9c4bcd4fa884c449d468' and raw==original('tools/check_enemy_encounters.gd'), '旧36検査は固定mainの全bytesコピーを保持')
+    check(enemy_checker_migration_valid(current,old), '敵検査の変更は厳密41・完全11ID集合・対応文言の5置換だけ')
+    check(current.count('_check(')-current.count('func _check(')==old.count('_check(')-old.count('func _check('), '旧assertionの全呼出し数を保持')
+    mutations=[
+        current.replace('size() == 41','size() >= 41'),
+        current.replace(',"ruins_tomb_hound"]',']'),
+        current.replace('seen.size() == 30','seen.size() == 29'),
+        current.replace('\t_check_ai()\n',''),
+        current.replace('\t_check_waves()\n',''),
+        current.replace('await _check_ui()','await process_frame'),
+    ]
+    rejected=[changed!=current and not enemy_checker_migration_valid(changed,old) for changed in mutations]
+    check(all(rejected),'厳密数/完全集合の緩和と旧AI/連戦/UI検査の欠落6負例を拒否')
+    result=dict(status='PASS' if all(rejected) and enemy_checker_migration_valid(current,old) else 'FAIL',
+                base_sha=BASE,old_sha256=hashlib.sha256(raw).hexdigest(),
+                assertion_calls=old.count('_check(')-old.count('func _check('),negative_cases=len(mutations),negative_rejected=rejected)
+    (OUT/'corrective/migration-checks.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--regenerate',action='store_true');args=parser.parse_args()
+    check_enemy_checker_migration()
     catalog=read('data/catalog.json')
     check(catalog_valid(catalog),'原36全定義不変＋採用5だけ＋厳密41種・全数値/技能/AI')
     check(raw_enemy_records((ROOT/'data/catalog.json').read_bytes())[:36]==raw_enemy_records(original('data/catalog.json')), '元36件のJSON定義は各レコードの全bytesも一致')
@@ -93,7 +132,7 @@ def main():
     check(document['site']['rooms'][3]['layout'][12][31]=='.' and document['site']['rooms'][3]['layout'][8][31]=='.','ボス/箱は床、旧通路を塞がない')
     for path in ['assets/source_records/task011-enemies.json','scripts/world/first_region.gd',
                  'data/region2_shrine_scenes.json','scripts/world/first_region_travel.gd',
-                 'tools/check_enemy_encounters.gd','tools/check_task011.py','tools/check_task027.py','tools/check_task011_runtime.gd',
+                 'tools/check_task011.py','tools/check_task027.py','tools/check_task011_runtime.gd',
                  'tools/capture_task011_ruins.gd','tools/check_region2_ruins_connection.gd',
                  'tools/check_region2_ruins_connection.py','docs/tasks/README.md','docs/decision-log.md']:
         check((ROOT/path).read_bytes()==original(path),'旧検査・関連データ不変 '+path)

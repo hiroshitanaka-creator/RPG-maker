@@ -1,0 +1,381 @@
+{
+  "planned": [
+    {
+      "name": "import",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "timeout_seconds": 600,
+      "log": "logs/import.log"
+    },
+    {
+      "name": "frozen-before",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "timeout_seconds": 60,
+      "log": "logs/frozen-before.log"
+    },
+    {
+      "name": "enemy",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_enemy_encounters.gd"
+      ],
+      "timeout_seconds": 180,
+      "log": "logs/enemy.log"
+    },
+    {
+      "name": "s11-data",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_region2_ruins_s11.py",
+        "--regenerate"
+      ],
+      "timeout_seconds": 300,
+      "log": "logs/s11-data.log"
+    },
+    {
+      "name": "s11-runtime",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_ruins_s11.gd"
+      ],
+      "timeout_seconds": 120,
+      "log": "logs/s11-runtime.log"
+    },
+    {
+      "name": "route",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_ruins_s11.gd",
+        "--",
+        "--route"
+      ],
+      "timeout_seconds": 120,
+      "log": "logs/route.log"
+    },
+    {
+      "name": "resupply",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_ruins_s11.gd",
+        "--",
+        "--resupply"
+      ],
+      "timeout_seconds": 120,
+      "log": "logs/resupply.log"
+    },
+    {
+      "name": "balance",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_ruins_s11.gd",
+        "--",
+        "--balance"
+      ],
+      "timeout_seconds": 120,
+      "log": "logs/balance.log"
+    },
+    {
+      "name": "capture",
+      "command": [
+        "xvfb-run",
+        "-a",
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--path",
+        ".",
+        "--rendering-method",
+        "mobile",
+        "--rendering-driver",
+        "vulkan",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tools/capture_region2_ruins_s11.gd"
+      ],
+      "timeout_seconds": 180,
+      "log": "logs/capture.log"
+    },
+    {
+      "name": "locked",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/run_locked_checks.py"
+      ],
+      "timeout_seconds": 2700,
+      "log": "logs/locked.log"
+    },
+    {
+      "name": "assets",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "timeout_seconds": 120,
+      "log": "logs/assets.log"
+    },
+    {
+      "name": "shrine-data",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_region2_shrine_story_data.py"
+      ],
+      "timeout_seconds": 60,
+      "log": "logs/shrine-data.log"
+    },
+    {
+      "name": "shrine-runtime",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_shrine_story.gd"
+      ],
+      "timeout_seconds": 180,
+      "log": "logs/shrine-runtime.log"
+    },
+    {
+      "name": "s10-static-data",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_s10_static_display.py"
+      ],
+      "timeout_seconds": 120,
+      "log": "logs/s10-static-data.log"
+    },
+    {
+      "name": "s10-static",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_s10_static_display.gd"
+      ],
+      "timeout_seconds": 120,
+      "log": "logs/s10-static.log"
+    },
+    {
+      "name": "coast",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_second_region_coast.gd"
+      ],
+      "timeout_seconds": 180,
+      "log": "logs/coast.log"
+    },
+    {
+      "name": "saved-value-types",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_saved_value_types.gd"
+      ],
+      "timeout_seconds": 60,
+      "log": "logs/saved-value-types.log"
+    },
+    {
+      "name": "port",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_port.gd"
+      ],
+      "timeout_seconds": 180,
+      "log": "logs/port.log"
+    },
+    {
+      "name": "task011",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_task011.py",
+        "--completed",
+        "d258908fbb0397e64d08780694786ef1855c4979",
+        "--godot",
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot"
+      ],
+      "timeout_seconds": 1300,
+      "log": "logs/task011.log"
+    },
+    {
+      "name": "task011-boundary",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_task011_ci_boundary.py",
+        "--godot",
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot"
+      ],
+      "timeout_seconds": 120,
+      "log": "logs/task011-boundary.log"
+    },
+    {
+      "name": "frozen-after",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "timeout_seconds": 60,
+      "log": "logs/frozen-after.log"
+    }
+  ],
+  "results": [
+    {
+      "name": "import",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "timeout_seconds": 600,
+      "log": "logs/import.log",
+      "source_sha": "6bea1ef101e84d7ccc57f9017d4e8e45a3366da5",
+      "working_tree_changes": [
+        "tools/check_enemy_encounters.gd",
+        "tools/check_region2_ruins_s11.py"
+      ],
+      "started": "2026-10-29T21:54:24.132120+00:00",
+      "finished": "2026-10-29T21:54:29.822434+00:00",
+      "elapsed_seconds": 5.69,
+      "exit_code": 0,
+      "issues": [],
+      "log_sha256": "0dbba7ccc37522ba17f74026af7da145eea4140643a7517c2af526f09133b63f",
+      "lp_num_threads": "4"
+    },
+    {
+      "name": "frozen-before",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "timeout_seconds": 60,
+      "log": "logs/frozen-before.log",
+      "source_sha": "6bea1ef101e84d7ccc57f9017d4e8e45a3366da5",
+      "working_tree_changes": [
+        "tools/check_enemy_encounters.gd",
+        "tools/check_region2_ruins_s11.py"
+      ],
+      "started": "2026-10-29T21:54:29.823080+00:00",
+      "finished": "2026-10-29T21:54:29.865098+00:00",
+      "elapsed_seconds": 0.042,
+      "exit_code": 0,
+      "issues": [],
+      "log_sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "lp_num_threads": "4"
+    },
+    {
+      "name": "enemy",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_enemy_encounters.gd"
+      ],
+      "timeout_seconds": 180,
+      "log": "logs/enemy.log",
+      "source_sha": "6bea1ef101e84d7ccc57f9017d4e8e45a3366da5",
+      "working_tree_changes": [
+        "tools/check_enemy_encounters.gd",
+        "tools/check_region2_ruins_s11.py"
+      ],
+      "started": "2026-10-29T21:54:29.865501+00:00",
+      "finished": "2026-10-29T21:54:32.094392+00:00",
+      "elapsed_seconds": 2.229,
+      "exit_code": 0,
+      "issues": [],
+      "log_sha256": "2ec202c0a7a8cab2d17b60aebfab26b593d31719ba392acd139bdbac47af9b30",
+      "lp_num_threads": "4"
+    },
+    {
+      "name": "s11-data",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/check_region2_ruins_s11.py",
+        "--regenerate"
+      ],
+      "timeout_seconds": 300,
+      "log": "logs/s11-data.log",
+      "source_sha": "6bea1ef101e84d7ccc57f9017d4e8e45a3366da5",
+      "working_tree_changes": [
+        "tools/check_enemy_encounters.gd",
+        "tools/check_region2_ruins_s11.py"
+      ],
+      "started": "2026-10-29T21:54:32.094923+00:00",
+      "finished": "2026-10-29T21:54:57.382932+00:00",
+      "elapsed_seconds": 25.288,
+      "exit_code": 0,
+      "issues": [],
+      "log_sha256": "98922e46a514488beba5df9c3809dfa7a0275d5dc673ccd8ffb83bbcb0bca351",
+      "lp_num_threads": "4"
+    },
+    {
+      "name": "enemy",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_enemy_encounters.gd"
+      ],
+      "timeout_seconds": 180,
+      "log": "logs/enemy.log",
+      "source_sha": "6bea1ef101e84d7ccc57f9017d4e8e45a3366da5",
+      "working_tree_changes": [
+        "tools/check_enemy_encounters.gd",
+        "tools/check_region2_ruins_s11.py"
+      ],
+      "started": "2026-10-29T21:55:40.959893+00:00",
+      "finished": "2026-10-29T21:55:43.188539+00:00",
+      "elapsed_seconds": 2.229,
+      "exit_code": 0,
+      "issues": [],
+      "log_sha256": "2ec202c0a7a8cab2d17b60aebfab26b593d31719ba392acd139bdbac47af9b30",
+      "lp_num_threads": "4"
+    }
+  ],
+  "resource_setting": "LP_NUM_THREADS=4。旧027のコマンド・assertion・180秒上限は変更しない。原因は未確定。"
+}

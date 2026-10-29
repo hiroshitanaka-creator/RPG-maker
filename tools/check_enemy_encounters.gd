@@ -15,7 +15,7 @@ func _check(condition: bool, message: String) -> void:
 func _run() -> void:
 	var game: Variant = GameSession.new()
 	_check(game.new_game(4), "新規状態を開始できる")
-	_check(game.enemy_definitions.size() == 36, "既存30種類と第2地方の海3種・地上3種、計36種類を定義する")
+	_check(game.enemy_definitions.size() == 41, "既存36種類と承認済み遺跡5種類、計41種類を定義する")
 	_check(game.enemy_definitions.has("balm_slime"), "回復役を独立した敵として定義する")
 	_check(game.has_method("start_story_battle"), "連戦の開始と保存状態を接続する")
 	var encounter: Variant = game.start_battle(["slime"],111)
@@ -40,12 +40,12 @@ func _run() -> void:
 	for count in counts.values():
 		_check(count == 6, "5系統それぞれに6種類を定義する")
 	added.sort()
-	_check(added==["coast_red_crab","coast_redfin","coast_scorpion","coast_thorn_cactus","coast_water_blob","coast_worm"],"第2地方へ追加した海3種と地上3種を全件照合")
+	_check(added==["coast_red_crab","coast_redfin","coast_scorpion","coast_thorn_cactus","coast_water_blob","coast_worm","ruins_cursed_beetle","ruins_sand_spirit","ruins_sandstone_colossus","ruins_sandstone_doll","ruins_tomb_hound"],"沿岸6種と承認済み遺跡5種だけを全件照合")
 	_check_ai()
 	_check_waves()
 	await _check_ui()
 	if _failures.is_empty():
-		print("ENCOUNTER_PASS: 旧30種と追加6種・回復/防御/蘇生・予定の再現性・連戦保存を検証")
+		print("ENCOUNTER_PASS: 旧30種と沿岸6種と遺跡5種・回復/防御/蘇生・予定の再現性・連戦保存を検証")
 	_finish()
 
 

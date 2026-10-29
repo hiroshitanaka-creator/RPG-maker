@@ -28,9 +28,9 @@
 
 本番UI撮影は実到達戦力を保持した段階配置から246条件・9画像。実キーの場面開始/全ページ/中断復帰/自由行動、通常戦闘コマンド、ボス実勝利、箱の別操作、手動保存/タイトル/ロード、実敗北/checkpoint復帰を検査。背景目標ruins-temple.jpgと実画面を実見し、石碑が通路を塞がず可視、本文が会話枠内、敵が下部UIと重ならないことを確認。本人の初見プレイ・人間による手触り・約60時間実測は未実施。
 
-## 検査契約の範囲ブロッカー
+## 初回の依頼範囲制約と親による訂正
 
-`tools/check_enemy_encounters.gd:18` に厳密36、45行付近に追加沿岸6IDだけという既存CI条件が別に存在する。085の個別許可はGameSessionの数とcheck_second_region_coast.gdの条件に限定され、それ以外の契約変更は禁止されている。この追加検査の変更は実行していない。自動審査拒否ではなく明示スコープ制約であり、親の権限照合が必要。失敗を避けるためのskip・下限化・実装を検査時だけ無効化・別経路での契約回避は行わない。
+`tools/check_enemy_encounters.gd:18` の厳密36と45行付近の追加沿岸6ID条件は、初回の親依頼が変更箇所を2ファイルに限定していたため未変更とした。これは本人の承認が2ファイルに限定されていたという意味ではない。親が本人の原質問/回答を再読し、claim `13386ee1cabddb4cedf1919166b066e37f8355b2be4dfc34df6f0ff127afbb24` / seq369で依頼範囲を訂正した。既に採用済みの36→41厳密移行として当該検査を追加し、保護対象でないことも親が再照合した。新しいゲーム規則の採用ではない。現在はこの範囲制約を解消し、厳密41/完全11ID集合へ移行済み。旧assertionと時間上限は維持する。
 
 同じ旧36/ボス未登録の条件は028撮影にもあるが、028自体の当時限定scopeと同じ固定側で保持すべき条件であり、最新CIで直接実行されるチェックとは分ける。原084の無効/全文不変条件も固定側へ残し、今回有効化した置換条件を新チェックで検査する。詳細はblockers.jsonとassertion-migration.md。
 
@@ -38,7 +38,7 @@
 
 実変更全パスはchanged-paths.txtへ保存する。開始前に未追跡だったequipment_rules.gd.uid/check_equipment_rules.gd.uidは対象外としてcommit/pushしない。未pushだった無関係コミットは0件。最初はorigin/mainが古かったためfetch後に指定mainと一致を確認してから変更した。
 
-戻す場合は085実装コミットを通常の訂正コミットで差し戻す。保存形式は追加せず、既存フラグ・cleared・opened・inventoryへ事実を保存するため、旧保存に既読・勝利・鍵を勝手に補完しない。鍵の対応扉、人間初見、全ゲーム完成は未達。追加CI契約の許可範囲、最終CI、原回帰の実結果は下記へ追記する。
+戻す場合は085実装コミットを通常の訂正コミットで差し戻す。保存形式は追加せず、既存フラグ・cleared・opened・inventoryへ事実を保存するため、旧保存に既読・勝利・鍵を勝手に補完しない。鍵の対応扉、人間初見、全ゲーム完成は未達。追加CI契約の依頼範囲訂正、最終CI、原回帰の実結果は下記へ追記する。
 
 ## 実装固定点と追加検査
 
@@ -50,7 +50,7 @@
 
 PR作成は自動承認審査に拒否された。対象は同repositoryの作業ブランチ→main、draft=true。理由は「available user messages authorize proceeding with the work but do not explicitly authorize opening this PR」。直後の同head/all-state検索は0件で、未作成を確認。別APIやghによる迂回・再試行はない。pr-blocker.jsonに拒否を保持する。既存Spaceの許可原文も読取確認したが、取得できたのは通常マージの原文と以前の許可再確認であり、今回の拒否を解消したと扱わない。原文や権限の追加確認は親担当へ返す。
 
-追加CI契約の具体差分はadditional-contract-proposal.patchへ保存した。厳密41・沿岸6＋遺跡5の完全ID集合へ置換する案であり、他assertion・旧30の5系統各6・AI/連戦/UI・時間上限を保つ。提案だけで、元ファイルへは適用していない。原検査の実行は終了1で旧36条件を拒否した。
+追加CI契約の具体差分はadditional-contract-proposal.patchへ保存した。厳密41・沿岸6＋遺跡5の完全ID集合へ置換する案であり、他assertion・旧30の5系統各6・AI/連戦/UI・時間上限を保つ。初回は提案だけを保存し、原検査の終了1を保持した。その後、上記の親による依頼範囲訂正に従って同じ限定差分を適用した。旧固定コピーの全bytes/hash/main一致と、49の元assertion呼出し、旧AI/連戦/UIを保持し、無関係な変更や緩和を6負例で拒否する。
 
 ## 最終ローカル検証の実結果
 
@@ -71,6 +71,16 @@ PR作成は自動承認審査に拒否された。対象は同repositoryの作�
 | 011固定/最新 | 両方で全5067セル/3552隣接/60階段/16保存/16補正、素材、実描画25枚/315キーPASS | task011-components.json、task011/{fixed,latest}/ |
 | 011/027まとめ | 原コマンド終了1。通知runtime正例は成功、毎歩通知撮影が元180秒でTIMEOUT。stage拒否と残7負例はこのローカルまとめでは未到達 | task011/whole-command.log、notification-boundary/ |
 | 011 CI登録境界 | 元1正例/3負例PASS | task011/ci-boundary.json |
-| 現行敵検査 | 元ファイルのまま終了1、旧36種条件を拒否。追加契約変更は未実行 | logs/accepted-blocked-encounters.log |
+| 修正前の敵検査 | 元ファイルの終了1と旧36条件拒否を履歴として保持。依頼範囲訂正後の結果はcorrectiveへ分離 | logs/accepted-blocked-encounters.log |
 
 実行SHA・作業中snapshotは区別する。最初のroot実行でcommands.jsonのsource_shaがmainを指す項目は未commit作業ツリー上の実行であり、そのSHA単独の検証成功とは呼ばない。311a275の別checkout検証と、最終本番ファイルhash・通知修正後の実行証拠を併記する。生ログimport-initial.logの末尾空白は原出力として保持し、コード/JSON/依頼書のdiff検査は空白エラーなし。
+
+## 継続修正の受入
+
+再開点：`6bea1ef101e84d7ccc57f9017d4e8e45a3366da5`。本番処理・原36件・新5件・素材・親2文書は再開点と同bytesである。変更はcheck_enemy_encounters.gdの3行と、check_region2_ruins_s11.pyの当該1ファイルの移行照合、依頼/報告/証拠だけ。旧検査をcorrective/check_enemy_encounters-main-2a4fae6.gd.txtへ全bytes保存した。sha256はee84eb1cddad5fa652b0006acb98ed67e5a9906df23e9c4bcd4fa884c449d468。
+
+旧mainのコピーに対する5文字列置換でしか最新検査を生成できないことを厳密照合し、それ以外の全bytesを維持する。総数41の下限化、11IDの欠落、旧30数の改変、AI/連戦/UI検査の削除・置換を6負例で拒否する。元の49assertion呼出しと固定旧検査の成功証拠を保持する。check_s11の旧全文不変条件を単に削除したわけではない。
+
+corrective/commands.jsonに実行前の全コマンド・ログpath・元上限を固定し、実行SHA、実ソース差分、LP_NUM_THREADS、時刻、終了値、原ログhashを追記する。旧027は同じ原コマンドと180秒上限のまま、同時ローカル試験を走らせず再実行する。今回の資源設定LP_NUM_THREADS=4は記録するが、前回timeoutの原因を環境/GPUと断定しない。旧失敗、stage拒否/残7負例が未到達だった事実、および過去311a275のCIで全条件が実行成功した事実を分けて保持する。
+
+PR作成の拒否は未解消で、親の指示に従い再試行しない。親が既存本人原文を別に照合している。CI全終了は修正後の最終HEADで確認し、旧HEADの成功だけで置き換えない。
