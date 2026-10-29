@@ -1,6 +1,6 @@
 class_name Region2Ruins
 extends RefCounted
-## 遺跡4階の地形・往復階段と採用済みの世界接続。遭遇・物語は後続依頼。
+## 遺跡4階の地形・往復階段と採用済みの世界接続。085の遭遇設定も参照する。
 static var _data: Dictionary = {}
 
 static func data() -> Dictionary:
@@ -45,3 +45,11 @@ static func move(state: Dictionary) -> Dictionary:
 			state["entry_lock"] = "region2_ruins_stairs"
 			break
 	return {"kind":"moved"}
+
+# 階段・退出の遷移歩からは呼ばない。最下層は0で記録後の自由時間を保つ。
+static func encounter(state: Dictionary) -> Dictionary:
+	if not data()["encounters_enabled"]:return {}
+	var rule: Dictionary = data()["encounters"][state["room"]]
+	if float(rule["chance"])>0.0 and randf()<float(rule["chance"]):
+		return {"kind":"battle","id":"region2_ruins_encounter","enemies":rule["groups"].pick_random(),"seed":randi()}
+	return {}

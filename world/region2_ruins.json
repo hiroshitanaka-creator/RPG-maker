@@ -778,6 +778,78 @@
       ]
     ]
   },
-  "encounters_enabled": false,
-  "boss_enabled": false
+  "encounters_enabled": true,
+  "boss_enabled": true,
+  "record": {
+    "room": 3,
+    "trigger": [
+      18,
+      15
+    ],
+    "display_cell": [
+      19,
+      14
+    ]
+  },
+  "boss": {
+    "room": 3,
+    "cell": [
+      31,
+      12
+    ],
+    "enemy": "ruins_sandstone_colossus"
+  },
+  "reward_box": {
+    "room": 3,
+    "cell": [
+      31,
+      8
+    ]
+  },
+  "encounters": [
+    {
+      "chance": 0.025,
+      "groups": [
+        [
+          "ruins_sandstone_doll"
+        ],
+        [
+          "ruins_cursed_beetle"
+        ]
+      ]
+    },
+    {
+      "chance": 0.025,
+      "groups": [
+        [
+          "ruins_sandstone_doll"
+        ],
+        [
+          "ruins_cursed_beetle"
+        ],
+        [
+          "ruins_sand_spirit"
+        ]
+      ]
+    },
+    {
+      "chance": 0.025,
+      "groups": [
+        [
+          "ruins_tomb_hound"
+        ],
+        [
+          "ruins_sand_spirit"
+        ],
+        [
+          "ruins_sandstone_doll",
+          "ruins_cursed_beetle"
+        ]
+      ]
+    },
+    {
+      "chance": 0.0,
+      "groups": []
+    }
+  ]
 }

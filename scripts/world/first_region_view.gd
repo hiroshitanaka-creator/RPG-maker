@@ -127,6 +127,15 @@ func _draw() -> void:
 	else:
 		if state["node"]=="first_forest_tower" and "forest_tower_boss" not in state["cleared"] and state["room"]==definition["tower_boss"]["point"]["room"]:
 			ordered.append({"bottom":float(definition["tower_boss"]["point"]["cell"][1])+1.0,"object":"res://"+str(definition["tower_boss"]["sprite"]),"cell":Vector2(WorldExpedition.point(definition["tower_boss"]["point"]["cell"])),"dimensions":Vector2(72,72)})
+		if state["node"]=="region2_ruins" and state["room"]==3:
+			var ruins := Region2Ruins.data()
+			var record := Vector2(WorldExpedition.point(ruins["record"]["display_cell"]))
+			ordered.append({"bottom":record.y+1.0,"object":"res://assets/objects/natural_stele.png","cell":record,"dimensions":Vector2(32,48)})
+			if Region2RuinsStory.BOSS not in state["cleared"]:
+				var colossus := Vector2(WorldExpedition.point(ruins["boss"]["cell"]))
+				ordered.append({"bottom":colossus.y+1.0,"object":"res://assets/monsters/ruins_sandstone_colossus/idle.png","cell":colossus,"dimensions":Vector2(96,80)})
+			var box := Vector2(WorldExpedition.point(ruins["reward_box"]["cell"]))
+			ordered.append({"bottom":box.y+1.0,"object":"res://assets/objects/chest.png","cell":box,"dimensions":Vector2(32,32),"region":Rect2(32 if Region2RuinsStory.BOX in state["opened"] else 0,0,32,32)})
 		var stair: Dictionary=definition["stairs_down"]["from"] if state["room"]==0 else definition["stairs_up"]["from"]
 		if state["node"]=="first_cave":
 			var stairs := Vector2(WorldExpedition.point(stair["cell"]))

@@ -1,0 +1,455 @@
+[
+  {
+    "name": "import",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:08:46.573670+00:00",
+    "finished": "2026-10-29T21:08:51.801358+00:00",
+    "elapsed_seconds": 5.228,
+    "timeout_seconds": 600,
+    "exit_code": 0,
+    "log": "logs/accepted-import.log",
+    "sha256": "bba813e816d8b7d47e7f0ea3b7faabab24fa1cb37e332b829c54ef06377a3f8b",
+    "issues": []
+  },
+  {
+    "name": "focused",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:08:51.801803+00:00",
+    "finished": "2026-10-29T21:08:54.977660+00:00",
+    "elapsed_seconds": 3.176,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-focused.log",
+    "sha256": "ad8c027377ca660f5b333d664a25ede212852b8be44b4e0285873c0291a5f634",
+    "issues": []
+  },
+  {
+    "name": "route",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd",
+      "--",
+      "--route"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:08:54.978291+00:00",
+    "finished": "2026-10-29T21:08:56.648661+00:00",
+    "elapsed_seconds": 1.67,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-route.log",
+    "sha256": "521070f5935a5f9af8dd73b5097b5010e96a66efb8e619d922d97059b68d21a5",
+    "issues": []
+  },
+  {
+    "name": "data",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_region2_ruins_s11.py",
+      "--regenerate"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:10:12.397384+00:00",
+    "finished": "2026-10-29T21:10:39.268953+00:00",
+    "elapsed_seconds": 26.872,
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "log": "logs/accepted-data.log",
+    "sha256": "bdb660f03a38b4bc0585e63b586c06f8e1ce37ee617535df796629edf7b6f754",
+    "issues": []
+  },
+  {
+    "name": "focused",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:10:39.269753+00:00",
+    "finished": "2026-10-29T21:10:42.543143+00:00",
+    "elapsed_seconds": 3.273,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-focused.log",
+    "sha256": "ccfc32cc5d413dd8833654829fd6aaa1bd5e2b173ef84f80fb6c52f621379e82",
+    "issues": []
+  },
+  {
+    "name": "route",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd",
+      "--",
+      "--route"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:10:42.543566+00:00",
+    "finished": "2026-10-29T21:10:44.313236+00:00",
+    "elapsed_seconds": 1.77,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-route.log",
+    "sha256": "521070f5935a5f9af8dd73b5097b5010e96a66efb8e619d922d97059b68d21a5",
+    "issues": []
+  },
+  {
+    "name": "capture",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--path",
+      ".",
+      "--rendering-method",
+      "mobile",
+      "--rendering-driver",
+      "vulkan",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://tools/capture_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:10:42.986667+00:00",
+    "finished": "2026-10-29T21:11:15.689449+00:00",
+    "elapsed_seconds": 32.703,
+    "timeout_seconds": 180,
+    "exit_code": 1,
+    "log": "logs/accepted-capture.log",
+    "sha256": "4a5983c97dca9382a78d1462f8323518a3585c2f8371612a2f2e285823c427e5",
+    "issues": [
+      "S11_FAIL: 受取済み保存を実UIから再開 <null>",
+      "S11_CAPTURE_FAIL: checks=198 images=8"
+    ]
+  },
+  {
+    "name": "balance",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd",
+      "--",
+      "--balance"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:11:15.689989+00:00",
+    "finished": "2026-10-29T21:11:19.063964+00:00",
+    "elapsed_seconds": 3.374,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-balance.log",
+    "sha256": "49cef2e0a4ef7c1d321b0850b0e08fee84f6c70a455dcecceedb5bd57ad74e15",
+    "issues": []
+  },
+  {
+    "name": "capture",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--path",
+      ".",
+      "--rendering-method",
+      "mobile",
+      "--rendering-driver",
+      "vulkan",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://tools/capture_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:12:07.283443+00:00",
+    "finished": "2026-10-29T21:12:40.683610+00:00",
+    "elapsed_seconds": 33.4,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "log": "logs/accepted-capture.log",
+    "sha256": "816291e12e1c7b36e3907c6f0ae636b1d6f34fa685843c0957a1f234a2e02370",
+    "issues": []
+  },
+  {
+    "name": "import",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:13:41.299351+00:00",
+    "finished": "2026-10-29T21:13:45.885068+00:00",
+    "elapsed_seconds": 4.586,
+    "timeout_seconds": 600,
+    "exit_code": 0,
+    "log": "logs/accepted-import.log",
+    "sha256": "a2d71fead959a9ec3fa6541fb3505216def24a1a7b3bb9e35e03408d7a00b169",
+    "issues": []
+  },
+  {
+    "name": "focused",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:13:45.886026+00:00",
+    "finished": "2026-10-29T21:13:49.510890+00:00",
+    "elapsed_seconds": 3.625,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-focused.log",
+    "sha256": "e2277756056c88d38ef07dc495c646c52c797a504c1c29357a5b108b52d650b9",
+    "issues": []
+  },
+  {
+    "name": "focused",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:15:57.555562+00:00",
+    "finished": "2026-10-29T21:16:01.192608+00:00",
+    "elapsed_seconds": 3.637,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-focused.log",
+    "sha256": "1ae36bfb6ab3e5e9f3e84e7e4c5cedea6b66130439fb25da084da14e342fe43d",
+    "issues": []
+  },
+  {
+    "name": "frozen",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_frozen_files.py"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:16:01.193444+00:00",
+    "finished": "2026-10-29T21:16:01.227727+00:00",
+    "elapsed_seconds": 0.034,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "log": "logs/accepted-frozen.log",
+    "sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+    "issues": []
+  },
+  {
+    "name": "assets",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/validate_assets.py",
+      "--strict"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:16:01.228199+00:00",
+    "finished": "2026-10-29T21:16:07.960966+00:00",
+    "elapsed_seconds": 6.733,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-assets.log",
+    "sha256": "b7de4415d3daf90b1d75a2e00ba12b7ea3ed90243b0c44345f63debf1078ab61",
+    "issues": []
+  },
+  {
+    "name": "082-data",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_region2_shrine_story_data.py"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:16:07.961645+00:00",
+    "finished": "2026-10-29T21:16:07.996940+00:00",
+    "elapsed_seconds": 0.035,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "log": "logs/accepted-082-data.log",
+    "sha256": "8bc25730570030c572e61199eb25710c4f95132d2fef004d959e2218f2386d5e",
+    "issues": []
+  },
+  {
+    "name": "082",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_shrine_story.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:16:07.997534+00:00",
+    "finished": "2026-10-29T21:16:15.182444+00:00",
+    "elapsed_seconds": 7.185,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "log": "logs/accepted-082.log",
+    "sha256": "a2cb96686dcef368f4803600feaa5eb7b490f724bb3be05d1757dca4919a7c64",
+    "issues": []
+  },
+  {
+    "name": "083",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_s10_static_display.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:16:15.183168+00:00",
+    "finished": "2026-10-29T21:16:16.606908+00:00",
+    "elapsed_seconds": 1.424,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-083.log",
+    "sha256": "5caddab9d6562305cd713d98e36343f5905da8dce8763b0b83c4ecdd8076dfb7",
+    "issues": []
+  },
+  {
+    "name": "084",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_connection.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:16:16.608258+00:00",
+    "finished": "2026-10-29T21:16:20.082467+00:00",
+    "elapsed_seconds": 3.474,
+    "timeout_seconds": 120,
+    "exit_code": 1,
+    "log": "logs/accepted-084.log",
+    "sha256": "a55606ea72ca874958e963a76f329f75457f04e40e4709d352e2ba96bc78b3b2",
+    "issues": [
+      "RUINS_CONNECTION_FAIL: 内部遭遇・ボス無効を保持 <null>",
+      "RUINS_CONNECTION_FAIL: checks=257 failures=1"
+    ]
+  },
+  {
+    "name": "084-data",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_region2_ruins_connection.py"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:16:20.083731+00:00",
+    "finished": "2026-10-29T21:16:20.250529+00:00",
+    "elapsed_seconds": 0.167,
+    "timeout_seconds": 120,
+    "exit_code": 1,
+    "log": "logs/accepted-084-data.log",
+    "sha256": "adb54714b5bb09fd5ec32c454fc0890d80bbf84a4f25f2273489d410ef0f4982",
+    "issues": [
+      "RUINS_DATA_FAIL: 全4階の部屋/床/階段/上層/spawn/無効フラグ不変 None",
+      "RUINS_DATA_FAIL: 旧MAPS/LINKS/WALLS全statement不変 None",
+      "RUINS_DATA_FAIL: 画像/台帳生成算法は接続メタデータ以外全文不変 None",
+      "RUINS_DATA_FAIL: 範囲外の関連既存データ不変 scripts/game/game_session.gd",
+      "RUINS_DATA_FAIL: checks=24"
+    ]
+  },
+  {
+    "name": "coast",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_second_region_coast.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:16:20.251115+00:00",
+    "finished": "2026-10-29T21:16:21.922944+00:00",
+    "elapsed_seconds": 1.672,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "log": "logs/accepted-coast.log",
+    "sha256": "ce7e9dbec3ecabb429b9df46741a2d9bf7644a43ece521400a44f6460f726d3b",
+    "issues": []
+  },
+  {
+    "name": "save",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_saved_value_types.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+    "started": "2026-10-29T21:16:21.924063+00:00",
+    "finished": "2026-10-29T21:16:22.945606+00:00",
+    "elapsed_seconds": 1.022,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-save.log",
+    "sha256": "078df870765ca0268bfcf19ee62942f1df11de2ffd2b1f30729d822d0b84a1a6",
+    "issues": []
+  }
+]
