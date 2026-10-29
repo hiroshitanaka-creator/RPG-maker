@@ -1,0 +1,10 @@
+TASK027_CASE_PASS: battle_notification
+Traceback (most recent call last):
+  File "/workspace/task084-verification/tools/check_task027.py", line 181, in <module>
+    main()
+  File "/workspace/task084-verification/tools/check_task027.py", line 177, in main
+    verify(ROOT, exe, sha, ROOT/'docs/verification/task-027/fixtures')
+  File "/workspace/task084-verification/tools/check_task027.py", line 144, in verify
+    assert captured['exit_code'] == 0 and not captured['errors'], '通知あり撮影'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 通知あり撮影

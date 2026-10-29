@@ -1,0 +1,17 @@
+{
+  "id": "R-08",
+  "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+  "exit_code": 0,
+  "status": "PASS",
+  "tests_ran": true,
+  "parser_failed": false,
+  "timed_out": false,
+  "gut_summary": {
+    "assertions": 3046,
+    "failed_assertions": 0,
+    "invalid": false,
+    "pending": 0,
+    "tests": 25
+  },
+  "failure_messages": []
+}

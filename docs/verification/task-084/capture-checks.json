@@ -1,0 +1,342 @@
+{
+	"captures": [
+		{
+			"file": "before-complete.png",
+			"input_count": 6,
+			"mode": 17,
+			"state": {
+				"active": true,
+				"cell": [
+					176,
+					91
+				],
+				"cleared": [],
+				"entry_lock": "",
+				"facing": 3,
+				"layer": "world",
+				"node": "",
+				"opened": [],
+				"room": 0,
+				"transport": "walk"
+			}
+		},
+		{
+			"file": "after-complete-entry.png",
+			"input_count": 32,
+			"mode": 17,
+			"state": {
+				"active": true,
+				"cell": [
+					18,
+					19
+				],
+				"cleared": [],
+				"entry_lock": "region2_ruins_entrance",
+				"facing": 3,
+				"layer": "interior",
+				"node": "region2_ruins",
+				"opened": [],
+				"room": 0,
+				"transport": "walk"
+			}
+		},
+		{
+			"file": "interior-atlas.png",
+			"input_count": 32,
+			"mode": 19,
+			"state": {
+				"active": true,
+				"cell": [
+					18,
+					19
+				],
+				"cleared": [],
+				"entry_lock": "region2_ruins_entrance",
+				"facing": 3,
+				"layer": "interior",
+				"node": "region2_ruins",
+				"opened": [],
+				"room": 0,
+				"transport": "walk"
+			}
+		},
+		{
+			"file": "interior-return.png",
+			"input_count": 38,
+			"mode": 17,
+			"state": {
+				"active": true,
+				"cell": [
+					176,
+					92
+				],
+				"cleared": [],
+				"entry_lock": "region2_ruins_entrance",
+				"facing": 0,
+				"layer": "world",
+				"node": "",
+				"opened": [],
+				"room": 0,
+				"transport": "walk"
+			}
+		},
+		{
+			"file": "loaded-return.png",
+			"input_count": 44,
+			"mode": 17,
+			"state": {
+				"active": true,
+				"cell": [
+					176,
+					92
+				],
+				"cleared": [],
+				"entry_lock": "region2_ruins_entrance",
+				"facing": 0,
+				"layer": "world",
+				"node": "",
+				"opened": [],
+				"room": 0,
+				"transport": "walk"
+			}
+		},
+		{
+			"file": "returned-atlas.png",
+			"input_count": 50,
+			"mode": 19,
+			"state": {
+				"active": true,
+				"cell": [
+					176,
+					93
+				],
+				"cleared": [],
+				"entry_lock": "",
+				"facing": 0,
+				"layer": "world",
+				"node": "",
+				"opened": [],
+				"room": 0,
+				"transport": "walk"
+			}
+		}
+	],
+	"checks": [
+		{
+			"detail": null,
+			"label": "通常新ゲームから人工境界を作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "未完了の人工境界保存を通常APIで準備",
+			"ok": true
+		},
+		{
+			"detail": "未完了世界",
+			"label": "本番checkpoint永続化",
+			"ok": true
+		},
+		{
+			"detail": "未完了世界",
+			"label": "本番checkpointロードで全位置/向き/lock/編成/所持品/職/進行を保持",
+			"ok": true
+		},
+		{
+			"detail": 4194320,
+			"label": "実方向キーの歩行は通常WORLDへ戻る",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "未完了入口を実キーで通過・内部へ行かない",
+			"ok": true
+		},
+		{
+			"detail": "before-complete",
+			"label": "実Godotの512×288画面",
+			"ok": true
+		},
+		{
+			"detail": "before-complete",
+			"label": "実画面保存",
+			"ok": true
+		},
+		{
+			"detail": 4194322,
+			"label": "実方向キーの歩行は通常WORLDへ戻る",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "未完了入口から実キーで戻る",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "通常新ゲームから人工境界を作成",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "S10人工境界を準備",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "既存S10開始",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "実決定キー全9ページで完了",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "完了後の世界入口直前を人工境界として再開",
+			"ok": true
+		},
+		{
+			"detail": "完了世界",
+			"label": "本番checkpoint永続化",
+			"ok": true
+		},
+		{
+			"detail": "完了世界",
+			"label": "本番checkpointロードで全位置/向き/lock/編成/所持品/職/進行を保持",
+			"ok": true
+		},
+		{
+			"detail": 4194320,
+			"label": "実方向キーの歩行は通常WORLDへ戻る",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "完了後の実キー入場・連打で二重遷移なし",
+			"ok": true
+		},
+		{
+			"detail": "after-complete-entry",
+			"label": "実Godotの512×288画面",
+			"ok": true
+		},
+		{
+			"detail": "after-complete-entry",
+			"label": "実画面保存",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "内部から既存世界地図を表示",
+			"ok": true
+		},
+		{
+			"detail": "interior-atlas",
+			"label": "実Godotの512×288画面",
+			"ok": true
+		},
+		{
+			"detail": "interior-atlas",
+			"label": "実画面保存",
+			"ok": true
+		},
+		{
+			"detail": "内部着地",
+			"label": "本番checkpoint永続化",
+			"ok": true
+		},
+		{
+			"detail": "内部着地",
+			"label": "本番checkpointロードで全位置/向き/lock/編成/所持品/職/進行を保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "本番手動保存アクション",
+			"ok": true
+		},
+		{
+			"detail": 4194322,
+			"label": "実方向キーの歩行は通常WORLDへ戻る",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "実キー出口・入力保持で即再入場なし",
+			"ok": true
+		},
+		{
+			"detail": "interior-return",
+			"label": "実Godotの512×288画面",
+			"ok": true
+		},
+		{
+			"detail": "interior-return",
+			"label": "実画面保存",
+			"ok": true
+		},
+		{
+			"detail": "帰着直後",
+			"label": "本番checkpoint永続化",
+			"ok": true
+		},
+		{
+			"detail": "帰着直後",
+			"label": "本番checkpointロードで全位置/向き/lock/編成/所持品/職/進行を保持",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "本番タイトル/手動ロードで内部全値復帰・自動退出なし",
+			"ok": true
+		},
+		{
+			"detail": 4194322,
+			"label": "実方向キーの歩行は通常WORLDへ戻る",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "保存復帰後も実キーで帰着",
+			"ok": true
+		},
+		{
+			"detail": "loaded-return",
+			"label": "実Godotの512×288画面",
+			"ok": true
+		},
+		{
+			"detail": "loaded-return",
+			"label": "実画面保存",
+			"ok": true
+		},
+		{
+			"detail": 4194322,
+			"label": "実方向キーの歩行は通常WORLDへ戻る",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "帰着後の下入力保持は世界を歩き即再入場しない",
+			"ok": true
+		},
+		{
+			"detail": null,
+			"label": "帰着後の既存世界地図を表示",
+			"ok": true
+		},
+		{
+			"detail": "returned-atlas",
+			"label": "実Godotの512×288画面",
+			"ok": true
+		},
+		{
+			"detail": "returned-atlas",
+			"label": "実画面保存",
+			"ok": true
+		}
+	],
+	"status": "PASS"
+}

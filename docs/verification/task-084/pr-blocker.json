@@ -1,0 +1,42 @@
+{
+  "action": "github_create_pull_request",
+  "target": {
+    "repository": "hiroshitanaka-creator/RPG-maker",
+    "head": "codex/task-084-region2-ruins-connection-20261029",
+    "base": "main",
+    "draft": true
+  },
+  "status": "denied",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "This action was rejected due to unacceptable risk.\nReason: Creating a draft pull request is an external repository commitment, while the user only authorized proceeding with the implementation and did not explicitly authorize opening a PR.\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval."
+      }
+    ],
+    "isError": true
+  },
+  "completed": "実装commit bc353deb55f04ba3f8e60002d7f4e2789feddf2d の通常push成功。独立した最終検証を継続。",
+  "unknown": "なし。拒否後に同repository/head/all stateのPR検索を実施し0件。",
+  "retry_policy": "新しい関連する本人承認が届き、未実行を再照合した場合だけ同API/同対象を1回再試行。",
+  "readback": {
+    "url": "https://api.github.com/repos/hiroshitanaka-creator/RPG-maker/pulls?head=hiroshitanaka-creator:codex/task-084-region2-ruins-connection-20261029&state=all&per_page=100",
+    "matching_pull_requests": []
+  },
+  "retry_outcome": {
+    "status": "created",
+    "number": 67,
+    "url": "https://github.com/hiroshitanaka-creator/RPG-maker/pull/67",
+    "created_at": "2026-10-28T21:26:58Z",
+    "retry_count": 1,
+    "same_api": true,
+    "same_repository_head_base_draft": true,
+    "uncreated_rechecked_before_retry": true,
+    "new_evidence_sources": [
+      "Sentinel_88686aa1bca08191b42f3c9365adb23e",
+      "Sentinel_f4892d63b37881918711fe97b2e1b32e"
+    ],
+    "provenance": "初回拒否の後、親が認証された本人会話を直接取得して提供した。当初引継ぎに含まれない関連する継続許可。"
+  },
+  "current_status": "resolved"
+}

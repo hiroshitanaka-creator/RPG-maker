@@ -32,14 +32,13 @@ func _draw() -> void:
 	draw_texture(_map,origin)
 	draw_string(get_theme_default_font(),Vector2(12,27),"世界地図",HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color.WHITE)
 	var state: Dictionary=saved["overworld"]
-	var cell := WorldExpedition.point(state["cell"])
-	if state["layer"]=="interior":
-		var entrance := "castle_entrance" if state["node"]=="first_castle" else "cave_entrance" if state["node"]=="first_cave" else "village_entrance"
-		if state["node"]=="first_forest_tower":entrance="tower_entrance"
-		if state["node"]=="first_port":entrance="port_entrance"
-		if state["node"]=="brine_port":entrance="second_port_entrance"
-		cell=WorldExpedition.point(FirstRegion.data()[entrance]["cell"])
+	var cell := current_cell(state)
 	var center := origin+Vector2(cell)
 	draw_rect(Rect2(center-Vector2(3,3),Vector2(7,7)),Color("152236"))
 	if fmod(_time,0.8)<0.5:draw_rect(Rect2(center-Vector2(2,2),Vector2(5,5)),Color("fff1a9"))
 	draw_string(get_theme_default_font(),Vector2(384,30),"点滅：現在地",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color.WHITE)
+
+static func current_cell(state: Dictionary) -> Vector2i:
+	if state["layer"] != "interior":return WorldExpedition.point(state["cell"])
+	var entrances := {"start_village":"village_entrance","first_cave":"cave_entrance","first_castle":"castle_entrance","first_forest_tower":"tower_entrance","first_port":"port_entrance","brine_port":"second_port_entrance","region2_village":"region2_village_entrance","region2_ruins":"region2_ruins_entrance","region3_port":"region3_port_entrance"}
+	return WorldExpedition.point(FirstRegion.data()[entrances.get(state["node"],"village_entrance")]["cell"])

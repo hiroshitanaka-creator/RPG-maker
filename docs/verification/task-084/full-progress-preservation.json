@@ -1,0 +1,7 @@
+{
+  "production_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+  "checker_path": "tools/check_region2_ruins_connection.gd",
+  "checker_sha256": "7ec97d0c852e05e140130b1e705f02ae0991594094115b683de2ae64b2a5ff99",
+  "changes": "入退場前後の比較で、位置6フィールドだけを正規化し、overworldのcleared/opened/transport等も比較する。既存条件を削らず照合対象を追加。",
+  "runtime_log": "logs/full-progress-preservation.log"
+}

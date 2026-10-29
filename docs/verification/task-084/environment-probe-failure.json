@@ -1,0 +1,19 @@
+{
+  "source_sha": "a4c545a954e4773a4f0e7255cab0f3e5d2bbe616",
+  "operation": "Godot新規APIの最終再確認（補助起動）",
+  "status": "failed",
+  "exit_code": 1,
+  "cause": "手動起動にXDG_DATA_HOME/XDG_CONFIG_HOMEを渡さず、標準user dataディレクトリへの作成がsandboxで拒否された。",
+  "target": "/home/agent/.local/share/godot/app_userdata/RPG-maker",
+  "observed_checks": 254,
+  "observed_failures": 73,
+  "known_messages": [
+    "ERROR: Could not create directory: /home/agent/.local/share/godot",
+    "ERROR: Error attempting to create data dir",
+    "ERROR: Failed to open log file for writing: user://logs/godot.log",
+    "RUINS_CONNECTION_FAIL: checks=254 failures=73"
+  ],
+  "raw_tool_output_truncated": true,
+  "raw_output_note": "ツールの返却上限で補助起動の全文は保持されなかった。省略された部分を補作していない。",
+  "remediation": "既存の隔離XDGと保存prefixを使うrun084の同じ検査器で再実行。logs/evidence-head-runtime.logに257条件全件成功の全原ログ。権限拒否された標準保存先へ再試行しない。"
+}

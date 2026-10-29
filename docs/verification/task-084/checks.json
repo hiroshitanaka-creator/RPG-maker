@@ -1,0 +1,895 @@
+{
+  "production_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+  "baseline_sha": "f9169ac4048e98229d34692bc1e9efb6a0a3efaf",
+  "primary_checks": {
+    "runtime": 257,
+    "data_with_reproduction": 64,
+    "real_keys": 43,
+    "real_images": 6
+  },
+  "locked": [
+    {
+      "id": "R-01",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_data.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 765,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-02",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_job_actions.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 946,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 5
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-03",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_ability_slots.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 73,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-04",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_monster_form.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 293,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 1
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-05",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_battle_loop.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 79,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-06",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gtest=res://test/unit/test_save_roundtrip.gd -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 87,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 2
+      },
+      "failure_messages": []
+    },
+    {
+      "id": "R-07",
+      "verify": "godot --headless --path . --script res://tools/smoke_first_region.gd",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": null,
+      "failure_messages": []
+    },
+    {
+      "id": "R-08",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 3046,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 25
+      },
+      "failure_messages": []
+    }
+  ],
+  "fixed_sha_batch": [
+    {
+      "name": "accepted-import",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--editor",
+        "--import",
+        "--quit"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:33:00.682844+00:00",
+      "finished": "2026-10-28T21:33:45.165924+00:00",
+      "elapsed_seconds": 44.483,
+      "timeout_seconds": 600,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-import.log",
+      "sha256": "1c20efafa4679134a2090cd6e37d984aa29e23623bb891b6604d4375a1ead6eb",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-frozen-before",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:33:45.175453+00:00",
+      "finished": "2026-10-28T21:33:45.200181+00:00",
+      "elapsed_seconds": 0.025,
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-frozen-before.log",
+      "sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-assets-strict",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/validate_assets.py",
+        "--strict"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:33:45.201953+00:00",
+      "finished": "2026-10-28T21:33:52.813849+00:00",
+      "elapsed_seconds": 7.612,
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-assets-strict.log",
+      "sha256": "b7de4415d3daf90b1d75a2e00ba12b7ea3ed90243b0c44345f63debf1078ab61",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-data",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/check_region2_ruins_connection.py",
+        "--regenerate"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:33:52.815374+00:00",
+      "finished": "2026-10-28T21:34:20.777202+00:00",
+      "elapsed_seconds": 27.962,
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-data.log",
+      "sha256": "624b6204cff34b2e87bfde038658fe05706299b669399b2c9b8a349428ceb902",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-runtime",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_ruins_connection.gd"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:34:20.779096+00:00",
+      "finished": "2026-10-28T21:34:27.206313+00:00",
+      "elapsed_seconds": 6.427,
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-runtime.log",
+      "sha256": "03697ac9d662036296e2c92a6c2884d217f003cd6bc7826232687771b9b1eee0",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-capture",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--path",
+        ".",
+        "--rendering-method",
+        "mobile",
+        "--rendering-driver",
+        "vulkan",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "res://tools/capture_region2_ruins_connection.gd"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:34:27.213224+00:00",
+      "finished": "2026-10-28T21:34:43.937324+00:00",
+      "elapsed_seconds": 16.724,
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-capture.log",
+      "sha256": "1cf42ea29b5cc1e2a61c40863bca06823cb19daed5f678100119f9a8b8d0e75d",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-shrine-data",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/check_region2_shrine_story_data.py"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:34:43.939154+00:00",
+      "finished": "2026-10-28T21:34:43.963743+00:00",
+      "elapsed_seconds": 0.025,
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-shrine-data.log",
+      "sha256": "8bc25730570030c572e61199eb25710c4f95132d2fef004d959e2218f2386d5e",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-shrine-runtime",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_region2_shrine_story.gd"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:34:43.965277+00:00",
+      "finished": "2026-10-28T21:34:54.129746+00:00",
+      "elapsed_seconds": 10.164,
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-shrine-runtime.log",
+      "sha256": "a2cb96686dcef368f4803600feaa5eb7b490f724bb3be05d1757dca4919a7c64",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-static-data",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/check_s10_static_display.py"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:34:54.131850+00:00",
+      "finished": "2026-10-28T21:34:54.389393+00:00",
+      "elapsed_seconds": 0.258,
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-static-data.log",
+      "sha256": "7a39c66fe2d2cb66813232dc635e2e618bcacbdb11498c5bd0240340255da5e5",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-static-runtime",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_s10_static_display.gd"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:34:54.390941+00:00",
+      "finished": "2026-10-28T21:34:58.677304+00:00",
+      "elapsed_seconds": 4.286,
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-static-runtime.log",
+      "sha256": "5caddab9d6562305cd713d98e36343f5905da8dce8763b0b83c4ecdd8076dfb7",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-second-coast",
+      "command": [
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/check_second_region_coast.gd"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:34:58.678942+00:00",
+      "finished": "2026-10-28T21:35:03.155505+00:00",
+      "elapsed_seconds": 4.477,
+      "timeout_seconds": 120,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-second-coast.log",
+      "sha256": "d89d8374684351b4806912dcce4804f8b44eb1947587a54202ff92798bc5bcee",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-R-01",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "-s",
+        "addons/gut/gut_cmdln.gd",
+        "-gtest=res://test/unit/test_job_data.gd",
+        "-gexit"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:35:03.161840+00:00",
+      "finished": "2026-10-28T21:35:07.815021+00:00",
+      "elapsed_seconds": 4.653,
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-R-01.log",
+      "sha256": "9dd944e7fd26d87a3c0c7d87677ee13724d525dae60dcbe8188993c2518c0a71",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-R-02",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "-s",
+        "addons/gut/gut_cmdln.gd",
+        "-gtest=res://test/unit/test_job_actions.gd",
+        "-gexit"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:35:07.817204+00:00",
+      "finished": "2026-10-28T21:35:18.612629+00:00",
+      "elapsed_seconds": 10.795,
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-R-02.log",
+      "sha256": "c3b7512f1fa875fc10b37bba360c1ec5da503269890e1443335b6d5d66f268e6",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-R-03",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "-s",
+        "addons/gut/gut_cmdln.gd",
+        "-gtest=res://test/unit/test_ability_slots.gd",
+        "-gexit"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:35:18.614377+00:00",
+      "finished": "2026-10-28T21:35:23.369111+00:00",
+      "elapsed_seconds": 4.755,
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-R-03.log",
+      "sha256": "0f98665bcafda75a7f51f4e6d85c88c742552f2b95782be84f972dde0d3c5168",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-R-04",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "-s",
+        "addons/gut/gut_cmdln.gd",
+        "-gtest=res://test/unit/test_monster_form.gd",
+        "-gexit"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:35:23.371009+00:00",
+      "finished": "2026-10-28T21:35:28.781685+00:00",
+      "elapsed_seconds": 5.411,
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-R-04.log",
+      "sha256": "72aa84e45ee62f3d022316ac884c9a8789b141164f7ccce46237250844d3b831",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-R-05",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "-s",
+        "addons/gut/gut_cmdln.gd",
+        "-gtest=res://test/unit/test_battle_loop.gd",
+        "-gexit"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:35:28.783569+00:00",
+      "finished": "2026-10-28T21:35:33.540701+00:00",
+      "elapsed_seconds": 4.757,
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-R-05.log",
+      "sha256": "bb36ce93dc4b9d6db97e2e4347e94ad2660bcc30023803786c56d6095f11656c",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-R-06",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "-s",
+        "addons/gut/gut_cmdln.gd",
+        "-gtest=res://test/unit/test_save_roundtrip.gd",
+        "-gexit"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:35:33.542802+00:00",
+      "finished": "2026-10-28T21:35:38.472815+00:00",
+      "elapsed_seconds": 4.93,
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-R-06.log",
+      "sha256": "a35b18f68737f907db2c67da5b0d0efdca3bf23825b214068de89ff3ef7f7f4f",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-R-07",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://tools/smoke_first_region.gd"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:35:38.474768+00:00",
+      "finished": "2026-10-28T21:36:38.866313+00:00",
+      "elapsed_seconds": 60.392,
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-R-07.log",
+      "sha256": "f7d06576c25fe1e5a1cbbdc361b917e26674267fd8793d29dbc841b1c0e94754",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-R-08",
+      "command": [
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "-s",
+        "addons/gut/gut_cmdln.gd",
+        "-gdir=res://test/unit",
+        "-gprefix=test_",
+        "-gexit"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:36:38.868698+00:00",
+      "finished": "2026-10-28T21:37:00.372976+00:00",
+      "elapsed_seconds": 21.504,
+      "timeout_seconds": 300,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-R-08.log",
+      "sha256": "48161d5efdf0ba5ef7b829b55a50eabe3238e26b36972682d5310ca493070b9f",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-task011",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/check_task011.py",
+        "--completed",
+        "d258908fbb0397e64d08780694786ef1855c4979",
+        "--godot",
+        "/workspace/RPG-maker/.tools/task084/godot-fps60"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:37:00.375381+00:00",
+      "finished": "2026-10-28T21:46:06.255927+00:00",
+      "elapsed_seconds": 545.881,
+      "timeout_seconds": 600,
+      "exit_code": 1,
+      "timed_out": false,
+      "log": "logs/accepted-task011.log",
+      "sha256": "4bb3752155fef184fd90b871e6b0e4d66e327f9682c43a5ed82d2e3a1d224515",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json",
+        "LP_NUM_THREADS": "2"
+      }
+    },
+    {
+      "name": "accepted-task011-boundary",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/check_task011_ci_boundary.py",
+        "--godot",
+        "/workspace/RPG-maker/.tools/godot/4.7.2/godot"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:46:06.257927+00:00",
+      "finished": "2026-10-28T21:46:10.482857+00:00",
+      "elapsed_seconds": 4.225,
+      "timeout_seconds": 180,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-task011-boundary.log",
+      "sha256": "c587cedb26741624776574bc796f8e21921624dfcc12871404210baa01534421",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    },
+    {
+      "name": "accepted-frozen-after",
+      "command": [
+        "/workspace/RPG-maker/.tools/cloud-onboarding/venv/bin/python",
+        "tools/check_frozen_files.py"
+      ],
+      "cwd": "/workspace/task084-final",
+      "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "started": "2026-10-28T21:46:10.485490+00:00",
+      "finished": "2026-10-28T21:46:10.511951+00:00",
+      "elapsed_seconds": 0.026,
+      "timeout_seconds": 30,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "logs/accepted-frozen-after.log",
+      "sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+      "errors": [],
+      "environment": {
+        "XDG_DATA_HOME": "/workspace/qa084/data",
+        "XDG_CONFIG_HOME": "/workspace/qa084/config",
+        "XDG_CACHE_HOME": "/workspace/qa084/cache",
+        "RPG_QA_SAVE_PREFIX": "task084",
+        "DISPLAY": ":84",
+        "VK_DRIVER_FILES": "/workspace/RPG-maker/.tools/task084/lvp_icd.json"
+      }
+    }
+  ],
+  "full_progress_checker": {
+    "production_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+    "checker_path": "tools/check_region2_ruins_connection.gd",
+    "checker_sha256": "7ec97d0c852e05e140130b1e705f02ae0991594094115b683de2ae64b2a5ff99",
+    "changes": "入退場前後の比較で、位置6フィールドだけを正規化し、overworldのcleared/opened/transport等も比較する。既存条件を削らず照合対象を追加。",
+    "runtime_log": "logs/full-progress-preservation.log"
+  },
+  "task011_components": {
+    "fixed-assets": {
+      "status": "PASS",
+      "execution_sha": "d258908fbb0397e64d08780694786ef1855c4979",
+      "stage": true,
+      "image_count": 0
+    },
+    "fixed-runtime": {
+      "status": "PASS",
+      "execution_sha": "d258908fbb0397e64d08780694786ef1855c4979",
+      "stage": true,
+      "checks": 14417,
+      "cells": 5067,
+      "neighbor_moves": 3552,
+      "stair_trips": 60,
+      "saves": 16,
+      "relocations": 16,
+      "failures": [],
+      "image_count": 0
+    },
+    "fixed-capture": {
+      "status": "PASS",
+      "execution_sha": "d258908fbb0397e64d08780694786ef1855c4979",
+      "key_steps": 315,
+      "failures": [],
+      "image_count": 25
+    },
+    "latest-assets": {
+      "status": "PASS",
+      "execution_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "stage": false,
+      "image_count": 0
+    },
+    "latest-runtime": {
+      "status": "PASS",
+      "execution_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "stage": false,
+      "checks": 13662,
+      "cells": 5067,
+      "neighbor_moves": 3552,
+      "stair_trips": 60,
+      "saves": 16,
+      "relocations": 16,
+      "encounter_returns": 0,
+      "failures": [],
+      "image_count": 0
+    },
+    "latest-capture": {
+      "status": "PASS",
+      "execution_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+      "key_steps": 315,
+      "encounter_returns": 0,
+      "failures": [],
+      "image_count": 25
+    }
+  },
+  "unresolved_local": {
+    "command": "python tools/check_task011.py --completed d258908fbb0397e64d08780694786ef1855c4979 --godot .tools/task084/godot-fps60",
+    "phase": "027 毎歩通知注入撮影",
+    "exit_code": 1,
+    "reason": "180秒タイムアウト。通常の固定/最新011素材・通行・階段・保存・25枚撮影は全成功。負荷注入を成功扱いしない。",
+    "record": "logs/accepted-task011.log",
+    "captured_log": "accepted-regression-records.tar.gz:docs/verification/task-027/fixtures/battle-capture.log"
+  },
+  "github_ci": "最終証拠HEADのpush/PR全workflowが終了するまで確認を継続し、最終応答とPRの検査一覧で完全SHA・結果を報告する。ローカル未達を隠さない。",
+  "evidence_head_recheck": {
+    "source_sha": "a4c545a954e4773a4f0e7255cab0f3e5d2bbe616",
+    "runtime_checks": 257,
+    "runtime_log": "logs/evidence-head-runtime.log",
+    "R08": {
+      "id": "R-08",
+      "verify": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://test/unit -gprefix=test_ -gexit",
+      "exit_code": 0,
+      "status": "PASS",
+      "tests_ran": true,
+      "parser_failed": false,
+      "timed_out": false,
+      "gut_summary": {
+        "assertions": 3046,
+        "failed_assertions": 0,
+        "invalid": false,
+        "pending": 0,
+        "tests": 25
+      },
+      "failure_messages": []
+    },
+    "frozen_log": "logs/evidence-head-frozen.log"
+  }
+}
