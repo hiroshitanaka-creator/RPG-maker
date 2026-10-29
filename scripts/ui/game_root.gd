@@ -1252,6 +1252,7 @@ func _first_region_result(result: Dictionary) -> void:
 			_checkpoint = game.export_state()
 			var encounter := game.start_first_region_battle(result)
 			if encounter == null:return
+			_notice = ""
 			_persist_checkpoint()
 			mode = Mode.BATTLE
 			_battle_log = ["水門の荒獣が現れた。" if result["id"] == "first_boss" else "魔物が現れた。"]

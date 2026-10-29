@@ -451,5 +451,244 @@
     "log": "logs/accepted-save.log",
     "sha256": "078df870765ca0268bfcf19ee62942f1df11de2ffd2b1f30729d822d0b84a1a6",
     "issues": []
+  },
+  {
+    "name": "focused",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:21:33.020310+00:00",
+    "finished": "2026-10-29T21:21:40.327942+00:00",
+    "elapsed_seconds": 7.308,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-focused.log",
+    "sha256": "3835193d2e8dc0049849a25a03ecf9bd8b887b0f74d84d18ff48948f0647373e",
+    "issues": []
+  },
+  {
+    "name": "resupply",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd",
+      "--",
+      "--resupply"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:21:40.329486+00:00",
+    "finished": "2026-10-29T21:21:42.720407+00:00",
+    "elapsed_seconds": 2.391,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-resupply.log",
+    "sha256": "04b45ff72ed86cfd1646aa994fb4dd7697a92428489063ae891499c697dd8e15",
+    "issues": []
+  },
+  {
+    "name": "capture",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--path",
+      ".",
+      "--rendering-method",
+      "mobile",
+      "--rendering-driver",
+      "vulkan",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://tools/capture_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:21:42.721743+00:00",
+    "finished": "2026-10-29T21:22:21.856835+00:00",
+    "elapsed_seconds": 39.135,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "log": "logs/accepted-capture.log",
+    "sha256": "770f2f4c5662955914746aea7c9b11c8a192dadeff52e50cf3b981f163548507",
+    "issues": []
+  },
+  {
+    "name": "blocked-encounters",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_enemy_encounters.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:22:52.495456+00:00",
+    "finished": "2026-10-29T21:22:53.365670+00:00",
+    "elapsed_seconds": 0.87,
+    "timeout_seconds": 180,
+    "exit_code": 1,
+    "log": "logs/accepted-blocked-encounters.log",
+    "sha256": "15c5d2a7cddf8d5352ba3c88aa1a691a998e6ab4f5c133e9272e7ab88fa00ea8",
+    "issues": [
+      "ENCOUNTER_FAIL: 既存30種類と第2地方の海3種・地上3種、計36種類を定義する"
+    ]
+  },
+  {
+    "name": "import",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:32:35.826097+00:00",
+    "finished": "2026-10-29T21:32:39.659262+00:00",
+    "elapsed_seconds": 3.833,
+    "timeout_seconds": 600,
+    "exit_code": 0,
+    "log": "logs/accepted-import.log",
+    "sha256": "37a013a95e7918cb79d6cba7796303f4efc6ec4ecfcab94f6e57ed2cdaefbdff",
+    "issues": []
+  },
+  {
+    "name": "focused",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:32:39.660295+00:00",
+    "finished": "2026-10-29T21:32:43.085073+00:00",
+    "elapsed_seconds": 3.425,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-focused.log",
+    "sha256": "3835193d2e8dc0049849a25a03ecf9bd8b887b0f74d84d18ff48948f0647373e",
+    "issues": []
+  },
+  {
+    "name": "resupply",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_s11.gd",
+      "--",
+      "--resupply"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:32:43.085933+00:00",
+    "finished": "2026-10-29T21:32:44.305275+00:00",
+    "elapsed_seconds": 1.219,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-resupply.log",
+    "sha256": "04b45ff72ed86cfd1646aa994fb4dd7697a92428489063ae891499c697dd8e15",
+    "issues": []
+  },
+  {
+    "name": "capture",
+    "command": [
+      "xvfb-run",
+      "-a",
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--path",
+      ".",
+      "--rendering-method",
+      "mobile",
+      "--rendering-driver",
+      "vulkan",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://tools/capture_region2_ruins_s11.gd"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:32:44.306027+00:00",
+    "finished": "2026-10-29T21:33:22.522197+00:00",
+    "elapsed_seconds": 38.216,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "log": "logs/accepted-capture.log",
+    "sha256": "f3e903a87e9b234c5e57c16150a21e57fed53f57df3977e85982cb227ee02b30",
+    "issues": []
+  },
+  {
+    "name": "data",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_region2_ruins_s11.py",
+      "--regenerate"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:33:22.523164+00:00",
+    "finished": "2026-10-29T21:33:47.958817+00:00",
+    "elapsed_seconds": 25.436,
+    "timeout_seconds": 300,
+    "exit_code": 0,
+    "log": "logs/accepted-data.log",
+    "sha256": "657ad6bd0bd5b16dc9299d37c778582ec92660c964622b5fb2333265722238b8",
+    "issues": []
+  },
+  {
+    "name": "locked",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/run_locked_checks.py"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:33:47.959878+00:00",
+    "finished": "2026-10-29T21:35:19.597792+00:00",
+    "elapsed_seconds": 91.638,
+    "timeout_seconds": 2700,
+    "exit_code": 0,
+    "log": "logs/accepted-locked.log",
+    "sha256": "1d7888f05efc5f8dd0119fdf0f586c71139801a56c81bd398132001f3386409a",
+    "issues": []
+  },
+  {
+    "name": "frozen",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_frozen_files.py"
+    ],
+    "cwd": "/workspace/RPG-maker",
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "started": "2026-10-29T21:35:19.600199+00:00",
+    "finished": "2026-10-29T21:35:19.667298+00:00",
+    "elapsed_seconds": 0.067,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "log": "logs/accepted-frozen.log",
+    "sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+    "issues": []
   }
 ]

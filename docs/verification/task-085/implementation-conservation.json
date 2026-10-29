@@ -1,0 +1,69 @@
+{
+  "fixed_implementation_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+  "checks": [
+    {
+      "path": "AGENTS.md",
+      "matches_implementation": true,
+      "sha256": "80a769d7bf296f76013e54364f28b50c0e259f29a497e8404d9bef7820b95bbe"
+    },
+    {
+      "path": "data/catalog.json",
+      "matches_implementation": true,
+      "sha256": "bd00e28148df50e84a20e88497f20013356035d9a390ccb4234e362d54899ba9"
+    },
+    {
+      "path": "data/region2_ruins_scenes.json",
+      "matches_implementation": true,
+      "sha256": "5582c1f6fc95b7622cd1797b4dcfad6a839d2b9d06981dc32dcbf7d9b3ed9b00"
+    },
+    {
+      "path": "scripts/game/game_session.gd",
+      "matches_implementation": true,
+      "sha256": "f19cb2f1a7ced5af343b5d0bc1e6641d2446afd828df7305f884bc5c6865e3ce"
+    },
+    {
+      "path": "scripts/ui/game_root.gd",
+      "matches_implementation": false,
+      "sha256": "51d67e194d32bd54f3c698e702fc3c0d281b2451f5c90746587db82fc4b6dd5a",
+      "exact_expected_one_line_notice_fix": true,
+      "current_sha256": "222737a31a13e27f4b1360ae1a60c739506f36345670c3c7beb208c013a065c4"
+    },
+    {
+      "path": "scripts/world/first_region_view.gd",
+      "matches_implementation": true,
+      "sha256": "ea25c61e2c1ad3b84e9fe1552e0075e4b721fa60191962e06ccfb2df7a469023"
+    },
+    {
+      "path": "scripts/world/region2_ruins.gd",
+      "matches_implementation": true,
+      "sha256": "2b28ffc1cd89f27c7a9e15c65851cdd8ccbaad098849c977a2e8268923ecff2e"
+    },
+    {
+      "path": "scripts/world/region2_ruins_story.gd",
+      "matches_implementation": true,
+      "sha256": "138f8ffd4ee5cb90d0ddd6da2d0bccbceca179f8c107b71c0c95d4a9b6761666"
+    },
+    {
+      "path": "world/region2_ruins.json",
+      "matches_implementation": true,
+      "sha256": "0332bb3c3ea2049d63fa5ff4e1412265e3841d03c0644eb1e97bb3f04da3ada1"
+    },
+    {
+      "path": "tools/build_task011_ruins.py",
+      "matches_implementation": true,
+      "sha256": "ead41696b416610f7996685ae140bfc62abb4363345e50c453721c7468ae5f0e"
+    },
+    {
+      "path": "tools/task011_ruins_defs.py",
+      "matches_implementation": true,
+      "sha256": "e5ac2910defb0442a7149858c827dd005c27bc7e728b968396e378a66c740c1c"
+    },
+    {
+      "path": "tools/check_second_region_coast.gd",
+      "matches_implementation": true,
+      "sha256": "c62d6b9eab7aaeb6536112383563285ac788c8cf17ae53195c4f78dad449e8c7"
+    }
+  ],
+  "all_equal": false,
+  "only_expected_notice_fix": true
+}

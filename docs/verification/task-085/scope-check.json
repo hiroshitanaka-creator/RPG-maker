@@ -1,0 +1,33 @@
+{
+  "base_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+  "allowed_existing_and_new_code": [
+    "AGENTS.md",
+    "data/catalog.json",
+    "data/region2_ruins_scenes.json",
+    "docs/tasks/085-region2-ruins-s11.md",
+    "docs/tasks/reports/085-region2-ruins-s11.md",
+    "scripts/game/game_session.gd",
+    "scripts/ui/game_root.gd",
+    "scripts/world/first_region_view.gd",
+    "scripts/world/region2_ruins.gd",
+    "scripts/world/region2_ruins_story.gd",
+    "scripts/world/region2_ruins_story.gd.uid",
+    "tools/build_task011_ruins.py",
+    "tools/capture_region2_ruins_s11.gd",
+    "tools/capture_region2_ruins_s11.gd.uid",
+    "tools/check_region2_ruins_s11.gd",
+    "tools/check_region2_ruins_s11.gd.uid",
+    "tools/check_region2_ruins_s11.py",
+    "tools/check_second_region_coast.gd",
+    "tools/task011_ruins_defs.py",
+    "world/region2_ruins.json"
+  ],
+  "evidence_prefix": "docs/verification/task-085/",
+  "excluded_preexisting": [
+    "scripts/game/equipment_rules.gd.uid",
+    "tools/check_equipment_rules.gd.uid"
+  ],
+  "unexpected": [],
+  "planned_but_unchanged": "scripts/world/first_region.gdは旧027注入分岐と通常APIを全bytes保持するため変更不要。",
+  "blocked_not_edited": "tools/check_enemy_encounters.gdの追加契約。提案patchだけを保存。"
+}

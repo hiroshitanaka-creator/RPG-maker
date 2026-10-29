@@ -181,6 +181,17 @@ func api_cases() -> void:
 	check(game.import_state(legacy),"形式1の旧保存を受理")
 	event=game.resume_region2_ruins_story();confirm_scene(game,event)
 	roundtrip(game,"legacy-read")
+	for n in range(3):
+		check(fight(game,{"kind":"battle","id":"region2_ruins_encounter","enemies":["slime"],"seed":n}),"旧形式の実JPで習得")
+		game.rest()
+	for actor in game.export_state()["party"]:
+		for ability in ["power_strike","heal","fire"]:
+			if ability in actor["learned_abilities"]:check(game.equip_ability(actor["id"],ability),"旧形式の習得技を通常装着")
+	legacy=game.export_state();legacy["overworld"]["cell"]=[31,13];legacy["overworld"]["facing"]=3
+	check(game.import_state(legacy),"旧形式の報酬境界配置")
+	check(fight(game,game.interact_first_region()),"旧形式の本番ボス実勝利")
+	var legacy_won := game.export_state()
+	for i in range(4):check(legacy_won["party"][i]["jp"].get(legacy_won["party"][i]["job_id"],0)==legacy["party"][i]["jp"].get(legacy["party"][i]["job_id"],0)+50,"旧形式は敵の50JPを保持")
 	var blocked := fixture([31,13]);blocked["overworld"]["facing"]=3
 	check(game.import_state(blocked),"ボス開始の負例起点")
 	var forged := {"kind":"battle","id":Region2RuinsStory.BOSS,"enemies":[Region2RuinsStory.ENEMY],"seed":1}
@@ -242,13 +253,14 @@ func _initialize() -> void:
 
 func run() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(OUT))
-	if "--balance" in OS.get_cmdline_user_args():balance_cases()
+	if "--resupply" in OS.get_cmdline_user_args():resupply_case()
+	elif "--balance" in OS.get_cmdline_user_args():balance_cases()
 	elif "--route" in OS.get_cmdline_user_args():
 		real_route()
 		check(route_complete,"新規開始から取得・徒歩帰還まで到達")
 	else:api_cases()
 	var failed := checks.filter(func(c:Dictionary)->bool:return not c["ok"])
-	var name := "balance" if "--balance" in OS.get_cmdline_user_args() else "route" if "--route" in OS.get_cmdline_user_args() else "runtime"
+	var name := "resupply" if "--resupply" in OS.get_cmdline_user_args() else "balance" if "--balance" in OS.get_cmdline_user_args() else "route" if "--route" in OS.get_cmdline_user_args() else "runtime"
 	PlaySessionMetrics.write_json(OUT+name+"-checks.json",{"status":"PASS" if failed.is_empty() else "FAIL","checks":checks,"battles":battles,"steps":steps,"method":"通常新規からAPI実進行" if name=="route" else "人工境界API・実ターン"})
 	print("S11_%s: %s checks=%d failures=%d"%["PASS" if failed.is_empty() else "FAIL",name,checks.size(),failed.size()])
 	quit(0 if failed.is_empty() else 1)
@@ -440,3 +452,21 @@ func balance_cases() -> void:
 			if policy=="standard":check(won,"実到達全人間4職・9seedの勝利",number)
 			check(game.save_game("user://task085-balance.json"),"試行後も通常保存が有効",[policy,number,won])
 			battles[-1]["scenario"]=policy
+
+func resupply_case() -> void:
+	seed(85)
+	var source: Dictionary=WorldExpedition._integers(JSON.parse_string(FileAccess.get_file_as_string(OUT+"real-arrival-state.json")))
+	var game:=GameSession.new()
+	if not check(game.import_state(source),"途中帰還は通常実到達保存から開始"):return
+	if not travel_to(game,point("region2_ruins",2,[3,6])):return
+	if not interact_event(game,"region2_village",1,"oasis_innkeeper"):return
+	check(not game.export_state()["progress_flags"].get(Region2RuinsStory.COMPLETE_FLAG,false) and game.export_state()["inventory"].get(Region2RuinsStory.KEY,0)==0,"途中補給で未見/未取得を補完しない")
+	for actor in game.export_state()["party"]:check(actor["hp"]==actor["max_hp"] and actor["mp"]==actor["max_mp"],"通常宿屋で補給")
+	if not travel_to(game,point("region2_ruins",3,[18,15])):return
+	if not walk_local(game,[31,13]):return
+	game.first_region_face(Vector2i.UP)
+	if not check(settle(game,game.interact_first_region()),"再訪後に実攻略"):return
+	if not walk_local(game,[31,9]):return
+	game.first_region_face(Vector2i.UP);settle(game,game.interact_first_region())
+	if not interact_event(game,"region2_village",1,"oasis_innkeeper"):return
+	check(Region2RuinsStory.BOSS in game.overworld_state()["cleared"] and game.export_state()["inventory"].get(Region2RuinsStory.KEY,0)==1,"途中補給・再訪・攻略・徒歩帰還が成立")

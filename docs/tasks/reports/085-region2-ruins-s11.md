@@ -26,7 +26,7 @@
 
 実到達時の人間4職から9seedずつ比較した。標準9/9勝利・9〜11ターン・戦闘不能0・回復薬消費0。物理寄り9/9・18〜20ターン・回復薬4〜6個。回復を外した状態は8/9で、敗北1件と戦闘不能を保持する。初期4魔物職へ通常選択した比較は9/9・16〜18ターン・回復薬2〜5個。魔物職・任意4職・魔物化は勝利必須条件にしていない。公開予告に応じた防御/回復を使う自動方針の結果であり、初心者全員の勝率の推定ではない。
 
-本番UI撮影は実到達戦力を保持した段階配置から192条件・8画像。実キーの場面開始/全ページ/中断復帰/自由行動、通常戦闘コマンド、ボス実勝利、箱の別操作、手動保存/タイトル/ロード、実敗北/checkpoint復帰を検査。背景目標ruins-temple.jpgと実画面を実見し、石碑が通路を塞がず可視、本文が会話枠内、敵が下部UIと重ならないことを確認。本人の初見プレイ・人間による手触り・約60時間実測は未実施。
+本番UI撮影は実到達戦力を保持した段階配置から246条件・9画像。実キーの場面開始/全ページ/中断復帰/自由行動、通常戦闘コマンド、ボス実勝利、箱の別操作、手動保存/タイトル/ロード、実敗北/checkpoint復帰を検査。背景目標ruins-temple.jpgと実画面を実見し、石碑が通路を塞がず可視、本文が会話枠内、敵が下部UIと重ならないことを確認。本人の初見プレイ・人間による手触り・約60時間実測は未実施。
 
 ## 検査契約の範囲ブロッカー
 
@@ -39,3 +39,38 @@
 実変更全パスはchanged-paths.txtへ保存する。開始前に未追跡だったequipment_rules.gd.uid/check_equipment_rules.gd.uidは対象外としてcommit/pushしない。未pushだった無関係コミットは0件。最初はorigin/mainが古かったためfetch後に指定mainと一致を確認してから変更した。
 
 戻す場合は085実装コミットを通常の訂正コミットで差し戻す。保存形式は追加せず、既存フラグ・cleared・opened・inventoryへ事実を保存するため、旧保存に既読・勝利・鍵を勝手に補完しない。鍵の対応扉、人間初見、全ゲーム完成は未達。追加CI契約の許可範囲、最終CI、原回帰の実結果は下記へ追記する。
+
+## 実装固定点と追加検査
+
+本番実装固定点：`311a27583ac00468084bb5e4e3a987131c3c1367`。この版を通常pushしremote HEAD一致を確認。別checkoutで取り込み後にR-01〜R-08が全PASS（各元verifyの終了0・tests_ran=true、元300秒）。同じ固定点で集中8,652条件・新規からの経路・戦力比較・実画面・データ88条件を再実行した。その後、実画面で再挑戦後の勝利にも古い復帰通知が残ることを見つけ、本番UIの戦闘開始成功時に_noticeを空にする1行を追加した。集中検査の旧形式ボス50JP・途中補給経路・実敗北後の再勝利も追加した。本番のそれ以外は固定点と全bytes一致を照合し、UIの1行差分は別に明記する。追加後の集中検査は8,727条件、途中補給/再訪は310条件・591歩・11戦、実UIは246条件・9画像で成功。
+
+初期のroute-second.logにあるPASSは、経路中断時に完走条件を確認していなかった検査側の誤りであり、受入証拠から除外する。完走の明示assertionを追加した後のroute-checks.jsonで、新規開始→取得→徒歩帰還の1,447歩・15戦と実保存を確認した。型エラーがあったruntime-fifth.logも採用しない。
+
+旧084の原APIを最新で全実行すると257条件中1件（内部無効）がFAIL、256条件が成功。原dataは24条件中4件の段階限定（無効メタデータ、S11追記前AST、S11追記前builder、GameSession不変）がFAIL。元検査を改変せず原ログとJSONへ残し、固定084側の全条件と085の新条件を区別する。
+
+PR作成は自動承認審査に拒否された。対象は同repositoryの作業ブランチ→main、draft=true。理由は「available user messages authorize proceeding with the work but do not explicitly authorize opening this PR」。直後の同head/all-state検索は0件で、未作成を確認。別APIやghによる迂回・再試行はない。pr-blocker.jsonに拒否を保持する。既存Spaceの許可原文も読取確認したが、取得できたのは通常マージの原文と以前の許可再確認であり、今回の拒否を解消したと扱わない。原文や権限の追加確認は親担当へ返す。
+
+追加CI契約の具体差分はadditional-contract-proposal.patchへ保存した。厳密41・沿岸6＋遺跡5の完全ID集合へ置換する案であり、他assertion・旧30の5系統各6・AI/連戦/UI・時間上限を保つ。提案だけで、元ファイルへは適用していない。原検査の実行は終了1で旧36条件を拒否した。
+
+## 最終ローカル検証の実結果
+
+| 検査 | 実結果 | 証拠 |
+| --- | --- | --- |
+| Godot取り込み | 終了0、ERROR/WARNINGなし | logs/accepted-import.log |
+| S11集中 | 8,727条件PASS。通常20EXP/1JP・ボス40EXP/12JP・旧形式ボス50JPも実戦結果で照合 | runtime-checks.json |
+| 採用原稿/敵/生成 | 89条件PASS、原36件は各JSONレコードの全bytes一致、再生成2回全bytes一致 | data-checks.json |
+| 通常実進行 | 470条件PASS、1,447歩/15戦、取得後徒歩帰還 | route-checks.json |
+| 途中補給/再訪 | 310条件PASS、591歩/11戦 | resupply-checks.json |
+| 戦力比較 | 2,335条件PASS、4条件×9seedの36実戦。回復なしの敗北はそのまま記録 | balance-checks.json |
+| 実UI | 246条件・9画像PASS、中断/読戻し/実敗北/再挑戦後実勝利/別箱/保存 | capture-checks.json |
+| R-01〜R-08 | 通知修正後も全8件PASS。R-07は14条件、R-08は25テスト/3,046assertion・pending0 | final-locked/checks.json、各原ログ |
+| 保護/素材strict | 26/26一致、1,161画像/15音/2字体で問題なし | accepted-frozen.log、accepted-assets.log |
+| 082/083/沿岸/保存型 | 原検査をそのまま成功。沿岸は厳密41＋完全ID集合を追加した承認条件で成功 | implementation-311a275/logs/、accepted-coast.log |
+| 084固定 | 完全SHA5a484cf…でAPI257条件、data/再生成64条件が全PASS。旧36の敵検査も元のままPASS | fixed-084/ |
+| 084最新 | API256成功/旧無効条件1FAIL、data20成功/段階限定4FAIL。置換対象を分類して原条件保持 | regressions/task-084/、assertion-migration.md |
+| 011固定/最新 | 両方で全5067セル/3552隣接/60階段/16保存/16補正、素材、実描画25枚/315キーPASS | task011-components.json、task011/{fixed,latest}/ |
+| 011/027まとめ | 原コマンド終了1。通知runtime正例は成功、毎歩通知撮影が元180秒でTIMEOUT。stage拒否と残7負例はこのローカルまとめでは未到達 | task011/whole-command.log、notification-boundary/ |
+| 011 CI登録境界 | 元1正例/3負例PASS | task011/ci-boundary.json |
+| 現行敵検査 | 元ファイルのまま終了1、旧36種条件を拒否。追加契約変更は未実行 | logs/accepted-blocked-encounters.log |
+
+実行SHA・作業中snapshotは区別する。最初のroot実行でcommands.jsonのsource_shaがmainを指す項目は未commit作業ツリー上の実行であり、そのSHA単独の検証成功とは呼ばない。311a275の別checkout検証と、最終本番ファイルhash・通知修正後の実行証拠を併記する。生ログimport-initial.logの末尾空白は原出力として保持し、コード/JSON/依頼書のdiff検査は空白エラーなし。

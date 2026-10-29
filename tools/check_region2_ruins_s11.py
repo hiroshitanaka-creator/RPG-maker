@@ -46,10 +46,20 @@ def catalog_valid(catalog):
             return False
     return True
 
+def raw_enemy_records(raw):
+    text=raw.decode('utf-8');decoder=json.JSONDecoder()
+    cursor=text.index('[',text.index('"enemies": ['))+1;records=[]
+    while True:
+        while text[cursor].isspace() or text[cursor]==',': cursor+=1
+        if text[cursor]==']': return records
+        start=cursor;_,cursor=decoder.raw_decode(text,cursor)
+        records.append(text[start:cursor].encode('utf-8'))
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--regenerate',action='store_true');args=parser.parse_args()
     catalog=read('data/catalog.json')
     check(catalog_valid(catalog),'原36全定義不変＋採用5だけ＋厳密41種・全数値/技能/AI')
+    check(raw_enemy_records((ROOT/'data/catalog.json').read_bytes())[:36]==raw_enemy_records(original('data/catalog.json')), '元36件のJSON定義は各レコードの全bytesも一致')
     baseline=OUT/'baseline36-catalog.json'
     check(baseline.read_bytes()==original('data/catalog.json'),'比較原本はmain完全SHAのcatalog全bytes')
     cases=[]
