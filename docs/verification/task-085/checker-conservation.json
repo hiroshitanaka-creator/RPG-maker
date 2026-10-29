@@ -33,8 +33,11 @@
     },
     {
       "path": "tools/check_enemy_encounters.gd",
-      "unchanged": true,
-      "sha256": "ee84eb1cddad5fa652b0006acb98ed67e5a9906df23e9c4bcd4fa884c449d468"
+      "historical_unchanged": true,
+      "old_sha256": "ee84eb1cddad5fa652b0006acb98ed67e5a9906df23e9c4bcd4fa884c449d468",
+      "current_sha256": "c767989ed2b8ee45b3e3c170e200b1dd8277a89184b9a7d5896a1aa3997775df",
+      "current_status": "approved_narrow_migration",
+      "evidence": "corrective/assertion-migration.json"
     },
     {
       "path": "tools/check_task011_runtime.gd",
@@ -82,6 +85,7 @@
       "sha256": "82f1890848226390c008a4bb1691eeeb5e9014b4f58115d3caccbaa563a4a692"
     }
   ],
-  "all_equal": true,
-  "approved_exception": "tools/check_second_region_coast.gdの厳密41/完全集合条件のみ移行。"
+  "approved_exception": "厳密41/旧30＋沿岸6＋新5完全集合。沿岸checkerと敵行動checkerだけを限定移行し、旧固定コピー・全49assertion・6負例を保持。",
+  "historical_as_of": "6bea1ef101e84d7ccc57f9017d4e8e45a3366da5",
+  "all_equal_except_approved_migration": true
 }

@@ -49,6 +49,10 @@
       "sha256": "9eafbe0ee0c0b28c3514d0eddf701032cfbec207727dbefc3d17ddad85088ac2"
     },
     {
+      "path": "tools/check_enemy_encounters.gd",
+      "sha256": "c767989ed2b8ee45b3e3c170e200b1dd8277a89184b9a7d5896a1aa3997775df"
+    },
+    {
       "path": "tools/check_region2_ruins_s11.gd",
       "sha256": "978e05ff7c993a58d56f45bba22944a49f12592066a4cf2d89bf8e3949f95816"
     },
@@ -58,7 +62,7 @@
     },
     {
       "path": "tools/check_region2_ruins_s11.py",
-      "sha256": "f8dc0107dd4d5f0d4be0fd449ee1688b25b4d089ff6abfaa27dea12faf8e8d4f"
+      "sha256": "6b63e6dcb7fde8feedfbefdacfc2e478fe579475bc84b35f1f30dcb87967d5f1"
     },
     {
       "path": "tools/check_second_region_coast.gd",
@@ -73,5 +77,6 @@
       "sha256": "0332bb3c3ea2049d63fa5ff4e1412265e3841d03c0644eb1e97bb3f04da3ada1"
     }
   ],
-  "validation": "通知修正後のimport/focused/resupply/capture/data/locked/frozenの実ファイル。コミット名だけでなくbytesを照合する。"
+  "validation": "correctiveの実行時ソース。全本番ファイルは6bea1efと不変、変更checker2件だけをcb5c762で検証。証拠/docのみ後続commit可。",
+  "tested_code_sha": "cb5c762dc53645af6ebe483b7cfb1f2734cd9719"
 }

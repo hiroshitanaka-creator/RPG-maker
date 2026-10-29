@@ -40,3 +40,5 @@
 変更対象追加はこの2検査器、本依頼書、別報告、docs/verification/task-085/**のみ。AGENTS/本番処理/親2文書/CI/test/.scope-lock/その他保護/画像/台帳は継続修正では変更しない。拒否済みdraft PRは再試行せず親の別の原文照合を待つ。
 
 新規証拠パスはdocs/verification/task-085/corrective/{check_enemy_encounters-main-2a4fae6.gd.txt,assertion-migration.json,migration.patch,migration-checks.json,commands.json,source-hashes.json,ci-before-resume.json,task011-components.json,task011-evidence.tar.gz,locked-checks.json,locked-logs.tar.gz,task027-diagnostic.json}。ログは同corrective/logs/{import,enemy,s11-data,s11-runtime,route,resupply,balance,capture,locked,assets,frozen-before,frozen-after,shrine-data,shrine-runtime,s10-static,coast,saved-value-types,task011,task011-boundary}.logへ保存する。実行前にcommands.jsonへ各コマンド・元上限を列挙し、実結果を追記する。
+
+継続修正の追加実ログ：corrective/logs/s10-static-data.log、s10-static-data-first.log、fetch-s10-reference.log、port.log。前述の固定参照不足と元180秒の通知撮影TIMEOUTは原ログ保持し、未到達検査を成功扱いしない。checker2件を固定したcb5c762での実結果・固定コピー・assertion対応・R-01〜R-08と実画像は別報告へ記録する。
