@@ -1,0 +1,18 @@
+{
+  "status": "resolved_parent_handoff_scope_correction",
+  "action": "tools/check_enemy_encounters.gdの厳密36条件と沿岸6ID集合を、原36保持＋遺跡5追加の厳密41/11ID条件へ移行する",
+  "target": "hiroshitanaka-creator/RPG-maker / tools/check_enemy_encounters.gd:18,45",
+  "reason": "085の個別変更許可はGameSessionの数とcheck_second_region_coast.gdの旧30+沿岸6+新5に限定されている。他の検査契約変更は明示禁止。既存CIが直接実行するcheck_enemy_encounters.gdにも旧36/追加6の条件がある。",
+  "execution": "not_attempted",
+  "denied": false,
+  "pending": "親の権限照合。自動審査拒否ではなく明示スコープ制約。検査器は変更していない。",
+  "independent_work": "採用機能、実進行、実UI、原36不変、新5厳密検査を実装。凍結受入/旧回帰/通常branch/draft PR/実CIの確認を継続。",
+  "historical_only": "tools/check_task028_capture.gd:40,41も36/ボス未登録だが028の当時限定範囲チェックと一緒に固定側で保持すべき条件であり、最新CIの直接実行箇所ではない。",
+  "previous_status": "permission_scope_unresolved",
+  "resolution": {
+    "claim": "13386ee1cabddb4cedf1919166b066e37f8355b2be4dfc34df6f0ff127afbb24",
+    "seq": 369,
+    "meaning": "本人の41種承認を2ファイルに限定した親の初回依頼を訂正。同じ085で第三検査を限定移行。新しいゲーム規則ではない。",
+    "applied": "tools/check_enemy_encounters.gdの厳密41/完全11ID集合、対応文言だけ。旧コピー/49assertion/全AI/連戦/UIを保持。"
+  }
+}

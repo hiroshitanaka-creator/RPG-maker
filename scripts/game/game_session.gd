@@ -27,6 +27,8 @@ var _pending_region_audience := false
 var _pending_region_travel := ""
 var _region_story: Dictionary = {}
 var _shrine_story := Region2ShrineStory.new()
+var _ruins_story := Region2RuinsStory.new()
+var _ruins_walk_pending := false
 
 
 func _init() -> void:
@@ -40,8 +42,8 @@ func _init() -> void:
 	errors.append_array(ExplorationSites.audit(abilities,jobs))
 	errors.append_array(CampaignContent.audit(enemy_definitions))
 	if LongCampaign.enabled():errors.append_array(LongCampaign.audit(abilities,enemy_definitions))
-	if enemy_definitions.size() != 36:
-		errors.append("敵データは既存30種類と第2地方の海3種類・地上3種類、計36種類です。")
+	if enemy_definitions.size() != 41:
+		errors.append("敵データは既存36種類と承認済み遺跡5種類、計41種類です。")
 	for index in range(StoryCampaign.total_steps()):
 		var step := StoryCampaign.step(index)
 		for wave in StoryCampaign.battle_waves(step):
@@ -79,6 +81,8 @@ func new_game(party_size: int = 4) -> bool:
 		return false
 	_region_story.clear()
 	_shrine_story.interrupt()
+	_ruins_story.interrupt()
+	_ruins_walk_pending=false
 	if _archive != null and not _state.is_empty():
 		_archive.lifetime.record_event("trial_closed",{"reason":"new_game"})
 		close_recording()
@@ -134,7 +138,7 @@ func new_first_region() -> bool:
 
 
 func first_region_intro_available() -> bool:
-	return first_region_active() and _battle == null and _region_story.is_empty() and not _shrine_story.active() and not party_defeated() and FirstRegionStory.needs_return(_state) and _state["overworld"]["node"] != "first_cave"
+	return first_region_active() and _battle == null and _region_story.is_empty() and not _shrine_story.active() and not _ruins_story.active() and not party_defeated() and FirstRegionStory.needs_return(_state) and _state["overworld"]["node"] != "first_cave"
 
 ## 後続の会話はこの結果を先に確認する。未見の本文を既知の内容として返さない。
 func require_first_region_intro() -> Dictionary:
@@ -146,7 +150,7 @@ func begin_first_region_intro() -> Dictionary:
 	return _begin_first_region_story("catchup",{})
 
 func _begin_first_region_story(context: String, resume: Dictionary) -> Dictionary:
-	if not _region_story.is_empty() or _shrine_story.active():return {}
+	if not _region_story.is_empty() or _shrine_story.active() or _ruins_story.active():return {}
 	var queue := FirstRegionStory.queue_for(_state,context)
 	if queue.is_empty():return FirstRegionStory.data()["repeat"].duplicate(true).merged({"kind":"dialogue"})
 	_region_story={"queue":queue,"page":0,"context":context,"resume":resume.duplicate(true)}
@@ -182,7 +186,7 @@ func confirm_first_region_story(identifier: String, page: int) -> Dictionary:
 
 ## 入室成功後、室内ロード、復帰処理から明示的に呼ぶ。描画からは呼ばない。
 func resume_region2_shrine_story() -> Dictionary:
-	if not first_region_active() or _battle != null or party_defeated() or not _region_story.is_empty():return {}
+	if not first_region_active() or _battle != null or party_defeated() or not _region_story.is_empty() or _ruins_story.active():return {}
 	if not _pending_region_recruit.is_empty() or _pending_region_audience or not _pending_region_travel.is_empty():return {}
 	return _shrine_story.begin(_state)
 
@@ -193,6 +197,27 @@ func confirm_region2_shrine_story(identifier: String, run: int, page: int) -> Di
 func interrupt_region2_shrine_story() -> void:
 	_shrine_story.interrupt()
 
+## UIの移動成功または安全なWORLD復帰だけから呼ぶ。FirstRegion.moveの戻り値は維持。
+func resume_region2_ruins_story() -> Dictionary:
+	if not first_region_active() or _battle!=null or party_defeated() or not _region_story.is_empty() or _shrine_story.active():return {}
+	if not _pending_region_recruit.is_empty() or _pending_region_audience or not _pending_region_travel.is_empty():return {}
+	return _ruins_story.begin(_state)
+
+func confirm_region2_ruins_story(identifier: String, run: int, page: int) -> Dictionary:
+	if _battle!=null or party_defeated() or not _region_story.is_empty() or _shrine_story.active():return {}
+	return _ruins_story.confirm(_state,identifier,run,page)
+
+func interrupt_region2_ruins_story() -> void:
+	_ruins_story.interrupt()
+	_ruins_walk_pending=false
+
+## 移動成功通知を本番UIが消費する時だけ1回抽選。描画・ロード・静止では抽選しない。
+func take_region2_ruins_encounter() -> Dictionary:
+	if not _ruins_walk_pending:return {}
+	_ruins_walk_pending=false
+	if _battle!=null or _ruins_story.active() or _shrine_story.active() or not _region_story.is_empty():return {}
+	return Region2Ruins.encounter(_state["overworld"])
+
 func first_region_active() -> bool:
 	return _state.has("first_region")
 
@@ -202,14 +227,17 @@ func first_region_walkable(cell: Vector2i) -> bool:
 
 
 func first_region_face(direction: Vector2i) -> void:
-	if first_region_active() and not _shrine_story.active():_state["overworld"]["facing"] = [Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP].find(direction)
+	if first_region_active() and not _shrine_story.active() and not _ruins_story.active():_state["overworld"]["facing"] = [Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP].find(direction)
 
 
 func move_first_region(cell: Vector2i) -> Dictionary:
-	if not first_region_active() or _battle != null or party_defeated() or not _region_story.is_empty() or _shrine_story.active():return {}
+	if not first_region_active() or _battle != null or party_defeated() or not _region_story.is_empty() or _shrine_story.active() or _ruins_story.active():return {}
+	_ruins_walk_pending=false
 	var was_shrine := Region2ShrineStory.in_room(_state)
 	var result := FirstRegion.move(_state,cell)
 	if not result.is_empty():play_metrics.mark("moved_cells")
+	var here: Dictionary = _state["overworld"]
+	_ruins_walk_pending=result.get("kind")=="moved" and here["layer"]=="interior" and here["node"]=="region2_ruins" and here["entry_lock"].is_empty()
 	if result.get("kind")=="story_request":return _begin_first_region_story("return",{"kind":"stairs","to":FirstRegion.data()["stairs_up"]["to"]})
 	if result.get("kind")=="moved" and not was_shrine and Region2ShrineStory.in_room(_state):
 		var shrine := resume_region2_shrine_story()
@@ -217,10 +245,10 @@ func move_first_region(cell: Vector2i) -> Dictionary:
 	return result
 
 func advance_first_region_residents() -> bool:
-	return first_region_active() and _battle == null and _region_story.is_empty() and not _shrine_story.active() and FirstRegion.advance_residents(_state)
+	return first_region_active() and _battle == null and _region_story.is_empty() and not _shrine_story.active() and not _ruins_story.active() and FirstRegion.advance_residents(_state)
 
 func use_first_region_potion(actor_id: String) -> bool:
-	if not first_region_active() or _battle != null or int(_state["inventory"].get("potion",0))<=0:return false
+	if not first_region_active() or _battle != null or _ruins_story.active() or int(_state["inventory"].get("potion",0))<=0:return false
 	var member := _member(actor_id)
 	if member.is_empty() or member["hp"]<=0 or member["hp"]>=member["max_hp"]:return false
 	member["hp"]=mini(int(member["max_hp"]),int(member["hp"])+catalog.potion_healing)
@@ -229,11 +257,13 @@ func use_first_region_potion(actor_id: String) -> bool:
 
 
 func interact_first_region() -> Dictionary:
-	if not first_region_active() or _battle != null or not _region_story.is_empty() or _shrine_story.active():return {}
+	if not first_region_active() or _battle != null or not _region_story.is_empty() or _shrine_story.active() or _ruins_story.active():return {}
 	if _state["overworld"]["node"]=="start_village" and not _state["progress_flags"].get("gado_workshop_seen",false):
 		return _begin_first_region_story("village",{"kind":"interact"})
 	if FirstRegion.at(_state["overworld"],FirstRegion.data()["stairs_up"]["from"]) and FirstRegionStory.needs_return(_state):
 		return _begin_first_region_story("return",{"kind":"stairs","to":FirstRegion.data()["stairs_up"]["to"]})
+	var ruins := _ruins_story.interact(_state)
+	if not ruins.is_empty():return ruins
 	if FirstRegionTravel.board_or_land(_state):return {"kind":"moved"}
 	var state: Dictionary = _state["overworld"]
 	var target: Vector2i = WorldExpedition.point(state["cell"])+[Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP][state["facing"]]
@@ -330,10 +360,10 @@ func first_region_boarding_label() -> String:
 	return FirstRegionTravel.boarding_label(_state) if first_region_active() and _battle==null else ""
 
 func board_first_region_ship() -> bool:
-	return first_region_active() and _battle==null and not _shrine_story.active() and FirstRegionTravel.board_or_land(_state)
+	return first_region_active() and _battle==null and not _shrine_story.active() and not _ruins_story.active() and FirstRegionTravel.board_or_land(_state)
 
 func cast_first_region_return(actor_id: String, destination: String) -> bool:
-	return first_region_active() and _battle==null and not _shrine_story.active() and FirstRegionTravel.return_to(_state,actor_id,destination)
+	return first_region_active() and _battle==null and not _shrine_story.active() and not _ruins_story.active() and FirstRegionTravel.return_to(_state,actor_id,destination)
 
 func finish_first_region_recruit(actor_id: String) -> bool:
 	if not first_region_active() or actor_id.is_empty() or actor_id!=_pending_region_recruit:return false
@@ -377,6 +407,8 @@ func buy_first_region_weapon() -> bool:
 
 func start_first_region_battle(event: Dictionary) -> BattleState:
 	if not first_region_active() or event.get("kind") != "battle":return null
+	if event.get("id")==Region2RuinsStory.BOSS:
+		if not Region2RuinsStory.near(_state,Region2Ruins.data()["boss"]["cell"]) or not _state["progress_flags"].get(Region2RuinsStory.COMPLETE_FLAG,false) or Region2RuinsStory.BOSS in _state["overworld"]["cleared"] or event.get("enemies")!=[Region2RuinsStory.ENEMY]:return null
 	var encounter := start_battle(event["enemies"],int(event["seed"]))
 	if encounter == null:return null
 	_world_battle_id = event["id"]
@@ -409,6 +441,8 @@ func import_state(value: Dictionary) -> bool:
 	_state = normalized.duplicate(true)
 	_region_story.clear()
 	_shrine_story.interrupt()
+	_ruins_story.interrupt()
+	_ruins_walk_pending=false
 	_pending_region_travel=""
 	_pending_region_recruit=""
 	_pending_region_audience=false
@@ -1014,7 +1048,7 @@ func release_monster_form(actor_id: String, event: String) -> bool:
 
 
 func start_battle(enemy_ids: Array, random_seed: int) -> BattleState:
-	if _state.is_empty() or party_defeated() or _battle != null or _shrine_story.active() or enemy_ids.is_empty() or enemy_ids.size() > 4:
+	if _state.is_empty() or party_defeated() or _battle != null or _shrine_story.active() or _ruins_story.active() or enemy_ids.is_empty() or enemy_ids.size() > 4:
 		return null
 	for identifier in enemy_ids:
 		if not enemy_definitions.has(identifier):
@@ -1844,7 +1878,7 @@ func save_playtest_report(path: String = "user://playtest-report.json") -> bool:
 
 
 func save_game(path: String, record_id: String = "") -> bool:
-	if _battle != null or not path.begins_with("user://") or ".." in path or not _valid_state(_state):
+	if _battle != null or _ruins_story.active() or not path.begins_with("user://") or ".." in path or not _valid_state(_state):
 		return false
 	if not record_id.is_empty() and not PlaythroughArchive.valid_id(record_id):
 		return false
@@ -2076,6 +2110,7 @@ func _integrated_site() -> String:
 	return "world/"+str(_state["overworld"]["node"]) if world_exploration_active() else str(_state.get("expedition",{}).get("id",""))
 
 func _integration_reward_kind() -> String:
+	if _world_battle_id=="region2_ruins_encounter":return "normal"
 	if _field_battle:return "normal"
 	var enemies: Array=_battle_enemy_ids if _battle!=null else []
 	if world_exploration_active():
@@ -2085,7 +2120,7 @@ func _integration_reward_kind() -> String:
 		var waves:=StoryCampaign.battle_waves(current_story_step())
 		if story_wave_index()<waves.size():enemies=waves[story_wave_index()]
 	for id in enemies:
-		if id in ["gate_beast","elder_slime","ancient_shell","night_bat","core_wisp","flood_beast"]:return "boss"
+		if id in ["gate_beast","elder_slime","ancient_shell","night_bat","core_wisp","flood_beast",Region2RuinsStory.ENEMY]:return "boss"
 	if world_exploration_active() or not _state.get("expedition",{}).is_empty():return "challenge"
 	return "normal"
 

@@ -1,0 +1,346 @@
+{
+  "content_revision": 1,
+  "expedition": {},
+  "field_battles": 0,
+  "first_region": {
+    "coins": 20,
+    "errands": {
+      "haldo": "complete"
+    },
+    "reserve": [],
+    "travel": {
+      "return_learned": true,
+      "ship_cell": [
+        155,
+        109
+      ],
+      "ship_owned": true,
+      "version": 1,
+      "visited": [
+        "start_village",
+        "first_castle",
+        "first_port",
+        "region2_village"
+      ]
+    },
+    "version": 1
+  },
+  "format_version": 2,
+  "integrated": {
+    "armory": [
+      "practice_blade",
+      "practice_staff",
+      "practice_bow"
+    ],
+    "claimed": [],
+    "job_notes": [],
+    "knowledge": {},
+    "mastery_rules_version": 1,
+    "outcomes": {}
+  },
+  "inventory": {
+    "gate_pass": 1,
+    "potion": 6,
+    "world_map": 1
+  },
+  "leader_id": "pc_01",
+  "overworld": {
+    "active": true,
+    "cell": [
+      31,
+      13
+    ],
+    "cleared": [
+      "first_boss",
+      "first_region_encounter",
+      "forest_tower_boss",
+      "second_coast_encounter",
+      "second_coast_ground_encounter",
+      "region2_ruins_encounter"
+    ],
+    "entry_lock": "",
+    "facing": 3,
+    "layer": "interior",
+    "node": "region2_ruins",
+    "opened": [
+      "castle_supplies"
+    ],
+    "residents": {
+      "first_castle:2:king": {
+        "cell": [
+          12,
+          5
+        ],
+        "facing": 0
+      },
+      "first_castle:3:castle_supplies": {
+        "cell": [
+          8,
+          5
+        ],
+        "facing": 3
+      },
+      "first_castle:4:castle_inn": {
+        "cell": [
+          13,
+          7
+        ],
+        "facing": 1
+      },
+      "first_forest_tower:2:recruit_suina": {
+        "cell": [
+          11,
+          5
+        ],
+        "facing": 3
+      },
+      "first_port:1:port_inn": {
+        "cell": [
+          11,
+          7
+        ],
+        "facing": 1
+      },
+      "first_port:5:port_shrine": {
+        "cell": [
+          8,
+          6
+        ],
+        "facing": 2
+      },
+      "first_port:7:harbor_keeper": {
+        "cell": [
+          8,
+          3
+        ],
+        "facing": 0
+      },
+      "region2_village:1:oasis_innkeeper": {
+        "cell": [
+          12,
+          3
+        ],
+        "facing": 3
+      },
+      "start_village:1:join_pc_02": {
+        "cell": [
+          14,
+          11
+        ],
+        "facing": 3
+      },
+      "start_village:1:join_pc_03": {
+        "cell": [
+          22,
+          14
+        ],
+        "facing": 3
+      },
+      "start_village:2:village_inn": {
+        "cell": [
+          12,
+          7
+        ],
+        "facing": 3
+      }
+    },
+    "room": 3,
+    "transport": "walk"
+  },
+  "party": [
+    {
+      "equipped_abilities": [
+        "power_strike"
+      ],
+      "erosion": 0,
+      "hp": 76,
+      "id": "pc_01",
+      "integrated": {
+        "erosion_fraction": 0,
+        "exp": 130,
+        "focus_binding": "",
+        "forgotten": [],
+        "jp_remainders": {},
+        "level": 2,
+        "mastery": {
+          "counts": {
+            "warrior": 19
+          },
+          "legacy_masters": []
+        },
+        "relearn": {},
+        "weapons": [
+          "practice_blade"
+        ]
+      },
+      "irreversible": false,
+      "job_id": "warrior",
+      "jp": {
+        "warrior": 54
+      },
+      "last_human_job": "warrior",
+      "learned_abilities": [
+        "power_strike",
+        "firm_guard"
+      ],
+      "mastered_jobs": [],
+      "max_hp": 142,
+      "max_mp": 24,
+      "monster_form": "",
+      "mp": 15,
+      "name": "カイナ",
+      "unlocked_jobs": []
+    },
+    {
+      "equipped_abilities": [],
+      "erosion": 0,
+      "hp": 127,
+      "id": "pc_02",
+      "integrated": {
+        "erosion_fraction": 0,
+        "exp": 130,
+        "focus_binding": "",
+        "forgotten": [],
+        "jp_remainders": {},
+        "level": 2,
+        "mastery": {
+          "counts": {
+            "martial_artist": 0
+          },
+          "legacy_masters": []
+        },
+        "relearn": {},
+        "weapons": [
+          "practice_blade"
+        ]
+      },
+      "irreversible": false,
+      "job_id": "martial_artist",
+      "jp": {
+        "martial_artist": 54
+      },
+      "last_human_job": "martial_artist",
+      "learned_abilities": [
+        "double_strike",
+        "breath"
+      ],
+      "mastered_jobs": [],
+      "max_hp": 127,
+      "max_mp": 24,
+      "monster_form": "",
+      "mp": 24,
+      "name": "リオネ",
+      "unlocked_jobs": []
+    },
+    {
+      "equipped_abilities": [
+        "heal",
+        "revive"
+      ],
+      "erosion": 0,
+      "hp": 55,
+      "id": "pc_03",
+      "integrated": {
+        "erosion_fraction": 0,
+        "exp": 130,
+        "focus_binding": "",
+        "forgotten": [],
+        "jp_remainders": {},
+        "level": 2,
+        "mastery": {
+          "counts": {
+            "priest": 0
+          },
+          "legacy_masters": []
+        },
+        "relearn": {},
+        "weapons": [
+          "practice_blade"
+        ]
+      },
+      "irreversible": false,
+      "job_id": "priest",
+      "jp": {
+        "priest": 54
+      },
+      "last_human_job": "priest",
+      "learned_abilities": [
+        "heal",
+        "revive"
+      ],
+      "mastered_jobs": [],
+      "max_hp": 107,
+      "max_mp": 40,
+      "monster_form": "",
+      "mp": 36,
+      "name": "ハルド",
+      "unlocked_jobs": []
+    },
+    {
+      "equipped_abilities": [
+        "fire"
+      ],
+      "erosion": 0,
+      "hp": 90,
+      "id": "pc_04",
+      "integrated": {
+        "erosion_fraction": 0,
+        "exp": 60,
+        "focus_binding": "",
+        "forgotten": [],
+        "jp_remainders": {},
+        "level": 1,
+        "mastery": {
+          "counts": {
+            "mage": 6
+          },
+          "legacy_masters": []
+        },
+        "relearn": {},
+        "weapons": [
+          "practice_blade"
+        ]
+      },
+      "irreversible": false,
+      "job_id": "mage",
+      "jp": {
+        "mage": 18
+      },
+      "last_human_job": "mage",
+      "learned_abilities": [
+        "fire"
+      ],
+      "mastered_jobs": [],
+      "max_hp": 90,
+      "max_mp": 44,
+      "monster_form": "",
+      "mp": 24,
+      "name": "スイナ",
+      "unlocked_jobs": []
+    }
+  ],
+  "progress_flags": {
+    "castle_north_permission": true,
+    "chapter1_cleared": false,
+    "gado_encounter_seen": true,
+    "gado_promise_seen": true,
+    "gado_workshop_seen": true,
+    "job_change_unlocked": true,
+    "long_campaign_enrolled": true,
+    "midgame_slots": false,
+    "mountain_path_open": true,
+    "region2_ruins_record_seen": true,
+    "region2_shrine_jobs_unlocked": true,
+    "region2_shrine_seen": true
+  },
+  "return_point": {},
+  "story_battle": {},
+  "world": {
+    "location": "town",
+    "player_cell": [
+      2,
+      4
+    ],
+    "quest_step": 0
+  }
+}

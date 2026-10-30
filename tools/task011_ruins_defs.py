@@ -25,3 +25,12 @@ for spec,walls in zip(MAPS,WALLS):
 
 # 084採用の接続メタデータ。011の床・階段・画像生成定義は保持する。
 WORLD_CONNECTION=dict(enabled=True,world_cell=[176,91],return_cell=[176,92],return_facing=0,room=0,landing=[18,19],entry_facing=3,exit_cell=[18,20],cells=[[17,21],[18,21],[19,21]])
+
+# 085採用。原画・床・既存階段および7候補の素材台帳は変更しない。
+S11=dict(record=dict(room=3,trigger=[18,15],display_cell=[19,14]),
+ boss=dict(room=3,cell=[31,12],enemy='ruins_sandstone_colossus'),
+ reward_box=dict(room=3,cell=[31,8]),
+ encounters=[dict(chance=0.025,groups=[['ruins_sandstone_doll'],['ruins_cursed_beetle']]),
+ dict(chance=0.025,groups=[['ruins_sandstone_doll'],['ruins_cursed_beetle'],['ruins_sand_spirit']]),
+ dict(chance=0.025,groups=[['ruins_tomb_hound'],['ruins_sand_spirit'],['ruins_sandstone_doll','ruins_cursed_beetle']]),
+ dict(chance=0.0,groups=[])])

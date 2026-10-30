@@ -1,0 +1,24 @@
+{
+  "base_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+  "resume_sha": "6bea1ef101e84d7ccc57f9017d4e8e45a3366da5",
+  "authorization_claim": "13386ee1cabddb4cedf1919166b066e37f8355b2be4dfc34df6f0ff127afbb24",
+  "authorization_seq": 369,
+  "checker": "tools/check_enemy_encounters.gd",
+  "fixed_old_copy": "corrective/check_enemy_encounters-main-2a4fae6.gd.txt",
+  "old_assertion_calls": 49,
+  "new_assertion_calls": 49,
+  "migrated_conditions": [
+    "総数36→41、下限化しない",
+    "追加沿岸6ID→元沿岸6＋採用遺跡5の完全11ID集合"
+  ],
+  "preserved": "変更は総数式/完全ID集合式および対応するラベル・成功文言の5文字列置換だけ。旧30種5系統各6、AI、予定、連戦、UIの全コード/全assertion/全上限は不変。",
+  "fixed_verification": "fixed-084/logs/accepted-blocked-encounters.logは元36版で旧検査全文の成功を保持。",
+  "forbidden_mutations_tested": [
+    "厳密41の下限化",
+    "追加ID欠落",
+    "旧30数の改変",
+    "AI検査削除",
+    "連戦検査削除",
+    "UI検査置換"
+  ]
+}

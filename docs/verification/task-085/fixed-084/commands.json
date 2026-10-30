@@ -1,0 +1,99 @@
+[
+  {
+    "name": "import",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--editor",
+      "--import",
+      "--quit"
+    ],
+    "cwd": "/tmp/task085-fixed084",
+    "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+    "started": "2026-10-29T21:32:01.172220+00:00",
+    "finished": "2026-10-29T21:32:08.111038+00:00",
+    "elapsed_seconds": 6.939,
+    "timeout_seconds": 600,
+    "exit_code": 0,
+    "log": "logs/accepted-import.log",
+    "sha256": "a187f473cefbfcb75aa9ce630872ff17eb3a6239b1103154049d2bf6818fd449",
+    "issues": []
+  },
+  {
+    "name": "084",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_region2_ruins_connection.gd"
+    ],
+    "cwd": "/tmp/task085-fixed084",
+    "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+    "started": "2026-10-29T21:32:08.111546+00:00",
+    "finished": "2026-10-29T21:32:11.285118+00:00",
+    "elapsed_seconds": 3.174,
+    "timeout_seconds": 120,
+    "exit_code": 0,
+    "log": "logs/accepted-084.log",
+    "sha256": "03697ac9d662036296e2c92a6c2884d217f003cd6bc7826232687771b9b1eee0",
+    "issues": []
+  },
+  {
+    "name": "084-data",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_region2_ruins_connection.py",
+      "--regenerate"
+    ],
+    "cwd": "/tmp/task085-fixed084",
+    "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+    "started": "2026-10-29T21:32:11.285426+00:00",
+    "finished": "2026-10-29T21:32:35.760731+00:00",
+    "elapsed_seconds": 24.475,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "log": "logs/accepted-084-data.log",
+    "sha256": "624b6204cff34b2e87bfde038658fe05706299b669399b2c9b8a349428ceb902",
+    "issues": []
+  },
+  {
+    "name": "frozen",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "tools/check_frozen_files.py"
+    ],
+    "cwd": "/tmp/task085-fixed084",
+    "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+    "started": "2026-10-29T21:32:35.761025+00:00",
+    "finished": "2026-10-29T21:32:35.794884+00:00",
+    "elapsed_seconds": 0.034,
+    "timeout_seconds": 60,
+    "exit_code": 0,
+    "log": "logs/accepted-frozen.log",
+    "sha256": "9f9343edc23216de6ead7ef93cafca0cf5bf5012e121b3a0cdce73eee3ae5676",
+    "issues": []
+  },
+  {
+    "name": "blocked-encounters",
+    "command": [
+      "/workspace/RPG-maker/.tools/godot/4.7.2/godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://tools/check_enemy_encounters.gd"
+    ],
+    "cwd": "/tmp/task085-fixed084",
+    "source_sha": "5a484cf0d8816c43487eaf6913a900874db702a4",
+    "started": "2026-10-29T21:35:59.035560+00:00",
+    "finished": "2026-10-29T21:36:01.457985+00:00",
+    "elapsed_seconds": 2.422,
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "log": "logs/accepted-blocked-encounters.log",
+    "sha256": "d9de1243eb083b7151ed2d239e90e9ed979e0e509b6021e5817b64b807a9797d",
+    "issues": []
+  }
+]

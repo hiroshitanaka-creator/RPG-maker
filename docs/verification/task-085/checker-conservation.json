@@ -1,0 +1,91 @@
+{
+  "base_sha": "2a4fae60868d59f355839b524d22729704dd54f7",
+  "checks": [
+    {
+      "path": ".scope-lock/spec.lock.json",
+      "unchanged": true,
+      "sha256": "601a7452fe13be169d28327dfce1946b5a2ee2e7a1b1d8f92924d77dc95dedb3"
+    },
+    {
+      "path": ".scope-lock/frozen-files.json",
+      "unchanged": true,
+      "sha256": "f7ca767489efb18fb030919c8ae0331ed7bc2737ea382953886ab71156388885"
+    },
+    {
+      "path": "project.godot",
+      "unchanged": true,
+      "sha256": "56b09d8a81f12d640b02082daa24b2b0113051e8e537de0ed0069d3b0a62422a"
+    },
+    {
+      "path": "assets/registry.json",
+      "unchanged": true,
+      "sha256": "4948c1e2388e397920bcc1aec1f277afb67e5bf618cc85f397b9797b9d39d716"
+    },
+    {
+      "path": "assets/source_records/task011-enemies.json",
+      "unchanged": true,
+      "sha256": "1970352e3e3898947e3e7ccf61ec579ee59b373065318c1fafdef96538910682"
+    },
+    {
+      "path": "scripts/world/first_region.gd",
+      "unchanged": true,
+      "sha256": "20af905958f4a873f5f5951945b193e6b9bd6e07211a5ad102356c62face7695"
+    },
+    {
+      "path": "tools/check_enemy_encounters.gd",
+      "historical_unchanged": true,
+      "old_sha256": "ee84eb1cddad5fa652b0006acb98ed67e5a9906df23e9c4bcd4fa884c449d468",
+      "current_sha256": "c767989ed2b8ee45b3e3c170e200b1dd8277a89184b9a7d5896a1aa3997775df",
+      "current_status": "approved_narrow_migration",
+      "evidence": "corrective/assertion-migration.json"
+    },
+    {
+      "path": "tools/check_task011_runtime.gd",
+      "unchanged": true,
+      "sha256": "6670a09e3a000d13a16f3ef7533793e67ba88db13c82ac5f6f3cbf78a036e52a"
+    },
+    {
+      "path": "tools/capture_task011_ruins.gd",
+      "unchanged": true,
+      "sha256": "fcdba93f9c78a2ce8114ba41b851d9c438d261ab9f6fb3002f5444da3bb1cf12"
+    },
+    {
+      "path": "tools/check_task011_assets.py",
+      "unchanged": true,
+      "sha256": "d109ddd2ef359a94d42ff9b8a3c5c5918fe09e3250678993b420cb2ae91ffcd9"
+    },
+    {
+      "path": "tools/check_task011.py",
+      "unchanged": true,
+      "sha256": "c5f37a4cdd581698d5effc667a6deb529270ddf7010ece8d02eecc07f15496ac"
+    },
+    {
+      "path": "tools/check_task027.py",
+      "unchanged": true,
+      "sha256": "45f09a7793fd704ced551f647b2ed8adbfe0305eb245b73ffc97d06ff5a9b7c0"
+    },
+    {
+      "path": "tools/check_region2_ruins_connection.gd",
+      "unchanged": true,
+      "sha256": "7ec97d0c852e05e140130b1e705f02ae0991594094115b683de2ae64b2a5ff99"
+    },
+    {
+      "path": "tools/check_region2_ruins_connection.py",
+      "unchanged": true,
+      "sha256": "56a9152a2c16449b9c0d4eb06609fc6f56026f24ca78f412db319f010a34ae12"
+    },
+    {
+      "path": "docs/tasks/README.md",
+      "unchanged": true,
+      "sha256": "9b1012762d1dd03355c19b14c686f36f728f6074843fefd43c49b2c68e3db659"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "unchanged": true,
+      "sha256": "82f1890848226390c008a4bb1691eeeb5e9014b4f58115d3caccbaa563a4a692"
+    }
+  ],
+  "approved_exception": "厳密41/旧30＋沿岸6＋新5完全集合。沿岸checkerと敵行動checkerだけを限定移行し、旧固定コピー・全49assertion・6負例を保持。",
+  "historical_as_of": "6bea1ef101e84d7ccc57f9017d4e8e45a3366da5",
+  "all_equal_except_approved_migration": true
+}

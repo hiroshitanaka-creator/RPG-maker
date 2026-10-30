@@ -73,7 +73,13 @@ func _initialize() -> void:
 	var baseline := "res://docs/verification/sprint6-coast/legacy-enemies-63241bc.json"
 	check(FileAccess.get_sha256(baseline)=="14c595a401d846060d185c54ef3222d9f28adfbfc233b1d6673bfc0e07caad6c","既存30種の比較原本は63241bcに固定")
 	var old: Array=JSON.parse_string(FileAccess.get_file_as_string(baseline))
-	check(old.size()==30 and catalog.enemies.size()==36,"既存30種と海3種・地上3種の総数36")
+	var coast_ids := ["coast_water_blob","coast_redfin","coast_red_crab","coast_scorpion","coast_thorn_cactus","coast_worm"]
+	var added_ids := ["ruins_sandstone_doll","ruins_cursed_beetle","ruins_sand_spirit","ruins_tomb_hound","ruins_sandstone_colossus"]
+	var exact_ids: Array = coast_ids+added_ids
+	for entry in old:exact_ids.append(entry["id"])
+	check(old.size()==30 and catalog.enemies.size()==41,"既存30種と沿岸6種と承認済み遺跡5種の総数41")
+	var actual_ids: Array = catalog.enemies.keys();actual_ids.sort();exact_ids.sort()
+	check(actual_ids==exact_ids,"元30＋沿岸6＋新5のID完全一致")
 	for entry in old:check(catalog.enemies.get(entry["id"])==entry,"既存の敵定義不変: "+str(entry["id"]))
 	for group in config["sea_encounter"]["groups"]:
 		for id in group:check(catalog.enemies.has(id),"海の控え敵を戦闘へ登録: "+id)

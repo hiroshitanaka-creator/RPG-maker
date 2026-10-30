@@ -1,0 +1,56 @@
+{
+  "previous_local": {
+    "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+    "command": "python tools/check_task011.py --completed d258908fbb0397e64d08780694786ef1855c4979 --godot /workspace/RPG-maker/.tools/godot/4.7.2/godot",
+    "lp_num_threads": 2,
+    "fixed_capture_seconds": 124.055,
+    "latest_capture_seconds": 123.039,
+    "normal_capture": "fixed/latestとも25枚/315キーで成功",
+    "notification_runtime_positive": "PASS",
+    "notification_capture_limit_seconds": 180,
+    "notification_capture_result": "TIMEOUT",
+    "stage_rejection": "not_reached",
+    "negative_cases": {
+      "executed": 0,
+      "not_reached": 7
+    },
+    "raw_log": "../task011/notification-boundary/battle-capture.log"
+  },
+  "observed_ci": [
+    {
+      "source_sha": "311a27583ac00468084bb5e4e3a987131c3c1367",
+      "job_id": 123737988289,
+      "task027": "positive=1 negative=7 capture=25 stage_rejection=1 PASS",
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/40956540721/job/123737988289"
+    },
+    {
+      "source_sha": "6bea1ef101e84d7ccc57f9017d4e8e45a3366da5",
+      "job_id": 123747975431,
+      "task027": "positive=1 negative=7 capture=25 stage_rejection=1 PASS",
+      "task011_latest_matches": true,
+      "url": "https://github.com/hiroshitanaka-creator/RPG-maker/actions/runs/40959423527/job/123747975431"
+    }
+  ],
+  "diagnosis": "前回ローカルで時間上限に達した事実は再現ログで確認。原因は未確定。環境/GPUが原因とは断定しない。通常撮影成功と、負荷の異なる毎歩通知撮影の失敗を区別する。",
+  "rerun": {
+    "source_sha": "cb5c762dc53645af6ebe483b7cfb1f2734cd9719",
+    "command_unchanged": true,
+    "notification_capture_limit_seconds": 180,
+    "lp_num_threads": 4,
+    "local_concurrent_checks": false,
+    "cpu_max_observed": "400000 100000",
+    "online_processors_observed": 5,
+    "status": "TIMEOUT",
+    "whole_command_exit_code": 1,
+    "whole_command_elapsed_seconds": 549.446,
+    "fixed_capture_seconds": 123.913,
+    "latest_capture_seconds": 121.462,
+    "notification_runtime_positive": "PASS",
+    "stage_rejection": "not_reached",
+    "negative_cases": {
+      "executed": 0,
+      "not_reached": 7
+    },
+    "raw_log_in_archive": "docs/verification/task-027/fixtures/battle-capture.log"
+  }
+}
